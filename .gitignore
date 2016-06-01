@@ -1,0 +1,14 @@
+node_modules
+.tern-port
+.DS_Store
+build
+GPATH
+GRTAGS
+GSYMS
+GTAGS
+*.swp
+#*
+\#*
+*#
+tags
+*~
