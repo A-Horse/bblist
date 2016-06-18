@@ -14,7 +14,6 @@ export const profileByServer = (state = {}, action) => {
             profile: null
         });
     case RECEIVE_PROFILE:
-
         return Object.assign({}, state, {
             isFetching: false,
             didInvalidate: false,
