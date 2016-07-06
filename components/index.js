@@ -1,0 +1,6 @@
+export App from './App'
+export Home from './Home'
+export Home2 from './Home2'
+export Foo from './Foo'
+export Bar from './Bar'
+export Login from './Login'
