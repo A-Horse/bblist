@@ -1,25 +1,42 @@
 import React, { Component, PropTypes } from 'react'
+import fetch from 'isomorphic-fetch'
 import { connect } from 'react-redux'
 
-class Login extends Component {
+import {loginUser} from '../actions/login'
 
+class Login extends Component {
+  LOGIN_API = '/api/login';
+  STA = 'hi'
+  
   render() {
     const { errorMessage } = this.props
-
+    const {STA} = this.props;
     return (
-        <div>
-        <input type='text' />
-        <input type='password' />
+      <div>
+        {STA}
+          <input type='text' ref='username'/>
+          <input type='password' ref='password'/>
+        <button onClick={(event) => this.handleClick(event)} >Login</button>
         </div>
     )
   }
 
   handleClick(event) {
+    const { dispatch } = this.props
+    
     const username = this.refs.username
     const password = this.refs.password
     const creds = { username: username.value.trim(), password: password.value.trim() }
-    this.props.onLoginClick(creds)
-  }     
+    
+    dispatch(loginUser(creds))
+    //this.onLoginClick(creds)
+  }
 }
 
-export default connect()(Login)
+const mapStateToProps = (state) => {
+  return {
+    STA: state.isFetching
+  }
+}
+
+export default connect(mapStateToProps)(Login)

@@ -9,7 +9,8 @@ import { createStore, combineReducers } from 'redux'
 import { Provider } from 'react-redux'
 import { Router, Route, IndexRoute, browserHistory } from 'react-router'
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
-
+import { applyMiddleware } from 'redux'
+import thunkMiddleware from 'redux-thunk'
 import * as reducers from './reducers'
 import { App, Home, Foo, Bar, Login } from './components'
 
@@ -24,7 +25,9 @@ const DevTools = createDevTools(
   </DockMonitor>
 )
 
-const store = createStore(
+let createStoreWithMiddleware = applyMiddleware(thunkMiddleware)(createStore)
+
+const store = createStoreWithMiddleware(
   reducer,
   DevTools.instrument()
 )
@@ -34,7 +37,7 @@ ReactDOM.render(
   <Provider store={store}>
     <div>
       <Router history={history}>
-        <Route path="/" component={App}>
+    <Route path="/" component={App}>
           <IndexRoute component={Home}/>
           <Route path="foo" component={Foo}/>
           <Route path="bar" component={Bar}/>
