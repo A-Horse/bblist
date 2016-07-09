@@ -14,8 +14,8 @@ class Login extends Component {
     return (
       <div>
         {STA}
-          <input type='text' ref='username'/>
-          <input type='password' ref='password'/>
+        <input type='text' ref='username'/>
+        <input type='password' ref='password'/>
         <button onClick={(event) => this.handleClick(event)} >Login</button>
         </div>
     )
@@ -35,7 +35,7 @@ class Login extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    STA: state.isFetching
+    STA: state.login.auth.message
   }
 }
 

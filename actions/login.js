@@ -1,4 +1,5 @@
 import fetch from 'isomorphic-fetch'
+import { browserHistory } from 'react-router'
 
 export const LOGIN_REQUEST = 'LOGIN_REQUEST'
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
@@ -33,21 +34,20 @@ function loginError(message) {
 
 
 export function loginUser(creds) {
-
   let config = {
     method: 'PUT',
     headers: { 'Content-Type':'application/json' },
     body: creds
   }
-
+  
   return dispatch => {
     // We dispatch requestLogin to kickoff the call to the API
     dispatch(requestLogin(creds))
-
     return fetch('/api/login', config)
       .then(response => response.json())
       .then(response => {
-        console.log('then');
+        browserHistory.push('/foo')
+        localStorage.setItem('id_token', response.id_token)
         dispatch(receiveLogin({id_token: response.id_token}))
       })
       .catch(err => console.log("Error: ", err))

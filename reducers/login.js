@@ -12,18 +12,18 @@ function auth(state = {
 }, action) {
   switch (action.type) {
   case LOGIN_REQUEST:
-    console.log('request');
     return Object.assign({}, state, {
       isFetching: true,
       isAuthenticated: false,
-      user: action.creds
+      user: action.creds,
+      message: 'request'
     })
   case LOGIN_SUCCESS:
-    console.log('success');
     return Object.assign({}, state, {
       isFetching: false,
       isAuthenticated: true,
-      errorMessage: ''
+      errorMessage: '',
+      message: 'success'
     })
   case LOGIN_FAILURE:
     return Object.assign({}, state, {
@@ -46,9 +46,9 @@ function quotes(state = {}, action) {
 
 // We combine the reducers here so that they
 // can be left split apart above
-const LoginReducer = combineReducers({
+const login = combineReducers({
   auth,
   quotes
 })
 
-export default LoginReducer;
+export default login;
