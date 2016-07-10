@@ -12,7 +12,7 @@ import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
 import { applyMiddleware } from 'redux'
 import thunkMiddleware from 'redux-thunk'
 import * as reducers from './reducers'
-import { App, Home, Foo, Bar, Login } from './components'
+import { App, Home, Foo, Bar, Login, SignUp, TaskWall } from './components'
 
 const reducer = combineReducers({
   ...reducers,
@@ -42,6 +42,8 @@ ReactDOM.render(
           <Route path="foo" component={Foo}/>
           <Route path="bar" component={Bar}/>
           <Route path="login" component={Login}/>
+          <Route path="signup" component={SignUp}/>
+          <Route path="task-wall" component={TaskWall}/>
         </Route>
       </Router>
       <DevTools />

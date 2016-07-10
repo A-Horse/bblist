@@ -38,16 +38,36 @@ function getTaskWallError(message) {
 
 
 /************* Post *******************/
+function requestCreateTaskWall() {
+  return {
+    type: TASKWALL_POST_REQUEST,
+    isFetching: true
+  }
+}
 
+function receiveCreateTaskWall() {
+  return {
+    type: TASKWALL_POST_SUCCESS,
+    isFetching: false
+  }
+}
 
+function createTaskWallError() {
+  return {
+    type: TASKWALL_POST_FAILURE,
+    isFetching: false
+  }
+}
 
 /************* Method *******************/
 
 export function getAllTaskWall(user) {
   let config = {
     method: 'GET',
-    headers: { 'Content-Type':'application/json' },
-    body: {}
+    headers: {
+      'Content-Type':'application/json',
+      'JWTs-TOKEN': localStorage.getItem('jwts-token')
+    }
   }
 
   return dispatch => {
@@ -61,4 +81,26 @@ export function getAllTaskWall(user) {
   }
 }
 
+export function createTaskWall(wallInfo) {
+  let config = {
+    method: 'POST',
+    headers: {
+      'Content-Type':'application/json',
+      'JWTs-TOKEN': localStorage.getItem('jwts-token')
+    },
+    body: JSON.stringify(wallInfo)
+  }
 
+  return dispatch => {
+    dispatch(requestCreateTaskWall())
+    return fetch('/api/task-wall', config)
+      .then(response => {
+        if( response.status !== 201 ){
+          dispatch(createTaskWallError(response.json().message))
+        } else {
+          dispatch(receiveCreateTaskWall(response.json()))
+        }
+      })
+      .catch(handleHttpError)
+  }
+}

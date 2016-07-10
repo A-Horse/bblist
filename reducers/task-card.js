@@ -30,4 +30,4 @@ function taskCard(state = {
   }
 }
 
-export default taskCard;
+export default taskCard
