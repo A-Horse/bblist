@@ -47,7 +47,6 @@ function requestGetTaskCard() {
 }
 
 function receiveGetTaskCard(taskCards) {
-  console.log(taskCards);
   return {
     type: TASKCARD_GET_SUCCESS,
     isFetching: false,
@@ -66,8 +65,9 @@ function getTaskCardError(status) {
 export function getTaskCards(wallId) {
   let config = {
     method: 'GET',
+    dataType: 'json',
     headers: {
-      'Content-Type':'application/json',
+      'Content-Type': 'application/json',
       'jwts-token': localStorage.getItem('jwts-token')
     }
   }
@@ -75,11 +75,12 @@ export function getTaskCards(wallId) {
   return dispatch => {
     dispatch(requestGetTaskCard())
     return fetch(`/api/task-wall/${wallId}`, config)
+      .then(response => response)
       .then(response => {
         if( response.status === 404 ){
           return dispatch(getTaskCardError(404))
         }
-        return dispatch(receiveGetTaskCard(response.json()))
+        response.json().then(response => dispatch(receiveGetTaskCard(response)))
       })
       .catch(handleHttpError)
   }
