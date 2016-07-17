@@ -12,7 +12,8 @@ import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
 import { applyMiddleware } from 'redux'
 import thunkMiddleware from 'redux-thunk'
 import * as reducers from './reducers'
-import { App, Home, Foo, Bar, Login, SignUp, TaskWall } from './components'
+import { App, Home, Foo, Bar, Login, SignUp, TaskWall, TaskCard, NotFound } from './components'
+import {checkLogin} from './utils/auth'
 
 const reducer = combineReducers({
   ...reducers,
@@ -33,17 +34,20 @@ const store = createStoreWithMiddleware(
 )
 const history = syncHistoryWithStore(browserHistory, store)
 
+
 ReactDOM.render(
   <Provider store={store}>
     <div>
       <Router history={history}>
-    <Route path="/" component={App}>
-          <IndexRoute component={Home}/>
-          <Route path="foo" component={Foo}/>
+        <Route path="/" component={App} >
+          <IndexRoute component={Home} onEnter={checkLogin} />
+          <Route path="foo" component={Foo} onEnter={checkLogin}/>
+          <Route path="404" component={NotFound} />
           <Route path="bar" component={Bar}/>
           <Route path="login" component={Login}/>
           <Route path="signup" component={SignUp}/>
-          <Route path="task-wall" component={TaskWall}/>
+          <Route path="task-wall" component={TaskWall} onEnter={checkLogin}/>
+          <Route path="task-wall/:id" component={TaskCard} onEnter={checkLogin}/>
         </Route>
       </Router>
       <DevTools />

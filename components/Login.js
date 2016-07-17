@@ -17,6 +17,7 @@ class Login extends Component {
         <input type='text' ref='username'/>
         <input type='password' ref='password'/>
         <button onClick={(event) => this.handleClick(event)} >Login</button>
+        <a href="/signup">Sign Up</a>
         </div>
     )
   }

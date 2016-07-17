@@ -21,16 +21,17 @@ function requestGetTaskWall(user) {
   }
 }
 
-function receiveGetTaskWall() {
+function receiveGetTaskWall(walls) {
   return {
-    type: TASKWALL_POST_SUCCESS,
-    isFetching: false
+    type: TASKWALL_GET_SUCCESS,
+    isFetching: false,
+    walls: walls
   }
 }
 
 function getTaskWallError(message) {
   return {
-    type: TASKWALL_POST_FAILURE,
+    type: TASKWALL_GET_FAILURE,
     isFetching: false,
     message: message
   }

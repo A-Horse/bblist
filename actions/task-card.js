@@ -46,33 +46,40 @@ function requestGetTaskCard() {
   }
 }
 
-function receiveGetTaskCard() {
+function receiveGetTaskCard(taskCards) {
+  console.log(taskCards);
   return {
-    type: TASKCARD_POST_SUCCESS,
-    isFetching: false
+    type: TASKCARD_GET_SUCCESS,
+    isFetching: false,
+    cards: taskCards
   }
 }
 
-function getTaskCardError() {
+function getTaskCardError(status) {
   return {
     type: TASKCARD_GET_FAILURE,
-    isFetching: false
+    isFetching: false,
+    status: status
   }
 }
 
-export function getTask(user, wallId) {
+export function getTaskCards(wallId) {
   let config = {
     method: 'GET',
-    headers: { 'Content-Type':'application/json' },
-    body: {}
+    headers: {
+      'Content-Type':'application/json',
+      'jwts-token': localStorage.getItem('jwts-token')
+    }
   }
 
   return dispatch => {
     dispatch(requestGetTaskCard())
-    return fetch(`/api/task-card/${wallId}`, config)
-      .then(response => response.json)
+    return fetch(`/api/task-wall/${wallId}`, config)
       .then(response => {
-        dispatch(receiveGetTaskCard())
+        if( response.status === 404 ){
+          return dispatch(getTaskCardError(404))
+        }
+        return dispatch(receiveGetTaskCard(response.json()))
       })
       .catch(handleHttpError)
   }
@@ -82,16 +89,18 @@ export function getTask(user, wallId) {
 export function postTaskCard(taskCard) {
   let config = {
     method: 'POST',
-    headers: { 'Content-Type':'application/json' },
-    body: taskCard
+    headers: {
+      'Content-Type':'application/json',
+      'jwts-token': localStorage.getItem('jwts-token')
+    },
+    body: JSON.stringify(taskCard)
   }
   
   return dispatch => {
     dispatch(requestPostTaskCard(taskCard))
     return fetch('/api/task-card', config)
-      .then(response => response.json())
       .then(response => {
-        dispatch(receivePostTaskCard(response))
+        return dispatch(receivePostTaskCard(response.json()))
       })
       .catch(handleHttpError)
   }

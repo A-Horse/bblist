@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import fetch from 'isomorphic-fetch'
 import { connect } from 'react-redux'
+import { browserHistory } from 'react-router'
 
 import {createTaskWall, getAllTaskWall} from '../actions/task-wall'
 
@@ -8,23 +9,35 @@ class TaskWall extends Component {
   constructor() {
     super()
     console.log('task card page init')
+    
   }
 
   getWalls() {
     let { dispatch } = this.props
     
-    dispatch(getAllTaskWall())
+    return dispatch(getAllTaskWall())
+  }
+
+  componentWillMount() {
+    let self = this;
+    
+    this.getWalls();
   }
   
-  render() {    
-    const tasks = this.getWalls();
+  render() {
+    let walls = this.props.walls.map(wjson => {
+      return (
+        <div key={wjson.id}>
+          <h2>{wjson.name}</h2>
+        </div>
+      )
+    })
     
     return (
       <div>
         <div>
-          
           <h2>Wall</h2>
-          
+          {walls}
         </div>
         <div>
           <input type='text' ref='name'/>
@@ -39,13 +52,13 @@ class TaskWall extends Component {
     
     const name = this.refs.name
     
-    dispatch(createTaskWall({name: name.value.trim()}))
+    dispatch(createTaskWall({name: name.value.trim()})).then(this.getWalls.bind(this))
   }
 }
 
 const mapStateToProps = (state) => {
   return {
-    
+    walls: state.taskWall.walls || []
   }
 }
 

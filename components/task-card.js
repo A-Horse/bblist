@@ -1,33 +1,58 @@
 import React, { Component, PropTypes } from 'react'
 import fetch from 'isomorphic-fetch'
 import { connect } from 'react-redux'
-
-import {postTaskCard } from '../actions/task-card'
+import { browserHistory } from 'react-router'
+import {postTaskCard, getTaskCards } from '../actions/task-card'
 
 class TaskCard extends Component {
   constructor() {
     console.log('task card page init')
+
+    super()
+    
+    
   }
 
-  getTasks() {
+
+  componentWillMount() {
+    var {id} = this.props.params;
+
+    let self = this;
     
+    this.getTasks(id).then(function(){
+      if( self.props.status === 404 ){
+        browserHistory.push('/404');
+      }
+    });
+  }
+  
+  getTasks(id) {
+    let {dispatch} = this.props
+    
+    return dispatch(getTaskCards(id))
   }
   
   render() {
-    const { errorMessage } = this.props
-    const {STA} = this.props;
     
-    const tasks = this.getTasks();
+    let cards = this.props.cards.map(cjson => {
+      return (
+        <div key={cjson.id}>
+          <h2>{cjson.title}</h2>
+          <p>{cjson.content}</p>
+        </div>
+      )
+    })
+    
     
     return (
       <div>
         <div>
           <h2>Task</h2>
-          
+          {cards}
         </div>
         <div>
-          <input type='text' ref='username'/>
-          <input type='text' ref='name'/>
+          <input type='text' ref='title'/>
+          <input type='text' ref='content'/>
           <button onClick={(event) => this.handleClick(event)} >Post</button>
         </div>
       </div>
@@ -35,19 +60,30 @@ class TaskCard extends Component {
   }
 
   handleClick(event) {
-    // const { dispatch } = this.props
-    
-    // const username = this.refs.username
-    // const password = this.refs.password
-    // const creds = { username: username.value.trim(), password: password.value.trim() } 
-    
-    // dispatch(loginUser(creds))
-    //this.onLoginClick(creds)
+    let {dispatch} = this.props,
+        self = this;
+
+    const title = this.refs.title,
+          content = this.refs.content;
+
+    const data = {
+      taskWallId: this.props.params.id,
+      title: title.value.trim(),
+      content: content.value.trim()
+    }
+
+    dispatch(postTaskCard(data)).then(function(){
+      self.getTasks(self.props.params.id)
+      title.value = content.value = '';
+    });
   }
 }
 
 const mapStateToProps = (state) => {
-  
+  return {
+    cards: state.taskCard.cards || [],
+    status: state.taskCard.status
+  }
 }
 
 export default connect(mapStateToProps)(TaskCard)
