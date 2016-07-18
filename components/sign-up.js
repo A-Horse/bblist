@@ -11,26 +11,33 @@ class SignUp extends Component {
     return (
         <div>
         <input type='text' ref='username'/>
+        <input type='email' ref='email'/>
         <input type='password' ref='password'/>
+        <input type='password' ref='repeat'/>
         <button onClick={(event) => this.handleClick(event)} >Sign Up</button>
         </div>
     )
   }
 
   handleClick(event) {
-    const { dispatch } = this.props
+    const { dispatch } = this.props;
     
-    const username = this.refs.username
-    const password = this.refs.password
-    const userInfo = { username: username.value.trim(), password: password.value.trim() }
+    const username = this.refs.username;
+    const password = this.refs.password;
+    const email = this.refs.email;
+    const userInfo = { username: username.value.trim(),
+                       password: password.value.trim(),
+                       email: password.email.trim()};
     
-    dispatch(signUp(userInfo))
+    dispatch(signUp(userInfo));
     //this.onLoginClick(creds)
   }
 }
 
 const mapStateToProps = (state) => {
-  return {}
+  return {
+    
+  }
 }
 
 export default connect(mapStateToProps)(SignUp)

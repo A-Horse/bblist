@@ -13,18 +13,12 @@ class Profile extends Component {
 
     return (
         <div>
-
-        <h2></h2>
-        <div>
-        <h2>Task</h2>
-        </div>
+        
+        <h2>Profile</h2>
 
         <div>
-        <h2>Idea</h2>
-        </div>
-
-        <div>
-        <h2>Chat</h2>
+        <span>Password</span>
+        <button>Change Password</button>
         </div>
         
         </div>
