@@ -14,18 +14,26 @@ function makeValidater(ruleString) {
   let {nameParams, message} = ruleString.split('#');
   let {name, params} = _.splitAt(1, nameParams.split('@'));
 
-  return RULES[name].apply(null, params);
+  return value => {
+    if( RULES[name].apply(null, params)(value) ){
+      return null;
+    }
+    return message;
+  }
 }
 
 export function validateFormValue(formValue, ruleMap) {
   let errorMessage = {};
   for (let key in formValue) {
     let rules = ruleMap[key];
-
-    for (let rf in rules.map(makeValidater)) {
-      rf(formValue[key])
-    }
     
+    for (let rf in rules.map(makeValidater)) {
+      let message = rf(formValue[key]);
+      if( message ){
+        errorMessage[key] = message;
+        break;
+      }
+    }
   }
 }
 
