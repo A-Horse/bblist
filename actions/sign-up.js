@@ -42,7 +42,7 @@ export function signUp(userInfo){
     return fetch('/api/sign-up', config)
       .then(response => {
         localStorage.setItem('jwts-token', response.headers.get('jwts-token'));
-        receiveSignUp(response.json());
+        return receiveSignUp(response.json());
       }).catch(handleHttpError);
   }
 }
