@@ -37,7 +37,7 @@ export function loginUser(creds) {
   let config = {
     method: 'PUT',
     headers: { 'Content-Type':'application/json' },
-    body: creds
+    body: JSON.stringify(creds)
   }
   
   return dispatch => {

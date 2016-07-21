@@ -3,19 +3,13 @@ import { Link, browserHistory } from 'react-router'
 
 import {makeGravatarHash} from '../services/gravatar';
 
+import Nav from './Nav';
+
 
 export default function App({ children }) {
   return (
       <div>
-      <header>
-      Links:
-    {' '}
-      <Link to="/">Home</Link>
-      {' '}
-      <Link to="/foo">Foo</Link>
-      {' '}
-      <Link to="/bar">Bar</Link>
-      </header>
+      <Nav/>
       <div>
       <button onClick={() => browserHistory.push('/foo')}>Go to /foo</button>
       </div>

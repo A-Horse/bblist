@@ -12,8 +12,7 @@ class Profile extends Component {
   }
   
   render() {
-
-    const email = 'abychen@outlook.com'
+    const email = 'abychen@outlook.com';
 
 
     return (

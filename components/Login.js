@@ -4,32 +4,77 @@ import { connect } from 'react-redux'
 
 import {loginUser} from '../actions/login'
 
+import { browserHistory } from 'react-router'
+
+import {validateFormValue} from '../services/validate-strategy';
+
 class Login extends Component {
-  LOGIN_API = '/api/login';
-  STA = 'hi'
+
   
+  componentWillMount() {
+    this.state = {
+      errorMessage: {}
+    }
+  }
+
+
   render() {
-    const { errorMessage } = this.props
-    const {STA} = this.props;
+    const errorMessage = this.state.errorMessage;
+    
     return (
       <div>
-        {STA}
-        <input type='text' ref='username'/>
-        <input type='password' ref='password'/>
-        <button onClick={(event) => this.handleClick(event)} >Login</button>
-        <a href="/signup">Sign Up</a>
+        <div>
+
+          <div>
+            <input type='text' ref='usernameOrEmail'/>
+            <p>{errorMessage.usernameOrEmail}</p>
+          </div>
+          
+          <div>
+            <input type='password' ref='password'/>
+            <p>{errorMessage.password}</p>
+          </div>
+
+          <div>
+            <button onClick={(event) => this.handleClick(event)} >Login</button>
+          </div>
+          
         </div>
+        
+        
+        <a href="/signup">Sign Up</a>
+      </div>
     )
   }
 
   handleClick(event) {
     const { dispatch } = this.props
     
-    const username = this.refs.username
-    const password = this.refs.password
-    const creds = { username: username.value.trim(), password: password.value.trim() }
+    const usernameOrEmail = this.refs.usernameOrEmail;
+    const password = this.refs.password;
     
-    dispatch(loginUser(creds))
+    const loginInfo = {
+      usernameOrEmail: usernameOrEmail.value.trim(),
+      password: password.value.trim()
+    };
+
+    const errorMessage = validateFormValue(loginInfo, {
+      usernameOrEmail: ['required#required'],
+      password: ['required#required']
+    });
+
+
+    this.setState({errorMessage: errorMessage});
+    
+
+    if( !Object.keys(errorMessage).length ){
+      dispatch(loginUser(loginInfo)).then(function(action){
+        // if( action.type === SIGNUP_SUCCESS ){
+        //   browserHistory.push('/');
+        // }
+      });
+    }
+    //dispatch(loginUser(loginInfo))
     //this.onLoginClick(creds)
   }
 }

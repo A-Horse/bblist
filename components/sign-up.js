@@ -69,8 +69,8 @@ class SignUp extends Component {
     const repeat = this.refs.repeat;
     const email = this.refs.email;
 
-    this.refs.username.value = 'hhi';
-    this.refs.email.value = 'hhi@qq.com';
+    this.refs.username.value = 'abychen';
+    this.refs.email.value = 'abychen@outlook.com';
     this.refs.password.value = '123456';
     this.refs.repeat.value = '123456';
     
