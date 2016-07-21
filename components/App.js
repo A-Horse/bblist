@@ -1,6 +1,9 @@
 import React from 'react'
 import { Link, browserHistory } from 'react-router'
 
+import {makeGravatarHash} from '../services/gravatar';
+
+
 export default function App({ children }) {
   return (
       <div>
