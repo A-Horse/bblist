@@ -48,7 +48,7 @@ export function loginUser(creds) {
       .then(response => {
         browserHistory.push('/foo')
         localStorage.setItem('id_token', response.id_token)
-        dispatch(receiveLogin({id_token: response.id_token}))
+        return dispatch(receiveLogin({id_token: response.id_token, user: response.user}))
       })
       .catch(err => console.log("Error: ", err))
   }
