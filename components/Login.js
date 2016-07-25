@@ -8,6 +8,11 @@ import { browserHistory } from 'react-router'
 
 import {validateFormValue} from '../services/validate-strategy';
 
+
+import {
+  LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE
+} from '../actions/login';
+
 class Login extends Component {
 
   
@@ -62,16 +67,18 @@ class Login extends Component {
       usernameOrEmail: ['required#required'],
       password: ['required#required']
     });
-
+    
 
     this.setState({errorMessage: errorMessage});
     
 
     if( !Object.keys(errorMessage).length ){
       dispatch(loginUser(loginInfo)).then(function(action){
-        // if( action.type === SIGNUP_SUCCESS ){
-        //   browserHistory.push('/');
-        // }
+        if( action.type === LOGIN_SUCCESS ){
+          browserHistory.push('/');
+        } else {
+          
+        }
       });
     }
     //dispatch(loginUser(loginInfo))

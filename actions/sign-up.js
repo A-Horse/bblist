@@ -33,7 +33,9 @@ function signUpError(message) {
 export function signUp(userInfo){
   let config = {
     method: 'POST',
-    headers: {'Content-Type':'application/json'},
+    headers: {
+      'Content-Type':'application/json'
+    },
     body: JSON.stringify(userInfo)
   }
 

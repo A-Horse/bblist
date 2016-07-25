@@ -1,9 +1,14 @@
 import fetch from 'isomorphic-fetch'
 import { browserHistory } from 'react-router'
 
-export const LOGIN_REQUEST = 'LOGIN_REQUEST'
-export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
-export const LOGIN_FAILURE = 'LOGIN_FAILURE'
+export const LOGIN_REQUEST = 'LOGIN_REQUEST';
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGIN_FAILURE = 'LOGIN_FAILURE';
+
+export const LOGIN_AUTH_FAILURE = 'LOGIN_AUTH_FAILURE';
+export const LOGIN_AUTH_REQUEST = 'LOGIN_AUTH_REQUEST';
+export const LOGIN_AUTH_SUCCESS = 'LOGIN_AUTH_SUCCESS';
+
 
 function requestLogin(creds) {
   return {
@@ -32,6 +37,21 @@ function loginError(message) {
   }
 }
 
+function canNotLogin() {
+  return {
+    type: LOGIN_AUTH_FAILURE,
+    isFetching: false,
+    isAuthenticated: false
+  }
+}
+
+function requestAuthLogin() {
+  return {
+    type: LOGIN_AUTH_REQUEST,
+    isFetching: false,
+    isAuthenticated: false
+  }
+}
 
 export function loginUser(creds) {
   let config = {
@@ -52,4 +72,41 @@ export function loginUser(creds) {
       })
       .catch(err => console.log("Error: ", err))
   }
+}
+
+
+export function authUser() {
+  let token = localStorage.getItem('jwts-token');
+  console.log("token = ", token);
+  
+
+  let config = {
+    method: 'GET',
+    headers: {'Content-Type':'application/json',
+              'JWTs-TOKEN': token}
+  };
+
+  return dispatch => {
+    console.log(token);
+      if( !token ){
+        return dispatch(canNotLogin());
+      }
+      console.log('1');
+      dispatch(requestAuthLogin());
+      return fetch('/api/login', config)
+        .then(response => {
+          if( response.status == 200 ){
+            return response.json()
+          } else {
+            throw new Error(response.json());
+          }
+        }).then(response => {
+
+          console.log(response);
+          
+        }).catch(err => {
+          console.log(err);
+        });
+    }
+  
 }
