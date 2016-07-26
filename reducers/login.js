@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux'
 import {
-  LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE
+  LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE,
+  LOGIN_AUTH_REQUEST, LOGIN_AUTH_SUCCESS, LOGIN_AUTH_FAILURE,
 } from '../actions/login'
 
 // The auth reducer. The starting state sets authentication
@@ -37,8 +38,27 @@ function auth(state = {
 }
 
 // The quotes reducer
-function quotes(state = {}, action) {
+function state(state = {}, action) {
   switch (action.type) {
+  case LOGIN_AUTH_REQUEST:
+    return Object.assign({}, state, {
+      isFetching: true,
+      isAuthenticated: false
+    });
+    break;
+  case LOGIN_AUTH_SUCCESS:
+    return Object.assign({}, state, {
+      isFetching: false,
+      isAuthenticated: true,
+      loginUser: action.user
+    })
+    break;
+  case LOGIN_AUTH_FAILURE:
+    return Object.assign({}, state, {
+      isFetching: false,
+      isAuthenticated: false,
+      message: action.message
+    });
   default:
     return state
   }
@@ -48,7 +68,7 @@ function quotes(state = {}, action) {
 // can be left split apart above
 const login = combineReducers({
   auth,
-  quotes
+  state
 })
 
 export default login;

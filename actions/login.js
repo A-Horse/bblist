@@ -37,7 +37,7 @@ function loginError(message) {
   }
 }
 
-function canNotLogin() {
+function canNotLoginAuth() {
   return {
     type: LOGIN_AUTH_FAILURE,
     isFetching: false,
@@ -51,6 +51,24 @@ function requestAuthLogin() {
     isFetching: false,
     isAuthenticated: false
   }
+}
+
+function authLoginError(message) {
+  return {
+    type: LOGIN_AUTH_FAILURE,
+    isFetching: false,
+    isAuthenticated: false,
+    message: message
+  };
+}
+
+function authLoginSuccess(user) {
+  return {
+    type: LOGIN_AUTH_SUCCESS,
+    isFetching: false,
+    isAuthenticated: false,
+    user: user
+  };
 }
 
 export function loginUser(creds) {
@@ -68,6 +86,7 @@ export function loginUser(creds) {
       .then(response => {
         browserHistory.push('/foo')
         localStorage.setItem('id_token', response.id_token)
+        localStorage.setItem('cachedUsername', response.user.username)
         return dispatch(receiveLogin({id_token: response.id_token, user: response.user}))
       })
       .catch(err => console.log("Error: ", err))
@@ -77,7 +96,6 @@ export function loginUser(creds) {
 
 export function authUser() {
   let token = localStorage.getItem('jwts-token');
-  console.log("token = ", token);
   
 
   let config = {
@@ -85,27 +103,20 @@ export function authUser() {
     headers: {'Content-Type':'application/json',
               'JWTs-TOKEN': token}
   };
-
+  
   return dispatch => {
     console.log(token);
       if( !token ){
-        return dispatch(canNotLogin());
+        return dispatch(canNotLoginAuth());
       }
-      console.log('1');
       dispatch(requestAuthLogin());
       return fetch('/api/login', config)
         .then(response => {
-          if( response.status == 200 ){
-            return response.json()
-          } else {
-            throw new Error(response.json());
-          }
+          return response.json();
         }).then(response => {
-
-          console.log(response);
-          
+          return dispatch(authLoginSuccess(response.user))
         }).catch(err => {
-          console.log(err);
+          return dispatch(authLoginError(err.message));
         });
     }
   
