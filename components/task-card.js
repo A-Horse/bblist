@@ -50,9 +50,20 @@ class TaskCard extends Component {
           <h2>Task</h2>
           {cards}
         </div>
+        
         <div>
-          <input type='text' ref='title'/>
-          <input type='text' ref='content'/>
+          <div>
+            <span>title</span>
+            <input type='text' ref='title'/>
+          </div>
+
+          <div>
+            <span>Content</span>
+            <input type='text' ref='content'/>
+          </div>
+
+          
+          
           <button onClick={(event) => this.handleClick(event)} >Post</button>
         </div>
       </div>

@@ -49,9 +49,9 @@ class TaskWall extends Component {
   }
 
   handleClick(event) {
-    let { dispatch } = this.props
+    let { dispatch } = this.props;
     
-    const name = this.refs.name
+    const name = this.refs.name;
     
     dispatch(createTaskWall({name: name.value.trim()})).then(this.getWalls.bind(this))
   }
