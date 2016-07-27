@@ -105,7 +105,6 @@ export function authUser() {
   };
   
   return dispatch => {
-    console.log(token);
       if( !token ){
         return dispatch(canNotLoginAuth());
       }

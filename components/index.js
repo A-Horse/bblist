@@ -11,3 +11,5 @@ export NotFound from './NotFound'
 export DashBoard from './DashBoard'
 export Setting from './Setting'
 export Profile from './Profile'
+
+export Loading from './util/loading'

@@ -12,24 +12,28 @@ class Profile extends Component {
   }
   
   render() {
-    const email = 'abychen@outlook.com';
+    const {user} = this.props;
 
+    if( user ){
+      return (
+        <div>
+          
+          <h2>Profile</h2>
 
+          <div>
+            <img src={makeGravatarUrl(user.email)}/>
+          </div>
+
+          <div>
+            <span>Password</span>
+            <button>Change Password</button>
+          </div>
+          
+        </div>
+      )
+    }
     return (
-        <div>
-        
-        <h2>Profile</h2>
-
-        <div>
-          <img src={makeGravatarUrl(email)}/>
-        </div>
-
-        <div>
-        <span>Password</span>
-        <button>Change Password</button>
-        </div>
-        
-        </div>
+      <div>Loading........</div>
     )
   }
 
@@ -38,7 +42,7 @@ class Profile extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    
+    user: state.login.state.loginUser
   }
 }
 
