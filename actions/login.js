@@ -9,6 +9,8 @@ export const LOGIN_AUTH_FAILURE = 'LOGIN_AUTH_FAILURE';
 export const LOGIN_AUTH_REQUEST = 'LOGIN_AUTH_REQUEST';
 export const LOGIN_AUTH_SUCCESS = 'LOGIN_AUTH_SUCCESS';
 
+import {JWT_STORAGE_KEY, CACHED_USERNAME} from '../setting';
+
 
 function requestLogin(creds) {
   return {
@@ -85,8 +87,8 @@ export function loginUser(creds) {
       .then(response => response.json())
       .then(response => {
         browserHistory.push('/foo')
-        localStorage.setItem('id_token', response.id_token)
-        localStorage.setItem('cachedUsername', response.user.username)
+        localStorage.setItem(JWT_STORAGE_KEY, response.id_token)
+        localStorage.setItem(CACHED_USERNAME, response.user.username)
         return dispatch(receiveLogin({id_token: response.id_token, user: response.user}))
       })
       .catch(err => console.log("Error: ", err))
@@ -101,7 +103,7 @@ export function authUser() {
   let config = {
     method: 'GET',
     headers: {'Content-Type':'application/json',
-              'JWTs-TOKEN': token}
+              JWT_STORAGE_KEY: token}
   };
   
   return dispatch => {

@@ -11,6 +11,8 @@ export const TASKCARD_GET_REQUEST = 'TASKCARD_GET_REQUEST'
 export const TASKCARD_GET_SUCCESS = 'TASKCARD_GET_SUCCESS'
 export const TASKCARD_GET_FAILURE = 'TASKCARD_GET_FAILURE'
 
+import {JWT_STORAGE_KEY, CACHED_USERNAME} from '../setting';
+
 /************* Post *******************/
 
 function requestPostTaskCard(taskCard) {
@@ -68,7 +70,7 @@ export function getTaskCards(wallId) {
     dataType: 'json',
     headers: {
       'Content-Type': 'application/json',
-      'jwts-token': localStorage.getItem('jwts-token')
+      'jwts-token': localStorage.getItem(JWT_STORAGE_KEY)
     }
   }
 
@@ -92,7 +94,7 @@ export function postTaskCard(taskCard) {
     method: 'POST',
     headers: {
       'Content-Type':'application/json',
-      'jwts-token': localStorage.getItem('jwts-token')
+      'jwts-token': localStorage.getItem(JWT_STORAGE_KEY)
     },
     body: JSON.stringify(taskCard)
   }

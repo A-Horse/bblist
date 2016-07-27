@@ -3,7 +3,7 @@ import fetch from 'isomorphic-fetch';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 
-import {makeGravatarUrl} from '../services/gravatar';
+
 
 let _ = require('lodash');
 
@@ -13,28 +13,40 @@ class Loading extends Component {
     super();
 
     this.dotn = 1;
+
+    this.interval = null;
   }
 
   componentWillMount() {
+    let self = this;
+
+    this.state = {
+      dotn: 1
+    }
     
+    this.interval = setInterval(function(){
+      let dotn = ++self.state.dotn;
+      if( dotn > 10 ){
+        dotn = 1;
+      }
+      self.setState({
+        dotn: dotn
+      })
+    }, 200);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
   }
   
   render() {
-
-    const dots = _.repeat('.', this.dotn);
-    this.dotn++;
-    if( this.dotn > 10 ){
-      this.dotn = 1;
-    }
-    
+    let dots = _.repeat('.', this.state.dotn);
     return (
         <div>
         loading{dots}
         </div>
-    )
+    );
   }
-
-  
 }
 
 

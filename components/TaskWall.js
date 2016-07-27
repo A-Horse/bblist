@@ -27,7 +27,7 @@ class TaskWall extends Component {
   render() {
     let walls = this.props.walls.map(wjson => {
       return (
-        <div key={wjson.id}>
+        <div key={wjson.id} onClick={() => browserHistory.push(`/task-wall/${wjson.id}`)}>
           <h2>{wjson.name}</h2>
         </div>
       )
@@ -39,6 +39,7 @@ class TaskWall extends Component {
           <h2>Wall</h2>
           {walls}
         </div>
+        
         <div>
           <input type='text' ref='name'/>
           <button onClick={(event) => this.handleClick(event)} >Post</button>

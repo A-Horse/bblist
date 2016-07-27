@@ -7,6 +7,8 @@ import {makeGravatarHash} from '../services/gravatar';
 
 import {authUser} from '../actions/login';
 
+import Loading from './util/loading';
+
 class Nav extends Component {
   constructor() {
     super()
@@ -28,11 +30,11 @@ class Nav extends Component {
       <header>
         <span>Links:</span>
         {' '}
-        <Link to="/">Home2</Link>
+        <Link to="/">Home</Link>
         {' '}
-        <Link to="/foo">Foo</Link>
+        <Link to="/task-wall">Task</Link>
         {' '}
-        <Link to="/bar">Bar</Link>
+        <Link to="/bar">Idea</Link>
         {' '}
         { userCell }
       </header>
