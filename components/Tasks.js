@@ -37,7 +37,11 @@ class Tasks extends Component {
       <div>
         <div>
           <h2>Wall</h2>
-          {walls}
+
+          <div className="wall-container">
+            {walls}
+          </div>
+          
         </div>
         
         <div>
