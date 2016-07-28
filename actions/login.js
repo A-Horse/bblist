@@ -11,6 +11,9 @@ export const LOGIN_AUTH_SUCCESS = 'LOGIN_AUTH_SUCCESS';
 
 import {JWT_STORAGE_KEY, CACHED_USERNAME} from '../setting';
 
+import {handleResponse} from '../utils/http-handle';
+import {createConfigWithAuth} from './util/header.js';
+
 
 function requestLogin(creds) {
   return {
@@ -98,27 +101,20 @@ export function loginUser(creds) {
 
 export function authUser() {
   let token = localStorage.getItem('jwts-token');
-  
-
-  let config = {
-    method: 'GET',
-    headers: {'Content-Type':'application/json',
-              JWT_STORAGE_KEY: token}
-  };
+  let config = createConfigWithAuth('GET')
   
   return dispatch => {
-      if( !token ){
-        return dispatch(canNotLoginAuth());
-      }
-      dispatch(requestAuthLogin());
-      return fetch('/api/login', config)
-        .then(response => {
-          return response.json();
-        }).then(response => {
-          return dispatch(authLoginSuccess(response.user))
-        }).catch(err => {
-          return dispatch(authLoginError(err.message));
-        });
+    if( !token ){
+      return dispatch(canNotLoginAuth());
     }
+    dispatch(requestAuthLogin());
+    return fetch('/api/login', config)
+      .then(handleResponse)
+      .then(response => {
+        return dispatch(authLoginSuccess(response));
+      }).catch(err => {
+        return dispatch(authLoginError(err.message));
+      });
+  }
   
 }

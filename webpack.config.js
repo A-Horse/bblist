@@ -1,6 +1,8 @@
 var path = require('path')
 var webpack = require('webpack')
 
+var LiveReloadPlugin = require('webpack-livereload-plugin');
+
 module.exports = {
   devtool: 'cheap-module-eval-source-map',
   entry: [
@@ -14,7 +16,8 @@ module.exports = {
   },
   plugins: [
     new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new LiveReloadPlugin()
   ],
   module: {
     loaders: [
@@ -23,6 +26,14 @@ module.exports = {
         loaders: [ 'babel' ],
         exclude: /node_modules/,
         include: __dirname
+      },
+      {
+        test: /\.scss$/,
+        loader: 'style-loader!css-loader!sass-loader!autoprefixer-loader?{browsers:[">1%"]}'
+      },
+      {
+        test: /\.css$/,
+        loader: 'style-loader!css-loader'
       }
     ]
   }

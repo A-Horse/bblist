@@ -9,6 +9,26 @@ import {authUser} from '../actions/login';
 
 import Loading from './util/loading';
 
+let R = require('fw-ramda');
+
+let headerStyle = {
+  width: '100%',
+  backgroundColor: '#8fdad7',
+  padding: '6px 8px',
+  boxSizing: 'border-box'
+};
+
+let linkStyle = {
+  textDecoration: 'none',
+  float: 'left',
+  marginLeft: '10px',
+  color: 'red'
+};
+
+let floatRight = {
+  float: 'right'
+};
+
 class Nav extends Component {
   constructor() {
     super()
@@ -27,15 +47,15 @@ class Nav extends Component {
     
     
     return (
-      <header>
-        <span>Links:</span>
-        {' '}
-        <Link to="/">Home</Link>
-        {' '}
-        <Link to="/task-wall">Task</Link>
-        {' '}
-        <Link to="/bar">Idea</Link>
-        {' '}
+      <header style={headerStyle} className="clearfix">
+        
+
+        <Link to="/" style={linkStyle}>Home</Link>
+
+        <Link to="/task-wall" style={linkStyle}>Task</Link>
+
+        <Link to="/bar" style={linkStyle}>Idea</Link>
+
         { userCell }
       </header>
     )
@@ -48,7 +68,10 @@ class Nav extends Component {
 
     if( cachedUsername ){
       return (
-        <Link to="/profile">{cachedUsername}</Link>
+        <div>
+          <Link to="/profile" style={R.merge(linkStyle, floatRight)}>{cachedUsername}</Link>
+          <Link to="/" style={R.merge(linkStyle, floatRight)}>Log out</Link>
+        </div>
       );
     }
     return (
@@ -67,6 +90,8 @@ const mapStateToProps = (state) => {
     user: state.login.state.loginUser
   }
 };
+
+
 
 export default connect(mapStateToProps)(Nav);
 

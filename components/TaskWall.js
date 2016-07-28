@@ -2,46 +2,67 @@ import React, { Component, PropTypes } from 'react'
 import fetch from 'isomorphic-fetch'
 import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
-
-import {createTaskWall, getAllTaskWall} from '../actions/task-wall'
+//TODO fixme
+import {postTaskCard, getTaskCards } from '../actions/task-card'
 
 class TaskWall extends Component {
   constructor() {
-    super()
     console.log('task card page init')
+    super()
     
   }
 
-  getWalls() {
-    let { dispatch } = this.props
-    
-    return dispatch(getAllTaskWall())
-  }
 
   componentWillMount() {
+    var {id} = this.props.params;
+
     let self = this;
     
-    this.getWalls();
+    this.getTasks(id).then(function(){
+      if( self.props.status === 404 ){
+        browserHistory.push('/404');
+      }
+    });
+  }
+  
+  getTasks(id) {
+    let {dispatch} = this.props
+    
+    return dispatch(getTaskCards(id))
   }
   
   render() {
-    let walls = this.props.walls.map(wjson => {
+    
+    let cards = this.props.cards.map(cjson => {
       return (
-        <div key={wjson.id} onClick={() => browserHistory.push(`/task-wall/${wjson.id}`)}>
-          <h2>{wjson.name}</h2>
+        <div key={cjson.id}>
+          <h2>{cjson.title}</h2>
+          <p>{cjson.content}</p>
         </div>
       )
     })
     
+    
     return (
       <div>
         <div>
-          <h2>Wall</h2>
-          {walls}
+          <h2>Task</h2>
+          {cards}
         </div>
         
         <div>
-          <input type='text' ref='name'/>
+          <div>
+            <span>title</span>
+            <input type='text' ref='title'/>
+          </div>
+
+          <div>
+            <span>Content</span>
+            <input type='text' ref='content'/>
+          </div>
+
+          
+          
           <button onClick={(event) => this.handleClick(event)} >Post</button>
         </div>
       </div>
@@ -49,17 +70,29 @@ class TaskWall extends Component {
   }
 
   handleClick(event) {
-    let { dispatch } = this.props;
-    
-    const name = this.refs.name;
-    
-    dispatch(createTaskWall({name: name.value.trim()})).then(this.getWalls.bind(this))
+    let {dispatch} = this.props,
+        self = this;
+
+    const title = this.refs.title,
+          content = this.refs.content;
+
+    const data = {
+      taskWallId: this.props.params.id,
+      title: title.value.trim(),
+      content: content.value.trim()
+    }
+
+    dispatch(postTaskCard(data)).then(function(){
+      self.getTasks(self.props.params.id)
+      title.value = content.value = '';
+    });
   }
 }
 
 const mapStateToProps = (state) => {
   return {
-    walls: state.taskWall.walls || []
+    cards: state.taskCard.cards || [],
+    status: state.taskCard.status
   }
 }
 

@@ -1,4 +1,5 @@
 'use strict';
+import {JWT_STORAGE_KEY} from '../../setting';
 
 export function createConfig(method, body, headers){
   return {
@@ -7,13 +8,12 @@ export function createConfig(method, body, headers){
       'content-type':'application/json',
       ...headers
     },
-    body
+    body: JSON.stringify(body)
   };
 }
 
 
-export function createConfigWithAuth(method, body, headers) {
-  return createConfig(method, body, {
-    'jwts-token': localStorage.getItem('jwts-token')
-  })
+export function createConfigWithAuth(method, body, headers = {}) {
+  headers[JWT_STORAGE_KEY] = localStorage.getItem('jwts-token');
+  return createConfig(method, body, headers);
 }
