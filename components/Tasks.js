@@ -5,6 +5,12 @@ import { browserHistory } from 'react-router'
 
 import {createTaskWall, getAllTaskWall} from '../actions/task-wall'
 
+let wallStyle = {
+  boxShadow: '0 0 10px #999',
+  borderRadius: '10px',
+  padding: '8px 16px'
+};
+
 class Tasks extends Component {
   constructor() {
     super()

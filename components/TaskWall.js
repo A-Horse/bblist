@@ -7,7 +7,6 @@ import {postTaskCard, getTaskCards } from '../actions/task-card'
 
 class TaskWall extends Component {
   constructor() {
-    console.log('task card page init')
     super()
     
   }
