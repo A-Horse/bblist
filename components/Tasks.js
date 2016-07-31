@@ -7,14 +7,19 @@ import {createTaskWall, getAllTaskWall} from '../actions/task-wall'
 
 let wallStyle = {
   boxShadow: '0 0 10px #999',
-  borderRadius: '10px',
+  borderRadius: '3px',
   padding: '8px 16px',
-  margin: '8px auto'
+  margin: '8px 20px',
+  display: 'inline-block',
+  width: '300px',
+  textAlign: 'center',
+  cursor: 'pointer'
 };
 
 let wallContainerStyle = {
-  
-}
+  width: '80%',
+  margin: 'auto'
+};
 
 class Tasks extends Component {
   constructor() {
@@ -47,8 +52,6 @@ class Tasks extends Component {
     return (
       <div>
         <div>
-          <h2>Wall</h2>
-
           <div className="wall-container" style={wallContainerStyle}>
             {walls}
           </div>

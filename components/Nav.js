@@ -25,6 +25,10 @@ let linkStyle = {
   color: 'red'
 };
 
+let activeLink = {
+  color: 'black'
+};
+
 let floatRight = {
   float: 'right'
 };
@@ -40,11 +44,24 @@ class Nav extends Component {
     
     dispatch(authUser());
   }
+
+  activelyLink(linkStyle) {
+    return Object.assign({}, linkStyle, activeLink);
+  }
   
   render() {
     
     const userCell = this.renderUserCell();
-    
+
+    let path = R.second(this.props.path.split('/'));
+
+    // switch(path) {
+    //   //TODO extract global var
+    // case 'task-wall':
+    //   let linkStyle = Object.assign({}, linkStyle, activeLink);
+    //   break;
+    // }
+
     
     return (
       <header style={headerStyle} className="clearfix">
@@ -52,7 +69,7 @@ class Nav extends Component {
 
         <Link to="/" style={linkStyle}>Home</Link>
 
-        <Link to="/task-wall" style={linkStyle}>Task</Link>
+        <Link to="/task-wall" style={path === 'task-wall' ? this.activelyLink(linkStyle) : linkStyle}>Task</Link>
 
         <Link to="/bar" style={linkStyle}>Idea</Link>
 
@@ -65,6 +82,8 @@ class Nav extends Component {
     const user = this.props.user;
     
     const cachedUsername = localStorage.getItem('cachedUsername');
+    
+    
 
     if( cachedUsername ){
       return (
@@ -87,7 +106,8 @@ class Nav extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.login.state.loginUser
+    user: state.login.state.loginUser,
+    path: state.routing.locationBeforeTransitions.pathname
   }
 };
 

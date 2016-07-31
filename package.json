@@ -22,6 +22,7 @@
     "babel-preset-stage-1": "^6.5.0",
     "blueimp-md5": "^2.3.0",
     "css-loader": "^0.23.1",
+    "fw-ramda": "^0.1.4",
     "isomorphic-fetch": "^2.2.1",
     "react": "^0.14.7",
     "react-dom": "^0.14.7",
