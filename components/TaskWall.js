@@ -10,8 +10,7 @@ class TaskWall extends Component {
     super()
     
   }
-
-
+  
   componentWillMount() {
     var {id} = this.props.params;
 

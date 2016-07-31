@@ -8,8 +8,13 @@ import {createTaskWall, getAllTaskWall} from '../actions/task-wall'
 let wallStyle = {
   boxShadow: '0 0 10px #999',
   borderRadius: '10px',
-  padding: '8px 16px'
+  padding: '8px 16px',
+  margin: '8px auto'
 };
+
+let wallContainerStyle = {
+  
+}
 
 class Tasks extends Component {
   constructor() {
@@ -33,7 +38,7 @@ class Tasks extends Component {
   render() {
     let walls = this.props.walls.map(wjson => {
       return (
-        <div key={wjson.id} onClick={() => browserHistory.push(`/task-wall/${wjson.id}`)}>
+        <div style={wallStyle} key={wjson.id} onClick={() => browserHistory.push(`/task-wall/${wjson.id}`)}>
           <h2>{wjson.name}</h2>
         </div>
       )
@@ -44,7 +49,7 @@ class Tasks extends Component {
         <div>
           <h2>Wall</h2>
 
-          <div className="wall-container">
+          <div className="wall-container" style={wallContainerStyle}>
             {walls}
           </div>
           
