@@ -24,7 +24,6 @@ let wallContainerStyle = {
 class Tasks extends Component {
   constructor() {
     super()
-    console.log('task card page init')
     
   }
 
@@ -54,6 +53,10 @@ class Tasks extends Component {
         <div>
           <div className="wall-container" style={wallContainerStyle}>
             {walls}
+
+            <div style={wallStyle}>
+              <h2>New Task Wall</h2>
+            </div>
           </div>
           
         </div>
