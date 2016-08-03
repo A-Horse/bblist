@@ -1,9 +1,11 @@
-import React, { Component, PropTypes } from 'react'
-import fetch from 'isomorphic-fetch'
-import { connect } from 'react-redux'
-import { browserHistory } from 'react-router'
+import React, { Component, PropTypes } from 'react';
+import fetch from 'isomorphic-fetch';
+import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
 
-import {createTaskWall, getAllTaskWall} from '../actions/task-wall'
+import {createTaskWall, getAllTaskWall} from '../actions/task-wall';
+
+import {Modal} from './util/Modal';
 
 let wallStyle = {
   boxShadow: '0 0 10px #999',
@@ -24,7 +26,10 @@ let wallContainerStyle = {
 class Tasks extends Component {
   constructor() {
     super()
-    
+
+    this.state ={
+      modalOpen: false
+    }
   }
 
   getWalls() {
@@ -53,7 +58,6 @@ class Tasks extends Component {
         <div>
           <div className="wall-container" style={wallContainerStyle}>
             {walls}
-
             <div style={wallStyle}>
               <h2>New Task Wall</h2>
             </div>
@@ -62,14 +66,20 @@ class Tasks extends Component {
         </div>
         
         <div>
+          <p>{String(this.state.modalOpen)}</p>
           <input type='text' ref='name'/>
-          <button onClick={(event) => this.handleClick(event)} >Post</button>
+          <button onClick={(event) => this.handleClick()} >Post</button>
+          <Modal isOpen={this.state.modalOpen}>
+            <p>This is Modal!</p>
+          </Modal>
         </div>
       </div>
     )
   }
 
   handleClick(event) {
+    this.setState({modalOpen: true})
+    return
     let { dispatch } = this.props;
     
     const name = this.refs.name;
