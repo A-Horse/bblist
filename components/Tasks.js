@@ -104,11 +104,23 @@ class Tasks extends Component {
           <Modal isOpen={this.state.modalOpen} styles={modalStyles}>
             <p>This is Modal!</p>
             <div>
-              <span>username</span>
-              <input type='text' name="bblist-username" ref='username'/>
+              <span>Task Wall name:</span>
+              <input type='text' ref='name'/>
               <p></p>
             </div>
-            <input type='text' ref='name'/>
+
+            <div>
+              <span>Description:</span>
+              <textarea type='text' ref='description'></textarea>
+              <p></p>
+            </div>
+
+            <div>
+              <span>Peoples:</span>
+              <button>+</button>
+              <div></div>
+            </div>
+            
             <Select items={this.backgroundItems} ref='backgroundSelect'></Select>
             <button onClick={(event) => this.handleClick()} >Post</button>
             <button onClick={() => this.setState({modalOpen: false})}>Close</button>
