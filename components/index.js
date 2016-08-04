@@ -8,5 +8,5 @@ export DashBoard from './DashBoard'
 export Setting from './Setting'
 export Profile from './Profile'
 export IndexPage from './IndexPage'
+export Ideas from './Ideas'
 
-export Loading from './util/loading'

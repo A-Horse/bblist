@@ -57,10 +57,10 @@ export class ModalPortal extends Component {
   }
 
   componentDidUpdate() {
-    if (this.focusAfterRender) {
-      //this.focusContent();
-      //this.setFocusAfterRender(false);
-    }
+    // if (this.focusAfterRender) {
+    //   //this.focusContent();
+    //   //this.setFocusAfterRender(false);
+    // }
   }
 
   setFocusAfterRender(focus) {
@@ -127,17 +127,17 @@ export class ModalPortal extends Component {
   handleOverlayClick(event) {
     var node = event.target
 
-    while (node) {
-      if (node === this.refs.content) return
-      node = node.parentNode
-    }
+    // while (node) {
+    //   if (node === this.refs.content) return
+    //   node = node.parentNode
+    // }
 
-    if (this.props.shouldCloseOnOverlayClick) {
-      if (this.ownerHandlesClose())
-        this.requestClose(event);
-      else
-        this.focusContent();
-    }
+    // if (this.props.shouldCloseOnOverlayClick) {
+    //   if (this.ownerHandlesClose())
+    //     this.requestClose(event);
+    //   else
+    //     this.focusContent();
+    // }
   }
 
   requestClose(event) {
@@ -163,19 +163,19 @@ export class ModalPortal extends Component {
   }
 
   render() {
-    var contentStyles = (this.props.className) ? {} : this.props.defaultStyles.content;
-    var overlayStyles = (this.props.overlayClassName) ? {} : this.props.defaultStyles.overlay;
+    var contentStyles = (this.props.className) ? {} : this.props.styles.content;
+    var overlayStyles = (this.props.overlayClassName) ? {} : this.props.styles.overlay;
 
     return this.shouldBeClosed() ? div() : (
       div({
         ref: "overlay",
         className: this.buildClassName('overlay', this.props.overlayClassName),
-        style: Object.assign({}, overlayStyles, this.props.defaultStyles.overlay || {}),
-        onClick: this.handleOverlayClick
+        style: Object.assign({}, overlayStyles, this.props.styles.overlay || {})
+        // onClick: this.handleOverlayClick
       },
         div({
           ref: "content",
-          style: Object.assign({}, contentStyles, this.props.defaultStyles.content || {}),
+          style: Object.assign({}, contentStyles, this.props.styles.content || {}),
           className: this.buildClassName('content', this.props.className),
           tabIndex: "-1",
           onKeyDown: this.handleKeyDown

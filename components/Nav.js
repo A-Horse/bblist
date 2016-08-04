@@ -71,7 +71,7 @@ class Nav extends Component {
 
         <Link to="/task-wall" style={path === 'task-wall' ? this.activelyLink(linkStyle) : linkStyle}>Task</Link>
 
-        <Link to="/bar" style={linkStyle}>Idea</Link>
+        <Link to="/idea" style={linkStyle}>Idea</Link>
 
         { userCell }
       </header>

@@ -58,7 +58,7 @@ export class Modal extends Component {
       elementClass(document.body).remove('ReactModal__Body--open');
     }
 
-    this.portal = renderSubtreeIntoContainer(this, <ModalPortal {...Object.assign({}, props, {defaultStyles: defaultStyles})}></ModalPortal>, this.node);
+    this.portal = renderSubtreeIntoContainer(this, <ModalPortal {...Object.assign({}, props)}></ModalPortal>, this.node);
   }
 
   componentWillReceiveProps(newProps) {
