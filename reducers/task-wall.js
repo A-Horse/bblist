@@ -1,4 +1,3 @@
-
 import {
   TASKWALL_GET_REQUEST,
   TASKWALL_GET_SUCCESS,
@@ -6,7 +5,11 @@ import {
 
   TASKWALL_POST_REQUEST,
   TASKWALL_POST_SUCCESS,
-  TASKWALL_POST_FAILURE
+  TASKWALL_POST_FAILURE,
+
+  TASKWALL_DELETE_REQUEST,
+  TASKWALL_DELETE_SUCCESS,
+  TASKWALL_DELETE_FAILURE
 } from '../actions/task-wall'
 
 function taskWall(state = {
@@ -29,6 +32,24 @@ function taskWall(state = {
       isFetching: true
     })
     break;
+
+  case TASKWALL_DELETE_REQUEST:
+    return Object.assign({}, state, {
+      isFetching: true
+    })
+    break;
+  case TASKWALL_DELETE_SUCCESS:
+    return Object.assign({}, state, {
+      isFetching: true,
+      walls: action.walls
+    })
+    break;
+  case TASKWALL_DELETE_FAILURE:
+    return Object.assign({}, state, {
+      isFetching: true
+    })
+    break;
+    
   default:
     return state;
   }

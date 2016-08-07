@@ -1,6 +1,6 @@
 'use strict';
 
-import {NotAuthError, NotFoundError, RequestError} from './http-error.js';
+import {NotAuthError, NotFoundError, RequestError, ServerError} from './http-error.js';
 
 export function handleResponse(response) {
 
@@ -14,7 +14,11 @@ export function handleResponse(response) {
   case 400:
     throw new RequestError();
     break;
+  case 500:
+    throw new ServerError();
+    break;
+  default:
+    break;
   }
-  
   return response.json();
 }

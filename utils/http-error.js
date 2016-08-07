@@ -17,10 +17,17 @@ export class NotFoundError extends Error {
 }
 
 export class RequestError extends Error {
-  constructor(message) {
+  constructor(message = 'Request Error') {
     super(message);
     this.message = message;
     this.name = this.constructor.name;
   }
 }
 
+export class ServerError extends Error {
+  constructor(message = 'Server Error') {
+    super(message);
+    this.message = message;
+    this.name = this.constructor.name;
+  }
+}

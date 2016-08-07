@@ -2,9 +2,9 @@ import React, { Component, PropTypes } from 'react';
 import fetch from 'isomorphic-fetch';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
-//TODO fixme
-import {postTaskCard, getTaskCards } from '../actions/task-card'
 
+import {postTaskCard, getTaskCards} from '../actions/task-card';
+import {deleteTaskWall} from '../actions/task-wall';
 import {DropMenu} from './widget/DropMenu';
 import {ConfirmModal} from './widget/ConfirmModal';
 
@@ -101,7 +101,14 @@ class TaskWall extends Component {
   }
 
   deleteWall() {
+    let {dispatch} = this.props;
     
+    dispatch(deleteTaskWall())
+      .then(() => {
+        browserHistory.push('/task-wall')
+      }).catch(error => {
+        
+      });
   }
 
   handleClick(event) {
