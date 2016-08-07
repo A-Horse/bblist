@@ -7,7 +7,7 @@ import {makeGravatarHash} from '../services/gravatar';
 
 import {authUser} from '../actions/login';
 
-import Loading from './util/loading';
+import Loading from './widget/loading';
 
 let R = require('fw-ramda');
 

@@ -173,16 +173,16 @@ export class ModalPortal extends Component {
         style: Object.assign({}, overlayStyles, this.props.styles.overlay || {})
         // onClick: this.handleOverlayClick
       },
-        div({
-          ref: "content",
-          style: Object.assign({}, contentStyles, this.props.styles.content || {}),
-          className: this.buildClassName('content', this.props.className),
-          tabIndex: "-1",
-          onKeyDown: this.handleKeyDown
-        },
-          this.props.children
-        )
-      )
+          div({
+            ref: "content",
+            style: Object.assign({}, contentStyles, this.props.styles.content || {}),
+            className: this.buildClassName('content', this.props.className),
+            tabIndex: "-1",
+            onKeyDown: this.handleKeyDown
+          },
+              this.props.children
+             )
+         )
     );
   }
 }

@@ -5,7 +5,7 @@ import { browserHistory } from 'react-router';
 
 import {createTaskWall, getAllTaskWall} from '../actions/task-wall';
 
-import {Modal} from './util/Modal';
+import {Modal} from './widget/Modal';
 import {Select} from './widget/Select';
 
 let wallStyle = {
@@ -47,17 +47,15 @@ const modalStyles = {
     outline: 'none',
     padding: '20px'
   }
-}
-
-
+};
 
 class Tasks extends Component {
   constructor() {
-    super()
+    super();
 
-    this.state ={
+    this.state = {
       modalOpen: false
-    }
+    };
 
     this.backgroundItems = [
       {name: 'blue', value: 'blue'},
@@ -68,14 +66,12 @@ class Tasks extends Component {
   }
 
   getWalls() {
-    let { dispatch } = this.props
+    let { dispatch } = this.props;
     
-    return dispatch(getAllTaskWall())
+    return dispatch(getAllTaskWall());
   }
 
   componentWillMount() {
-    let self = this;
-    
     this.getWalls();
   }
   
@@ -111,7 +107,7 @@ class Tasks extends Component {
 
             <div>
               <span>Description:</span>
-              <textarea type='text' ref='description'></textarea>
+              <input type='text' ref='description' />
               <p></p>
             </div>
 
@@ -122,7 +118,7 @@ class Tasks extends Component {
             </div>
             
             <Select items={this.backgroundItems} ref='backgroundSelect'></Select>
-            <button onClick={(event) => this.handleClick()} >Post</button>
+            <button onClick={() => this.handleClick()} >Post</button>
             <button onClick={() => this.setState({modalOpen: false})}>Close</button>
           </Modal>
         </div>
@@ -131,7 +127,7 @@ class Tasks extends Component {
   }
 
   handleClick(event) {
-    let { dispatch } = this.props;
+    let {dispatch} = this.props;
     
     const name = this.refs.name;
 

@@ -1,8 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import fetch from 'isomorphic-fetch';
 import ReactDOM from 'react-dom';
-import { connect } from 'react-redux';
-import { browserHistory } from 'react-router';
 import elementClass from 'element-class';
 
 import {ModalPortal} from './ModalPortal';
@@ -57,8 +54,8 @@ export class Modal extends Component {
     } else {
       elementClass(document.body).remove('ReactModal__Body--open');
     }
-
-    this.portal = renderSubtreeIntoContainer(this, <ModalPortal {...Object.assign({}, props)}></ModalPortal>, this.node);
+    
+    this.portal = renderSubtreeIntoContainer(this, <ModalPortal {...Object.assign({}, props, {styles: Object.assign({}, defaultStyles, this.props.styles)})}></ModalPortal>, this.node);
   }
 
   componentWillReceiveProps(newProps) {

@@ -3,7 +3,7 @@ import fetch from 'isomorphic-fetch';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 
-import {Modal} from './util/Modal';
+import {Modal} from './widget/Modal';
 
 class Ideas extends Component {
   constructor() {

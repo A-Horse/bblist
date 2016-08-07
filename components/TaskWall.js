@@ -1,14 +1,42 @@
-import React, { Component, PropTypes } from 'react'
-import fetch from 'isomorphic-fetch'
-import { connect } from 'react-redux'
-import { browserHistory } from 'react-router'
+import React, { Component, PropTypes } from 'react';
+import fetch from 'isomorphic-fetch';
+import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
 //TODO fixme
 import {postTaskCard, getTaskCards } from '../actions/task-card'
 
+import {DropMenu} from './widget/DropMenu';
+import {ConfirmModal} from './widget/ConfirmModal';
+
+const styles = {
+  main: {
+    position: 'relative',
+    margin: 'auto',
+    width: '700px'
+  },
+  settingContainer: {
+    display: 'block',
+    position: 'absolute',
+    right: '0',
+    top: '0'
+  },
+  settingDropMenu: {
+    display: 'block',
+    position: 'absolute',
+    top: '30px',
+    left: '0',
+    padding: '0',
+    listStyle: 'none'
+  }
+};
+
 class TaskWall extends Component {
   constructor() {
-    super()
-    
+    super();
+
+    this.state = {
+      settingToggle: false
+    }
   }
   
   componentWillMount() {
@@ -24,13 +52,11 @@ class TaskWall extends Component {
   }
   
   getTasks(id) {
-    let {dispatch} = this.props
-    
-    return dispatch(getTaskCards(id))
+    let {dispatch} = this.props;    
+    return dispatch(getTaskCards(id));
   }
   
   render() {
-    
     let cards = this.props.cards.map(cjson => {
       return (
         <div key={cjson.id}>
@@ -38,11 +64,20 @@ class TaskWall extends Component {
           <p>{cjson.content}</p>
         </div>
       )
-    })
-    
+    });
     
     return (
-      <div>
+      <div style={styles.main}>
+        <div style={styles.settingContainer} onClick={() => {}}>
+          <img src="/static/svg/ic_settings_black_24px.svg" onClick={() => {this.setState({settingToggle: !this.state.settingToggle})}}/>
+          <DropMenu toggle={this.state.settingToggle}>
+            <ul style={styles.settingDropMenu}>
+              <li onClick={() => {this.refs.delConfirm.open()}}>Delete This Wall</li>
+              <li>2</li>
+            </ul>
+          </DropMenu>
+        <ConfirmModal confirmFn={() => {this.deleteWall()}} ref='delConfirm'></ConfirmModal>
+        </div>
         <div>
           <h2>Task</h2>
           {cards}
@@ -59,12 +94,14 @@ class TaskWall extends Component {
             <input type='text' ref='content'/>
           </div>
 
-          
-          
           <button onClick={(event) => this.handleClick(event)} >Post</button>
         </div>
       </div>
     )
+  }
+
+  deleteWall() {
+    
   }
 
   handleClick(event) {
@@ -81,7 +118,7 @@ class TaskWall extends Component {
     }
 
     dispatch(postTaskCard(data)).then(function(){
-      self.getTasks(self.props.params.id)
+      self.getTasks(self.props.params.id);
       title.value = content.value = '';
     });
   }

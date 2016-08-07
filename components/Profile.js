@@ -5,7 +5,7 @@ import { browserHistory } from 'react-router'
 
 import {makeGravatarUrl} from '../services/gravatar';
 
-import Loading from './util/loading';
+import Loading from './widget/loading';
 
 class Profile extends Component {
   constructor() {
