@@ -2,8 +2,7 @@
 
 import {NotAuthError, NotFoundError, RequestError, ServerError} from './http-error.js';
 
-export function handleResponse(response) {
-
+function handleError(response) {
   switch(response.status) {
   case 404:
     throw new NotFoundError();
@@ -20,5 +19,14 @@ export function handleResponse(response) {
   default:
     break;
   }
+}
+
+export function handleResponse(response) {
+  handleError(response);
   return response.json();
+}
+
+export function handleResponseWithJson(response) {
+  handleError(response);
+  return null;
 }

@@ -16,7 +16,7 @@ export const TASKWALL_DELETE_SUCCESS = 'TASKWALL_DELETE_SUCCESS';
 export const TASKWALL_DELETE_FAILURE = 'TASKWALL_DELETE_FAILURE';
 
 import {createConfigWithAuth} from './util/header';
-import {handleResponse} from '../utils/http-handle';
+import {handleResponse, handleResponseWithJson} from '../utils/http-handle';
 
 /************* Get *******************/
 
@@ -70,19 +70,19 @@ function createTaskWallError() {
 /************* Delete *******************/
 function requestDeleteTaskWall() {
   return {
-    type: TASKWALL_POST_REQUEST
+    type: TASKWALL_DELETE_REQUEST
   }
 }
 
 function deleteTaskWallSuccess() {
   return {
-    type: TASKWALL_POST_SUCCESS
+    type: TASKWALL_DELETE_SUCCESS
   }
 }
 
 function deleteTaskWallError() {
   return {
-    type: TASKWALL_POST_FAILURE
+    type: TASKWALL_DELETE_FAILURE
   }
 }
 
@@ -133,12 +133,12 @@ export function createTaskWall(wallInfo) {
 }
 
 export function deleteTaskWall(wallInfo) {
-  const config = createConfigWithAuth('DELETE', wallInfo);
+  const config = createConfigWithAuth('DELETE');
 
   return dispatch => {
-    dispatch(requestDeleteTaskWall());
-    return fetch('/api/task-wall', config)
-      .then(handleResponse)
+    dispatch(requestDeleteTaskWall(wallInfo));
+    return fetch(`/api/task-wall/${wallInfo.id}`, config)
+      .then(handleResponseWithJson)
       .then(response => {
         return dispatch(deleteTaskWallSuccess(response));
       });

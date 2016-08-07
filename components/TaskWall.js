@@ -101,13 +101,14 @@ class TaskWall extends Component {
   }
 
   deleteWall() {
-    let {dispatch} = this.props;
+    const {dispatch} = this.props,
+          params = {id: this.props.params.id};
     
-    dispatch(deleteTaskWall())
+    dispatch(deleteTaskWall(params))
       .then(() => {
         browserHistory.push('/task-wall')
       }).catch(error => {
-        
+        console.log('error', error);
       });
   }
 

@@ -40,8 +40,7 @@ function taskWall(state = {
     break;
   case TASKWALL_DELETE_SUCCESS:
     return Object.assign({}, state, {
-      isFetching: true,
-      walls: action.walls
+      isFetching: true
     })
     break;
   case TASKWALL_DELETE_FAILURE:
