@@ -1,10 +1,8 @@
 import React, { Component, PropTypes } from 'react';
-import fetch from 'isomorphic-fetch';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
-
-import {postTaskCard, getTaskCards} from '../actions/task-card';
-import {deleteTaskWall} from '../actions/task-wall';
+import {deleteTaskWall, getTaskAllCards} from '../actions/task-wall';
+import {postTaskCard} from '../actions/task-card';
 import {DropMenu} from './widget/DropMenu';
 import {ConfirmModal} from './widget/ConfirmModal';
 
@@ -27,37 +25,54 @@ const styles = {
     left: '0',
     padding: '0',
     listStyle: 'none'
+  },
+  dimensions: {
+    
   }
 };
 
 class TaskWall extends Component {
   constructor() {
     super();
-
     this.state = {
       settingToggle: false
-    }
+    };
   }
   
   componentWillMount() {
-    var {id} = this.props.params;
-
-    let self = this;
-    
-    this.getTasks(id).then(function(){
-      if( self.props.status === 404 ){
-        browserHistory.push('/404');
-      }
+    const {id} = this.props.params;
+    this.getTasks(id).then(() => {
+    }).catch(error => {
+      // TODO 404
     });
   }
   
   getTasks(id) {
-    let {dispatch} = this.props;    
-    return dispatch(getTaskCards(id));
+    const {dispatch} = this.props;    
+    return dispatch(getTaskAllCards(id));
+  }
+
+  renderCreateCardDom() {
+    return (
+      <div>
+        <div>
+          <span>title</span>
+          <input type='text' ref='title'/>
+        </div>
+
+        <div>
+          <span>Content</span>
+          <input type='text' ref='content'/>
+        </div>
+
+        <button onClick={(event) => this.handleClick(event)} >Post</button>
+      </div>
+    );
   }
   
   render() {
-    let cards = this.props.cards.map(cjson => {
+    const {wallData} = this.props;
+    const cardDoms = wallData.cards.map(cjson => {
       return (
         <div key={cjson.id}>
           <h2>{cjson.title}</h2>
@@ -76,26 +91,22 @@ class TaskWall extends Component {
               <li>2</li>
             </ul>
           </DropMenu>
-        <ConfirmModal confirmFn={() => {this.deleteWall()}} ref='delConfirm'></ConfirmModal>
-        </div>
-        <div>
-          <h2>Task</h2>
-          {cards}
+          <ConfirmModal confirmFn={() => {this.deleteWall()}} ref='delConfirm'></ConfirmModal>
         </div>
         
         <div>
-          <div>
-            <span>title</span>
-            <input type='text' ref='title'/>
-          </div>
+          <h2>Task</h2>
 
-          <div>
-            <span>Content</span>
-            <input type='text' ref='content'/>
+          <div style={styles.dimensions}>
+            {wallData.info.defaultDimensions}
           </div>
+          
+          {cardDoms}
 
-          <button onClick={(event) => this.handleClick(event)} >Post</button>
+          {this.renderCreateCardDom()}
         </div>
+        
+        
       </div>
     )
   }
@@ -112,21 +123,17 @@ class TaskWall extends Component {
       });
   }
 
-  handleClick(event) {
-    let {dispatch} = this.props,
-        self = this;
-
-    const title = this.refs.title,
+  handleClick() {
+    const {dispatch} = this.props,
+          title = this.refs.title,
           content = this.refs.content;
-
     const data = {
       taskWallId: this.props.params.id,
       title: title.value.trim(),
       content: content.value.trim()
-    }
-
-    dispatch(postTaskCard(data)).then(function(){
-      self.getTasks(self.props.params.id);
+    };
+    dispatch(postTaskCard(data)).then(() => {
+      self.getTasks(this.props.params.id);
       title.value = content.value = '';
     });
   }
@@ -134,9 +141,9 @@ class TaskWall extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    cards: state.taskCard.cards || [],
+    wallData: state.taskCard.wallData || {info: {}, cards: []},
     status: state.taskCard.status
-  }
+  };
 }
 
-export default connect(mapStateToProps)(TaskWall)
+export default connect(mapStateToProps)(TaskWall);

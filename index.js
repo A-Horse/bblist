@@ -31,8 +31,8 @@ const DevTools = createDevTools(
 let createStoreWithMiddleware = applyMiddleware(thunkMiddleware)(createStore)
 
 const store = createStoreWithMiddleware(
-  reducer
-  // DevTools.instrument()
+  reducer,
+  DevTools.instrument()
 )
 const history = syncHistoryWithStore(browserHistory, store)
 

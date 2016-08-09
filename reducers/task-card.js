@@ -35,7 +35,7 @@ function taskCard(state = {
   case TASKCARD_GET_SUCCESS:
     return Object.assign({}, state, {
       isFetching: false,
-      cards: action.cards
+      wallData: action.wallData
     })
     break;
   case TASKCARD_GET_FAILURE:
@@ -44,7 +44,7 @@ function taskCard(state = {
       status: action.status
     })
     break;
-    
+
   default:
     return state;
   }

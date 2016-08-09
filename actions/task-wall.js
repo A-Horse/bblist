@@ -15,23 +15,24 @@ export const TASKWALL_DELETE_REQUEST = 'TASKWALL_DELETE_REQUEST';
 export const TASKWALL_DELETE_SUCCESS = 'TASKWALL_DELETE_SUCCESS';
 export const TASKWALL_DELETE_FAILURE = 'TASKWALL_DELETE_FAILURE';
 
+export const TASKCARD_GET_REQUEST = 'TASKCARD_GET_REQUEST';
+export const TASKCARD_GET_SUCCESS = 'TASKCARD_GET_SUCCESS';
+export const TASKCARD_GET_FAILURE = 'TASKCARD_GET_FAILURE';
+
 import {createConfigWithAuth} from './util/header';
-import {handleResponse, handleResponseWithJson} from '../utils/http-handle';
+import {handleResponse, handleResponseWithoutJson} from '../utils/http-handle';
 
 /************* Get *******************/
 
 function requestGetTaskWall(user) {
   return {
-    type: TASKWALL_GET_REQUEST,
-    isFetching: true
-    // user_id_jwt
+    type: TASKWALL_GET_REQUEST
   }
 }
 
 function receiveGetTaskWall(walls) {
   return {
     type: TASKWALL_GET_SUCCESS,
-    isFetching: false,
     walls: walls
   }
 }
@@ -39,8 +40,30 @@ function receiveGetTaskWall(walls) {
 function getTaskWallError(message) {
   return {
     type: TASKWALL_GET_FAILURE,
-    isFetching: false,
     message: message
+  }
+}
+
+
+/************* Get *******************/
+
+function requestGetTaskWallCards() {
+  return {
+    type: TASKCARD_GET_REQUEST
+  }
+}
+
+function receiveGetTaskWallCards(wallData) {
+  return {
+    type: TASKCARD_GET_SUCCESS,
+    wallData: wallData
+  }
+}
+
+function getTaskWallCardsError(status) {
+  return {
+    type: TASKCARD_GET_FAILURE,
+    status: status
   }
 }
 
@@ -48,22 +71,19 @@ function getTaskWallError(message) {
 /************* Post *******************/
 function requestCreateTaskWall() {
   return {
-    type: TASKWALL_POST_REQUEST,
-    isFetching: true
+    type: TASKWALL_POST_REQUEST
   }
 }
 
 function receiveCreateTaskWall() {
   return {
-    type: TASKWALL_POST_SUCCESS,
-    isFetching: false
+    type: TASKWALL_POST_SUCCESS
   }
 }
 
 function createTaskWallError() {
   return {
-    type: TASKWALL_POST_FAILURE,
-    isFetching: false
+    type: TASKWALL_POST_FAILURE
   }
 }
 
@@ -88,19 +108,23 @@ function deleteTaskWallError() {
 
 /************* Method *******************/
 
-export function getAllTaskWall(user) {
-  let config = {
-    method: 'GET',
-    headers: {
-      'Content-Type':'application/json',
-      'JWTs-TOKEN': localStorage.getItem('jwts-token')
-    }
+export function getTaskAllCards(wallId) {
+  const config = createConfigWithAuth('GET');
+  return dispatch => {
+    dispatch(requestGetTaskWallCards())
+    return fetch(`/api/task-wall/${wallId}/all`, config)
+      .then(handleResponse)
+      .then(response => dispatch(receiveGetTaskWallCards(response)))
+      .catch(handleHttpError)
   }
+}
 
+export function getAllTaskWall(user) {
+  const config = createConfigWithAuth('GET');
   return dispatch => {
     dispatch(requestGetTaskWall())
     return fetch('/api/task-wall', config)
-      .then(response => response.json())
+      .then(handleResponse)
       .then(response => {
         dispatch(receiveGetTaskWall(response))
       })
@@ -122,11 +146,7 @@ export function createTaskWall(wallInfo) {
     dispatch(requestCreateTaskWall());
     return fetch('/api/task-wall', config)
       .then(response => {
-        if( response.status !== 201 ){
-          dispatch(createTaskWallError(response.json().message));
-        } else {
-          dispatch(receiveCreateTaskWall(response.json()));
-        }
+        dispatch(handleResponse);
       })
       .catch(handleHttpError);
   }
@@ -134,11 +154,10 @@ export function createTaskWall(wallInfo) {
 
 export function deleteTaskWall(wallInfo) {
   const config = createConfigWithAuth('DELETE');
-
   return dispatch => {
     dispatch(requestDeleteTaskWall(wallInfo));
     return fetch(`/api/task-wall/${wallInfo.id}`, config)
-      .then(handleResponseWithJson)
+      .then(handleResponseWithoutJson)
       .then(response => {
         return dispatch(deleteTaskWallSuccess(response));
       });

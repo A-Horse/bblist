@@ -26,7 +26,7 @@ export function handleResponse(response) {
   return response.json();
 }
 
-export function handleResponseWithJson(response) {
+export function handleResponseWithoutJson(response) {
   handleError(response);
   return null;
 }

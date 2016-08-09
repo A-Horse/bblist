@@ -131,7 +131,7 @@ class Tasks extends Component {
     
     const name = this.refs.name;
 
-    return
+
     dispatch(createTaskWall({name: name.value.trim()})).then(this.getWalls.bind(this))
   }
 }
