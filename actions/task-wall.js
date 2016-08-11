@@ -15,9 +15,9 @@ export const TASKWALL_DELETE_REQUEST = 'TASKWALL_DELETE_REQUEST';
 export const TASKWALL_DELETE_SUCCESS = 'TASKWALL_DELETE_SUCCESS';
 export const TASKWALL_DELETE_FAILURE = 'TASKWALL_DELETE_FAILURE';
 
-export const TASKCARD_GET_REQUEST = 'TASKCARD_GET_REQUEST';
-export const TASKCARD_GET_SUCCESS = 'TASKCARD_GET_SUCCESS';
-export const TASKCARD_GET_FAILURE = 'TASKCARD_GET_FAILURE';
+export const ALL_TASKCARD_GET_REQUEST = 'TASKCARD_GET_REQUEST';
+export const ALL_TASKCARD_GET_SUCCESS = 'TASKCARD_GET_SUCCESS';
+export const ALL_TASKCARD_GET_FAILURE = 'TASKCARD_GET_FAILURE';
 
 import {createConfigWithAuth} from './util/header';
 import {handleResponse, handleResponseWithoutJson} from '../utils/http-handle';
@@ -49,20 +49,20 @@ function getTaskWallError(message) {
 
 function requestGetTaskWallCards() {
   return {
-    type: TASKCARD_GET_REQUEST
+    type: ALL_TASKCARD_GET_REQUEST
   }
 }
 
 function receiveGetTaskWallCards(wallData) {
   return {
-    type: TASKCARD_GET_SUCCESS,
+    type: ALL_TASKCARD_GET_SUCCESS,
     wallData: wallData
   }
 }
 
 function getTaskWallCardsError(status) {
   return {
-    type: TASKCARD_GET_FAILURE,
+    type: ALL_TASKCARD_GET_FAILURE,
     status: status
   }
 }

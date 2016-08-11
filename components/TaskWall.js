@@ -5,6 +5,8 @@ import {deleteTaskWall, getTaskAllCards} from '../actions/task-wall';
 import {postTaskCard} from '../actions/task-card';
 import {DropMenu} from './widget/DropMenu';
 import {ConfirmModal} from './widget/ConfirmModal';
+import {getAssets} from '../services/assets-manager';
+import R from 'fw-ramda';
 
 const styles = {
   main: {
@@ -26,8 +28,22 @@ const styles = {
     padding: '0',
     listStyle: 'none'
   },
+  topBar: {
+    textAlign: 'center'
+  },
   dimensions: {
     
+  },
+  categoryContainer: {
+    display: 'flex',
+    justifyContent: 'center'
+  },
+  category: {
+    flex: '1',
+    margin: '0 3rem'
+  },
+  card: {
+    border: '1px solid black'
   }
 };
 
@@ -42,6 +58,7 @@ class TaskWall extends Component {
   componentWillMount() {
     const {id} = this.props.params;
     this.getTasks(id).then(() => {
+      
     }).catch(error => {
       // TODO 404
     });
@@ -50,6 +67,10 @@ class TaskWall extends Component {
   getTasks(id) {
     const {dispatch} = this.props;    
     return dispatch(getTaskAllCards(id));
+  }
+
+  classificationCards(cards) {
+    return R.groupBy(card => card.category, cards);
   }
 
   renderCreateCardDom() {
@@ -69,22 +90,35 @@ class TaskWall extends Component {
       </div>
     );
   }
-  
-  render() {
-    const {wallData} = this.props;
-    const cardDoms = wallData.cards.map(cjson => {
+
+  renderCards(cards) {
+    return cards.map(cjson => {
       return (
-        <div key={cjson.id}>
+        <div key={cjson.id} style={styles.card}>
           <h2>{cjson.title}</h2>
           <p>{cjson.content}</p>
         </div>
       )
     });
-    
+  }
+
+  renderCategory(categoryName, cards) {
     return (
-      <div style={styles.main}>
-        <div style={styles.settingContainer} onClick={() => {}}>
-          <img src="/static/svg/ic_settings_black_24px.svg" onClick={() => {this.setState({settingToggle: !this.state.settingToggle})}}/>
+      <div style={styles.category}>
+        {categoryName}
+        {this.renderCards(cards)}
+      </div>
+    );
+  }
+
+  renderCategorys(cardGroups) {
+    return Object.keys(cardGroups).map(categoryName => this.renderCategory(categoryName, cardGroups[categoryName]));
+  }
+
+  renderSetttingMenu() {
+    return (
+      <div style={styles.settingContainer} onClick={() => {}}>
+        <img src={getAssets('svg', 'black')} onClick={() => {this.setState({settingToggle: !this.state.settingToggle})}}/>
           <DropMenu toggle={this.state.settingToggle}>
             <ul style={styles.settingDropMenu}>
               <li onClick={() => {this.refs.delConfirm.open()}}>Delete This Wall</li>
@@ -92,23 +126,37 @@ class TaskWall extends Component {
             </ul>
           </DropMenu>
           <ConfirmModal confirmFn={() => {this.deleteWall()}} ref='delConfirm'></ConfirmModal>
+      </div>
+    );
+  }
+
+  renderTopBar() {
+    const {wallData} = this.props;
+    return (
+      <div style={styles.topBar}>
+        {this.renderSetttingMenu()}
+        <h2>Task</h2>
+        <div style={styles.dimensions}>
+          {wallData.info.defaultDimensions}
         </div>
-        
+      </div>
+    );
+  }
+  
+  render() {
+    const {wallData} = this.props;
+    const cardGroups = this.classificationCards(wallData.cards);
+    return (
+      <div style={styles.main}>
         <div>
-          <h2>Task</h2>
-
-          <div style={styles.dimensions}>
-            {wallData.info.defaultDimensions}
+          {this.renderTopBar()}
+          <div style={styles.categoryContainer}>
+            {this.renderCategorys(cardGroups)}
           </div>
-          
-          {cardDoms}
-
           {this.renderCreateCardDom()}
         </div>
-        
-        
       </div>
-    )
+    );
   }
 
   deleteWall() {
@@ -141,7 +189,7 @@ class TaskWall extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    wallData: state.taskCard.wallData || {info: {}, cards: []},
+    wallData: state.taskWall.wallData || {info: {}, cards: []},
     status: state.taskCard.status
   };
 }
