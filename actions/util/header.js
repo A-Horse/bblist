@@ -1,5 +1,5 @@
 'use strict';
-import {JWT_STORAGE_KEY} from '../../setting';
+import {JWT_STORAGE_KEY} from '../../constants';
 
 export function createConfig(method, body, headers){
   return {

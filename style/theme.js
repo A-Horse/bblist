@@ -47,5 +47,10 @@ export const lightText = {
   color: ThemeConst.lightText
 }
 
+export const boxPadding = {
+  padding: '4px 8px'
+}
 
-
+export const smallRadius = {
+  borderRadius: '3px'
+}

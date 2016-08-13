@@ -4,5 +4,8 @@ export const Storage = {
   },
   set(key, value) {
     return window.localStorage.setItem(key, value);
+  },
+  remove(key) {
+    return window.localStorage.removeItem(key);
   }
 }

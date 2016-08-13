@@ -5,29 +5,42 @@ import Radium from 'radium';
 import {createTaskWall, getAllTaskWall} from '../actions/task-wall';
 import {Modal} from './widget/Modal';
 import {Select} from './widget/Select';
+import {PageContainer} from './widget/PageContainer';
 import {spawnThemeRender} from '../style/theme-render';
 import {ThemeConst} from '../style/theme';
-import {getAssets} from '../services/assets-manager';
 import {CloseIcon} from '../services/svg-icons';
 
 const styles = {
-  wallStyle: {
+  wall: {
+    flex: '1 0 auto',
     borderRadius: '3px',
     padding: '8px 16px',
     margin: '8px 20px',
-    display: 'inline-block',
     width: '300px',
+    maxWidth: '300px',    
     textAlign: 'center',
     cursor: 'pointer',
-    transition: 'all',
-
+    transition: 'box-shadow 218ms ease-in-out,transform 218ms ease-in-out,-webkit-transform 218ms ease-in-out',
+    boxShadow: '0 2px 3px 0 rgba(0,0,0,.0470588)',
+    // backgroundImage: 'url(/static/image/cover-internet.jpg)',
     ':hover': {
-      transform: 'scale(1.1, 1.1)'
+      transform: 'translate3d(0,-5px,0)',
+      boxShadow: '0 7px 21px rgba(0,0,0,.15)'
     }
   },
-  wallContainerStyle: {
-    width: '80%',
-    margin: 'auto'
+  projectCard: {
+    
+  },
+  createCard: {
+    
+  },
+  wallContainer: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'center'
+  },
+  categoryName: {
+    borderBottom: `1px solid ${ThemeConst.deepDark}`
   }
 };
 
@@ -102,7 +115,7 @@ const modalStyles = {
 };
 
 const mainThemeRender = spawnThemeRender(styles);
-mainThemeRender('wallStyle', 'lightSmallShadow');
+
 
 const createModalThemeRender = spawnThemeRender(modalStyles);
 createModalThemeRender('createButton', 'fullButton', 'mainColorBackground', 'lightText');
@@ -142,29 +155,32 @@ class Tasks extends Component {
       </Modal>
     )
   }
-  
-  render() {
-    let walls = this.props.walls.map(wjson => {
+
+  renderWalls() {
+    return this.props.walls.map(wjson => {
       return (
-        <div style={styles.wallStyle} key={wjson.id} onClick={() => browserHistory.push(`/task-wall/${wjson.id}`)}>
+        <div style={Object.assign({}, styles.wall, styles.projectCard)} key={wjson.id} onClick={() => browserHistory.push(`/task-wall/${wjson.id}`)}>
           <h2>{wjson.name}</h2>
         </div>
       )
     })
-    
+  }
+  
+  render() {
     return (
-      <div>
-        <div>
-          <div className="wall-container" style={styles.wallContainerStyle}>
-            {walls}
-            <div style={styles.wallStyle} onClick={() => this.setState({modalOpen: true})}>
-              <h2>New Task Wall</h2>
-            </div>
+      <PageContainer>
+        <p style={styles.categoryName}>current walls:</p>
+        <div style={styles.wallContainer}>
+          
+          {this.renderWalls()}
+          
+          <div style={Object.assign({}, styles.wall, styles.createCard)} onClick={() => this.setState({modalOpen: true})}>
+            <h2>New Task Wall</h2>
           </div>
         </div>
 
         {this.renderCreateModal()}
-      </div>
+      </PageContainer>
     )
   }
 

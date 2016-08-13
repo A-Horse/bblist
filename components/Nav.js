@@ -1,6 +1,6 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import {Link, browserHistory} from 'react-router'
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {Link, browserHistory} from 'react-router';
 import {makeGravatarUrl} from '../services/gravatar';
 import {Storage} from '../services/storage';
 import {authUser} from '../actions/login';
@@ -10,9 +10,11 @@ import {spawnThemeRender} from '../style/theme-render';
 import {ThemeConst} from '../style/theme';
 import {LightIcon} from '../services/svg-icons';
 import {DropMenu} from './widget/DropMenu';
+import {clearJWT} from '../utils/auth';
 
 const styles = {
   headerStyle: {
+    position: 'relative',
     width: '100%',
     padding: '6px 8px',
     boxSizing: 'border-box',
@@ -60,14 +62,31 @@ const styles = {
   },
   floatRight: {
     float: 'right'
+  },
+  userMenu: {
+    position: 'absolute',
+    right: '0',
+    marginRight: '0.5rem',
+    marginTop: '0.5rem',
+    border: `1px solid ${ThemeConst.deepDark}`
+  },
+  menuLi: {
+    display: 'block',
+    backgroundColor: 'white',
+    textAlign: 'right',
+    border: 'none',
+    padding: '0'
   }
 };
+
+const themeRender = spawnThemeRender(styles);
+themeRender('userMenu', 'lightBackground', 'boxPadding', 'smallRadius');
 
 @Radium
 class Nav extends Component {
   constructor() {
     super();
-    this.state = {};
+    this.state = {userMenuToggle: false};
   }
 
   componentWillMount() {
@@ -77,6 +96,10 @@ class Nav extends Component {
 
   activelyLink(linkStyle) {
     return Object.assign({}, styles.linkStyle, styles.activeLink);
+  }
+
+  logout() {
+    clearJWT();
   }
   
   render() {
@@ -107,13 +130,13 @@ class Nav extends Component {
     if( cachedUsername && user ){
       return (
         <div style={styles.userArea}>
-          <img style={styles.userAvatar} src={makeGravatarUrl(user.email)}/>
-          <DropMenu toggle={this.state.settingToggle}>
-            <ul style={styles.settingDropMenu}>
-              <li onClick={() => {this.refs.delConfirm.open()}}>Delete This Wall</li>
-              <li>2</li>
-            </ul>
-          </DropMenu>
+          <img style={styles.userAvatar} src={makeGravatarUrl(user.email)} onClick={() => {this.setState({userMenuToggle: !this.state.userMenuToggle})}}/>
+            <DropMenu toggle={this.state.userMenuToggle}>
+              <ul style={styles.userMenu}>
+                <Link style={styles.menuLi} to="/profile" onClick={() => {this.setState({userMenuToggle: false})}}>Profile</Link>
+                <button style={styles.menuLi} onClick={() => {}}>Log out</button>
+              </ul>
+            </DropMenu>
         </div>
       );
     }

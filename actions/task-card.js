@@ -1,15 +1,9 @@
 import fetch from 'isomorphic-fetch';
-import { browserHistory } from 'react-router';
-
 import { handleHttpError } from '../services/handle-error';
-
 export const TASKCARD_POST_REQUEST = 'TASKCARD_POST_REQUEST';
 export const TASKCARD_POST_SUCCESS = 'TASKCARD_POST_SUCCESS';
 export const TASKCARD_POST_FAILURE = 'TASKCARD_POST_FAILURE';
-
-import {JWT_STORAGE_KEY, CACHED_USERNAME} from '../setting';
-import {createConfigWithAuth} from './util/header';
-import {handleResponse, handleResponseWithoutJson} from '../utils/http-handle';
+import {JWT_STORAGE_KEY} from '../constants';
 
 /************* Post *******************/
 

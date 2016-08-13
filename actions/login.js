@@ -9,7 +9,7 @@ export const LOGIN_AUTH_FAILURE = 'LOGIN_AUTH_FAILURE';
 export const LOGIN_AUTH_REQUEST = 'LOGIN_AUTH_REQUEST';
 export const LOGIN_AUTH_SUCCESS = 'LOGIN_AUTH_SUCCESS';
 
-import {JWT_STORAGE_KEY, CACHED_USERNAME} from '../setting';
+import {JWT_STORAGE_KEY, CACHED_USERNAME} from '../constants';
 
 import {handleResponse} from '../utils/http-handle';
 import {createConfigWithAuth} from './util/header.js';

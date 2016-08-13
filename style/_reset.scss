@@ -1,4 +1,5 @@
 ul {
+  padding: 0;
   list-style: none;
 }
 
@@ -7,6 +8,10 @@ a {
 }
 
 p {
+  margin: 0;
+}
+
+div, p {
   margin: 0;
 }
 
