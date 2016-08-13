@@ -7,7 +7,6 @@ import {DropMenu} from './widget/DropMenu';
 import {ConfirmModal} from './widget/ConfirmModal';
 import {getAssets} from '../services/assets-manager';
 import {spawnThemeRender} from '../style/theme-render';
-
 import R from 'fw-ramda';
 
 const styles = {
@@ -48,7 +47,8 @@ const styles = {
   card: {
     margin: '0.3rem 0.8rem',
     padding: '4px 8px',
-    borderRadius: '1px'
+    borderRadius: '1px',
+    height: '48px'
   }
 };
 
@@ -112,6 +112,7 @@ class TaskWall extends Component {
       <div style={styles.category} key={categoryName}>
         {categoryName}
         {this.renderCards(cards)}
+        
         {this.renderCreateCardDom()}
       </div>
     );
