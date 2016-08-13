@@ -78,7 +78,10 @@ class TaskWall extends Component {
   }
 
   classificationCards(cards) {
-    return R.groupBy(card => card.category, cards);
+    return R.compose(
+      R.when(R.isEmpty, R.assoc('defualt', [])),
+      R.groupBy(_ => _.category)
+    )(cards)
   }
 
   renderCreateCardDom() {
@@ -88,12 +91,6 @@ class TaskWall extends Component {
           <span>title</span>
           <input type='text' ref='title'/>
         </div>
-
-        <div>
-          <span>Content</span>
-          <input type='text' ref='content'/>
-        </div>
-
         <button onClick={(event) => this.handleClick(event)} >Post</button>
       </div>
     );
@@ -161,7 +158,6 @@ class TaskWall extends Component {
           <div style={styles.categoryContainer}>
             {this.renderCategorys(cardGroups)}
           </div>
-          
         </div>
       </div>
     );
@@ -189,7 +185,7 @@ class TaskWall extends Component {
       content: content.value.trim()
     };
     dispatch(postTaskCard(data)).then(() => {
-      self.getTasks(this.props.params.id);
+      this.getTasks(this.props.params.id);
       title.value = content.value = '';
     });
   }

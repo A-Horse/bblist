@@ -81,6 +81,7 @@ const styles = {
 
 const themeRender = spawnThemeRender(styles);
 themeRender('userMenu', 'lightBackground', 'boxPadding', 'smallRadius');
+themeRender('headerStyle', 'lightBackground');
 
 @Radium
 class Nav extends Component {
@@ -116,8 +117,7 @@ class Nav extends Component {
           <Link to="/" style={styles.linkStyle}>Home</Link>
           <Link to="/task-wall" style={path === 'task-wall' ? this.activelyLink(styles.linkStyle) : styles.linkStyle}>Task</Link>
           <Link to="/idea" style={styles.linkStyle}>Idea</Link>
-        </div>
-        
+        </div>        
         {userCell}
       </header>
     )

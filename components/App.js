@@ -8,12 +8,10 @@ import Nav from './Nav';
 
 export default function App({ children }) {
   return (
-      <div>
+    <div>
       <Nav/>
-      <div>
       
-      </div>
       <div style={{ marginTop: '1.5em' }}>{children}</div>
-      </div>
+    </div>
   )
 }

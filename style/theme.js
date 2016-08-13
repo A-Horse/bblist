@@ -7,6 +7,7 @@ export const ThemeConst = {
   // font
   smallFontSize: '11px',
   middleFontSize: '13px',
+  largeFontSize: '15px',
 
   // button
   buttonHeight: '30px',
@@ -14,6 +15,18 @@ export const ThemeConst = {
   // text
   lightText: 'white',
   primeText: '#383838'
+}
+
+export const smallFontSize = {
+  fontSize: ThemeConst.smallFontSize
+}
+
+export const middleFontSize = {
+  fontSize: ThemeConst.middleFontSize
+}
+
+export const largeFontSize = {
+  fontSize: ThemeConst.largeFontSize
 }
 
 export const grayBackground = {
@@ -30,6 +43,10 @@ export const mainColorBackground = {
 
 export const lightBackground = {
   backgroundColor: '#FFFFFF'
+};
+
+export const deepDarkBackground = {
+  backgroundColor: ThemeConst.deepDark
 };
 
 export const lightSmallShadow = {

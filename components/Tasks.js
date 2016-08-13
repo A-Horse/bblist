@@ -6,19 +6,19 @@ import {createTaskWall, getAllTaskWall} from '../actions/task-wall';
 import {Modal} from './widget/Modal';
 import {Select} from './widget/Select';
 import {PageContainer} from './widget/PageContainer';
+import {CateLine} from './widget/CateLine';
 import {spawnThemeRender} from '../style/theme-render';
 import {ThemeConst} from '../style/theme';
-import {CloseIcon} from '../services/svg-icons';
+import {CloseIcon, AddIcon} from '../services/svg-icons';
 
 const styles = {
   wall: {
     flex: '1 0 auto',
     borderRadius: '3px',
-    padding: '8px 16px',
     margin: '8px 20px',
-    width: '300px',
-    maxWidth: '300px',    
-    textAlign: 'center',
+    width: '200px',
+    height: '78px',
+    maxWidth: '200px',
     cursor: 'pointer',
     transition: 'box-shadow 218ms ease-in-out,transform 218ms ease-in-out,-webkit-transform 218ms ease-in-out',
     boxShadow: '0 2px 3px 0 rgba(0,0,0,.0470588)',
@@ -28,21 +28,41 @@ const styles = {
       boxShadow: '0 7px 21px rgba(0,0,0,.15)'
     }
   },
+  cardInfo: {
+    backgroundImage: 'linear-gradient(180deg,rgba(0,0,0,.3) 0,transparent)',
+    height: '50%'
+  },
+  cardTitle: {
+    
+  },
+  createCardTitle: {
+    
+  },
   projectCard: {
     
   },
   createCard: {
-    
+    textAlign: 'center'
   },
   wallContainer: {
     display: 'flex',
     flexWrap: 'wrap',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    marginTop: '1rem'
   },
-  categoryName: {
-    borderBottom: `1px solid ${ThemeConst.deepDark}`
+  addIcon: {
+    height: '1.5rem',
+    width: '1.5rem',
+    borderRadius: '50%',
+    fill: 'white'
   }
 };
+
+const mainThemeRender = spawnThemeRender(styles);
+mainThemeRender('wall', 'lightBackground');
+mainThemeRender('addIcon', 'deepDarkBackground');
+mainThemeRender('cardTitle', 'middleFontSize', 'lightText');
+mainThemeRender('createCardTitle', 'middleFontSize');
 
 const modalStyles = {
   overlay: {
@@ -114,9 +134,6 @@ const modalStyles = {
   }
 };
 
-const mainThemeRender = spawnThemeRender(styles);
-
-
 const createModalThemeRender = spawnThemeRender(modalStyles);
 createModalThemeRender('createButton', 'fullButton', 'mainColorBackground', 'lightText');
 
@@ -160,7 +177,9 @@ class Tasks extends Component {
     return this.props.walls.map(wjson => {
       return (
         <div style={Object.assign({}, styles.wall, styles.projectCard)} key={wjson.id} onClick={() => browserHistory.push(`/task-wall/${wjson.id}`)}>
-          <h2>{wjson.name}</h2>
+          <div style={styles.cardInfo}>
+            <h2 style={styles.cardTitle}>{wjson.name}</h2>
+          </div>
         </div>
       )
     })
@@ -169,13 +188,14 @@ class Tasks extends Component {
   render() {
     return (
       <PageContainer>
-        <p style={styles.categoryName}>current walls:</p>
+        <CateLine>current walls:</CateLine>
         <div style={styles.wallContainer}>
           
           {this.renderWalls()}
           
           <div style={Object.assign({}, styles.wall, styles.createCard)} onClick={() => this.setState({modalOpen: true})}>
-            <h2>New Task Wall</h2>
+            <AddIcon style={styles.addIcon}/>
+            <h2 style={styles.createCardTitle}>New Task Wall</h2>
           </div>
         </div>
 
