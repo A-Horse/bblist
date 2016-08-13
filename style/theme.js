@@ -1,6 +1,7 @@
 export const ThemeConst = {
   // color
   mainColor: '#a8628d',
+  deepMainColor: '#68225a',
   lightDark: '#EEEEEE',
   deepDark: '#999',
 
@@ -39,6 +40,10 @@ export const lightDarkBackground = {
 
 export const mainColorBackground = {
   backgroundColor: ThemeConst.mainColor
+}
+
+export const deepMainColorBackground = {
+  backgroundColor: ThemeConst.deepMainColor
 }
 
 export const lightBackground = {

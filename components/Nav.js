@@ -18,7 +18,8 @@ const styles = {
     width: '100%',
     padding: '6px 8px',
     boxSizing: 'border-box',
-    borderBottom: `1px solid ${ThemeConst.deepDark}`
+    borderBottom: `1px solid ${ThemeConst.deepDark}`,
+    zIndex: '100'
   },
   logoArea: {
     display: 'inline-block',

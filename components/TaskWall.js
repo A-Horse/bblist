@@ -11,6 +11,9 @@ import {PageContainer} from './widget/PageContainer';
 import R from 'fw-ramda';
 
 const styles = {
+  container: {
+    position: 'relative'
+  },
   settingContainer: {
     display: 'block',
     position: 'absolute',
@@ -51,12 +54,14 @@ const styles = {
 const themeRender = spawnThemeRender(styles);
 themeRender('category', 'grayBackground');
 themeRender('card', 'lightBackground', 'lightSmallShadow');
+themeRender('topBar', 'mainColorBackground');
 
 class TaskWall extends Component {
   constructor() {
     super();
     this.state = {
-      settingToggle: false
+      settingToggle: false,
+      createCardToggle: {}
     };
   }
   
@@ -78,7 +83,7 @@ class TaskWall extends Component {
     return R.compose(
       R.when(R.isEmpty, R.assoc('defualt', [])),
       R.groupBy(_ => _.category)
-    )(cards)
+    )(cards);
   }
 
   renderCreateCardDom() {
@@ -99,7 +104,7 @@ class TaskWall extends Component {
         <div key={cjson.id} style={styles.card}>
           <p>{cjson.title}</p>
         </div>
-      )
+      );
     });
   }
 
@@ -115,7 +120,8 @@ class TaskWall extends Component {
   }
 
   renderCategorys(cardGroups) {
-    return Object.keys(cardGroups).map(categoryName => this.renderCategory(categoryName, cardGroups[categoryName]));
+    return Object.keys(cardGroups)
+      .map(categoryName => this.renderCategory(categoryName, cardGroups[categoryName]));
   }
 
   renderSetttingMenu() {
@@ -150,20 +156,20 @@ class TaskWall extends Component {
     const {wallData} = this.props;
     const cardGroups = this.classificationCards(wallData.cards);
     return (
-      <PageContainer>
-        <div>
-          {this.renderTopBar()}
+      <div style={styles.container}>
+        {this.renderTopBar()}
+        <PageContainer>
           <div style={styles.categoryContainer}>
             {this.renderCategorys(cardGroups)}
           </div>
-        </div>
-      </PageContainer>
+        </PageContainer>
+      </div>    
     );
   }
-
+  
   deleteWall() {
-    const {dispatch} = this.props,
-          params = {id: this.props.params.id};
+    const {dispatch} = this.props;
+    const params = {id: this.props.params.id};
     
     dispatch(deleteTaskWall(params))
       .then(() => {

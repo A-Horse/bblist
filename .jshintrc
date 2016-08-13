@@ -1,8 +1,5 @@
 {
   "es6"       : true,
-  "node"      : true,
-  "bitwise"   : true,
-  "boss"      : true,
   "browser"   : true,
   "camelcase" : true,
   "debug"     : true,

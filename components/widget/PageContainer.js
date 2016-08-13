@@ -2,6 +2,7 @@ import React, {Component, PropTypes} from 'react';
 
 const styles = {
   container: {
+    position: 'relative',
     width: '80%',
     margin: 'auto'
   }
@@ -19,3 +20,4 @@ export class PageContainer extends Component {
     );
   }
 }
+
