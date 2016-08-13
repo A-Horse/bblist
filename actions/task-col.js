@@ -1,7 +1,5 @@
-import fetch from 'isomorphic-fetch'
-import { browserHistory } from 'react-router'
-
-import { handleHttpError } from '../services/handle-error'
+import fetch from 'isomorphic-fetch';
+import { handleHttpError } from '../services/handle-error';
 
 
 export const TASKCOL_POST_REQUEST = 'TASKCOL_POST_REQUEST'

@@ -1,28 +1,24 @@
-import React, { Component, PropTypes } from 'react'
-import fetch from 'isomorphic-fetch'
-import { connect } from 'react-redux'
-import { browserHistory } from 'react-router'
-
+import React, {Component} from 'react';
+import {PageContainer} from './widget/PageContainer';
+import {connect} from 'react-redux';
+import {browserHistory} from 'react-router';
 import {makeGravatarUrl} from '../services/gravatar';
-
 import Loading from './widget/loading';
 
 class Profile extends Component {
   constructor() {
-    super()
+    super();
   }
 
-  
   componentWillMount() {
     this.state = {
       showChangePassword: false
-    }
+    };
   }
 
   // TODO cached picture to localstorage
   render() {
     const {user} = this.props;
-
     let changePasswordArea;
     if( this.state.showChangePassword ){
       changePasswordArea = (
@@ -45,38 +41,30 @@ class Profile extends Component {
       )
     }
 
-
     if( user ){
       return (
-        <div>
-          
+        <PageContainer>
           <h2>Profile</h2>
-
           <div>
             <img src={makeGravatarUrl(user.email)}/>
           </div>
-
           <div>
             <button onClick={() => this.setState({showChangePassword: true})}>Change Password</button>
           </div>
-
           {changePasswordArea}
-          
-        </div>
+        </PageContainer>
       )
     }
     return (
       <Loading/>
     )
   }
-
-  
 }
 
 const mapStateToProps = (state) => {
   return {
     user: state.login.state.loginUser
-  }
-}
+  };
+};
 
-export default connect(mapStateToProps)(Profile)
+export default connect(mapStateToProps)(Profile);

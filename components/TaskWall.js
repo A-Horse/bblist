@@ -7,14 +7,10 @@ import {DropMenu} from './widget/DropMenu';
 import {ConfirmModal} from './widget/ConfirmModal';
 import {getAssets} from '../services/assets-manager';
 import {spawnThemeRender} from '../style/theme-render';
+import {PageContainer} from './widget/PageContainer';
 import R from 'fw-ramda';
 
 const styles = {
-  main: {
-    position: 'relative',
-    margin: 'auto',
-    width: '700px'
-  },
   settingContainer: {
     display: 'block',
     position: 'absolute',
@@ -154,14 +150,14 @@ class TaskWall extends Component {
     const {wallData} = this.props;
     const cardGroups = this.classificationCards(wallData.cards);
     return (
-      <div style={styles.main}>
+      <PageContainer>
         <div>
           {this.renderTopBar()}
           <div style={styles.categoryContainer}>
             {this.renderCategorys(cardGroups)}
           </div>
         </div>
-      </div>
+      </PageContainer>
     );
   }
 
