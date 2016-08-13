@@ -1,7 +1,7 @@
 import fetch from 'isomorphic-fetch';
-import {browserHistory} from 'react-router';
-
 import {handleHttpError} from '../services/handle-error';
+import {createConfigWithAuth} from './util/header';
+import {handleResponse, handleResponseWithoutJson} from '../utils/http-handle';
 
 export const TASKWALL_GET_REQUEST = 'TASKWALL_GET_REQUEST';
 export const TASKWALL_GET_SUCCESS = 'TASKWALL_GET_SUCCESS';
@@ -18,11 +18,6 @@ export const TASKWALL_DELETE_FAILURE = 'TASKWALL_DELETE_FAILURE';
 export const ALL_TASKCARD_GET_REQUEST = 'TASKCARD_GET_REQUEST';
 export const ALL_TASKCARD_GET_SUCCESS = 'TASKCARD_GET_SUCCESS';
 export const ALL_TASKCARD_GET_FAILURE = 'TASKCARD_GET_FAILURE';
-
-import {createConfigWithAuth} from './util/header';
-import {handleResponse, handleResponseWithoutJson} from '../utils/http-handle';
-
-/************* Get *******************/
 
 function requestGetTaskWall(user) {
   return {
@@ -45,8 +40,6 @@ function getTaskWallError(message) {
 }
 
 
-/************* Get *******************/
-
 function requestGetTaskWallCards() {
   return {
     type: ALL_TASKCARD_GET_REQUEST
@@ -68,7 +61,6 @@ function getTaskWallCardsError(status) {
 }
 
 
-/************* Post *******************/
 function requestCreateTaskWall() {
   return {
     type: TASKWALL_POST_REQUEST
@@ -87,7 +79,6 @@ function createTaskWallError() {
   }
 }
 
-/************* Delete *******************/
 function requestDeleteTaskWall() {
   return {
     type: TASKWALL_DELETE_REQUEST
@@ -119,35 +110,24 @@ export function getTaskAllCards(wallId) {
   }
 }
 
-export function getAllTaskWall(user) {
+export function getAllTaskWall() {
   const config = createConfigWithAuth('GET');
   return dispatch => {
     dispatch(requestGetTaskWall())
     return fetch('/api/task-wall', config)
       .then(handleResponse)
-      .then(response => {
-        dispatch(receiveGetTaskWall(response))
-      })
-      .catch(handleHttpError)
+      .then(response => dispatch(receiveGetTaskWall(response)))
+      .catch(handleHttpError);
   }
 }
 
-export function createTaskWall(wallInfo) {
-  let config = {
-    method: 'POST',
-    headers: {
-      'Content-Type':'application/json',
-      'JWTs-TOKEN': localStorage.getItem('jwts-token')
-    },
-    body: JSON.stringify(wallInfo)
-  }
-
+export function createTaskWall(CreateWallInfo) {
+  const config = createConfigWithAuth('POST', CreateWallInfo);
   return dispatch => {
     dispatch(requestCreateTaskWall());
     return fetch('/api/task-wall', config)
-      .then(response => {
-        dispatch(handleResponse);
-      })
+      .then(handleResponse)
+      .then(response => dispatch(receiveCreateTaskWall(response)))
       .catch(handleHttpError);
   }
 }

@@ -14,6 +14,6 @@ export function createConfig(method, body, headers){
 
 
 export function createConfigWithAuth(method, body, headers = {}) {
-  headers[JWT_STORAGE_KEY] = localStorage.getItem('jwts-token');
+  headers[JWT_STORAGE_KEY] = window.localStorage.getItem('jwts-token');
   return createConfig(method, body, headers);
 }

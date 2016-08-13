@@ -36,7 +36,6 @@
   "validthis" : true,
   "withstmt"  : true,
   "globals": {
-    "fis": true,
     "exports": true,
     "describe": true,
     "it": true,
@@ -45,6 +44,7 @@
     "before": true,
     "after": true,
     "xit": true,
-    "xdescribe": true
+    "xdescribe": true,
+    "localStorage": true
   }
 }

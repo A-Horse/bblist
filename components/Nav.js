@@ -1,95 +1,119 @@
-import React, { Component, PropTypes } from 'react'
-import fetch from 'isomorphic-fetch'
-import { connect } from 'react-redux'
-import { Link, browserHistory } from 'react-router'
-
-import {makeGravatarHash} from '../services/gravatar';
-
+import React, {Component} from 'react'
+import {connect} from 'react-redux'
+import {Link, browserHistory} from 'react-router'
+import {makeGravatarUrl} from '../services/gravatar';
+import {Storage} from '../services/storage';
 import {authUser} from '../actions/login';
+import Radium from 'radium';
+import R from 'fw-ramda';
+import {spawnThemeRender} from '../style/theme-render';
+import {ThemeConst} from '../style/theme';
+import {LightIcon} from '../services/svg-icons';
+import {DropMenu} from './widget/DropMenu';
 
-import Loading from './widget/loading';
-
-let R = require('fw-ramda');
-
-let headerStyle = {
-  width: '100%',
-  backgroundColor: '#8fdad7',
-  padding: '6px 8px',
-  boxSizing: 'border-box'
+const styles = {
+  headerStyle: {
+    width: '100%',
+    padding: '6px 8px',
+    boxSizing: 'border-box',
+    borderBottom: `1px solid ${ThemeConst.deepDark}`
+  },
+  logoArea: {
+    display: 'inline-block',
+    textDecoration: 'none',
+    float: 'left',
+    marginLeft: '10px',
+    color: 'black',
+    fontWeight: '900'
+  },
+  logoIcon: {
+    height: '1rem',
+    width: '1rem',
+    verticalAlign: 'middle',
+    marginTop: '-3px'
+  },
+  linkArea: {
+    display: 'inline-block',
+    float: 'left',
+    marginLeft: '2rem'
+  },
+  userArea: {
+    display: 'inline-block',
+    float: 'right'
+  },
+  userAvatar: {
+    height: '1.7rem',
+    width: '1.7rem',
+    borderRadius: '50%',
+    verticalAlign: 'middle',
+    cursor: 'pointer'
+  },
+  linkStyle: {
+    textDecoration: 'none',
+    float: 'left',
+    marginLeft: '10px',
+    color: ThemeConst.primeText
+  },
+  activeLink: {
+    color: ThemeConst.mainColor,
+    fontWeight: '900'
+  },
+  floatRight: {
+    float: 'right'
+  }
 };
 
-let linkStyle = {
-  textDecoration: 'none',
-  float: 'left',
-  marginLeft: '10px',
-  color: 'red'
-};
-
-let activeLink = {
-  color: 'black'
-};
-
-let floatRight = {
-  float: 'right'
-};
-
+@Radium
 class Nav extends Component {
   constructor() {
-    super()
+    super();
+    this.state = {};
   }
 
   componentWillMount() {
-    let {dispatch} = this.props;
-
-    
+    let {dispatch} = this.props;    
     dispatch(authUser());
   }
 
   activelyLink(linkStyle) {
-    return Object.assign({}, linkStyle, activeLink);
+    return Object.assign({}, styles.linkStyle, styles.activeLink);
   }
   
   render() {
-    
     const userCell = this.renderUserCell();
-
-    let path = R.second(this.props.path.split('/'));
-
-    // switch(path) {
-    //   //TODO extract global var
-    // case 'task-wall':
-    //   let linkStyle = Object.assign({}, linkStyle, activeLink);
-    //   break;
-    // }
-
+    const path = R.second(this.props.path.split('/'));
     
     return (
-      <header style={headerStyle} className="clearfix">
+      <header style={styles.headerStyle} className="clearfix">
+        <div style={styles.logoArea} style={styles.logoArea}>
+          <LightIcon style={styles.logoIcon} />
+          <span>LiGHT</span>
+        </div>
+        <div style={styles.linkArea}>
+          <Link to="/" style={styles.linkStyle}>Home</Link>
+          <Link to="/task-wall" style={path === 'task-wall' ? this.activelyLink(styles.linkStyle) : styles.linkStyle}>Task</Link>
+          <Link to="/idea" style={styles.linkStyle}>Idea</Link>
+        </div>
         
-
-        <Link to="/" style={linkStyle}>Home</Link>
-
-        <Link to="/task-wall" style={path === 'task-wall' ? this.activelyLink(linkStyle) : linkStyle}>Task</Link>
-
-        <Link to="/idea" style={linkStyle}>Idea</Link>
-
-        { userCell }
+        {userCell}
       </header>
     )
   }
 
   renderUserCell() {
     const user = this.props.user;
-    
-    const cachedUsername = localStorage.getItem('cachedUsername');
-    
-    
+    const cachedUsername = Storage.get('cachedUsername');
 
-    if( cachedUsername ){
+    if( cachedUsername && user ){
       return (
-        <div>
-          <Link to="/profile" style={R.merge(linkStyle, floatRight)}>{cachedUsername}</Link>
-          <Link to="/" style={R.merge(linkStyle, floatRight)}>Log out</Link>
+        <div style={styles.userArea}>
+          <img style={styles.userAvatar} src={makeGravatarUrl(user.email)}/>
+          <DropMenu toggle={this.state.settingToggle}>
+            <ul style={styles.settingDropMenu}>
+              <li onClick={() => {this.refs.delConfirm.open()}}>Delete This Wall</li>
+              <li>2</li>
+            </ul>
+          </DropMenu>
         </div>
       );
     }
@@ -100,18 +124,14 @@ class Nav extends Component {
       </div>
     );
   }
-  
-  
 }
 
 const mapStateToProps = (state) => {
   return {
     user: state.login.state.loginUser,
     path: state.routing.locationBeforeTransitions.pathname
-  }
+  };
 };
-
-
 
 export default connect(mapStateToProps)(Nav);
 

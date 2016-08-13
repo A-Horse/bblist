@@ -21,3 +21,7 @@ const ASSETS_DIR_MAP = {
 export function getAssets(type, name) {
   return BASE_STATIC_PATH + ASSETS_DIR_MAP[type]+ ASSETS[type][name];
 }
+
+export function getAssetsPath(type) {
+  
+}

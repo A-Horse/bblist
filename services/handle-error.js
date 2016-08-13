@@ -2,5 +2,5 @@
 
 
 export function handleHttpError(err) {
-  console.log(err);
+  throw err;
 }

@@ -1,11 +1,13 @@
-import React, { Component, PropTypes } from 'react';
-import { connect } from 'react-redux';
-import { browserHistory } from 'react-router';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {browserHistory} from 'react-router';
 import {deleteTaskWall, getTaskAllCards} from '../actions/task-wall';
 import {postTaskCard} from '../actions/task-card';
 import {DropMenu} from './widget/DropMenu';
 import {ConfirmModal} from './widget/ConfirmModal';
 import {getAssets} from '../services/assets-manager';
+import {spawnThemeRender} from '../style/theme-render';
+
 import R from 'fw-ramda';
 
 const styles = {
@@ -40,12 +42,18 @@ const styles = {
   },
   category: {
     flex: '1',
-    margin: '0 3rem'
+    margin: '0 1rem'
   },
   card: {
-    border: '1px solid black'
+    margin: '0.3rem 0.8rem',
+    padding: '4px 8px',
+    borderRadius: '1px'
   }
 };
+
+const themeRender = spawnThemeRender(styles);
+themeRender('category', 'grayBackground');
+themeRender('card', 'lightBackground', 'lightSmallShadow');
 
 class TaskWall extends Component {
   constructor() {
@@ -95,8 +103,7 @@ class TaskWall extends Component {
     return cards.map(cjson => {
       return (
         <div key={cjson.id} style={styles.card}>
-          <h2>{cjson.title}</h2>
-          <p>{cjson.content}</p>
+          <p>{cjson.title}</p>
         </div>
       )
     });
@@ -104,9 +111,10 @@ class TaskWall extends Component {
 
   renderCategory(categoryName, cards) {
     return (
-      <div style={styles.category}>
+      <div style={styles.category} key={categoryName}>
         {categoryName}
         {this.renderCards(cards)}
+        {this.renderCreateCardDom()}
       </div>
     );
   }
@@ -153,7 +161,7 @@ class TaskWall extends Component {
           <div style={styles.categoryContainer}>
             {this.renderCategorys(cardGroups)}
           </div>
-          {this.renderCreateCardDom()}
+          
         </div>
       </div>
     );

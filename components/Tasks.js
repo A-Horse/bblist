@@ -1,27 +1,34 @@
-import React, { Component, PropTypes } from 'react';
-import fetch from 'isomorphic-fetch';
-import { connect } from 'react-redux';
-import { browserHistory } from 'react-router';
-
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {browserHistory} from 'react-router';
+import Radium from 'radium';
 import {createTaskWall, getAllTaskWall} from '../actions/task-wall';
-
 import {Modal} from './widget/Modal';
 import {Select} from './widget/Select';
+import {spawnThemeRender} from '../style/theme-render';
+import {ThemeConst} from '../style/theme';
+import {getAssets} from '../services/assets-manager';
+import {CloseIcon} from '../services/svg-icons';
 
-let wallStyle = {
-  boxShadow: '0 0 10px #999',
-  borderRadius: '3px',
-  padding: '8px 16px',
-  margin: '8px 20px',
-  display: 'inline-block',
-  width: '300px',
-  textAlign: 'center',
-  cursor: 'pointer'
-};
+const styles = {
+  wallStyle: {
+    borderRadius: '3px',
+    padding: '8px 16px',
+    margin: '8px 20px',
+    display: 'inline-block',
+    width: '300px',
+    textAlign: 'center',
+    cursor: 'pointer',
+    transition: 'all',
 
-let wallContainerStyle = {
-  width: '80%',
-  margin: 'auto'
+    ':hover': {
+      transform: 'scale(1.1, 1.1)'
+    }
+  },
+  wallContainerStyle: {
+    width: '80%',
+    margin: 'auto'
+  }
 };
 
 const modalStyles = {
@@ -35,20 +42,72 @@ const modalStyles = {
   },
   content: {
     position: 'absolute',
-    top: '140px',
-    left: '140px',
-    right: '140px',
-    bottom: '140px',
+    top: '50%',
+    left: '50%',
+    width: '320px',
+    height: 'auto',
+    transform: 'translate(-50%, -60%)',
     border: '1px solid #ccc',
     background: '#fff',
-    overflow: 'auto',
     WebkitOverflowScrolling: 'touch',
     borderRadius: '4px',
     outline: 'none',
     padding: '20px'
+  },
+  closeButton: {
+    position: 'absolute',
+    width: '2rem',
+    height: '2rem',
+    top: '0.3rem',
+    right: '0.5rem',
+    borderRadius: '50%',
+    border: 'none',
+    backgroundColor: 'transparent'
+  },
+  clearIcon: {
+    verticalAlign: 'middle',
+    fill: '#999',
+    width: '1rem',
+    height: '1rem',
+    transition: 'all 80ms ease'
+  },
+  topbar: {
+    textAlign: 'center',
+    borderBottom: `1px solid ${ThemeConst.lightDark}`,
+    padding: '0 0 10px',
+    margin: '-8px 0 0'
+  },
+  image: {
+    maxWidth: '100%',
+    display: 'block',
+    margin: '0 auto'
+  },
+  quota: {
+    fontSize: ThemeConst.smallFontSize,
+    textAlign: 'center'
+  },
+  nameInput: {
+    width: '100%',
+    borderRadius: '1px',
+    border: `1px solid ${ThemeConst.deepDark}`,
+    margin: '10px 0',
+    padding: '4px 8px',
+    fontSize: ThemeConst.middleFontSize
+  },
+  createButton: {
+    width: '100%',
+    border: 'none',
+    fontSize: ThemeConst.middleFontSize
   }
 };
 
+const mainThemeRender = spawnThemeRender(styles);
+mainThemeRender('wallStyle', 'lightSmallShadow');
+
+const createModalThemeRender = spawnThemeRender(modalStyles);
+createModalThemeRender('createButton', 'fullButton', 'mainColorBackground', 'lightText');
+
+@Radium
 class Tasks extends Component {
   constructor() {
     super();
@@ -56,29 +115,38 @@ class Tasks extends Component {
     this.state = {
       modalOpen: false
     };
-
-    this.backgroundItems = [
-      {name: 'blue', value: 'blue'},
-      {name: 'red', value: 'red'},
-      {name: 'black', value: 'black'}
-    ];
     this.backgroundValue = null;
   }
 
   getWalls() {
     let { dispatch } = this.props;
-    
     return dispatch(getAllTaskWall());
   }
 
   componentWillMount() {
     this.getWalls();
   }
+
+  renderCreateModal() {
+    return (
+      <Modal isOpen={this.state.modalOpen} styles={modalStyles}>
+        <button key='modal-close' style={modalStyles.closeButton}>
+          <CloseIcon style={modalStyles.clearIcon} onClick={() => {this.setState({modalOpen: false})}}/>
+        </button>
+        
+        <div style={modalStyles.topbar}>Create Wall</div>
+        <img style={modalStyles.image} src='/static/image/d.png'/>
+        <p style={modalStyles.quota}>Establish their own projects for different transactions.</p>
+        <input style={modalStyles.nameInput} type='text' ref='name' placeholder="Wall Name"/>
+        <button style={modalStyles.createButton} onClick={() => this.handleClick()} >Complete And Create</button>
+      </Modal>
+    )
+  }
   
   render() {
     let walls = this.props.walls.map(wjson => {
       return (
-        <div style={wallStyle} key={wjson.id} onClick={() => browserHistory.push(`/task-wall/${wjson.id}`)}>
+        <div style={styles.wallStyle} key={wjson.id} onClick={() => browserHistory.push(`/task-wall/${wjson.id}`)}>
           <h2>{wjson.name}</h2>
         </div>
       )
@@ -87,52 +155,26 @@ class Tasks extends Component {
     return (
       <div>
         <div>
-          <div className="wall-container" style={wallContainerStyle}>
+          <div className="wall-container" style={styles.wallContainerStyle}>
             {walls}
-            <div style={wallStyle} onClick={() => this.setState({modalOpen: true})}>
+            <div style={styles.wallStyle} onClick={() => this.setState({modalOpen: true})}>
               <h2>New Task Wall</h2>
             </div>
           </div>
-          
         </div>
-        
-        <div>
-          <Modal isOpen={this.state.modalOpen} styles={modalStyles}>
-            <p>This is Modal!</p>
-            <div>
-              <span>Task Wall name:</span>
-              <input type='text' ref='name'/>
-              <p></p>
-            </div>
 
-            <div>
-              <span>Description:</span>
-              <input type='text' ref='description' />
-              <p></p>
-            </div>
-
-            <div>
-              <span>Peoples:</span>
-              <button>+</button>
-              <div></div>
-            </div>
-            
-            <Select items={this.backgroundItems} ref='backgroundSelect'></Select>
-            <button onClick={() => this.handleClick()} >Post</button>
-            <button onClick={() => this.setState({modalOpen: false})}>Close</button>
-          </Modal>
-        </div>
+        {this.renderCreateModal()}
       </div>
     )
   }
 
-  handleClick(event) {
-    let {dispatch} = this.props;
-    
+  handleClick() {
+    const {dispatch} = this.props;
     const name = this.refs.name;
-
-
-    dispatch(createTaskWall({name: name.value.trim()})).then(this.getWalls.bind(this))
+    dispatch(createTaskWall({name: name.value.trim()})).then(() => {
+      this.getWalls();
+      this.setState({modalOpen: false});
+    })
   }
 }
 

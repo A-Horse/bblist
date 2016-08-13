@@ -1,0 +1,23 @@
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+p {
+  margin: 0;
+}
+
+button {
+  outline: none;
+}
+
+input {
+  outline: none;
+
+  &:focus {
+    box-shadow: 0 0 3px #a8628d;
+  }
+}
