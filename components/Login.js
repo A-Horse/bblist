@@ -31,8 +31,8 @@ class Login extends Component {
         <div>
 
           <div>
-            <input type='text' ref='usernameOrEmail'/>
-            <p>{errorMessage.usernameOrEmail}</p>
+            <input type='text' ref='email' name='light_email'/>
+            <p>{errorMessage.email}</p>
           </div>
           
           <div>
@@ -55,16 +55,16 @@ class Login extends Component {
   handleClick(event) {
     const { dispatch } = this.props
     
-    const usernameOrEmail = this.refs.usernameOrEmail;
+    const email = this.refs.email;
     const password = this.refs.password;
     
     const loginInfo = {
-      usernameOrEmail: usernameOrEmail.value.trim(),
+      email: email.value.trim(),
       password: password.value.trim()
     };
 
     const errorMessage = validateFormValue(loginInfo, {
-      usernameOrEmail: ['required#required'],
+      email: ['required#required'],
       password: ['required#required']
     });
     
@@ -89,7 +89,7 @@ class Login extends Component {
 const mapStateToProps = (state) => {
   return {
     STA: state.login.auth.message
-  }
-}
+  };
+};
 
-export default connect(mapStateToProps)(Login)
+export default connect(mapStateToProps)(Login);

@@ -42,7 +42,8 @@ const styles = {
   },
   category: {
     flex: '1',
-    margin: '0 1rem'
+    margin: '0 1rem',
+    maxWidth: '250px'
   },
   card: {
     margin: '0.3rem 0.8rem',

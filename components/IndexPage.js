@@ -21,9 +21,9 @@ class IndexPage extends Component {
 
 
     return (
-        <div>
+      <PageContainer>
         Welcome
-        </div>
+      </PageContainer>
     )
   }
 

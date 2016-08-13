@@ -2,8 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import fetch from 'isomorphic-fetch';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
-
-import {Modal} from './widget/Modal';
+import {PageContainer} from './widget/PageContainer';
 
 class Ideas extends Component {
   constructor() {
@@ -20,9 +19,9 @@ class Ideas extends Component {
   
   render() {
     return (
-      <div>
+      <PageContainer>
         Ideas
-      </div>
+      </PageContainer>
     )
   }
 }
