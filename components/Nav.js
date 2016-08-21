@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Link, browserHistory} from 'react-router';
 import {makeGravatarUrl} from '../services/gravatar';
-import {Storage} from '../services/storage';
+import {Storage, storageImage} from '../services/storage';
 import {authUser} from '../actions/login';
 import Radium from 'radium';
 import R from 'fw-ramda';
@@ -96,6 +96,18 @@ class Nav extends Component {
     dispatch(authUser());
   }
 
+  componentDidMount() {
+    
+  }
+
+  componentDidUpdate() {
+    if( this.props.user && !Storage.get('avator') ){
+      this.refs.avator.onload = () => {
+        storageImage('avator', this.refs.avator);
+      };
+    }
+  }
+  
   activelyLink(linkStyle) {
     return Object.assign({}, styles.linkStyle, styles.activeLink);
   }
@@ -125,13 +137,13 @@ class Nav extends Component {
   }
 
   renderUserCell() {
-    const user = this.props.user;
-    const cachedUsername = Storage.get('cachedUsername');
-
-    if( cachedUsername && user ){
+    const {user} = this.props;
+    const avatorData = Storage.get('avator');
+    if( user ){
       return (
         <div style={styles.userArea}>
-          <img style={styles.userAvatar} src={makeGravatarUrl(user.email)} onClick={() => {this.setState({userMenuToggle: !this.state.userMenuToggle})}}/>
+          {avatorData ? <img ref='avator' style={styles.userAvatar} src={`data:image/png;base64,${avatorData}`} onClick={() => {this.setState({userMenuToggle: !this.state.userMenuToggle})}}/>
+            : <img ref='avator' crossOrigin="Anonymous" style={styles.userAvatar} src={makeGravatarUrl(user.email)} onClick={() => {this.setState({userMenuToggle: !this.state.userMenuToggle})}}/>}
             <DropMenu toggle={this.state.userMenuToggle}>
               <ul style={styles.userMenu}>
                 <Link style={styles.menuLi} to="/profile" onClick={() => {this.setState({userMenuToggle: false})}}>Profile</Link>

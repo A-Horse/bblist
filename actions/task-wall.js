@@ -138,8 +138,6 @@ export function deleteTaskWall(wallInfo) {
     dispatch(requestDeleteTaskWall(wallInfo));
     return fetch(`/api/task-wall/${wallInfo.id}`, config)
       .then(handleResponseWithoutJson)
-      .then(response => {
-        return dispatch(deleteTaskWallSuccess(response));
-      });
+      .then(response => dispatch(deleteTaskWallSuccess(response)));
   };
 }

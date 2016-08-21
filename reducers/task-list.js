@@ -1,25 +1,25 @@
 import { combineReducers } from 'redux'
 import {
-  TASKCARD_POST_REQUEST, TASKCARD_POST_SUCCESS, TASKCARD_POST_FAILURE,
-} from '../actions/task-card';
+  TASKLIST_PATCH_REQUEST, TASKLIST_PATCH_SUCCESS, TASKLIST_PATCH_FAILURE,
+} from '../actions/task-list';
 
-function taskCard(state = {
+function taskList(state = {
   isFetching: false
 }, action) {
   switch (action.type) {
-  case TASKCARD_POST_REQUEST:
+  case TASKLIST_PATCH_REQUEST:
     return Object.assign({}, state, {
       isFetching: true,
       taskCard: action.taskCard
     })
     break;
-  case TASKCARD_POST_SUCCESS:
+  case TASKLIST_PATCH_SUCCESS:
     return Object.assign({}, state, {
       isFetching: false,
-      taskCard: action.taskCard
+      taskList: action.taskList
     })
     break;
-  case TASKCARD_POST_FAILURE:
+  case TASKLIST_PATCH_FAILURE:
     return Object.assign({}, state, {
       isFetching: false,
       message: action.message
@@ -31,4 +31,4 @@ function taskCard(state = {
   }
 }
 
-export default taskCard;
+export default taskList;

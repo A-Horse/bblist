@@ -8,6 +8,7 @@ import {ConfirmModal} from './widget/ConfirmModal';
 import {getAssets} from '../services/assets-manager';
 import {spawnThemeRender} from '../style/theme-render';
 import {PageContainer} from './widget/PageContainer';
+import {EditIcon} from '../services/svg-icons';
 import R from 'fw-ramda';
 
 const styles = {
@@ -43,6 +44,9 @@ const styles = {
     margin: '0 1rem',
     maxWidth: '250px'
   },
+  categoryName: {
+    textAlign: 'center'
+  },
   card: {
     margin: '0.3rem 0.8rem',
     padding: '4px 8px',
@@ -61,7 +65,8 @@ class TaskWall extends Component {
     super();
     this.state = {
       settingToggle: false,
-      createCardToggle: {}
+      createCardToggle: {},
+      editingCategory: {}
     };
   }
   
@@ -81,19 +86,31 @@ class TaskWall extends Component {
 
   classificationCards(cards) {
     return R.compose(
-      R.when(R.isEmpty, R.assoc('defualt', [])),
+      R.when(R.isEmpty, R.assoc('default', [])),
       R.groupBy(_ => _.category)
     )(cards);
   }
 
-  renderCreateCardDom() {
+  toggleEditCategoryName(categoryName) {
+    const nobj = {};
+    nobj[categoryName] = !this.state.editingCategory[categoryName];
+    this.setState({
+      editingCategory: Object.assign(this.state.editingCategory, nobj)
+    })
+  }
+
+  changeCategoryName(categoryName) {
+    const id = R.find((R.propEq('name', categoryName)))(this.props.wallData.category).id;
+  }
+  
+  renderCreateCardDom(categoryName) {
     return (
       <div>
         <div>
           <span>title</span>
-          <input type='text' ref='title'/>
+          <input type='text' ref={`${categoryName}CreateTitle`}/>
         </div>
-        <button onClick={(event) => this.handleClick(event)} >Post</button>
+        <button onClick={() => this.handleClick(categoryName)} >Post</button>
       </div>
     );
   }
@@ -111,10 +128,12 @@ class TaskWall extends Component {
   renderCategory(categoryName, cards) {
     return (
       <div style={styles.category} key={categoryName}>
-        {categoryName}
-        {this.renderCards(cards)}
-        
-        {this.renderCreateCardDom()}
+        {this.state.editingCategory[categoryName]
+          ? (<div style={styles.categoryName}><input type='text' ref={`${categoryName}ChangeName`} defaultValue={categoryName} onKeyDown={(e) => {if (e.which === 13) this.changeCategoryName(categoryName)}} onBlur={() => {this.toggleEditCategoryName(categoryName)}}/></div>)
+         : (<div style={styles.categoryName}>{categoryName} <EditIcon onClick={() => {this.toggleEditCategoryName(categoryName)}}/></div>)}
+      
+        {this.renderCards(cards)}  
+        {this.renderCreateCardDom(categoryName)}
       </div>
     );
   }
@@ -179,18 +198,16 @@ class TaskWall extends Component {
       });
   }
 
-  handleClick() {
+  handleClick(categoryName) {
     const {dispatch} = this.props,
-          title = this.refs.title,
-          content = this.refs.content;
+          title = this.refs[`${categoryName}CreateTitle`];
     const data = {
       taskWallId: this.props.params.id,
-      title: title.value.trim(),
-      content: content.value.trim()
+      category: categoryName,
+      title: title.value.trim()
     };
     dispatch(postTaskCard(data)).then(() => {
       this.getTasks(this.props.params.id);
-      title.value = content.value = '';
     });
   }
 }
