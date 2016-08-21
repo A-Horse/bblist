@@ -51,6 +51,7 @@ const styles = {
     whiteSpace: 'nowrap'
   },
   category: {
+    position: 'relative',
     display: 'inline-flex',
     flexDirection: 'column',
     margin: '0 1rem',
@@ -61,7 +62,12 @@ const styles = {
     textAlign: 'center'
   },
   categoryMenuIcon: {
-    
+    position: 'absolute',
+    right: '0',
+    top: '0'
+  },
+  categorySetting: {
+    position: 'absolute'
   },
   card: {
     margin: '0.3rem 0.8rem',
@@ -83,7 +89,9 @@ class TaskWall extends Component {
       createCardToggle: {},
       editingCategory: {},
       openSetting: false,
-      typingNewCategory: false
+      typingNewCategory: false,
+      categorySetting: {},
+      openCreateCardDom: {}
     };
   }
   
@@ -148,9 +156,18 @@ class TaskWall extends Component {
         {this.state.editingCategory[categoryName]
           ? (<div style={styles.categoryName}><input type='text' ref={`${categoryName}ChangeName`} defaultValue={categoryName} onKeyDown={(e) => {if (e.which === 13) this.changeCategoryName(categoryName)}} onBlur={() => {this.toggleEditCategoryName(categoryName)}}/></div>)
          : (<div style={styles.categoryName}>{categoryName} <EditIcon onClick={() => {this.toggleEditCategoryName(categoryName)}}/></div>)}
-        <ArrowDownIcon style={styles.categoryMenuIcon}/>
-        {this.renderCards(cards)}  
-        {this.renderCreateCardDom(categoryName)}
+      
+        <ArrowDownIcon style={styles.categoryMenuIcon} onClick={() => {const obj = {}; obj[categoryName] = !this.state.categorySetting[categoryName]; this.setState({categorySetting: obj})}}/>
+        <DropMenu toggle={this.state.categorySetting[categoryName]}>
+        <ul style={styles.categorySetting}>
+        <button style={styles.menuLi} onClick={() => {this.deleteTaskList(categoryName)}}>Delete It</button>
+        </ul>
+        </DropMenu>
+
+        {this.renderCards(cards)}
+        
+        {this.state.openCreateCardDom[categoryName] ? this.renderCreateCardDom(categoryName) : 
+         <div onClick={() => {const obj = {}; obj[categoryName] = !this.state.openCreateCardDom[categoryName]; this.setState({openCreateCardDom: Object.assign({}, this.state.openCreateCardDom, obj)})}}>+ New Task</div>}
       </div>
     );
   }
@@ -208,7 +225,6 @@ class TaskWall extends Component {
   render() {
     const {wallData} = this.props;
     const cardGroups = this.classificationCards(wallData.cards, wallData.category);
-    console.log(cardGroups);
     return (
       <div style={styles.container}>
         {this.renderTopBar()}
@@ -221,7 +237,7 @@ class TaskWall extends Component {
              </div>)
           }
         </PageContainer>
-      </div>    
+      </div>
     );
   }
 
@@ -242,6 +258,10 @@ class TaskWall extends Component {
       }).catch(error => {
         console.log('error', error);
       });
+  }
+
+  deleteTaskList() {
+    
   }
 
   handleClick(categoryName) {

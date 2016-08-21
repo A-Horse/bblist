@@ -3,11 +3,11 @@ import React, {Component, PropTypes} from 'react';
 const styles = {
   container: {
     position: 'relative',
-    width: '80%',
+    width: '90%',
     margin: 'auto',
     height: '100%'
   }
-}
+};
 
 export class PageContainer extends Component {
   propTypes: {
