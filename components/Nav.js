@@ -12,6 +12,8 @@ import {LightIcon} from '../services/svg-icons';
 import {DropMenu} from './widget/DropMenu';
 import {clearJWT} from '../utils/auth';
 
+export const navHeight = 42;
+
 const styles = {
   headerStyle: {
     position: 'relative',
@@ -19,7 +21,8 @@ const styles = {
     padding: '6px 8px',
     boxSizing: 'border-box',
     borderBottom: `1px solid ${ThemeConst.deepDark}`,
-    zIndex: '100'
+    zIndex: '100',
+    height: `${navHeight}px`
   },
   logoArea: {
     display: 'inline-block',

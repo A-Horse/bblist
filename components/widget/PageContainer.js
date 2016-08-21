@@ -4,7 +4,8 @@ const styles = {
   container: {
     position: 'relative',
     width: '80%',
-    margin: 'auto'
+    margin: 'auto',
+    height: '100%'
   }
 }
 
@@ -14,7 +15,7 @@ export class PageContainer extends Component {
   }
   render() {
     return (
-      <div style={styles.container} className='page-container'>
+        <div style={Object.assign({}, styles.container, this.props.style)} className='page-container'>
         {this.props.children}
       </div>
     );

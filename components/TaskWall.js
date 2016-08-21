@@ -3,17 +3,27 @@ import {connect} from 'react-redux';
 import {browserHistory} from 'react-router';
 import {deleteTaskWall, getTaskAllCards} from '../actions/task-wall';
 import {postTaskCard} from '../actions/task-card';
+import {createTaskList} from '../actions/task-list';
 import {DropMenu} from './widget/DropMenu';
 import {ConfirmModal} from './widget/ConfirmModal';
 import {getAssets} from '../services/assets-manager';
 import {spawnThemeRender} from '../style/theme-render';
 import {PageContainer} from './widget/PageContainer';
-import {EditIcon} from '../services/svg-icons';
+import {AddIcon, EditIcon, ArrowDownIcon} from '../services/svg-icons';
 import R from 'fw-ramda';
+
+import {navHeight} from './Nav';
 
 const styles = {
   container: {
-    position: 'relative'
+    position: 'fixed',
+    top: `${navHeight}px`,
+    left: 0,
+    right: 0,
+    bottom: 0
+  },
+  pageContainer: {
+    overflowX: 'scroll'
   },
   settingContainer: {
     display: 'block',
@@ -36,16 +46,22 @@ const styles = {
     
   },
   categoryContainer: {
-    display: 'flex',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    height: '100%',
+    whiteSpace: 'nowrap'
   },
   category: {
-    flex: '1',
+    display: 'inline-flex',
+    flexDirection: 'column',
     margin: '0 1rem',
-    maxWidth: '250px'
+    width: '250px',
+    height: '100%'
   },
   categoryName: {
     textAlign: 'center'
+  },
+  categoryMenuIcon: {
+    
   },
   card: {
     margin: '0.3rem 0.8rem',
@@ -64,9 +80,10 @@ class TaskWall extends Component {
   constructor() {
     super();
     this.state = {
-      settingToggle: false,
       createCardToggle: {},
-      editingCategory: {}
+      editingCategory: {},
+      openSetting: false,
+      typingNewCategory: false
     };
   }
   
@@ -84,11 +101,11 @@ class TaskWall extends Component {
     return dispatch(getTaskAllCards(id));
   }
 
-  classificationCards(cards) {
-    return R.compose(
-      R.when(R.isEmpty, R.assoc('default', [])),
-      R.groupBy(_ => _.category)
-    )(cards);
+  classificationCards(cards, categorys) {
+    return R.merge(categorys.reduce((result, category) => {
+      result[category.name] = [];
+      return result;
+    }, {}), R.groupBy(_ => _.category)(cards))
   }
 
   toggleEditCategoryName(categoryName) {
@@ -131,7 +148,7 @@ class TaskWall extends Component {
         {this.state.editingCategory[categoryName]
           ? (<div style={styles.categoryName}><input type='text' ref={`${categoryName}ChangeName`} defaultValue={categoryName} onKeyDown={(e) => {if (e.which === 13) this.changeCategoryName(categoryName)}} onBlur={() => {this.toggleEditCategoryName(categoryName)}}/></div>)
          : (<div style={styles.categoryName}>{categoryName} <EditIcon onClick={() => {this.toggleEditCategoryName(categoryName)}}/></div>)}
-      
+        <ArrowDownIcon style={styles.categoryMenuIcon}/>
         {this.renderCards(cards)}  
         {this.renderCreateCardDom(categoryName)}
       </div>
@@ -146,7 +163,7 @@ class TaskWall extends Component {
   renderSetttingMenu() {
     return (
       <div style={styles.settingContainer} onClick={() => {}}>
-        <img src={getAssets('svg', 'black')} onClick={() => {this.setState({settingToggle: !this.state.settingToggle})}}/>
+        <img src={getAssets('svg', 'black')} onClick={() => {this.setState({openSetting: true})}}/>
           <DropMenu toggle={this.state.settingToggle}>
             <ul style={styles.settingDropMenu}>
               <li onClick={() => {this.refs.delConfirm.open()}}>Delete This Wall</li>
@@ -170,20 +187,49 @@ class TaskWall extends Component {
       </div>
     );
   }
+
+  renderAddCategory() {
+    return (
+      <div style={styles.category} key='addCategory'>
+        {
+          this.state.typingNewCategory ? <input ref='newCategoryInput' onKeyDown={(e) => {if (e.which === 13) this.createNewCategory()}} onBlur={() => {}}/>
+            : <AddIcon onClick={() => {this.setState({typingNewCategory: true})}} />
+          }
+      </div>
+    );
+  }
+
+  renderSetting() {
+    return (
+      <TaskWallSetting />
+    );
+  }
   
   render() {
     const {wallData} = this.props;
-    const cardGroups = this.classificationCards(wallData.cards);
+    const cardGroups = this.classificationCards(wallData.cards, wallData.category);
+    console.log(cardGroups);
     return (
       <div style={styles.container}>
         {this.renderTopBar()}
-        <PageContainer>
-          <div style={styles.categoryContainer}>
-            {this.renderCategorys(cardGroups)}
-          </div>
+        <PageContainer style={styles.pageContainer}>
+          {
+            this.state.openSetting ? this.renderSetting() :
+            (<div style={styles.categoryContainer}>
+              {this.renderCategorys(cardGroups)}
+              {this.renderAddCategory()}
+             </div>)
+          }
         </PageContainer>
       </div>    
     );
+  }
+
+  createNewCategory() {
+    const {dispatch} = this.props;
+    const name = this.refs.newCategoryInput;
+    dispatch(createTaskList(this.props.params.id, {name: name.value.trim()}))
+      .then()
   }
   
   deleteWall() {
@@ -214,7 +260,7 @@ class TaskWall extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    wallData: state.taskWall.wallData || {info: {}, cards: []},
+    wallData: state.taskWall.wallData || {info: {}, cards: [], category: []},
     status: state.taskCard.status
   };
 }

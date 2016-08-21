@@ -8,19 +8,19 @@ export const TASKLIST_POST_SUCCESS = 'TASKLIST_POST_SUCCESS'
 export const TASKLIST_POST_FAILURE = 'TASKLIST_POST_FAILURE'
 
 /************* Post *******************/
-function requestGetTaskList(user) {
+function requestCreateTaskList(user) {
   return {
     type: TASKLIST_POST_REQUEST
   }
 }
 
-function receiveGetTaskList() {
+function receiveCreateTaskList() {
   return {
     type: TASKLIST_POST_SUCCESS
   }
 }
 
-function getTaskListError(message) {
+function createTaskListError(message) {
   return {
     type: TASKLIST_POST_FAILURE,
     message: message
@@ -53,11 +53,21 @@ function patchTaskWallListError(message) {
   }
 }
 
-export function patchTaskList(id, info) {
+export function createTaskList(wallId, info) {
+  const config = createConfigWithAuth('POST', info);
+  return dispatch => {
+    dispatch(receiveCreateTaskList());
+    return fetch(`/api/task-wall/${wallId}/list`, config)
+      .then(handleResponseWithoutJson)
+      .then(() => dispatch(receiveCreateTaskList()))
+  };
+}
+
+export function patchTaskList(wallId, listId, info) {
   const config = createConfigWithAuth('PATCH', info)
   return dispatch => {
     dispatch(requestPatchTaskList);
-    return fetch(`/api/task-list/${id}`, config)
+    return fetch(`/api/task-wall/${wallId}/list/${listId}`, config)
       .then(handleResponse)
       .then(response => dispatch(receivePatchTaskList(response)))
   };

@@ -16,7 +16,6 @@ class Profile extends Component {
     };
   }
 
-  // TODO cached picture to localstorage
   render() {
     const {user} = this.props;
     let changePasswordArea;
