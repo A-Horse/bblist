@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {browserHistory} from 'react-router';
 import {deleteTaskWall, getTaskAllCards} from '../actions/task-wall';
 import {postTaskCard} from '../actions/task-card';
-import {createTaskList} from '../actions/task-list';
+import {createTaskList, deleteTaskList} from '../actions/task-list';
 import {DropMenu} from './widget/DropMenu';
 import {ConfirmModal} from './widget/ConfirmModal';
 import {getAssets} from '../services/assets-manager';
@@ -67,7 +67,10 @@ const styles = {
     top: '0'
   },
   categorySetting: {
-    position: 'absolute'
+    position: 'absolute',
+    right: '0',
+    backgroundColor: 'white',
+    padding: '10px'
   },
   card: {
     margin: '0.3rem 0.8rem',
@@ -109,11 +112,22 @@ class TaskWall extends Component {
     return dispatch(getTaskAllCards(id));
   }
 
-  classificationCards(cards, categorys) {
-    return R.merge(categorys.reduce((result, category) => {
-      result[category.name] = [];
+  classificationCards(cards, lists) {
+    return R.merge(lists.reduce((result, list) => {
+      result[list.id] = [];
       return result;
-    }, {}), R.groupBy(_ => _.category)(cards))
+    }, {}), R.groupBy(_ => _.taskListId)(cards))
+  }
+
+  makeListNameMap(lists) {
+    return R.zipObj(
+      R.pluck('id', lists),
+      R.pluck('name', lists),
+    );
+  }
+
+  mapListName(id) {
+    return this.listNameMap[id];
   }
 
   toggleEditCategoryName(categoryName) {
@@ -150,24 +164,24 @@ class TaskWall extends Component {
     });
   }
 
-  renderCategory(categoryName, cards) {
+  renderCategory(listId, cards) {
     return (
-      <div style={styles.category} key={categoryName}>
-        {this.state.editingCategory[categoryName]
-          ? (<div style={styles.categoryName}><input type='text' ref={`${categoryName}ChangeName`} defaultValue={categoryName} onKeyDown={(e) => {if (e.which === 13) this.changeCategoryName(categoryName)}} onBlur={() => {this.toggleEditCategoryName(categoryName)}}/></div>)
-         : (<div style={styles.categoryName}>{categoryName} <EditIcon onClick={() => {this.toggleEditCategoryName(categoryName)}}/></div>)}
+      <div style={styles.category} key={listId}>
+        {this.state.editingCategory[listId]
+          ? (<div style={styles.listId}><input type='text' ref={`${listId}ChangeName`} defaultValue={this.mapListName(listId)} onKeyDown={(e) => {if (e.which === 13) this.changeCategoryName(listId)}} onBlur={() => {this.toggleEditCategoryName(listId)}}/></div>)
+          : (<div style={styles.listId}>{this.mapListName(listId)} <EditIcon onClick={() => {this.toggleEditCategoryName(listId)}}/></div>)}
       
-        <ArrowDownIcon style={styles.categoryMenuIcon} onClick={() => {const obj = {}; obj[categoryName] = !this.state.categorySetting[categoryName]; this.setState({categorySetting: obj})}}/>
-        <DropMenu toggle={this.state.categorySetting[categoryName]}>
+        <ArrowDownIcon style={styles.categoryMenuIcon} onClick={() => {const obj = {}; obj[listId] = !this.state.categorySetting[listId]; this.setState({categorySetting: obj})}}/>
+        <DropMenu toggle={this.state.categorySetting[listId]}>
         <ul style={styles.categorySetting}>
-        <button style={styles.menuLi} onClick={() => {this.deleteTaskList(categoryName)}}>Delete It</button>
+        <li onClick={() => {this.refs[`delListConfirm${listId}`].open()}}>Delete</li>
         </ul>
         </DropMenu>
-
+        <ConfirmModal confirmFn={() => {this.deleteTaskList(listId)}} ref={`delListConfirm${listId}`}></ConfirmModal>
         {this.renderCards(cards)}
         
-        {this.state.openCreateCardDom[categoryName] ? this.renderCreateCardDom(categoryName) : 
-         <div onClick={() => {const obj = {}; obj[categoryName] = !this.state.openCreateCardDom[categoryName]; this.setState({openCreateCardDom: Object.assign({}, this.state.openCreateCardDom, obj)})}}>+ New Task</div>}
+        {this.state.openCreateCardDom[listId] ? this.renderCreateCardDom(listId) : 
+         <div onClick={() => {const obj = {}; obj[listId] = !this.state.openCreateCardDom[listId]; this.setState({openCreateCardDom: Object.assign({}, this.state.openCreateCardDom, obj)})}}>+ New Task</div>}
       </div>
     );
   }
@@ -224,7 +238,8 @@ class TaskWall extends Component {
   
   render() {
     const {wallData} = this.props;
-    const cardGroups = this.classificationCards(wallData.cards, wallData.category);
+    const cardGroups = this.classificationCards(wallData.cards, wallData.lists);
+    this.listNameMap = this.makeListNameMap(wallData.lists);
     return (
       <div style={styles.container}>
         {this.renderTopBar()}
@@ -260,16 +275,20 @@ class TaskWall extends Component {
       });
   }
 
-  deleteTaskList() {
-    
+  deleteTaskList(listId) {
+    const {dispatch} = this.props;
+    const wallId = this.props.params.id;
+    dispatch(deleteTaskList(wallId, listId)).then(() => {
+      console.log('hi');
+    })
   }
 
-  handleClick(categoryName) {
+  handleClick(listId) {
     const {dispatch} = this.props,
-          title = this.refs[`${categoryName}CreateTitle`];
+          title = this.refs[`${listId}CreateTitle`];
     const data = {
-      taskWallId: this.props.params.id,
-      category: categoryName,
+      taskWallId: +this.props.params.id,
+      taskListId: listId,
       title: title.value.trim()
     };
     dispatch(postTaskCard(data)).then(() => {
@@ -280,7 +299,7 @@ class TaskWall extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    wallData: state.taskWall.wallData || {info: {}, cards: [], category: []},
+    wallData: state.taskWall.wallData || {info: {}, cards: [], lists: [], category: []},
     status: state.taskCard.status
   };
 }
