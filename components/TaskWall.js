@@ -10,6 +10,7 @@ import {getAssets} from '../services/assets-manager';
 import {spawnThemeRender} from '../style/theme-render';
 import {PageContainer} from './widget/PageContainer';
 import {AddIcon, EditIcon, ArrowDownIcon} from '../services/svg-icons';
+import {TaskWallSetting} from './TaskWallSetting';
 import R from 'fw-ramda';
 
 import {navHeight} from './Nav';
@@ -91,7 +92,7 @@ class TaskWall extends Component {
     this.state = {
       createCardToggle: {},
       editingCategory: {},
-      openSetting: false,
+      /* openSetting: false, */
       typingNewCategory: false,
       categorySetting: {},
       openCreateCardDom: {}
@@ -172,12 +173,14 @@ class TaskWall extends Component {
           : (<div style={styles.listId}>{this.mapListName(listId)} <EditIcon onClick={() => {this.toggleEditCategoryName(listId)}}/></div>)}
       
         <ArrowDownIcon style={styles.categoryMenuIcon} onClick={() => {const obj = {}; obj[listId] = !this.state.categorySetting[listId]; this.setState({categorySetting: obj})}}/>
+
         <DropMenu toggle={this.state.categorySetting[listId]}>
         <ul style={styles.categorySetting}>
         <li onClick={() => {this.refs[`delListConfirm${listId}`].open()}}>Delete</li>
         </ul>
         </DropMenu>
         <ConfirmModal confirmFn={() => {this.deleteTaskList(listId)}} ref={`delListConfirm${listId}`}></ConfirmModal>
+        
         {this.renderCards(cards)}
         
         {this.state.openCreateCardDom[listId] ? this.renderCreateCardDom(listId) : 
@@ -230,11 +233,11 @@ class TaskWall extends Component {
     );
   }
 
-  renderSetting() {
-    return (
-      <TaskWallSetting />
-    );
-  }
+  /* renderSetting() {
+   *   return (
+   *     <TaskWallSetting {...this.props}/>
+   *   );
+   * }*/
   
   render() {
     const {wallData} = this.props;
@@ -244,13 +247,10 @@ class TaskWall extends Component {
       <div style={styles.container}>
         {this.renderTopBar()}
         <PageContainer style={styles.pageContainer}>
-          {
-            this.state.openSetting ? this.renderSetting() :
-            (<div style={styles.categoryContainer}>
+           <div style={styles.categoryContainer}>
               {this.renderCategorys(cardGroups)}
               {this.renderAddCategory()}
-             </div>)
-          }
+           </div>
         </PageContainer>
       </div>
     );
@@ -263,17 +263,7 @@ class TaskWall extends Component {
       .then()
   }
   
-  deleteWall() {
-    const {dispatch} = this.props;
-    const params = {id: this.props.params.id};
-    
-    dispatch(deleteTaskWall(params))
-      .then(() => {
-        browserHistory.push('/task-wall')
-      }).catch(error => {
-        console.log('error', error);
-      });
-  }
+  
 
   deleteTaskList(listId) {
     const {dispatch} = this.props;

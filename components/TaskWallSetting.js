@@ -1,11 +1,8 @@
 import React, {Component} from 'react';
-import {PageContainer} from './widget/PageContainer';
-import {connect} from 'react-redux';
+import {deleteTaskWall} from '../actions/task-wall';
 import {browserHistory} from 'react-router';
-import {makeGravatarUrl} from '../services/gravatar';
-import Loading from './widget/loading';
 
-class TaskWallSetting extends Component {
+export class TaskWallSetting extends Component {
   constructor() {
     super();
   }
@@ -16,10 +13,24 @@ class TaskWallSetting extends Component {
     };
   }
 
+  deleteWall() {
+    const {dispatch} = this.props;
+    const params = {id: this.props.params.id};
+    
+    dispatch(deleteTaskWall(params))
+      .then(() => {
+        browserHistory.push('/task-wall')
+      }).catch(error => {
+        console.log('error', error);
+      });
+  }
+
   
   render() {
-    
+    return (
+        <div>
+        <button onClick={this.deleteTaskWall}>Delete this wall</button>
+        </div>
+    )
   }
 }
-
-export default TaskWallSetting;

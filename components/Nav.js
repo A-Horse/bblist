@@ -18,19 +18,17 @@ const styles = {
   headerStyle: {
     position: 'relative',
     width: '100%',
-    padding: '6px 8px',
-    boxSizing: 'border-box',
     borderBottom: `1px solid ${ThemeConst.deepDark}`,
     zIndex: '100',
     height: `${navHeight}px`
   },
   logoArea: {
-    display: 'inline-block',
     textDecoration: 'none',
     float: 'left',
     marginLeft: '10px',
     color: 'black',
-    fontWeight: '900'
+    fontWeight: '900',
+    lineHeight: `${navHeight}px`
   },
   logoIcon: {
     height: '1rem',
@@ -39,24 +37,27 @@ const styles = {
     marginTop: '-3px'
   },
   linkArea: {
-    display: 'inline-block',
     float: 'left',
-    marginLeft: '2rem'
+    marginLeft: '2rem',
+    height: '100%',
+    lineHeight: `${navHeight - 1}px`
   },
   userArea: {
-    display: 'inline-block',
-    float: 'right'
+    float: 'right',
+    height: '100%',
+    lineHeight: `${navHeight - 1}px`
   },
   userAvatar: {
     height: '1.7rem',
     width: '1.7rem',
     borderRadius: '50%',
     verticalAlign: 'middle',
-    cursor: 'pointer'
+    cursor: 'pointer',
+    display: 'inline-block'
   },
   linkStyle: {
+    verticalAlign: 'middle',
     textDecoration: 'none',
-    float: 'left',
     marginLeft: '10px',
     color: ThemeConst.primeText
   },
