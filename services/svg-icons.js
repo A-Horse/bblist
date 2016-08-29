@@ -3,4 +3,5 @@ export LightIcon from 'babel!svg-react!../assets/svg/ic_lightbulb_outline_black_
 export AddIcon from 'babel!svg-react!../assets/svg/ic_add_black_24px.svg?name=AddIcon';
 export EditIcon from 'babel!svg-react!../assets/svg/ic_mode_edit_black_24px.svg?name=EditIcon';
 export ArrowDownIcon from 'babel!svg-react!../assets/svg/ic_keyboard_arrow_down_black_24px.svg?name=ArrowDownIcon';
+export SettingIcon from 'babel!svg-react!../assets/svg/ic_settings_black_24px.svg?name=SettingIcon';
 

@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {browserHistory} from 'react-router';
+import Radium from 'radium';
+import R from 'fw-ramda';
+
 import {deleteTaskWall, getTaskAllCards} from '../actions/task-wall';
 import {postTaskCard} from '../actions/task-card';
 import {createTaskList, deleteTaskList} from '../actions/task-list';
@@ -9,11 +12,10 @@ import {ConfirmModal} from './widget/ConfirmModal';
 import {getAssets} from '../services/assets-manager';
 import {spawnThemeRender} from '../style/theme-render';
 import {PageContainer} from './widget/PageContainer';
-import {AddIcon, EditIcon, ArrowDownIcon} from '../services/svg-icons';
+import {AddIcon, EditIcon, ArrowDownIcon, SettingIcon} from '../services/svg-icons';
 import {TaskWallSetting} from './TaskWallSetting';
-import R from 'fw-ramda';
-
 import {navHeight} from './Nav';
+import {Hr} from './widget/Hr';
 
 const styles = {
   container: {
@@ -26,11 +28,12 @@ const styles = {
   pageContainer: {
     overflowX: 'scroll'
   },
+  settingIcon: {
+    fill: 'white',
+    verticalAlign: 'middle'
+  },
   settingContainer: {
     display: 'block',
-    position: 'absolute',
-    right: '0',
-    top: '0'
   },
   settingDropMenu: {
     display: 'block',
@@ -41,7 +44,16 @@ const styles = {
     listStyle: 'none'
   },
   topBar: {
-    textAlign: 'center'
+    position: 'relative',
+    textAlign: 'center',
+    display: 'flex',
+    height: '33px',
+    padding: '0 2px 0 16px',
+    justifyContent: 'space-between',
+    alignItems: 'center'
+  },
+  topBarTitle: {
+    color: 'white'
   },
   dimensions: {
     
@@ -57,24 +69,51 @@ const styles = {
     flexDirection: 'column',
     margin: '0 1rem',
     width: '250px',
-    height: '100%'
+    height: '100%',
+    padding: '0 0.8rem'
+  },
+  categoryTopBar: {
+    position: 'relative',
+    height: '3rem',
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center'
+  },
+  categoryNameInput: {
+    backgroundColor: 'transparent',
+    borderBottom: '1px solid black',
+    boxShadow: 'none',
   },
   categoryName: {
     textAlign: 'center'
   },
   categoryMenuIcon: {
-    position: 'absolute',
-    right: '0',
-    top: '0'
+    verticalAlign: 'middle',
+    width: '20px',
+    height: '20px'
   },
   categorySetting: {
     position: 'absolute',
-    right: '0',
+    right: '0.8rem',
     backgroundColor: 'white',
-    padding: '10px'
+    padding: '4px 0',
+    top: '1.5rem',
+    transform: 'translate(50%, 0)',
+    width: '100px'
+  },
+  categoryEditIcon: {
+    marginTop: '-0.2rem',
+    width: '1.2rem',
+    verticalAlign: 'middle'    
+  },
+  categorySettingItem: {
+    padding: '0 10px',
+    ':hover': {
+      backgroundColor: '#eee'
+    }
   },
   card: {
-    margin: '0.3rem 0.8rem',
+    margin: '0.6rem 0',
     padding: '4px 8px',
     borderRadius: '1px',
     height: '48px'
@@ -86,6 +125,7 @@ themeRender('category', 'grayBackground');
 themeRender('card', 'lightBackground', 'lightSmallShadow');
 themeRender('topBar', 'mainColorBackground');
 
+@Radium
 class TaskWall extends Component {
   constructor() {
     super();
@@ -168,17 +208,22 @@ class TaskWall extends Component {
   renderCategory(listId, cards) {
     return (
       <div style={styles.category} key={listId}>
-        {this.state.editingCategory[listId]
-          ? (<div style={styles.listId}><input type='text' ref={`${listId}ChangeName`} defaultValue={this.mapListName(listId)} onKeyDown={(e) => {if (e.which === 13) this.changeCategoryName(listId)}} onBlur={() => {this.toggleEditCategoryName(listId)}}/></div>)
-          : (<div style={styles.listId}>{this.mapListName(listId)} <EditIcon onClick={() => {this.toggleEditCategoryName(listId)}}/></div>)}
-      
-        <ArrowDownIcon style={styles.categoryMenuIcon} onClick={() => {const obj = {}; obj[listId] = !this.state.categorySetting[listId]; this.setState({categorySetting: obj})}}/>
-
-        <DropMenu toggle={this.state.categorySetting[listId]}>
-        <ul style={styles.categorySetting}>
-        <li onClick={() => {this.refs[`delListConfirm${listId}`].open()}}>Delete</li>
-        </ul>
-        </DropMenu>
+        <div style={styles.categoryTopBar}>
+          {this.state.editingCategory[listId]
+         ? (<div style={styles.listId}><input type='text' style={styles.categoryNameInput} ref={`${listId}ChangeName`} defaultValue={this.mapListName(listId)} onKeyDown={(e) => {if (e.which === 13) this.changeCategoryName(listId)}} onBlur={() => {this.toggleEditCategoryName(listId)}}/></div>)
+         : (<div style={styles.listId}>{this.mapListName(listId)} <EditIcon style={styles.categoryEditIcon} onClick={() => {this.toggleEditCategoryName(listId)}}/></div>)}
+          
+          <ArrowDownIcon style={styles.categoryMenuIcon} onClick={() => {const obj = {}; obj[listId] = !this.state.categorySetting[listId]; this.setState({categorySetting: obj})}}/>
+    
+          <DropMenu toggle={this.state.categorySetting[listId]}>
+          <ul style={styles.categorySetting}>
+          <p style={{textAlign: 'center'}}>Setting</p>
+          <Hr style={{magin: '0.3rem 0'}}/>
+          <li style={styles.categorySettingItem} onClick={() => {this.refs[`delListConfirm${listId}`].open()}}>Delete</li>
+          </ul>
+          </DropMenu>
+        </div>
+        
         <ConfirmModal confirmFn={() => {this.deleteTaskList(listId)}} ref={`delListConfirm${listId}`}></ConfirmModal>
         
         {this.renderCards(cards)}
@@ -197,7 +242,7 @@ class TaskWall extends Component {
   renderSetttingMenu() {
     return (
       <div style={styles.settingContainer} onClick={() => {}}>
-        <img src={getAssets('svg', 'black')} onClick={() => {this.setState({openSetting: true})}}/>
+        <SettingIcon style={styles.settingIcon} onClick={() => {this.setState({openSetting: true})}}/>
           <DropMenu toggle={this.state.settingToggle}>
             <ul style={styles.settingDropMenu}>
               <li onClick={() => {this.refs.delConfirm.open()}}>Delete This Wall</li>
@@ -213,11 +258,11 @@ class TaskWall extends Component {
     const {wallData} = this.props;
     return (
       <div style={styles.topBar}>
-        {this.renderSetttingMenu()}
-        <h2>Task</h2>
+        <h2 style={styles.topBarTitle}>{wallData.info.name}</h2>
         <div style={styles.dimensions}>
           {wallData.info.defaultDimensions}
         </div>
+        {this.renderSetttingMenu()}
       </div>
     );
   }
@@ -284,7 +329,9 @@ class TaskWall extends Component {
     dispatch(postTaskCard(data)).then(() => {
       this.getTasks(this.props.params.id);
     });
-  }
+  },
+
+  
 }
 
 const mapStateToProps = (state) => {
