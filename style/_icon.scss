@@ -1,0 +1,13 @@
+.icon {
+  
+}
+
+.arrow-down-icon {
+  path:first-child {
+    transform: translate(0, 1px);
+  }
+
+  &:hover {
+    background-color: white;
+  }
+}

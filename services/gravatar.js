@@ -1,6 +1,4 @@
-'use strict';
-
-const md5 = require('blueimp-md5');
+import md5 from 'blueimp-md5';
 
 const gravatarUrlBase = 'https://www.gravatar.com/avatar/';
 
@@ -9,8 +7,10 @@ export function makeGravatarHash(email) {
 }
 
 export function makeGravatarUrl(email, size) {
-  if( size ){
-    return gravatarUrlBase.concat(makeGravatarHash(email) + `?s=${size}`);
-  } 
-  return gravatarUrlBase.concat(makeGravatarHash(email));
+  const urlQuery = size ? makeGravatarHash(email) + `?s=${size}` : makeGravatarHash(email);
+  return gravatarUrlBase.concat(urlQuery);
+}
+
+export function getGravatorUrl(userId) {
+  
 }
