@@ -4,18 +4,17 @@ import {browserHistory} from 'react-router';
 import Radium from 'radium';
 import R from 'fw-ramda';
 
+import TaskCard from './TaskCard';
 import {deleteTaskWall, getTaskAllCards} from '../actions/task-wall';
 import {postTaskCard} from '../actions/task-card';
 import {createTaskList, deleteTaskList} from '../actions/task-list';
 import {DropMenu} from './widget/DropMenu';
 import {ConfirmModal} from './widget/ConfirmModal';
-import {getAssets} from '../services/assets-manager';
-import {spawnThemeRender} from '../style/theme-render';
 import {PageContainer} from './widget/PageContainer';
-import {AddIcon, EditIcon, ArrowDownIcon, SettingIcon} from '../services/svg-icons';
-import {TaskWallSetting} from './TaskWallSetting';
-import {navHeight} from './Nav';
 import {Hr} from './widget/Hr';
+import {getAssets} from '../services/assets-manager';
+import {AddIcon, EditIcon, ArrowDownIcon, SettingIcon} from '../services/svg-icons';
+import {spawnThemeRender} from '../style/theme-render';
 
 const styles = {
   list: {
@@ -73,12 +72,6 @@ const styles = {
   },
   listTitle: {
     fontWeight: 'bold'
-  },
-  card: {
-    margin: '0.2rem 0',
-    padding: '4px 8px',
-    borderRadius: '1px',
-    height: '48px'
   }
 };
 
@@ -121,11 +114,9 @@ class TaskList extends Component {
   }
 
   renderCards(cards) {
-    return cards.map(cjson => {
+    return cards.map(card => {
       return (
-        <div key={cjson.id} style={styles.card}>
-          <p>{cjson.title}</p>     
-        </div>
+        <TaskCard card={card} key={card.id} />
       );
     });
   }
@@ -152,8 +143,8 @@ class TaskList extends Component {
         
         <ConfirmModal confirmFn={() => {this.deleteTaskList(listId)}} ref={`delListConfirm${listId}`}></ConfirmModal>
         
-        {this.renderCards(cards)}
       
+        {this.renderCards(cards)}
         {this.state.openCreateCardDom[listId] ? this.renderCreateCardDom(listId) : 
          <div onClick={() => {const obj = {}; obj[listId] = !this.state.openCreateCardDom[listId]; this.setState({openCreateCardDom: Object.assign({}, this.state.openCreateCardDom, obj)})}}>+ New Task</div>}
       </div>
@@ -161,12 +152,11 @@ class TaskList extends Component {
   }
 
   createCard(listId) {
-    const {dispatch} = this.props,
-    title = this.refs.toCreateTitle;
+    const {dispatch} = this.props;
     const data = {
       taskWallId: +this.props.wallId,
       taskListId: listId,
-      title: title.value.trim()
+      title: this.refs.toCreateTitle.value.trim()
     };
     dispatch(postTaskCard(data)).then(() => {
       return dispatch(getTaskAllCards(this.props.wallId));

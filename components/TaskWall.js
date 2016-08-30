@@ -67,12 +67,9 @@ const styles = {
     height: '100%',
     whiteSpace: 'nowrap'
   },
-  
 };
 
 const themeRender = spawnThemeRender(styles);
-
-
 themeRender('topBar', 'mainColorBackground');
 
 @Radium
@@ -124,7 +121,6 @@ class TaskWall extends Component {
   getListName(id) {
     return this.listNameMap[id];
   }
-  
 
   renderList(listId, cards) {
     return (
@@ -211,8 +207,6 @@ class TaskWall extends Component {
       .then()
   }
   
-  
-
   deleteTaskList(listId) {
     const {dispatch} = this.props;
     const wallId = this.props.params.id;

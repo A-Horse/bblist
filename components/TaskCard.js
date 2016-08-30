@@ -44,9 +44,11 @@ class TaskCard extends Component {
   
 
   render() {
-    
+    const {card} = this.props;
     return (
-      
+        <div style={styles.card}>
+          <p>{card.title}</p>     
+        </div>
     );
   }
 
