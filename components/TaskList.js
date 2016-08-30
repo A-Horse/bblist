@@ -16,10 +16,11 @@ import {getAssets} from '../services/assets-manager';
 import {AddIcon, EditIcon, ArrowDownIcon, SettingIcon, MIDDLE_SIZE, SMALL_SIZE} from '../services/svg-icons';
 import {spawnThemeRender} from '../style/theme-render';
 
-export const listWidth = 200;
+export const listWidth = 210;
 
 const styles = {
   list: {
+    borderRadius: '1px',
     position: 'relative',
     display: 'inline-flex',
     flexDirection: 'column',
@@ -102,7 +103,7 @@ class TaskList extends Component {
     obj[listName] = !this.state.isListEditings[listName];
     this.setState({
       isListEditings: Object.assign(this.state.isListEditings, obj)
-    })
+    });
   }
 
   renderCreateCardDom(listName) {

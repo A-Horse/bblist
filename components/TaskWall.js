@@ -68,6 +68,8 @@ const styles = {
     whiteSpace: 'nowrap'
   },
   createList: {
+    borderRadius: '1px',
+    padding: '0.3rem 0.4rem',
     display: 'inline-flex',
     verticalAlign: 'top',
     width: `${listWidth}px`,
