@@ -13,8 +13,10 @@ import {ConfirmModal} from './widget/ConfirmModal';
 import {PageContainer} from './widget/PageContainer';
 import {Hr} from './widget/Hr';
 import {getAssets} from '../services/assets-manager';
-import {AddIcon, EditIcon, ArrowDownIcon, SettingIcon} from '../services/svg-icons';
+import {AddIcon, EditIcon, ArrowDownIcon, SettingIcon, MIDDLE_SIZE, SMALL_SIZE} from '../services/svg-icons';
 import {spawnThemeRender} from '../style/theme-render';
+
+export const listWidth = 200;
 
 const styles = {
   list: {
@@ -22,7 +24,7 @@ const styles = {
     display: 'inline-flex',
     flexDirection: 'column',
     margin: '0.3rem 1rem 0.3rem',
-    width: '250px',
+    width: `${listWidth}px`,
     height: 'calc(100% - 0.6rem)',
     padding: '0 0.4rem',
     zIndex: '1',
@@ -30,14 +32,13 @@ const styles = {
   },
   listTopBar: {
     position: 'relative',
-    height: '3rem',
     display: 'flex',
     justifyContent: 'space-between',
-    alignItems: 'center'
+    alignItems: 'center',
+    margin: '0.3rem 0 0.2rem'
   },
   listNameInput: {
     backgroundColor: 'transparent',
-    borderBottom: '1px solid black',
     boxShadow: 'none',
   },
   listName: {
@@ -45,10 +46,12 @@ const styles = {
   },
   listMenuIcon: {
     verticalAlign: 'middle',
-    width: '20px',
-    height: '20px',
+    width: `${SMALL_SIZE}px`,
+    height: `${SMALL_SIZE}px`,
     cursor: 'pointer',
-    borderRadius: '50%'
+    borderRadius: '50%',
+    border: '1px solid #999',
+    backgroundColor: 'white'
   },
   listSetting: {
     position: 'absolute',
@@ -78,6 +81,7 @@ const styles = {
 const themeRender = spawnThemeRender(styles);
 themeRender('list', 'grayBackground');
 themeRender('card', 'lightBackground', 'lightSmallShadow');
+themeRender('listNameInput', 'darkBottomBorder');
 
 @Radium
 class TaskList extends Component {
@@ -95,7 +99,7 @@ class TaskList extends Component {
 
   toggleEditListName(listName) {
     const obj = {};
-    objList[listName] = !this.state.isListEditings[listName];
+    obj[listName] = !this.state.isListEditings[listName];
     this.setState({
       isListEditings: Object.assign(this.state.isListEditings, obj)
     })

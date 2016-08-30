@@ -4,7 +4,7 @@ import {browserHistory} from 'react-router';
 import Radium from 'radium';
 import R from 'fw-ramda';
 
-import TaskList from './TaskList';
+import TaskList, {listWidth} from './TaskList';
 import {TaskWallSetting} from './TaskWallSetting';
 import {DropMenu} from './widget/DropMenu';
 import {ConfirmModal} from './widget/ConfirmModal';
@@ -14,7 +14,7 @@ import {deleteTaskWall, getTaskAllCards} from '../actions/task-wall';
 import {postTaskCard} from '../actions/task-card';
 import {createTaskList, deleteTaskList} from '../actions/task-list';
 import {getAssets} from '../services/assets-manager';
-import {AddIcon, EditIcon, ArrowDownIcon, SettingIcon} from '../services/svg-icons';
+import {AddIcon, EditIcon, ArrowDownIcon, SettingIcon, MIDDLE_SIZE} from '../services/svg-icons';
 import {navHeight} from './Nav';
 import {spawnThemeRender} from '../style/theme-render';
 
@@ -67,17 +67,24 @@ const styles = {
     height: '100%',
     whiteSpace: 'nowrap'
   },
+  createList: {
+    display: 'inline-flex',
+    verticalAlign: 'top',
+    width: `${listWidth}px`,
+    margin: '0.3rem 0',
+    justifyContent: 'space-between'
+  }
 };
 
 const themeRender = spawnThemeRender(styles);
 themeRender('topBar', 'mainColorBackground');
+themeRender('createList', 'grayBackground');
 
 @Radium
 class TaskWall extends Component {
   constructor() {
     super();
     this.state = {
-      createCardToggle: {},
       typingNewList: false,
     };
   }
@@ -94,6 +101,10 @@ class TaskWall extends Component {
   getTasks(id) {
     const {dispatch} = this.props;    
     return dispatch(getTaskAllCards(id));
+  }
+
+  changeListName(listName) {
+    const id = R.find((R.propEq('name', listName)))(this.props.wallData.list).id;
   }
 
   classificationCards(cards, lists) {
@@ -113,11 +124,6 @@ class TaskWall extends Component {
     );
   }
 
-  changeListName(listName) {
-    const id = R.find((R.propEq('name', listName)))(this.props.wallData.list).id;
-  }
-  
-  
   getListName(id) {
     return this.listNameMap[id];
   }
@@ -166,13 +172,16 @@ class TaskWall extends Component {
     );
   }
 
-  renderAddList() {
+  renderCreateList() {
     return (
-      <div style={styles.list} key='addList'>
+      <div style={styles.createList} key='createList'>
         {
           this.state.typingNewList ? <input ref='newListInput' onKeyDown={(e) => {if (e.which === 13) this.createNewList()}} onBlur={() => {}}/>
-            : <AddIcon onClick={() => {this.setState({typingNewList: true})}} />
-          }
+            : <div style={{display: 'flex', alignItems: 'center'}}>
+              <AddIcon style={{width: `${MIDDLE_SIZE}px`, height: `${MIDDLE_SIZE}px`}} onClick={() => {this.setState({typingNewList: true})}} />
+                  <span>Create List</span>
+            </div>   
+         }
       </div>
     );
   }
@@ -193,7 +202,7 @@ class TaskWall extends Component {
         <PageContainer style={styles.pageContainer}>
            <div style={styles.listContainer}>
               {this.renderLists(cardGroups)}
-              {this.renderAddList()}
+              {this.renderCreateList()}
            </div>
         </PageContainer>
       </div>

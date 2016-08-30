@@ -5,3 +5,6 @@ export EditIcon from 'babel!svg-react!../assets/svg/ic_mode_edit_black_24px.svg?
 export ArrowDownIcon from 'babel!svg-react!../assets/svg/ic_keyboard_arrow_down_black_24px.svg?name=ArrowDownIcon';
 export SettingIcon from 'babel!svg-react!../assets/svg/ic_settings_black_24px.svg?name=SettingIcon';
 
+export const SMALL_SIZE = 16;
+export const MIDDLE_SIZE = 20;
+export const LARGE_SIZE = 30;

@@ -76,3 +76,7 @@ export const boxPadding = {
 export const smallRadius = {
   borderRadius: '3px'
 }
+
+export const darkBottomBorder = {
+  borderBottom: `1px solid ${ThemeConst.deepDark}`
+}
