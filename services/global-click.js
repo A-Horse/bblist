@@ -1,19 +1,27 @@
-const handles = [];
+export class GlobalClick {
+  constructor() {
+    this.handles = [];
 
-function registerGlobalClick() {
-  window.addEventListener('click', (event) => {
-    handles.forEach(handles => handles());
-  });
-}
-
-export function addGlobalClickHandle(fn) {
-  handles.push(fn);
-  return function() {
-    const i = this.handles.indexOf(fn);
-    this.handles.splice(i, 1);
+    window.document.body.addEventListener('click', (event) => {
+      this.handles.forEach(handles => handles());
+    });
   }
-}
 
-export function addGlobalClickHandleOnce(fn) {
-  
+  addGlobalClickHandleOnce(fn) {
+    this.handles.push(fn);
+    return function() {
+      // TODO unnecessary find index
+      const i = this.handles.indexOf(fn);
+      this.handles.splice(i, 1);
+    }
+  }
+
+  addGlobalClickHandle(fn) {
+    this.handles.push(fn);
+    return function() {
+      // TODO unnecessary find index
+      const i = this.handles.indexOf(fn);
+      this.handles.splice(i, 1);
+    }
+  }
 }

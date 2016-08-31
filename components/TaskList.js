@@ -54,14 +54,15 @@ const styles = {
     border: '1px solid #999',
     backgroundColor: 'white'
   },
-  listSetting: {
+  listSettingDropDown: {
     position: 'absolute',
     right: '0.8rem',
     backgroundColor: 'white',
     padding: '4px 0',
-    top: '1.5rem',
+    top: '.5rem',
     transform: 'translate(50%, 0)',
-    width: '100px'
+    width: '100px',
+    border: '1px solid #999'
   },
   listEditIcon: {
     marginTop: '-0.2rem',
@@ -138,7 +139,7 @@ class TaskList extends Component {
           <ArrowDownIcon className='arrow-down-icon icon' style={styles.listMenuIcon} onClick={() => {const obj = {}; obj[listId] = !this.state.listSetting[listId]; this.setState({listSetting: obj})}}/>
 
           <DropMenu toggle={this.state.listSetting[listId]}>
-          <ul style={styles.listSetting}>
+          <ul style={styles.listSettingDropDown}>
           <p style={{textAlign: 'center'}}>Setting</p>
           <Hr style={{magin: '0.3rem 0'}}/>
           <li key={listId + 'SettingDelete'} style={styles.listSettingItem} onClick={() => {this.refs[`delListConfirm${listId}`].open()}}>Delete</li>
