@@ -15,6 +15,7 @@ import {Hr} from './widget/Hr';
 import {getAssets} from '../services/assets-manager';
 import {AddIcon, EditIcon, ArrowDownIcon, SettingIcon, MIDDLE_SIZE, SMALL_SIZE} from '../services/svg-icons';
 import {spawnThemeRender} from '../style/theme-render';
+import GlobalClick from '../services/global-click';
 
 export const listWidth = 210;
 
@@ -92,6 +93,7 @@ class TaskList extends Component {
   }
 
   componentWillMount() {
+    // TODO rename
     this.state = {
       isListEditings: {},
       listSetting: {},
@@ -104,6 +106,20 @@ class TaskList extends Component {
     obj[listName] = !this.state.isListEditings[listName];
     this.setState({
       isListEditings: Object.assign(this.state.isListEditings, obj)
+    });
+  }
+
+  onClickSetting(listId) {
+    const obj = {};
+    obj[listId] = !this.state.listSetting[listId];
+    // TODO rename
+    this.setState({listSetting: obj})
+    GlobalClick.addGlobalClickHandleOnce(() => {
+      const obj = {};
+      obj[listId] = false;
+      this.setState({
+        listSetting: obj
+      });
     });
   }
 
@@ -136,7 +152,7 @@ class TaskList extends Component {
          ? (<div style={styles.listId}><input type='text' style={styles.listNameInput} ref={`${listId}ChangeName`} defaultValue={listName} onKeyDown={(e) => {if (e.which === 13) this.changeListName(listId)}} onBlur={() => {this.toggleEditListName(listId)}}/></div>)
          : (<div style={styles.listTitle}>{listName} <EditIcon style={styles.listEditIcon} onClick={() => {this.toggleEditListName(listId)}}/></div>)}
           
-          <ArrowDownIcon className='arrow-down-icon icon' style={styles.listMenuIcon} onClick={() => {const obj = {}; obj[listId] = !this.state.listSetting[listId]; this.setState({listSetting: obj})}}/>
+          <ArrowDownIcon className='arrow-down-icon icon' style={styles.listMenuIcon} onClick={() => {this.onClickSetting(listId)}}/>
 
           <DropMenu toggle={this.state.listSetting[listId]}>
           <ul style={styles.listSettingDropDown}>

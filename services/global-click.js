@@ -1,8 +1,9 @@
-export class GlobalClick {
+class GlobalClick {
   constructor() {
     this.handles = [];
 
-    window.document.body.addEventListener('click', (event) => {
+    window.document.body.addEventListener('click', () => {
+      console.log('global click');
       this.handles.forEach(handles => handles());
     });
   }
@@ -10,18 +11,22 @@ export class GlobalClick {
   addGlobalClickHandleOnce(fn) {
     this.handles.push(fn);
     return function() {
-      // TODO unnecessary find index
       const i = this.handles.indexOf(fn);
       this.handles.splice(i, 1);
     }
   }
 
   addGlobalClickHandle(fn) {
-    this.handles.push(fn);
-    return function() {
-      // TODO unnecessary find index
-      const i = this.handles.indexOf(fn);
+    function onceFn() {
+      fn();
+      removeFn();
+    }
+    this.handles.push(onceFn);
+    function removeFn() {
+      const i = this.handles.indexOf(onceFn);
       this.handles.splice(i, 1);
     }
   }
 }
+
+export default new GlobalClick();
