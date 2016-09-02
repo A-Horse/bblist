@@ -1,9 +1,7 @@
 class GlobalClick {
   constructor() {
     this.handles = [];
-
     window.document.body.addEventListener('click', () => {
-      console.log('global click');
       this.handles.forEach(handles => handles());
     });
   }
@@ -26,6 +24,7 @@ class GlobalClick {
       const i = this.handles.indexOf(onceFn);
       this.handles.splice(i, 1);
     }
+    return removeFn;
   }
 }
 
