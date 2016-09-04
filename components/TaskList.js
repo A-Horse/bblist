@@ -125,7 +125,7 @@ class TaskList extends Component {
 
   renderCreateCardDom(listName) {
     return (
-      <div>
+        <div>
         <div>
           <span>title</span>
           <input type='text' ref='toCreateTitle' />
