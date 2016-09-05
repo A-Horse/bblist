@@ -1,82 +1,53 @@
+export const CoreConst = {
+  
+};
+
 export const ThemeConst = {
   // color
+  // delete color
   mainColor: '#a8628d',
   deepMainColor: '#68225a',
   lightDark: '#EEEEEE',
   deepDark: '#999',
 
+  color: {
+    default: '#fff',
+    primary: '#c998ff',
+    waring: '#f0ad4e',
+    disable: '#999'
+  },
+
+  border: {
+    color: {
+      default: '#999'
+    }
+  },
+
   // font
+  // delete size
   smallFontSize: '11px',
   middleFontSize: '13px',
   largeFontSize: '15px',
 
   // button
+  // delete it
   buttonHeight: '30px',
+  button: {
+    height: {
+      small: '',
+      middle: '30px',
+      large: '40px'
+    },
+    width: {
+      small: '',
+      middle: '',
+      large: '',
+      full: ''
+    }
+  },
 
   // text
   lightText: 'white',
-  primeText: '#383838'
-}
-
-export const smallFontSize = {
-  fontSize: ThemeConst.smallFontSize
-}
-
-export const middleFontSize = {
-  fontSize: ThemeConst.middleFontSize
-}
-
-export const largeFontSize = {
-  fontSize: ThemeConst.largeFontSize
-}
-
-export const grayBackground = {
-  backgroundColor: '#EEEEEE'
+  primaryText: '#383838'
 };
 
-export const lightDarkBackground = {
-  backgroundColor: ThemeConst.lightDark
-};
-
-export const mainColorBackground = {
-  backgroundColor: ThemeConst.mainColor
-}
-
-export const deepMainColorBackground = {
-  backgroundColor: ThemeConst.deepMainColor
-}
-
-export const lightBackground = {
-  backgroundColor: '#FFFFFF'
-};
-
-export const deepDarkBackground = {
-  backgroundColor: ThemeConst.deepDark
-};
-
-export const lightSmallShadow = {
-  boxShadow: ' 0 0 8px #999'
-};
-
-export const fullButton = {
-  width: '100%',
-  height: ThemeConst.buttonHeight,
-  lineHeight: ThemeConst.buttonHeight,
-  padding: 0
-}
-
-export const lightText = {
-  color: ThemeConst.lightText
-}
-
-export const boxPadding = {
-  padding: '4px 8px'
-}
-
-export const smallRadius = {
-  borderRadius: '3px'
-}
-
-export const darkBottomBorder = {
-  borderBottom: `1px solid ${ThemeConst.deepDark}`
-}
