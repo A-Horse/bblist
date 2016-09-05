@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
+import Radium from 'radium';
+import R from 'fw-ramda';
 import {connect} from 'react-redux';
-import {Link, browserHistory} from 'react-router';
+import {Link} from 'react-router';
 import {makeGravatarUrl} from '../services/gravatar';
 import {Storage, storageImage} from '../services/storage';
 import {authUser} from '../actions/login';
-import Radium from 'radium';
-import R from 'fw-ramda';
 import {spawnMixinRender} from '../style/theme-render';
 import {ThemeConst} from '../style/theme';
 import {LightIcon} from '../services/svg-icons';
@@ -111,10 +111,6 @@ class Nav extends Component {
       };
     }
   }
-  
-  activelyLink(linkStyle) {
-    return Object.assign({}, styles.linkStyle, styles.activeLink);
-  }
 
   logout() {
     clearJWT();
@@ -130,7 +126,6 @@ class Nav extends Component {
   
   render() {
     const userCell = this.renderUserCell();
-    const path = R.second(this.props.path.split('/'));
     
     return (
       <header style={styles.headerStyle} className="clearfix">
