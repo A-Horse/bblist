@@ -1,9 +1,6 @@
-import React, { Component, PropTypes } from 'react';
-import fetch from 'isomorphic-fetch';
-import { connect } from 'react-redux';
-
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import {signUp} from '../actions/sign-up'
-
 import {validateFormValue} from '../services/validate-strategy';
 import { browserHistory } from 'react-router'
 

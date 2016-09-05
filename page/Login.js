@@ -1,35 +1,29 @@
-import React, { Component, PropTypes } from 'react'
-import fetch from 'isomorphic-fetch'
-import { connect } from 'react-redux'
-
-import {loginUser} from '../actions/login'
-
-import { browserHistory } from 'react-router'
-
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {loginUser} from '../actions/login';
+import {browserHistory} from 'react-router';
 import {validateFormValue} from '../services/validate-strategy';
+import {Button} from '../components/widget/Button';
+import {PageContainer} from '../components/widget/PageContainer';
+import {LOGIN_SUCCESS} from '../actions/login';
 
-
-import {
-  LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE
-} from '../actions/login';
-
-class Login extends Component {
-
+const styles = {
   
+};
+
+class Login extends Component {  
   componentWillMount() {
     this.state = {
       errorMessage: {}
     }
   }
-
-
+  
   render() {
     const errorMessage = this.state.errorMessage;
     
     return (
-      <div>
+      <PageContainer>
         <div>
-
           <div>
             <input type='text' ref='email' name='light_email'/>
             <p>{errorMessage.email}</p>
@@ -41,19 +35,18 @@ class Login extends Component {
           </div>
 
           <div>
-            <button onClick={(event) => this.handleClick(event)} >Login</button>
-          </div>
-          
+            <Button onClick={this.login.bind(this)}>Login</Button>
+          </div>  
         </div>
         
-        
-        <a href="/signup">Sign Up</a>
-      </div>
+        <a href="/signup">sign up</a>
+      </PageContainer>
     )
   }
 
-  handleClick(event) {
-    const { dispatch } = this.props
+  login() {
+    console.log(this);
+    const {dispatch} = this.props;
     
     const email = this.refs.email;
     const password = this.refs.password;
@@ -71,7 +64,6 @@ class Login extends Component {
 
     this.setState({errorMessage: errorMessage});
     
-
     if( !Object.keys(errorMessage).length ){
       dispatch(loginUser(loginInfo)).then(function(action){
         if( action.type === LOGIN_SUCCESS ){
@@ -81,14 +73,12 @@ class Login extends Component {
         }
       });
     }
-    //dispatch(loginUser(loginInfo))
-    //this.onLoginClick(creds)
   }
 }
 
 const mapStateToProps = (state) => {
   return {
-    STA: state.login.auth.message
+    
   };
 };
 
