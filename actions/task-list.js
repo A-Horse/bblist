@@ -7,7 +7,6 @@ export const TASKLIST_POST_REQUEST = 'TASKLIST_POST_REQUEST'
 export const TASKLIST_POST_SUCCESS = 'TASKLIST_POST_SUCCESS'
 export const TASKLIST_POST_FAILURE = 'TASKLIST_POST_FAILURE'
 
-/************* Post *******************/
 function requestCreateTaskList(user) {
   return {
     type: TASKLIST_POST_REQUEST
