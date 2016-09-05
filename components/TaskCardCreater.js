@@ -9,7 +9,7 @@ import {createTaskList, deleteTaskList} from '../actions/task-list';
 import {DropMenu} from './widget/DropMenu';
 import {ConfirmModal} from './widget/ConfirmModal';
 import {getAssets} from '../services/assets-manager';
-import {spawnThemeRender} from '../style/theme-render';
+import {spawnMixinRender} from '../style/theme-render';
 import {PageContainer} from './widget/PageContainer';
 import {AddIcon, EditIcon, ArrowDownIcon, SettingIcon} from '../services/svg-icons';
 import {TaskWallSetting} from './TaskWallSetting';
@@ -20,7 +20,7 @@ const styles = {
   
 };
 
-const themeRender = spawnThemeRender(styles);
+const themeRender = spawnMixinRender(styles);
 // themeRender('card', 'lightBackground', 'lightSmallShadow');
 
 @Radium

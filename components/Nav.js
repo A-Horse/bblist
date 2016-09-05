@@ -6,7 +6,7 @@ import {Storage, storageImage} from '../services/storage';
 import {authUser} from '../actions/login';
 import Radium from 'radium';
 import R from 'fw-ramda';
-import {spawnThemeRender} from '../style/theme-render';
+import {spawnMixinRender} from '../style/theme-render';
 import {ThemeConst} from '../style/theme';
 import {LightIcon} from '../services/svg-icons';
 import {DropMenu} from './widget/DropMenu';
@@ -59,7 +59,7 @@ const styles = {
     verticalAlign: 'middle',
     textDecoration: 'none',
     marginLeft: '10px',
-    color: ThemeConst.primeText
+    color: ThemeConst.primaryText
   },
   activeLink: {
     color: ThemeConst.mainColor,
@@ -84,7 +84,7 @@ const styles = {
   }
 };
 
-const themeRender = spawnThemeRender(styles);
+const themeRender = spawnMixinRender(styles);
 themeRender('userMenu', 'lightBackground', 'boxPadding', 'smallRadius');
 themeRender('headerStyle', 'lightBackground');
 
@@ -119,6 +119,14 @@ class Nav extends Component {
   logout() {
     clearJWT();
   }
+
+  activeLinkWithPath(location) {
+    const path = R.second(this.props.path.split('/'));
+    if (path === location) {
+      return Object.assign({}, styles.linkStyle, styles.activeLink);
+    }
+    return styles.linkStyle;
+  }
   
   render() {
     const userCell = this.renderUserCell();
@@ -132,8 +140,9 @@ class Nav extends Component {
         </div>
         <div style={styles.linkArea}>
           <Link to="/" style={styles.linkStyle}>Home</Link>
-          <Link to="/task-wall" style={path === 'task-wall' ? this.activelyLink(styles.linkStyle) : styles.linkStyle}>Task</Link>
+          <Link to="/task-wall" style={this.activeLinkWithPath('task-wall')}>Task</Link>
           <Link to="/idea" style={styles.linkStyle}>Idea</Link>
+          <Link to="/goal" style={this.activeLinkWithPath('goal')}>Goal</Link>
         </div>        
         {userCell}
       </header>

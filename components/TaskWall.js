@@ -16,7 +16,7 @@ import {createTaskList, deleteTaskList} from '../actions/task-list';
 import {getAssets} from '../services/assets-manager';
 import {AddIcon, EditIcon, ArrowDownIcon, SettingIcon, MIDDLE_SIZE} from '../services/svg-icons';
 import {navHeight} from './Nav';
-import {spawnThemeRender} from '../style/theme-render';
+import {spawnMixinRender} from '../style/theme-render';
 
 const styles = {
   container: {
@@ -78,7 +78,7 @@ const styles = {
   }
 };
 
-const themeRender = spawnThemeRender(styles);
+const themeRender = spawnMixinRender(styles);
 themeRender('topBar', 'mainColorBackground');
 themeRender('createList', 'grayBackground');
 

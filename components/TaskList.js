@@ -14,7 +14,7 @@ import {PageContainer} from './widget/PageContainer';
 import {Hr} from './widget/Hr';
 import {getAssets} from '../services/assets-manager';
 import {AddIcon, EditIcon, ArrowDownIcon, SettingIcon, MIDDLE_SIZE, SMALL_SIZE} from '../services/svg-icons';
-import {spawnThemeRender} from '../style/theme-render';
+import {spawnMixinRender} from '../style/theme-render';
 import GlobalClick from '../services/global-click';
 
 export const listWidth = 210;
@@ -81,7 +81,7 @@ const styles = {
   }
 };
 
-const themeRender = spawnThemeRender(styles);
+const themeRender = spawnMixinRender(styles);
 themeRender('list', 'grayBackground');
 themeRender('card', 'lightBackground', 'lightSmallShadow');
 themeRender('listNameInput', 'darkBottomBorder');
@@ -156,8 +156,6 @@ class TaskList extends Component {
 
           <DropMenu toggle={this.state.listSetting[listId]}>
           <ul style={styles.listSettingDropDown}>
-          <p style={{textAlign: 'center'}}>Setting</p>
-          <Hr style={{magin: '0.3rem 0'}}/>
           <li key={listId + 'SettingDelete'} style={styles.listSettingItem} onClick={() => {this.refs[`delListConfirm${listId}`].open()}}>Delete</li>
           </ul>
           </DropMenu>

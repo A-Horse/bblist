@@ -1,5 +1,5 @@
 import React, {Component, PropTypes} from 'react';
-import {spawnThemeRender} from '../../style/theme-render';
+import {spawnMixinRender} from '../../style/theme-render';
 
 const styles = {
   container: {
@@ -21,7 +21,7 @@ const styles = {
     marginTop: '3px'
   }
 };
-const mainThemeRender = spawnThemeRender(styles);
+const mainThemeRender = spawnMixinRender(styles);
 mainThemeRender('line', 'lightDarkBackground');
 
 

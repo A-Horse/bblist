@@ -7,7 +7,7 @@ import {Modal} from './widget/Modal';
 import {Select} from './widget/Select';
 import {PageContainer} from './widget/PageContainer';
 import {CateLine} from './widget/CateLine';
-import {spawnThemeRender} from '../style/theme-render';
+import {spawnMixinRender} from '../style/theme-render';
 import {ThemeConst} from '../style/theme';
 import {CloseIcon, AddIcon} from '../services/svg-icons';
 
@@ -58,7 +58,7 @@ const styles = {
   }
 };
 
-const mainThemeRender = spawnThemeRender(styles);
+const mainThemeRender = spawnMixinRender(styles);
 mainThemeRender('wall', 'lightBackground');
 mainThemeRender('addIcon', 'deepDarkBackground');
 mainThemeRender('cardTitle', 'middleFontSize', 'lightText');
@@ -134,7 +134,7 @@ const modalStyles = {
   }
 };
 
-const createModalThemeRender = spawnThemeRender(modalStyles);
+const createModalThemeRender = spawnMixinRender(modalStyles);
 createModalThemeRender('createButton', 'fullButton', 'mainColorBackground', 'lightText');
 
 @Radium
