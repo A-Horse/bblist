@@ -53,7 +53,7 @@ class Goal extends Component {
 const mapStateToProps = (state) => {
   return {
     goalList: state.goal.goalList || [],
-    user: state.login.state.loginUser
+    user: state.login.state.loginedUser
   };
 };
 

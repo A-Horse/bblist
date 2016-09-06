@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {loginUser} from '../actions/login';
+import {loginedUser} from '../actions/login';
 import {browserHistory} from 'react-router';
 import {validateFormValue} from '../services/validate-strategy';
 import {Button} from '../components/widget/Button';
@@ -65,7 +65,7 @@ class Login extends Component {
     this.setState({errorMessage: errorMessage});
     
     if( !Object.keys(errorMessage).length ){
-      dispatch(loginUser(loginInfo)).then(function(action){
+      dispatch(loginedUser(loginInfo)).then(function(action){
         if( action.type === LOGIN_SUCCESS ){
           browserHistory.push('/');
         } else {

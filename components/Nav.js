@@ -171,7 +171,7 @@ class Nav extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.login.state.loginUser,
+    user: state.login.state.loginedUser,
     path: state.routing.locationBeforeTransitions.pathname
   };
 };

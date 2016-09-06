@@ -26,7 +26,7 @@ function requestLogin(creds) {
 function receiveLogin(token, user) {
   return {
     type: LOGIN_SUCCESS,
-    id_token: token,
+    jwt: token,
     user
   }
 }
@@ -66,7 +66,7 @@ function authLoginSuccess(user) {
   };
 }
 
-export function loginUser(creds) {
+export function loginedUser(creds) {
   const config = createConfig('POST', creds);
   return dispatch => {
     dispatch(requestLogin(creds));
@@ -74,7 +74,7 @@ export function loginUser(creds) {
       .then(handleResponse)
       .then(response => {
         
-        return dispatch(receiveLogin(response.id_token, response.user))
+        return dispatch(receiveLogin(response.jwt, response.user))
       })
   }
 }
