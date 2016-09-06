@@ -32,8 +32,10 @@ export function saveAuthData(jwt, data) {
   saveAuthData(data);
 }
 
-export function getAuthData() {
-  return JSON.parse(Storage.get(AUTH_DATA)) || {};
+export function getAuthData(key) {
+  const authData = JSON.parse(Storage.get(AUTH_DATA)) || {};
+  if (key) return authData[key];
+  return authData;
 }
 
 export function destoryAuthData() {

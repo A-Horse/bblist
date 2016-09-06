@@ -2,10 +2,8 @@ import fetch from 'isomorphic-fetch';
 import {handleHttpError} from '../services/handle-error';
 import {createConfigWithAuth, createConfig} from '../utils/header';
 import {handleResponse, handleResponseWithoutJson} from '../utils/http-handle';
-import {browserHistory} from 'react-router'
 import {Storage} from '../services/storage';
-import {JWT_STORAGE_KEY, CACHED_USERNAME} from '../constants';
-
+import {getJWT} from '../utils/auth';
 export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';
@@ -72,15 +70,15 @@ export function loginedUser(creds) {
     dispatch(requestLogin(creds));
     return fetch('/api/login', config)
       .then(handleResponse)
-      .then(response => {
-        
+      .then(response => {        
         return dispatch(receiveLogin(response.jwt, response.user))
       })
   }
 }
 
+
 export function authUser() {
-  const token = Storage.get(JWT_STORAGE_KEY);
+  const token = Storage.get(getJWT());
   const config = createConfigWithAuth('GET')
   
   return dispatch => {
