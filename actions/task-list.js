@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-fetch';
 import {handleHttpError} from '../services/handle-error';
-import {createConfigWithAuth} from './util/header';
+import {createConfigWithAuth} from '../utils/header';
 import {handleResponse, handleResponseWithoutJson} from '../utils/http-handle';
 
 export const TASKLIST_POST_REQUEST = 'TASKLIST_POST_REQUEST'

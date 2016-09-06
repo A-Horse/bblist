@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-fetch';
 import {handleHttpError} from '../services/handle-error';
-import {createConfigWithAuth} from './util/header';
+import {createConfigWithAuth} from '../utils/header';
 import {handleResponse, handleResponseWithoutJson} from '../utils/http-handle';
 
 export const TASKWALL_GET_REQUEST = 'TASKWALL_GET_REQUEST';
@@ -96,8 +96,6 @@ function deleteTaskWallError() {
     type: TASKWALL_DELETE_FAILURE
   }
 }
-
-/************* Method *******************/
 
 export function getTaskAllCards(wallId) {
   const config = createConfigWithAuth('GET');
