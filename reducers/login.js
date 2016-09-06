@@ -6,7 +6,7 @@ import {
 import {Storage} from '../services/storage';
 import {browserHistory} from 'react-router';
 import {JWT_STORAGE_KEY, CACHED_USERNAME, CACHED_USERID, CACHED_USEREMAIL} from '../constants';
-import {setCachedData} from '../utils/auth';
+import {saveAuthData} from '../utils/auth';
 
 function loginRedirect() {
   browserHistory.push('/home')
@@ -23,11 +23,12 @@ function auth(state = {
       user: action.creds
     });
   case LOGIN_SUCCESS:
+    const cachedData = {};
+    cachedData[CACHED_USEREMAIL] = action.user.email;
+    cachedData[CACHED_USERID] = action.user.id;
+    cachedData[CACHED_USERNAME] = action.user.username; 
+    saveAuthData(action.jwt, cachedData);
     loginRedirect();
-    Storage.set(JWT_STORAGE_KEY, action.id_token);
-    Storage.set(CACHED_USERNAME, action.user.username);
-    Storage.set(CACHED_USEREMAIL, action.user.email);
-    Storage.set(CACHED_USERID, action.user.id);
     return Object.assign({}, state, {
       isFetching: false,
       isAuthenticated: true
@@ -43,7 +44,7 @@ function auth(state = {
   }
 }
 
-function state(state = {}, action) {
+function state(stte = {}, action) {
   switch (action.type) {
   case LOGIN_AUTH_REQUEST:
     return Object.assign({}, state, {
@@ -55,7 +56,7 @@ function state(state = {}, action) {
     return Object.assign({}, state, {
       isFetching: false,
       isAuthenticated: true,
-      loginUser: action.user
+      loginedUser: action.user
     })
     break;
   case LOGIN_AUTH_FAILURE:

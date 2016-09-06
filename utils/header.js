@@ -1,4 +1,5 @@
-import {JWT_STORAGE_KEY} from '../constants';
+import {JWT_STORAGE_KEY} from '../../constants';
+import {getJWT} from './auth';
 
 export function createConfig(method, body, headers){
   return {
@@ -12,6 +13,6 @@ export function createConfig(method, body, headers){
 }
 
 export function createConfigWithAuth(method, body, headers = {}) {
-  headers[JWT_STORAGE_KEY] = window.localStorage.getItem(JWT_STORAGE_KEY);
+  headers[JWT_STORAGE_KEY] = getJWT();
   return createConfig(method, body, headers);
 }
