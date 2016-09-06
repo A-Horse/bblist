@@ -1,5 +1,5 @@
 import fetch from 'isomorphic-fetch';
-import {createConfigWithAuth} from '../util/header';
+import {createConfigWithAuth} from '../../utils/header';
 import {handleResponse, handleResponseWithoutJson} from '../../utils/http-handle';
 
 export const GOALLIST_GET_REQUEST = 'GOALLIST_GET_REQUEST';
@@ -25,11 +25,9 @@ function receiveGoalListError(message) {
   }
 }
 
-
 export const GOAL_POST_REQUEST = 'GOAL_POST_REQUEST';
 export const GOAL_POST_SUCCESS = 'GOAL_POST_SUCCESS';
 export const GOAL_POST_FAILURE = 'GOAL_POST_FAILURE';
-
 
 function requestCreatedGoal() {
   return {

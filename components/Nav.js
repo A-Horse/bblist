@@ -10,7 +10,7 @@ import {spawnMixinRender} from '../style/theme-render';
 import {ThemeConst} from '../style/theme';
 import {LightIcon} from '../services/svg-icons';
 import {DropMenu} from './widget/DropMenu';
-import {clearJWT} from '../utils/auth';
+import {removeCachedData} from '../utils/auth';
 
 export const navHeight = 42;
 
@@ -112,8 +112,8 @@ class Nav extends Component {
     }
   }
 
-  logout() {
-    clearJWT();
+  onLogout() {
+    removeCachedData();
   }
 
   activeLinkWithPath(location) {
@@ -125,8 +125,7 @@ class Nav extends Component {
   }
   
   render() {
-    const userCell = this.renderUserCell();
-    
+    const userCell = this.renderUserCell();    
     return (
       <header style={styles.headerStyle} className="clearfix">
         <div style={styles.logoArea} style={styles.logoArea}>
@@ -155,7 +154,7 @@ class Nav extends Component {
             <DropMenu toggle={this.state.userMenuToggle}>
               <ul style={styles.userMenu}>
                 <Link style={styles.menuLi} to="/profile" onClick={() => {this.setState({userMenuToggle: false})}}>Profile</Link>
-                <button style={styles.menuLi} onClick={() => {}}>Log out</button>
+                <button style={styles.menuLi} onClick={this.onLogout.bind(this)}>Log out</button>
               </ul>
             </DropMenu>
         </div>

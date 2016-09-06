@@ -1,5 +1,10 @@
-import fetch from 'isomorphic-fetch'
-import { browserHistory } from 'react-router'
+import fetch from 'isomorphic-fetch';
+import {handleHttpError} from '../services/handle-error';
+import {createConfigWithAuth, createConfig} from '../utils/header';
+import {handleResponse, handleResponseWithoutJson} from '../utils/http-handle';
+import {browserHistory} from 'react-router'
+import {Storage} from '../services/storage';
+import {JWT_STORAGE_KEY, CACHED_USERNAME} from '../constants';
 
 export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
@@ -8,12 +13,6 @@ export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 export const LOGIN_AUTH_FAILURE = 'LOGIN_AUTH_FAILURE';
 export const LOGIN_AUTH_REQUEST = 'LOGIN_AUTH_REQUEST';
 export const LOGIN_AUTH_SUCCESS = 'LOGIN_AUTH_SUCCESS';
-
-import {JWT_STORAGE_KEY, CACHED_USERNAME} from '../constants';
-
-import {handleResponse} from '../utils/http-handle';
-import {createConfigWithAuth} from './util/header.js';
-
 
 function requestLogin(creds) {
   return {
@@ -24,12 +23,11 @@ function requestLogin(creds) {
   }
 }
 
-function receiveLogin(user) {
+function receiveLogin(token, user) {
   return {
     type: LOGIN_SUCCESS,
-    isFetching: false,
-    isAuthenticated: true,
-    id_token: user.id_token
+    id_token: token,
+    user
   }
 }
 
@@ -44,25 +42,19 @@ function loginError(message) {
 
 function canNotLoginAuth() {
   return {
-    type: LOGIN_AUTH_FAILURE,
-    isFetching: false,
-    isAuthenticated: false
+    type: LOGIN_AUTH_FAILURE
   }
 }
 
 function requestAuthLogin() {
   return {
-    type: LOGIN_AUTH_REQUEST,
-    isFetching: false,
-    isAuthenticated: false
+    type: LOGIN_AUTH_REQUEST
   }
 }
 
 function authLoginError(message) {
   return {
     type: LOGIN_AUTH_FAILURE,
-    isFetching: false,
-    isAuthenticated: false,
     message: message
   };
 }
@@ -70,38 +62,26 @@ function authLoginError(message) {
 function authLoginSuccess(user) {
   return {
     type: LOGIN_AUTH_SUCCESS,
-    isFetching: false,
-    isAuthenticated: false,
     user: user
   };
 }
 
 export function loginUser(creds) {
-  let config = {
-    method: 'PUT',
-    headers: { 'Content-Type':'application/json' },
-    body: JSON.stringify(creds)
-  }
-  
+  const config = createConfig('POST', creds);
   return dispatch => {
-    // We dispatch requestLogin to kickoff the call to the API
-    dispatch(requestLogin(creds))
+    dispatch(requestLogin(creds));
     return fetch('/api/login', config)
-      .then(response => response.json())
+      .then(handleResponse)
       .then(response => {
-        browserHistory.push('/foo')
-        localStorage.setItem(JWT_STORAGE_KEY, response.id_token)
-        localStorage.setItem(CACHED_USERNAME, response.user.username)
-        return dispatch(receiveLogin({id_token: response.id_token, user: response.user}))
+        
+        return dispatch(receiveLogin(response.id_token, response.user))
       })
-      .catch(err => console.log("Error: ", err))
   }
 }
 
-
 export function authUser() {
-  let token = localStorage.getItem('jwts-token');
-  let config = createConfigWithAuth('GET')
+  const token = Storage.get(JWT_STORAGE_KEY);
+  const config = createConfigWithAuth('GET')
   
   return dispatch => {
     if( !token ){
@@ -115,6 +95,5 @@ export function authUser() {
       }).catch(err => {
         return dispatch(authLoginError(err.message));
       });
-  }
-  
+  }  
 }
