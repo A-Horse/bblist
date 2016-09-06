@@ -3,7 +3,8 @@ import {ThemeConst} from '../../style/theme';
 
 const styles = {
   button: {
-    borderRadius: '3px'
+    borderRadius: '3px',
+    cursor: 'pointer'
   },
   small: {
     
