@@ -1,4 +1,5 @@
 export login from './login';
+export auth from './auth';
 export signup from './sign-up';
 
 export taskCard from './task/task-card';
