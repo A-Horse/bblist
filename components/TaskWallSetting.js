@@ -29,7 +29,7 @@ export class TaskWallSetting extends Component {
   render() {
     return (
         <div>
-        <button onClick={this.deleteTaskWall}>Delete this wall</button>
+          <button onClick={this.deleteTaskWall}>Delete this wall</button>
         </div>
     )
   }

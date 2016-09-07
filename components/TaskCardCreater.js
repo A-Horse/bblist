@@ -17,11 +17,13 @@ import {navHeight} from './Nav';
 import {Hr} from './widget/Hr';
 
 const styles = {
-  
+  container: {
+    padding: '10px'
+  }
 };
 
-const themeRender = spawnMixinRender(styles);
-// themeRender('card', 'lightBackground', 'lightSmallShadow');
+const mixinRender = spawnMixinRender(styles);
+mixinRender('container', 'lightBackground', 'lightSmallShadow');
 
 @Radium
 class TaskCardCreater extends Component {
@@ -31,7 +33,7 @@ class TaskCardCreater extends Component {
 
   componentWillMount() {
     this.state = {
-      
+      toggle: false
     };
   }
 
@@ -48,8 +50,21 @@ class TaskCardCreater extends Component {
   }
 
   render() {
+    if (this.state.toggle) return this.renderBody();
+    return this.renderToggle();
+  }
+
+  renderToggle() {
     return (
-      <div>
+      <div onClick={() => {this.setState({toggle: true})}}>
+        + New Task
+      </div>
+    );
+  }
+
+  renderBody() {
+    return (
+      <div style={styles.container}>
         <div>
           <span>title</span>
           <input type='text' ref='taskCardTitle' />

@@ -5,6 +5,7 @@ import Radium from 'radium';
 import R from 'fw-ramda';
 
 import TaskCard from './TaskCard';
+import TaskCardCreater from './TaskCardCreater';
 import {deleteTaskWall, getTaskAllCards} from '../actions/task-wall';
 import {postTaskCard} from '../actions/task-card';
 import {createTaskList, deleteTaskList} from '../actions/task-list';
@@ -95,9 +96,8 @@ class TaskList extends Component {
   componentWillMount() {
     // TODO rename
     this.state = {
-      isListEditings: {},
       listSetting: {},
-      openCreateCardDom: {}
+      editingListName: false
     };
   }
 
@@ -123,18 +123,6 @@ class TaskList extends Component {
     });
   }
 
-  renderCreateCardDom(listName) {
-    return (
-        <div>
-        <div>
-          <span>title</span>
-          <input type='text' ref='toCreateTitle' />
-        </div>
-        <button onClick={() => this.createCard(listName)} >Post</button>
-      </div>
-    );
-  }
-
   renderCards(cards) {
     return cards.map(card => {
       return (
@@ -143,45 +131,60 @@ class TaskList extends Component {
     });
   }
 
-  render() {
-    const {listId, listName, cards} = this.props;
+  renderListName() {
+    const {listId, listName} = this.props;
+    if (this.state.editingListName) {
+      return (
+        <div style={styles.listId}>
+          <input type='text' style={styles.listNameInput} ref={`${listId}ChangeName`}
+             defaultValue={listName}
+             onKeyDown={(e) => {if (e.which === 13) this.changeListName(listId)}}
+             onBlur={() => {this.toggleEditListName(listId)}}/>
+         </div>
+        );
+    }
     return (
-      <div style={styles.list}>
-        <div style={styles.listTopBar}>
-          {this.state.isListEditings[listId]
-         ? (<div style={styles.listId}><input type='text' style={styles.listNameInput} ref={`${listId}ChangeName`} defaultValue={listName} onKeyDown={(e) => {if (e.which === 13) this.changeListName(listId)}} onBlur={() => {this.toggleEditListName(listId)}}/></div>)
-         : (<div style={styles.listTitle}>{listName} <EditIcon style={styles.listEditIcon} onClick={() => {this.toggleEditListName(listId)}}/></div>)}
-          
-          <ArrowDownIcon className='arrow-down-icon icon' style={styles.listMenuIcon} onClick={() => {this.onClickSetting(listId)}}/>
-
-          <DropMenu toggle={this.state.listSetting[listId]}>
-          <ul style={styles.listSettingDropDown}>
-          <li key={listId + 'SettingDelete'} style={styles.listSettingItem} onClick={() => {this.refs[`delListConfirm${listId}`].open()}}>Delete</li>
-          </ul>
-          </DropMenu>
-        </div>
-        
-        <ConfirmModal confirmFn={() => {this.deleteTaskList(listId)}} ref={`delListConfirm${listId}`}></ConfirmModal>
-        
-      
-        {this.renderCards(cards)}
-        {this.state.openCreateCardDom[listId] ? this.renderCreateCardDom(listId) : 
-         <div onClick={() => {const obj = {}; obj[listId] = !this.state.openCreateCardDom[listId]; this.setState({openCreateCardDom: Object.assign({}, this.state.openCreateCardDom, obj)})}}>+ New Task</div>}
+      <div style={styles.listTitle}>
+        {listName} <EditIcon style={styles.listEditIcon} onClick={() => {this.toggleEditListName(listId)}}/>
       </div>
     );
   }
 
-  createCard(listId) {
-    const {dispatch} = this.props;
-    const data = {
-      taskWallId: +this.props.wallId,
-      taskListId: listId,
-      title: this.refs.toCreateTitle.value.trim()
-    };
-    dispatch(postTaskCard(data)).then(() => {
-      return dispatch(getTaskAllCards(this.props.wallId));
-    });
+  renderTopBar() {
+    const {listId} = this.props;
+    return (
+      <div style={styles.listTopBar}>
+        
+        {this.renderListName()}
+        
+        <ArrowDownIcon className='arrow-down-icon icon' style={styles.listMenuIcon} onClick={() => {this.onClickSetting(listId)}}/>
+
+          <DropMenu toggle={this.state.listSetting[listId]}>
+            <ul style={styles.listSettingDropDown}>
+              <li style={styles.listSettingItem} onClick={() => {this.refs.listDeleteConfirm.open()}}>Delete</li>
+            </ul>
+          </DropMenu>
+
+          <ConfirmModal confirmFn={() => {this.deleteTaskList(listId)}} ref='listDeleteConfirm' ></ConfirmModal>
+      </div>
+    )
   }
+
+  render() {
+    const {listId, cards} = this.props;
+    return (
+      <div style={styles.list}>
+
+        {this.renderTopBar()}
+      
+        {this.renderCards(cards)}
+
+        <TaskCardCreater wallId={this.props.wallId} listId={listId} />
+        
+      </div>
+    );
+  }
+
 }
 
 const mapStateToProps = (state) => {
