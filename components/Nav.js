@@ -11,6 +11,7 @@ import {ThemeConst} from '../style/theme';
 import {LightIcon} from '../services/svg-icons';
 import {DropMenu} from './widget/DropMenu';
 import {removeCachedData} from '../utils/auth';
+import {logout} from '../actions/logout';
 
 export const navHeight = 42;
 
@@ -113,14 +114,13 @@ class Nav extends Component {
   }
 
   onLogout() {
-    removeCachedData();
+    const {dispatch} = this.props;
+    return dispatch(logout()).then(removeCachedData());
   }
 
   activeLinkWithPath(location) {
     const path = R.second(this.props.path.split('/'));
-    if (path === location) {
-      return Object.assign({}, styles.linkStyle, styles.activeLink);
-    }
+    if (path === location) return Object.assign({}, styles.linkStyle, styles.activeLink);
     return styles.linkStyle;
   }
   
@@ -146,7 +146,7 @@ class Nav extends Component {
   renderUserCell() {
     const {user} = this.props;
     const avatorData = Storage.get('avator');
-    if( user ){
+    if (user) {
       return (
         <div style={styles.userArea}>
           {avatorData ? <img ref='avator' style={styles.userAvatar} src={`data:image/png;base64,${avatorData}`} onClick={() => {this.setState({userMenuToggle: !this.state.userMenuToggle})}}/>
@@ -171,7 +171,7 @@ class Nav extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.login.state.loginedUser,
+    user: state.auth.loginedUser,
     path: state.routing.locationBeforeTransitions.pathname
   };
 };
