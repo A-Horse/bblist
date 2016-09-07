@@ -1,6 +1,5 @@
-'use strict';
-
-import {NotAuthError, NotFoundError, RequestError, ServerError} from './http-error.js';
+import {NotAuthError, NotFoundError, RequestError, ServerError, UnprocessableError,
+        UnKnownError} from './http-error';
 
 function handleError(response) {
   switch(response.status) {
@@ -12,6 +11,9 @@ function handleError(response) {
     break;
   case 400:
     throw new RequestError();
+    break;
+  case 422:
+    throw new UnprocessableError();
     break;
   case 500:
     throw new ServerError();
