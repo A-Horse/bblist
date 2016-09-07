@@ -17,7 +17,7 @@ class GoalCard extends Component {
   }
 
   render() {
-    const goal = this.props;
+    const {goal} = this.props;
     return (
       <div>
         {goal.title}

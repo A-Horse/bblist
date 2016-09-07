@@ -29,7 +29,6 @@ class GoalCreater extends Component {
   }
 
   onClickCreateGoal() {
-    console.log('createGoal');
     const {dispatch} = this.props;
     const data = {
       title: this.refs.goalTitle.value.trim()

@@ -3,7 +3,9 @@ import {PageContainer} from '../../components/widget/PageContainer';
 import {connect} from 'react-redux';
 import {browserHistory} from 'react-router';
 import {makeGravatarUrl} from '../../services/gravatar';
-import {receiveGoalList, createGoal} from '../../actions/goal/goal';
+import {getGoalList, createGoal} from '../../actions/goal/goal';
+import {getAuthData} from '../../utils/auth';
+import {CACHED_USERID} from '../../constants';
 import GoalCreater from './GoalCreater';
 import GoalCard from './GoalCard';
 
@@ -20,22 +22,19 @@ class Goal extends Component {
   }
 
   getGoals() {
-    const {dispatch, user} = this.props;
-    return dispatch(receiveGoalList(user));
+    const {dispatch} = this.props;
+    const userId = getAuthData(CACHED_USERID);
+    return dispatch(getGoalList(userId));
   }
 
   componentDidUpdate() {
-    const {dispatch, user} = this.props;
-    if (user) {
-
-    }
-
+    
   }
 
   renderGoals() {
-    const {goalList} = this.props;
-    return goalList.map(goal => (
-      <GoalCard goal={goal} />
+    const {goals} = this.props;
+    return goals.map(goal => (
+      <GoalCard key={goal.id} goal={goal} />
     ));
   }
 
@@ -52,8 +51,8 @@ class Goal extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    goalList: state.goal.goalList || [],
-    user: state.login.state.loginedUser
+    goals: state.goal.goals || [],
+    user: state.auth.loginedUser
   };
 };
 

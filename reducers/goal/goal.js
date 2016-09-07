@@ -16,7 +16,7 @@ function goal(state = {
   case GOALLIST_GET_SUCCESS:
     return Object.assign({}, state, {
       isFetching: false,
-      goalList: action.goalList
+      goals: action.goals
     });
     break;
   case GOALLIST_GET_FAILURE:

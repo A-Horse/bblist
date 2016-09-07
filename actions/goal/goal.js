@@ -12,9 +12,10 @@ function requestGoalList() {
   }
 }
 
-function receiveGoalList() {
+function receiveGoalList(goals) {
   return {
-    type: GOALLIST_GET_SUCCESS
+    type: GOALLIST_GET_SUCCESS,
+    goals
   }
 }
 
@@ -94,13 +95,13 @@ export function createGoal(data) {
   };
 }
 
-export function receiveGoalList(userId) {
+export function getGoalList(userId) {
   const config = createConfigWithAuth('GET');
   return dispatch => {
     dispatch(requestCreatedGoal());
     return fetch(`/api/user/${userId}/goal`, config)
       .then(handleResponse)
-      .then(() => dispatch(receiveGoalList()))
-      .catch(() => {dispatch(receiveGoalListError())});
+      .then(response => dispatch(receiveGoalList(response)))
+      .catch(error => dispatch(receiveGoalListError(error.message)));
   };
 }
