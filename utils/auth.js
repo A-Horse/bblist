@@ -18,7 +18,7 @@ export function saveJWT(jwt) {
   return Storage.set(AUTH_DATA, JSON.stringify(authData));
 }
 
-export function setCachedData(data) {
+export function saveCachedData(data) {
   const authData = getAuthData();
   return Storage.set(AUTH_DATA, JSON.stringify(Object.assign({}, authData, data)));
 }
@@ -29,7 +29,7 @@ export function destoryCachedData() {
 
 export function saveAuthData(jwt, data) {
   saveJWT(jwt);
-  saveAuthData(data);
+  saveCachedData(data);
 }
 
 export function getAuthData(key) {

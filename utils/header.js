@@ -1,4 +1,4 @@
-import {JWT_STORAGE_KEY} from '../../constants';
+import {JWT_STORAGE_KEY} from '../constants';
 import {getJWT} from './auth';
 
 export function createConfig(method, body, headers){
