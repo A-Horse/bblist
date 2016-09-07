@@ -64,34 +64,26 @@ function authLoginSuccess(user) {
   };
 }
 
-export function loginedUser(creds) {
+export function login(creds) {
   const config = createConfig('POST', creds);
   return dispatch => {
     dispatch(requestLogin(creds));
     return fetch('/api/login', config)
       .then(handleResponse)
-      .then(response => {        
-        return dispatch(receiveLogin(response.jwt, response.user))
-      })
-  }
+      .then(response => dispatch(receiveLogin(response.jwt, response.user)))
+      .catch(error => dispatch(loginError(error.message)));
+  };
 }
 
-
 export function authUser() {
-  const token = Storage.get(getJWT());
-  const config = createConfigWithAuth('GET')
-  
+  const token = getJWT();
+  const config = createConfigWithAuth('GET');
   return dispatch => {
-    if( !token ){
-      return dispatch(canNotLoginAuth());
-    }
+    if (!token) return dispatch(canNotLoginAuth());
     dispatch(requestAuthLogin());
     return fetch('/api/login', config)
       .then(handleResponse)
-      .then(response => {
-        return dispatch(authLoginSuccess(response));
-      }).catch(err => {
-        return dispatch(authLoginError(err.message));
-      });
-  }  
+      .then(response => dispatch(authLoginSuccess(response)))
+      .catch(err => dispatch(authLoginError(err.message)));
+  }; 
 }
