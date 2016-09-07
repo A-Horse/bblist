@@ -30,14 +30,14 @@ const styles = {
 export class Button extends Component {
   static propTypes = {
     size: React.PropTypes.oneOf(['small', 'middle', 'large']),
-    type: React.PropTypes.oneOf(['default', 'primary', 'disable'])
+    styleType: React.PropTypes.oneOf(['default', 'primary', 'disable'])
   };
   
   render() {
-    const {style, size = 'middle', type = 'default'} = this.props;
+    const {style, size = 'middle', styleType = 'default'} = this.props;
     return (
-      <button style={Object.assign(styles.button, style, styles[size], styles[type])}
-              onClick={this.props.onClick}>
+      <button style={Object.assign(styles.button, style, styles[size], styles[styleType])}
+              onClick={this.props.onClick} type={this.props.type}>
           {this.props.children}
       </button>
     );
