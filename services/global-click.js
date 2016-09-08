@@ -1,28 +1,36 @@
 class GlobalClick {
   constructor() {
-    this.handles = [];
-    window.document.body.addEventListener('click', () => {
-      this.handles.forEach(handles => handles());
+    this.bubbleHandles = [];
+    this.captureHandles = [];
+    window.document.body.addEventListener('click', event => {
+      this.bubbleHandles.forEach(handles => handles(event));
+      // event.stopPropagation();
     });
+    window.document.body.addEventListener('click', event => {
+      this.captureHandles.forEach(handles => handles(event));
+      // event.stopPropagation();
+    }, true);
   }
 
-  addGlobalClickHandleOnce(fn) {
-    this.handles.push(fn);
+  addGlobalClickHandle(fn, useCapture = false) {
+    const handles = useCapture ? this.captureHandles : this.bubbleHandles;
+    handles.push(fn);
     return function() {
-      const i = this.handles.indexOf(fn);
-      this.handles.splice(i, 1);
+      const i = self.handles.indexOf(fn);
+      handles.splice(i, 1);
     }
   }
 
-  addGlobalClickHandle(fn) {
-    function onceFn() {
-      fn();
+  addGlobalClickHandleOnce(fn, useCapture = false) {
+    const handles = useCapture ? this.captureHandles : this.bubbleHandles;
+    function onceFn(event) {
+      fn(event);
       removeFn();
     }
-    this.handles.push(onceFn);
+    handles.push(onceFn);
     function removeFn() {
-      const i = this.handles.indexOf(onceFn);
-      this.handles.splice(i, 1);
+      const i = handles.indexOf(onceFn);
+      handles.splice(i, 1);
     }
     return removeFn;
   }
