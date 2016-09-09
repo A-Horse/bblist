@@ -15,6 +15,8 @@ import {AddIcon, EditIcon, ArrowDownIcon, SettingIcon} from '../services/svg-ico
 import {TaskWallSetting} from './TaskWallSetting';
 import {navHeight} from './Nav';
 import {Hr} from './widget/Hr';
+import GlobalClick from '../services/global-click';
+import {addBodyEventListenerOnce} from '../actions/event/body';
 
 const styles = {
   container: {
@@ -49,6 +51,20 @@ class TaskCardCreater extends Component {
     });
   }
 
+  toggle(event) {
+    console.log('hii');
+    this.setState({toggle: true});
+    const {dispatch} = this.props;
+    dispatch(addBodyEventListenerOnce(() => {
+      this.setState({toggle: false});
+    }));
+    event.stopPropagation();
+    // GlobalClick.addGlobalClickHandleOnce(event => {
+
+    //   this.setState({toggle: false});
+    // });
+  }
+
   render() {
     if (this.state.toggle) return this.renderBody();
     return this.renderToggle();
@@ -56,15 +72,22 @@ class TaskCardCreater extends Component {
 
   renderToggle() {
     return (
-      <div onClick={() => {this.setState({toggle: true})}}>
+      <div onClick={this.toggle.bind(this)}>
         + New Task
       </div>
     );
   }
 
+  onClickw(event) {
+    console.log(event);
+    console.log('fff');
+    event.stopPropagation();
+  }
+  
   renderBody() {
     return (
-      <div style={styles.container}>
+      <div style={styles.container} className='taskcard-creater-body'
+           onClick={this.onClickw.bind(this)}>
         <div>
           <span>title</span>
           <input type='text' ref='taskCardTitle' />
@@ -73,7 +96,6 @@ class TaskCardCreater extends Component {
       </div>
     );
   }
-
 }
 
 const mapStateToProps = (state) => {
