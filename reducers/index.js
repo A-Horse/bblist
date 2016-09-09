@@ -7,3 +7,5 @@ export taskWall from './task/task-wall';
 export taskList from './task/task-list';
 
 export goal from './goal/goal';
+
+export event from './event/event';
