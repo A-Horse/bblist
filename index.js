@@ -13,6 +13,7 @@ import DockMonitor from 'redux-devtools-dock-monitor';
 import {App, Tasks, TaskWall, NotFound, DashBoard,
         IndexPage, Ideas, TaskWallSetting} from './components';
 import {Login, SignUp, Profile, Goal} from './page';
+import Body from './components/Body';
 
 import {checkLogin} from './utils/auth';
 import * as reducers from './reducers';
@@ -42,7 +43,7 @@ const history = syncHistoryWithStore(browserHistory, store);
 // TODO extract it router
 ReactDOM.render(
   <Provider store={store}>
-    <div>
+    <Body>
       <Router history={history}>
         <Route path="/" component={App} >
           <IndexRoute component={IndexPage}/>
@@ -60,7 +61,7 @@ ReactDOM.render(
         </Route>
       </Router>
       <DevTools />
-    </div>
+    </Body>
   </Provider>,
   document.getElementById('root')
 );
