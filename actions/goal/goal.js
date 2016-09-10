@@ -1,6 +1,8 @@
 import fetch from 'isomorphic-fetch';
 import {createConfigWithAuth} from '../../utils/header';
 import {handleResponse, handleResponseWithoutJson} from '../../utils/http-handle';
+import {getAuthData} from '../../utils/auth';
+import {CACHED_USERID} from '../../constants';
 
 export const GOALLIST_GET_REQUEST = 'GOALLIST_GET_REQUEST';
 export const GOALLIST_GET_SUCCESS = 'GOALLIST_GET_SUCCESS';
@@ -95,8 +97,9 @@ export function createGoal(data) {
   };
 }
 
-export function getGoalList(userId) {
+export function getGoalList() {
   const config = createConfigWithAuth('GET');
+  const userId = getAuthData(CACHED_USERID);
   return dispatch => {
     dispatch(requestCreatedGoal());
     return fetch(`/api/user/${userId}/goal`, config)
