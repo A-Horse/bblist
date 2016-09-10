@@ -36,7 +36,7 @@ const styles = {
     verticalAlign: 'middle'
   },
   settingContainer: {
-    display: 'block',
+    display: 'block'
   },
   settingDropMenu: {
     display: 'block',
@@ -87,7 +87,7 @@ class TaskWall extends Component {
   constructor() {
     super();
     this.state = {
-      typingNewList: false,
+      typingNewList: false
     };
   }
   
