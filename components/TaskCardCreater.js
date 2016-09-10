@@ -46,23 +46,18 @@ class TaskCardCreater extends Component {
       taskListId: +this.props.listId,
       title: this.refs.taskCardTitle.value.trim()
     };
-    dispatch(postTaskCard(data)).then(() => {
+    return dispatch(postTaskCard(data)).then(() => {
       // return dispatch(getTaskAllCards(this.props.wallId));
     });
   }
 
   toggle(event) {
-    console.log('hii');
-    this.setState({toggle: true});
     const {dispatch} = this.props;
+    this.setState({toggle: true});
     dispatch(addBodyEventListenerOnce(() => {
       this.setState({toggle: false});
     }));
     event.stopPropagation();
-    // GlobalClick.addGlobalClickHandleOnce(event => {
-
-    //   this.setState({toggle: false});
-    // });
   }
 
   render() {
@@ -77,22 +72,16 @@ class TaskCardCreater extends Component {
       </div>
     );
   }
-
-  onClickw(event) {
-    console.log(event);
-    console.log('fff');
-    event.stopPropagation();
-  }
   
   renderBody() {
     return (
       <div style={styles.container} className='taskcard-creater-body'
-           onClick={this.onClickw.bind(this)}>
+           onClick={event => event.stopPropagation()}>
         <div>
           <span>title</span>
           <input type='text' ref='taskCardTitle' />
         </div>
-        <button onClick={this.createCard} >Post</button>
+        <button onClick={this.createCard.bind(this)} >Post</button>
       </div>
     );
   }
