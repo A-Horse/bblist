@@ -8,3 +8,5 @@ export const AUTH_DATA = 'AUTH_DATA';
 
 export const API_PREFIX = '/api';
 
+export const GRAVATOR_PREFIX = '';
+
