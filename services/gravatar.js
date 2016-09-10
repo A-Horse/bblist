@@ -11,6 +11,6 @@ export function makeGravatarUrl(email, size) {
   return gravatarUrlBase.concat(urlQuery);
 }
 
-export function getGravatorUrl(userId) {
+export function getGravatorFromStorge(email, size) {
   
 }
