@@ -2,6 +2,8 @@ import fetch from 'isomorphic-fetch';
 import {handleHttpError} from '../services/handle-error';
 import {createConfigWithAuth} from '../utils/header';
 import {handleResponse, handleResponseWithoutJson} from '../utils/http-handle';
+import {getAuthData} from '../utils/auth';
+import {CACHED_USERID} from '../constants';
 
 export const TASKWALL_GET_REQUEST = 'TASKWALL_GET_REQUEST';
 export const TASKWALL_GET_SUCCESS = 'TASKWALL_GET_SUCCESS';
@@ -99,9 +101,10 @@ function deleteTaskWallError() {
 
 export function getTaskAllCards(wallId) {
   const config = createConfigWithAuth('GET');
+  const userId = getAuthData(CACHED_USERID);
   return dispatch => {
     dispatch(requestGetTaskWallCards())
-    return fetch(`/api/task-wall/${wallId}/all`, config)
+    return fetch(`/api/user/${userId}/task-wall/${wallId}/all`, config)
       .then(handleResponse)
       .then(response => dispatch(receiveGetTaskWallCards(response)))
       .catch(handleHttpError)
