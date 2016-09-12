@@ -1,10 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
-const style = {
-  
-};
-
 class Body extends Component {
 
   onClick(event) {
@@ -19,7 +15,9 @@ class Body extends Component {
   
   render() {
     return (
-      <div onClick={this.onClick.bind(this)} onClickCapture={this.onClickCapture.bind(this)}>
+      <div className='body'
+           onClick={this.onClick.bind(this)}
+           onClickCapture={this.onClickCapture.bind(this)}>
         {this.props.children}
       </div>
     );
