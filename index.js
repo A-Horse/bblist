@@ -10,9 +10,9 @@ import {createDevTools} from 'redux-devtools';
 import LogMonitor from 'redux-devtools-log-monitor';
 import DockMonitor from 'redux-devtools-dock-monitor';
 
-import {App, Tasks, TaskWall, NotFound, DashBoard,
-        IndexPage, Ideas, TaskWallSetting} from './components';
-import {Login, SignUp, Profile, Goal} from './page';
+import {App} from './components';
+import {SignIn, SignUp, Profile, Goal, Tasks, TaskWall, NotFound, DashBoard,
+        IndexPage, Ideas, TaskWallSetting} from './page';
 import Body from './components/Body';
 
 import {checkLogin} from './utils/auth';
@@ -49,15 +49,17 @@ ReactDOM.render(
           <IndexRoute component={IndexPage}/>
           
           <Route path="home" component={DashBoard} onEnter={checkLogin}/>
-          <Route path="404" component={NotFound} />
-          <Route path="login" component={Login}/>
+          <Route path="signin" component={SignIn}/>
           <Route path="signup" component={SignUp}/>
           <Route path="profile" component={Profile}/>
           <Route path="idea" component={Ideas}/>
           <Route path="goal" component={Goal}/>
+          
           <Route path="task-wall" component={Tasks} onEnter={checkLogin}/>
           <Route path="task-wall/:id" component={TaskWall} onEnter={checkLogin}/>
           <Route path="task-wall/:id/setting" component={TaskWallSetting} onEnter={checkLogin}/>
+
+          <Route path="404" component={NotFound} />
         </Route>
       </Router>
       <DevTools />
