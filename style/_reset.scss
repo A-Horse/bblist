@@ -24,3 +24,6 @@ button {
   outline: none;
 }
 
+[draggable] {
+  user-select: none;
+}
