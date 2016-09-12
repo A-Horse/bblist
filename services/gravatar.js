@@ -1,4 +1,5 @@
 import md5 from 'blueimp-md5';
+import {Storage} from './storage';
 
 const gravatarUrlBase = 'https://www.gravatar.com/avatar/';
 
@@ -11,6 +12,10 @@ export function makeGravatarUrl(email, size) {
   return gravatarUrlBase.concat(urlQuery);
 }
 
-export function getGravatorFromStorge(email, size) {
-  
+export function getUserGravatorFromStorge(userId, size = 80) {
+  return Storage.get(`GRAVATAR_USER_${userId}_SIZE_${size}`);
+}
+
+export function saveUserGravatorToStorge(userId, base64, size = 80) {
+  return Storage.set(`GRAVATAR_USER_${userId}_SIZE_${size}`, base64);
 }
