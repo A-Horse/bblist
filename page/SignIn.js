@@ -6,13 +6,12 @@ import {validateFormValue} from '../services/validate-strategy';
 import {Button} from '../components/widget/Button';
 import {Input} from '../components/widget/Input';
 import {PageContainer} from '../components/widget/PageContainer';
-import {LOGIN_SUCCESS} from '../actions/login';
 
 const styles = {
   
 };
 
-class Login extends Component {  
+class SignIn extends Component {  
   componentWillMount() {
     this.state = {
       errorMessage: {}
@@ -77,4 +76,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(Login);
+export default connect(mapStateToProps)(SignIn);

@@ -1,15 +1,11 @@
-import React, { Component, PropTypes } from 'react'
-import { connect } from 'react-redux'
-
-
+import React, {Component} from 'react'
+import {connect} from 'react-redux'
 
 class NotFound extends Component {
   constructor() {
     super()
   }
 
-
-  
   render() {
     return (
       <div>
@@ -17,14 +13,12 @@ class NotFound extends Component {
       </div>
     )
   }
-
-  
 }
 
 const mapStateToProps = (state) => {
   return {
     
   }
-}
+};
 
-export default connect(mapStateToProps)(NotFound)
+export default connect(mapStateToProps)(NotFound);

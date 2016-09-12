@@ -2,14 +2,14 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {browserHistory} from 'react-router';
 import Radium from 'radium';
-import {createTaskWall, getAllTaskWall} from '../actions/task-wall';
-import {Modal} from './widget/Modal';
-import {Select} from './widget/Select';
-import {PageContainer} from './widget/PageContainer';
-import {CateLine} from './widget/CateLine';
-import {spawnMixinRender} from '../style/theme-render';
-import {ThemeConst} from '../style/theme';
-import {CloseIcon, AddIcon} from '../services/svg-icons';
+import {createTaskWall, getAllTaskWall} from '../../actions/task-wall';
+import {Modal} from '../../components/widget/Modal';
+import {Select} from '../../components/widget/Select';
+import {PageContainer} from '../../components/widget/PageContainer';
+import {CateLine} from '../../components/widget/CateLine';
+import {spawnMixinRender} from '../../style/theme-render';
+import {ThemeConst} from '../../style/theme';
+import {CloseIcon, AddIcon} from '../../services/svg-icons';
 
 const styles = {
   wall: {
@@ -29,7 +29,7 @@ const styles = {
     }
   },
   cardInfo: {
-    backgroundImage: 'linear-gradient(180deg,rgba(0,0,0,.3) 0,transparent)',
+    backgroundImage: 'linear-gradient(180deg,rgba(0,0,0,.3) 0, transparent)',
     height: '50%'
   },
   cardTitle: {

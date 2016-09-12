@@ -6,17 +6,13 @@ import R from 'fw-ramda';
 
 import TaskCard from './TaskCard';
 import TaskCardCreater from './TaskCardCreater';
-import {deleteTaskWall, getTaskAllCards} from '../actions/task-wall';
-import {postTaskCard} from '../actions/task-card';
-import {createTaskList, deleteTaskList} from '../actions/task-list';
-import {DropMenu} from './widget/DropMenu';
-import {ConfirmModal} from './widget/ConfirmModal';
-import {PageContainer} from './widget/PageContainer';
-import {Hr} from './widget/Hr';
-import {getAssets} from '../services/assets-manager';
-import {AddIcon, EditIcon, ArrowDownIcon, SettingIcon, MIDDLE_SIZE, SMALL_SIZE} from '../services/svg-icons';
-import {spawnMixinRender} from '../style/theme-render';
-import GlobalClick from '../services/global-click';
+import {deleteTaskWall, getTaskAllCards} from '../../actions/task-wall';
+import {createTaskList, deleteTaskList} from '../../actions/task-list';
+import {DropMenu} from '../../components/widget/DropMenu';
+import {ConfirmModal} from '../../components/widget/ConfirmModal';
+import {AddIcon, EditIcon, ArrowDownIcon, SettingIcon, MIDDLE_SIZE, SMALL_SIZE} from '../../services/svg-icons';
+import {spawnMixinRender} from '../../style/theme-render';
+import GlobalClick from '../../services/global-click';
 
 export const listWidth = 210;
 
@@ -42,7 +38,7 @@ const styles = {
   },
   listNameInput: {
     backgroundColor: 'transparent',
-    boxShadow: 'none',
+    boxShadow: 'none'
   },
   listName: {
     textAlign: 'center'

@@ -1,22 +1,10 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import Radium from 'radium';
-import R from 'fw-ramda';
 
-import {deleteTaskWall, getTaskAllCards} from '../actions/task-wall';
-import {postTaskCard} from '../actions/task-card';
-import {createTaskList, deleteTaskList} from '../actions/task-list';
-import {DropMenu} from './widget/DropMenu';
-import {ConfirmModal} from './widget/ConfirmModal';
-import {getAssets} from '../services/assets-manager';
-import {spawnMixinRender} from '../style/theme-render';
-import {PageContainer} from './widget/PageContainer';
-import {AddIcon, EditIcon, ArrowDownIcon, SettingIcon} from '../services/svg-icons';
-import {TaskWallSetting} from './TaskWallSetting';
-import {navHeight} from './Nav';
-import {Hr} from './widget/Hr';
-import GlobalClick from '../services/global-click';
-import {addBodyEventListenerOnce} from '../actions/event/body';
+import {postTaskCard} from '../../actions/task-card';
+import {spawnMixinRender} from '../../style/theme-render';
+import {addBodyEventListenerOnce} from '../../actions/event/body';
 
 const styles = {
   container: {
