@@ -1,4 +1,4 @@
-import {getBase64Image} from './image';
+import {getImageBase64} from './image';
 
 export const Storage = {
   get(key) {
@@ -10,10 +10,10 @@ export const Storage = {
   remove(key) {
     return window.localStorage.removeItem(key);
   }
-}
+};
 
-
+// TODO delete it
 export function storageImage(name, imageElement) {
-  const imgData = getBase64Image(imageElement);
+  const imgData = getImageBase64(imageElement);
   return window.localStorage.setItem(name, imgData);
 }
