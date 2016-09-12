@@ -1,22 +1,30 @@
-import React from 'react'
-import FilterLink from '../containers/FilterLink'
+import React, {Component} from 'react';
 
-const Footer = () => (
-  <p>
-    Show:
-    {" "}
-    <FilterLink filter="SHOW_ALL">
-      All
-    </FilterLink>
-    {", "}
-    <FilterLink filter="SHOW_ACTIVE">
-      Active
-    </FilterLink>
-    {", "}
-    <FilterLink filter="SHOW_COMPLETED">
-      Completed
-    </FilterLink>
-  </p>
-)
+class Footer extends Component {
+  constructor() {
+    super();
+  }
 
-export default Footer
+  componentWillMount() {
+    
+  }
+
+  componentDidMount() {
+    
+  }
+
+  componentDidUpdate() {
+
+  }
+  
+  render() {
+    return (
+      <footer>
+        @copyright
+      </footer>
+    )
+  }
+}
+
+export default Footer;
+
