@@ -1,9 +1,9 @@
 import fetch from 'isomorphic-fetch';
-import {handleHttpError} from '../services/handle-error';
-import {createConfigWithAuth} from '../utils/header';
-import {handleResponse, handleResponseWithoutJson} from '../utils/http-handle';
-import {getAuthData} from '../utils/auth';
-import {CACHED_USERID} from '../constants';
+import {handleHttpError} from '../../services/handle-error';
+import {createConfigWithAuth} from '../../utils/header';
+import {handleResponse, handleResponseWithoutJson} from '../../utils/http-handle';
+import {getAuthData} from '../../utils/auth';
+import {CACHED_USERID} from '../../constants';
 
 export const TASKWALL_GET_REQUEST = 'TASKWALL_GET_REQUEST';
 export const TASKWALL_GET_SUCCESS = 'TASKWALL_GET_SUCCESS';
