@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {browserHistory} from 'react-router';
 import Radium from 'radium';
-import {createTaskWall, getAllTaskWall} from '../../actions/task-wall';
+import {createTaskWall, getAllTaskWall} from '../../actions/task/task-wall';
 import {Modal} from '../../components/widget/Modal';
 import {Select} from '../../components/widget/Select';
 import {PageContainer} from '../../components/widget/PageContainer';

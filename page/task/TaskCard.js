@@ -2,9 +2,9 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import Radium from 'radium';
 
-import {deleteTaskWall, getTaskAllCards} from '../../actions/task-wall';
-import {postTaskCard} from '../../actions/task-card';
-import {createTaskList, deleteTaskList} from '../../actions/task-list';
+import {deleteTaskWall, getTaskAllCards} from '../../actions/task/task-wall';
+import {createTaskCard} from '../../actions/task/task-card';
+import {createTaskList, deleteTaskList} from '../../actions/task/task-list';
 import {DropMenu} from '../../components/widget/DropMenu';
 import {ConfirmModal} from '../../components/widget/ConfirmModal';
 import {PageContainer} from '../../components/widget/PageContainer';
@@ -42,7 +42,7 @@ class TaskCard extends Component {
     const {card} = this.props;
     const activeRole = card.creater;
     return (
-      <div style={styles.card} draggable="true">
+      <div style={styles.card} draggable='true'>
         <p>{card.title}</p>
         <UserAvatar user={activeRole}/>
       </div>

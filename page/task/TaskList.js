@@ -6,8 +6,8 @@ import R from 'fw-ramda';
 
 import TaskCard from './TaskCard';
 import TaskCardCreater from './TaskCardCreater';
-import {deleteTaskWall, getTaskAllCards} from '../../actions/task-wall';
-import {createTaskList, deleteTaskList} from '../../actions/task-list';
+import {deleteTaskWall, getTaskAllCards} from '../../actions/task/task-wall';
+import {createTaskList, deleteTaskList} from '../../actions/task/task-list';
 import {DropMenu} from '../../components/widget/DropMenu';
 import {ConfirmModal} from '../../components/widget/ConfirmModal';
 import {AddIcon, EditIcon, ArrowDownIcon, SettingIcon, MIDDLE_SIZE, SMALL_SIZE} from '../../services/svg-icons';
@@ -169,16 +169,31 @@ class TaskList extends Component {
   render() {
     const {listId, cards} = this.props;
     return (
-      <div style={styles.list}>
+      <div style={styles.list}
+           onDragEnter={this.onDragEnter.bind(this)}
+           onDrop={this.onDrop.bind(this)}
+           onDragOver={this.onDragOver.bind(this)}>
 
         {this.renderTopBar()}
       
         {this.renderCards(cards)}
-
+        
         <TaskCardCreater wallId={this.props.wallId} listId={listId} />
         
       </div>
     );
+  }
+
+  onDragEnter() {
+    console.log('onDragEnter');
+  }
+
+  onDrop() {
+    console.log('onDrop');
+  }
+
+  onDragOver() {
+    console.log('onDragOver');
   }
 
 }

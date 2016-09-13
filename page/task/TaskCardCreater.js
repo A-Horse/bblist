@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import Radium from 'radium';
 
-import {postTaskCard} from '../../actions/task-card';
+import {createTaskCard} from '../../actions/task/task-card';
 import {spawnMixinRender} from '../../style/theme-render';
 import {addBodyEventListenerOnce} from '../../actions/event/body';
 
@@ -34,7 +34,7 @@ class TaskCardCreater extends Component {
       taskListId: +this.props.listId,
       title: this.refs.taskCardTitle.value.trim()
     };
-    return dispatch(postTaskCard(data)).then(() => {
+    return dispatch(createTaskCard(data)).then(() => {
       // return dispatch(getTaskAllCards(this.props.wallId));
     });
   }
