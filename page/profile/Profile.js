@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import {PageContainer} from '../components/widget/PageContainer';
+import {PageContainer} from '../../components/widget/PageContainer';
 import {connect} from 'react-redux';
 import {browserHistory} from 'react-router';
-import {makeGravatarUrl} from '../services/gravatar';
-import Loading from '../components/widget/loading';
+import {makeGravatarUrl} from '../../services/gravatar';
+import Loading from '../../components/widget/loading';
 
 class Profile extends Component {
   componentWillMount() {
