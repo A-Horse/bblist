@@ -1,5 +1,13 @@
 import React, {Component} from 'react';
 
+export const FooterHeight = 20;
+
+const styles = {
+  container: {
+    height: `${FooterHeight}px`
+  }
+}
+
 class Footer extends Component {
   constructor() {
     super();
@@ -8,7 +16,7 @@ class Footer extends Component {
   componentWillMount() {
     
   }
-
+  
   componentDidMount() {
     
   }
@@ -19,7 +27,7 @@ class Footer extends Component {
   
   render() {
     return (
-      <footer>
+      <footer style={styles.container}>
         @copyright
       </footer>
     )
