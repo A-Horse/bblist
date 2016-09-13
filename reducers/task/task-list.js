@@ -1,7 +1,7 @@
 import {
   TASKLIST_PATCH_REQUEST, TASKLIST_PATCH_SUCCESS, TASKLIST_PATCH_FAILURE,
   TASKLIST_POST_REQUEST, TASKLIST_POST_SUCCESS, TASKLIST_POST_FAILURE,
-} from '../../actions/task-list';
+} from '../../actions/task/task-list';
 
 function taskList(state = {
   isFetching: false

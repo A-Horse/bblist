@@ -1,6 +1,6 @@
 import {
   TASKCARD_POST_REQUEST, TASKCARD_POST_SUCCESS, TASKCARD_POST_FAILURE,
-} from '../../actions/task-card';
+} from '../../actions/task/task-card';
 
 function taskCard(state = {
   isFetching: false
