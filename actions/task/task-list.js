@@ -26,11 +26,9 @@ function createTaskListError(message) {
   }
 }
 
-
 export const TASKLIST_PATCH_REQUEST = 'TASKLIST_PATCH_REQUEST'
 export const TASKLIST_PATCH_SUCCESS = 'TASKLIST_PATCH_SUCCESS'
 export const TASKLIST_PATCH_FAILURE = 'TASKLIST_PATCH_FAILURE'
-
 
 function requestPatchTaskList(info) {
   return {
@@ -55,7 +53,6 @@ function patchTaskWallListError(message) {
 export const TASKLIST_DELETE_REQUEST = 'TASKLIST_DELETE_REQUEST'
 export const TASKLIST_DELETE_SUCCESS = 'TASKLIST_DELETE_SUCCESS'
 export const TASKLIST_DELETE_FAILURE = 'TASKLIST_DELETE_FAILURE'
-
 
 function requestDeleteTaskList(info) {
   return {
