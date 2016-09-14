@@ -52,6 +52,23 @@ function updateTaskCardError(error) {
   }
 }
 
+export const TASKCARD_LEAVE_START = 'TASKCARD_LEAVE_START';
+export const TASKCARD_LEAVE_DONE = 'TASKCARD_LEAVE_DONE';
+export const TASKCARD_ENTER_START = 'TASKCARD_ENTER_START';
+export const TASKCARD_ENTER_DONE = 'TASKCARD_ENTER_DONE';
+
+export function taskCardDragLeave(card) {
+  return dispatch => {
+    
+  };
+}
+
+export function taskCardDragEnter(card) {
+  return dispatch => {
+    
+  };
+}
+
 export function updateTaskCard(data) {
   const config = createConfigWithAuth('PATCH', data);
   return dispatch => {
