@@ -1,6 +1,6 @@
 export SignIn from './SignIn';
 export SignUp from './SignUp';
-export Profile from './Profile';
+export Profile from './profile/Profile';
 export Goal from './goal/Goal';
 export NotFound from './NotFound';
 export DashBoard from './DashBoard';
