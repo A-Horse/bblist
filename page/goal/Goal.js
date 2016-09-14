@@ -4,8 +4,6 @@ import {connect} from 'react-redux';
 import {browserHistory} from 'react-router';
 import {makeGravatarUrl} from '../../services/gravatar';
 import {getGoalList, createGoal} from '../../actions/goal/goal';
-import {getAuthData} from '../../utils/auth';
-import {CACHED_USERID} from '../../constants';
 import GoalCreater from './GoalCreater';
 import GoalCard from './GoalCard';
 
@@ -23,8 +21,8 @@ class Goal extends Component {
 
   getGoals() {
     const {dispatch} = this.props;
-    const userId = getAuthData(CACHED_USERID);
-    return dispatch(getGoalList(userId));
+
+    return dispatch(getGoalList());
   }
 
   componentDidUpdate() {
