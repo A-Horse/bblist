@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import {PageContainer} from '../../components/widget/PageContainer';
 import {connect} from 'react-redux';
 import {browserHistory} from 'react-router';
+import {PageContainer} from '../../components/widget/PageContainer';
 import {makeGravatarUrl} from '../../services/gravatar';
 import Loading from '../../components/widget/loading';
 
@@ -15,7 +15,7 @@ class Profile extends Component {
   render() {
     const {user} = this.props;
     let changePasswordArea;
-    if( this.state.showChangePassword ){
+    if (this.state.showChangePassword){
       changePasswordArea = (
         <div>
           <div>
@@ -36,7 +36,7 @@ class Profile extends Component {
       )
     }
 
-    if( user ){
+    if (user) {
       return (
         <PageContainer>
           <h2>Profile</h2>
