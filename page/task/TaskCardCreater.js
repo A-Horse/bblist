@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import Radium from 'radium';
 
 import {createTaskCard} from '../../actions/task/task-card';
+import {getTaskAllCards} from '../../actions/task/task-wall';
 import {spawnMixinRender} from '../../style/theme-render';
 import {addBodyEventListenerOnce} from '../../actions/event/body';
 
@@ -35,7 +36,7 @@ class TaskCardCreater extends Component {
       title: this.refs.taskCardTitle.value.trim()
     };
     return dispatch(createTaskCard(data)).then(() => {
-      // return dispatch(getTaskAllCards(this.props.wallId));
+      return dispatch(getTaskAllCards(this.props.wallId));
     });
   }
 
