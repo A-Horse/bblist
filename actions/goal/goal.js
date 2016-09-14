@@ -38,7 +38,7 @@ function requestCreatedGoal() {
   };
 }
 
-function receiveCreatedGoal(goal) {
+function createdGoalSucceess(goal) {
   return {
     type: GOAL_POST_SUCCESS,
     goal
@@ -63,7 +63,7 @@ function requestDestroyGoal() {
   };
 }
 
-function receiveGoalDestroyed() {
+function GoalDestroySuccess() {
   return {
     type: GOAL_DELETE_SUCCESS
   }
@@ -82,7 +82,7 @@ export function deleteGoal(goalId) {
     dispatch(requestDestroyGoal());
     return fetch(`/api/goal${goalId}`, config)
       .then(handleResponseWithoutJson)
-      .then(() => dispatch(receiveGoalDestroyed()))
+      .then(() => dispatch(GoalDestroySuccess()))
   };
 }
 
@@ -92,7 +92,7 @@ export function createGoal(data) {
     dispatch(requestCreatedGoal());
     return fetch('/api/goal', config)
       .then(handleResponse)
-      .then(() => dispatch(receiveCreatedGoal()))
+      .then(() => dispatch(createdGoalSucceess()))
       .catch(() => {dispatch(createdGoalError())});
   };
 }
