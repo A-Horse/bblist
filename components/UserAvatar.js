@@ -3,7 +3,8 @@ import {makeGravatarUrl, getUserGravatorFromStorge, saveUserGravatorToStorge} fr
 import {getImageBase64} from '../services/image';
 
 const style = {
-  width: '50px'
+  width: '50px',
+  pointerEvents: 'none'
 };
 
 class UserAvatar extends Component {
