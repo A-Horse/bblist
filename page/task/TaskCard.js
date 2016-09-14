@@ -38,11 +38,16 @@ class TaskCard extends Component {
     };
   }
 
+  onDragStart(event) {
+    event.dataTransfer.dropEffect = 'move';
+    event.dataTransfer.setData('card', JSON.stringify(this.props.card));
+  }
+  
   render() {
     const {card} = this.props;
     const activeRole = card.creater;
     return (
-      <div style={styles.card} draggable='true'>
+      <div style={styles.card} draggable='true' onDragStart={this.onDragStart.bind(this)}>
         <p>{card.title}</p>
         <UserAvatar user={activeRole}/>
       </div>
