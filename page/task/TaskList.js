@@ -172,6 +172,7 @@ class TaskList extends Component {
       <div style={styles.list}
            onDragEnter={this.onDragEnter.bind(this)}
            onDrop={this.onDrop.bind(this)}
+           onDragLeave={this.onDragLeave.bind(this)}
            onDragOver={this.onDragOver.bind(this)}>
 
         {this.renderTopBar()}
@@ -184,16 +185,22 @@ class TaskList extends Component {
     );
   }
 
+  onDragLeave() {
+    console.log('onDrapLeave');
+  }
+
   onDragEnter() {
     console.log('onDragEnter');
   }
 
-  onDrop() {
+  onDrop(event) {
     console.log('onDrop');
+    const card = event.dataTransfer.getData('card');
+    console.log(card);
   }
 
-  onDragOver() {
-    console.log('onDragOver');
+  onDragOver(event) {
+    event.preventDefault();
   }
 
 }
