@@ -11,34 +11,34 @@ function taskWall(state = {
   case TASKWALL_GET_REQUEST:
     return Object.assign({}, state, {
       isFetching: true
-    })
+    });
     break;
   case TASKWALL_GET_SUCCESS:
     return Object.assign({}, state, {
       isFetching: true,
       walls: action.walls
-    })
+    });
     break;
   case TASKWALL_GET_FAILURE:
     return Object.assign({}, state, {
       isFetching: true
-    })
+    });
     break;
 
   case TASKWALL_DELETE_REQUEST:
     return Object.assign({}, state, {
       isFetching: true
-    })
+    });
     break;
   case TASKWALL_DELETE_SUCCESS:
     return Object.assign({}, state, {
       isFetching: true
-    })
+    });
     break;
   case TASKWALL_DELETE_FAILURE:
     return Object.assign({}, state, {
       isFetching: true
-    })
+    });
     break;
 
   case ALL_TASKCARD_GET_REQUEST:
@@ -64,4 +64,4 @@ function taskWall(state = {
   }
 }
 
-export default taskWall
+export default taskWall;
