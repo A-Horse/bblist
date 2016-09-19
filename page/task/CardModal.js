@@ -4,7 +4,7 @@ import {browserHistory} from 'react-router';
 import Radium from 'radium';
 import R from 'fw-ramda';
 
-
+import {deleteTaskCard, updateTaskCard} from '../../actions/task/task-card';
 import {spawnMixinRender} from '../../style/theme-render';
 import {AddIcon, EditIcon, ArrowDownIcon, SettingIcon} from '../../services/svg-icons';
 import {TaskWallSetting} from './TaskWallSetting';
@@ -30,12 +30,24 @@ class TaskModal extends Component {
   }
 
   render() {
-    const card = this.props;
+    const {card} = this.props;
     return (
       <div>
         
       </div>
     );
+  }
+
+  
+
+  updateTaskCard() {
+    const {dispatch} = this.props;
+    return dispatch(updateTaskCard(this.props.card.id));
+  }
+
+  deleteTaskCard() {
+    const {dispatch} = this.props;
+    return dispatch(deleteTaskCard(this.props.card.id));
   }
 }
 
