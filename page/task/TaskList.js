@@ -8,6 +8,7 @@ import TaskCard from './TaskCard';
 import TaskCardCreater from './TaskCardCreater';
 import {deleteTaskWall, getTaskAllCards} from '../../actions/task/task-wall';
 import {createTaskList, deleteTaskList} from '../../actions/task/task-list';
+import {updateTaskCard} from '../../actions/task/task-card';
 import {DropMenu} from '../../components/widget/DropMenu';
 import {ConfirmModal} from '../../components/widget/ConfirmModal';
 import {AddIcon, EditIcon, ArrowDownIcon, SettingIcon, MIDDLE_SIZE, SMALL_SIZE} from '../../services/svg-icons';
@@ -121,9 +122,7 @@ class TaskList extends Component {
 
   renderCards(cards) {
     return cards.map(card => {
-      return (
-        <TaskCard card={card} key={card.id} />
-      );
+      return (<TaskCard card={card} key={card.id} />);
     });
   }
 
@@ -201,6 +200,11 @@ class TaskList extends Component {
 
   onDragOver(event) {
     event.preventDefault();
+  }
+
+  requestMoveCardToThisList(card) {
+    const thisListId = this.props.listId;
+    return updateTaskCard(card.id, {listId: thisListId})
   }
 
 }
