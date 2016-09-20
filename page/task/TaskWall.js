@@ -120,10 +120,7 @@ class TaskWall extends Component {
   }
 
   makeListNameMap(lists) {
-    return R.zipObj(
-      R.pluck('id', lists),
-      R.pluck('name', lists),
-    );
+    return R.zipObj(R.pluck('id', lists), R.pluck('name', lists));
   }
 
   getListName(id) {
@@ -133,10 +130,10 @@ class TaskWall extends Component {
   renderList(listId, cards) {
     return (
       <TaskList key={listId}
-      listId={listId}
-      cards={cards}
-      listName={this.getListName(listId)}
-      wallId={this.props.params.id}
+                listId={listId}
+                cards={cards}
+                listName={this.getListName(listId)}
+                wallId={this.props.params.id}
       />
     )
   }
@@ -229,7 +226,10 @@ class TaskWall extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    wallData: state.taskWall.wallData || {info: {}, cards: [], lists: [], list: []},
+    // wallData: state.taskWall.wallData || {info: {}, cards: [], lists: [], list: []},
+    wall: state.taskWall.wall,
+    cards: state.taskWall.cards,
+    lists: state.taskWall.lists,
     status: state.taskCard.status
   };
 }
