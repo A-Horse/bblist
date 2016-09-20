@@ -77,7 +77,6 @@ export const TASKCARD_MOVE_REQUEST = 'TASKCARD_MOVE_REQUEST';
 export const TASKCARD_MOVE_SUCCESS = 'TASKCARD_MOVE_SUCCESS';
 export const TASKCARD_MOVE_FAILURE = 'TASKCARD_MOVE_FAILURE';
 
-
 function requestMoveTaskCard(card) {
   return {
     type: TASKCARD_MOVE_REQUEST,
