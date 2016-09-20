@@ -4,6 +4,7 @@ import {createConfigWithAuth} from '../../utils/header';
 import {handleResponse, handleResponseWithoutJson} from '../../utils/http-handle';
 import {getAuthData} from '../../utils/auth';
 import {CACHED_USERID} from '../../constants';
+import {makeApiUrl} from '../../utils/api';
 
 export const TASKWALL_GET_REQUEST = 'TASKWALL_GET_REQUEST';
 export const TASKWALL_GET_SUCCESS = 'TASKWALL_GET_SUCCESS';
@@ -21,47 +22,47 @@ export const ALL_TASKCARD_GET_REQUEST = 'TASKCARD_GET_REQUEST';
 export const ALL_TASKCARD_GET_SUCCESS = 'TASKCARD_GET_SUCCESS';
 export const ALL_TASKCARD_GET_FAILURE = 'TASKCARD_GET_FAILURE';
 
-function requestGetTaskWall(user) {
+function requestTaskWalls() {
   return {
     type: TASKWALL_GET_REQUEST
   }
 }
 
-function receiveGetTaskWall(walls) {
+function receiveTaskWalls(walls) {
   return {
     type: TASKWALL_GET_SUCCESS,
-    walls: walls
+    playload: walls
   }
 }
 
-function getTaskWallError(message) {
+function receiveTaskWallsFail(error) {
   return {
     type: TASKWALL_GET_FAILURE,
-    message: message
+    playload: error,
+    error: true
   }
 }
 
 
-function requestGetTaskWallCards() {
+function requestTaskWallCards() {
   return {
     type: ALL_TASKCARD_GET_REQUEST
   }
 }
 
-function receiveGetTaskWallCards(wallData) {
+function receiveTaskWallCards(resp) {
   return {
     type: ALL_TASKCARD_GET_SUCCESS,
-    wallData: wallData
+    playload: resp
   }
 }
 
-function getTaskWallCardsError(status) {
+function receiveTaskWallCardsFail(status) {
   return {
     type: ALL_TASKCARD_GET_FAILURE,
     status: status
   }
 }
-
 
 function requestCreateTaskWall() {
   return {
@@ -103,30 +104,30 @@ export function getTaskAllCards(wallId) {
   const config = createConfigWithAuth('GET');
   const userId = getAuthData(CACHED_USERID);
   return dispatch => {
-    dispatch(requestGetTaskWallCards())
-    return fetch(`/api/user/${userId}/task-wall/${wallId}/all`, config)
+    dispatch(requestTaskWallCards())
+    return fetch(makeApiUrl(`/user/${userId}/task-wall/${wallId}/all`), config)
       .then(handleResponse)
-      .then(response => dispatch(receiveGetTaskWallCards(response)))
-      .catch(handleHttpError)
-  }
+      .then(response => dispatch(receiveTaskWallCards(response)))
+      .catch(error => dispatch(receiveTaskWallCardsFail(error)));
+  };
 }
 
 export function getAllTaskWall() {
   const config = createConfigWithAuth('GET');
   return dispatch => {
-    dispatch(requestGetTaskWall())
-    return fetch('/api/task-wall', config)
+    dispatch(requestTaskWalls())
+    return fetch(makeApiUrl('/api/task-wall'), config)
       .then(handleResponse)
-      .then(response => dispatch(receiveGetTaskWall(response)))
-      .catch(handleHttpError);
-  }
+      .then(response => dispatch(receiveTaskWalls(response)))
+      .catch(error => dispatch(receiveTaskWallsFail(error)));
+  };
 }
 
 export function createTaskWall(CreateWallInfo) {
   const config = createConfigWithAuth('POST', CreateWallInfo);
   return dispatch => {
     dispatch(requestCreateTaskWall());
-    return fetch('/api/task-wall', config)
+    return fetch(makeApiUrl('/task-wall'), config)
       .then(handleResponse)
       .then(response => dispatch(receiveCreateTaskWall(response)))
       .catch(handleHttpError);
@@ -137,7 +138,7 @@ export function deleteTaskWall(wallInfo) {
   const config = createConfigWithAuth('DELETE');
   return dispatch => {
     dispatch(requestDeleteTaskWall(wallInfo));
-    return fetch(`/api/task-wall/${wallInfo.id}`, config)
+    return fetch(makeApiUrl(`/task-wall/${wallInfo.id}`), config)
       .then(handleResponseWithoutJson)
       .then(response => dispatch(deleteTaskWallSuccess(response)));
   };
