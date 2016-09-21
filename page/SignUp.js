@@ -6,7 +6,7 @@ import { browserHistory } from 'react-router'
 
 import {
   SIGNUP_REQUEST, SIGNUP_SUCCESS, SIGNUP_FAILURE
-} from '../actions/sign-up'
+} from '../actions/sign-up';
 
 class SignUp extends Component {
 
