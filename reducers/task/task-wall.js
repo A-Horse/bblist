@@ -6,7 +6,7 @@ import {
 
 function taskWall(state = {
   isFetching: false,
-  wall: {}, walls: [], lists: []
+  wall: {}, walls: []
 }, action) {
   switch (action.type) {
   case TASKWALL_GET_REQUEST:
@@ -50,8 +50,7 @@ function taskWall(state = {
   case ALL_TASKCARD_GET_SUCCESS:
     return Object.assign({}, state, {
       isFetching: false,
-      wall: action.playload.wall,
-      lists: action.playload.lists
+      wall: action.playload.wall
     });
     break;
   case ALL_TASKCARD_GET_FAILURE:

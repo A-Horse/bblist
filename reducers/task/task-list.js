@@ -2,10 +2,24 @@ import {
   TASKLIST_PATCH_REQUEST, TASKLIST_PATCH_SUCCESS, TASKLIST_PATCH_FAILURE,
   TASKLIST_POST_REQUEST, TASKLIST_POST_SUCCESS, TASKLIST_POST_FAILURE,
 } from '../../actions/task/task-list';
-import {normalize, Schema, arrayOf} from 'normalizr';
+
+import {
+  TASKCARD_LEAVE_START, TASKCARD_LEAVE_DONE,
+  TASKCARD_ENTER_START, TASKCARD_ENTER_DONE,
+  TASKCARD_MOVE_REQUEST, TASKCARD_MOVE_SUCCESS, TASKCARD_MOVE_FAILURE
+} from '../../actions/task/task-list';
+
+import {
+  TASKWALL_GET_REQUEST, TASKWALL_GET_SUCCESS, TASKWALL_GET_FAILURE,
+  TASKWALL_DELETE_REQUEST, TASKWALL_DELETE_SUCCESS, TASKWALL_DELETE_FAILURE,
+  ALL_TASKCARD_GET_REQUEST, ALL_TASKCARD_GET_SUCCESS, ALL_TASKCARD_GET_FAILURE
+} from '../../actions/task/task-wall';
+
 
 function taskList(state = {
-  isFetching: false
+  isFetching: false,
+  movingCard: null,
+  lists: []
 }, action) {
   switch (action.type) {
   case TASKLIST_POST_REQUEST:
@@ -41,6 +55,25 @@ function taskList(state = {
     return Object.assign({}, state, {
       isFetching: false,
       message: action.message
+    });
+    break;
+
+  case TASKCARD_LEAVE_START:
+    const {formListId} = action.info;
+    const {lists} = state;
+    lists[formListId] 
+    return Object.assign({}, state, {
+      movingCard: action.card
+    });
+    break;
+  case TASKCARD_LEAVE_DONE:
+  case TASKCARD_ENTER_START:
+  case TASKCARD_ENTER_DONE:
+    return Object.assign({}, state);
+
+  case ALL_TASKCARD_GET_SUCCESS:
+    return Object.assign({}, state, {
+      lists: action.playload.lists
     });
     break;
     

@@ -50,7 +50,7 @@ class TaskCard extends Component {
     return dispatch(taskCardDragLeaveStart(this.props.card, {
       width,
       height,
-      from: this.props.listId
+      formListId: this.props.listId
     }));
   }
 

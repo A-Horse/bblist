@@ -104,7 +104,7 @@ class TaskWall extends Component {
     const {dispatch} = this.props;    
     return dispatch(getTaskAllCards(id));
   }
-
+  
   renderList(list) {
     return <TaskList key={list.id} listId={list.id} cards={list.cards} listName={list.name} wallId={this.props.params.id}/>;
   }
@@ -201,7 +201,7 @@ class TaskWall extends Component {
 const mapStateToProps = (state) => {
   return {
     wall: state.taskWall.wall,
-    lists: state.taskWall.lists,
+    lists: state.taskList.lists,
     status: state.taskCard.status
   };
 }
