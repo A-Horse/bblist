@@ -149,7 +149,7 @@ class Tasks extends Component {
   }
 
   getWalls() {
-    let { dispatch } = this.props;
+    const {dispatch} = this.props;
     return dispatch(getAllTaskWall());
   }
 
@@ -170,7 +170,7 @@ class Tasks extends Component {
         <input style={modalStyles.nameInput} type='text' ref='name' placeholder="Wall Name"/>
         <button style={modalStyles.createButton} onClick={() => this.handleClick()} >Complete And Create</button>
       </Modal>
-    )
+    );
   }
 
   renderWalls() {
@@ -181,8 +181,8 @@ class Tasks extends Component {
             <h2 style={styles.cardTitle}>{wjson.name}</h2>
           </div>
         </div>
-      )
-    })
+      );
+    });
   }
   
   render() {
@@ -210,7 +210,7 @@ class Tasks extends Component {
     dispatch(createTaskWall({name: name.value.trim()})).then(() => {
       this.getWalls();
       this.setState({modalOpen: false});
-    })
+    });
   }
 }
 
@@ -220,4 +220,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(Tasks)
+export default connect(mapStateToProps)(Tasks);
