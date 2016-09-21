@@ -116,7 +116,7 @@ export function getAllTaskWall() {
   const config = createConfigWithAuth('GET');
   return dispatch => {
     dispatch(requestTaskWalls())
-    return fetch(makeApiUrl('/api/task-wall'), config)
+    return fetch(makeApiUrl('/task-wall'), config)
       .then(handleResponse)
       .then(response => dispatch(receiveTaskWalls(response)))
       .catch(error => dispatch(receiveTaskWallsFail(error)));
