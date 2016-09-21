@@ -105,42 +105,13 @@ class TaskWall extends Component {
     return dispatch(getTaskAllCards(id));
   }
 
-  changeListName(listName) {
-    const id = R.find((R.propEq('name', listName)))(this.props.wallData.list).id;
+  renderList(list) {
+    return <TaskList key={list.id} listId={list.id} cards={list.cards} listName={list.name} wallId={this.props.params.id}/>;
   }
 
-  classificationCards(cards, lists) {
-    return R.merge(
-      lists.reduce((result, list) => {
-        result[list.id] = [];
-        return result;
-      }, {}),
-      R.groupBy(_ => _.taskListId)(cards)
-    );
-  }
-
-  makeListNameMap(lists) {
-    return R.zipObj(R.pluck('id', lists), R.pluck('name', lists));
-  }
-
-  getListName(id) {
-    return this.listNameMap[id];
-  }
-
-  renderList(listId, cards) {
-    return (
-      <TaskList key={listId}
-                listId={listId}
-                cards={cards}
-                listName={this.getListName(listId)}
-                wallId={this.props.params.id}
-      />
-    )
-  }
-
-  renderLists(cardGroups) {
-    return Object.keys(cardGroups)
-      .map(listName => this.renderList(listName, cardGroups[listName]));
+  renderLists() {
+    const {lists} = this.props;
+    return lists.map(list => this.renderList(list));
   }
 
   renderSetttingMenu() {
@@ -159,12 +130,12 @@ class TaskWall extends Component {
   }
 
   renderTopBar() {
-    const {wallData} = this.props;
+    const {wall} = this.props;
     return (
       <div style={styles.topBar}>
-        <h2 style={styles.topBarTitle}>{wallData.info.name}</h2>
+        <h2 style={styles.topBarTitle}>{wall.name}</h2>
         <div style={styles.dimensions}>
-          {wallData.info.defaultDimensions}
+          {wall.defaultDimensions}
         </div>
         {this.renderSetttingMenu()}
       </div>
@@ -174,13 +145,19 @@ class TaskWall extends Component {
   renderCreateList() {
     return (
       <div style={styles.createList} key='createList'>
-        {
-          this.state.typingNewList ? <input ref='newListInput' onKeyDown={(e) => {if (e.which === 13) this.createNewList()}} onBlur={() => {}}/>
-            : <div style={{display: 'flex', alignItems: 'center'}}>
-              <AddIcon style={{width: `${MIDDLE_SIZE}px`, height: `${MIDDLE_SIZE}px`}} onClick={() => {this.setState({typingNewList: true})}} />
-                  <span>Create List</span>
-            </div>   
-         }
+        {this.renderCreateListTitle()}
+      </div>
+    );
+  }
+
+  renderCreateListTitle() {
+    if (this.state.typingNewList) {
+      return <input ref='newListInput' onKeyDown={(e) => {if (e.which === 13) this.createNewList()}} onBlur={() => {}}/>;
+    }
+    return (
+      <div style={{display: 'flex', alignItems: 'center'}}>
+        <AddIcon style={{width: `${MIDDLE_SIZE}px`, height: `${MIDDLE_SIZE}px`}} onClick={() => {this.setState({typingNewList: true})}} />
+          <span>Create List</span>
       </div>
     );
   }
@@ -192,15 +169,12 @@ class TaskWall extends Component {
    * }*/
 
   render() {
-    const {wallData} = this.props;
-    const cardGroups = this.classificationCards(wallData.cards, wallData.lists);
-    this.listNameMap = this.makeListNameMap(wallData.lists);
     return (
       <div style={styles.container}>
         {this.renderTopBar()}
         <PageContainer style={styles.pageContainer}>
            <div style={styles.listContainer}>
-              {this.renderLists(cardGroups)}
+              {this.renderLists()}
               {this.renderCreateList()}
            </div>
         </PageContainer>
@@ -212,7 +186,7 @@ class TaskWall extends Component {
     const {dispatch} = this.props;
     const name = this.refs.newListInput;
     dispatch(createTaskList(this.props.params.id, {name: name.value.trim()}))
-      .then()
+      .then();
   }
   
   deleteTaskList(listId) {
@@ -220,15 +194,13 @@ class TaskWall extends Component {
     const wallId = this.props.params.id;
     dispatch(deleteTaskList(wallId, listId)).then(() => {
       
-    })
+    });
   }
 }
 
 const mapStateToProps = (state) => {
   return {
-    // wallData: state.taskWall.wallData || {info: {}, cards: [], lists: [], list: []},
     wall: state.taskWall.wall,
-    cards: state.taskWall.cards,
     lists: state.taskWall.lists,
     status: state.taskCard.status
   };
