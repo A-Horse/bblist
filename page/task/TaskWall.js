@@ -201,8 +201,7 @@ class TaskWall extends Component {
 const mapStateToProps = (state) => {
   return {
     wall: state.taskWall.wall,
-    lists: state.taskList.lists,
-    status: state.taskCard.status
+    lists: state.taskList.lists
   };
 }
 
