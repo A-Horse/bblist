@@ -185,17 +185,17 @@ class TaskList extends Component {
   }
 
   onDragLeave() {
-    // console.log('onDrapLeave');
+    console.log('onDrapLeave');
   }
 
   onDragEnter() {
-    // console.log('onDragEnter');
+    console.log('onDragEnter');
   }
 
   onDrop(event) {
-    // console.log('onDrop');
+    console.log('onDrop');
     const card = event.dataTransfer.getData('card');
-    // console.log(card);
+    console.log(card);
   }
 
   onDragOver(event) {
