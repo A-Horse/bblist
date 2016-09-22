@@ -3,6 +3,13 @@ import {
   TASKCARD_PATCH_REQUEST, TASKCARD_PATCH_SUCCESS, TASKCARD_PATCH_FAILURE
 } from '../../actions/task/task-card';
 
+import {
+  TASKCARD_LEAVE_START, TASKCARD_LEAVE_DONE,
+  TASKCARD_ENTER_START, TASKCARD_ENTER_DONE,
+  TASKCARD_MOVE_REQUEST, TASKCARD_MOVE_SUCCESS, TASKCARD_MOVE_FAILURE
+} from '../../actions/task/task-list';
+
+
 function taskCard(state = {
   isFetching: false
 }, action) {
@@ -41,8 +48,7 @@ function taskCard(state = {
       isFetching: false
     })
     break;
-
-  
+    
   default:
     return state;
   }

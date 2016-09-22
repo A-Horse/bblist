@@ -3,6 +3,7 @@ import {handleHttpError} from '../../services/handle-error';
 import {createConfigWithAuth} from '../../utils/header';
 import {handleResponse, handleResponseWithoutJson} from '../../utils/http-handle';
 import {makeApiUrl} from '../../utils/api';
+
 export const TASKCARD_POST_REQUEST = 'TASKCARD_POST_REQUEST';
 export const TASKCARD_POST_SUCCESS = 'TASKCARD_POST_SUCCESS';
 export const TASKCARD_POST_FAILURE = 'TASKCARD_POST_FAILURE';
@@ -58,7 +59,7 @@ export const TASKCARD_ENTER_START = 'TASKCARD_ENTER_START';
 export const TASKCARD_ENTER_DONE = 'TASKCARD_ENTER_DONE';
 
 export function taskCardDragLeaveStart(card, info) {
-  return dispatch => dispatch({type: TASKCARD_LEAVE_START, card, info});
+  return dispatch => {dispatch({type: TASKCARD_LEAVE_START, card, info})};
 }
 
 export function taskCardDragLeaveDone(card) {
