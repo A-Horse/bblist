@@ -17,6 +17,7 @@ import {getAssets} from '../../services/assets-manager';
 import {AddIcon, SettingIcon, MIDDLE_SIZE} from '../../services/svg-icons';
 import {navHeight} from '../../components/Nav';
 import {spawnMixinRender} from '../../style/theme-render';
+import FloatTaskCard from './FloatTaskCard';
 
 const styles = {
   container: {
@@ -89,6 +90,8 @@ class TaskWall extends Component {
     this.state = {
       typingNewList: false
     };
+    this.mouseMovePosition = {};
+    this.mouseMoveListener = [];
   }
   
   componentWillMount() {
@@ -167,17 +170,30 @@ class TaskWall extends Component {
    *     <TaskWallSetting {...this.props}/>
    *   );
    * }*/
+  
+  onMouseMove(event) {
+     const position = {
+      top: event.nativeEvent.clientY,
+      left: event.nativeEvent.clientX
+    };
+    this.mouseMoveListener.forEach(listener => listener(position));
+  }
 
+  addToMouseMoveListener(fn) {
+    this.mouseMoveListener.push(fn);
+  }
+  
   render() {
     return (
-      <div style={styles.container}>
+      <div style={styles.container} onMouseMove={this.onMouseMove.bind(this)}>
         {this.renderTopBar()}
         <PageContainer style={styles.pageContainer}>
-           <div style={styles.listContainer}>
-              {this.renderLists()}
-              {this.renderCreateList()}
-           </div>
+          <div style={styles.listContainer}>
+            {this.renderLists()}
+            {this.renderCreateList()}
+          </div>
         </PageContainer>
+        <FloatTaskCard addToMouseMoveListener={this.addToMouseMoveListener.bind(this)}/>
       </div>
     );
   }
