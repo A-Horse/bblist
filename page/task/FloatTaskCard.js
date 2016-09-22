@@ -41,9 +41,9 @@ class FloatTaskCard extends Component {
 
   updateWithPosition(position) {
     if (!this.props.card) {
-      return;
+      return 
     }
-    this.refs.main.style.top = position.top - this.props.info.offsetY - 42 + 'px';
+    this.refs.main.style.top = position.top - this.props.info.offsetY + 'px';
     this.refs.main.style.left = position.left - this.props.info.offsetX + 'px';
   }
   
@@ -51,7 +51,7 @@ class FloatTaskCard extends Component {
     if (true && this.props.card) {
       return (
         <div style={style} ref='main'>
-          <TaskCard card={this.props.card} />
+          <TaskCard card={this.props.card} />;
         </div>
       );
     }

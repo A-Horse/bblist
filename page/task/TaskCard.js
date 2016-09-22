@@ -41,19 +41,16 @@ class TaskCard extends Component {
   }
 
   onDragStart(event) {
-    console.log(event.nativeEvent);
     const {dispatch} = this.props;
+    event.dataTransfer.dropEffect = 'move';
+    // event.dataTransfer.setData('card', JSON.stringify(this.props.card));
+    
     const width = this.refs.main.offsetWidth;
     const height = this.refs.main.offsetHeight;
-    //this
-    //const offsetTop = t
-    
     return dispatch(taskCardDragLeaveStart(this.props.card, {
-      offsetX: event.nativeEvent.offsetX,
-      offsetY: event.nativeEvent.offsetY,
       width,
       height,
-      fromListId: this.props.card.taskListId
+      formListId: this.props.listId
     }));
   }
 
@@ -69,18 +66,12 @@ class TaskCard extends Component {
     }
     return dispatch(updateTaskCard(this.props.card.id, {isDone: true}));
   }
-
-  onLoad() {
-    const height = this.refs.main.offsetHeight;
-    this.props.card.height = height;
-    this.props.card.loaded = true;
-  }
   
   render() {
     const {card} = this.props;
     const activeRole = card.creater;
     return (
-      <div ref='main' style={styles.card} draggable='true' onMouseDown={this.onDragStart.bind(this)} onLoad={this.onLoad.bind(this)}>
+      <div ref='main' style={styles.card} draggable='true' onDragStart={this.onDragStart.bind(this)}>
         <p>{card.title}</p>
         <UserAvatar user={activeRole}/>
       </div>
@@ -90,6 +81,7 @@ class TaskCard extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    wallData: state.taskWall.wallData
   };
 };
 
