@@ -7,7 +7,7 @@ import {
   TASKCARD_LEAVE_START, TASKCARD_LEAVE_DONE,
   TASKCARD_ENTER_START, TASKCARD_ENTER_DONE,
   TASKCARD_MOVE_REQUEST, TASKCARD_MOVE_SUCCESS, TASKCARD_MOVE_FAILURE
-} from '../../actions/task/task-list';
+} from '../../actions/task/task-card';
 
 import {
   TASKWALL_GET_REQUEST, TASKWALL_GET_SUCCESS, TASKWALL_GET_FAILURE,
@@ -15,6 +15,7 @@ import {
   ALL_TASKCARD_GET_REQUEST, ALL_TASKCARD_GET_SUCCESS, ALL_TASKCARD_GET_FAILURE
 } from '../../actions/task/task-wall';
 
+import R from 'fw-ramda';
 
 function taskList(state = {
   isFetching: false,
@@ -59,11 +60,15 @@ function taskList(state = {
     break;
 
   case TASKCARD_LEAVE_START:
-    const {formListId} = action.info;
+    const {fromListId} = action.info;
     const {lists} = state;
-    lists[formListId] 
+    const listIndex = R.findIndex(R.propEq('id', fromListId))(lists);
+    const cardIndex = lists[listIndex].cards.indexOf(action.card);
+    lists[listIndex].cards.splice(cardIndex, 1);
     return Object.assign({}, state, {
-      movingCard: action.card
+      movingCard: action.card,
+      movingCardInfo: action.info,
+      lists: R.clone(lists, true)
     });
     break;
   case TASKCARD_LEAVE_DONE:
