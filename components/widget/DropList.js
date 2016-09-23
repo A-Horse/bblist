@@ -11,7 +11,7 @@ let styles = {
   }
 }
 
-export class DropMenu extends Component {
+export class DropList extends Component {
   defaultProps: {
     toggle: PropTypes.required
   }

@@ -6,7 +6,7 @@ import {deleteTaskWall, getTaskAllCards} from 'actions/task/task-wall';
 import {taskCardDragLeaveStart, updateTaskCard} from 'actions/task/task-card';
 import {createTaskList, deleteTaskList} from 'actions/task/task-list';
 import {openTaskCardModal} from 'actions/event/task-wall';
-import {DropMenu} from 'components/widget/DropMenu';
+import {DropList} from 'components/widget/DropList';
 import {ConfirmModal} from 'components/widget/ConfirmModal';
 import {PageContainer} from 'components/widget/PageContainer';
 import {Hr} from 'components/widget/Hr';

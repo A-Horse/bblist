@@ -9,7 +9,7 @@ import TaskCardCreater from './TaskCardCreater';
 import {deleteTaskWall, getTaskAllCards} from 'actions/task/task-wall';
 import {createTaskList, deleteTaskList} from 'actions/task/task-list';
 import {updateTaskCard} from 'actions/task/task-card';
-import {DropMenu} from 'components/widget/DropMenu';
+import {DropList} from 'components/widget/DropList';
 import {ConfirmModal} from 'components/widget/ConfirmModal';
 import {AddIcon, EditIcon, ArrowDownIcon, SettingIcon, MIDDLE_SIZE, SMALL_SIZE} from 'services/svg-icons';
 import {spawnMixinRender} from 'style/theme-render';
@@ -110,7 +110,7 @@ class TaskList extends Component {
     const obj = {};
     obj[listId] = !this.state.listSetting[listId];
     // TODO rename
-    this.setState({listSetting: obj})
+    this.setState({listSetting: obj});
     GlobalClick.addGlobalClickHandleOnce(() => {
       const obj = {};
       obj[listId] = false;
@@ -148,17 +148,15 @@ class TaskList extends Component {
   renderTopBar() {
     const {listId} = this.props;
     return (
-      <div style={styles.listTopBar}>
-        
+      <div style={styles.listTopBar} className="task-list--top-bar">
         {this.renderListName()}
-        
         <ArrowDownIcon className='arrow-down-icon icon' style={styles.listMenuIcon} onClick={() => {this.onClickSetting(listId)}}/>
 
-          <DropMenu toggle={this.state.listSetting[listId]}>
+          <DropList toggle={this.state.listSetting[listId]}>
             <ul style={styles.listSettingDropDown}>
               <li style={styles.listSettingItem} onClick={() => {this.refs.listDeleteConfirm.open()}}>Delete</li>
             </ul>
-          </DropMenu>
+          </DropList>
 
           <ConfirmModal confirmFn={() => {this.deleteTaskList(listId)}} ref='listDeleteConfirm' ></ConfirmModal>
       </div>
@@ -169,6 +167,7 @@ class TaskList extends Component {
     const {listId, cards} = this.props;
     return (
       <div style={styles.list}
+           className="task-list"
            onDragEnter={this.onDragEnter.bind(this)}
            onDrop={this.onDrop.bind(this)}
            onDragLeave={this.onDragLeave.bind(this)}
@@ -185,20 +184,20 @@ class TaskList extends Component {
   }
 
   onDragLeave() {
-    console.log('onDrapLeave');
+    
   }
 
   onDragEnter() {
-    console.log('onDragEnter');
+    
   }
 
-  onDrop(event) {
-    console.log('onDrop');
+  onDrop(event) {    
     const card = event.dataTransfer.getData('card');
-    console.log(card);
   }
 
   onDragOver(event) {
+    console.log(event);
+    const {cards} = this.props;
     event.preventDefault();
   }
 
@@ -211,7 +210,6 @@ class TaskList extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    wallData: state.taskWall.wallData
   };
 }
 

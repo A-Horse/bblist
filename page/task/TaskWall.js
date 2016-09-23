@@ -6,7 +6,7 @@ import R from 'fw-ramda';
 
 import TaskList, {listWidth} from './TaskList';
 import {TaskWallSetting} from './TaskWallSetting';
-import {DropMenu} from 'components/widget/DropMenu';
+import {DropList} from 'components/widget/DropList';
 import {ConfirmModal} from 'components/widget/ConfirmModal';
 import {Hr} from 'components/widget/Hr';
 import {PageContainer} from 'components/widget/PageContainer';
@@ -38,7 +38,7 @@ const styles = {
   settingContainer: {
     display: 'block'
   },
-  settingDropMenu: {
+  settingDropList: {
     display: 'block',
     position: 'absolute',
     top: '30px',
@@ -118,12 +118,12 @@ class TaskWall extends Component {
     return (
       <div style={styles.settingContainer} onClick={() => {}}>
         <SettingIcon style={styles.settingIcon} onClick={() => {this.setState({openSetting: true})}}/>
-          <DropMenu toggle={this.state.settingToggle}>
-            <ul style={styles.settingDropMenu}>
+          <DropList toggle={this.state.settingToggle}>
+            <ul style={styles.settingDropList}>
               <li onClick={() => {this.refs.delConfirm.open()}}>Delete This Wall</li>
               <li>2</li>
             </ul>
-          </DropMenu>
+          </DropList>
           <ConfirmModal confirmFn={() => {this.deleteWall()}} ref='delConfirm'></ConfirmModal>
       </div>
     );
