@@ -10,16 +10,16 @@ import {createDevTools} from 'redux-devtools';
 import LogMonitor from 'redux-devtools-log-monitor';
 import DockMonitor from 'redux-devtools-dock-monitor';
 
-import {App} from './components';
+import {App} from 'components';
 import {SignIn, SignUp, Profile, Goal, Tasks, TaskWall, NotFound, DashBoard,
-        IndexPage, Ideas, TaskWallSetting} from './page';
-import Body from './components/Body';
+        IndexPage, Ideas, TaskWallSetting} from 'page';
+import Body from 'components/Body';
 
-import {checkLogin} from './utils/auth';
-import * as reducers from './reducers';
+import {checkLogin} from 'utils/auth';
+import * as reducers from 'reducers';
 
-import './style/normalize.css';
-import './style/app.scss';
+import 'style/normalize.css';
+import 'style/app.scss';
 
 const reducer = combineReducers({
   ...reducers,
