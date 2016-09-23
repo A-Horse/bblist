@@ -2,11 +2,10 @@ import {combineReducers} from 'redux';
 import {
   LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE,
   LOGIN_AUTH_REQUEST, LOGIN_AUTH_SUCCESS, LOGIN_AUTH_FAILURE,
-} from '../actions/login';
-import {Storage} from '../services/storage';
-import {browserHistory} from 'react-router';
-import {JWT_STORAGE_KEY, CACHED_USERNAME, CACHED_USERID, CACHED_USEREMAIL} from '../constants';
-import {saveAuthData} from '../utils/auth';
+} from 'actions/login';
+import {Storage} from 'services/storage';
+import {JWT_STORAGE_KEY, CACHED_USERNAME, CACHED_USERID, CACHED_USEREMAIL} from 'constants';
+import {saveAuthData} from 'utils/auth';
 
 function login(state = {
   isFetching: false,
