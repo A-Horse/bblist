@@ -24,7 +24,7 @@ export function saveCachedData(data) {
 }
 
 export function destoryCachedData() {
-  return Storage.set(AUTH_DATA, getJWT());
+  return Storage.remove(AUTH_DATA);
 }
 
 export function saveAuthData(jwt, data) {
