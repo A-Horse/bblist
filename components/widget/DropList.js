@@ -1,15 +1,4 @@
-import React, { Component, PropTypes } from 'react';
-
-let styles = {
-  currentItem: {
-  },
-  itemsContainer: {
-    border: '1px solid #999'
-  },
-  item: {
-    cursor: 'default'
-  }
-}
+import React, {Component, PropTypes} from 'react';
 
 export class DropList extends Component {
   defaultProps: {
@@ -38,7 +27,7 @@ export class DropList extends Component {
   }
   
   render() {
-    if( this.props.toggle ){
+    if (this.props.toggle) {
       return this.props.children;
     } else {
       return null;
