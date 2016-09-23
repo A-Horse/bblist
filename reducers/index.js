@@ -8,4 +8,6 @@ export taskList from './task/task-list';
 
 export goal from './goal/goal';
 
+export todos from './todo/todos';
+
 export event from './event/event';
