@@ -1,6 +1,8 @@
+import {browserHistory} from 'react-router';
 import {
   LOGOUT_REQUEST, LOGOUT_SUCCESS, LOGOUT_FAILURE
-} from '../actions/logout';
+} from 'actions/logout';
+import {destoryAuthData} from 'utils/auth';
 
 function logout(state = {
   isFetching: false
@@ -12,15 +14,15 @@ function logout(state = {
     });
     break;
   case LOGOUT_SUCCESS:
+    destoryAuthData();
+    browserHistory.push('/logout');
     return Object.assign({}, state, {
-      isFetching: false,
-      goalList: action.goalList
+      isFetching: false
     });
     break;
   case LOGOUT_FAILURE:
     return Object.assign({}, state, {
-      isFetching: false,
-      message: action.message
+      isFetching: false
     });
     break;
 
