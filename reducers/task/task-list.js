@@ -60,15 +60,15 @@ function taskList(state = {
     break;
 
   case TASKCARD_LEAVE_START:
-    const {fromListId} = action.info;
-    const {lists} = state;
-    const listIndex = R.findIndex(R.propEq('id', fromListId))(lists);
-    const cardIndex = lists[listIndex].cards.indexOf(action.card);
-    lists[listIndex].cards.splice(cardIndex, 1);
+    // const {fromListId} = action.info;
+    // const {lists} = state;
+    // const listIndex = R.findIndex(R.propEq('id', fromListId))(lists);
+    // const cardIndex = lists[listIndex].cards.indexOf(action.card);
+    // lists[listIndex].cards.splice(cardIndex, 1);
     return Object.assign({}, state, {
       movingCard: action.card,
       movingCardInfo: action.info,
-      lists: R.clone(lists, true)
+      // lists: R.clone(lists, true)
     });
     break;
   case TASKCARD_LEAVE_DONE:
