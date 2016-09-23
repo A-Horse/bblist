@@ -3,7 +3,7 @@ import {
 } from 'actions/todo/todos';
 
 function todos(state = {
-  isFetching: fasle
+  isFetching: false
 }, action) {
   switch (action.type) {
   case TODOLIST_GET_REQUEST:
