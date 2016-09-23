@@ -2,6 +2,7 @@ export login from './login';
 export auth from './auth';
 export signup from './sign-up';
 
+export task from './task/task';
 export taskCard from './task/task-card';
 export taskWall from './task/task-wall';
 export taskList from './task/task-list';
