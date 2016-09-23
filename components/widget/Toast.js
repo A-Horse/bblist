@@ -1,49 +1,8 @@
 import React, { Component, PropTypes } from 'react';
-
 import {Modal} from './Modal';
 import R from 'fw-ramda';
-import {getAssets} from '../../services/assets-manager';
-
-const modalStyles = {
-  overlay: {
-    position: 'fixed',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundColor: 'rgba(20, 20, 20, 0.75)'
-  },
-  content: {
-    position: 'absolute',
-    top: '140px',
-    left: '140px',
-    right: '140px',
-    bottom: '140px',
-    border: '1px solid #ccc',
-    background: '#fff',
-    overflow: 'auto',
-    WebkitOverflowScrolling: 'touch',
-    borderRadius: '4px',
-    outline: 'none',
-    padding: '20px'
-  }
-};
-
-const styles = {
-  main: {
-    
-  },
-  close: {
-    position: 'absolute',
-    
-  }
-};
 
 export class Toast extends Component {
-  propTypes: {
-    confirmFn: PropTypes.func.isRequired
-  }
-  
   constructor() {
     super();
     this.state = {
@@ -51,25 +10,8 @@ export class Toast extends Component {
     }
   }
   
-  init() {
-    
-  }
-
-  componentDidMount() {
-    
-  }
-
-  componentDidUpdate() {
-    
-  }
-
   cancel() {
     this.props.cancelFn && this.props.cancelFn();
-    this.close();
-  }
-
-  confirm() {
-    this.props.confirmFn();
     this.close();
   }
 
@@ -77,19 +19,11 @@ export class Toast extends Component {
     this.setState({isOpen: false})
   }
 
-  open() {
-    this.setState({isOpen: true})
-  }
-  
   render() {
     return (
-      <Modal styles={modalStyles} isOpen={this.state.isOpen}>
-        <div onClick={() => {this.close()}}>
-          <img src={getAssets('svg', 'clear')} />
-        </div>
+      <Modal className="toast" styles={modalStyles} isOpen={this.state.isOpen}>
         <div>
-          <button onClick={() => {this.confirm()}}>Confirm</button>
-          <button onClick={() => {this.cancel()}}>Cancel</button>
+          {this.children}
         </div>
       </Modal>
     );
