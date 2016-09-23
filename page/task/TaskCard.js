@@ -26,7 +26,9 @@ const styles = {
 };
 
 const themeRender = spawnMixinRender(styles);
-themeRender('card', 'lightBackground', 'lightSmallShadow');
+
+
+import './task-card.scss';
 
 @Radium
 class TaskCard extends Component {
@@ -43,14 +45,25 @@ class TaskCard extends Component {
   onDragStart(event) {
     const {dispatch} = this.props;
     event.dataTransfer.dropEffect = 'move';
-    // event.dataTransfer.setData('card', JSON.stringify(this.props.card));
+    var crt = this.refs.main.cloneNode(true);
+    crt.style.backgroundColor = "red";
+    crt.style.position = "absolute"; crt.style.top = "0px"; crt.style.right = "0px"; crt.style.display = 'block'
+    document.body.appendChild(crt);
+    event.dataTransfer.setDragImage(crt, 0, 0);
     
     const width = this.refs.main.offsetWidth;
     const height = this.refs.main.offsetHeight;
+    setTimeout(() => {
+      this.refs.main.classList.add('moving');
+    })
+    
+    
     return dispatch(taskCardDragLeaveStart(this.props.card, {
+      offsetX: event.nativeEvent.offsetX,
+      offsetY: event.nativeEvent.offsetY,
       width,
       height,
-      formListId: this.props.listId
+      fromListId: this.props.card.taskListId
     }));
   }
 
@@ -67,11 +80,18 @@ class TaskCard extends Component {
     return dispatch(updateTaskCard(this.props.card.id, {isDone: true}));
   }
   
+  onLoad() {
+    const height = this.refs.main.offsetHeight;
+    this.props.card.height = height;
+    this.props.card.loaded = true;
+  }
+  
   render() {
     const {card} = this.props;
     const activeRole = card.creater;
     return (
-      <div ref='main' style={styles.card} draggable='true' onDragStart={this.onDragStart.bind(this)}>
+      <div className="task-card" ref='main' style={styles.card} draggable='true' onDragStart={this.onDragStart.bind(this)}
+           onLoad={this.onLoad.bind(this)}>
         <p>{card.title}</p>
         <UserAvatar user={activeRole}/>
       </div>
