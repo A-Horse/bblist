@@ -4,6 +4,11 @@ var webpack = require('webpack')
 var LiveReloadPlugin = require('webpack-livereload-plugin');
 
 module.exports = {
+  resolve: {
+    root: [
+      path.resolve('.')
+    ]
+  },
   devtool: 'cheap-module-eval-source-map',
   entry: [
     'webpack-hot-middleware/client',
