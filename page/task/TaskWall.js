@@ -6,17 +6,17 @@ import R from 'fw-ramda';
 
 import TaskList, {listWidth} from './TaskList';
 import {TaskWallSetting} from './TaskWallSetting';
-import {DropMenu} from '../../components/widget/DropMenu';
-import {ConfirmModal} from '../../components/widget/ConfirmModal';
-import {Hr} from '../../components/widget/Hr';
-import {PageContainer} from '../../components/widget/PageContainer';
-import {deleteTaskWall, getTaskAllCards} from '../../actions/task/task-wall';
-import {createTaskCard} from '../../actions/task/task-card';
-import {createTaskList, deleteTaskList} from '../../actions/task/task-list';
-import {getAssets} from '../../services/assets-manager';
-import {AddIcon, SettingIcon, MIDDLE_SIZE} from '../../services/svg-icons';
-import {navHeight} from '../../components/Nav';
-import {spawnMixinRender} from '../../style/theme-render';
+import {DropMenu} from 'components/widget/DropMenu';
+import {ConfirmModal} from 'components/widget/ConfirmModal';
+import {Hr} from 'components/widget/Hr';
+import {PageContainer} from 'components/widget/PageContainer';
+import {deleteTaskWall, getTaskAllCards} from 'actions/task/task-wall';
+import {createTaskCard} from 'actions/task/task-card';
+import {createTaskList, deleteTaskList} from 'actions/task/task-list';
+import {getAssets} from 'services/assets-manager';
+import {AddIcon, SettingIcon, MIDDLE_SIZE} from 'services/svg-icons';
+import {navHeight} from 'components/Nav';
+import {spawnMixinRender} from 'style/theme-render';
 
 const styles = {
   container: {

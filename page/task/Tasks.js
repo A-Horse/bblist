@@ -2,14 +2,14 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {browserHistory} from 'react-router';
 import Radium from 'radium';
-import {createTaskWall, getAllTaskWall} from '../../actions/task/task-wall';
-import {Modal} from '../../components/widget/Modal';
-import {Select} from '../../components/widget/Select';
-import {PageContainer} from '../../components/widget/PageContainer';
-import {CateLine} from '../../components/widget/CateLine';
-import {spawnMixinRender} from '../../style/theme-render';
-import {ThemeConst} from '../../style/theme';
-import {CloseIcon, AddIcon} from '../../services/svg-icons';
+import {createTaskWall, getAllTaskWall} from 'actions/task/task-wall';
+import {Modal} from 'components/widget/Modal';
+import {Select} from 'components/widget/Select';
+import {PageContainer} from 'components/widget/PageContainer';
+import {CateLine} from 'components/widget/CateLine';
+import {spawnMixinRender} from 'style/theme-render';
+import {ThemeConst} from 'style/theme';
+import {CloseIcon, AddIcon} from 'services/svg-icons';
 
 const styles = {
   wall: {

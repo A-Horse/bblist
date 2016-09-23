@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {browserHistory} from 'react-router';
-import {deleteTaskWall} from '../../actions/task/task-wall';
+import {deleteTaskWall} from 'actions/task/task-wall';
 
 export class TaskWallSetting extends Component {
   constructor() {
