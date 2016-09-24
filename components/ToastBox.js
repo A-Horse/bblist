@@ -3,10 +3,14 @@ import {connect} from 'react-redux';
 
 class ToastBox extends Component {
 
+  renderToasts() {
+    
+  }
   
   render() {
     return (
       <div>
+        
       </div>
     );
   }
@@ -15,7 +19,7 @@ class ToastBox extends Component {
 
 const mapStateToProps = (state) => {
   return {
-
+    error: state.error.list
   };
 };
 

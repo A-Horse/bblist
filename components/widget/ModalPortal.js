@@ -36,7 +36,7 @@ export class ModalPortal extends Component {
   
   componentDidMount() {
     // Focus needs to be set when mounting and already open
-    if (this.props.isOpen) {
+    if (this.props.toggle) {
       this.setFocusAfterRender(true);
       this.open();
     }
@@ -48,10 +48,10 @@ export class ModalPortal extends Component {
 
   componentWillReceiveProps(newProps) {
     // Focus only needs to be set once when the modal is being opened
-    if (!this.props.isOpen && newProps.isOpen) {
+    if (!this.props.toggle && newProps.toggle) {
       //this.setFocusAfterRender(true);
       this.open();
-    } else if (this.props.isOpen && !newProps.isOpen) {
+    } else if (this.props.toggle && !newProps.toggle) {
       this.close();
     }
   }
@@ -74,10 +74,10 @@ export class ModalPortal extends Component {
     } else {
       // focusManager.setupScopedFocus(this.node);
       // focusManager.markForFocusLater();
-      this.setState({isOpen: true}, function() {
+      this.setState({toggle: true}, function() {
         this.setState({afterOpen: true});
 
-        if (this.props.isOpen && this.props.onAfterOpen) {
+        if (this.props.toggle && this.props.onAfterOpen) {
           this.props.onAfterOpen();
         }
       }.bind(this));
@@ -106,7 +106,7 @@ export class ModalPortal extends Component {
   closeWithoutTimeout() {
     this.setState({
       beforeClose: false,
-      isOpen: false,
+      toggle: false,
       afterOpen: false,
     }, this.afterClose);
   }
@@ -150,7 +150,7 @@ export class ModalPortal extends Component {
   }
 
   shouldBeClosed() {
-    return !this.props.isOpen && !this.state.beforeClose;
+    return !this.props.toggle && !this.state.beforeClose;
   }
 
   buildClassName(which, additional) {

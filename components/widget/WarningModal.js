@@ -47,7 +47,7 @@ export class WarningModal extends Component {
   constructor() {
     super();
     this.state = {
-      isOpen: false
+      toggle: false
     }
   }
   
@@ -74,16 +74,16 @@ export class WarningModal extends Component {
   }
 
   close() {
-    this.setState({isOpen: false})
+    this.setState({toggle: false})
   }
 
   open() {
-    this.setState({isOpen: true})
+    this.setState({toggle: true})
   }
   
   render() {
     return (
-      <Modal styles={modalStyles} isOpen={this.state.isOpen}>
+      <Modal styles={modalStyles} toggle={this.state.toggle}>
         <div>
           <button onClick={() => {this.confirm()}}>Confirm</button>
           <button onClick={() => {this.cancel()}}>Cancel</button>

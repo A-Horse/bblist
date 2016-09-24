@@ -6,7 +6,7 @@ export class Toast extends Component {
   constructor() {
     super();
     this.state = {
-      isOpen: false
+      toggle: false
     }
   }
   
@@ -16,12 +16,12 @@ export class Toast extends Component {
   }
 
   close() {
-    this.setState({isOpen: false})
+    this.setState({toggle: false})
   }
 
   render() {
     return (
-      <Modal className="toast" styles={modalStyles} isOpen={this.state.isOpen}>
+      <Modal className="toast" styles={modalStyles} toggle={this.state.toggle}>
         <div>
           {this.children}
         </div>

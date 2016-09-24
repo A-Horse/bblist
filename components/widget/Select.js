@@ -20,7 +20,7 @@ export class Select extends Component {
   constructor() {
     super()
     this.state = {
-      isOpen: false,
+      toggle: false,
       value: 'please select'
     }
   }
@@ -43,7 +43,7 @@ export class Select extends Component {
   openSelect() {
     styles.itemsContainer.display = 'block';
     this.setState({
-      isOpen: !this.state.isOpen
+      toggle: !this.state.toggle
     })
   }
 
@@ -55,7 +55,7 @@ export class Select extends Component {
 
   clickItem(item) {
     this.setState({value: item.value,
-                   isOpen: false})
+                   toggle: false})
   }
   
   render() {
@@ -65,7 +65,7 @@ export class Select extends Component {
           <p>{this.state.value}</p>
         </div>
         <ul style={Object.assign({}, styles.itemsContainer,
-             {display: this.state.isOpen ? 'block' : 'none'})}>
+             {display: this.state.toggle ? 'block' : 'none'})}>
           {this.renderItems()}
         </ul>
       </div>

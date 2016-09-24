@@ -41,7 +41,7 @@ export class Modal extends Component {
     document.body.appendChild(this.node);
     this.renderPortal(this.props);
   }
-
+  
   componentWillUnmount() {
     ReactDOM.unmountComponentAtNode(this.node);
     document.body.removeChild(this.node);
@@ -49,7 +49,7 @@ export class Modal extends Component {
   }
 
   renderPortal(props) {
-    if (props.isOpen) {
+    if (props.toggle) {
       elementClass(document.body).add('ReactModal__Body--open');
     } else {
       elementClass(document.body).remove('ReactModal__Body--open');
@@ -67,7 +67,7 @@ export class Modal extends Component {
   }
 
   defaultProps: {
-    isOpen: false,
+    toggle: false,
     ariaHideApp: true,
     closeTimeoutMS: 0,
     shouldCloseOnOverlayClick: true
@@ -77,5 +77,5 @@ export class Modal extends Component {
 
 
 Modal.propTypes = {
-  isOpen: React.PropTypes.bool.isRequired
+  toggle: React.PropTypes.bool.isRequired
 }
