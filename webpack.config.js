@@ -41,15 +41,13 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        loader: 'style-loader!css-loader!sass-loader!autoprefixer-loader?{browsers:[">1%"]}'
+        loader: 'style-loader!css-loader!sass-loader!autoprefixer-loader?{browsers:[">1%"]}',
+        includePaths: [path.resolve(__dirname, './style')]
       },
       {
         test: /\.css$/,
         loader: 'style-loader!css-loader'
       }
     ]
-  },
-  sassLoader: {
-    includePaths: [path.resolve(__dirname, './style')]
   }
 }
