@@ -13,3 +13,4 @@ GTAGS
 tags
 *~
 *.log
+.\\#*
