@@ -15,6 +15,8 @@ import {
   ALL_TASKCARD_GET_REQUEST, ALL_TASKCARD_GET_SUCCESS, ALL_TASKCARD_GET_FAILURE
 } from '../../actions/task/task-wall';
 
+import {CLEAR_BOARD} from 'actions/task/task';
+
 import R from 'fw-ramda';
 
 function taskList(state = {
@@ -79,6 +81,12 @@ function taskList(state = {
   case ALL_TASKCARD_GET_SUCCESS:
     return Object.assign({}, state, {
       lists: action.playload.lists
+    });
+    break;
+
+  case CLEAR_BOARD:
+    return Object.assign({}, state, {
+      lists: []
     });
     break;
     

@@ -4,6 +4,8 @@ import {
   ALL_TASKCARD_GET_REQUEST, ALL_TASKCARD_GET_SUCCESS, ALL_TASKCARD_GET_FAILURE
 } from 'actions/task/task-wall';
 
+import {CLEAR_BOARD} from 'actions/task/task';
+
 function taskWall(state = {
   isFetching: false,
   wall: {}, walls: []
@@ -57,6 +59,13 @@ function taskWall(state = {
     return Object.assign({}, state, {
       isFetching: false,
       status: action.status
+    });
+    break;
+
+  case CLEAR_BOARD:
+    return Object.assign({}, state, {
+      wall: {},
+      walls: []
     });
     break;
     
