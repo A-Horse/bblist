@@ -2,7 +2,7 @@ import {
   TASKWALL_GET_REQUEST, TASKWALL_GET_SUCCESS, TASKWALL_GET_FAILURE,
   TASKWALL_DELETE_REQUEST, TASKWALL_DELETE_SUCCESS, TASKWALL_DELETE_FAILURE,
   ALL_TASKCARD_GET_REQUEST, ALL_TASKCARD_GET_SUCCESS, ALL_TASKCARD_GET_FAILURE
-} from '../../actions/task/task-wall';
+} from 'actions/task/task-wall';
 
 function taskWall(state = {
   isFetching: false,
