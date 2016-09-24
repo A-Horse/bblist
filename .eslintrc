@@ -20,6 +20,7 @@
     "jsx": true
   },
   "rules": {
+    "semi": "error",
     "consistent-return": [0],
     "key-spacing": [0],
     "quotes": [0],
