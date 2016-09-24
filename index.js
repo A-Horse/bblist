@@ -67,3 +67,5 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('root')
 );
+
+require('offline-plugin/runtime').install();
