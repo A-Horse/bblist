@@ -63,6 +63,7 @@
     "offline-plugin": "^3.4.2",
     "react-addons-test-utils": "^0.14.7",
     "sass-loader": "^3.0.0",
+    "sass-variable-loader": "0.0.4",
     "style-loader": "^0.12.4",
     "webpack": "^1.9.11",
     "webpack-dev-middleware": "^1.2.0",

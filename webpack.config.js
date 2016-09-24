@@ -25,7 +25,7 @@ module.exports = {
   plugins: [
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
-    // new LiveReloadPlugin(),
+    new LiveReloadPlugin(),
     new webpack.BannerPlugin(fs.readFileSync('./.banner').toString()),
     new webpack.optimize.AggressiveMergingPlugin(),
     new BellOnBundlerErrorPlugin(),
