@@ -1,7 +1,10 @@
+var fs = require('fs')
 var path = require('path')
 var webpack = require('webpack')
 
 var LiveReloadPlugin = require('webpack-livereload-plugin');
+var BellOnBundlerErrorPlugin = require('bell-on-bundler-error-plugin');
+var OfflinePlugin = require('offline-plugin');
 
 module.exports = {
   resolve: {
@@ -22,7 +25,11 @@ module.exports = {
   plugins: [
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
-    new LiveReloadPlugin()
+    // new LiveReloadPlugin(),
+    new webpack.BannerPlugin(fs.readFileSync('./.banner').toString()),
+    new webpack.optimize.AggressiveMergingPlugin(),
+    new BellOnBundlerErrorPlugin(),
+    new OfflinePlugin()
   ],
   module: {
     loaders: [
