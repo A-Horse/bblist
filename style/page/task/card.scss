@@ -1,0 +1,11 @@
+.task-card {
+  background: white;
+}
+
+.task-card.moving {
+  display: none;
+}
+
+.task-card:-khtml-drag {
+  background-color: black;
+}
