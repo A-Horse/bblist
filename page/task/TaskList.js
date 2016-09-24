@@ -14,29 +14,14 @@ import {ConfirmModal} from 'components/widget/ConfirmModal';
 import {AddIcon, EditIcon, ArrowDownIcon, SettingIcon, MIDDLE_SIZE, SMALL_SIZE} from 'services/svg-icons';
 import {spawnMixinRender} from 'style/theme-render';
 import GlobalClick from 'services/global-click';
+import {getOffsetHeight} from 'utils/dom';
+
+import 'style/page/task/list.scss';
+import styleVariables from '!!sass-variable-loader!style/page/task/list.scss';
 
 export const listWidth = 210;
 
 const styles = {
-  list: {
-    borderRadius: '1px',
-    position: 'relative',
-    display: 'inline-flex',
-    flexDirection: 'column',
-    margin: '0.3rem 1rem 0.3rem',
-    width: `${listWidth}px`,
-    height: 'calc(100% - 0.6rem)',
-    padding: '0 0.4rem',
-    zIndex: '1',
-    verticalAlign: 'middle'
-  },
-  listTopBar: {
-    position: 'relative',
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    margin: '0.3rem 0 0.2rem'
-  },
   listNameInput: {
     backgroundColor: 'transparent',
     boxShadow: 'none'
@@ -80,9 +65,9 @@ const styles = {
 };
 
 const themeRender = spawnMixinRender(styles);
-themeRender('list', 'grayBackground');
-themeRender('card', 'lightBackground', 'lightSmallShadow');
 themeRender('listNameInput', 'darkBottomBorder');
+
+let relativeOffsetBody;
 
 @Radium
 class TaskList extends Component {
@@ -96,6 +81,13 @@ class TaskList extends Component {
       listSetting: {},
       editingListName: false
     };
+  }
+
+  componentDidMount() {
+    if (!relativeOffsetBody) {
+      relativeOffsetBody = true;
+      relativeOffsetBody = getOffsetHeight(this.refs.main, 'body') + +styleVariables.topBarHeight.replace('px', '');
+    }
   }
 
   toggleEditListName(listName) {
@@ -148,7 +140,7 @@ class TaskList extends Component {
   renderTopBar() {
     const {listId} = this.props;
     return (
-      <div style={styles.listTopBar} className="task-list--top-bar">
+      <div className="task-list--top-bar">
         {this.renderListName()}
         <ArrowDownIcon className='arrow-down-icon icon' style={styles.listMenuIcon} onClick={() => {this.onClickSetting(listId)}}/>
 
@@ -166,7 +158,7 @@ class TaskList extends Component {
   render() {
     const {listId, cards} = this.props;
     return (
-      <div style={styles.list}
+      <div ref='main'
            className="task-list"
            onDragEnter={this.onDragEnter.bind(this)}
            onDrop={this.onDrop.bind(this)}
@@ -183,6 +175,25 @@ class TaskList extends Component {
     );
   }
 
+  caluMovingPosition(position) {
+    const {cards} = this.props;
+    const {y} = position;
+    let xheight = relativeOffsetBody, i = 0;
+    if (y < xheight) {
+      return i;
+    }
+    for(let max = cards.length; i < max; i++) { 
+      xheight += cards[i].height + 6;
+      if (y < xheight) {
+        if (y > xheight - cards[i].height / 2) {
+          return ++i;
+        }
+        return i;
+      }
+    }
+    return i;
+  }
+
   onDragLeave() {
     
   }
@@ -191,13 +202,17 @@ class TaskList extends Component {
     
   }
 
-  onDrop(event) {    
+  onDrop(event) {
     const card = event.dataTransfer.getData('card');
   }
 
   onDragOver(event) {
-    console.log(event);
-    const {cards} = this.props;
+    const offset = {
+      x: event.nativeEvent.clientX,
+      y: event.nativeEvent.clientY
+    };
+    const index = this.caluMovingPosition(offset);
+    console.log(index);
     event.preventDefault();
   }
 

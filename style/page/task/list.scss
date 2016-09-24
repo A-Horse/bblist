@@ -1,1 +1,28 @@
-$top-bar-heigt: 23;
+@import 'variable';
+
+$top-bar-height: 26px;
+
+$list-width: 250px;
+
+.task-list {
+  border-radius: 1px;
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  margin: 0.3rem 1rem 0.3rem;
+  width: $list-width;
+  height: calc(100% - 0.6rem);
+  padding: 0 0.4rem;
+  z-index: 1;
+  vertical-align: middle;
+  background-color: $background-gray;
+}
+
+.task-list--top-bar {
+  height: $top-bar-height;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+}
