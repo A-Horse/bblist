@@ -9,7 +9,7 @@ import {authUser} from '../actions/login';
 import {spawnMixinRender} from '../style/theme-render';
 import {ThemeConst} from '../style/theme';
 import {LightIcon} from '../services/svg-icons';
-import {DropMenu} from './widget/DropMenu';
+import {DropList} from './widget/DropList';
 import {removeCachedData} from '../utils/auth';
 import {logout} from '../actions/logout';
 
@@ -151,12 +151,12 @@ class Nav extends Component {
         <div style={styles.userArea}>
           {avatorData ? <img ref='avator' style={styles.userAvatar} src={`data:image/png;base64,${avatorData}`} onClick={() => {this.setState({userMenuToggle: !this.state.userMenuToggle})}}/>
             : <img ref='avator' crossOrigin="Anonymous" style={styles.userAvatar} src={makeGravatarUrl(user.email)} onClick={() => {this.setState({userMenuToggle: !this.state.userMenuToggle})}}/>}
-            <DropMenu toggle={this.state.userMenuToggle}>
+            <DropList toggle={this.state.userMenuToggle}>
               <ul style={styles.userMenu}>
                 <Link style={styles.menuLi} to="/profile" onClick={() => {this.setState({userMenuToggle: false})}}>Profile</Link>
                 <button style={styles.menuLi} onClick={this.onLogout.bind(this)}>Log out</button>
               </ul>
-            </DropMenu>
+            </DropList>
         </div>
       );
     }
