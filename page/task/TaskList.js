@@ -6,9 +6,10 @@ import R from 'fw-ramda';
 
 import TaskCard from './TaskCard';
 import TaskCardCreater from './TaskCardCreater';
+import CardPlaceholder from './CardPlaceholder';
 import {deleteTaskWall, getTaskAllCards} from 'actions/task/task-wall';
 import {createTaskList, deleteTaskList} from 'actions/task/task-list';
-import {updateTaskCard} from 'actions/task/task-card';
+import {updateTaskCard, insertVirtualCard} from 'actions/task/task-card';
 import {DropList} from 'components/widget/DropList';
 import {ConfirmModal} from 'components/widget/ConfirmModal';
 import {AddIcon, EditIcon, ArrowDownIcon, SettingIcon, MIDDLE_SIZE, SMALL_SIZE} from 'services/svg-icons';
@@ -73,6 +74,7 @@ let relativeOffsetBody;
 class TaskList extends Component {
   constructor() {
     super();
+    this.index = -1;
   }
 
   componentWillMount() {
@@ -114,6 +116,7 @@ class TaskList extends Component {
 
   renderCards(cards) {
     return cards.map(card => {
+      if (card.virtual)  return (<CardPlaceholder height={card.height} width={card.width}/>);
       return (<TaskCard card={card} key={card.id} />);
     });
   }
@@ -178,11 +181,18 @@ class TaskList extends Component {
   caluMovingPosition(position) {
     const {cards} = this.props;
     const {y} = position;
+    
     let xheight = relativeOffsetBody, i = 0;
+    
     if (y < xheight) {
       return i;
     }
-    for(let max = cards.length; i < max; i++) { 
+    
+    for(let max = ~this.index ? cards.length - 1: cards.length; i < max; i++) {
+      if (cards[i].moving) {
+        continue;
+      }
+
       xheight += cards[i].height + 6;
       if (y < xheight) {
         if (y > xheight - cards[i].height / 2) {
@@ -207,12 +217,23 @@ class TaskList extends Component {
   }
 
   onDragOver(event) {
-    const offset = {
-      x: event.nativeEvent.clientX,
-      y: event.nativeEvent.clientY
-    };
+    console.log('hi');
+      const {dispatch} = this.props;
+      const offset = {
+        x: event.nativeEvent.clientX,
+        y: event.nativeEvent.clientY
+      };
     const index = this.caluMovingPosition(offset);
-    console.log(index);
+    if (index === this.index) {
+      return;
+    }
+    this.index = index;
+      dispatch(insertVirtualCard({
+        listId: this.props.listId,
+        virtualIndex: index
+      }));
+    
+    
     event.preventDefault();
   }
 
@@ -226,6 +247,6 @@ class TaskList extends Component {
 const mapStateToProps = (state) => {
   return {
   };
-}
+};
 
 export default connect(mapStateToProps)(TaskList);

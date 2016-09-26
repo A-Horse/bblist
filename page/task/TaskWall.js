@@ -5,6 +5,7 @@ import Radium from 'radium';
 import R from 'fw-ramda';
 
 import TaskList, {listWidth} from './TaskList';
+import CardModal from './CardModal';
 //import TaskCardModal from 
 import {TaskWallSetting} from './TaskWallSetting';
 import {DropList} from 'components/widget/DropList';
@@ -129,7 +130,7 @@ class TaskWall extends Component {
               <li>2</li>
             </ul>
           </DropList>
-          <ConfirmModal confirmFn={() => {this.deleteWall()}} ref='delConfirm'></ConfirmModal>
+        <ConfirmModal confirmFn={() => {this.deleteWall()}} ref='delConfirm'></ConfirmModal>
       </div>
     );
   }
@@ -183,7 +184,7 @@ class TaskWall extends Component {
               {this.renderCreateList()}
            </div>
         </PageContainer>
-        
+        <CardModal/>
       </div>
     );
   }
@@ -206,9 +207,9 @@ class TaskWall extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    wall: state.taskWall.wall,
-    lists: state.taskList.lists
+    wall: state.task.board.wall,
+    lists: state.task.list.lists
   };
-}
+};
 
 export default connect(mapStateToProps)(TaskWall);

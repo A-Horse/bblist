@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import Radium from 'radium';
 
 import {deleteTaskWall, getTaskAllCards} from 'actions/task/task-wall';
-import {taskCardDragLeaveStart, updateTaskCard} from 'actions/task/task-card';
+import {taskCardDragLeaveStart, updateTaskCard, setCurrentCard} from 'actions/task/task-card';
 import {createTaskList, deleteTaskList} from 'actions/task/task-list';
 import {openTaskCardModal} from 'actions/event/task-wall';
 import {DropList} from 'components/widget/DropList';
@@ -19,7 +19,7 @@ import {TaskWallSetting} from './TaskWallSetting';
 
 const styles = {
   card: {
-    margin: '0.2rem 0',
+    margin: '3px 0',
     padding: '4px 8px',
     borderRadius: '1px'
   }
@@ -28,7 +28,7 @@ const styles = {
 const themeRender = spawnMixinRender(styles);
 
 
-import 'style/task/task-card.scss';
+import 'style/page/task/card.scss';
 
 @Radium
 class TaskCard extends Component {
@@ -45,7 +45,9 @@ class TaskCard extends Component {
   onDragStart(event) {
     const {dispatch} = this.props;
     event.dataTransfer.dropEffect = 'move';
-    var crt = this.refs.main.cloneNode(true);
+    
+    const crt = this.refs.main.cloneNode(true);
+    this.crt = crt;
     crt.style.backgroundColor = "red";
     crt.style.position = "absolute"; crt.style.top = "0px"; crt.style.right = "0px"; crt.style.display = 'block'
     document.body.appendChild(crt);
@@ -55,9 +57,8 @@ class TaskCard extends Component {
     const height = this.refs.main.offsetHeight;
     setTimeout(() => {
       this.refs.main.classList.add('moving');
-    })
-    
-    
+    });
+
     return dispatch(taskCardDragLeaveStart(this.props.card, {
       offsetX: event.nativeEvent.offsetX,
       offsetY: event.nativeEvent.offsetY,
@@ -66,7 +67,12 @@ class TaskCard extends Component {
       fromListId: this.props.card.taskListId
     }));
   }
-
+  
+  onDragEnd(event) {
+    document.body.removeChild(this.crt);
+    this.refs.main.classList.remove('moving');
+  }
+  
   openTaskCardModal() {
     const {dispatch} = this.props;
     return dispatch(openTaskCardModal(this.props.card));
@@ -85,13 +91,20 @@ class TaskCard extends Component {
     this.props.card.height = height;
     this.props.card.loaded = true;
   }
+
+  onClick() {
+    const {dispatch} = this.props;
+    dispatch(setCurrentCard(this.props.card));
+  }
   
   render() {
     const {card} = this.props;
     const activeRole = card.creater;
     return (
       <div className="task-card" ref='main' style={styles.card} draggable='true' onDragStart={this.onDragStart.bind(this)}
-           onLoad={this.onLoad.bind(this)}>
+           onClick={this.onClick.bind(this)}
+           onLoad={this.onLoad.bind(this)}
+           onDragEnd={this.onDragEnd.bind(this)}>
         <p>{card.title}</p>
         <UserAvatar user={activeRole}/>
       </div>
@@ -101,7 +114,6 @@ class TaskCard extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    wallData: state.taskWall.wallData
   };
 };
 
