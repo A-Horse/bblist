@@ -4,21 +4,16 @@ import {browserHistory} from 'react-router';
 import Radium from 'radium';
 import R from 'fw-ramda';
 
-import {deleteTaskCard, updateTaskCard} from '../../actions/task/task-card';
-import {spawnMixinRender} from '../../style/theme-render';
-import {AddIcon, EditIcon, ArrowDownIcon, SettingIcon} from '../../services/svg-icons';
-import {TaskWallSetting} from './TaskWallSetting';
-import {navHeight} from '../../components/Nav';
-import UserAvatar from '../../components/UserAvatar';
+import {deleteTaskCard, updateTaskCard, unsetCurrentCard} from 'actions/task/task-card';
+import {spawnMixinRender} from 'style/theme-render';
+import {CloseIcon} from 'services/svg-icons';
+import UserAvatar from 'components/UserAvatar';
+import {Modal} from 'components/widget/Modal';
 
-const styles = {
-
-};
-const themeRender = spawnMixinRender(styles);
-themeRender('card', 'lightBackground', 'lightSmallShadow');
+import 'style/page/task/modal.scss';
 
 @Radium
-class TaskModal extends Component {
+class CardModal extends Component {
   constructor() {
     super();
   }
@@ -29,12 +24,19 @@ class TaskModal extends Component {
     };
   }
 
+  close() {
+    const {dispatch} = this.props;
+    
+    dispatch(unsetCurrentCard());
+  }
+
   render() {
     const {card} = this.props;
     return (
-      <div>
-        
-      </div>
+      <Modal className='task-card' toggle={this.props.toggleTaskCardModal}>
+        <CloseIcon onClick={this.close.bind(this)}/>
+        Card
+      </Modal>
     );
   }
 
@@ -53,8 +55,9 @@ class TaskModal extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    
+    card: state.task.card.card,
+    toggleTaskCardModal: state.task.card.active
   };
-}
+};
 
-export default connect(mapStateToProps)(TaskModal);
+export default connect(mapStateToProps)(CardModal);
