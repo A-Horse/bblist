@@ -7,21 +7,19 @@ var div = React.DOM.div;
 // so that our CSS is statically analyzable
 var CLASS_NAMES = {
   overlay: {
-    base: 'ReactModal__Overlay',
-    afterOpen: 'ReactModal__Overlay--after-open',
-    beforeClose: 'ReactModal__Overlay--before-close'
+    base: 'modal__overlay',
+    afterOpen: 'modal__overlay--after-open',
+    beforeClose: 'modal__overlay--before-close'
   },
   content: {
-    base: 'ReactModal__Content',
-    afterOpen: 'ReactModal__Content--after-open',
-    beforeClose: 'ReactModal__Content--before-close'
+    base: 'modal__content',
+    afterOpen: 'modal__content--after-open',
+    beforeClose: 'modal__content--before-close'
   }
 };
 
 
 export class ModalPortal extends Component {
-  displayName: 'ModalPortal'
-
   constructor(props) {
     super(props);
     this.state = {
@@ -125,7 +123,7 @@ export class ModalPortal extends Component {
   }
 
   handleOverlayClick(event) {
-    var node = event.target
+    var node = event.target;
 
     // while (node) {
     //   if (node === this.refs.content) return
@@ -163,22 +161,17 @@ export class ModalPortal extends Component {
   }
 
   render() {
-    var contentStyles = (this.props.className) ? {} : this.props.styles.content;
-    var overlayStyles = (this.props.overlayClassName) ? {} : this.props.styles.overlay;
-
     return this.shouldBeClosed() ? div() : (
       div({
-        ref: "overlay",
-        className: this.buildClassName('overlay', this.props.overlayClassName),
-        style: Object.assign({}, overlayStyles, this.props.styles.overlay || {})
+        ref: 'overlay',
+        className: this.buildClassName('overlay', this.props.overlayClassName)
         // onClick: this.handleOverlayClick
       },
           div({
-            ref: "content",
-            style: Object.assign({}, contentStyles, this.props.styles.content || {}),
+            ref: 'content',
             className: this.buildClassName('content', this.props.className),
             tabIndex: "-1",
-            onKeyDown: this.handleKeyDown
+            onKeyDown: this.handleKeyDown.bind(this)
           },
               this.props.children
              )
