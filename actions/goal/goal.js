@@ -11,21 +11,21 @@ export const GOALLIST_GET_FAILURE = 'GOALLIST_GET_FAILURE';
 function requestGoalList() {
   return {
     type: GOALLIST_GET_REQUEST
-  }
+  };
 }
 
 function receiveGoalList(goals) {
   return {
     type: GOALLIST_GET_SUCCESS,
     goals
-  }
+  };
 }
 
 function receiveGoalListError(message) {
   return {
     type: GOALLIST_GET_FAILURE,
     message: message
-  }
+  };
 }
 
 export const GOAL_POST_REQUEST = 'GOAL_POST_REQUEST';
@@ -41,15 +41,16 @@ function requestCreatedGoal() {
 function createdGoalSucceess(goal) {
   return {
     type: GOAL_POST_SUCCESS,
-    goal
-  }
+    playload: goal
+  };
 }
 
-function createdGoalError(message) {
+function createdGoalError(error) {
   return {
     type: GOAL_POST_FAILURE,
-    message: message
-  }
+    playload: error,
+    error: true
+  };
 }
 
 export const GOAL_DELETE_REQUEST = 'GOAL_DELETE_REQUEST'

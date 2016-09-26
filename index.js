@@ -12,7 +12,7 @@ import DockMonitor from 'redux-devtools-dock-monitor';
 
 import {App} from 'components';
 import {SignIn, SignUp, Profile, Goal, Tasks, TaskWall, NotFound, DashBoard,
-        IndexPage, Ideas, TaskWallSetting} from 'page';
+        IndexPage, Ideas, TaskWallSetting, TodoList} from 'page';
 import Body from 'components/Body';
 
 import {checkLogin} from 'utils/auth';
@@ -58,6 +58,8 @@ ReactDOM.render(
           <Route path="task-wall" component={Tasks} onEnter={checkLogin}/>
           <Route path="task-wall/:id" component={TaskWall} onEnter={checkLogin}/>
           <Route path="task-wall/:id/setting" component={TaskWallSetting} onEnter={checkLogin}/>
+
+          <Route path="todo" component={TodoList}/>
 
           <Route path="404" component={NotFound} />
         </Route>
