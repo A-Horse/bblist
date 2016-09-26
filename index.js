@@ -68,4 +68,4 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-require('offline-plugin/runtime').install();
+// require('offline-plugin/runtime').install();
