@@ -123,6 +123,68 @@ function deleteTaskCardFail(error, cardId) {
   };
 }
 
+export const SET_CURRENT_CARD = 'SET_CURRENT_CARD';
+export const UNSET_CURRENT_CARD = 'UNSET_CURRENT_CARD';
+export const CARD_META_REQUEST = 'CARD_META_REQUEST';
+export const CARD_META_SUCCESS = 'CARD_META_SUCCESS';
+export const CARD_META_FAILURE = 'CARD_META_FAILURE';
+
+function requestCardMeta(id) {
+  return {
+    type: CARD_META_FAILURE,
+    playload: id
+  };
+}
+
+function receiveCardMeta(data) {
+  return {
+    type: CARD_META_SUCCESS,
+    playload: data
+  };
+}
+
+function requestCardMetaFail(error) {
+  return {
+    type: CARD_META_FAILURE,
+    playload: error,
+    error: true
+  };
+}
+
+export function setCurrentCard(card) {
+  return dispatch => dispatch({
+    type: SET_CURRENT_CARD,
+    card
+  });
+}
+
+export function unsetCurrentCard() {
+  return dispatch => dispatch({
+    type: UNSET_CURRENT_CARD
+  });
+}
+
+export const INSERT_VIRTUAL_CARD = 'INSERT_VIRTUAL_CARD';
+
+export function insertVirtualCard(playload) {
+  console.log('action');
+  return dispatch => dispatch({
+    type: INSERT_VIRTUAL_CARD,
+    playload
+  });
+};
+
+export function getCardMeta(cardId) {
+  const config = createConfigWithAuth('GET');
+  return dispatch => {
+    dispatch(requestCardMeta(cardId));
+    return fetch(makeApiUrl(`/task-card/${cardId}`), config)
+      .then(handleResponse)
+      .then(data => dispatch(receiveCardMeta(data)))
+      .catch(error => requestCardMetaFail(error));
+  };
+}
+
 export function deleteTaskCard(cardId) {
   const config = createConfigWithAuth('DELETE');
   return dispatch => {
