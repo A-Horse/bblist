@@ -137,6 +137,7 @@ class Nav extends Component {
           <Link to="/task-wall" style={this.activeLinkWithPath('task-wall')}>Task</Link>
           <Link to="/idea" style={styles.linkStyle}>Idea</Link>
           <Link to="/goal" style={this.activeLinkWithPath('goal')}>Goal</Link>
+          <Link to="/todo" style={this.activeLinkWithPath('todo')}>Todo</Link>
         </div>        
         {userCell}
       </nav>
