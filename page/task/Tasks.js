@@ -159,7 +159,7 @@ class Tasks extends Component {
 
   renderCreateModal() {
     return (
-      <Modal isOpen={this.state.modalOpen} styles={modalStyles}>
+      <Modal toggle={this.state.modalOpen} styles={modalStyles}>
         <button key='modal-close' style={modalStyles.closeButton}>
           <CloseIcon style={modalStyles.clearIcon} onClick={() => {this.setState({modalOpen: false})}}/>
         </button>
@@ -216,8 +216,8 @@ class Tasks extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    walls: state.taskWall.walls || []
-  }
-}
+    walls: state.task.board.walls || []
+  };
+};
 
 export default connect(mapStateToProps)(Tasks);
