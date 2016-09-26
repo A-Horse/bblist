@@ -3,7 +3,8 @@ import {
 } from 'actions/todo/todos';
 
 function todos(state = {
-  isFetching: false
+  isFetching: false,
+  list: []
 }, action) {
   switch (action.type) {
   case TODOLIST_GET_REQUEST:
@@ -14,7 +15,7 @@ function todos(state = {
   case TODOLIST_GET_SUCCESS:
     return Object.assign({}, state, {
       isFetching: false,
-      ...action.todos
+      list: action.todos
     });
     break;
   case TODOLIST_GET_FAILURE:
