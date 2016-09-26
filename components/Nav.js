@@ -127,7 +127,7 @@ class Nav extends Component {
   render() {
     const userCell = this.renderUserCell();    
     return (
-      <header style={styles.headerStyle} className="clearfix">
+      <nav style={styles.headerStyle} className="clearfix">
         <div style={styles.logoArea} style={styles.logoArea}>
           <LightIcon style={styles.logoIcon} />
           <span>LiGHT</span>
@@ -139,8 +139,8 @@ class Nav extends Component {
           <Link to="/goal" style={this.activeLinkWithPath('goal')}>Goal</Link>
         </div>        
         {userCell}
-      </header>
-    )
+      </nav>
+    );
   }
 
   renderUserCell() {
