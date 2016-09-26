@@ -6,7 +6,8 @@ import {
 import {
   TASKCARD_LEAVE_START, TASKCARD_LEAVE_DONE,
   TASKCARD_ENTER_START, TASKCARD_ENTER_DONE,
-  TASKCARD_MOVE_REQUEST, TASKCARD_MOVE_SUCCESS, TASKCARD_MOVE_FAILURE
+  TASKCARD_MOVE_REQUEST, TASKCARD_MOVE_SUCCESS, TASKCARD_MOVE_FAILURE,
+  INSERT_VIRTUAL_CARD
 } from '../../actions/task/task-card';
 
 import {
@@ -20,6 +21,7 @@ import {CLEAR_BOARD} from 'actions/task/task';
 import R from 'fw-ramda';
 
 function taskList(state = {
+  virtualIndex: -1,
   isFetching: false,
   movingCard: null,
   lists: []
@@ -62,16 +64,20 @@ function taskList(state = {
     break;
 
   case TASKCARD_LEAVE_START:
-    // const {fromListId} = action.info;
-    // const {lists} = state;
-    // const listIndex = R.findIndex(R.propEq('id', fromListId))(lists);
-    // const cardIndex = lists[listIndex].cards.indexOf(action.card);
-    // lists[listIndex].cards.splice(cardIndex, 1);
-    return Object.assign({}, state, {
-      movingCard: action.card,
-      movingCardInfo: action.info,
-      // lists: R.clone(lists, true)
-    });
+    {
+      // const {fromListId} = action.info;
+      // const {lists} = state;
+      // const listIndex = R.findIndex(R.propEq('id', fromListId))(lists);
+      // const cardIndex = lists[listIndex].cards.indexOf(action.card);
+      // lists[listIndex].cards.splice(cardIndex, 1);
+      // lists[listIndex].cards.splice(cardIndex, 1);
+      action.card.moving = true;
+      return Object.assign({}, state, {
+        movingCard: action.card,
+        movingCardInfo: action.info,
+        // lists: R.clone(lists, true)
+      });
+    }
     break;
   case TASKCARD_LEAVE_DONE:
   case TASKCARD_ENTER_START:
@@ -88,6 +94,26 @@ function taskList(state = {
     return Object.assign({}, state, {
       lists: []
     });
+    break;
+
+  case INSERT_VIRTUAL_CARD:
+    {
+    console.log('INSER');
+    const {listId, virtualIndex} = action.playload;
+    const {lists} = state;
+    const {height, width} = state.movingCardInfo;
+    const listIndex = R.findIndex(R.propEq('id', listId))(lists);
+    if (~state.virtualIndex) {
+      console.log('---------');
+      lists[listIndex].cards.splice(state.virtualIndex, 1);
+    }
+    lists[listIndex].cards.splice(virtualIndex, 0, {virtual: true, height, width});
+    console.log(virtualIndex);
+    return Object.assign({}, state, {
+      virtualIndex,
+      lists: R.clone(lists, true)
+    });
+    }
     break;
     
   default:
