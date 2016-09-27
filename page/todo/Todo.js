@@ -27,7 +27,7 @@ class Todo extends Component {
   }
   
 
-
+  
   finishTodo() {
     
   }

@@ -155,7 +155,7 @@ class TaskList extends Component {
 
           <ConfirmModal confirmFn={() => {this.deleteTaskList(listId)}} ref='listDeleteConfirm' ></ConfirmModal>
       </div>
-    )
+    );
   }
 
   render() {
