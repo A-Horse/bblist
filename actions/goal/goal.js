@@ -1,8 +1,9 @@
 import fetch from 'isomorphic-fetch';
-import {createConfigWithAuth} from '../../utils/header';
-import {handleResponse, handleResponseWithoutJson} from '../../utils/http-handle';
-import {getAuthData} from '../../utils/auth';
-import {CACHED_USERID} from '../../constants';
+import {createConfigWithAuth} from 'utils/header';
+import {handleResponse, handleResponseWithoutJson} from 'utils/http-handle';
+import {getAuthData} from 'utils/auth';
+import {CACHED_USERID} from 'constants';
+import {makeApiUrl} from 'utils/api';
 
 export const GOALLIST_GET_REQUEST = 'GOALLIST_GET_REQUEST';
 export const GOALLIST_GET_SUCCESS = 'GOALLIST_GET_SUCCESS';
@@ -53,37 +54,39 @@ function createdGoalError(error) {
   };
 }
 
-export const GOAL_DELETE_REQUEST = 'GOAL_DELETE_REQUEST'
-export const GOAL_DELETE_SUCCESS = 'GOAL_DELETE_SUCCESS'
-export const GOAL_DELETE_FAILURE = 'GOAL_DELETE_FAILURE'
+export const GOAL_DELETE_REQUEST = 'GOAL_DELETE_REQUEST';
+export const GOAL_DELETE_SUCCESS = 'GOAL_DELETE_SUCCESS';
+export const GOAL_DELETE_FAILURE = 'GOAL_DELETE_FAILURE';
 
-
-function requestDestroyGoal() {
+function requestDestroyGoal(id) {
   return {
-    type: GOAL_DELETE_REQUEST
+    type: GOAL_DELETE_REQUEST,
+    playload: id
   };
 }
 
-function GoalDestroySuccess() {
+function destroyGoalSuccess() {
   return {
     type: GOAL_DELETE_SUCCESS
-  }
+  };
 }
 
-function destroyGoalError(message) {
+function destroyGoalError(error) {
   return {
     type: GOAL_DELETE_FAILURE,
-    message: message
-  }
+    error: true,
+    playload: error
+  };
 }
 
 export function deleteGoal(goalId) {
   const config = createConfigWithAuth('DELETE');
   return dispatch => {
     dispatch(requestDestroyGoal());
-    return fetch(`/api/goal${goalId}`, config)
+    return fetch(makeApiUrl(`/goal${goalId}`), config)
       .then(handleResponseWithoutJson)
-      .then(() => dispatch(GoalDestroySuccess()))
+      .then(() => dispatch(destroyGoalSuccess()))
+      .catch(error => dispatch(destroyGoalError(error)));
   };
 }
 
@@ -94,7 +97,7 @@ export function createGoal(data) {
     return fetch('/api/goal', config)
       .then(handleResponse)
       .then(() => dispatch(createdGoalSucceess()))
-      .catch(() => {dispatch(createdGoalError())});
+      .catch(() => dispatch(createdGoalError()));
   };
 }
 
