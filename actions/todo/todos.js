@@ -55,6 +55,66 @@ function createTodoError(error) {
   };
 }
 
+export const TODO_PATCH_REQUEST = 'TODO_PATCH_REQUEST';
+export const TODO_PATCH_SUCCESS = 'TODO_PATCH_SUCCESS';
+export const TODO_PATCH_FAILURE = 'TODO_PATCH_FAILURE';
+
+function requestUpdateTodo(data) {
+  return {
+    type: TODO_PATCH_REQUEST,
+    playload: data
+  };
+}
+
+function updateTodoSuccess() {
+  return {
+    type: TODO_PATCH_SUCCESS
+  };
+}
+
+function updateTodoError(error) {
+  return {
+    type: TODO_PATCH_FAILURE,
+    error: true,
+    playload: error
+  };
+}
+
+export const GOAL_DELETE_REQUEST = 'GOAL_DELETE_REQUEST';
+export const GOAL_DELETE_SUCCESS = 'GOAL_DELETE_SUCCESS';
+export const GOAL_DELETE_FAILURE = 'GOAL_DELETE_FAILURE';
+
+function requestDestroyGoal(id) {
+  return {
+    type: GOAL_DELETE_REQUEST,
+    playload: id
+  };
+}
+
+function destroyTodoSuccess() {
+  return {
+    type: GOAL_DELETE_SUCCESS
+  };
+}
+
+function destroyTodoError(error) {
+  return {
+    type: GOAL_DELETE_FAILURE,
+    playload: error,
+    error: true
+  };
+}
+
+export function deleteTodo(id) {
+  const config = createConfigWithAuth('DELETE');
+  return dispatch => {
+    dispatch(requestDestroyGoal());
+    return fetch(makeApiUrl(`/api/goal${id}`), config)
+      .then(handleResponseWithoutJson)
+      .then(() => dispatch(destroyTodoSuccess()))
+      .catch(error => dispatch(destroyTodoError(error)));
+  };
+}
 
 export function getTodoList() {
   const config = createConfigWithAuth('GET');
@@ -68,6 +128,15 @@ export function getTodoList() {
   };
 }
 
+export function updateTodo(id, data) {
+  const config = createConfigWithAuth('PATCH', data);
+  return dispatch => {
+    return fetch(makeApiUrl(`/task-card/${id}`), config)
+      .then(handleResponseWithoutJson)
+      .then(() => dispatch(updateTodoSuccess()))
+      .catch(error => dispatch(updateTodoError(error)));
+  };
+}
 
 export function createTodo(data) {
   const config = createConfigWithAuth('POST', data);
