@@ -20,6 +20,7 @@ import {getOffsetHeight} from 'utils/dom';
 import 'style/page/task/list.scss';
 import styleVariables from '!!sass-variable-loader!style/page/task/list.scss';
 
+// FIXME
 export const listWidth = 210;
 
 const styles = {
@@ -75,6 +76,8 @@ class TaskList extends Component {
   constructor() {
     super();
     this.index = -1;
+
+    this.dragMeta = {};
   }
 
   componentWillMount() {
@@ -153,7 +156,7 @@ class TaskList extends Component {
             </ul>
           </DropList>
 
-          <ConfirmModal confirmFn={() => {this.deleteTaskList(listId)}} ref='listDeleteConfirm' ></ConfirmModal>
+          <ConfirmModal confirmFn={() => {deleteTaskList(listId)}} ref='listDeleteConfirm' ></ConfirmModal>
       </div>
     );
   }
@@ -193,11 +196,21 @@ class TaskList extends Component {
         continue;
       }
 
-      xheight += cards[i].height + 6;
-      if (y < xheight) {
+      if (i === this.dragMeta.lastCardIndex) {
+        xheight += this.dragMeta.lastCardHeight + 6;
         if (y > xheight - cards[i].height / 2) {
           return ++i;
         }
+      } else {
+        xheight += cards[i].height + 6;
+      }
+      
+      if (y < xheight) {
+        if (y > xheight - cards[i].height / 2) {
+          ++i;
+        }
+        this.dragMeta.lastCardHeight = cards[i].height;
+        this.dragMeta.lastCardIndex = i;
         return i;
       }
     }
@@ -213,10 +226,13 @@ class TaskList extends Component {
   }
 
   onDrop(event) {
+    console.log('onDrog');
     const card = event.dataTransfer.getData('card');
+    this.dragMeta = {};
   }
 
   onDragOver(event) {
+    return event.preventDefault();
     console.log('hi');
       const {dispatch} = this.props;
       const offset = {
@@ -234,7 +250,7 @@ class TaskList extends Component {
       }));
     
     
-    event.preventDefault();
+    
   }
 
   requestMoveCardToThisList(card) {
