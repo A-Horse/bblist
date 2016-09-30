@@ -12,4 +12,4 @@ export Tasks from './task/Tasks';
 export TaskWall from './task/TaskWall';
 export TaskWallSetting from './task/TaskWallSetting';
 
-export TodoList from './todo/TodoList';
+export TodoPage from './todo/TodoPage';

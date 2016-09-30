@@ -1,2 +1,24 @@
+$white: #FFF;
+$gray-light-depth: #F6F6F6;
+$gray-light-litte-depth: #E5E5E5;
+$gray-light: #EEE;
 
-$background-gray: #EEEEEE;
+$blue-dark: #0081FF;
+
+$background-light: $gray-light-depth;
+$background-gray: $gray-light;
+
+$content-light: $white;
+$content-dark-depth: #000;
+$content-dark: #333;
+
+$border-light: $gray-light-litte-depth;
+
+$shadow-light: $gray-light-litte-depth;
+
+$page-background-gray: $background-light;
+
+$task-card-background: $content-light;
+
+$button-primary: $blue-dark;
+$button-default: $white;

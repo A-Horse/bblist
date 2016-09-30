@@ -4,6 +4,8 @@ import {createConfigWithAuth, createConfig} from '../utils/header';
 import {handleResponse, handleResponseWithoutJson} from '../utils/http-handle';
 import {Storage} from '../services/storage';
 import {getJWT} from '../utils/auth';
+import {makeApiUrl} from 'utils/api';
+
 export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';
@@ -18,7 +20,7 @@ function requestLogin(creds) {
     isFetching: true,
     isAuthenticated: false,
     creds
-  }
+  };
 }
 
 function receiveLogin(token, user) {
@@ -26,7 +28,7 @@ function receiveLogin(token, user) {
     type: LOGIN_SUCCESS,
     jwt: token,
     user
-  }
+  };
 }
 
 function loginError(message) {
@@ -35,19 +37,19 @@ function loginError(message) {
     isFetching: false,
     isAuthenticated: false,
     message
-  }
+  };
 }
 
 function canNotLoginAuth() {
   return {
     type: LOGIN_AUTH_FAILURE
-  }
+  };
 }
 
 function requestAuthLogin() {
   return {
     type: LOGIN_AUTH_REQUEST
-  }
+  };
 }
 
 function authLoginError(message) {
@@ -68,7 +70,7 @@ export function login(creds) {
   const config = createConfig('POST', creds);
   return dispatch => {
     dispatch(requestLogin(creds));
-    return fetch('/api/login', config)
+    return fetch(makeApiUrl('/login'), config)
       .then(handleResponse)
       .then(response => dispatch(receiveLogin(response.jwt, response.user)))
       .catch(error => dispatch(loginError(error.message)));
@@ -81,7 +83,7 @@ export function authUser() {
   return dispatch => {
     if (!token) return dispatch(canNotLoginAuth());
     dispatch(requestAuthLogin());
-    return fetch('/api/login', config)
+    return fetch(makeApiUrl('/login'), config)
       .then(handleResponse)
       .then(response => dispatch(authLoginSuccess(response)))
       .catch(err => dispatch(authLoginError(err.message)));

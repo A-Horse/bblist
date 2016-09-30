@@ -10,6 +10,7 @@ import Todo from './Todo';
 
 import {createTodo, getTodoList} from 'actions/todo/todos';
 
+import 'style/page/todo/todo-list.scss';
 
 class TodoList extends Component {
   componentWillMount() {
@@ -36,10 +37,10 @@ class TodoList extends Component {
 
   render() {
     return (
-      <PageContainer>
+      <div className='todo-list'>
         {this.renderList()}
         <TodoCreater />
-      </PageContainer>
+      </div>
     );
   }
 }

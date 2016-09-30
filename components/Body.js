@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
+import  'style/body.scss';
+
 class Body extends Component {
 
   onClick(event) {
@@ -29,7 +31,7 @@ const mapStateToProps = (state) => {
   return {
     bubbleHandles: state.event.body.bubbleHandles,
     captureHandles: state.event.body.captureHandles
-  }
+  };
 };
 
 export default connect(mapStateToProps)(Body);

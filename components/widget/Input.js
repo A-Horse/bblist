@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './input.scss';
+import 'style/component/widget/input.scss';
 
 export class Input extends Component {
   componentDidMount() {
@@ -8,7 +8,7 @@ export class Input extends Component {
   
   render() {
     return (
-      <input {...this.props} ref='instance' />
+      <input type='text' {...this.props} ref='instance' />
     );
   }
 }

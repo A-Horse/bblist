@@ -1,3 +1,5 @@
+@import 'style/variable';
+
 html, header, footer, body, div, p, span, h1, h2, h3, h4, h5, h6, input {
   font-family: "HanHei SC","PingHei","PingFang SC","STHeitiSC-Light","Helvetica Neue","Helvetica","Arial",sans-serif;
   box-sizing: border-box;
@@ -26,4 +28,11 @@ button {
 
 [draggable] {
   user-select: none;
+}
+
+
+hr {
+  border: 0;
+  height: 1px;
+  background: $gray-light-litte-depth;
 }

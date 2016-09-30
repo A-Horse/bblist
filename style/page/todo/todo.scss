@@ -1,4 +1,19 @@
+@import 'style/variable';
 
 .todo {
+  hr {
+    background-image: linear-gradient(to right, $gray-light-depth, $gray-light-litte-depth, $gray-light-depth);
+  }
+}
+
+.todo--main {
+  display: flex;
+
+  .checkbox {
+    margin: 0 10px;
+  }
+}
+
+.todo--content {
   
 }
