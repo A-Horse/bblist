@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "description": "Redux Todos example",
   "scripts": {
-    "start": "webpack-dev-server --history-api-fallback --watch",
+    "start": "webpack-dev-server --history-api-fallback --watch --hot",
     "test": "cross-env NODE_ENV=test mocha --recursive --compilers js:babel-register --require ./test/setup.js",
     "test:watch": "npm test -- --watch"
   },
@@ -64,11 +64,13 @@
     "node-sass": "^3.3.3",
     "offline-plugin": "^3.4.2",
     "react-addons-test-utils": "^0.14.7",
+    "react-hot-loader": "^3.0.0-beta.5",
     "sass-loader": "^3.0.0",
     "sass-variable-loader": "0.0.4",
     "style-loader": "^0.12.4",
     "webpack": "^1.9.11",
     "webpack-dev-middleware": "^1.2.0",
+    "webpack-dev-server": "^1.16.1",
     "webpack-hot-middleware": "^2.9.1"
   }
 }

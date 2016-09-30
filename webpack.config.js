@@ -1,6 +1,6 @@
-var fs = require('fs')
-var path = require('path')
-var webpack = require('webpack')
+var fs = require('fs');
+var path = require('path');
+var webpack = require('webpack');
 
 var LiveReloadPlugin = require('webpack-livereload-plugin');
 var BellOnBundlerErrorPlugin = require('bell-on-bundler-error-plugin');
@@ -14,7 +14,9 @@ module.exports = {
   },
   devtool: 'cheap-module-eval-source-map',
   entry: [
+    'webpack-dev-server/client?http://bblist.com:8100',
     'webpack-hot-middleware/client',
+    'webpack/hot/only-dev-server',
     './index'
   ],
   output: {
@@ -24,18 +26,18 @@ module.exports = {
   },
   plugins: [
     new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
-    new LiveReloadPlugin(),
+    // new LiveReloadPlugin(),
     new webpack.BannerPlugin(fs.readFileSync('./.banner').toString()),
     new webpack.optimize.AggressiveMergingPlugin(),
     new BellOnBundlerErrorPlugin(),
     new OfflinePlugin()
+    //new webpack.HotModuleReplacementPlugin()
   ],
   module: {
     loaders: [
       {
         test: /\.js$/,
-        loaders: [ 'babel' ],
+        loaders: ['babel'],
         exclude: /node_modules/,
         include: __dirname
       },
@@ -50,4 +52,4 @@ module.exports = {
       }
     ]
   }
-}
+};
