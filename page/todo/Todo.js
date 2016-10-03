@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {CheckBox} from 'components/widget/CheckBox';
 
 import {getTodoList} from 'actions/todo/todos';
+import {MoreIcon} from 'services/svg-icons';
 
 import 'style/page/todo/todo.scss';
 
@@ -25,8 +26,6 @@ class Todo extends Component {
     
   }
   
-
-  
   finishTodo() {
     
   }
@@ -46,8 +45,12 @@ class Todo extends Component {
         <div className='todo--main'>
           <CheckBox ref='checkbox'/>
           <p className='todo--content'>{todo.content}</p>
+          
+          <div>
+            <MoreIcon className='more-icon' />
+          </div>
         </div>
-
+        
         <hr />
       </div>
     );

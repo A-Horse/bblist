@@ -3,6 +3,10 @@ import {connect} from 'react-redux';
 
 import {addBodyEventListenerOnce} from 'actions/event/body';
 import {createTodo, getTodoList} from 'actions/todo/todos';
+import {AddIcon} from 'services/svg-icons';
+import {Button} from 'components/widget/Button';
+import DatePicker from 'components/date-picker/DatePicker';
+
 
 import 'style/page/todo/todo-creater.scss';
 
@@ -41,7 +45,7 @@ class TodoCreater extends Component {
   renderToggle() {
     return (
       <div onClick={this.toggle.bind(this)}>
-        + New Todo
+        <AddIcon /> Add Todo
       </div>
     );
   }
@@ -51,10 +55,21 @@ class TodoCreater extends Component {
       <div className='todo-creater-body'
            onClick={event => event.stopPropagation()}>
         <div>
-          <span>title</span>
           <input type='text' ref='content' />
+          <DatePicker ref='date-picker' />
         </div>
-        <button onClick={this.createTodo.bind(this)} >Post</button>
+        <div>
+          <label>Label:</label>
+          <input type='text'/>
+        </div>
+        <div>
+          <label>Repeat:</label>
+          <input type='text'/>
+        </div>
+        <div>
+          <Button onClick={this.createTodo.bind(this)}>Add Todo</Button>
+          
+        </div>
       </div>
     );
   }

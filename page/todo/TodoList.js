@@ -6,6 +6,7 @@ import {browserHistory} from 'react-router';
 import {makeGravatarUrl} from 'services/gravatar';
 import {getGoalList, createGoal} from 'actions/goal/goal';
 import TodoCreater from './TodoCreater';
+import DatePicker from 'components/date-picker/DatePicker';
 import Todo from './Todo';
 
 import {createTodo, getTodoList} from 'actions/todo/todos';
@@ -18,7 +19,7 @@ class TodoList extends Component {
       
     };
   }
-  
+
   componentWillMount() {
     const {dispatch} = this.props;
     dispatch(getTodoList());
@@ -40,6 +41,7 @@ class TodoList extends Component {
       <div className='todo-list'>
         {this.renderList()}
         <TodoCreater />
+        
       </div>
     );
   }
