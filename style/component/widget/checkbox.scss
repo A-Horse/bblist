@@ -1,4 +1,35 @@
+@import 'style/variable';
 
 .checkbox {
+  position: relative;
   display: inline-block;
+
+  input {
+    visibility: hidden;
+    &:checked + .checkbox--mock:before {
+      display: block;
+    }
+  }
+  
+}
+
+.checkbox--mock {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 20px;
+  width: 20px;
+  border: 1px solid $gray-light-litte-depth;
+  border-radius: 2px;
+
+  &:before {
+    content: '✓';
+    z-index: 1;
+    display: none;
+    position: absolute;
+    color: green;
+    left: 0;
+    top: 0;
+  }
 }
