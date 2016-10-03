@@ -4,6 +4,8 @@ import {DateIcon, CloseIcon} from 'services/svg-icons';
 import {weekFirstDay, weekDayName} from './constant';
 import {daysInMonth, firstDayInMonthOffset} from './util';
 import Week from './Week';
+import {Button} from 'components/widget/Button';
+import Month from './Month';
 
 class Calendar extends Component {
 
@@ -20,53 +22,15 @@ class Calendar extends Component {
     
   }
 
-  renderWeekText() {
-    const {firstDayOfweekOffset = 0} = this.props;
-    return (<tr>{weekDayName.map(name => (<td>{name}</td>))}</tr>);
+  onSelect() {
+    
   }
-
-  renderWeeks() {
-    const {year, month, day} = this.props;
-    const monthDays = daysInMonth(month, year);
-    const lastMonthDays = daysInMonth(month - 1, year);
-    const firstDayOffset = firstDayInMonthOffset(month, year);
-
-    let start = - firstDayOffset;
-    let result = [];
-    while(true) {
-      let a = new Array();
-      for(let i = 0; i < 7; i++) {
-        if (start < 0) {
-          a.push({
-            number: start + lastMonthDays + 1,
-            isOutRange: true
-          });
-        } else if (start > monthDays - 1) {
-          a.push({
-            number: start - monthDays + 1,
-            isOutRange: true
-          });
-        } else {
-          a.push({
-            number: start + 1,
-            isOutRange: false
-          });
-        }
-        ++start;
-      }
-      result.push(a);
-      if (start >= monthDays - 1) {
-        break;
-      }
-    }
-    return result.map((days, i) => <Week key={i} days={days}/>);
-  }
-
+  
   renderHeader() {
-
     return (
       <div>
-        
+        <Button key='next' onClick={this.props.nextMonth.bind(this)}>next</Button>
+        <Button key='last' onClick={this.props.lastMonth.bind(this)}>Last</Button>
       </div>
     );
   }
@@ -74,12 +38,8 @@ class Calendar extends Component {
   render() {
     return (
       <div>
-        <table>
-          <tbody>
-            {this.renderWeekText()}
-            {this.renderWeeks()}
-          </tbody>
-        </table>
+        {this.renderHeader()}
+        <Month {...this.props}/>
       </div>
     );
   }
