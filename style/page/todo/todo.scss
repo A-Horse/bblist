@@ -8,6 +8,7 @@
 
 .todo--main {
   display: flex;
+  justify-content: space-between;
 
   .checkbox {
     margin: 0 10px;
@@ -15,5 +16,5 @@
 }
 
 .todo--content {
-  
+  flex-grow: 1;
 }
