@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 
+import 'style/component/date-picker/day.scss';
 
 class Day extends Component {
 
@@ -11,12 +12,29 @@ class Day extends Component {
   onClick() {
     
   }
+
+  onSelected() {
+    const date = new Date(this.props.year, this.props.month, this.props.dday.number);
+    this.props.onSelected(date);
+  }
+
+  buildClassName() {
+    const {dday} = this.props;
+    let className = 'date-picker--day';
+    if (dday.isOutRange) {
+      className += ' out-range';
+    }
+    if (!dday.active) {
+      className += ' inactive';
+    }
+    return className;
+  }
   
   render() {
-    const {day} = this.props;
+    const {dday} = this.props;
     return (
-      <td>
-        {day.number}
+      <td onClick={this.onSelected.bind(this)} className={this.buildClassName()}>
+        {dday.number}
       </td>
     );
   }
