@@ -7,6 +7,8 @@ export SettingIcon from 'babel!svg-react!../assets/svg/ic_settings_black_24px.sv
 export DateIcon from 'babel!svg-react!../assets/svg/ic_date_range_black_24px.svg?name=DateIcon';
 export MoreIcon from 'babel!svg-react!../assets/svg/ic_more_horiz_black_24px.svg?name=MoreIcon';
 export AlarmIcon from 'babel!svg-react!../assets/svg/ic_alarm_black_24px.svg?name=AlarmIcon';
+export FlagIcon from 'babel!svg-react!../assets/svg/ic_flag_black_24px.svg?name=FlagIcon';
+export PlayIcon from 'babel!svg-react!../assets/svg/ic_play_arrow_black_24px.svg?name=PlayIcon';
 
 export const SMALL_SIZE = 16;
 export const MIDDLE_SIZE = 20;
