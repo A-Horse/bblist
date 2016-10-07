@@ -1,7 +1,12 @@
 @import 'style/variable';
 
 .date-picker--day {
-
+  cursor: pointer;
+  
+  &:hover {
+    background-color: $gray-light-depth;
+  }
+  
   &.out-range {
     opacity: 0.5;
   }
