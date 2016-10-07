@@ -1,15 +1,5 @@
-import React, { Component, PropTypes } from 'react';
-
-let styles = {
-  currentItem: {
-  },
-  itemsContainer: {
-    border: '1px solid #999'
-  },
-  item: {
-    cursor: 'default'
-  }
-}
+import React, {Component, PropTypes} from 'react';
+import 'style/component/widget/select.scss';
 
 export class Select extends Component {
   defaultProps: {
@@ -18,11 +8,12 @@ export class Select extends Component {
   }
   
   constructor() {
-    super()
+    super();
     this.state = {
       toggle: false,
-      value: 'please select'
-    }
+      value: 'please select',
+      name: 'please select'
+    };
   }
   
   init() {
@@ -41,34 +32,29 @@ export class Select extends Component {
   }
 
   openSelect() {
-    styles.itemsContainer.display = 'block';
     this.setState({
       toggle: !this.state.toggle
-    })
+    });
   }
 
   renderItems() {
-    const {items} = this.props;
-    return items.map(item => (<li key={item.name} style={styles.item}
-                         onClick={() => this.clickItem(item)}>{item.name}</li>));
+    return this.props.items.map(item => (<li key={item.name} className='select--item' onClick={() => this.clickItem(item)}>{item.name}</li>));
   }
 
   clickItem(item) {
-    this.setState({value: item.value,
-                   toggle: false})
+    this.setState({value: item.value, name: item.name, toggle: false});
   }
   
   render() {
     return (
-      <div>
-        <div style={styles.currentItem} onClick={() => this.openSelect()}>
-          <p>{this.state.value}</p>
+      <div className='select'>
+        <div className='select--box' onClick={() => this.openSelect()}>
+          <p>{this.state.name}</p>
         </div>
-        <ul style={Object.assign({}, styles.itemsContainer,
-             {display: this.state.toggle ? 'block' : 'none'})}>
+        <ul className='select--container' style={{display: this.state.toggle ? 'block' : 'none'}}>
           {this.renderItems()}
         </ul>
       </div>
-    )
+    );
   }
 }
