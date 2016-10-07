@@ -1,0 +1,31 @@
+@import 'style/variable';
+
+.select {
+  position: relative;
+  display: inline-block;
+}
+
+.select--container {
+  margin: 0;
+  position: absolute;
+  background-color: $content-light;
+  width: 100%;
+}
+
+.select--box {
+  border: 1px solid $gray;
+  border-radius: 3px;
+}
+
+.select--item {
+  cursor: pointer;
+  border-bottom: 1px solid $gray-light-depth;
+  
+  &:hover {
+    background-color: $gray-light-depth;
+  }
+  
+  &:last-child {
+    border-bottom: none;
+  }
+}
