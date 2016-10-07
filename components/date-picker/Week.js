@@ -18,7 +18,7 @@ class Week extends Component {
 
   renderDays() {
     const {days} = this.props;
-    return days.map((day, i) => <Day day={day} key={i} />);
+    return days.map((day, i) => <Day dday={day} key={i} {...this.props}/>);
   }
   
   render() {
