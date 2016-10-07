@@ -3,12 +3,15 @@ import {connect} from 'react-redux';
 
 import {addBodyEventListenerOnce} from 'actions/event/body';
 import {createTodo, getTodoList} from 'actions/todo/todos';
-import {AddIcon} from 'services/svg-icons';
+import {AddIcon, AlarmIcon, FlagIcon} from 'services/svg-icons';
 import {Button} from 'components/widget/Button';
 import DatePicker from 'components/date-picker/DatePicker';
-
+import Popup from 'components/Popup';
+import {Select} from 'components/widget/Select';
 
 import 'style/page/todo/todo-creater.scss';
+
+import {repeatItems} from './constants';
 
 class TodoCreater extends Component {
   
@@ -62,13 +65,14 @@ class TodoCreater extends Component {
           <label>Label:</label>
           <input type='text'/>
         </div>
-        <div>
+        <div className='repeat-input'>
           <label>Repeat:</label>
-          <input type='text'/>
+          <Select items={repeatItems}/>
         </div>
         <div>
           <Button onClick={this.createTodo.bind(this)}>Add Todo</Button>
-          
+          <AlarmIcon />
+          <FlagIcon />
         </div>
       </div>
     );
