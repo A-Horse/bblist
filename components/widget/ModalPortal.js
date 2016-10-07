@@ -164,12 +164,14 @@ export class ModalPortal extends Component {
     return this.shouldBeClosed() ? div() : (
       div({
         ref: 'overlay',
-        className: this.buildClassName('overlay', this.props.overlayClassName)
-        // onClick: this.handleOverlayClick
+        className: this.buildClassName('overlay', this.props.overlayClassName),
+        onClick: this.props.onOverlayClick,
+        style: this.props.overlayStyle || {}
       },
           div({
             ref: 'content',
             className: this.buildClassName('content', this.props.className),
+            style: this.props.modalStyle || {},
             tabIndex: "-1",
             onKeyDown: this.handleKeyDown.bind(this)
           },
