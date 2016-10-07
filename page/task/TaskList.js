@@ -255,7 +255,7 @@ class TaskList extends Component {
 
   requestMoveCardToThisList(card) {
     const thisListId = this.props.listId;
-    return updateTaskCard(card.id, {listId: thisListId})
+    return updateTaskCard(card.id, {listId: thisListId});
   }
 
 }
