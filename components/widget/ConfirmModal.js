@@ -48,7 +48,7 @@ export class ConfirmModal extends Component {
     super();
     this.state = {
       toggle: false
-    }
+    };
   }
   
   init() {
