@@ -13,7 +13,7 @@ export class CheckBox extends Component {
   
   render() {
     return (
-        <div className='checkbox'>
+        <div className='checkbox' onClick={this.props.onClick}>
           <input id={this._reactInternalInstance._rootNodeID} type='checkbox' {...this.props} ref='instance' onChange={this.onChange.bind(this)}/>
           <label htmlFor={this._reactInternalInstance._rootNodeID} className='checkbox--mock'></label>
         </div>
