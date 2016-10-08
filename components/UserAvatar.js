@@ -2,10 +2,7 @@ import React, {Component} from 'react';
 import {makeGravatarUrl, getUserGravatorFromStorge, saveUserGravatorToStorge} from '../services/gravatar';
 import {getImageBase64} from '../services/image';
 
-const style = {
-  width: '50px',
-  pointerEvents: 'none'
-};
+import 'style/component/useravatar.scss';
 
 class UserAvatar extends Component {
   onLoadToSaveAvator() {
@@ -19,12 +16,14 @@ class UserAvatar extends Component {
     const storgeData = getUserGravatorFromStorge(user.id);
     if (storgeData) {
       return <img src={`data:image/png;base64,${storgeData}`}
-              style={Object.assign(style, this.props.style)}/>
+              className='useravatar'
+              style={this.props.style}/>;
     }
     return <img ref='avator' src={makeGravatarUrl(user.email)}
-            style={Object.assign(style, this.props.style)}
+            style={this.props.style}
+            className='useravatar'
             onLoad={() => {this.onLoadToSaveAvator()}}
-            crossOrigin='Anonymous'/>
+            crossOrigin='Anonymous'/>;
   }
 }
 
