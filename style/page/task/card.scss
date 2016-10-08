@@ -1,7 +1,13 @@
+@import 'style/variable';
+
+$card-margin: 8px;
+
 .task-card {
   background: white;
   white-space: normal;
   word-break: break-all;
+  display: flex;
+  justify-content: space-between;
 }
 
 .task-card.moving {
