@@ -14,23 +14,11 @@ import TaskBoardCreater from './TaskBoardCreater';
 
 import 'style/page/task/board.scss';
 import 'style/page/task/taskboard-creater-modal.scss';
+import 'style/page/task/taskboard-card.scss';
 
 const styles = {
   wall: {
-    flex: '1 0 auto',
-    borderRadius: '3px',
-    margin: '8px 20px',
-    width: '200px',
-    height: '78px',
-    maxWidth: '200px',
-    cursor: 'pointer',
-    transition: 'box-shadow 218ms ease-in-out,transform 218ms ease-in-out,-webkit-transform 218ms ease-in-out',
-    boxShadow: '0 2px 3px 0 rgba(0,0,0,.0470588)',
-    // backgroundImage: 'url(/static/image/cover-internet.jpg)',
-    ':hover': {
-      transform: 'translate3d(0,-5px,0)',
-      boxShadow: '0 7px 21px rgba(0,0,0,.15)'
-    }
+    
   },
   cardInfo: {
     backgroundImage: 'linear-gradient(180deg,rgba(0,0,0,.3) 0, transparent)',
@@ -96,7 +84,7 @@ class Tasks extends Component {
   renderWalls() {
     return this.props.walls.map(wjson => {
       return (
-        <div style={Object.assign({}, styles.wall, styles.projectCard)} key={wjson.id} onClick={() => browserHistory.push(`/task-wall/${wjson.id}`)}>
+        <div className='taskboard-card' style={{backgroundImage: `url(${wjson.cover})`}} key={wjson.id} onClick={() => browserHistory.push(`/task-wall/${wjson.id}`)}>
           <div style={styles.cardInfo}>
             <h2 style={styles.cardTitle}>{wjson.name}</h2>
           </div>
