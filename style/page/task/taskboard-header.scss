@@ -1,0 +1,12 @@
+@import 'style/variable';
+
+.taskboard-header {
+  position: relative;
+  text-align: center;
+  display: flex;
+  height: 33px;
+  padding: 0 2px 0 16px;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $drak-light;
+}
