@@ -1,11 +1,16 @@
 $white: #FFF;
+
 $gray-light-depth: #F6F6F6;
 $gray-light-litte-depth: #E5E5E5;
+$gray-supper-light: #EFEFEF;
 $gray-light: #EEE;
 $gray: #c6c6c6;
+$gray-light-deep: #7a7a7a;
 $gray-deep: #999;
 
 $blue-dark: #0081FF;
+
+$drak-light: #444;
 
 $background-light: $gray-light-depth;
 $background-gray: $gray-light;
@@ -16,6 +21,8 @@ $content-dark: #333;
 
 $font-size-small: 10px;
 $font-size-middle: 12px;
+$font-size-x-middle: 14px;
+$font-size-large: 16px;
 
 $border-light: $gray-light-litte-depth;
 
@@ -27,3 +34,10 @@ $task-card-background: $content-light;
 
 $button-primary: $blue-dark;
 $button-default: $white;
+
+$radius-small: 1px;
+$radius-middle: 3px;
+
+$size-x-small: 16px;
+
+$icon-small: $size-x-small;
