@@ -12,13 +12,13 @@ import {createTaskList, deleteTaskList} from 'actions/task/task-list';
 import {updateTaskCard, insertVirtualCard} from 'actions/task/task-card';
 import {DropList} from 'components/widget/DropList';
 import {ConfirmModal} from 'components/widget/ConfirmModal';
-import {AddIcon, EditIcon, ArrowDownIcon, SettingIcon, MIDDLE_SIZE, SMALL_SIZE} from 'services/svg-icons';
+import {AddIcon, MoreIcon, EditIcon, ArrowDownIcon, SettingIcon, MIDDLE_SIZE, SMALL_SIZE} from 'services/svg-icons';
 import {spawnMixinRender} from 'style/theme-render';
 import GlobalClick from 'services/global-click';
 import {getOffsetHeight} from 'utils/dom';
 
-import 'style/page/task/list.scss';
-import styleVariables from '!!sass-variable-loader!style/page/task/list.scss';
+import 'style/page/task/task-list.scss';
+import styleVariables from '!!sass-variable-loader!style/page/task/task-list.scss';
 
 // FIXME
 export const listWidth = 210;
@@ -30,15 +30,6 @@ const styles = {
   },
   listName: {
     textAlign: 'center'
-  },
-  listMenuIcon: {
-    verticalAlign: 'middle',
-    width: `${SMALL_SIZE}px`,
-    height: `${SMALL_SIZE}px`,
-    cursor: 'pointer',
-    borderRadius: '50%',
-    border: '1px solid #999',
-    backgroundColor: 'white'
   },
   listSettingDropDown: {
     position: 'absolute',
@@ -53,7 +44,7 @@ const styles = {
   listEditIcon: {
     marginTop: '-0.2rem',
     width: '1.2rem',
-    verticalAlign: 'middle'    
+    verticalAlign: 'middle'
   },
   listSettingItem: {
     padding: '0 10px',
@@ -146,10 +137,10 @@ class TaskList extends Component {
   renderTopBar() {
     const {listId} = this.props;
     return (
-      <div className="task-list--top-bar">
+      <div className='task-list--top-bar'>
         {this.renderListName()}
-        <ArrowDownIcon className='arrow-down-icon icon' style={styles.listMenuIcon} onClick={() => {this.onClickSetting(listId)}}/>
-
+        <MoreIcon className='more-icon icon' style={styles.listMenuIcon} onClick={() => this.onClickSetting(listId)}/>
+          
           <DropList toggle={this.state.listSetting[listId]}>
             <ul style={styles.listSettingDropDown}>
               <li style={styles.listSettingItem} onClick={() => {this.refs.listDeleteConfirm.open()}}>Delete</li>
@@ -165,17 +156,19 @@ class TaskList extends Component {
     const {listId, cards} = this.props;
     return (
       <div ref='main'
-           className="task-list"
-           onDragEnter={this.onDragEnter.bind(this)}
-           onDrop={this.onDrop.bind(this)}
-           onDragLeave={this.onDragLeave.bind(this)}
-           onDragOver={this.onDragOver.bind(this)}>
+           className='task-list'
+           // onDragEnter={this.onDragEnter.bind(this)}
+           // onDrop={this.onDrop.bind(this)}
+           // onDragLeave={this.onDragLeave.bind(this)}
+           // onDragOver={this.onDragOver.bind(this)}
+           >
 
         {this.renderTopBar()}
-      
-        {this.renderCards(cards)}
-        
-        <TaskCardCreater wallId={this.props.wallId} listId={listId} />
+
+        <div className='task-list--body'>
+          {this.renderCards(cards)}
+          <TaskCardCreater wallId={this.props.wallId} listId={listId} />
+        </div>
         
       </div>
     );
@@ -226,14 +219,12 @@ class TaskList extends Component {
   }
 
   onDrop(event) {
-    console.log('onDrog');
     const card = event.dataTransfer.getData('card');
     this.dragMeta = {};
   }
 
   onDragOver(event) {
     return event.preventDefault();
-    console.log('hi');
       const {dispatch} = this.props;
       const offset = {
         x: event.nativeEvent.clientX,
@@ -248,9 +239,6 @@ class TaskList extends Component {
         listId: this.props.listId,
         virtualIndex: index
       }));
-    
-    
-    
   }
 
   requestMoveCardToThisList(card) {
