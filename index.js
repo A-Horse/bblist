@@ -32,7 +32,7 @@ const DevTools = createDevTools(
   </DockMonitor>
 );
 
-const createStoreWithMiddleware = applyMiddleware(thunkMiddleware)(createStore)
+const createStoreWithMiddleware = applyMiddleware(thunkMiddleware)(createStore);
 
 const store = createStoreWithMiddleware(
   reducer,
@@ -40,14 +40,13 @@ const store = createStoreWithMiddleware(
 );
 const history = syncHistoryWithStore(browserHistory, store);
 
-// TODO extract it router
 ReactDOM.render(
   <Provider store={store}>
     <Body>
       <Router history={history}>
         <Route path="/" component={App} >
           <IndexRoute component={IndexPage}/>
-          
+    
           <Route path="home" component={DashBoard} onEnter={checkLogin}/>
           <Route path="signin" component={SignIn}/>
           <Route path="signup" component={SignUp}/>
