@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import Radium from 'radium';
 
 import {deleteTaskWall, getTaskAllCards} from 'actions/task/task-wall';
-import {taskCardDragLeaveStart, updateTaskCard, setCurrentCard} from 'actions/task/task-card';
+import {taskCardDragLeaveStart, updateTaskCard, insertVirtualCard, setCurrentCard} from 'actions/task/task-card';
 import {createTaskList, deleteTaskList} from 'actions/task/task-list';
 import {openTaskCardModal} from 'actions/event/task-wall';
 import {DropList} from 'components/widget/DropList';
@@ -16,21 +15,9 @@ import {AddIcon, EditIcon, ArrowDownIcon, SettingIcon} from 'services/svg-icons'
 import {navHeight} from 'components/Nav';
 import UserAvatar from 'components/UserAvatar';
 import {TaskWallSetting} from './TaskWallSetting';
-
-const styles = {
-  card: {
-    margin: '3px 0',
-    padding: '4px 8px',
-    borderRadius: '1px'
-  }
-};
-
-const themeRender = spawnMixinRender(styles);
-
-
+import {CheckBox} from 'components/widget/CheckBox';
 import 'style/page/task/card.scss';
 
-@Radium
 class TaskCard extends Component {
   constructor() {
     super();
@@ -48,8 +35,11 @@ class TaskCard extends Component {
     
     const crt = this.refs.main.cloneNode(true);
     this.crt = crt;
-    crt.style.backgroundColor = "red";
-    crt.style.position = "absolute"; crt.style.top = "0px"; crt.style.right = "0px"; crt.style.display = 'block'
+    crt.style.backgroundColor = 'red';
+    crt.style.position = 'absolute';
+    crt.style.top = '0px';
+    crt.style.right = '0px';
+    crt.style.display = 'block';
     document.body.appendChild(crt);
     event.dataTransfer.setDragImage(crt, 0, 0);
     
@@ -85,7 +75,7 @@ class TaskCard extends Component {
     }
     return dispatch(updateTaskCard(this.props.card.id, {isDone: true}));
   }
-  
+
   onLoad() {
     const height = this.refs.main.offsetHeight;
     this.props.card.height = height;
@@ -96,15 +86,21 @@ class TaskCard extends Component {
     const {dispatch} = this.props;
     dispatch(setCurrentCard(this.props.card));
   }
+
+  checkBoxOnClick(event) {
+    event.stopPropagation();
+  }
   
   render() {
     const {card} = this.props;
     const activeRole = card.creater;
     return (
-      <div className="task-card" ref='main' style={styles.card} draggable='true' onDragStart={this.onDragStart.bind(this)}
+      <div className='task-card' ref='main' draggable='true'
+           onDragStart={this.onDragStart.bind(this)}
+           onDragEnd={this.onDragEnd.bind(this)}
            onClick={this.onClick.bind(this)}
-           onLoad={this.onLoad.bind(this)}
-           onDragEnd={this.onDragEnd.bind(this)}>
+           onLoad={this.onLoad.bind(this)}>
+        <CheckBox ref='checkbox' onClick={this.checkBoxOnClick.bind(this)}/>
         <p>{card.title}</p>
         <UserAvatar user={activeRole}/>
       </div>
@@ -114,6 +110,7 @@ class TaskCard extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    
   };
 };
 
