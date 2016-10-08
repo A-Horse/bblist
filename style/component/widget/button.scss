@@ -1,0 +1,14 @@
+@import 'style/variable';
+@import 'style/mixin';
+
+.button {
+  border: none;
+  cursor: pointer;
+  border-radius: $radius-middle;
+  padding: 4px 13px;
+}
+
+.button.primary {
+  background-color: $blue-dark;
+  color: white;
+}

@@ -1,0 +1,34 @@
+@import 'style/variable';
+
+$content-width: 409px;
+$content-top: 150px;
+
+.modal__content.taskcard-modal {
+  width: $content-width;
+  left: 50%;
+  top: $content-top;
+  margin-left: -$content-width / 2;
+}
+
+.taskcard-modal--top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.taskcard-modal--title {
+  display: flex;
+  align-items: center;
+}
+
+.taskcard-modal--content {
+  textarea {
+    width: 100%;
+    border: 1px solid $border-light;
+    border-radius: $radius-middle;
+    box-shadow: 0 1px 3px $gray-light-litte-depth inset;
+    font-size: $font-size-x-middle;
+    padding: 8px 11px;
+    box-sizing: border-box;
+  }
+}
