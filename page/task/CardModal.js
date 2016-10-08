@@ -9,8 +9,10 @@ import {spawnMixinRender} from 'style/theme-render';
 import {CloseIcon} from 'services/svg-icons';
 import UserAvatar from 'components/UserAvatar';
 import {Modal} from 'components/widget/Modal';
+import {CheckBox} from 'components/widget/CheckBox';
+import {Hr} from 'components/widget/Hr';
 
-import 'style/page/task/modal.scss';
+import 'style/page/task/taskcard-modal.scss';
 
 @Radium
 class CardModal extends Component {
@@ -25,17 +27,38 @@ class CardModal extends Component {
   }
 
   close() {
-    const {dispatch} = this.props;
-    
+    const {dispatch} = this.props; 
     dispatch(unsetCurrentCard());
   }
 
   render() {
-    const {card} = this.props;
+    const {card, taskLists} = this.props;
+    const currentList = R.find(R.propEq('id', card.taskListId))(taskLists);
+    if (!currentList) {
+      return null;
+    }
+
     return (
-      <Modal className='task-card' toggle={this.props.toggleTaskCardModal}>
-        <CloseIcon onClick={this.close.bind(this)}/>
-        Card
+      <Modal className='taskcard-modal' toggle={this.props.toggleTaskCardModal}>
+        <div className='taskcard-modal--top-bar'>
+          <div>
+            <span>List:</span>
+            <span>{currentList.name}</span>
+          </div>
+          <CloseIcon onClick={this.close.bind(this)}/>
+        </div>
+        
+        <div className='taskcard-modal--title'>
+          <CheckBox ref='checkbox'/>
+          <p className='taskcard-modal--content'>{card.title}</p>
+        </div>
+
+        <Hr/>
+
+        <div className='taskcard-modal--content'>
+          <textarea>{card.content}</textarea>
+        </div>
+        
       </Modal>
     );
   }
@@ -56,7 +79,8 @@ class CardModal extends Component {
 const mapStateToProps = (state) => {
   return {
     card: state.task.card.card,
-    toggleTaskCardModal: state.task.card.active
+    toggleTaskCardModal: state.task.card.active,
+    taskLists: state.task.list.lists
   };
 };
 
