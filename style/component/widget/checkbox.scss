@@ -1,11 +1,13 @@
 @import 'style/variable';
+@import 'style/mixin';
 
 .checkbox {
   position: relative;
   display: inline-block;
-
+  
   input {
     visibility: hidden;
+    width: 22px;
     &:checked + .checkbox--mock:before {
       display: block;
     }
@@ -14,6 +16,7 @@
 }
 
 .checkbox--mock {
+  @include shadow-depth-light;
   display: block;
   position: absolute;
   left: 0;
@@ -22,7 +25,7 @@
   width: 20px;
   border: 1px solid $gray-light-litte-depth;
   border-radius: 2px;
-
+  
   &:before {
     content: '✓';
     z-index: 1;
