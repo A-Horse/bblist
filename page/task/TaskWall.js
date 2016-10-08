@@ -21,6 +21,8 @@ import {AddIcon, SettingIcon, MIDDLE_SIZE} from 'services/svg-icons';
 import {navHeight} from 'components/Nav';
 import {spawnMixinRender} from 'style/theme-render';
 
+import 'style/page/task/taskboard-header.scss';
+
 const styles = {
   container: {
     position: 'fixed',
@@ -49,15 +51,6 @@ const styles = {
     padding: '0',
     listStyle: 'none'
   },
-  topBar: {
-    position: 'relative',
-    textAlign: 'center',
-    display: 'flex',
-    height: '33px',
-    padding: '0 2px 0 16px',
-    justifyContent: 'space-between',
-    alignItems: 'center'
-  },
   topBarTitle: {
     color: 'white'
   },
@@ -82,7 +75,6 @@ const styles = {
 };
 
 const themeRender = spawnMixinRender(styles);
-themeRender('topBar', 'mainColorBackground');
 themeRender('createList', 'grayBackground');
 
 @Radium
@@ -138,11 +130,8 @@ class TaskWall extends Component {
   renderTopBar() {
     const {wall} = this.props;
     return (
-      <div style={styles.topBar}>
+      <div className='taskboard-header'>
         <h2 style={styles.topBarTitle}>{wall.name}</h2>
-        <div style={styles.dimensions}>
-          {wall.defaultDimensions}
-        </div>
         {this.renderSetttingMenu()}
       </div>
     );
