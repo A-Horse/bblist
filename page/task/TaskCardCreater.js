@@ -1,22 +1,16 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import Radium from 'radium';
+import {createTaskCard} from 'actions/task/task-card';
+import {getTaskAllCards} from 'actions/task/task-wall';
+import {spawnMixinRender} from 'style/theme-render';
+import {addBodyEventListenerOnce} from 'actions/event/body';
+import {Button} from 'components/widget/Button';
+import {Hr} from 'components/widget/Hr';
+import UserAvatar from 'components/UserAvatar';
+import {MoreIcon} from 'services/svg-icons';
 
-import {createTaskCard} from '../../actions/task/task-card';
-import {getTaskAllCards} from '../../actions/task/task-wall';
-import {spawnMixinRender} from '../../style/theme-render';
-import {addBodyEventListenerOnce} from '../../actions/event/body';
+import 'style/page/task/taskcard-creater.scss';
 
-const styles = {
-  container: {
-    padding: '10px'
-  }
-};
-
-const mixinRender = spawnMixinRender(styles);
-mixinRender('container', 'lightBackground', 'lightSmallShadow');
-
-@Radium
 class TaskCardCreater extends Component {
   constructor() {
     super();
@@ -56,21 +50,38 @@ class TaskCardCreater extends Component {
 
   renderToggle() {
     return (
-      <div onClick={this.toggle.bind(this)}>
-        + New Task
+      <div onClick={this.toggle.bind(this)} className='taskcard-creater--toggle'>
+        Add a card…
       </div>
     );
   }
   
   renderBody() {
     return (
-      <div style={styles.container} className='taskcard-creater-body'
+      <div className='taskcard-creater--body'
            onClick={event => event.stopPropagation()}>
         <div>
-          <span>title</span>
-          <input type='text' ref='taskCardTitle' />
+          <textarea type='text' ref='taskCardTitle' placeholder='Task Content' />
         </div>
-        <button onClick={this.createCard.bind(this)} >Post</button>
+        <div className='taskcard-creater--user'>
+          <UserAvatar user={this.props.user}/>
+          <span>{this.props.user.username}</span>
+        </div>
+        <Hr/>
+        <div className='taskcard-creater--participants'>
+          <div>Participants</div>
+          <div>
+            <UserAvatar user={this.props.user}/>
+          </div>
+        </div>
+        <Hr/>
+        <div className='taskcard-creater--operation'>
+          <div>
+            <MoreIcon />
+            <span>more</span>
+          </div>
+          <Button styleType='primary' onClick={this.createCard.bind(this)}>OK</Button>
+        </div>
       </div>
     );
   }
@@ -78,8 +89,8 @@ class TaskCardCreater extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    
+    user: state.auth.loginedUser
   };
-}
+};
 
 export default connect(mapStateToProps)(TaskCardCreater);
