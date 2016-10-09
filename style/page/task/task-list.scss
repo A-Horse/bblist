@@ -23,7 +23,7 @@ $list-vertical-margin: 15px;
 }
 
 .task-list--body {
-  overflow-y: scroll;
+  overflow-y: auto;
   position: relative;
   display: inline-flex;
   flex-direction: column;
