@@ -39,9 +39,10 @@ function requestUpdateTaskCard(data) {
   };
 }
 
-function updateTaskCardSuccess() {
+function updateTaskCardSuccess(card) {
   return {
-    type: TASKCARD_PATCH_SUCCESS
+    type: TASKCARD_PATCH_SUCCESS,
+    playload: card
   };
 }
 
@@ -211,8 +212,8 @@ export function updateTaskCard(cardId, data) {
   const config = createConfigWithAuth('PATCH', data);
   return dispatch => {
     return fetch(`/api/task-card/${cardId}`, config)
-      .then(handleResponseWithoutJson)
-      .then(() => dispatch(updateTaskCardSuccess()))
+      .then(handleResponse)
+      .then(card => dispatch(updateTaskCardSuccess(card)))
       .catch(error => dispatch(updateTaskCardError(error)));
   };
 }
@@ -220,7 +221,7 @@ export function updateTaskCard(cardId, data) {
 export function createTaskCard(card) {
   const config = createConfigWithAuth('POST', card);
   return dispatch => {
-    dispatch(requestPostTaskCard(card))
+    dispatch(requestPostTaskCard(card));
     return fetch('/api/task-card', config)
       .then(handleResponse)
       .then(response => dispatch(createTaskCardSuccess(response)))
