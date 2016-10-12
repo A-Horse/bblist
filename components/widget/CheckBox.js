@@ -9,12 +9,14 @@ export class CheckBox extends Component {
 
   onChange() {
     this.checked = this.refs.instance.checked;
+    this.props.onChange && this.props.onChange(this.checked);
   }
   
   render() {
+    console.log('cc');
     return (
         <div className='checkbox' onClick={this.props.onClick}>
-          <input id={this._reactInternalInstance._rootNodeID} type='checkbox' {...this.props} ref='instance' onChange={this.onChange.bind(this)}/>
+          <input id={this._reactInternalInstance._rootNodeID} type='checkbox' defaultChecked={this.props.defaultChecked} ref='instance' onChange={this.onChange.bind(this)}/>
           <label htmlFor={this._reactInternalInstance._rootNodeID} className='checkbox--mock'></label>
         </div>
     );
