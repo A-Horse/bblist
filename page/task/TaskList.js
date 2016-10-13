@@ -153,7 +153,9 @@ class TaskList extends Component {
   }
 
   render() {
+    console.log('r');
     const {listId, cards} = this.props;
+    //const {cards} = R.find(R.propEq('id', listId))(this.props.lists);
     return (
       <div ref='main'
            className='task-list'
@@ -164,7 +166,7 @@ class TaskList extends Component {
            >
 
         {this.renderTopBar()}
-
+      
         <div className='task-list--body'>
           {this.renderCards(cards)}
           <TaskCardCreater wallId={this.props.wallId} listId={listId} />
@@ -250,6 +252,7 @@ class TaskList extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    // lists: state.task.list.lists
   };
 };
 
