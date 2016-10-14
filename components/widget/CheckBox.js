@@ -13,7 +13,6 @@ export class CheckBox extends Component {
   }
   
   render() {
-    console.log('cc');
     return (
         <div className='checkbox' onClick={this.props.onClick}>
           <input id={this._reactInternalInstance._rootNodeID} type='checkbox' defaultChecked={this.props.defaultChecked} ref='instance' onChange={this.onChange.bind(this)}/>
