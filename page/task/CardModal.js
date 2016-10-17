@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {browserHistory} from 'react-router';
-import Radium from 'radium';
 import R from 'fw-ramda';
 
 import {deleteTaskCard, updateTaskCard, unsetCurrentCard} from 'actions/task/task-card';
@@ -14,7 +13,6 @@ import {Hr} from 'components/widget/Hr';
 
 import 'style/page/task/taskcard-modal.scss';
 
-@Radium
 class CardModal extends Component {
   constructor() {
     super();
@@ -49,25 +47,39 @@ class CardModal extends Component {
         </div>
         
         <div className='taskcard-modal--title'>
-          <CheckBox ref='checkbox'/>
+          <CheckBox ref='checkbox' defaultChecked={card.isDone} onChange={this.updateDone.bind(this)}/>
           <p className='taskcard-modal--content'>{card.title}</p>
+          <input type='text' ref='title' defaultValue={card.title} onChange={this.updateTitle.bind(this)}/>
         </div>
 
         <Hr/>
 
         <div className='taskcard-modal--content'>
-          <textarea>{card.content}</textarea>
+          <textarea ref='content' onChange={this.updateContent.bind(this)} defaultValue={card.content}/>
         </div>
         
       </Modal>
     );
   }
 
-  
+  updateTitle() {
+    const title = this.refs.title.value.trim();
+    this.updateTaskCard({title});
+  }
 
-  updateTaskCard() {
+  updateDone() {
+    const isDone = this.refs.checkbox.checked;
+    this.updateTaskCard({isDone});
+  }
+
+  updateContent() {
+    const content = this.refs.content.value.trim();
+    this.updateTaskCard({content});
+  }
+
+  updateTaskCard(data) {
     const {dispatch} = this.props;
-    return dispatch(updateTaskCard(this.props.card.id));
+    return dispatch(updateTaskCard(this.props.card.id, data));
   }
 
   deleteTaskCard() {
