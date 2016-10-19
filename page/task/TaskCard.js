@@ -68,13 +68,16 @@ class TaskCard extends Component {
     return dispatch(openTaskCardModal(this.props.card));
   }
 
-  finishTask() {
-    const {dispatch} = this.props;
-    if (this.props.card.isDone) {
-      return;
-    }
-    return dispatch(updateTaskCard(this.props.card.id, {isDone: true}));
+  updateDone() {
+    const isDone = this.refs.checkbox.checked;
+    this.updateTaskCard({isDone});    
   }
+
+  updateTaskCard(data) {
+    const {dispatch} = this.props;
+    return dispatch(updateTaskCard(this.props.card.id, data));
+  }
+
 
   onLoad() {
     const height = this.refs.main.offsetHeight;
@@ -100,7 +103,7 @@ class TaskCard extends Component {
            onDragEnd={this.onDragEnd.bind(this)}
            onClick={this.onClick.bind(this)}
            onLoad={this.onLoad.bind(this)}>
-        <CheckBox ref='checkbox' onClick={this.checkBoxOnClick.bind(this)}/>
+        <CheckBox ref='checkbox' defaultChecked={card.isDone} onChange={this.updateDone.bind(this)} onClick={this.checkBoxOnClick.bind(this)}/>
         <p>{card.title}</p>
         <UserAvatar user={activeRole}/>
       </div>
