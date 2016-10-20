@@ -7,6 +7,7 @@ import {
   TASKCARD_LEAVE_START, TASKCARD_LEAVE_DONE,
   TASKCARD_ENTER_START, TASKCARD_ENTER_DONE,
   TASKCARD_MOVE_REQUEST, TASKCARD_MOVE_SUCCESS, TASKCARD_MOVE_FAILURE,
+  TASKCARD_PATCH_REQUEST, TASKCARD_PATCH_SUCCESS, TASKCARD_PATCH_FAILURE,
   INSERT_VIRTUAL_CARD
 } from '../../actions/task/task-card';
 
@@ -93,6 +94,18 @@ function taskList(state = {
   case CLEAR_BOARD:
     return Object.assign({}, state, {
       lists: []
+    });
+    break;
+
+  case TASKCARD_PATCH_SUCCESS:
+    const currentList = R.find(R.propEq('id', action.playload.taskListId))(state.lists);
+    const index = R.findIndex(R.propEq('id', action.playload.id))(currentList.cards);
+    currentList.cards.splice(index, 1, Object.assign({}, currentList.cards[index], action.playload));
+    // currentList.cards = Array.of(...currentList.cards);
+    currentList.cards[index] = Object.assign({}, currentList.cards[index]);
+    
+    return Object.assign({}, state, {
+      lists: state.lists
     });
     break;
 
