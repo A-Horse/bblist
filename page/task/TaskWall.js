@@ -20,6 +20,7 @@ import {getAssets} from 'services/assets-manager';
 import {AddIcon, SettingIcon, MIDDLE_SIZE} from 'services/svg-icons';
 import {navHeight} from 'components/Nav';
 import {spawnMixinRender} from 'style/theme-render';
+import TaskListCreater from './TaskListCreater';
 
 import 'style/page/task/taskboard-header.scss';
 
@@ -144,25 +145,7 @@ class TaskWall extends Component {
       </div>
     );
   }
-
-  renderCreateListTitle() {
-    if (this.state.typingNewList) {
-      return <input ref='newListInput' onKeyDown={(e) => {if (e.which === 13) this.createNewList()}} onBlur={() => {}}/>;
-    }
-    return (
-      <div style={{display: 'flex', alignItems: 'center'}}>
-        <AddIcon style={{width: `${MIDDLE_SIZE}px`, height: `${MIDDLE_SIZE}px`}} onClick={() => {this.setState({typingNewList: true})}} />
-          <span>Create List</span>
-      </div>
-    );
-  }
-
-  /* renderSetting() {
-   *   return (
-   *     <TaskWallSetting {...this.props}/>
-   *   );
-   * }*/
-
+  
   render() {
     return (
       <div style={styles.container}>
@@ -170,7 +153,7 @@ class TaskWall extends Component {
         <PageContainer style={styles.pageContainer}>
            <div style={styles.listContainer}>
               {this.renderLists()}
-              {this.renderCreateList()}
+              <TaskListCreater />
            </div>
         </PageContainer>
         <CardModal/>
@@ -178,13 +161,6 @@ class TaskWall extends Component {
     );
   }
 
-  createNewList() {
-    const {dispatch} = this.props;
-    const name = this.refs.newListInput;
-    dispatch(createTaskList(this.props.params.id, {name: name.value.trim()}))
-      .then();
-  }
-  
   deleteTaskList(listId) {
     const {dispatch} = this.props;
     const wallId = this.props.params.id;
