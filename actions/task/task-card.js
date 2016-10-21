@@ -168,7 +168,6 @@ export function unsetCurrentCard() {
 export const INSERT_VIRTUAL_CARD = 'INSERT_VIRTUAL_CARD';
 
 export function insertVirtualCard(playload) {
-  console.log('action');
   return dispatch => dispatch({
     type: INSERT_VIRTUAL_CARD,
     playload
