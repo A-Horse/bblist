@@ -11,7 +11,11 @@ export class CheckBox extends Component {
     this.checked = this.refs.instance.checked;
     this.props.onChange && this.props.onChange(this.checked);
   }
-  
+
+  componentWillReceiveProps(newProps) {
+
+  }
+
   render() {
     return (
         <div className='checkbox' onClick={this.props.onClick}>
