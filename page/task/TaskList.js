@@ -143,17 +143,16 @@ class TaskList extends Component {
           
           <DropList toggle={this.state.listSetting[listId]}>
             <ul style={styles.listSettingDropDown}>
-              <li style={styles.listSettingItem} onClick={() => {this.refs.listDeleteConfirm.open()}}>Delete</li>
+              <li style={styles.listSettingItem} onClick={() => this.refs.listDeleteConfirm.open()}>Delete</li>
             </ul>
           </DropList>
 
-          <ConfirmModal confirmFn={() => {deleteTaskList(listId)}} ref='listDeleteConfirm' ></ConfirmModal>
+          <ConfirmModal confirmFn={() => deleteTaskList(listId)} ref='listDeleteConfirm' ></ConfirmModal>
       </div>
     );
   }
 
   render() {
-    console.log('r');
     const {listId, cards} = this.props;
     //const {cards} = R.find(R.propEq('id', listId))(this.props.lists);
     return (
