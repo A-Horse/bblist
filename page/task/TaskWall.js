@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {browserHistory} from 'react-router';
-import Radium from 'radium';
 import R from 'fw-ramda';
 
 import TaskList, {listWidth} from './TaskList';
@@ -63,22 +62,9 @@ const styles = {
     justifyContent: 'center',
     height: '100%',
     whiteSpace: 'nowrap'
-  },
-  createList: {
-    borderRadius: '1px',
-    padding: '0.3rem 0.4rem',
-    display: 'inline-flex',
-    verticalAlign: 'top',
-    width: `${listWidth}px`,
-    margin: '0.3rem 0',
-    justifyContent: 'space-between'
   }
 };
 
-const themeRender = spawnMixinRender(styles);
-themeRender('createList', 'grayBackground');
-
-@Radium
 class TaskWall extends Component {
   constructor() {
     super();
@@ -134,14 +120,6 @@ class TaskWall extends Component {
       <div className='taskboard-header'>
         <h2 style={styles.topBarTitle}>{wall.name}</h2>
         {this.renderSetttingMenu()}
-      </div>
-    );
-  }
-
-  renderCreateList() {
-    return (
-      <div style={styles.createList} key='createList'>
-        {this.renderCreateListTitle()}
       </div>
     );
   }
