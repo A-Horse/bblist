@@ -111,17 +111,14 @@ function taskList(state = {
 
   case INSERT_VIRTUAL_CARD:
     {
-    console.log('INSER');
     const {listId, virtualIndex} = action.playload;
     const {lists} = state;
     const {height, width} = state.movingCardInfo;
     const listIndex = R.findIndex(R.propEq('id', listId))(lists);
     if (~state.virtualIndex) {
-      console.log('---------');
       lists[listIndex].cards.splice(state.virtualIndex, 1);
     }
     lists[listIndex].cards.splice(virtualIndex, 0, {virtual: true, height, width});
-    console.log(virtualIndex);
     return Object.assign({}, state, {
       virtualIndex,
       lists: R.clone(lists, true)
