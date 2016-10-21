@@ -19,6 +19,11 @@ $content-top: 150px;
 .taskcard-modal--title {
   display: flex;
   align-items: center;
+
+  input[type="text"] {
+    border: none;
+    border-bottom: 1px solid $gray;
+  }
 }
 
 .taskcard-modal--content {
