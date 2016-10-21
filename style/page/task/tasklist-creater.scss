@@ -1,0 +1,13 @@
+@import './task-list';
+@import 'style/variable';
+
+.tasklist-creater {
+  border-radius: $list-radius;
+  padding: 0.3rem 0.4rem;
+  display: inline-flex;
+  vertical-align: top;
+  width: $list-width;
+  margin: $list-vertical-margin $list-horiz-margin;
+  justify-content: space-between;
+  background-color: $gray-supper-light;
+}
