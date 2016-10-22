@@ -19,9 +19,8 @@ export class TaskWallSetting extends Component {
     
     dispatch(deleteTaskWall(params))
       .then(() => {
-        browserHistory.push('/task-wall')
+        browserHistory.push('/task-wall');
       }).catch(error => {
-        console.log('error', error);
       });
   }
 
