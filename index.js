@@ -18,7 +18,7 @@ import Body from 'components/Body';
 import {checkLogin} from 'utils/auth';
 import * as reducers from 'reducers';
 
-import 'style/normalize.css';
+import 'style/normalize.css'; 
 import 'style/app.scss';
 
 const reducer = combineReducers({
