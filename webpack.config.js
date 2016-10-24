@@ -14,7 +14,7 @@ module.exports = {
   },
   devtool: 'cheap-module-eval-source-map',
   entry: [
-    'webpack-dev-server/client?http://bblist.com:8100',
+    'webpack-dev-server/client?http://octopus.com',
     'webpack-hot-middleware/client',
     'webpack/hot/only-dev-server',
     './index'
