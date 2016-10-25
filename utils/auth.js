@@ -3,7 +3,7 @@ import {Storage} from '../services/storage';
 
 export function checkLogin(state, replace) {
   if(!Storage.get(JWT_STORAGE_KEY) ){
-    replace('/login');
+    replace('/signin');
   }
 }
 
