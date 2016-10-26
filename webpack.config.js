@@ -20,7 +20,7 @@ module.exports = {
     './index'
   ],
   output: {
-    path: path.join(__dirn ame, 'dist'),
+    path: path.join(__dirname, 'dist'),
     filename: 'bundle.js',
     publicPath: '/static/'
   },
