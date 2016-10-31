@@ -6,6 +6,7 @@ var LiveReloadPlugin = require('webpack-livereload-plugin');
 var BellOnBundlerErrorPlugin = require('bell-on-bundler-error-plugin');
 var OfflinePlugin = require('offline-plugin');
 
+
 module.exports = {
   resolve: {
     root: [
