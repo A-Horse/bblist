@@ -25,7 +25,7 @@ module.exports = {
     filename: 'bundle.js',
     publicPath: '/static/'
   },
-  plugins: [
+  plugins: [ 
     new webpack.optimize.OccurenceOrderPlugin(),
     // new LiveReloadPlugin(),
     new webpack.BannerPlugin(fs.readFileSync('./.banner').toString()),
