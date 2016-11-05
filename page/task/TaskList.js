@@ -4,7 +4,7 @@ import {browserHistory} from 'react-router';
 import Radium from 'radium';
 import R from 'fw-ramda';
 
-import TaskCard from './TaskCard';
+import TaskCard from './TaskCard'; 
 import TaskCardCreater from './TaskCardCreater';
 import CardPlaceholder from './CardPlaceholder';
 import {deleteTaskWall, getTaskAllCards} from 'actions/task/task-wall';
