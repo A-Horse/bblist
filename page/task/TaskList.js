@@ -19,7 +19,7 @@ import {getOffsetHeight} from 'utils/dom';
 
 import 'style/page/task/task-list.scss';
 import styleVariables from '!!sass-variable-loader!style/page/task/task-list.scss';
- 
+
 // FIXME
 export const listWidth = 210;
 
