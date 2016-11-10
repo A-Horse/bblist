@@ -43,7 +43,7 @@ class Goal extends Component {
         {this.renderGoals()}
         <GoalCreater />
       </PageContainer>
-    )
+    );
   }
 }
 

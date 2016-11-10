@@ -15,7 +15,7 @@ module.exports = {
   },
   devtool: 'cheap-module-eval-source-map',
   entry: [
-    'webpack-dev-server/client?http://octopus.com',
+    'webpack-dev-server/client?http://octopus.com/',
     'webpack-hot-middleware/client',
     'webpack/hot/only-dev-server',
     './index'
@@ -31,8 +31,8 @@ module.exports = {
     new webpack.BannerPlugin(fs.readFileSync('./.banner').toString()),
     new webpack.optimize.AggressiveMergingPlugin(),
     new BellOnBundlerErrorPlugin(),
-    new OfflinePlugin()
-    //new webpack.HotModuleReplacementPlugin()
+    new OfflinePlugin(),
+    new webpack.HotModuleReplacementPlugin()
   ],
   module: {
     loaders: [
