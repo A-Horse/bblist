@@ -66,11 +66,11 @@ function authLoginSuccess(user) {
   };
 }
 
-export function login(creds) {
+export function signin(creds) {
   const config = createConfig('POST', creds);
   return dispatch => {
     dispatch(requestLogin(creds));
-    return fetch(makeApiUrl('/login'), config)
+    return fetch(makeApiUrl('/signin'), config)
       .then(handleResponse)
       .then(response => dispatch(receiveLogin(response.jwt, response.user)))
       .catch(error => dispatch(loginError(error.message)));
@@ -83,7 +83,7 @@ export function authUser() {
   return dispatch => {
     if (!token) return dispatch(canNotLoginAuth());
     dispatch(requestAuthLogin());
-    return fetch(makeApiUrl('/login'), config)
+    return fetch(makeApiUrl('/signin'), config)
       .then(handleResponse)
       .then(response => dispatch(authLoginSuccess(response)))
       .catch(err => dispatch(authLoginError(err.message)));

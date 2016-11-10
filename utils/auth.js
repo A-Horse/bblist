@@ -2,7 +2,7 @@ import {AUTH_DATA, JWT_STORAGE_KEY, CACHED_USERNAME, CACHED_USERID, CACHED_USERE
 import {Storage} from '../services/storage';
 
 export function checkLogin(state, replace) {
-  if(!Storage.get(JWT_STORAGE_KEY) ){
+  if(!Storage.get(AUTH_DATA) ){
     replace('/signin');
   }
 }

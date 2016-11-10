@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {login} from '../actions/login';
+import {signin} from '../actions/login';
 import {browserHistory} from 'react-router';
 import {validateFormValue} from '../services/validate-strategy';
 import {Button} from '../components/widget/Button';
@@ -15,7 +15,7 @@ class SignIn extends Component {
   componentWillMount() {
     this.state = {
       errorMessage: {}
-    }
+    };
   }
   
   render() {
@@ -41,7 +41,7 @@ class SignIn extends Component {
         
         <a href="/signup">sign up</a>
       </PageContainer>
-    )
+    );
   }
 
   login() {
@@ -63,7 +63,7 @@ class SignIn extends Component {
 
     this.setState({errorMessage: errorMessage});    
     if( !Object.keys(errorMessage).length ){
-      dispatch(login(loginInfo)).then(() => {
+      dispatch(signin(loginInfo)).then(() => {
         browserHistory.push('/');
       });
     }
