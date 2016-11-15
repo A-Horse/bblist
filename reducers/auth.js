@@ -15,7 +15,7 @@ function auth(state = {}, action) {
       isFetching: false,
       isAuthenticated: true,
       loginedUser: action.user
-    })
+    });
     break;
   case LOGIN_AUTH_FAILURE:
     // TODO remove data when jwt expries
