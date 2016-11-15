@@ -9,6 +9,7 @@ export MoreIcon from 'babel!svg-react!../assets/svg/ic_more_horiz_black_24px.svg
 export AlarmIcon from 'babel!svg-react!../assets/svg/ic_alarm_black_24px.svg?name=AlarmIcon';
 export FlagIcon from 'babel!svg-react!../assets/svg/ic_flag_black_24px.svg?name=FlagIcon';
 export PlayIcon from 'babel!svg-react!../assets/svg/ic_play_arrow_black_24px.svg?name=PlayIcon';
+export CommentIcon from 'babel!svg-react!../assets/svg/ic_comment_black_24px.svg?name=CommentIcon';
 
 export const SMALL_SIZE = 16;
 export const MIDDLE_SIZE = 20;
