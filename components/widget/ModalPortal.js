@@ -1,10 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 var div = React.DOM.div;
-//var focusManager = require('../helpers/focusManager');
-//var scopeTab = require('../helpers/scopeTab');
-//var Assign = require('lodash.assign');
 
-// so that our CSS is statically analyzable
 var CLASS_NAMES = {
   overlay: {
     base: 'modal__overlay',
