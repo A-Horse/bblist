@@ -7,11 +7,13 @@ const mainStyle = {
 };
 
 export class Hr extends Component {
+  buildClassName() {
+    return this.props.className ? 'hr ' + this.props.className : 'hr';
+  }
   render() {
     const {style} = this.props;
     return (
-        <div style={Object.assign(mainStyle, style)}>
-        </div>
+        <div style={Object.assign(mainStyle, style)} className={this.buildClassName()}></div>
     );
   }
 }
