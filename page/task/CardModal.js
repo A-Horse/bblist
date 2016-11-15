@@ -38,18 +38,21 @@ class CardModal extends Component {
       <Modal className='taskcard-modal' toggle={this.props.toggleTaskCardModal}>
         <div className='taskcard-modal--top-bar'>
           <div>
-            <span>List:</span>
-            <span>{currentList.name}</span>
+            <span className='top-bar--list-label'>List:</span>
+            <span className='top-bar--list-name'>{currentList.name}</span>
           </div>
           <CloseIcon onClick={this.close.bind(this)}/>
         </div>
         
         <div className='taskcard-modal--title'>
-          <CheckBox ref='checkbox' defaultChecked={card.isDone} onChange={this.updateDone.bind(this)}/>
-          <input type='text' ref='title' defaultValue={card.title} onChange={this.updateTitle.bind(this)}/>
+          <CheckBox className='title--checkbox' ref='checkbox' defaultChecked={card.isDone} onChange={this.updateDone.bind(this)}/>
+          <input className='title--input' type='text' ref='title' defaultValue={card.title} onChange={this.updateTitle.bind(this)}/>
         </div>
 
-        <Hr/>
+        <div>
+          <Hr/>
+        </div>
+
 
         <div className='taskcard-modal--content'>
           <textarea ref='content' onChange={this.updateContent.bind(this)} defaultValue={card.content}/>
