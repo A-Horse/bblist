@@ -8,6 +8,10 @@ $content-top: 150px;
   left: 50%;
   top: $content-top;
   margin-left: -$content-width / 2;
+
+  .hr {
+    margin: 10px 0;
+  }
 }
 
 .taskcard-modal--top-bar {
@@ -36,4 +40,8 @@ $content-top: 150px;
     padding: 8px 11px;
     box-sizing: border-box;
   }
+}
+
+.taskcard-modal--people {
+  border: 1px solid $border-light;
 }

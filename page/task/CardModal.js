@@ -5,7 +5,7 @@ import R from 'fw-ramda';
 
 import {deleteTaskCard, updateTaskCard, unsetCurrentCard} from 'actions/task/task-card';
 import {spawnMixinRender} from 'style/theme-render';
-import {CloseIcon} from 'services/svg-icons';
+import {CloseIcon, CommentIcon} from 'services/svg-icons';
 import UserAvatar from 'components/UserAvatar';
 import {Modal} from 'components/widget/Modal';
 import {CheckBox} from 'components/widget/CheckBox';
@@ -19,9 +19,7 @@ class CardModal extends Component {
   }
 
   componentWillMount() {
-    this.state = {
-      
-    };
+    this.state = {};
   }
 
   close() {
@@ -48,7 +46,6 @@ class CardModal extends Component {
         
         <div className='taskcard-modal--title'>
           <CheckBox ref='checkbox' defaultChecked={card.isDone} onChange={this.updateDone.bind(this)}/>
-          <p className='taskcard-modal--content'>{card.title}</p>
           <input type='text' ref='title' defaultValue={card.title} onChange={this.updateTitle.bind(this)}/>
         </div>
 
@@ -56,6 +53,14 @@ class CardModal extends Component {
 
         <div className='taskcard-modal--content'>
           <textarea ref='content' onChange={this.updateContent.bind(this)} defaultValue={card.content}/>
+        </div>
+
+        <div className='taskcard-modal--people'>
+          <UserAvatar user={card.creater}/>
+        </div>
+
+        <div className='taskcard-modal--operation'>
+          <CommentIcon />
         </div>
         
       </Modal>
