@@ -138,7 +138,7 @@ class Nav extends Component {
           <Link to="/idea" style={styles.linkStyle}>Idea</Link>
           <Link to="/goal" style={this.activeLinkWithPath('goal')}>Goal</Link>
           <Link to="/todo" style={this.activeLinkWithPath('todo')}>Todo</Link>
-        </div>        
+        </div>
         {userCell}
       </nav>
     );
