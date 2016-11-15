@@ -24,9 +24,10 @@ $content-top: 150px;
   display: flex;
   align-items: center;
 
-  input[type="text"] {
+  .title--input {
     border: none;
     border-bottom: 1px solid $gray;
+    margin-left: 12px;
   }
 }
 
@@ -44,4 +45,9 @@ $content-top: 150px;
 
 .taskcard-modal--people {
   border: 1px solid $border-light;
+  vertical-align: middle;
+  padding: 13px 9px;
+  .useravatar {
+    display: block;
+  }
 }
