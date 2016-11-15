@@ -22,6 +22,10 @@ class TaskCardCreater extends Component {
     };
   }
 
+  clearInput() {
+    this.refs.taskCardTitle.value = '';
+  }
+
   createCard() {
     const {dispatch} = this.props;
     const data = {
@@ -30,6 +34,7 @@ class TaskCardCreater extends Component {
       title: this.refs.taskCardTitle.value.trim()
     };
     return dispatch(createTaskCard(data)).then(() => {
+      this.clearInput();
       return dispatch(getTaskAllCards(this.props.wallId));
     });
   }
