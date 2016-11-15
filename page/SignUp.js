@@ -18,7 +18,7 @@ class SignUp extends Component {
   componentWillMount() {
     this.state = {
       errorMessage: {}
-    }
+    };
   }
   
   render() {
@@ -29,25 +29,25 @@ class SignUp extends Component {
 
         <div>
           <span>email</span>
-          <input type='email' name="bblist-email" ref='email'/>
+          <input type='email' name='bblist-email' ref='email'/>
           <p>{errorMessage.email}</p>
         </div>
         
         <div>
           <span>username</span>
-          <input type='text' name="bblist-username" ref='username'/>
+          <input type='text' name='bblist-username' ref='username'/>
           <p>{errorMessage.username}</p>
         </div>
         
         <div>
           <span>password</span>
-          <input type='password' name="bblist-password" ref='password'/>
+          <input type='password' name='bblist-password' ref='password'/>
           <p>{errorMessage.password}</p>
         </div>
 
         <div>
           <span>repeat password</span>
-          <input type='password' name="bblist-repeat" ref='repeat'/>
+          <input type='password' name='bblist-repeat' ref='repeat'/>
           <p>{errorMessage.repeat}</p>
         </div>
 
