@@ -105,11 +105,11 @@ class TaskWall extends Component {
         <SettingIcon style={styles.settingIcon} onClick={() => {this.setState({openSetting: true})}}/>
           <DropList toggle={this.state.settingToggle}>
             <ul style={styles.settingDropList}>
-              <li onClick={() => {this.refs.delConfirm.open()}}>Delete This Wall</li>
+              <li onClick={() => this.refs.delConfirm.open()}>Delete This Wall</li>
               <li>2</li>
             </ul>
           </DropList>
-        <ConfirmModal confirmFn={() => {this.deleteWall()}} ref='delConfirm'></ConfirmModal>
+        <ConfirmModal confirmFn={() => this.deleteWall()} ref='delConfirm'></ConfirmModal>
       </div>
     );
   }
@@ -131,7 +131,7 @@ class TaskWall extends Component {
         <PageContainer style={styles.pageContainer}>
            <div style={styles.listContainer}>
               {this.renderLists()}
-        <TaskListCreater boardId={this.params.id}/>
+        <TaskListCreater boardId={this.props.params.id}/>
            </div>
         </PageContainer>
         <CardModal/>
