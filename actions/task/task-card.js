@@ -62,10 +62,6 @@ export function taskCardDragLeaveStart(card, info) {
   return dispatch => dispatch({type: TASKCARD_LEAVE_START, card, info});
 }
 
-export function taskCardDragLeaveDone(card) {
-  return dispatch => dispatch({type: TASKCARD_LEAVE_DONE, card});
-}
-
 export function taskCardDragEnterStart(card) {
   return dispatch => dispatch({type: TASKCARD_ENTER_DONE, card});
 }
