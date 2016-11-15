@@ -25,12 +25,12 @@ class SignIn extends Component {
       <PageContainer>
         <div>
           <div>
-            <Input type='text' ref='email' name='email'/>
+            <Input type='text' ref='email' name='bblist-email'/>
             <p>{errorMessage.email}</p>
           </div>
           
           <div>
-            <Input type='password' ref='password' name='password'/>
+            <Input type='password' ref='password' name='bblist-password'/>
             <p>{errorMessage.password}</p>
           </div>
 
