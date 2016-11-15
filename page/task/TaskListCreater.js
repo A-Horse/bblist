@@ -26,7 +26,8 @@ class TaskListCreater extends Component {
   createTaskList() {
     const {dispatch} = this.props;
     const name = this.refs.name.value.trim();
-    return dispatch(createTaskList(this.props.boardId, {name}));
+    // TODO 优化？不请求后台了?
+    return dispatch(createTaskList(this.props.boardId, {name})).then(() => dispatch(getTaskAllCards(this.props.boardId)));
   }
 
   toggle(event) {
