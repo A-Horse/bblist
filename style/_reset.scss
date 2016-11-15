@@ -36,3 +36,8 @@ hr {
   height: 1px;
   background: $gray-light-litte-depth;
 }
+
+
+input:focus, select:focus, textarea:focus, button:focus {
+  outline: none;
+}
