@@ -22,7 +22,7 @@ class UserAvatar extends Component {
     return <img ref='avator' src={makeGravatarUrl(user.email)}
             style={this.props.style}
             className='useravatar'
-            onLoad={() => {this.onLoadToSaveAvator()}}
+            onLoad={() => this.onLoadToSaveAvator()}
             crossOrigin='Anonymous'/>;
   }
 }
