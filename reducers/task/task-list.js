@@ -72,6 +72,7 @@ function taskList(state = {
       // const cardIndex = lists[listIndex].cards.indexOf(action.card);
       // lists[listIndex].cards.splice(cardIndex, 1);
       // lists[listIndex].cards.splice(cardIndex, 1);
+      // TODO delete it
       action.card.moving = true;
       return Object.assign({}, state, {
         movingCard: action.card,

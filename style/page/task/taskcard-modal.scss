@@ -8,9 +8,16 @@ $content-top: 150px;
   left: 50%;
   top: $content-top;
   margin-left: -$content-width / 2;
+  padding: 20px 20px 0 20px;
 
-  .hr {
-    margin: 10px 0;
+  .hr-container {
+    height: 20px;
+    .hr {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      margin: 10px 0;
+    }
   }
 }
 
@@ -47,7 +54,21 @@ $content-top: 150px;
   border: 1px solid $border-light;
   vertical-align: middle;
   padding: 13px 9px;
+  display: flex;
+
   .useravatar {
     display: block;
   }
+}
+
+$operation-height: 50px;
+.taskcard-modal--operation-container {
+  height: $operation-height
+}
+
+.taskcard-modal--operation {
+  position: absolute;
+  width: 100%;
+  height: $operation-height;
+  left: 0;
 }

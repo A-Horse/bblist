@@ -16,10 +16,4 @@ $card-padding: 12px;
   box-shadow: 0 2px 4px $gray-light-litte-depth;
 }
 
-.task-card.moving {
-  display: none;
-}
-
-.task-card:-khtml-drag {
-  background-color: black;
-}
+.task-card:-khtml-drag {}

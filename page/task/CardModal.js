@@ -49,10 +49,9 @@ class CardModal extends Component {
           <input className='title--input' type='text' ref='title' defaultValue={card.title} onChange={this.updateTitle.bind(this)}/>
         </div>
 
-        <div>
+        <div className='hr-container'>
           <Hr/>
         </div>
-
 
         <div className='taskcard-modal--content'>
           <textarea ref='content' onChange={this.updateContent.bind(this)} defaultValue={card.content}/>
@@ -62,10 +61,12 @@ class CardModal extends Component {
           <UserAvatar user={card.creater}/>
         </div>
 
-        <div className='taskcard-modal--operation'>
-          <CommentIcon />
+        <div className='taskcard-modal--operation-container'>
+          <div className='taskcard-modal--operation'>
+            <CommentIcon className='comment-icon icon'/>
+          </div>
         </div>
-        
+
       </Modal>
     );
   }

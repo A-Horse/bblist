@@ -14,7 +14,7 @@ export class ToolTip extends Component {
       }
     };
   }
-  
+
   componentDidMount() {
     // Focus needs to be set when mounting and already open
     if (this.props.toggle) {

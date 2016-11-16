@@ -16,6 +16,8 @@ import {navHeight} from 'components/Nav';
 import UserAvatar from 'components/UserAvatar';
 import {TaskWallSetting} from './TaskWallSetting';
 import {CheckBox} from 'components/widget/CheckBox';
+import BoardCradDragHelper from 'services/board-card-drag-helper';
+
 import 'style/page/task/card.scss';
 
 class TaskCard extends Component {
@@ -31,36 +33,44 @@ class TaskCard extends Component {
 
   onDragStart(event) {
     const {dispatch} = this.props;
-    event.dataTransfer.dropEffect = 'move';
+    // TODO 移动的图标
     
     const crt = this.refs.main.cloneNode(true);
+
     this.crt = crt;
-    crt.style.backgroundColor = 'red';
     crt.style.position = 'absolute';
-    crt.style.top = '0px';
-    crt.style.right = '0px';
-    crt.style.display = 'block';
+    crt.style.top = '-100%';
+    crt.style.right = '-100%';
+    crt.style.height = this.refs.main.offsetHeight + 'px';
+    crt.style.width = this.refs.main.offsetWidth + 'px';
     document.body.appendChild(crt);
     event.dataTransfer.setDragImage(crt, 0, 0);
     
     const width = this.refs.main.offsetWidth;
     const height = this.refs.main.offsetHeight;
-    setTimeout(() => {
-      this.refs.main.classList.add('moving');
-    });
 
-    return dispatch(taskCardDragLeaveStart(this.props.card, {
+    BoardCradDragHelper.setData('info', {
+      from: {
+        listId: this.props.card.taskListId
+      },
       offsetX: event.nativeEvent.offsetX,
       offsetY: event.nativeEvent.offsetY,
       width,
-      height,
-      fromListId: this.props.card.taskListId
-    }));
+      height
+    });
+
+    // TODO remove not pass redux
+    // return dispatch(taskCardDragLeaveStart(this.props.card, {
+    //   offsetX: event.nativeEvent.offsetX,
+    //   offsetY: event.nativeEvent.offsetY,
+    //   width,
+    //   height,
+    //   fromListId: this.props.card.taskListId
+    // }));
   }
   
   onDragEnd(event) {
     document.body.removeChild(this.crt);
-    this.refs.main.classList.remove('moving');
   }
   
   openTaskCardModal() {

@@ -16,6 +16,7 @@ import {AddIcon, MoreIcon, EditIcon, ArrowDownIcon, SettingIcon, MIDDLE_SIZE, SM
 import {spawnMixinRender} from 'style/theme-render';
 import GlobalClick from 'services/global-click';
 import {getOffsetHeight} from 'utils/dom';
+import BoardCradDragHelper from 'services/board-card-drag-helper';
 
 import 'style/page/task/task-list.scss';
 import styleVariables from '!!sass-variable-loader!style/page/task/task-list.scss';
@@ -68,7 +69,7 @@ class TaskList extends Component {
     super();
     this.index = -1;
 
-    this.dragMeta = {};
+    this.cardDragMeta = {virtualIndex: -1};
   }
 
   componentWillMount() {
@@ -154,19 +155,18 @@ class TaskList extends Component {
 
   render() {
     const {listId, cards} = this.props;
-    //const {cards} = R.find(R.propEq('id', listId))(this.props.lists);
     return (
       <div ref='main'
            className='task-list'
-           // onDragEnter={this.onDragEnter.bind(this)}
-           // onDrop={this.onDrop.bind(this)}
-           // onDragLeave={this.onDragLeave.bind(this)}
-           // onDragOver={this.onDragOver.bind(this)}
+           onDragEnter={this.onDragEnter.bind(this)}
+           //onDrop={this.onDrop.bind(this)}
+           onDragLeave={this.onDragLeave.bind(this)}
+           onDragOver={this.onDragOver.bind(this)}
            >
 
         {this.renderTopBar()}
       
-        <div className='task-list--body'>
+        <div className='task-list--body' ref='taskListBody'>
           {this.renderCards(cards)}
           <TaskCardCreater wallId={this.props.wallId} listId={listId} />
         </div>
@@ -176,35 +176,37 @@ class TaskList extends Component {
   }
 
   caluMovingPosition(position) {
+    // 滚动情况
     const {cards} = this.props;
     const {y} = position;
-    
+
+    // TODO rename
     let xheight = relativeOffsetBody, i = 0;
     
     if (y < xheight) {
       return i;
     }
-    
-    for(let max = ~this.index ? cards.length - 1: cards.length; i < max; i++) {
-      if (cards[i].moving) {
-        continue;
-      }
 
-      if (i === this.dragMeta.lastCardIndex) {
-        xheight += this.dragMeta.lastCardHeight + 6;
+    for (let max = ~this.cardDragMeta.virtualIndex ? cards.length - 1 : cards.length; i < max; ++i) {
+      xheight += cards[i].height + 6;
+      if (y < xheight) {
+        return i;
+      }
+    }
+    return --i;
+    for (let max = ~this.index ? cards.length - 1: cards.length; i < max; i++) {
+      if (i === this.cardDragMeta.lastCardIndex) {
+        xheight += this.cardDragMeta.lastCardHeight + 6;
         if (y > xheight - cards[i].height / 2) {
           return ++i;
         }
       } else {
         xheight += cards[i].height + 6;
       }
-      
+
       if (y < xheight) {
-        if (y > xheight - cards[i].height / 2) {
-          ++i;
-        }
-        this.dragMeta.lastCardHeight = cards[i].height;
-        this.dragMeta.lastCardIndex = i;
+        this.cardDragMeta.lastCardHeight = cards[i].height;
+        this.cardDragMeta.lastCardIndex = i;
         return i;
       }
     }
@@ -221,25 +223,36 @@ class TaskList extends Component {
 
   onDrop(event) {
     const card = event.dataTransfer.getData('card');
-    this.dragMeta = {};
+    this.cardDragMeta = {};
   }
 
   onDragOver(event) {
-    return event.preventDefault();
-      const {dispatch} = this.props;
-      const offset = {
-        x: event.nativeEvent.clientX,
-        y: event.nativeEvent.clientY
-      };
+    event.preventDefault();
+    const {dispatch} = this.props;
+    const offset = {
+      x: event.nativeEvent.clientX,
+      y: event.nativeEvent.clientY
+    };
+
+    const dragInfo = BoardCradDragHelper.getData('info');
     const index = this.caluMovingPosition(offset);
     if (index === this.index) {
       return;
     }
     this.index = index;
-      dispatch(insertVirtualCard({
-        listId: this.props.listId,
-        virtualIndex: index
-      }));
+    console.log("index = ", index);
+
+    console.log(this.refs.taskListBody.querySelectorAll('.task-card'));
+
+
+    this.refs.taskListBody.querySelectorAll('.task-card')[index].insertion();
+    // console.log("index = ", index);
+    // TODO 删掉
+    // dispatch(insertVirtualCard({
+    //   listId: this.props.listId,
+    //   virtualIndex: index
+    // }));
+    return false;
   }
 
   requestMoveCardToThisList(card) {
