@@ -159,7 +159,7 @@ class TaskList extends Component {
       <div ref='main'
            className='task-list'
            onDragEnter={this.onDragEnter.bind(this)}
-           //onDrop={this.onDrop.bind(this)}
+           onDrop={this.onDrop.bind(this)}
            onDragLeave={this.onDragLeave.bind(this)}
            onDragOver={this.onDragOver.bind(this)}
            >
@@ -213,16 +213,24 @@ class TaskList extends Component {
     return i;
   }
 
-  onDragLeave() {
-    
+  onDragLeave(event) {
+    // if (this.cardDragMeta.hasPalceHolderCard) {
+    //   this.refs.taskListBody.removeChild(this.cardDragMeta.placeholderCard);
+    //   this.cardDragMeta.hasPalceHolderCard = false;
+    // }
+    console.log('eveing');
   }
-
+  
   onDragEnter() {
-    
+    this.refs.taskListBody.className += ' has-draging-card';
   }
 
   onDrop(event) {
     const card = event.dataTransfer.getData('card');
+    if (this.cardDragMeta.hasPalceHolderCard) {
+      this.refs.taskListBody.removeChild(this.cardDragMeta.placeholderCard);
+      this.cardDragMeta.hasPalceHolderCard = false;
+    }
     this.cardDragMeta = {};
   }
 
@@ -240,19 +248,20 @@ class TaskList extends Component {
       return;
     }
     this.index = index;
-    console.log("index = ", index);
 
-    console.log(this.refs.taskListBody.querySelectorAll('.task-card'));
-
-
-    this.refs.taskListBody.querySelectorAll('.task-card')[index].insertion();
-    // console.log("index = ", index);
-    // TODO 删掉
-    // dispatch(insertVirtualCard({
-    //   listId: this.props.listId,
-    //   virtualIndex: index
-    // }));
-    return false;
+    if (this.cardDragMeta.hasPalceHolderCard) {
+      this.refs.taskListBody.removeChild(this.cardDragMeta.placeholderCard);
+      this.cardDragMeta.hasPalceHolderCard = false;
+    }
+    
+    const div = document.createElement('div');
+    div.className = 'task-card task-card-placeholder';
+    div.style.height = dragInfo.height + 'px';
+    div.style.width = dragInfo.width + 'px';
+    this.cardDragMeta.placeholderCard = div;
+    this.cardDragMeta.hasPalceHolderCard = true;
+    
+    this.refs.taskListBody.insertBefore(div, this.refs.taskListBody.querySelectorAll('.task-card')[index]);
   }
 
   requestMoveCardToThisList(card) {

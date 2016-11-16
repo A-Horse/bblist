@@ -27,6 +27,12 @@ $list-vertical-margin: 15px;
   position: relative;
   display: inline-flex;
   flex-direction: column;
+
+  &.has-draging-card {
+    .task-card {
+      pointer-events: none;
+    }
+  }
 }
 
 .task-list--top-bar {

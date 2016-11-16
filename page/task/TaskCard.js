@@ -37,18 +37,18 @@ class TaskCard extends Component {
     
     const crt = this.refs.main.cloneNode(true);
 
+    const width = this.refs.main.offsetWidth;
+    const height = this.refs.main.offsetHeight;
+    
     this.crt = crt;
     crt.style.position = 'absolute';
     crt.style.top = '-100%';
     crt.style.right = '-100%';
-    crt.style.height = this.refs.main.offsetHeight + 'px';
-    crt.style.width = this.refs.main.offsetWidth + 'px';
+    crt.style.height = height + 'px';
+    crt.style.width = width + 'px';
     document.body.appendChild(crt);
     event.dataTransfer.setDragImage(crt, 0, 0);
     
-    const width = this.refs.main.offsetWidth;
-    const height = this.refs.main.offsetHeight;
-
     BoardCradDragHelper.setData('info', {
       from: {
         listId: this.props.card.taskListId
@@ -114,7 +114,7 @@ class TaskCard extends Component {
            onClick={this.onClick.bind(this)}
            onLoad={this.onLoad.bind(this)}>
         <CheckBox ref='checkbox' defaultChecked={card.isDone} onChange={this.updateDone.bind(this)} onClick={this.checkBoxOnClick.bind(this)}/>
-        <p>{card.title}</p>
+        <p className='task-card--title'>{card.title}</p>
         <UserAvatar user={activeRole}/>
       </div>
     );
