@@ -248,13 +248,12 @@ class TaskList extends Component {
     const dragingCardInfo = BoardCradDragHelper.getData('info');
 
     const placeHolderCardIndex = this.caluMovingPosition(mousePosition, dragingCardInfo);
-    console.log("placeHolderCardIndex = ", placeHolderCardIndex);
     if (placeHolderCardIndex === this.cardDragMeta.placeholderCardIndex) {
       return;
     }
     this.cardDragMeta.placeholderCardIndex = placeHolderCardIndex;
     this.removePlaceHolderCard();
-    
+
     const div = this.createPlaceHolderCard(dragingCardInfo);
     this.cardDragMeta.placeholderCard = div;
     this.cardDragMeta.hasPalceHolderCard = true;
