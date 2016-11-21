@@ -9,6 +9,7 @@ import {CloseIcon, CommentIcon} from 'services/svg-icons';
 import UserAvatar from 'components/UserAvatar';
 import {Modal} from 'components/widget/Modal';
 import {CheckBox} from 'components/widget/CheckBox';
+import Textarea from 'react-textarea-autosize';
 import {Hr} from 'components/widget/Hr';
 
 import 'style/page/task/taskcard-modal.scss';
@@ -46,7 +47,7 @@ class CardModal extends Component {
         
         <div className='taskcard-modal--title'>
           <CheckBox className='title--checkbox' ref='checkbox' defaultChecked={card.isDone} onChange={this.updateDone.bind(this)}/>
-          <input className='title--input' type='text' ref='title' defaultValue={card.title} onChange={this.updateTitle.bind(this)}/>
+          <Textarea className='title--input' type='text' ref='title' defaultValue={card.title} onChange={this.updateTitle.bind(this)}></Textarea>
         </div>
 
         <div className='hr-container'>
@@ -63,7 +64,7 @@ class CardModal extends Component {
 
         <div className='taskcard-modal--operation-container'>
           <div className='taskcard-modal--operation'>
-            <CommentIcon className='comment-icon icon'/>
+            <CommentIcon height='30' width='30' className='comment-icon icon'/>
           </div>
         </div>
 

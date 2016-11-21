@@ -8,7 +8,7 @@ $content-top: 150px;
   left: 50%;
   top: $content-top;
   margin-left: -$content-width / 2;
-  padding: 20px 20px 0 20px;
+  padding: 8px 18px 0;
 
   .hr-container {
     height: 20px;
@@ -35,6 +35,7 @@ $content-top: 150px;
     border: none;
     border-bottom: 1px solid $gray;
     margin-left: 12px;
+    width: 100%;
   }
 }
 
@@ -47,6 +48,7 @@ $content-top: 150px;
     font-size: $font-size-x-middle;
     padding: 8px 11px;
     box-sizing: border-box;
+    resize: vertical;
   }
 }
 
@@ -71,4 +73,6 @@ $operation-height: 50px;
   width: 100%;
   height: $operation-height;
   left: 0;
+  display: flex;
+  justify-content: space-between;
 }
