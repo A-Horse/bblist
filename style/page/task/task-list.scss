@@ -29,7 +29,7 @@ $list-vertical-margin: 15px;
   flex-direction: column;
 
   &.has-draging-card {
-    .task-card {
+    .task-card, .taskcard-creater--toggle {
       pointer-events: none;
     }
   }
