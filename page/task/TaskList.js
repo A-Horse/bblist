@@ -69,7 +69,7 @@ class TaskList extends Component {
     super();
     this.index = -1;
 
-    this.cardDragMeta = {virtualIndex: -1};
+    this.resetDragMeta();
   }
 
   componentWillMount() {
@@ -168,17 +168,16 @@ class TaskList extends Component {
       
         <div className='task-list--body' ref='taskListBody'>
           {this.renderCards(cards)}
-          <TaskCardCreater wallId={this.props.wallId} listId={listId} />
         </div>
-        
+        <TaskCardCreater wallId={this.props.wallId} listId={listId} />
       </div>
     );
   }
 
-  caluMovingPosition(position) {
+  caluMovingPosition(mousePosition, dragInfo) {
     // 滚动情况
     const {cards} = this.props;
-    const {y} = position;
+    const {y} = mousePosition;
 
     // TODO rename
     let xheight = relativeOffsetBody, i = 0;
@@ -187,94 +186,94 @@ class TaskList extends Component {
       return i;
     }
 
-    for (let max = ~this.cardDragMeta.virtualIndex ? cards.length - 1 : cards.length; i < max; ++i) {
-      xheight += cards[i].height + 6;
+    let cards2 = cards;
+    if (this.cardDragMeta.hasPalceHolderCard) {
+      cards2 = R.insert(this.cardDragMeta.placeholderCardIndex, dragInfo, cards2);
+    }
+
+    for (let max = cards2.length; i < max; ++i) {
+      xheight += cards2[i].height + 6;
       if (y < xheight) {
         return i;
       }
     }
     return --i;
-    for (let max = ~this.index ? cards.length - 1: cards.length; i < max; i++) {
-      if (i === this.cardDragMeta.lastCardIndex) {
-        xheight += this.cardDragMeta.lastCardHeight + 6;
-        if (y > xheight - cards[i].height / 2) {
-          return ++i;
-        }
-      } else {
-        xheight += cards[i].height + 6;
-      }
-
-      if (y < xheight) {
-        this.cardDragMeta.lastCardHeight = cards[i].height;
-        this.cardDragMeta.lastCardIndex = i;
-        return i;
-      }
-    }
-    return i;
   }
 
-  onDragLeave(event) {
-    // if (this.cardDragMeta.hasPalceHolderCard) {
-    //   this.refs.taskListBody.removeChild(this.cardDragMeta.placeholderCard);
-    //   this.cardDragMeta.hasPalceHolderCard = false;
-    // }
-    console.log('eveing');
-  }
-  
-  onDragEnter() {
-    this.refs.taskListBody.className += ' has-draging-card';
-  }
-
-  onDrop(event) {
-    const card = event.dataTransfer.getData('card');
+  removePlaceHolderCard() {
     if (this.cardDragMeta.hasPalceHolderCard) {
       this.refs.taskListBody.removeChild(this.cardDragMeta.placeholderCard);
       this.cardDragMeta.hasPalceHolderCard = false;
     }
-    this.cardDragMeta = {};
+  }
+
+  addDragingMark() {
+    this.refs.main.className += ' has-draging-card';
+  }
+
+  removeDragingMark() {
+    this.refs.main.className = this.refs.taskListBody.className.replace(/\s?has-draging-card/g, '');
+  }
+
+  resetDragMeta() {
+    this.cardDragMeta = {placeholderCardIndex: -1};
+  }
+
+  createPlaceHolderCard(dragingCardInfo) {
+    const div = document.createElement('div');
+    div.className = 'task-card task-card-placeholder';
+    div.style.height = dragingCardInfo.height + 'px';
+    div.style.width = dragingCardInfo.width + 'px';
+    return div;
+  }
+
+  onDragLeave() {
+    console.log('leave');
+    this.removeDragingMark();
+    this.removePlaceHolderCard();
+  }
+  
+  onDragEnter() {
+    this.addDragingMark();
+  }
+
+  onDrop() {
+    this.removePlaceHolderCard();
+    this.removeDragingMark();
+    this.resetDragMeta();
   }
 
   onDragOver(event) {
     event.preventDefault();
-    const {dispatch} = this.props;
-    const offset = {
-      x: event.nativeEvent.clientX,
-      y: event.nativeEvent.clientY
-    };
+    const mousePosition = {x: event.nativeEvent.clientX, y: event.nativeEvent.clientY};
+    const dragingCardInfo = BoardCradDragHelper.getData('info');
 
-    const dragInfo = BoardCradDragHelper.getData('info');
-    const index = this.caluMovingPosition(offset);
-    if (index === this.index) {
+    const placeHolderCardIndex = this.caluMovingPosition(mousePosition, dragingCardInfo);
+    if (placeHolderCardIndex === this.cardDragMeta.placeholderCardIndex) {
       return;
     }
-    this.index = index;
-
-    if (this.cardDragMeta.hasPalceHolderCard) {
-      this.refs.taskListBody.removeChild(this.cardDragMeta.placeholderCard);
-      this.cardDragMeta.hasPalceHolderCard = false;
-    }
+    this.cardDragMeta.placeholderCardIndex = placeHolderCardIndex;
+    this.removePlaceHolderCard();
     
-    const div = document.createElement('div');
-    div.className = 'task-card task-card-placeholder';
-    div.style.height = dragInfo.height + 'px';
-    div.style.width = dragInfo.width + 'px';
+    const div = this.createPlaceHolderCard(dragingCardInfo);
     this.cardDragMeta.placeholderCard = div;
     this.cardDragMeta.hasPalceHolderCard = true;
-    
-    this.refs.taskListBody.insertBefore(div, this.refs.taskListBody.querySelectorAll('.task-card')[index]);
+
+    if (placeHolderCardIndex === this.props.cards.length) {
+      this.refs.taskListBody.appendChild(div);
+    } else {
+      this.refs.taskListBody.insertBefore(div, this.refs.taskListBody.querySelectorAll('.task-card')[placeHolderCardIndex]);1
+    }    
   }
 
   requestMoveCardToThisList(card) {
     const thisListId = this.props.listId;
     return updateTaskCard(card.id, {listId: thisListId});
   }
-
 }
 
 const mapStateToProps = (state) => {
-  return {
-    // lists: state.task.list.lists
-  };
+  return {};
 };
 
 export default connect(mapStateToProps)(TaskList);

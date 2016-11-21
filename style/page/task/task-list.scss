@@ -1,13 +1,10 @@
 @import 'style/variable';
 
 $top-bar-height: 45px;
-
 $list-width: 300px;
 $list-radius: 3px;
-
 $list-horiz-margin: 24px;
 $list-vertical-margin: 15px;
-
 
 .task-list {
   border-radius: $list-radius;
@@ -20,6 +17,12 @@ $list-vertical-margin: 15px;
   vertical-align: middle;
   background-color: $gray-supper-light;
   margin: $list-vertical-margin $list-horiz-margin;
+
+  &.has-draging-card {
+    .task-card, .taskcard-creater--toggle {
+      pointer-events: none;
+    }
+  }
 }
 
 .task-list--body {
@@ -27,12 +30,6 @@ $list-vertical-margin: 15px;
   position: relative;
   display: inline-flex;
   flex-direction: column;
-
-  &.has-draging-card {
-    .task-card, .taskcard-creater--toggle {
-      pointer-events: none;
-    }
-  }
 }
 
 .task-list--top-bar {

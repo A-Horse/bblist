@@ -35,7 +35,7 @@ class CardModal extends Component {
     }
 
     return (
-      <Modal className='taskcard-modal' toggle={this.props.toggleTaskCardModal}>
+      <Modal className='taskcard-modal' toggle={this.props.toggleTaskCardModal} close={this.close.bind(this)}>
         <div className='taskcard-modal--top-bar'>
           <div>
             <span className='top-bar--list-label'>List:</span>
