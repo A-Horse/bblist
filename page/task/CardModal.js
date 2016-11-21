@@ -64,6 +64,7 @@ class CardModal extends Component {
         <div className='taskcard-modal--operation-container'>
           <div className='taskcard-modal--operation'>
             <CommentIcon className='comment-icon icon'/>
+            <CommentIcon className='comment-icon icon'/>
           </div>
         </div>
 

@@ -71,4 +71,9 @@ $operation-height: 50px;
   width: 100%;
   height: $operation-height;
   left: 0;
+  display: flex;
+  justify-content: flex-start;
+
+  .icon {
+  }
 }
