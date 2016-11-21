@@ -212,7 +212,7 @@ class TaskList extends Component {
   }
 
   removeDragingMark() {
-    this.refs.main.className = this.refs.taskListBody.className.replace(/\s?has-draging-card/g, '');
+    this.refs.main.className = this.refs.main.className.replace(/\s?has-draging-card/, '');
   }
 
   resetDragMeta() {
@@ -220,15 +220,14 @@ class TaskList extends Component {
   }
 
   createPlaceHolderCard(dragingCardInfo) {
-    const div = document.createElement('div');
-    div.className = 'task-card task-card-placeholder';
-    div.style.height = dragingCardInfo.height + 'px';
-    div.style.width = dragingCardInfo.width + 'px';
-    return div;
+    const phcard = document.createElement('div');
+    phcard.className = 'task-card task-card-placeholder';
+    phcard.style.height = dragingCardInfo.height + 'px';
+    phcard.style.width = dragingCardInfo.width + 'px';
+    return phcard;
   }
 
   onDragLeave() {
-    console.log('leave');
     this.removeDragingMark();
     this.removePlaceHolderCard();
   }
@@ -249,6 +248,7 @@ class TaskList extends Component {
     const dragingCardInfo = BoardCradDragHelper.getData('info');
 
     const placeHolderCardIndex = this.caluMovingPosition(mousePosition, dragingCardInfo);
+    console.log("placeHolderCardIndex = ", placeHolderCardIndex);
     if (placeHolderCardIndex === this.cardDragMeta.placeholderCardIndex) {
       return;
     }
