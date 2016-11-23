@@ -11,24 +11,16 @@ export class Select extends Component {
     super();
     this.state = {
       toggle: false,
-      value: 'please select',
+      value: null,
       name: 'please select'
     };
   }
-  
-  init() {
-    
-  }
 
   componentDidMount() {
-    
+    this.props.defaultItem && this.setState(this.props.defaultItem);  
   }
 
   componentDidUpdate() {
-    // if (this.focusAfterRender) {
-    //   //this.focusContent();
-    //   //this.setFocusAfterRender(false);
-    // }
   }
 
   openSelect() {
@@ -38,11 +30,12 @@ export class Select extends Component {
   }
 
   renderItems() {
-    return this.props.items.map(item => (<li key={item.name} className='select--item' onClick={() => this.clickItem(item)}>{item.name}</li>));
+    return this.props.items.map(item => (<li key={item.value} className='select--item' onClick={() => this.clickItem(item)}>{item.name}</li>));
   }
 
   clickItem(item) {
     this.setState({value: item.value, name: item.name, toggle: false});
+    this.props.onClick && this.props.onClick();
   }
   
   render() {
