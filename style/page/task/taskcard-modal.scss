@@ -25,17 +25,24 @@ $content-top: 150px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  .close-icon {
+    fill: $gray;
+  }
 }
 
 .taskcard-modal--title {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  margin-top: 6px;
 
   .title--input {
     border: none;
-    border-bottom: 1px solid $gray;
     margin-left: 12px;
     width: 100%;
+    resize: none;
+    background-color: $gray-light-depth;
+    border-radius: $radius-middle;
   }
 }
 
@@ -48,31 +55,37 @@ $content-top: 150px;
     font-size: $font-size-x-middle;
     padding: 8px 11px;
     box-sizing: border-box;
-    resize: vertical;
+    resize: none;
   }
 }
 
 .taskcard-modal--people {
   border: 1px solid $border-light;
   vertical-align: middle;
-  padding: 13px 9px;
+  padding: 6px 6px;
   display: flex;
 
   .useravatar {
     display: block;
+    width: 30px;
+    height: 30px;
   }
 }
 
 $operation-height: 50px;
-.taskcard-modal--operation-container {
-  height: $operation-height
+.taskcard-modal--comment-input-container {
+  height: $operation-height;
 }
 
-.taskcard-modal--operation {
+.taskcard-modal--comment-input {
   position: absolute;
   width: 100%;
   height: $operation-height;
   left: 0;
   display: flex;
   justify-content: space-between;
+}
+
+.taskcard-modal--comment-input {
+  background-color: $gray-light-litte-depth;
 }
