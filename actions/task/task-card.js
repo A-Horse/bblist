@@ -221,7 +221,7 @@ export function createTaskCard(card) {
       .then(handleResponse)
       .then(response => dispatch(createTaskCardSuccess(response)))
       .catch(error => dispatch(updateTaskCardError(error)));
-  }
+  };
 }
 
 
