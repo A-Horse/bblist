@@ -30,7 +30,7 @@ export class DropList extends Component {
     if (this.props.toggle) {
       return this.props.children;
     } else {
-      return null;
+      return React.DOM.noscript();
     }
   }
 }
