@@ -8,7 +8,16 @@
   padding: 4px 13px;
 }
 
+.button.middle {
+  height: 30px;
+}
+
+.button.default {
+  border: 1px solid $gray;
+  background-color: $button-default;
+}
+
 .button.primary {
   background-color: $blue-dark;
-  color: white;
+  color: $button-primary;
 }
