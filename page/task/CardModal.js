@@ -43,6 +43,13 @@ class CardModal extends Component {
     return {name: currentList.name, value: currentList.id};
   }
 
+  onTitleKeyDown(event) {
+    if (event.keyCode == 13 /*esc*/) {
+      this.updateTitle();
+      event.preventDefault();
+    }
+  }
+
   render() {
     const {card, taskLists} = this.props;
     const currentList = R.find(R.propEq('id', card.taskListId))(taskLists);
@@ -53,7 +60,7 @@ class CardModal extends Component {
     return (
       <Modal className='taskcard-modal' toggle={this.props.toggleTaskCardModal} close={this.close.bind(this)}>
         <div className='taskcard-modal--top-bar'>
-          <div>
+          <div className='top-bar-list-chooser'>
             <span className='top-bar--list-label'>LIST:</span>
             <Select defaultItem={this.buildListSelectDefaultItem(currentList)} items={this.buildListSelectItems()} onClick={this.onChangeList.bind(this)}/>
           </div>
@@ -62,27 +69,22 @@ class CardModal extends Component {
 
         <div className='taskcard-modal--title'>
           <CheckBox className='title--checkbox' ref='checkbox' defaultChecked={card.isDone} onChange={this.updateDone.bind(this)}/>
-          <Textarea className='title--input' type='text' ref='title' defaultValue={card.title} onChange={this.updateTitle.bind(this)}></Textarea>
+          <Textarea className='title--input' type='text' ref='title' onKeyDown={this.onTitleKeyDown.bind(this)} defaultValue={card.title} onBlur={this.updateTitle.bind(this)}></Textarea>
         </div>
 
-        <div className='hr-container'>
-          <Hr/>
-        </div>
+        <Hr/>
 
         <div className='taskcard-modal--content'>
-          <Textarea ref='content' onChange={this.updateContent.bind(this)} defaultValue={card.content}></Textarea>
+          <Textarea ref='content' onBlur={this.updateContent.bind(this)} defaultValue={card.content}></Textarea>
         </div>
 
         <div className='taskcard-modal--people'>
           <UserAvatar user={card.creater}/>
         </div>
 
-
-        <div className='taskcard-modal--comment-input-container'>
-          <div className='taskcard-modal--comment-input'>
-            <Textarea ref='content' placeholder='add comment'></Textarea>
-            <Button>Add</Button>
-          </div>
+        <div className='taskcard-modal--comment-input'>
+          <Textarea ref='content' placeholder='add comment'></Textarea>
+          <Button styleType='default'>Add</Button>
         </div>
         
       </Modal>
