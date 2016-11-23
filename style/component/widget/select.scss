@@ -10,6 +10,8 @@
   position: absolute;
   background-color: $content-light;
   width: 100%;
+  border: 1px solid $gray;
+  border-radius: $radius-middle;
 }
 
 .select--box {
@@ -20,7 +22,10 @@
 .select--item {
   cursor: pointer;
   border-bottom: 1px solid $gray-light-depth;
-  
+  height: 28px;
+  line-height: 28px;
+  padding: 0 8px;
+
   &:hover {
     background-color: $gray-light-depth;
   }

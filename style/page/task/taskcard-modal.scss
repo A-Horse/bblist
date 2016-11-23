@@ -8,17 +8,18 @@ $content-top: 150px;
   left: 50%;
   top: $content-top;
   margin-left: -$content-width / 2;
-  padding: 8px 18px 0;
+  padding: 8px 0 0;
 
-  .hr-container {
-    height: 20px;
-    .hr {
-      position: absolute;
-      left: 0;
-      width: 100%;
-      margin: 10px 0;
-    }
+  .hr {
+    left: 0;
+    width: 100%;
+    margin: 10px 0;
   }
+}
+
+.taskcard-modal--top-bar, .taskcard-modal--title,
+.taskcard-modal--content, .taskcard-modal--people {
+  margin: 0 13px;
 }
 
 .taskcard-modal--top-bar {
@@ -28,6 +29,20 @@ $content-top: 150px;
 
   .close-icon {
     fill: $gray;
+  }
+
+  .top-bar-list-chooser {
+    display: flex;
+    width: 80%;
+
+    .select {
+      margin-left: 10px;
+      width: 100%;
+
+      ul {
+        z-index: 100;
+      }
+    }
   }
 }
 
@@ -72,20 +87,25 @@ $content-top: 150px;
   }
 }
 
-$operation-height: 50px;
+
 .taskcard-modal--comment-input-container {
-  height: $operation-height;
+  height: auto;
 }
 
 .taskcard-modal--comment-input {
-  position: absolute;
+  margin-top: 14px;
   width: 100%;
-  height: $operation-height;
   left: 0;
   display: flex;
-  justify-content: space-between;
-}
-
-.taskcard-modal--comment-input {
+  align-items: center;
   background-color: $gray-light-litte-depth;
+
+  textarea {
+    width: 100%;
+    margin: 4px 10px;
+    padding: 3px 8px;
+    resize: none;
+    border-radius: $radius-middle;
+    border-color: $gray;
+  }
 }
