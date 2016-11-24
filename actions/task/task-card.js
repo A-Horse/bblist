@@ -149,10 +149,13 @@ function requestCardMetaFail(error) {
 }
 
 export function setCurrentCard(card) {
-  return dispatch => dispatch({
-    type: SET_CURRENT_CARD,
-    card
-  });
+    return dispatch => {
+      dispatch(getCardDetail(card.id));
+      return dispatch({
+        type: SET_CURRENT_CARD,
+        card
+      });
+  };
 }
 
 export function unsetCurrentCard() {
@@ -170,7 +173,7 @@ export function insertVirtualCard(playload) {
   });
 };
 
-export function getCardMeta(cardId) {
+export function getCardDetail(cardId) {
   const config = createConfigWithAuth('GET');
   return dispatch => {
     dispatch(requestCardMeta(cardId));
@@ -223,5 +226,3 @@ export function createTaskCard(card) {
       .catch(error => dispatch(updateTaskCardError(error)));
   };
 }
-
-

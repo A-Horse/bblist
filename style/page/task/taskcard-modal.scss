@@ -18,7 +18,8 @@ $content-top: 150px;
 }
 
 .taskcard-modal--top-bar, .taskcard-modal--title,
-.taskcard-modal--content, .taskcard-modal--people {
+.taskcard-modal--content, .taskcard-modal--people,
+.taskcard-modal--comments {
   margin: 0 13px;
 }
 
@@ -84,6 +85,20 @@ $content-top: 150px;
     display: block;
     width: 30px;
     height: 30px;
+  }
+}
+
+.taskcard-modal--comments {
+  margin-top: 14px;
+  border: 1px solid $border-light;
+
+  .useravatar {
+    width: 20px;
+    height: 20px;
+  }
+
+  .comment-item {
+    display: flex;
   }
 }
 

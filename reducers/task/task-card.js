@@ -31,6 +31,12 @@ function taskCard(state = {
     });
     break;
 
+  case CARD_META_SUCCESS:
+    return Object.assign({}, state, {
+      card: action.playload
+    });
+    break;
+
   case TASKCARD_PATCH_REQUEST:
     return Object.assign({}, state, {
       isFetching: true
@@ -56,7 +62,7 @@ function taskCard(state = {
   case UNSET_CURRENT_CARD:
     return Object.assign({}, state, {
       active: false,
-      card: []
+      card: {}
     });
     break;
   

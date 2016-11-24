@@ -3,8 +3,9 @@ import {connect} from 'react-redux';
 import {browserHistory} from 'react-router';
 import R from 'fw-ramda';
 
-import {deleteTaskCard, updateTaskCard, unsetCurrentCard} from 'actions/task/task-card';
+import {deleteTaskCard, updateTaskCard, unsetCurrentCard, getCardDetail} from 'actions/task/task-card';
 import {getTaskAllCards} from 'actions/task/task-wall';
+import {createTaskCardComment} from 'actions/task/task-card-comment';
 import {spawnMixinRender} from 'style/theme-render';
 import {CloseIcon, CommentIcon} from 'services/svg-icons';
 import UserAvatar from 'components/UserAvatar';
@@ -26,13 +27,22 @@ class CardModal extends Component {
     this.state = {};
   }
 
+  componentDidMount() {
+    
+  }
+
   close() {
     const {dispatch} = this.props; 
-    dispatch(unsetCurrentCard());
+    return dispatch(unsetCurrentCard());
   }
 
   onChangeList() {
-    
+
+  }
+
+  getCardDetail() {
+    const {dispatch, card} = this.props;
+    return dispatch(getCardDetail(card.id));
   }
 
   buildListSelectItems() {
@@ -43,10 +53,15 @@ class CardModal extends Component {
     return {name: currentList.name, value: currentList.id};
   }
 
-  onTitleKeyDown(event) {
-    if (event.keyCode == 13 /*esc*/) {
-      this.updateTitle();
-      event.preventDefault();
+  renderComments() {
+    const {dispatch, card} = this.props;
+    if (card.comments) {
+      return card.comments.map((comment) => {
+        return (<li key={comment.id} className='comment-item'>
+           <UserAvatar user={comment.creater}/>
+           <span>{comment.content}</span>
+           </li>);
+      });
     }
   }
 
@@ -82,13 +97,36 @@ class CardModal extends Component {
           <UserAvatar user={card.creater}/>
         </div>
 
+        <div className='taskcard-modal--comments'>
+          <ul>
+            {this.renderComments()}
+          </ul>
+        </div>
+
         <div className='taskcard-modal--comment-input'>
-          <Textarea ref='content' placeholder='add comment'></Textarea>
-          <Button styleType='default'>Add</Button>
+          <Textarea ref='comment' placeholder='add comment'></Textarea>
+          <Button onClick={this.postComment.bind(this)} styleType='default'>Add</Button>
         </div>
         
       </Modal>
     );
+  }
+
+  onTitleKeyDown(event) {
+    if (event.keyCode == 13 /*return*/) {
+      this.updateTitle();
+      event.preventDefault();
+    }
+  }
+
+  postComment() {
+    const {dispatch, card} = this.props;
+    return dispatch(createTaskCardComment(card.id, {
+      content: this.refs.comment.value.trim()
+    })).then(() => {
+      this.refs.comment.value = '';
+      this.getCardDetail();
+    });
   }
 
   updateTitle() {

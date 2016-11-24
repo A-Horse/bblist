@@ -134,7 +134,7 @@ class TaskWall extends Component {
         <TaskListCreater boardId={this.props.params.id}/>
            </div>
         </PageContainer>
-        <CardModal/>
+        <CardModal key='card-modal'/>
       </div>
     );
   }
