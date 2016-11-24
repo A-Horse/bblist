@@ -6,6 +6,7 @@ import Calendar from './Calendar';
 import 'style/component/date-picker/date-picker.scss';
 import {addBodyEventListenerOnce} from 'actions/event/body';
 import Popup from 'components/Popup';
+import moment from 'moment';
 
 class DatePicker extends Component {
 
@@ -27,7 +28,7 @@ class DatePicker extends Component {
   close() {
     this.setState({toggle: false});
   }
-
+  
   nextMonth() {
     this.state.month === 12 ? this.setState({month: 1, year: this.state.year + 1}) :
     this.setState({month: this.state.month + 1});
@@ -39,7 +40,7 @@ class DatePicker extends Component {
   }
 
   onSelected(date) {
-    this.refs.input.value = date.toString();
+    this.refs.input.value = moment(date).format('MMM Do YY');
     this.close();
   }
 
@@ -55,9 +56,9 @@ class DatePicker extends Component {
     return (
       <div className={this.buildClassName()} ref='main'>
         <DateIcon onClick={this.onClick.bind(this)}/>
-        <input ref='input' onClick={this.onClick.bind(this)} />
+        <input ref='input' onClick={this.onClick.bind(this)} disabled />
 
-        <Popup className='date-picker' toggle={this.state.toggle} onOverlayClick={this.close.bind(this)}>
+        <Popup className='date-picker' toggle={this.state.toggle} onOverlayClick={this.close.bind(this)} close={this.close.bind(this)}>
           <CloseIcon onClick={this.close.bind(this)}/>
           
           <Calendar year={this.state.year} month={this.state.month} day={this.state.day}

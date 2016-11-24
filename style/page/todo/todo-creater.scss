@@ -1,7 +1,14 @@
 @import 'style/variable';
 
 .todo-creater-body {
+  margin: 9px 13px;
+  box-shadow: 0 0 3px $shadow-light;
 
+  .todo-creater--content {
+    resize: none;
+    border: 1px solid $border-light;
+  }
+  
   .date-picker {
     display: inline-block;
   }

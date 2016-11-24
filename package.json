@@ -28,6 +28,7 @@
     "fw-ramda": "^0.1.4",
     "isomorphic-fetch": "^2.2.1",
     "lodash": "^4.14.1",
+    "moment": "^2.17.0",
     "normalizr": "^2.2.1",
     "radium": "^0.18.1",
     "react": "^0.14.7",

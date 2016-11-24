@@ -68,9 +68,9 @@ export class ModalPortal extends Component {
     if (this.props.toggle) {
       return (
         <div ref='overlay' className={this.buildClassName('overlay', this.props.overlayClassName)}
-             onClick={this.onOverlayClick.bind(this)}>
+             onClick={this.onOverlayClick.bind(this)} style={this.props.overlayStyle}>
           <div ref='content' className={this.buildClassName('content', this.props.className)} tabIndex='-1'
-               onKeyDown={this.handleKeyDown.bind(this)}>
+               style={this.props.modalStyle} onKeyDown={this.handleKeyDown.bind(this)}>
             {this.props.children}
           </div>
         </div>

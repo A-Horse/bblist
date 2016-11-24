@@ -8,6 +8,7 @@ import {Button} from 'components/widget/Button';
 import DatePicker from 'components/date-picker/DatePicker';
 import Popup from 'components/Popup';
 import {Select} from 'components/widget/Select';
+import Textarea from 'react-textarea-autosize';
 
 import 'style/page/todo/todo-creater.scss';
 
@@ -58,7 +59,10 @@ class TodoCreater extends Component {
       <div className='todo-creater-body'
            onClick={event => event.stopPropagation()}>
         <div>
-          <input type='text' ref='content' />
+          <Textarea className='todo-creater--content' type='text' ref='content'></Textarea>
+          
+        </div>
+        <div>
           <DatePicker ref='date-picker' />
         </div>
         <div>
@@ -70,7 +74,7 @@ class TodoCreater extends Component {
           <Select items={repeatItems}/>
         </div>
         <div>
-          <Button onClick={this.createTodo.bind(this)}>Add Todo</Button>
+          <Button styleType='primary' onClick={this.createTodo.bind(this)}>Add Todo</Button>
           <AlarmIcon />
           <FlagIcon />
         </div>

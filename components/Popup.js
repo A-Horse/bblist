@@ -46,8 +46,10 @@ class Popup extends Component {
   render() {
     return (
       <div ref='main' className={this.buildClassName()}>        
-        <Modal className={this.buildClassName()} toggle={this.props.toggle} overlayStyle={{backgroundColor: 'rgba(0, 0, 0, 0)'}} modalStyle={this.buildModalStyle()}
-               onOverlayClick={this.props.onOverlayClick}>
+        <Modal className={this.buildClassName()} toggle={this.props.toggle}
+               overlayStyle={{backgroundColor: 'rgba(0, 0, 0, 0)'}}
+               modalStyle={this.buildModalStyle()}
+               onOverlayClick={this.props.onOverlayClick} close={this.props.close}>
           {this.props.children}
         </Modal>
       </div>
