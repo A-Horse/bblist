@@ -8,6 +8,8 @@ import {addBodyEventListenerOnce} from 'actions/event/body';
 import Popup from 'components/Popup';
 import moment from 'moment';
 
+import 'style/component/date-picker/date-picker.scss';
+
 class DatePicker extends Component {
 
   constructor() {

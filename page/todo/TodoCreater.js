@@ -41,6 +41,11 @@ class TodoCreater extends Component {
     event.stopPropagation();
   }
 
+  close() {
+    const {dispatch} = this.props;
+    this.setState({toggle: false});
+  }
+
   render() {
     if (this.state.toggle) return this.renderBody();
     return this.renderToggle();
@@ -48,8 +53,8 @@ class TodoCreater extends Component {
 
   renderToggle() {
     return (
-      <div onClick={this.toggle.bind(this)}>
-        <AddIcon /> Add Todo
+      <div className='todo-creater--toggle' onClick={this.toggle.bind(this)}>
+        <AddIcon className='' /> Add Todo
       </div>
     );
   }
@@ -58,25 +63,30 @@ class TodoCreater extends Component {
     return (
       <div className='todo-creater-body'
            onClick={event => event.stopPropagation()}>
+
         <div>
-          <Textarea className='todo-creater--content' type='text' ref='content'></Textarea>
-          
+          <Textarea placeholder='write your todo' className='todo-creater--content' type='text' ref='content'></Textarea>  
         </div>
-        <div>
+
+        
+        <div className='todo-creater-deadline'>
+          <label>Deadline:</label>
           <DatePicker ref='date-picker' />
         </div>
-        <div>
-          <label>Label:</label>
-          <input type='text'/>
-        </div>
+        
         <div className='repeat-input'>
           <label>Repeat:</label>
           <Select items={repeatItems}/>
         </div>
-        <div>
+        
+        
+        <div className='todo-creater--label'>
+          <input type='text' placeholder='Label' ref='label'/>
+        </div>
+
+        <div className='todo-creater-operation'>
           <Button styleType='primary' onClick={this.createTodo.bind(this)}>Add Todo</Button>
-          <AlarmIcon />
-          <FlagIcon />
+          <Button styleType='default' onClick={this.close.bind(this)}>Cancel</Button>
         </div>
       </div>
     );

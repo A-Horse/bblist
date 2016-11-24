@@ -1,21 +1,57 @@
 @import 'style/variable';
 
+.todo-creater--toggle {
+  cursor: pointer;
+}
+
 .todo-creater-body {
-  margin: 9px 13px;
   box-shadow: 0 0 3px $shadow-light;
+  padding: 9px 13px;
 
   .todo-creater--content {
     resize: none;
     border: 1px solid $border-light;
+    width: 100%;
+    box-sizing: border-box;
   }
+
   
-  .date-picker {
-    display: inline-block;
+  .todo-creater--label {
+    margin-top: 7px;
   }
 
   .repeat-input {
+    margin-top: 7px;
+    label {
+      color: $gray-deep;
+    }
     .select {
       width: 200px;
+      margin-left: 13px;
     }
   }
+
+  .todo-creater-operation {
+    margin-top: 7px;
+  }
+
+  .todo-creater-deadline {
+    margin-top: 7px;
+    display: flex;
+    align-items: center;
+
+    label {
+      color: $gray-deep;
+    }
+    .date-picker {
+      margin-left: 13px;
+
+      input {
+        border: none;
+        margin-left: 13px;
+      }
+    }
+
+  }
+
 }
