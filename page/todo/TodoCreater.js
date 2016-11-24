@@ -43,6 +43,7 @@ class TodoCreater extends Component {
 
   close() {
     const {dispatch} = this.props;
+    // TODO remove close event lisenter
     this.setState({toggle: false});
   }
 
@@ -86,7 +87,6 @@ class TodoCreater extends Component {
 
         <div className='todo-creater-operation'>
           <Button styleType='primary' onClick={this.createTodo.bind(this)}>Add Todo</Button>
-          <Button styleType='default' onClick={this.close.bind(this)}>Cancel</Button>
         </div>
       </div>
     );
