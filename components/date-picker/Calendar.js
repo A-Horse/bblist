@@ -28,8 +28,9 @@ class Calendar extends Component {
   
   renderHeader() {
     return (
-      <div>
+      <div>  
         <Button key='next' onClick={this.props.nextMonth.bind(this)}>next</Button>
+        <span>{this.props.year}</span>
         <Button key='last' onClick={this.props.lastMonth.bind(this)}>Last</Button>
       </div>
     );
