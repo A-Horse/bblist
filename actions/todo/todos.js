@@ -131,7 +131,7 @@ export function getTodoList() {
 export function updateTodo(id, data) {
   const config = createConfigWithAuth('PATCH', data);
   return dispatch => {
-    return fetch(makeApiUrl(`/task-card/${id}`), config)
+    return fetch(makeApiUrl(`/todo/${id}`), config)
       .then(handleResponseWithoutJson)
       .then(() => dispatch(updateTodoSuccess()))
       .catch(error => dispatch(updateTodoError(error)));
