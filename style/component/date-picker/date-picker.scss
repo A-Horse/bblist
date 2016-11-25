@@ -3,9 +3,15 @@
 .date-picker {
   display: flex;
   align-items: center;
-
+  cursor: pointer;
 }
 
 .modal__content.date-picker {
-  
+
+
+  .close-icon {
+    position: absolute;
+    right: 8px;
+    top: 8px;
+  }
 }
