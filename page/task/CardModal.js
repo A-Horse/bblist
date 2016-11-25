@@ -84,7 +84,7 @@ class CardModal extends Component {
 
         <div className='taskcard-modal--title'>
           <CheckBox className='title--checkbox' ref='checkbox' defaultChecked={card.isDone} onChange={this.updateDone.bind(this)}/>
-          <Textarea className='title--input' type='text' ref='title' onKeyDown={this.onTitleKeyDown.bind(this)} defaultValue={card.title} onBlur={this.updateTitle.bind(this)}></Textarea>
+          <Textarea className='title--input' ref='title' onKeyDown={this.onTitleKeyDown.bind(this)} defaultValue={card.title} onBlur={this.updateTitle.bind(this)}></Textarea>
         </div>
 
         <Hr/>
