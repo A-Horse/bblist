@@ -30,6 +30,10 @@ export class Select extends Component {
     });
   }
 
+  buildBoxClassName() {
+    return 'select--box' += this.state.toggle ? 'select--box__opening' : 'select-box__closed';
+  }
+
   renderItems() {
     return this.props.items.map(item => (<li key={item.value} className='select--item' onClick={() => this.clickItem(item)}>{item.name}</li>));
   }
@@ -42,7 +46,7 @@ export class Select extends Component {
   render() {
     return (
       <div className='select'>
-        <div className='select--box' onClick={() => this.openSelect()}>
+        <div className={this.buildBoxClassName()} onClick={this.openSelect.bind(this)}>
           <p>{this.state.name}</p>
           <ArrowDown/>
         </div>
