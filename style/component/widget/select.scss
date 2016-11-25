@@ -22,7 +22,7 @@
   &.select--box__opening {
     svg {
       transform: rotate(180deg);
-      top: 0;
+      top: -1px;
     }
   }
 }
