@@ -1,4 +1,5 @@
 import React, {Component, PropTypes} from 'react';
+import {ArrowDown} from 'services/svg-icons';
 import 'style/component/widget/select.scss';
 
 export class Select extends Component {
@@ -43,6 +44,7 @@ export class Select extends Component {
       <div className='select'>
         <div className='select--box' onClick={() => this.openSelect()}>
           <p>{this.state.name}</p>
+          <ArrowDown/>
         </div>
         <ul className='select--container' style={{display: this.state.toggle ? 'block' : 'none'}}>
           {this.renderItems()}
