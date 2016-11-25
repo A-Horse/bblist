@@ -27,12 +27,20 @@
   border-radius: 2px;
   
   &:before {
-    content: '✓';
+    content: '';
     z-index: 1;
     display: none;
     position: absolute;
-    color: green;
-    left: 0;
-    top: 0;
+    left: -7px;
+    top: -9px;
+    height: 39px;
+    width: 39px;
+    mask: url(/assets/svg/ic_done_black_24px.svg);
+    mask-size: cover;
+    background: {
+      color: $green;
+      repeat: no-repeat;
+      size: cover;
+    };
   }
 }

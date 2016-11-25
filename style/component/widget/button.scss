@@ -6,6 +6,7 @@
   cursor: pointer;
   border-radius: $radius-middle;
   padding: 4px 13px;
+  box-sizing: border-box;
 }
 
 .button.middle {
@@ -19,5 +20,6 @@
 
 .button.primary {
   background-color: $blue-dark;
+  border: 1px solid $blue-dark;
   color: $white;
 }

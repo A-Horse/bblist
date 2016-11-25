@@ -1,20 +1,42 @@
 @import 'style/variable';
 
 .todo {
-  hr {
-    background-image: linear-gradient(to right, $gray-light-depth, $gray-light-litte-depth, $gray-light-depth);
-  }
+  border-bottom: 1px solid $gray-light;
+  padding: 15px 0 7px;
 }
 
 .todo--main {
   display: flex;
   justify-content: space-between;
 
-  .checkbox {
-    margin: 0 10px;
-  }
+  
 }
 
 .todo--content {
   flex-grow: 1;
+  margin-left: 14px;
+  padding: 0 14px;
+}
+
+.todo--content__input {
+  width: 100%;
+  border: none;
+  resize: none;
+  border-radius: $radius-middle;
+  background-color: $gray-light-depth;
+  margin: 0 14px;
+  padding: 0 14px;
+}
+
+.todo-editing--deadline {
+  display: flex;
+  align-items: center;
+
+  .date-picker {
+    margin-left: 14px;
+
+    input {
+      border: none;
+    }
+  }
 }
