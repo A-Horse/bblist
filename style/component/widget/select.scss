@@ -5,21 +5,37 @@
   display: inline-block;
 }
 
+.select--box {
+  border: 1px solid $gray;
+  border-radius: 3px;
+  padding: 0 8px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  svg {
+    position: relative;
+    top: 2px;
+  }
+
+  &.select--box__opening {
+    svg {
+      transform: rotate(180deg);
+    }
+  }
+}
+
 .select--container {
   margin: 0;
   position: absolute;
   background-color: $content-light;
-  width: 100%;
+  width: auto;
   border: 1px solid $gray;
   border-radius: $radius-middle;
 }
 
-.select--box {
-  border: 1px solid $gray;
-  border-radius: 3px;
-}
-
 .select--item {
+  user-select: none;
   cursor: pointer;
   border-bottom: 1px solid $gray-light-depth;
   height: 28px;
