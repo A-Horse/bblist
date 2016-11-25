@@ -31,7 +31,7 @@ export class Select extends Component {
   }
 
   buildBoxClassName() {
-    return 'select--box ' + this.state.toggle ? 'select--box__opening' : 'select-box__closed';
+    return `select--box ${this.state.toggle ? 'select--box__opening' : 'select-box__closed'}`;
   }
 
   renderItems() {
