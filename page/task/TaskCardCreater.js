@@ -85,6 +85,7 @@ class TaskCardCreater extends Component {
             <MoreIcon />
             <span>more</span>
           </div>
+          <Button styleType='default'>Cancel</Button>
           <Button styleType='primary' onClick={this.createCard.bind(this)}>OK</Button>
         </div>
       </div>
