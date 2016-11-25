@@ -61,7 +61,7 @@ class DatePicker extends Component {
         <input ref='input' onClick={this.onClick.bind(this)} disabled />
 
         <Popup className='date-picker' toggle={this.state.toggle} onOverlayClick={this.close.bind(this)} close={this.close.bind(this)}>
-          <CloseIcon onClick={this.close.bind(this)}/>
+          <CloseIcon className='close-icon' onClick={this.close.bind(this)}/>
           
           <Calendar year={this.state.year} month={this.state.month} day={this.state.day}
                     lastMonth={this.lastMonth.bind(this)} nextMonth={this.nextMonth.bind(this)}
