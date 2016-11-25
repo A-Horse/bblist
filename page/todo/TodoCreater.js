@@ -55,7 +55,8 @@ class TodoCreater extends Component {
   renderToggle() {
     return (
       <div className='todo-creater--toggle' onClick={this.toggle.bind(this)}>
-        <AddIcon className='' /> Add Todo
+        <AddIcon className='add-icon' />
+        <span className='toggle-text'>Add Todo</span>
       </div>
     );
   }
@@ -74,19 +75,19 @@ class TodoCreater extends Component {
           <label>Deadline:</label>
           <DatePicker ref='date-picker' />
         </div>
-        
+
         <div className='repeat-input'>
           <label>Repeat:</label>
           <Select items={repeatItems}/>
         </div>
-        
-        
+                
         <div className='todo-creater--label'>
           <input type='text' placeholder='Label' ref='label'/>
         </div>
 
         <div className='todo-creater-operation'>
           <Button styleType='primary' onClick={this.createTodo.bind(this)}>Add Todo</Button>
+          <Button styleType='default'>Cancel</Button>
         </div>
       </div>
     );
