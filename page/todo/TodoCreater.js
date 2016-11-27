@@ -26,7 +26,7 @@ class TodoCreater extends Component {
     const {dispatch} = this.props;
     const data = {
       content: this.refs.content.value.trim(),
-      deadline: this.refs.datePicker.value.getTime()
+      deadline: this.refs.datePicker.value ? this.refs.datePicker.value.getTime() : null
       //label: this.refs.label.trim().split(';')
     };
     return dispatch(createTodo(data)).then(() => {
