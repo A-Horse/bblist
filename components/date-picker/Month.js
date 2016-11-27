@@ -60,7 +60,7 @@ class Month extends Component {
             number: start - monthDays + 1,
             isOutRange: true,
             active: true,
-            isToday: year === cYear && month === cMonth && dayNumber === cDay
+            isToday: year === cYear && month === cMonth + 1 && dayNumber === cDay
           });
           console.log(dayNumber);
           console.log(year === cYear && month === cMonth && dayNumber === cDay);
@@ -70,7 +70,7 @@ class Month extends Component {
             number: start + 1,
             isOutRange: false,
             active: true,
-            isToday: year === cYear && month === cMonth + 1 && dayNumber === cDay
+            isToday: year === cYear && month === cMonth && dayNumber === cDay
           });
           console.log(year === cYear && month === cMonth + 1 && dayNumber === cDay);
         }
