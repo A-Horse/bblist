@@ -57,6 +57,7 @@ class Todo extends Component {
       return;
     }
     event.preventDefault();
+    this.updateTodo();
   }
     
   render() {
