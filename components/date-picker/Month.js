@@ -38,8 +38,6 @@ class Month extends Component {
 
     const today = new Date();
     const cYear = today.getFullYear(), cMonth = today.getMonth() + 1, cDay = today.getDate();
-    console.log(cYear, cMonth, cDay);
-    console.log(year, month, day);
     let start = - firstDayOffset;
     let result = [];
     while(true) {
