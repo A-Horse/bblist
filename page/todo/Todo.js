@@ -80,7 +80,7 @@ class Todo extends Component {
         <div className='todo-editing--meta' style={{display: this.state.editToggle ? 'block' : 'none'}}>
           <div className='todo-editing--deadline'>
             <label>Deadline:</label>
-            <DatePicker ref='date-picker' />
+            <DatePicker ref='date-picker' defaultValue={todo.deadline} />
           </div>
 
           <div>
