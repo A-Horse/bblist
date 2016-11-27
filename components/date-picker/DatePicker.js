@@ -14,16 +14,20 @@ class DatePicker extends Component {
 
   constructor() {
     super();
+    this.state = {toggle: false};
+  }
+
+  init() {
     const today = new Date();
-    this.state = {
-      toggle: false,
+    this.setState({
       year: today.getFullYear(),
       month: today.getMonth() + 1,
       day: today.getDate()
-    };
+    });
   }
 
   onClick() {
+    this.init();
     this.setState({toggle: !this.state.toggle});
     // dispatch(addBodyEventListenerOnce(() => {
     //   this.setState({toggle: false});
@@ -47,6 +51,10 @@ class DatePicker extends Component {
 
   selectYear(year) {
     this.setState({year: year});
+  }
+
+  selectMonth(month) {
+    this.setState({month: month});
   }
 
   onSelected(date) {
@@ -76,6 +84,7 @@ class DatePicker extends Component {
 
           <Calendar year={this.state.year} month={this.state.month} day={this.state.day}
                     selectYear={this.selectYear.bind(this)}
+                    selectMonth={this.selectMonth.bind(this)}
                     lastMonth={this.lastMonth.bind(this)} nextMonth={this.nextMonth.bind(this)}
                     onSelected={this.onSelected.bind(this)}/>
         </Popup>

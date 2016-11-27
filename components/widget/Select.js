@@ -36,9 +36,6 @@ export class Select extends Component {
   }
 
   renderItems() {
-    this.props.items.map(function() {
-      console.log(item.value);
-    })
     return this.props.items.map(item => (<li key={item.value} className='select--item' onClick={() => this.clickItem(item)}>{item.name}</li>));
   }
 

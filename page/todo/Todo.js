@@ -50,13 +50,16 @@ class Todo extends Component {
     const {dispatch, todo} = this.props;
     const newTodo = {content: this.refs.content.value.trim()};
     this.setState({editToggle: false});
-    dispatch(updateTodo(todo.id, newTodo)).then(getTodoList);
+    dispatch(updateTodo(todo.id, newTodo)).then(function() {
+      // TODO 先 set 
+      dispatch(getTodoList());
+    });
   }
     
   render() {
     const {todo} = this.props;
     return (
-      <div className='todo' ref='main' draggable='true' onDragStart={this.onDragStart.bind(this)}
+      <div className='todo' ref='main' onDragStart={this.onDragStart.bind(this)}
            onClick={this.onClick.bind(this)}
            onDragEnd={this.onDragEnd.bind(this)}>
 
@@ -77,7 +80,7 @@ class Todo extends Component {
           </div>
 
           <div>
-            <Button styleType='primary' onClick={this.editDone.bind()}>OK</Button>
+            <Button styleType='primary' onClick={this.editDone.bind(this)}>OK</Button>
           </div>
           
         </div>

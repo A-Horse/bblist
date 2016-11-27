@@ -34,7 +34,7 @@ class Month extends Component {
     const {year, month, day} = this.props;
     const monthDays = daysInMonth(month, year);
     const lastMonthDays = daysInMonth(month - 1, year);
-    const firstDayOffset = firstDayInMonthOffset(month, year);
+    const firstDayOffset = firstDayInMonthOffset(month, year); // TODO 需要加上配置的偏移
 
     let start = - firstDayOffset;
     let result = [];

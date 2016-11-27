@@ -71,8 +71,10 @@ class TodoCreater extends Component {
           <Textarea placeholder='write your todo' className='todo-creater--content' type='text' ref='content'></Textarea>  
         </div>
 
-        
-
+        <div className='todo-creater-deadline'>
+          <label>Deadline:</label>
+          <DatePicker ref='date-picker' arrow='auto'/>
+        </div>
 
         <div className='repeat-input'>
           <label>Repeat:</label>

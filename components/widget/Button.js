@@ -10,7 +10,7 @@ export class Button extends Component {
 
   buildClassName() {
     const {size = 'middle', styleType = 'default'} = this.props;
-    return `button ${size} ${styleType}`;
+    return `button ${size} ${styleType}${this.props.className ? ' ' + this.props.className : ''}`;
   }
   
   render() {

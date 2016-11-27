@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Modal} from 'components/widget/Modal';
 import {DateIcon, CloseIcon} from 'services/svg-icons';
-import {weekFirstDay, weekDayName} from './constant';
+import {weekFirstDay, weekDayName, monthNames} from './constant';
 import {daysInMonth, firstDayInMonthOffset} from './util';
 import Week from './Week';
 import {Select} from 'components/widget/Select';
@@ -14,38 +14,49 @@ class Calendar extends Component {
 
   constructor() {
     super();
-    
   }
 
-  onClick() {
-    
+  componentWillMount() {
+    this.selectYearItems = this.buildYears();
+    this.selectMonthItems = this.buildMonths();
   }
 
-  onClose() {
-    
+  onYearSelect(item) {
+    this.props.selectYear(item.value);
   }
 
-  onSelect() {
-    
+  onMonthSelect(item) {
+    this.props.selectMonth(item.value);
   }
 
   buildYears() {
+    const currentYear = new Date().getFullYear();
     let years = [];
-    for (let i = this.props.year - 10; i < this.props.year + 10; i++) {
+    // TODO 可配置化
+    for (let i = currentYear - 10; i < currentYear + 10; i++) {
       years.push(i);
     }
-    return years.map(year => ({key: year, name: year}));
+    return years.map(year => ({value: year, name: year}));
   }
 
   buildDefaultYear() {
-    return {key: this.props.year, name: this.props.year};
+    return {value: this.props.year, name: this.props.year};
+  }
+
+  buildDefaultMonth() {
+    return {value: this.props.month, name: monthNames[this.props.month - 1]};
+  }
+
+  buildMonths() {
+    return monthNames.map((monthName, i) => ({value: ++i, name: monthName}));
   }
 
   renderHeader() {
     return (
       <div className='calendar-header'>
         <Button key='next' onClick={this.props.nextMonth.bind(this)}>next</Button>
-        <Select year={this.props.year} items={this.buildYears()} defaultItem={this.buildDefaultYear()}></Select>
+        <Select key='year-select' onSelect={this.onYearSelect.bind(this)} items={this.selectYearItems} defaultItem={this.buildDefaultYear()}></Select>
+        <Select key='month-select' onSelect={this.onMonthSelect.bind(this)} items={this.selectMonthItems} defaultItem={this.buildDefaultMonth()}></Select>
         <Button key='last' onClick={this.props.lastMonth.bind(this)}>Last</Button>
       </div>
     );

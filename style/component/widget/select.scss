@@ -30,10 +30,13 @@
 .select--container {
   margin: 0;
   position: absolute;
+  z-index: 1;
   background-color: $content-light;
   width: auto;
   border: 1px solid $gray;
   border-radius: $radius-middle;
+  height: 180px;
+  overflow-y: scroll;
 }
 
 .select--item {

@@ -1,6 +1,20 @@
+@import 'style/variable';
 
-.modal__content.popup {
-  transform: translate(-50%, 0);
+.popup {
+  position: absolute;
+  border: 1px solid #999;
+  border-radius: $radius-middle;
+  background-color: $white;
+  z-index: 1;
+
+  &.bottom {
+    &:before {
+      transform: rotate(-45deg);
+      bottom: -3.5px;
+      top: auto;
+    }
+  }
+  
 
   &:before {
     content: '';
