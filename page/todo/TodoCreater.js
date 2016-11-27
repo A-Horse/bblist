@@ -72,10 +72,7 @@ class TodoCreater extends Component {
         </div>
 
         
-        <div className='todo-creater-deadline'>
-          <label>Deadline:</label>
-          <DatePicker ref='date-picker' arrow='auto'/>
-        </div>
+
 
         <div className='repeat-input'>
           <label>Repeat:</label>
