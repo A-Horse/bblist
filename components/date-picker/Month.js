@@ -57,14 +57,14 @@ class Month extends Component {
         } else if (start > monthDays - 1) {
           const dayNumber = start - monthDays + 1;
           a.push({
-            number: start - monthDays + 1,
+            number: dayNumber,
             isOutRange: true,
             active: true,
             isToday: year === cYear && month === cMonth + 1 && dayNumber === cDay
           });
           console.log(year === cYear && month === cMonth && dayNumber === cDay);
         } else {
-          const dayNumber = start - monthDays + 1;
+          const dayNumber = start + 1;
           a.push({
             number: start + 1,
             isOutRange: false,
