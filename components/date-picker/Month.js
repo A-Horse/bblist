@@ -53,16 +53,20 @@ class Month extends Component {
             isToday: year === cYear && month === cMonth - 1 && dayNumber === cDay
           });
         } else if (start > monthDays - 1) {
+          const dayNumber = start - monthDays + 1;
           a.push({
             number: start - monthDays + 1,
             isOutRange: true,
-            active: true
+            active: true,
+            isToday: year === cYear && month === cMonth && dayNumber === cDay
           });
         } else {
+          const dayNumber = start - monthDays + 1;
           a.push({
             number: start + 1,
             isOutRange: false,
-            active: true
+            active: true,
+            isToday: year === cYear && month === cMonth + 1 && dayNumber === cDay
           });
         }
         ++start;
