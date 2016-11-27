@@ -29,6 +29,10 @@ class DatePicker extends Component {
       month: activeDay.getMonth() + 1,
       day: activeDay.getDate()
     });
+    if (this.props.defaultValue) {
+      this.refs.input.value = moment(this.props.defaultValue).format('MMM Do YY');
+      this.value = this.props.defaultValue;
+    }
   }
 
   getDate() {
