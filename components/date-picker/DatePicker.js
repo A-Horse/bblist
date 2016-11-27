@@ -61,7 +61,9 @@ class DatePicker extends Component {
   onSelected(date) {
     this.refs.input.value = moment(date).format('MMM Do YY');
     this.setState({
-      year: date.getFullYear()
+      year: date.getFullYear(),
+      month: date.getMonth() + 1,
+      day: date.getDate()
     });
     this.close();
   }
