@@ -41,7 +41,7 @@ class Todo extends Component {
     this.setState({editToggle: true});
   }
 
-  changeTodo(event) {
+  updateTodo(event) {
     // TODO extract services  
     const {dispatch, todo} = this.props;
     const newTodo = {content: this.refs.content.value.trim()};
@@ -83,7 +83,7 @@ class Todo extends Component {
           </div>
 
           <div>
-            <Button styleType='primary' onClick={this.changeTodo.bind(this)}>OK</Button>
+            <Button styleType='primary' onClick={this.updateTodo.bind(this)}>OK</Button>
           </div>
           
         </div>
