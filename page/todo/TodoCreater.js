@@ -23,6 +23,8 @@ class TodoCreater extends Component {
   }
 
   createTodo() {
+    console.log(this.refs.datePicker.value);
+    return
     const {dispatch} = this.props;
     const data = {
       content: this.refs.content.value.trim(),
