@@ -77,6 +77,7 @@ class Month extends Component {
         ++start;
       }
       result.push(a);
+      console.log(a);
       if (start >= monthDays - 1) {
         break;
       }
