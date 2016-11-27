@@ -62,6 +62,7 @@ class Month extends Component {
             active: true,
             isToday: year === cYear && month === cMonth && dayNumber === cDay
           });
+          console.log(dayNumber);
           console.log(year === cYear && month === cMonth && dayNumber === cDay);
         } else {
           const dayNumber = start - monthDays + 1;
