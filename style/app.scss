@@ -6,6 +6,10 @@
   @include clearfix;
 }
 
+.hidden {
+  display: none !important;
+}
+
 html {
   background-color: #F8F8F8;
 }

@@ -25,7 +25,8 @@ class TodoCreater extends Component {
   createTodo() {
     const {dispatch} = this.props;
     const data = {
-      content: this.refs.content.value.trim()
+      content: this.refs.content.value.trim(),
+      //label: this.refs.label.trim().split(';')
     };
     return dispatch(createTodo(data)).then(() => {
       return dispatch(getTodoList(this.props.wallId));
@@ -73,7 +74,7 @@ class TodoCreater extends Component {
         
         <div className='todo-creater-deadline'>
           <label>Deadline:</label>
-          <DatePicker ref='date-picker' />
+          <DatePicker ref='date-picker' arrow='auto'/>
         </div>
 
         <div className='repeat-input'>
@@ -81,13 +82,13 @@ class TodoCreater extends Component {
           <Select items={repeatItems}/>
         </div>
                 
-        <div className='todo-creater--label'>
-          <input type='text' placeholder='Label' ref='label'/>
+        <div className='todo-creater--label hidden'>
+          <Textarea type='text' placeholder='Label' ref='label'></Textarea>
         </div>
-
+        
         <div className='todo-creater-operation'>
           <Button styleType='primary' onClick={this.createTodo.bind(this)}>Add Todo</Button>
-          <Button styleType='default'>Cancel</Button>
+          <Button className='cancel-button' styleType='default'>Cancel</Button>
         </div>
       </div>
     );

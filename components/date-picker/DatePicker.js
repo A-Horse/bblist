@@ -43,6 +43,9 @@ class DatePicker extends Component {
 
   onSelected(date) {
     this.refs.input.value = moment(date).format('MMM Do YY');
+    this.setState({
+      year: date.getFullYear()
+    });
     this.close();
   }
 
@@ -53,14 +56,14 @@ class DatePicker extends Component {
     }
     return className;
   }
-  
+
   render() {
     return (
       <div className={this.buildClassName()} ref='main'>
         <DateIcon onClick={this.onClick.bind(this)}/>
         <input ref='input' onClick={this.onClick.bind(this)} disabled />
 
-        <Popup className='date-picker' toggle={this.state.toggle} onOverlayClick={this.close.bind(this)} close={this.close.bind(this)}>
+        <Popup className='date-picker-popup' parent={this.refs.main} toggle={this.state.toggle} onOverlayClick={this.close.bind(this)} close={this.close.bind(this)}>
           <CloseIcon className='close-icon' onClick={this.close.bind(this)}/>
           
           <Calendar year={this.state.year} month={this.state.month} day={this.state.day}

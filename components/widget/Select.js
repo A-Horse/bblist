@@ -21,13 +21,14 @@ export class Select extends Component {
     this.props.defaultItem && this.setState(this.props.defaultItem);  
   }
 
-  componentDidUpdate() {
-  }
+  componentDidUpdate() {}
 
+  componentWillReceiveProps(newProps) {
+    newProps.defaultItem && this.setState(newProps.defaultItem);
+  }
+  
   openSelect() {
-    this.setState({
-      toggle: !this.state.toggle
-    });
+    this.setState({toggle: !this.state.toggle});
   }
 
   buildBoxClassName() {
@@ -40,7 +41,9 @@ export class Select extends Component {
 
   clickItem(item) {
     this.setState({value: item.value, name: item.name, toggle: false});
+    // TODO delete
     this.props.onClick && this.props.onClick();
+    this.props.onSelect && this.props.onSelect();
   }
   
   render() {

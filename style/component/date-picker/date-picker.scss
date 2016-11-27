@@ -1,6 +1,7 @@
 @import 'style/variable';
 
 .date-picker {
+  position: relative;
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -8,6 +9,19 @@
 
 .modal__content.date-picker {
 
+
+  .close-icon {
+    position: absolute;
+    right: 8px;
+    top: 8px;
+  }
+}
+
+.date-picker-popup {
+  padding: 9px 13px;
+  bottom: calc(100% + 10px);
+  transform: translate(-50%, 0);
+  left: 12px;
 
   .close-icon {
     position: absolute;
