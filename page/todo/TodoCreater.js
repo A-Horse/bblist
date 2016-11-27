@@ -77,7 +77,7 @@ class TodoCreater extends Component {
           <DatePicker ref='datePicker' arrow='auto'/>
         </div>
 
-        <div className='repeat-input'>
+        <div className='repeat-input hidden'>
           <label>Repeat:</label>
           <Select items={repeatItems}/>
         </div>
