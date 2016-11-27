@@ -35,7 +35,8 @@ class Month extends Component {
     const monthDays = daysInMonth(month, year);
     const lastMonthDays = daysInMonth(month - 1, year);
     const firstDayOffset = firstDayInMonthOffset(month, year); // TODO 需要加上配置的偏移
-
+    const today = new Date();
+    
     let start = - firstDayOffset;
     let result = [];
     while(true) {
