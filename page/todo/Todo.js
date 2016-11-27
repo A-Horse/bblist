@@ -41,12 +41,8 @@ class Todo extends Component {
     this.setState({editToggle: true});
   }
 
-  editDone(event) {
-    // TODO extract services
-    if (event.keyCode !== 13) {
-      return;
-    }
-    event.preventDefault();
+  changeTodo(event) {
+    // TODO extract services  
     const {dispatch, todo} = this.props;
     const newTodo = {content: this.refs.content.value.trim()};
     this.setState({editToggle: false});
@@ -54,6 +50,13 @@ class Todo extends Component {
       // TODO 先 set 
       dispatch(getTodoList());
     });
+  }
+
+  onContendChanged(event) {
+    if (event.keyCode !== 13) {
+      return;
+    }
+    event.preventDefault();
   }
     
   render() {
@@ -66,8 +69,8 @@ class Todo extends Component {
         <div className='todo--main'>
           <CheckBox ref='checkbox'/>
           <p style={{display: !this.state.editToggle ? 'block' : 'none'}} className='todo--content' onClick={this.onContentClick.bind(this)}>{todo.content}</p>
-          <Textarea ref='content' onKeyDown={this.editDone.bind(this)} className='todo--content__input' style={{display: this.state.editToggle ? 'block' : 'none'}} defaultValue={todo.content}></Textarea>
-
+          <Textarea ref='content' onKeyDown={this.onContendChanged.bind(this)} className='todo--content__input' style={{display: this.state.editToggle ? 'block' : 'none'}} defaultValue={todo.content}></Textarea>
+          
           <div>
             <MoreIcon className='more-icon'/>
           </div>
@@ -80,7 +83,7 @@ class Todo extends Component {
           </div>
 
           <div>
-            <Button styleType='primary' onClick={this.editDone.bind(this)}>OK</Button>
+            <Button styleType='primary' onClick={this.changeTodo.bind(this)}>OK</Button>
           </div>
           
         </div>
