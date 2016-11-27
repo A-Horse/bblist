@@ -37,6 +37,7 @@ class Month extends Component {
     const firstDayOffset = firstDayInMonthOffset(month, year); // TODO 需要加上配置的偏移
     // TODO calc today
     const today = new Date();
+    const cYear = today.getFullYear(), cMonth = today.getMonth() + 1, cDay = today.getDate();
     
     let start = - firstDayOffset;
     let result = [];
