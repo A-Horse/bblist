@@ -41,7 +41,7 @@ class Todo extends Component {
     this.setState({editToggle: true});
   }
 
-  updateTodo(event) {
+  updateTodo() {
     // TODO extract services  
     const {dispatch, todo} = this.props;
     const newTodo = {content: this.refs.content.value.trim()};
