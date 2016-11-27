@@ -72,7 +72,8 @@ class Month extends Component {
             active: true,
             isToday: year === cYear && month === cMonth && dayNumber === cDay
           });
-          console.log(year === cYear && month === cMonth + 1 && dayNumber === cDay);
+          console.log(dayNumber);
+          console.log(year === cYear && month === cMonth && dayNumber === cDay);
         }
         ++start;
       }
