@@ -15,6 +15,7 @@ class DatePicker extends Component {
   constructor() {
     super();
     this.state = {toggle: false};
+    this.value = null;
   }
 
   init() {
