@@ -52,6 +52,7 @@ class Month extends Component {
             active: true,
             isToday: year === cYear && month === cMonth - 1 && dayNumber === cDay
           });
+          console.log(year === cYear && month === cMonth - 1 && dayNumber === cDay);
         } else if (start > monthDays - 1) {
           const dayNumber = start - monthDays + 1;
           a.push({
@@ -60,6 +61,7 @@ class Month extends Component {
             active: true,
             isToday: year === cYear && month === cMonth && dayNumber === cDay
           });
+          console.log(year === cYear && month === cMonth && dayNumber === cDay);
         } else {
           const dayNumber = start - monthDays + 1;
           a.push({
@@ -68,6 +70,7 @@ class Month extends Component {
             active: true,
             isToday: year === cYear && month === cMonth + 1 && dayNumber === cDay
           });
+          console.log(year === cYear && month === cMonth + 1 && dayNumber === cDay);
         }
         ++start;
       }
