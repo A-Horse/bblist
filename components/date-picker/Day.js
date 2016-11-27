@@ -27,6 +27,10 @@ class Day extends Component {
     if (!dday.active) {
       className += ' inactive';
     }
+    if (dday.isToday) {
+      className += ' today';
+    }
+
     return className;
   }
   
