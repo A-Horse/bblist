@@ -19,10 +19,17 @@
 
 .date-picker-popup {
   padding: 9px 13px;
-  bottom: calc(100% + 10px);
   transform: translate(-50%, 0);
   left: 12px;
   height: 300px;
+
+  &.top {
+    bottom: calc(100% + 10px);
+  }
+
+  &.bottom {
+    top: calc(100% + 10px);
+  }
 
   .close-icon {
     position: absolute;

@@ -2,11 +2,16 @@
 
 .date-picker--day {
   cursor: pointer;
+  text-align: center;
   &:hover {
     background-color: $gray-light-depth;
   }
   
   &.out-range {
     opacity: 0.5;
+  }
+
+  &.today {
+    background-color: #999;
   }
 }

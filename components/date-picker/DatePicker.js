@@ -18,17 +18,24 @@ class DatePicker extends Component {
     this.value = null;
   }
 
+  componentDidMount() {
+    this.init();
+  }
+
   init() {
-    const today = new Date();
+    const activeDay = this.props.defaultValue ? new Date(this.props.defaultValue) : new Date();
     this.setState({
-      year: today.getFullYear(),
-      month: today.getMonth() + 1,
-      day: today.getDate()
+      year: activeDay.getFullYear(),
+      month: activeDay.getMonth() + 1,
+      day: activeDay.getDate()
     });
   }
 
+  getDate() {
+    return this.value;
+  }
+
   onClick() {
-    this.init();
     this.setState({toggle: !this.state.toggle});
     // dispatch(addBodyEventListenerOnce(() => {
     //   this.setState({toggle: false});
@@ -60,6 +67,7 @@ class DatePicker extends Component {
 
   onSelected(date) {
     this.refs.input.value = moment(date).format('MMM Do YY');
+    this.value = date;
     this.setState({
       year: date.getFullYear(),
       month: date.getMonth() + 1,
@@ -96,8 +104,4 @@ class DatePicker extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {};
-};
-
-export default connect(mapStateToProps)(DatePicker);
+export default DatePicker;

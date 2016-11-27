@@ -24,9 +24,10 @@ class Popup extends Component {
     const rect = this.props.parent.getBoundingClientRect();
     const body = document.body,
           html = document.documentElement;
-    const docHeight = Math.max( body.scrollHeight, body.offsetHeight, 
+    const docHeight = Math.max( body.scrollHeight, body.offsetHeight,
+                                window.screen.height,
                                 html.clientHeight, html.scrollHeight, html.offsetHeight);
-    return rect.top + (rect.top - rect.bottom) / 2 < docHeight / 2 ? 'top' : 'bottom';
+    return rect.top + (rect.top - rect.bottom) / 2 > docHeight / 2 ? 'top' : 'bottom';
     
   }
 

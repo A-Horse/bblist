@@ -7,7 +7,7 @@
   background-color: $white;
   z-index: 1;
 
-  &.bottom {
+  &.top {
     &:before {
       transform: rotate(-45deg);
       bottom: -3.5px;
