@@ -30,7 +30,6 @@ class Day extends Component {
     if (dday.isToday) {
       className += ' today';
     }
-
     return className;
   }
   
