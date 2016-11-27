@@ -45,10 +45,12 @@ class Month extends Component {
       let a = new Array();
       for(let i = 0; i < 7; i++) {
         if (start < 0) {
+          const dayNumber = start + lastMonthDays + 1;
           a.push({
-            number: start + lastMonthDays + 1,
+            number: dayNumber,
             isOutRange: true,
-            active: true
+            active: true,
+            isToday: year === cYear && month === cMonth - 1 && dayNumber === cDay
           });
         } else if (start > monthDays - 1) {
           a.push({
