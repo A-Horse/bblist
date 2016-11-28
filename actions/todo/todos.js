@@ -80,36 +80,36 @@ function updateTodoError(error) {
   };
 }
 
-export const GOAL_DELETE_REQUEST = 'GOAL_DELETE_REQUEST';
-export const GOAL_DELETE_SUCCESS = 'GOAL_DELETE_SUCCESS';
-export const GOAL_DELETE_FAILURE = 'GOAL_DELETE_FAILURE';
+export const TODO_DELETE_REQUEST = 'TODO_DELETE_REQUEST';
+export const TODO_DELETE_SUCCESS = 'TODO_DELETE_SUCCESS';
+export const TODO_DELETE_FAILURE = 'TODO_DELETE_FAILURE';
 
 function requestDestroyGoal(id) {
   return {
-    type: GOAL_DELETE_REQUEST,
+    type: TODO_DELETE_REQUEST,
     playload: id
   };
 }
 
 function destroyTodoSuccess() {
   return {
-    type: GOAL_DELETE_SUCCESS
+    type: TODO_DELETE_SUCCESS
   };
 }
 
 function destroyTodoError(error) {
   return {
-    type: GOAL_DELETE_FAILURE,
+    type: TODO_DELETE_FAILURE,
     playload: error,
     error: true
   };
 }
 
-export function deleteTodo(id) {
+export function destroyTodo(id) {
   const config = createConfigWithAuth('DELETE');
   return dispatch => {
     dispatch(requestDestroyGoal());
-    return fetch(makeApiUrl(`/api/goal${id}`), config)
+    return fetch(makeApiUrl(`/todo/${id}`), config)
       .then(handleResponseWithoutJson)
       .then(() => dispatch(destroyTodoSuccess()))
       .catch(error => dispatch(destroyTodoError(error)));

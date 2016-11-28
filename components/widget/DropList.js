@@ -1,5 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 
+import 'style/component/widget/drop-list.scss';
+
 export class DropList extends Component {
   defaultProps: {
     toggle: PropTypes.required
@@ -25,10 +27,20 @@ export class DropList extends Component {
   openSelect() {
     
   }
+
+  buildClassName() {
+    let className = 'drop-list';
+    if (this.props.className) {
+      className += ' ' + this.props.className;
+    }
+    return className;
+  }
   
   render() {
     if (this.props.toggle) {
-      return this.props.children;
+      return <ul className={this.buildClassName()}>
+        {this.props.children}
+      </ul>;
     } else {
       return React.DOM.noscript();
     }
