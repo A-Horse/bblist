@@ -6,6 +6,7 @@ import {getTodoList, updateTodo} from 'actions/todo/todos';
 import {MoreIcon} from 'services/svg-icons';
 import Textarea from 'react-textarea-autosize';
 import {Button} from 'components/widget/Button';
+import {DropList} from 'components/widget/DropList';
 
 import 'style/page/todo/todo.scss';
 
@@ -73,8 +74,12 @@ class Todo extends Component {
           <Textarea ref='content' onKeyDown={this.onContendChanged.bind(this)} className='todo--content__input' style={{display: this.state.editToggle ? 'block' : 'none'}} defaultValue={todo.content}></Textarea>
           
           <div className='todo--operation'>
-            <MoreIcon className='more-icon'/>
-            
+            <MoreIcon className='more-icon' onClick={() => this.setState({})}/>
+            <DropList toggle={this.state.operationToggle}>
+              <ul>
+                <li onClick={() => this.refs.listDeleteConfirm.open()}>Delete</li>
+              </ul>
+            </DropList>
           </div>
         </div>
 
