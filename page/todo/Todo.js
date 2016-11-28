@@ -47,7 +47,7 @@ class Todo extends Component {
     const newTodo = {content: this.refs.content.value.trim()};
     this.setState({editToggle: false});
     dispatch(updateTodo(todo.id, newTodo)).then(function() {
-      // TODO 先 set 
+      // TODO 先 set
       dispatch(getTodoList());
     });
   }
