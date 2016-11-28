@@ -65,7 +65,7 @@ class Todo extends Component {
   destroyTodo() {
     const {todo, dispatch} = this.props;
     dispatch(destroyTodo(todo.id)).then(function() {
-      // TODO 先 set
+      // TODO 
       dispatch(getTodoList());
     });
   }
