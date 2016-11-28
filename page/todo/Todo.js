@@ -62,7 +62,7 @@ class Todo extends Component {
     this.updateTodo();
   }
 
-  deleteTodo() {
+  destroyTodo() {
     
   }
     
@@ -81,7 +81,7 @@ class Todo extends Component {
           <div className='todo--operation'>
             <MoreIcon className='more-icon' onClick={() => this.setState({operationToggle: !this.state.operationToggle})}/>
               <DropList toggle={this.state.operationToggle} className='todo-operation--list'>
-                <li onClick={this.deleteTodo.bind(this)}>Delete</li>
+                <li onClick={this.destroyTodo.bind(this)}>Delete</li>
             </DropList>
           </div>
         </div>
