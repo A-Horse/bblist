@@ -17,7 +17,8 @@ class Todo extends Component {
 
   componentWillMount() {
     this.state = {
-      editToggle: false
+      editToggle: false,
+      operationToggle: false
     };
   }
 
@@ -74,7 +75,7 @@ class Todo extends Component {
           <Textarea ref='content' onKeyDown={this.onContendChanged.bind(this)} className='todo--content__input' style={{display: this.state.editToggle ? 'block' : 'none'}} defaultValue={todo.content}></Textarea>
           
           <div className='todo--operation'>
-            <MoreIcon className='more-icon' onClick={() => this.setState({})}/>
+            <MoreIcon className='more-icon' onClick={() => this.setState({operationToggle: !this.state.operationToggle})}/>
             <DropList toggle={this.state.operationToggle}>
               <ul>
                 <li onClick={() => this.refs.listDeleteConfirm.open()}>Delete</li>
