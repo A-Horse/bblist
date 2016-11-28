@@ -74,6 +74,7 @@ class Todo extends Component {
           
           <div className='todo--operation'>
             <MoreIcon className='more-icon'/>
+            
           </div>
         </div>
 
