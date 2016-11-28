@@ -9,6 +9,7 @@
   display: flex;
   justify-content: space-between;
 
+
   
 }
 
@@ -39,5 +40,12 @@
     input {
       border: none;
     }
+  }
+}
+
+.todo--operation {
+
+  .more-icon {
+    cursor: pointer;
   }
 }
