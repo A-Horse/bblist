@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {CheckBox} from 'components/widget/CheckBox';
 import DatePicker from 'components/date-picker/DatePicker';
-import {getTodoList, updateTodo} from 'actions/todo/todos';
+import {getTodoList, updateTodo, destroyTodo} from 'actions/todo/todos';
 import {MoreIcon} from 'services/svg-icons';
 import Textarea from 'react-textarea-autosize';
 import {Button} from 'components/widget/Button';
@@ -63,7 +63,11 @@ class Todo extends Component {
   }
 
   destroyTodo() {
-    
+    const {todo, dispatch} = this.props;
+    dispatch(destroyTodo(todo.id)).then(function() {
+      // TODO 先 set
+      dispatch(getTodoList());
+    });
   }
     
   render() {
