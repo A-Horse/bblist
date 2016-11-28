@@ -80,10 +80,8 @@ class Todo extends Component {
           
           <div className='todo--operation'>
             <MoreIcon className='more-icon' onClick={() => this.setState({operationToggle: !this.state.operationToggle})}/>
-            <DropList toggle={this.state.operationToggle}>
-              <ul className='todo-operation--list'>
+              <DropList toggle={this.state.operationToggle} className='todo-operation--list'>
                 <li onClick={this.deleteTodo.bind(this)}>Delete</li>
-              </ul>
             </DropList>
           </div>
         </div>
