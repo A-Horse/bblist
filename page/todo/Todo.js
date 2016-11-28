@@ -61,6 +61,10 @@ class Todo extends Component {
     event.preventDefault();
     this.updateTodo();
   }
+
+  deleteTodo() {
+    
+  }
     
   render() {
     const {todo} = this.props;
@@ -78,7 +82,7 @@ class Todo extends Component {
             <MoreIcon className='more-icon' onClick={() => this.setState({operationToggle: !this.state.operationToggle})}/>
             <DropList toggle={this.state.operationToggle}>
               <ul className='todo-operation--list'>
-                <li onClick={() => this.refs.listDeleteConfirm.open()}>Delete</li>
+                <li onClick={this.deleteTodo.bind(this)}>Delete</li>
               </ul>
             </DropList>
           </div>
