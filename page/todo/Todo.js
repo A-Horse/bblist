@@ -77,7 +77,7 @@ class Todo extends Component {
           <div className='todo--operation'>
             <MoreIcon className='more-icon' onClick={() => this.setState({operationToggle: !this.state.operationToggle})}/>
             <DropList toggle={this.state.operationToggle}>
-              <ul>
+              <ul className='todo-operation--list'>
                 <li onClick={() => this.refs.listDeleteConfirm.open()}>Delete</li>
               </ul>
             </DropList>
