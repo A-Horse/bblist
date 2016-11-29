@@ -109,6 +109,10 @@ class TaskList extends Component {
     });
   }
 
+  onListName() {
+
+  }
+
   renderCards(cards) {
     return cards.map(card => {
       if (card.virtual)  return (<CardPlaceholder height={card.height} width={card.width}/>);
@@ -120,7 +124,7 @@ class TaskList extends Component {
     const {listName} = this.props;
     return (
       <div style={styles.listTitle} className='task-list--title'>
-        <Textarea className='title--text' defaultValue={listName}></Textarea>
+        <Textarea onChange={this.onListName.bind(this)} className='title--text' defaultValue={listName}></Textarea>
       </div>
     );
   }
