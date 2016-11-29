@@ -59,8 +59,8 @@ class TaskListCreater extends Component {
 
   renderToggle() {
     return (
-      <div onClick={this.toggle.bind(this)}>
-        <AddIcon/>
+      <div onClick={this.toggle.bind(this)} className='task-list--toggle'>
+        <AddIcon className='add-icon'/>
         <span>Create List</span>
       </div>
     );

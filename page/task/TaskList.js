@@ -15,6 +15,7 @@ import {ConfirmModal} from 'components/widget/ConfirmModal';
 import {AddIcon, MoreIcon, EditIcon, ArrowDownIcon, SettingIcon, MIDDLE_SIZE, SMALL_SIZE} from 'services/svg-icons';
 import {spawnMixinRender} from 'style/theme-render';
 import GlobalClick from 'services/global-click';
+import Textarea from 'react-textarea-autosize';
 import {getOffsetHeight} from 'utils/dom';
 import BoardCradDragHelper from 'services/board-card-drag-helper';
 
@@ -75,8 +76,7 @@ class TaskList extends Component {
   componentWillMount() {
     // TODO rename
     this.state = {
-      listSetting: {},
-      editingListName: false
+      listSetting: {}
     };
   }
 
@@ -117,20 +117,10 @@ class TaskList extends Component {
   }
 
   renderListName() {
-    const {listId, listName} = this.props;
-    if (this.state.editingListName) {
-      return (
-        <div style={styles.listId}>
-          <input type='text' style={styles.listNameInput} ref={`${listId}ChangeName`}
-             defaultValue={listName}
-             onKeyDown={(e) => {if (e.which === 13) this.changeListName(listId)}}
-             onBlur={() => {this.toggleEditListName(listId)}}/>
-         </div>
-        );
-    }
+    const {listName} = this.props;
     return (
-      <div style={styles.listTitle}>
-        {listName} <EditIcon style={styles.listEditIcon} onClick={() => {this.toggleEditListName(listId)}}/>
+      <div style={styles.listTitle} className='task-list--title'>
+        <Textarea className='title--text' defaultValue={listName}></Textarea>
       </div>
     );
   }
@@ -140,8 +130,8 @@ class TaskList extends Component {
     return (
       <div className='task-list--top-bar'>
         {this.renderListName()}
+
         <MoreIcon className='more-icon icon' style={styles.listMenuIcon} onClick={() => this.onClickSetting(listId)}/>
-          
           <DropList toggle={this.state.listSetting[listId]}>
             <ul style={styles.listSettingDropDown}>
               <li style={styles.listSettingItem} onClick={() => this.refs.listDeleteConfirm.open()}>Delete</li>

@@ -6,6 +6,7 @@ import {validateFormValue} from '../services/validate-strategy';
 import {Button} from '../components/widget/Button';
 import {Input} from '../components/widget/Input';
 import {PageContainer} from '../components/widget/PageContainer';
+import {Link} from 'react-router';
 
 const styles = {
   
@@ -38,8 +39,7 @@ class SignIn extends Component {
             <Button type='submit' onClick={this.login.bind(this)}>Login</Button>
           </div>  
         </div>
-        
-        <a href="/signup">sign up</a>
+        <Link to="/signup" style={styles.linkStyle}>Sign up</Link>
       </PageContainer>
     );
   }

@@ -53,7 +53,7 @@ class SignUp extends Component {
 
         <button type="submit" onClick={(event) => this.handleClick(event)} >Sign Up</button>
       </form>
-    )
+    );
   }
 
   handleClick(event) {
@@ -69,13 +69,11 @@ class SignUp extends Component {
     this.refs.username.value = 'abychen';
     this.refs.email.value = 'abychen@outlook.com';
     this.refs.password.value = '123456';
-    this.refs.repeat.value = '123456';
     
     const userInfo = {
       username: username.value.trim(),
       password: password.value.trim(),
-      email: email.value.trim(),
-      repeat: repeat.value.trim()
+      email: email.value.trim()
     };
     
     const errorMessage = validateFormValue(userInfo, {

@@ -11,3 +11,17 @@
   justify-content: space-between;
   background-color: $gray-supper-light;
 }
+
+.task-list--toggle {
+  display: flex;
+  align-items: center;
+  
+  .add-icon {
+    background-color: $black;
+    fill: $white;
+    border-radius: 50%;
+    height: $icon-small;
+    width: $icon-small;
+    margin-right: 7px;
+  }
+}

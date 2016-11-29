@@ -32,6 +32,15 @@ $list-vertical-margin: 15px;
   flex-direction: column;
 }
 
+.task-list--title {
+  .title--text {
+    resize: none;
+    border: none;
+    background-color: $white;
+    border-radius: $radius-middle;
+  }
+}
+
 .task-list--top-bar {
   flex: 1 0 auto;
   height: $top-bar-height;
@@ -43,9 +52,6 @@ $list-vertical-margin: 15px;
   margin: 0;
 
   .more-icon {
-    vertical-align: middle;
-    width: $icon-small;
-    height: $icon-small;
     cursor: pointer;
     borderRadius: 50%;
     backgroundColor: white;
