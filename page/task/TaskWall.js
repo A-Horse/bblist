@@ -74,6 +74,10 @@ class TaskWall extends Component {
       // TODO 404
     });
   }
+
+  componentDidMount() {
+    console.log(this.props);
+  }
   
   getTasks(id) {
     const {dispatch} = this.props;    

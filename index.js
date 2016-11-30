@@ -55,7 +55,7 @@ ReactDOM.render(
           <Route path="goal" component={Goal}/>
           <Route path="task-wall" component={Tasks} onEnter={checkLogin}/>
           <Route path="task-wall/:id" component={TaskWall} onEnter={checkLogin}>
-            <Route path="task-wall/:id/setting" component={TaskWall} />
+            <Route path="/task-wall/:id/setting" component={TaskWall} />
           </Route>
           
 

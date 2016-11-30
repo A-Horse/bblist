@@ -18,7 +18,7 @@ export class BoardSetting extends Component {
 
   componentDidMount() {
     // browserHistory.push('/setting');
-    console.log(hashHistory, browserHistory);
+
   }
 
   deleteWall() {
