@@ -1,21 +1,22 @@
 import React, {Component, PropTypes} from 'react';
-
-const styles = {
-  container: {
-    position: 'relative',
-    width: '90%',
-    margin: 'auto',
-    height: '100%'
-  }
-};
+import 'style/component/widget/page-container.scss';
 
 export class PageContainer extends Component {
   propTypes: {
     children: PropTypes.isRequired
   }
+
+  buildClassName() {
+    let className = 'page-container';
+    if (this.props.className) {
+      className += ' ' + this.props.className;
+    }
+    return className;
+  }
+  
   render() {
     return (
-        <div style={Object.assign({}, styles.container, this.props.style)} className='page-container'>
+      <div className={this.buildClassName()}>
         {this.props.children}
       </div>
     );

@@ -1,0 +1,9 @@
+
+$content-width: 700px;
+
+.board-setting-modal {
+  width: $content-width;
+  left: 50%;
+  top: 100px;
+  margin-left: -$content-width / 2;
+}
