@@ -14,7 +14,6 @@ import {spawnMixinRender} from 'style/theme-render';
 import {AddIcon, EditIcon, ArrowDownIcon, SettingIcon} from 'services/svg-icons';
 import {navHeight} from 'components/Nav';
 import UserAvatar from 'components/UserAvatar';
-import {TaskWallSetting} from './TaskWallSetting';
 import {CheckBox} from 'components/widget/CheckBox';
 import BoardCradDragHelper from 'services/board-card-drag-helper';
 

@@ -10,6 +10,6 @@ export Idea from './idea/Idea';
 
 export Tasks from './task/Tasks';
 export TaskWall from './task/TaskWall';
-export TaskWallSetting from './task/TaskWallSetting';
+export BoardSetting from './task/BoardSetting';
 
 export TodoPage from './todo/TodoPage';

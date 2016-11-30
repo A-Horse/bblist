@@ -150,7 +150,7 @@ class TaskList extends Component {
               <li style={styles.listSettingItem} onClick={() => this.refs.listDeleteConfirm.open()}>Delete</li>
             </ul>
           </DropList>
-
+          
           <ConfirmModal confirmFn={() => deleteTaskList(listId)} ref='listDeleteConfirm' ></ConfirmModal>
       </div>
     );

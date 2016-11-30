@@ -1,0 +1,15 @@
+$nav-height: 42px;
+
+.board-container {
+  position: fixed;
+  top: $nav-height;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.page-container.board-page-container {
+  width: 100%;
+  overflow-x: auto;
+  height: calc(100% - 33px);
+}

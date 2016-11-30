@@ -6,7 +6,6 @@ import R from 'fw-ramda';
 import TaskList, {listWidth} from './TaskList';
 import CardModal from './CardModal';
 //import TaskCardModal from 
-import {TaskWallSetting} from './TaskWallSetting';
 import {DropList} from 'components/widget/DropList';
 import {ConfirmModal} from 'components/widget/ConfirmModal';
 import {Hr} from 'components/widget/Hr';
@@ -19,23 +18,13 @@ import {getAssets} from 'services/assets-manager';
 import {AddIcon, SettingIcon, MIDDLE_SIZE} from 'services/svg-icons';
 import {navHeight} from 'components/Nav';
 import {spawnMixinRender} from 'style/theme-render';
+import {BoardSetting} from './BoardSetting.js';
 import TaskListCreater from './TaskListCreater';
 
 import 'style/page/task/taskboard-header.scss';
+import 'style/page/task/board.scss';
 
 const styles = {
-  container: {
-    position: 'fixed',
-    top: `${navHeight}px`,
-    left: 0,
-    right: 0,
-    bottom: 0
-  },
-  pageContainer: {
-    width: '100%',
-    overflowX: 'auto',
-    height: 'calc(100% - 33px)'
-  },
   settingIcon: {
     fill: 'white',
     verticalAlign: 'middle'
@@ -69,7 +58,8 @@ class TaskWall extends Component {
   constructor() {
     super();
     this.state = {
-      typingNewList: false
+      typingNewList: false,
+      boardSettingToggle: false
     };
   }
   
@@ -102,14 +92,7 @@ class TaskWall extends Component {
   renderSetttingMenu() {
     return (
       <div style={styles.settingContainer} onClick={() => {}}>
-        <SettingIcon style={styles.settingIcon} onClick={() => {this.setState({openSetting: true})}}/>
-          <DropList toggle={this.state.settingToggle}>
-            <ul style={styles.settingDropList}>
-              <li onClick={() => this.refs.delConfirm.open()}>Delete This Wall</li>
-              <li>2</li>
-            </ul>
-          </DropList>
-        <ConfirmModal confirmFn={() => this.deleteWall()} ref='delConfirm'></ConfirmModal>
+        <SettingIcon style={styles.settingIcon} onClick={() => this.setState({boardSettingToggle: true})}/>
       </div>
     );
   }
@@ -126,25 +109,18 @@ class TaskWall extends Component {
   
   render() {
     return (
-      <div style={styles.container}>
+      <div className='board-container'>
         {this.renderTopBar()}
-        <PageContainer style={styles.pageContainer}>
+        <PageContainer className='board-page-container'>
           <div style={styles.listContainer}>
             {this.renderLists()}
             <TaskListCreater boardId={this.props.params.id}/>
           </div>
         </PageContainer>
         <CardModal key='card-modal'/>
+        <BoardSetting toggle={this.state.boardSettingToggle} boardId={this.props.params.id} key='board-setting'/>
       </div>
     );
-  }
-
-  deleteTaskList(listId) {
-    const {dispatch} = this.props;
-    const wallId = this.props.params.id;
-    dispatch(deleteTaskList(wallId, listId)).then(() => {
-      
-    });
   }
 }
 

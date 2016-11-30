@@ -53,10 +53,11 @@ ReactDOM.render(
           <Route path="profile" component={Profile}/>
           <Route path="idea" component={Ideas}/>
           <Route path="goal" component={Goal}/>
-          
           <Route path="task-wall" component={Tasks} onEnter={checkLogin}/>
-          <Route path="task-wall/:id" component={TaskWall} onEnter={checkLogin}/>
-          <Route path="task-wall/:id/setting" component={TaskWallSetting} onEnter={checkLogin}/>
+          <Route path="task-wall/:id" component={TaskWall} onEnter={checkLogin}>
+            <Route path="task-wall/:id/setting" component={TaskWall} />
+          </Route>
+          
 
           <Route path="todo" component={TodoPage}/>
 
