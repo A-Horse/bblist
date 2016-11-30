@@ -26,7 +26,6 @@ class Body extends Component {
   }
 }
 
-
 const mapStateToProps = (state) => {
   return {
     bubbleHandles: state.event.body.bubbleHandles,

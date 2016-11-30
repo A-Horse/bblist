@@ -129,10 +129,10 @@ class TaskWall extends Component {
       <div style={styles.container}>
         {this.renderTopBar()}
         <PageContainer style={styles.pageContainer}>
-           <div style={styles.listContainer}>
-              {this.renderLists()}
-        <TaskListCreater boardId={this.props.params.id}/>
-           </div>
+          <div style={styles.listContainer}>
+            {this.renderLists()}
+            <TaskListCreater boardId={this.props.params.id}/>
+          </div>
         </PageContainer>
         <CardModal key='card-modal'/>
       </div>

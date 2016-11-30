@@ -8,7 +8,7 @@ import TaskCard from './TaskCard';
 import TaskCardCreater from './TaskCardCreater';
 import CardPlaceholder from './CardPlaceholder';
 import {deleteTaskWall, getTaskAllCards} from 'actions/task/task-wall';
-import {createTaskList, deleteTaskList} from 'actions/task/task-list';
+import {createTaskList, deleteTaskList, updateTaskList} from 'actions/task/task-list';
 import {updateTaskCard, insertVirtualCard} from 'actions/task/task-card';
 import {DropList} from 'components/widget/DropList';
 import {ConfirmModal} from 'components/widget/ConfirmModal';
@@ -109,8 +109,17 @@ class TaskList extends Component {
     });
   }
 
-  onListName() {
+  onTrackNameChanged() {
+    const {dispatch} = this.props;
+    const {wallId, listId} = this.props;
+    return dispatch(updateTaskList(wallId, listId, {name: this.refs.trackName.value.trim()}));
+  }
 
+  onTrackNameKeyDown(event) {
+    if (event.keyCode === 13) {
+      event.preventDefault();
+      return;
+    }
   }
 
   renderCards(cards) {
@@ -124,7 +133,7 @@ class TaskList extends Component {
     const {listName} = this.props;
     return (
       <div style={styles.listTitle} className='task-list--title'>
-        <Textarea onChange={this.onListName.bind(this)} className='title--text' defaultValue={listName}></Textarea>
+        <Textarea ref='trackName' onKeyDown={this.onTrackNameKeyDown.bind(this)} onChange={this.onTrackNameChanged.bind(this)} className='title--text' defaultValue={listName}></Textarea>
       </div>
     );
   }
@@ -155,9 +164,7 @@ class TaskList extends Component {
            onDragEnter={this.onDragEnter.bind(this)}
            onDrop={this.onDrop.bind(this)}
            onDragLeave={this.onDragLeave.bind(this)}
-           onDragOver={this.onDragOver.bind(this)}
-           >
-
+           onDragOver={this.onDragOver.bind(this)}>
         {this.renderTopBar()}
       
         <div className='task-list--body' ref='taskListBody'>

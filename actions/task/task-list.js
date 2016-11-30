@@ -1,6 +1,7 @@
 import fetch from 'isomorphic-fetch';
 import {handleHttpError} from '../../services/handle-error';
 import {createConfigWithAuth} from '../../utils/header';
+import {makeApiUrl} from '../../utils/api';
 import {handleResponse, handleResponseWithoutJson} from '../../utils/http-handle';
 
 export const TASKLIST_POST_REQUEST = 'TASKLIST_POST_REQUEST'
@@ -64,14 +65,14 @@ function receiveDeleteTaskList(taskList) {
   return {
     type: TASKLIST_DELETE_SUCCESS,
     taskList
-  }
+  };
 }
 
 function deleteTaskWallListError(message) {
   return {
     type: TASKLIST_DELETE_FAILURE,
     message: message
-  }
+  };
 }
 
 export function deleteTaskList(wallId, listId) {
@@ -80,7 +81,7 @@ export function deleteTaskList(wallId, listId) {
     dispatch(requestDeleteTaskList());
     return fetch(`/api/task-wall/${wallId}/list/${listId}`, config)
       .then(handleResponseWithoutJson)
-      .then(() => dispatch(receiveDeleteTaskList()))
+      .then(() => dispatch(receiveDeleteTaskList()));
   };
 }
 
@@ -90,17 +91,17 @@ export function createTaskList(wallId, info) {
     dispatch(receiveCreateTaskList());
     return fetch(`/api/task-wall/${wallId}/list`, config)
       .then(handleResponseWithoutJson)
-      .then(() => dispatch(receiveCreateTaskList()))
+      .then(() => dispatch(receiveCreateTaskList()));
   };
 }
 
-export function patchTaskList(wallId, listId, info) {
-  const config = createConfigWithAuth('PATCH', info)
+export function updateTaskList(boardId, trackId, data) {
+  const config = createConfigWithAuth('PATCH', data);
   return dispatch => {
     dispatch(requestPatchTaskList);
-    return fetch(`/api/task-wall/${wallId}/list/${listId}`, config)
+    return fetch(makeApiUrl(`/task-wall/${boardId}/list/${trackId}`), config)
       .then(handleResponse)
-      .then(response => dispatch(receivePatchTaskList(response)))
+      .then(response => dispatch(receivePatchTaskList(response)));
   };
 }
 
