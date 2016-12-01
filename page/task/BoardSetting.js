@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import {browserHistory, hashHistory} from 'react-router';
-import {deleteTaskWall} from 'actions/task/task-wall';
+import {deleteTaskBoard} from 'actions/task/task-wall';
 import {Modal} from 'components/widget/Modal';
 
-import 'style/page/task/board-setting-modal.scss';
+import 'style/page/task/board-setting.scss';
 
 export class BoardSetting extends Component {
   constructor() {
@@ -17,33 +18,35 @@ export class BoardSetting extends Component {
   }
 
   componentDidMount() {
-    // browserHistory.push('/setting');
 
   }
 
-  deleteWall() {
+  deleteTaskBoard() {
     const {dispatch} = this.props;
-    const params = {id: this.props.params.id};
-    
-    return dispatch(deleteTaskWall(params))
+    return dispatch(deleteTaskBoard(this.props.params.id))
       .then(() => {
         browserHistory.push('/task-wall');
-      }).catch(error => {
-
       });
   }
 
   close() {
 
   }
-
+  
   render() {
     return (
-      <Modal className='board-setting-modal'
-             toggle={this.props.toggle}
-             close={this.close.bind(this)}>
-        <button onClick={this.deleteTaskWall}>Delete this wall</button>
-      </Modal>
+      <div>
+        <button onClick={this.deleteTaskBoard.bind(this)}>Delete this wall</button>
+      </div>
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    wall: state.task.board.wall,
+    lists: state.task.list.lists
+  };
+};
+
+export default connect(mapStateToProps)(BoardSetting);

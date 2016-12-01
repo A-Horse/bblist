@@ -11,8 +11,9 @@ import LogMonitor from 'redux-devtools-log-monitor';
 import DockMonitor from 'redux-devtools-dock-monitor';
 
 import {App} from 'components';
+// TODO split it
 import {SignIn, SignUp, Profile, Goal, Tasks, TaskWall, NotFound, DashBoard,
-        IndexPage, Ideas, TaskWallSetting, TodoPage} from 'page';
+        IndexPage, Ideas, BoardSetting, BoardContent, TodoPage} from 'page';
 import Body from 'components/Body';
 
 import {checkLogin} from 'utils/auth';
@@ -54,10 +55,12 @@ ReactDOM.render(
           <Route path="idea" component={Ideas}/>
           <Route path="goal" component={Goal}/>
           <Route path="task-wall" component={Tasks} onEnter={checkLogin}/>
-          <Route path="task-wall/:id" component={TaskWall} onEnter={checkLogin}>
-            <Route path="/task-wall/:id/setting" component={TaskWall} />
-          </Route>
-          
+          <Route path="task-wall/" component={TaskWall} onEnter={checkLogin}>
+            <Route path="/task-wall/:id" component={BoardContent}>
+              
+            </Route>
+            <Route path="/task-wall/:id/setting" component={BoardSetting}/>
+          </Route>          
 
           <Route path="todo" component={TodoPage}/>
 

@@ -131,14 +131,14 @@ export function createTaskWall(CreateWallInfo) {
       .then(handleResponse)
       .then(response => dispatch(receiveCreateTaskWall(response)))
       .catch(handleHttpError);
-  }
+  };
 }
 
-export function deleteTaskWall(wallInfo) {
+export function deleteTaskBoard(boardId) {
   const config = createConfigWithAuth('DELETE');
   return dispatch => {
-    dispatch(requestDeleteTaskWall(wallInfo));
-    return fetch(makeApiUrl(`/task-wall/${wallInfo.id}`), config)
+    dispatch(requestDeleteTaskWall(boardId));
+    return fetch(makeApiUrl(`/task-wall/${boardId}`), config)
       .then(handleResponseWithoutJson)
       .then(response => dispatch(deleteTaskWallSuccess(response)));
   };

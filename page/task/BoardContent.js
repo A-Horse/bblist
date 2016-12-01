@@ -32,6 +32,14 @@ const styles = {
   settingContainer: {
     display: 'block'
   },
+  settingDropList: {
+    display: 'block',
+    position: 'absolute',
+    top: '30px',
+    left: '0',
+    padding: '0',
+    listStyle: 'none'
+  },
   topBarTitle: {
     color: 'white'
   },
@@ -46,7 +54,7 @@ const styles = {
   }
 };
 
-class TaskWall extends Component {
+class BoardContent extends Component {
   constructor() {
     super();
     this.state = {
@@ -55,27 +63,28 @@ class TaskWall extends Component {
     };
   }
 
-  componentWillMount() {
-    const {id} = this.props.params;
-    const {dispatch} = this.props;
-    
-    dispatch(clearBoard());
-    this.getTasks(id).then(() => {
-      
-    }).catch(error => {
-      // TODO 404
-    });
-  }
+  componentDidMount() {
 
+  }
+  
   getTasks(id) {
     const {dispatch} = this.props;    
     return dispatch(getTaskAllCards(id));
   }
   
+  renderList(list) {
+    return <TaskList key={list.id} listId={list.id} cards={list.cards} listName={list.name} wallId={this.props.params.id}/>;
+  }
+
+  renderLists() {
+    const {lists} = this.props;
+    return lists.map(list => this.renderList(list));
+  }
+
   renderSetttingMenu() {
     return (
       <div style={styles.settingContainer} onClick={() => {}}>
-        <SettingIcon style={styles.settingIcon} onClick={() => browserHistory.push(`/task-wall/${this.props.params.id}/setting`)}/>
+        <SettingIcon style={styles.settingIcon} onClick={() => this.setState({boardSettingToggle: true})}/>
       </div>
     );
   }
@@ -84,7 +93,7 @@ class TaskWall extends Component {
     const {wall} = this.props;
     return (
       <div className='taskboard-header'>
-        <h2 className='' style={styles.topBarTitle}>{wall.name}</h2>
+        <h2 style={styles.topBarTitle}>{wall.name}</h2>
         {this.renderSetttingMenu()}
       </div>
     );
@@ -92,9 +101,14 @@ class TaskWall extends Component {
   
   render() {
     return (
-      <div className='board-container'>
-        {this.renderTopBar()}
-        {this.props.children}
+      <div className='board-content-container'>
+        <PageContainer className='board-page-container'>
+          <div style={styles.listContainer}>
+            {this.renderLists()}
+            <TaskListCreater boardId={this.props.params.id}/>
+          </div>
+        </PageContainer>
+        <CardModal key='card-modal'/>
       </div>
     );
   }
@@ -107,4 +121,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(TaskWall);
+export default connect(mapStateToProps)(BoardContent);
