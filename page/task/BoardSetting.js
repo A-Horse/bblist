@@ -32,11 +32,13 @@ export class BoardSetting extends Component {
   close() {
 
   }
-  
+
   render() {
     return (
       <div>
-        <button onClick={this.deleteTaskBoard.bind(this)}>Delete this wall</button>
+        <div>
+          <button onClick={this.deleteTaskBoard.bind(this)}>Delete this wall</button>
+        </div>
       </div>
     );
   }
