@@ -37,7 +37,7 @@ const createStoreWithMiddleware = applyMiddleware(thunkMiddleware)(createStore);
 
 const store = createStoreWithMiddleware(
   reducer,
-  DevTools.instrument()
+  // DevTools.instrument()
 );
 const history = syncHistoryWithStore(browserHistory, store);
 
@@ -57,7 +57,7 @@ ReactDOM.render(
           <Route path="task-wall" component={Tasks} onEnter={checkLogin}/>
           <Route path="task-wall/" component={TaskWall} onEnter={checkLogin}>
             <Route path="/task-wall/:id" component={BoardContent}>
-              
+
             </Route>
             <Route path="/task-wall/:id/setting" component={BoardSetting}/>
           </Route>          

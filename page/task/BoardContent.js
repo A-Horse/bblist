@@ -101,15 +101,13 @@ class BoardContent extends Component {
   
   render() {
     return (
-      <div className='board-content-container'>
-        <PageContainer className='board-page-container'>
-          <div style={styles.listContainer}>
-            {this.renderLists()}
-            <TaskListCreater boardId={this.props.params.id}/>
-          </div>
-        </PageContainer>
+      <PageContainer className='board-page-container'>
+        <div style={styles.listContainer}>
+          {this.renderLists()}
+          <TaskListCreater boardId={this.props.params.id}/>
+        </div>
         <CardModal key='card-modal'/>
-      </div>
+      </PageContainer>
     );
   }
 }
