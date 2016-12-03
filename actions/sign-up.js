@@ -2,6 +2,7 @@ import fetch from 'isomorphic-fetch';
 import {browserHistory} from 'react-router';
 import {createConfigWithAuth, createConfig} from '../utils/header';
 import {handleHttpError} from '../services/handle-error';
+import {makeApiUrl} from 'utils/api';
 
 export const SIGNUP_REQUEST = 'SIGNUP_REQUEST';
 export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
@@ -34,7 +35,7 @@ export function signUp(userInfo){
   const config = createConfig('POST', userInfo);
   return dispatch => {
     dispatch(requestSignUp(userInfo));
-    return fetch('/api/signup', config)
+    return fetch(makeApiUrl('/signup'), config)
       .then(response => {
         localStorage.setItem('jwts-token', response.headers.get('jwts-token'));
         return receiveSignUp(response.json());

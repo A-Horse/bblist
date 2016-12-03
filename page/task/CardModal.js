@@ -36,10 +36,10 @@ class CardModal extends Component {
     return dispatch(unsetCurrentCard());
   }
 
-  onChangeList() {
-
+  onChangeList(track) {
+    this.updateTaskCard({taskListId: track.value});
   }
-
+  
   getCardDetail() {
     const {dispatch, card} = this.props;
     return dispatch(getCardDetail(card.id));
@@ -77,7 +77,9 @@ class CardModal extends Component {
         <div className='taskcard-modal--top-bar'>
           <div className='top-bar-list-chooser'>
             <span className='top-bar--list-label'>LIST:</span>
-            <Select defaultItem={this.buildListSelectDefaultItem(currentList)} items={this.buildListSelectItems()} onClick={this.onChangeList.bind(this)}/>
+            <Select defaultItem={this.buildListSelectDefaultItem(currentList)}
+                    items={this.buildListSelectItems()}
+                    onSelect={this.onChangeList.bind(this)}/>
           </div>
           <CloseIcon className='close-icon' onClick={this.close.bind(this)}/>
         </div>

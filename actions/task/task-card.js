@@ -164,15 +164,6 @@ export function unsetCurrentCard() {
   });
 }
 
-export const INSERT_VIRTUAL_CARD = 'INSERT_VIRTUAL_CARD';
-
-export function insertVirtualCard(playload) {
-  return dispatch => dispatch({
-    type: INSERT_VIRTUAL_CARD,
-    playload
-  });
-};
-
 export function getCardDetail(cardId) {
   const config = createConfigWithAuth('GET');
   return dispatch => {
@@ -199,7 +190,7 @@ export function moveTaskCard(cardId, data) {
   const config = createConfigWithAuth('PATCH', data);
   return dispatch => {
     dispatch(requestMoveTaskCard());
-    return fetch(`/api/task-card/${cardId}`, config)
+    return fetch(makeApiUrl(`/task-card/${cardId}`), config)
       .then(handleResponseWithoutJson)
       .then(() => dispatch(moveTaskCardSuccess()))
       .catch(error => dispatch(moveTaskCardFail(error)));
@@ -209,7 +200,7 @@ export function moveTaskCard(cardId, data) {
 export function updateTaskCard(cardId, data) {
   const config = createConfigWithAuth('PATCH', data);
   return dispatch => {
-    return fetch(`/api/task-card/${cardId}`, config)
+    return fetch(makeApiUrl(`/task-card/${cardId}`), config)
       .then(handleResponse)
       .then(card => dispatch(updateTaskCardSuccess(card)))
       .catch(error => dispatch(updateTaskCardError(error)));
@@ -220,7 +211,7 @@ export function createTaskCard(card) {
   const config = createConfigWithAuth('POST', card);
   return dispatch => {
     dispatch(requestPostTaskCard(card));
-    return fetch('/api/task-card', config)
+    return fetch(makeApiUrl('/task-card'), config)
       .then(handleResponse)
       .then(response => dispatch(createTaskCardSuccess(response)))
       .catch(error => dispatch(updateTaskCardError(error)));

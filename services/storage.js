@@ -12,7 +12,6 @@ export const Storage = {
   }
 };
 
-// TODO delete it
 export function storageImage(name, imageElement) {
   const imgData = getImageBase64(imageElement);
   return window.localStorage.setItem(name, imgData);
