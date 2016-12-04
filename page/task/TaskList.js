@@ -169,8 +169,9 @@ class TaskList extends Component {
       
         <div className='task-list--body' ref='taskListBody'>
           {this.renderCards(cards)}
+          <TaskCardCreater wallId={this.props.wallId} listId={listId} />
         </div>
-        <TaskCardCreater wallId={this.props.wallId} listId={listId} />
+        
       </div>
     );
   }

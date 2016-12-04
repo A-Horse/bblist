@@ -11,6 +11,7 @@ import {CloseIcon, CommentIcon} from 'services/svg-icons';
 import UserAvatar from 'components/UserAvatar';
 import {Modal} from 'components/widget/Modal';
 import {CheckBox} from 'components/widget/CheckBox';
+import {Pomodoro} from 'components/Pomodoro';
 import Textarea from 'react-textarea-autosize';
 import {Hr} from 'components/widget/Hr';
 import {Select} from 'components/widget/Select';
@@ -103,6 +104,10 @@ class CardModal extends Component {
           <ul>
             {this.renderComments()}
           </ul>
+        </div>
+
+        <div className='taskcard-modal--pomodoro'>
+          <Pomodoro/>
         </div>
 
         <div className='taskcard-modal--comment-input'>

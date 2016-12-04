@@ -30,7 +30,7 @@ class Footer extends Component {
       <footer style={styles.container}>
         @copyright
       </footer>
-    )
+    );
   }
 }
 
