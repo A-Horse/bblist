@@ -257,6 +257,11 @@ class TaskList extends Component {
   }
 
   onDragOver(event) {
+    if (event) {
+
+    }
+
+    console.log(event.target);
     event.preventDefault();
     const mousePosition = {x: event.nativeEvent.clientX, y: event.nativeEvent.clientY};
     const dragingCardInfo = BoardCradDragHelper.getData('info');
