@@ -18,9 +18,10 @@ class CountDownTimer extends Component {
 
   }
 
-  start() {
+  start(endtime) {
+    this.endtime = endtime;
     setInterval(() => {
-      this.getTimeRemaining(new Date(2016, 12, 6));
+      this.getTimeRemaining(endtime);
     }, 1000);
   }
 

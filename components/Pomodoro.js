@@ -19,7 +19,12 @@ export class Pomodoro extends Component {
 
   }
 
+  buildEndTime() {
+    const now = new Date();
+  }
+
   startCountDown() {
+    
     this.refs.countDownTimer.start();
   }
 

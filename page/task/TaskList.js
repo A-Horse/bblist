@@ -156,11 +156,23 @@ class TaskList extends Component {
     );
   }
 
+  onDragStart() {
+    
+  }
+
+  onDragEnd() {
+    
+  }
+
   render() {
     const {listId, cards} = this.props;
     return (
       <div ref='main'
            className='task-list'
+           draggable='true'
+           onDragStart={this.onDragStart.bind(this)}
+           onDragEnd={this.onDragEnd.bind(this)}
+           
            onDragEnter={this.onDragEnter.bind(this)}
            onDrop={this.onDrop.bind(this)}
            onDragLeave={this.onDragLeave.bind(this)}
