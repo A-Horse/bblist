@@ -71,7 +71,12 @@ class Todo extends Component {
   }
 
   updateDone() {
-    
+    const {dispatch, todo} = this.props;
+    const newTodo = {isDone: this.refs.checkbox.checked};
+    dispatch(updateTodo(todo.id, newTodo)).then(function() {
+      // TODO 先 set
+      dispatch(getTodoList());
+    });
   }
     
   render() {
