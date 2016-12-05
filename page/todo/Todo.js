@@ -69,6 +69,10 @@ class Todo extends Component {
       dispatch(getTodoList());
     });
   }
+
+  updateDone() {
+    
+  }
     
   render() {
     const {todo} = this.props;
