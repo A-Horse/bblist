@@ -43,11 +43,15 @@ class Todo extends Component {
     this.setState({editToggle: true});
   }
 
-  updateTodo() {
-    // TODO extract services  
+  updateEditingTodo() {
     const {dispatch, todo} = this.props;
     const newTodo = {content: this.refs.content.value.trim()};
     this.setState({editToggle: false});
+    this.updateTodo(newTodo);
+  }
+
+  updateTodo(newTodo) {
+    const {dispatch, todo} = this.props;
     dispatch(updateTodo(todo.id, newTodo)).then(function() {
       // TODO 先 set
       dispatch(getTodoList());
@@ -73,10 +77,7 @@ class Todo extends Component {
   updateDone() {
     const {dispatch, todo} = this.props;
     const newTodo = {isDone: this.refs.checkbox.checked};
-    dispatch(updateTodo(todo.id, newTodo)).then(function() {
-      // TODO 先 set
-      dispatch(getTodoList());
-    });
+    this.updateTodo(newTodo);
   }
     
   render() {
@@ -106,7 +107,7 @@ class Todo extends Component {
           </div>
 
           <div>
-            <Button styleType='primary' onClick={this.updateTodo.bind(this)}>OK</Button>
+            <Button styleType='primary' onClick={this.updateEditingTodo.bind(this)}>OK</Button>
           </div>
           
         </div>
