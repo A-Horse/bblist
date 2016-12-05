@@ -20,14 +20,14 @@ export class Pomodoro extends Component {
   }
 
   startCountDown() {
-
+    this.refs.countDownTimer.start();
   }
 
   render() {
     return (
       <div>
         <Button onClick={this.startCountDown.bind(this)}>Start Pomodoro</Button>
-        <CountDownTimer/>
+        <CountDownTimer ref='countDownTimer'/>
       </div>
     );
   }

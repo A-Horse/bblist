@@ -19,7 +19,9 @@ class CountDownTimer extends Component {
   }
 
   start() {
-
+    setInterval(() => {
+      this.getTimeRemaining(new Date(2016, 12, 6));
+    }, 1000);
   }
 
   pause() {
@@ -45,11 +47,10 @@ class CountDownTimer extends Component {
       seconds: seconds
     };
 
-
-    return this.setState();
+    return this.setState({residualTimeString: t});
   }
 
-  crender() {
+  render() {
     return (
       <div>
         {this.state.residualTimeString}
