@@ -78,7 +78,7 @@ class Todo extends Component {
            onDragEnd={this.onDragEnd.bind(this)}>
 
         <div className='todo--main'>
-          <CheckBox ref='checkbox'/>
+          <CheckBox ref='checkbox' defaultChecked={todo.isDone} onChange={this.updateDone.bind(this)}/>
           <p style={{display: !this.state.editToggle ? 'block' : 'none'}} className='todo--content' onClick={this.onContentClick.bind(this)}>{todo.content}</p>
           <Textarea ref='content' onKeyDown={this.onContendChanged.bind(this)} className='todo--content__input' style={{display: this.state.editToggle ? 'block' : 'none'}} defaultValue={todo.content}></Textarea>
           
