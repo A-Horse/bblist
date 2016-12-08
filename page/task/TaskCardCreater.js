@@ -35,8 +35,12 @@ class TaskCardCreater extends Component {
     };
     return dispatch(createTaskCard(data)).then(() => {
       this.clearInput();
-      return dispatch(getTaskAllCards(this.props.wallId));
+      dispatch(getTaskAllCards(this.props.wallId)).then(this.close.bind(this));
     });
+  }
+
+  close() {
+    this.setState({toggle: false});
   }
 
   toggle(event) {
