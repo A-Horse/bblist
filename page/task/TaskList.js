@@ -156,12 +156,6 @@ class TaskList extends Component {
     );
   }
 
-  onTrackMoving(event) {
-    console.log(event.pageX, event.pageY);
-    const {pageX, pageY} = event;
-    
-  }
-
   onTopBarMouseDown(event) {
     const tracks = window.document.querySelectorAll('.task-list');
     const thisTrack = this.refs.main;
@@ -177,19 +171,23 @@ class TaskList extends Component {
     const thisTrackLeft = thisTrackRect.left, thisTrackTop = thisTrackRect.top;
     const thisTrackMouseOffset = {left: thisTrackLeft - event.pageX, top: thisTrackTop - event.pageY};
 
-    function onTrackMoving() {
+    function onMouseMove(event) {
       const {pageX, pageY} = event;
-      
+      movingTrack.style.left = event.pageX + thisTrackMouseOffset.left + 'px';
     }
 
+    function onMouseUp() {
+      thisTrack.classList.remove('shadowing');
+      window.body.removeEventListener('mousemove', onMouseMove);
+      window.body.removeEventListener('mouseup', onMouseUp);
+    }
 
-    window.body.addEventListener('mousemove', this.onTrackMoving.bind(this));
-
-
+    window.body.addEventListener('mousemove', onMouseMove);
+    window.body.addEventListener('mouseup', onMouseUp);
+    
     tracks.forEach(track => {
-      console.log(track);
+      
     });
-
   }
 
   onDragStart() {
