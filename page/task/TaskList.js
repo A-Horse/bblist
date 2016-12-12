@@ -156,9 +156,8 @@ class TaskList extends Component {
     );
   }
 
-  onDragStart(event) {
-    console.log('start');
-    event.nativeEvent.dataTransfer.setData('data', 'hi');
+  onDragStart() {
+    
   }
 
   onDragEnd() {
@@ -251,21 +250,17 @@ class TaskList extends Component {
     this.addDragingMark();
   }
 
-  onDrop(event) {
-    console.log('onDrop');
-    console.log('hi', event.dataTransfer.getData('data'));
+  onDrop() {
     this.removePlaceHolderCard();
     this.removeDragingMark();
     this.resetDragMeta();
   }
 
   onDragOver(event) {
-    console.log(event);
-    console.log('dropover');
-    console.log(event.nativeEvent.dataTransfer.getData('text/plain'));
     if (!event.target.classList.contains('taskcard')) {
       return;
     }
+
     event.preventDefault();
     const mousePosition = {x: event.nativeEvent.clientX, y: event.nativeEvent.clientY};
     const dragingCardInfo = BoardCradDragHelper.getData('info');
