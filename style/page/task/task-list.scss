@@ -26,6 +26,7 @@ $list-vertical-margin: 15px;
 
   &.shadowing {
     &:before {
+      border-radius: $list-radius;
       content: '';
       display: block;
       position: absolute;
@@ -34,6 +35,12 @@ $list-vertical-margin: 15px;
       height: 100%;
       width: 100%;
     }
+  }
+
+  &.moving {
+    z-index: 100;
+    top: 0;
+    position: absolute;
   }
 }
 

@@ -102,7 +102,7 @@ class BoardContent extends Component {
   render() {
     return (
       <PageContainer className='board-page-container'>
-        <div style={styles.listContainer}>
+        <div className='board-track-container' style={styles.listContainer}>
           {this.renderLists()}
           <TaskListCreater boardId={this.props.params.id}/>
         </div>

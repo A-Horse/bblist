@@ -161,30 +161,43 @@ class TaskList extends Component {
     const thisTrack = this.refs.main;
     const movingTrack = thisTrack.cloneNode(true);
 
+    const trackOffsetLeft = thisTrack.offsetLeft;
+    
+    const pageContainer = window.document.body.querySelector('.board-page-container');
+
     thisTrack.classList.add('shadowing');
 
+    movingTrack.classList.add('moving');
     movingTrack.style.height = thisTrack.offsetHeight + 'px';
     movingTrack.style.width = thisTrack.offsetWidth + 'px';
-    movingTrack.style.position = 'absolute';
 
     const thisTrackRect = thisTrack.getBoundingClientRect();
     const thisTrackLeft = thisTrackRect.left, thisTrackTop = thisTrackRect.top;
-    const thisTrackMouseOffset = {left: thisTrackLeft - event.pageX, top: thisTrackTop - event.pageY};
+    console.log("thisTrackLeft = ", thisTrackLeft);
+    const thisTrackMouseOffset = {left: event.pageX - thisTrackLeft, top: event.pageY - thisTrackTop};
 
     function onMouseMove(event) {
       const {pageX, pageY} = event;
-      movingTrack.style.left = event.pageX + thisTrackMouseOffset.left + 'px';
+      movingTrack.style.left = event.pageX + pageContainer.scrollLeft - thisTrackMouseOffset.left - 24 + 'px';
+      
     }
 
     function onMouseUp() {
       thisTrack.classList.remove('shadowing');
-      window.body.removeEventListener('mousemove', onMouseMove);
-      window.body.removeEventListener('mouseup', onMouseUp);
+      window.document.body.querySelector('.board-track-container').removeChild(movingTrack);
+      window.document.body.removeEventListener('mousemove', onMouseMove);
+      window.document.body.removeEventListener('mouseup', onMouseUp);
     }
 
-    window.body.addEventListener('mousemove', onMouseMove);
-    window.body.addEventListener('mouseup', onMouseUp);
+    window.document.body.querySelector('.board-track-container').appendChild(movingTrack);
+    console.log(thisTrackMouseOffset.left - trackOffsetLeft + 'px');
+    console.log(thisTrackMouseOffset.left);
     
+    // movingTrack.style.left = thisTrackMouseOffset.left - trackOffsetLeft + 'px';
+
+    window.document.body.addEventListener('mousemove', onMouseMove);
+    window.document.body.addEventListener('mouseup', onMouseUp);
+
     tracks.forEach(track => {
       
     });
@@ -203,9 +216,6 @@ class TaskList extends Component {
       <div ref='main'
            data-index={this.props.dataIndex}
            className='task-list'
-           draggable='true'
-           onDragStart={this.onDragStart.bind(this)}
-           onDragEnd={this.onDragEnd.bind(this)}
            
            onDragEnter={this.onDragEnter.bind(this)}
            onDrop={this.onDrop.bind(this)}
