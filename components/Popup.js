@@ -2,10 +2,7 @@ import React, {Component} from 'react';
 import {Modal} from 'components/widget/Modal';
 import {DateIcon, CloseIcon} from 'services/svg-icons';
 import {getWindowScrollPosition} from 'services/scroll';
-
 import 'style/component/popup.scss';
-
-
 
 class Popup extends Component {
 

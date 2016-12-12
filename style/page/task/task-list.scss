@@ -23,6 +23,18 @@ $list-vertical-margin: 15px;
       pointer-events: none;
     }
   }
+
+  &.shadowing {
+    &:before {
+      content: '';
+      display: block;
+      position: absolute;
+      z-index: 10;
+      background-color: black;
+      height: 100%;
+      width: 100%;
+    }
+  }
 }
 
 .task-list--body {

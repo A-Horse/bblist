@@ -72,13 +72,13 @@ class BoardContent extends Component {
     return dispatch(getTaskAllCards(id));
   }
   
-  renderList(list) {
-    return <TaskList key={list.id} listId={list.id} cards={list.cards} listName={list.name} wallId={this.props.params.id}/>;
+  renderList(list, index) {
+    return <TaskList key={list.id} dataIndex={index} listId={list.id} cards={list.cards} listName={list.name} wallId={this.props.params.id}/>;
   }
 
   renderLists() {
     const {lists} = this.props;
-    return lists.map(list => this.renderList(list));
+    return lists.map(this.renderList.bind(this));
   }
 
   renderSetttingMenu() {

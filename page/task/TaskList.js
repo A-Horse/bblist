@@ -141,7 +141,7 @@ class TaskList extends Component {
   renderTopBar() {
     const {listId} = this.props;
     return (
-      <div className='task-list--top-bar'>
+      <div className='task-list--top-bar' onMouseDown={this.onTopBarMouseDown.bind(this)}>
         {this.renderListName()}
 
         <MoreIcon className='more-icon icon' style={styles.listMenuIcon} onClick={() => this.onClickSetting(listId)}/>
@@ -156,8 +156,43 @@ class TaskList extends Component {
     );
   }
 
-  onDragStart() {
+  onTrackMoving(event) {
+    console.log(event.pageX, event.pageY);
+    const {pageX, pageY} = event;
     
+  }
+
+  onTopBarMouseDown(event) {
+    const tracks = window.document.querySelectorAll('.task-list');
+    const thisTrack = this.refs.main;
+    const movingTrack = thisTrack.cloneNode(true);
+
+    thisTrack.classList.add('shadowing');
+
+    movingTrack.style.height = thisTrack.offsetHeight + 'px';
+    movingTrack.style.width = thisTrack.offsetWidth + 'px';
+    movingTrack.style.position = 'absolute';
+
+    const thisTrackRect = thisTrack.getBoundingClientRect();
+    const thisTrackLeft = thisTrackRect.left, thisTrackTop = thisTrackRect.top;
+    const thisTrackMouseOffset = {left: thisTrackLeft - event.pageX, top: thisTrackTop - event.pageY};
+
+    function onTrackMoving() {
+      const {pageX, pageY} = event;
+      
+    }
+
+
+    window.body.addEventListener('mousemove', this.onTrackMoving.bind(this));
+
+
+    tracks.forEach(track => {
+      console.log(track);
+    });
+
+  }
+
+  onDragStart() {
   }
 
   onDragEnd() {
@@ -168,6 +203,7 @@ class TaskList extends Component {
     const {listId, cards} = this.props;
     return (
       <div ref='main'
+           data-index={this.props.dataIndex}
            className='task-list'
            draggable='true'
            onDragStart={this.onDragStart.bind(this)}
