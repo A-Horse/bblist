@@ -25,14 +25,14 @@ export const ALL_TASKCARD_GET_FAILURE = 'TASKCARD_GET_FAILURE';
 function requestTaskWalls() {
   return {
     type: TASKWALL_GET_REQUEST
-  }
+  };
 }
 
 function receiveTaskWalls(walls) {
   return {
     type: TASKWALL_GET_SUCCESS,
     playload: walls
-  }
+  };
 }
 
 function receiveTaskWallsFail(error) {
@@ -40,64 +40,64 @@ function receiveTaskWallsFail(error) {
     type: TASKWALL_GET_FAILURE,
     playload: error,
     error: true
-  }
+  };
 }
 
 
 function requestTaskWallCards() {
   return {
     type: ALL_TASKCARD_GET_REQUEST
-  }
+  };
 }
 
 function receiveTaskWallCards(resp) {
   return {
     type: ALL_TASKCARD_GET_SUCCESS,
     playload: resp
-  }
+  };
 }
 
 function receiveTaskWallCardsFail(status) {
   return {
     type: ALL_TASKCARD_GET_FAILURE,
     status: status
-  }
+  };
 }
 
 function requestCreateTaskWall() {
   return {
     type: TASKWALL_POST_REQUEST
-  }
+  };
 }
 
 function receiveCreateTaskWall() {
   return {
     type: TASKWALL_POST_SUCCESS
-  }
+  };
 }
 
 function createTaskWallError() {
   return {
     type: TASKWALL_POST_FAILURE
-  }
+  };
 }
 
 function requestDeleteTaskWall() {
   return {
     type: TASKWALL_DELETE_REQUEST
-  }
+  };
 }
 
 function deleteTaskWallSuccess() {
   return {
     type: TASKWALL_DELETE_SUCCESS
-  }
+  };
 }
 
 function deleteTaskWallError() {
   return {
     type: TASKWALL_DELETE_FAILURE
-  }
+  };
 }
 
 export function getTaskAllCards(wallId) {
