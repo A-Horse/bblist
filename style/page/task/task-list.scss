@@ -17,7 +17,10 @@ $list-vertical-margin: 15px;
   vertical-align: middle;
   background-color: $gray-supper-light;
   margin: $list-vertical-margin $list-horiz-margin;
+  transform: translate(0, 0);
+  transition: transform 500ms ease-in-out;
 
+  
   &.has-draging-card {
     .task-card, .taskcard-creater--toggle {
       pointer-events: none;
@@ -43,6 +46,7 @@ $list-vertical-margin: 15px;
     top: 0;
     left: 0;
     position: absolute;
+    transition: none;
   }
 }
 

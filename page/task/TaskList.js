@@ -177,7 +177,7 @@ class TaskList extends Component {
     const trackOuterWidth = thisTrackRect.width + trackHorMargin * 2;
     const thisTrackMouseOffset = {left: event.pageX - thisTrackLeft, top: event.pageY - thisTrackTop};
 
-    const currentTrackIndex = thisTrack.dataset.index;
+    let currentTrackIndex = Number(thisTrack.dataset.index);
     
     function onMouseMove(event) {
       const {pageX, pageY} = event;
@@ -185,12 +185,30 @@ class TaskList extends Component {
       movingTrack.style.transform = `translate(${movingOffset}px, 0)`;
 
       const i = movingOffset / trackOuterWidth;
+      const mouseMovingOffset = event.pageX + pageContainer.scrollLeft;
 
-      
+      const ii = Math.floor(mouseMovingOffset / trackOuterWidth);
 
-      tracks.forEach(track => {
-        
-      });
+      if (ii === currentTrackIndex) {
+        return;
+      }
+
+      if (ii - currentTrackIndex === 1 || currentTrackIndex - ii === 1) {
+        tracks.forEach((track) => {
+          const trackDataIndex = Number(track.dataset.index);
+          if (trackDataIndex === currentTrackIndex) {
+            const currentTransformLeft = Number(track.dataset.transformLeft) || 0;
+            track.dataset.transformLeft = currentTransformLeft + trackOuterWidth;
+            track.style.transform = `translate(${currentTransformLeft + trackOuterWidth}px, 0)`;
+          }
+          if (trackDataIndex === ii) {
+            const currentTransformLeft = Number(track.dataset.transformLeft) || 0;
+            track.dataset.transformLeft = currentTransformLeft - trackOuterWidth;
+            track.style.transform = `translate(${currentTransformLeft - trackOuterWidth}px, 0)`;
+          }
+        });
+        currentTrackIndex = ii;
+      }
     }
 
     function onMouseUp() {
