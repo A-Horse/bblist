@@ -232,12 +232,12 @@ class TaskList extends Component {
 
     function onMouseUp() {
       thisTrack.classList.remove('shadowing');
-      window.document.body.querySelector('.board-track-container').removeChild(movingTrack);
+      window.document.body.removeChild(movingTrack);
       window.document.body.removeEventListener('mousemove', onMouseMove);
       window.document.body.removeEventListener('mouseup', onMouseUp);
     }
 
-    window.document.body.querySelector('.board-track-container').appendChild(movingTrack);
+    window.document.body.appendChild(movingTrack);
 
     const movingOffset = event.pageX + pageContainer.scrollLeft - thisTrackMouseOffset.left - trackHorMargin + 'px';
     movingTrack.style.transform = `translate(${movingOffset}, 0)`;
@@ -346,10 +346,6 @@ class TaskList extends Component {
   }
 
   onDragOver(event) {
-    if (!event.target.classList.contains('taskcard')) {
-      return;
-    }
-
     event.preventDefault();
     const mousePosition = {x: event.nativeEvent.clientX, y: event.nativeEvent.clientY};
     const dragingCardInfo = BoardCradDragHelper.getData('info');

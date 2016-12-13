@@ -43,7 +43,7 @@ $list-vertical-margin: 15px;
 
   &.moving {
     z-index: 100;
-    top: 0;
+    top: 100px;
     left: 0;
     position: absolute;
     transition: none;
