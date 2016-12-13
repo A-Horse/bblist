@@ -22,6 +22,16 @@ export const ALL_TASKCARD_GET_REQUEST = 'TASKCARD_GET_REQUEST';
 export const ALL_TASKCARD_GET_SUCCESS = 'TASKCARD_GET_SUCCESS';
 export const ALL_TASKCARD_GET_FAILURE = 'TASKCARD_GET_FAILURE';
 
+import { normalize, Schema, arrayOf } from 'normalizr';
+
+const track = new Schema('track');
+const card = new Schema('cards');
+const user = new Schema('user');
+track.define({
+  cards: arrayOf(card)
+});
+
+
 function requestTaskWalls() {
   return {
     type: TASKWALL_GET_REQUEST
@@ -104,9 +114,16 @@ export function getTaskAllCards(wallId) {
   const config = createConfigWithAuth('GET');
   const userId = getAuthData(CACHED_USERID);
   return dispatch => {
-    dispatch(requestTaskWallCards())
+    dispatch(requestTaskWallCards());
     return fetch(makeApiUrl(`/user/${userId}/task-wall/${wallId}/all`), config)
       .then(handleResponse)
+      .then(function(json){
+        const bb = normalize(json, {
+          lists: arrayOf(track)
+        });
+        console.log(bb);
+        return Promise.resolve(json);
+      })
       .then(response => dispatch(receiveTaskWallCards(response)))
       .catch(error => dispatch(receiveTaskWallCardsFail(error)));
   };
@@ -115,7 +132,7 @@ export function getTaskAllCards(wallId) {
 export function getAllTaskWall() {
   const config = createConfigWithAuth('GET');
   return dispatch => {
-    dispatch(requestTaskWalls())
+    dispatch(requestTaskWalls());
     return fetch(makeApiUrl('/task-wall'), config)
       .then(handleResponse)
       .then(response => dispatch(receiveTaskWalls(response)))
