@@ -193,7 +193,7 @@ class TaskList extends Component {
         return;
       }
 
-      if (ii - currentTrackIndex === 1 || currentTrackIndex - ii === 1) {
+      if (ii - currentTrackIndex === 1) {
         tracks.forEach((track) => {
           const trackDataIndex = Number(track.dataset.index);
           if (trackDataIndex === currentTrackIndex) {
@@ -207,6 +207,23 @@ class TaskList extends Component {
             track.dataset.transformLeft = currentTransformLeft - trackOuterWidth;
             track.dataset.index = trackDataIndex - 1;
             track.style.transform = `translate(${currentTransformLeft - trackOuterWidth}px, 0)`;
+          }
+        });
+        currentTrackIndex = ii;
+      } else if (currentTrackIndex - ii === 1) {
+        tracks.forEach((track) => {
+          const trackDataIndex = Number(track.dataset.index);
+          if (trackDataIndex === currentTrackIndex) {
+            const currentTransformLeft = Number(track.dataset.transformLeft) || 0;
+            track.dataset.transformLeft = currentTransformLeft - trackOuterWidth;
+            track.dataset.index = trackDataIndex - 1;
+            track.style.transform = `translate(${currentTransformLeft - trackOuterWidth}px, 0)`;
+          }
+          if (trackDataIndex === ii) {
+            const currentTransformLeft = Number(track.dataset.transformLeft) || 0;
+            track.dataset.transformLeft = currentTransformLeft + trackOuterWidth;
+            track.dataset.index = trackDataIndex + 1;
+            track.style.transform = `translate(${currentTransformLeft + trackOuterWidth}px, 0)`;
           }
         });
         currentTrackIndex = ii;
@@ -227,7 +244,7 @@ class TaskList extends Component {
 
     window.document.body.addEventListener('mousemove', onMouseMove);
     window.document.body.addEventListener('mouseup', onMouseUp);
-    
+    // TODO body onblur
     
   }
 
