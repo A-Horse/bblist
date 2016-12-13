@@ -199,11 +199,13 @@ class TaskList extends Component {
           if (trackDataIndex === currentTrackIndex) {
             const currentTransformLeft = Number(track.dataset.transformLeft) || 0;
             track.dataset.transformLeft = currentTransformLeft + trackOuterWidth;
+            track.dataset.index = trackDataIndex + 1;
             track.style.transform = `translate(${currentTransformLeft + trackOuterWidth}px, 0)`;
           }
           if (trackDataIndex === ii) {
             const currentTransformLeft = Number(track.dataset.transformLeft) || 0;
             track.dataset.transformLeft = currentTransformLeft - trackOuterWidth;
+            track.dataset.index = trackDataIndex - 1;
             track.style.transform = `translate(${currentTransformLeft - trackOuterWidth}px, 0)`;
           }
         });
