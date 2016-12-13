@@ -34,12 +34,14 @@ $list-vertical-margin: 15px;
       background-color: black;
       height: 100%;
       width: 100%;
+      opacity: 0.7;
     }
   }
 
   &.moving {
     z-index: 100;
     top: 0;
+    left: 0;
     position: absolute;
   }
 }

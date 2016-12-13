@@ -164,6 +164,7 @@ class TaskList extends Component {
     const trackOffsetLeft = thisTrack.offsetLeft;
     
     const pageContainer = window.document.body.querySelector('.board-page-container');
+    const trackHorMargin = 24;
 
     thisTrack.classList.add('shadowing');
 
@@ -173,13 +174,23 @@ class TaskList extends Component {
 
     const thisTrackRect = thisTrack.getBoundingClientRect();
     const thisTrackLeft = thisTrackRect.left, thisTrackTop = thisTrackRect.top;
-    console.log("thisTrackLeft = ", thisTrackLeft);
+    const trackOuterWidth = thisTrackRect.width + trackHorMargin * 2;
     const thisTrackMouseOffset = {left: event.pageX - thisTrackLeft, top: event.pageY - thisTrackTop};
 
+    const currentTrackIndex = thisTrack.dataset.index;
+    
     function onMouseMove(event) {
       const {pageX, pageY} = event;
-      movingTrack.style.left = event.pageX + pageContainer.scrollLeft - thisTrackMouseOffset.left - 24 + 'px';
+      const movingOffset = event.pageX + pageContainer.scrollLeft - thisTrackMouseOffset.left - trackHorMargin;
+      movingTrack.style.transform = `translate(${movingOffset}px, 0)`;
+
+      const i = movingOffset / trackOuterWidth;
+
       
+
+      tracks.forEach(track => {
+        
+      });
     }
 
     function onMouseUp() {
@@ -190,17 +201,14 @@ class TaskList extends Component {
     }
 
     window.document.body.querySelector('.board-track-container').appendChild(movingTrack);
-    console.log(thisTrackMouseOffset.left - trackOffsetLeft + 'px');
-    console.log(thisTrackMouseOffset.left);
-    
-    // movingTrack.style.left = thisTrackMouseOffset.left - trackOffsetLeft + 'px';
+
+    const movingOffset = event.pageX + pageContainer.scrollLeft - thisTrackMouseOffset.left - trackHorMargin + 'px';
+    movingTrack.style.transform = `translate(${movingOffset}, 0)`;
 
     window.document.body.addEventListener('mousemove', onMouseMove);
     window.document.body.addEventListener('mouseup', onMouseUp);
-
-    tracks.forEach(track => {
-      
-    });
+    
+    
   }
 
   onDragStart() {
