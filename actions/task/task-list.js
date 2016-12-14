@@ -4,9 +4,9 @@ import {createConfigWithAuth} from '../../utils/header';
 import {makeApiUrl} from '../../utils/api';
 import {handleResponse, handleResponseWithoutJson} from '../../utils/http-handle';
 
-export const TASKLIST_POST_REQUEST = 'TASKLIST_POST_REQUEST'
-export const TASKLIST_POST_SUCCESS = 'TASKLIST_POST_SUCCESS'
-export const TASKLIST_POST_FAILURE = 'TASKLIST_POST_FAILURE'
+export const TASKLIST_POST_REQUEST = 'TASKLIST_POST_REQUEST';
+export const TASKLIST_POST_SUCCESS = 'TASKLIST_POST_SUCCESS';
+export const TASKLIST_POST_FAILURE = 'TASKLIST_POST_FAILURE';
 
 function requestCreateTaskList(user) {
   return {
@@ -55,6 +55,15 @@ export const TASKLIST_DELETE_REQUEST = 'TASKLIST_DELETE_REQUEST';
 export const TASKLIST_DELETE_SUCCESS = 'TASKLIST_DELETE_SUCCESS';
 export const TASKLIST_DELETE_FAILURE = 'TASKLIST_DELETE_FAILURE';
 
+export const TASKTRACK_CHANGE_INDEX_SUCCESS = 'TASKTRACK_CHANGE_INDEX_SUCCESS';
+
+function updateTaskTrackIndexSuccess(playload) {
+  return {
+    type: TASKTRACK_CHANGE_INDEX_SUCCESS,
+    playload: playload
+  };
+}
+
 function requestDeleteTaskList(info) {
   return {
     type: TASKLIST_DELETE_REQUEST
@@ -95,6 +104,15 @@ export function createTaskList(wallId, info) {
   };
 }
 
+export function updateTaskTrackIndex(boardId, trackIndexs) {
+  const config = createConfigWithAuth('PATCH', {trackIndexs});
+  return dispatch => {
+    return fetch(makeApiUrl(`/task-board/${boardId}/task-track`), config)
+      .then(handleResponse)
+      .then((response) => dispatch(updateTaskTrackIndexSuccess));
+  };
+}
+
 export function updateTaskList(boardId, trackId, data) {
   const config = createConfigWithAuth('PATCH', data);
   return dispatch => {
@@ -104,5 +122,3 @@ export function updateTaskList(boardId, trackId, data) {
       .then(response => dispatch(receivePatchTaskList(response)));
   };
 }
-
-

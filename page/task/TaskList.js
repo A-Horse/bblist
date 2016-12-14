@@ -87,6 +87,13 @@ class TaskList extends Component {
     }
   }
 
+  getTrackIdIndex() {
+    return {
+      id: this.props.listId,
+      index: this.refs.main.dataset.index
+    };
+  }
+
   toggleEditListName(listName) {
     const obj = {};
     obj[listName] = !this.state.isListEditings[listName];
@@ -168,14 +175,15 @@ class TaskList extends Component {
 
     thisTrack.classList.add('shadowing');
 
-    movingTrack.classList.add('moving');
-    movingTrack.style.height = thisTrack.offsetHeight + 'px';
-    movingTrack.style.width = thisTrack.offsetWidth + 'px';
-
     const thisTrackRect = thisTrack.getBoundingClientRect();
     const thisTrackLeft = thisTrackRect.left, thisTrackTop = thisTrackRect.top;
     const trackOuterWidth = thisTrackRect.width + trackHorMargin * 2;
     const thisTrackMouseOffset = {left: event.pageX - thisTrackLeft, top: event.pageY - thisTrackTop};
+
+    movingTrack.classList.add('moving');
+    movingTrack.style.height = thisTrack.offsetHeight + 'px';
+    movingTrack.style.width = thisTrack.offsetWidth + 'px';
+    movingTrack.style.top = thisTrackRect.top;
 
     let currentTrackIndex = Number(thisTrack.dataset.index);
     

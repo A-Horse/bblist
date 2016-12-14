@@ -1,6 +1,7 @@
 import {
   TASKLIST_PATCH_REQUEST, TASKLIST_PATCH_SUCCESS, TASKLIST_PATCH_FAILURE,
   TASKLIST_POST_REQUEST, TASKLIST_POST_SUCCESS, TASKLIST_POST_FAILURE,
+  TASKTRACK_CHANGE_INDEX_SUCCESS
 } from '../../actions/task/task-list';
 
 import {
@@ -31,18 +32,18 @@ function taskList(state = {
   case TASKLIST_POST_REQUEST:
     return Object.assign({}, state, {
       isFetching: true
-    })
+    });
     break;
   case TASKLIST_POST_SUCCESS:
     return Object.assign({}, state, {
       isFetching: false
-    })
+    });
     break;
   case TASKLIST_POST_FAILURE:
     return Object.assign({}, state, {
       isFetching: false,
       message: action.message
-    })
+    });
     break;
     
   case TASKLIST_PATCH_REQUEST:
