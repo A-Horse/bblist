@@ -61,19 +61,35 @@ class BoardContent extends Component {
       typingNewList: false,
       boardSettingToggle: false
     };
+
+    this.trackInstanceMap = {};
   }
 
   componentDidMount() {
-
+    console.log(this.trackInstanceMap);
+    //console.log(this.trackInstanceMap[1].getWrappedInstance());
   }
   
   getTasks(id) {
     const {dispatch} = this.props;    
     return dispatch(getTaskAllCards(id));
   }
+
+  updateTaskTrackIndexs() {
+    const trackIndexs = Object.values(this.trackInstanceMap).map(track => track.getTrackIdIndex());
+    console.log("trackIndexs = ", trackIndexs);
+  }
   
   renderList(list, index) {
-    return <TaskList key={list.id} dataIndex={index} listId={list.id} cards={list.cards} listName={list.name} wallId={this.props.params.id}/>;
+    return <TaskList key={list.id}
+         ref={(track) => {this.trackInstanceMap[list.id] = track.getWrappedInstance();}}
+         dataIndex={index}
+         listId={list.id}
+         cards={list.cards}
+         listName={list.name}
+         updateTaskTrackIndexs={this.updateTaskTrackIndexs.bind(this)}
+         wallId={this.props.params.id}>
+      </TaskList>;
   }
 
   renderLists() {

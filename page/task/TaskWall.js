@@ -67,6 +67,7 @@ class TaskWall extends Component {
     });
   }
 
+  
   getTasks(id) {
     const {dispatch} = this.props;    
     return dispatch(getTaskAllCards(id));

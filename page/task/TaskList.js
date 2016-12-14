@@ -25,46 +25,9 @@ import styleVariables from '!!sass-variable-loader!style/page/task/task-list.scs
 // FIXME
 export const listWidth = 210;
 
-const styles = {
-  listNameInput: {
-    backgroundColor: 'transparent',
-    boxShadow: 'none'
-  },
-  listName: {
-    textAlign: 'center'
-  },
-  listSettingDropDown: {
-    position: 'absolute',
-    right: '0.8rem',
-    backgroundColor: 'white',
-    padding: '4px 0',
-    top: '.5rem',
-    transform: 'translate(50%, 0)',
-    width: '100px',
-    border: '1px solid #999'
-  },
-  listEditIcon: {
-    marginTop: '-0.2rem',
-    width: '1.2rem',
-    verticalAlign: 'middle'
-  },
-  listSettingItem: {
-    padding: '0 10px',
-    ':hover': {
-      backgroundColor: '#eee'
-    }
-  },
-  listTitle: {
-    fontWeight: 'bold'
-  }
-};
-
-const themeRender = spawnMixinRender(styles);
-themeRender('listNameInput', 'darkBottomBorder');
 
 let relativeOffsetBody;
 
-@Radium
 class TaskList extends Component {
   constructor() {
     super();
@@ -139,7 +102,7 @@ class TaskList extends Component {
   renderListName() {
     const {listName} = this.props;
     return (
-      <div style={styles.listTitle} className='task-list--title'>
+      <div className='task-list--title'>
         <Textarea ref='trackName' onKeyDown={this.onTrackNameKeyDown.bind(this)} onChange={this.onTrackNameChanged.bind(this)} className='title--text' defaultValue={listName}></Textarea>
       </div>
     );
@@ -151,10 +114,10 @@ class TaskList extends Component {
       <div className='task-list--top-bar' onMouseDown={this.onTopBarMouseDown.bind(this)}>
         {this.renderListName()}
 
-        <MoreIcon className='more-icon icon' style={styles.listMenuIcon} onClick={() => this.onClickSetting(listId)}/>
+        <MoreIcon className='more-icon icon' onClick={() => this.onClickSetting(listId)}/>
           <DropList toggle={this.state.listSetting[listId]}>
-            <ul style={styles.listSettingDropDown}>
-              <li style={styles.listSettingItem} onClick={() => this.refs.listDeleteConfirm.open()}>Delete</li>
+            <ul>
+              <li onClick={() => this.refs.listDeleteConfirm.open()}>Delete</li>
             </ul>
           </DropList>
           
@@ -172,6 +135,7 @@ class TaskList extends Component {
     
     const pageContainer = window.document.body.querySelector('.board-page-container');
     const trackHorMargin = 24;
+    const trackVerMargin = 15;
 
     thisTrack.classList.add('shadowing');
 
@@ -183,7 +147,7 @@ class TaskList extends Component {
     movingTrack.classList.add('moving');
     movingTrack.style.height = thisTrack.offsetHeight + 'px';
     movingTrack.style.width = thisTrack.offsetWidth + 'px';
-    movingTrack.style.top = thisTrackRect.top;
+    movingTrack.style.top = thisTrackRect.top - trackVerMargin + 'px';
 
     let currentTrackIndex = Number(thisTrack.dataset.index);
     
@@ -386,4 +350,4 @@ const mapStateToProps = (state) => {
   return {};
 };
 
-export default connect(mapStateToProps)(TaskList);
+export default connect(mapStateToProps, null, null, {withRef: true})(TaskList);
