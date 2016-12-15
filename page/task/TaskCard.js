@@ -96,6 +96,7 @@ class TaskCard extends Component {
 
   onClick() {
     const {dispatch} = this.props;
+    console.log(this.props.card);
     dispatch(setCurrentCard(this.props.card));
   }
 

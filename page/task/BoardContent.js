@@ -95,10 +95,9 @@ class BoardContent extends Component {
 
   renderLists() {
     const {normalizedList} = this.props;
-    return R.compose(R.map(this.renderList.bind(this)),
-                R.sortBy(R.prop('index')),
+    return R.compose(R.sortBy(R.prop('index')),
                 R.values)
-    (normalizedList.entities);
+    (normalizedList.entities).map(this.renderList.bind(this));
   }
 
   renderSetttingMenu() {

@@ -47,7 +47,11 @@ class CardModal extends Component {
   }
 
   buildListSelectItems() {
-    return this.props.taskLists.map(list => ({name: list.name, value: list.id}));
+    return R.compose(
+      R.map(list => ({name: list.name, value: list.id})),
+      R.sortBy(R.prop('index')),
+      R.values)
+    (this.props.normalizedList.entities);
   }
 
   buildListSelectDefaultItem(currentList) {
@@ -67,8 +71,8 @@ class CardModal extends Component {
   }
 
   render() {
-    const {card, taskLists} = this.props;
-    const currentList = R.find(R.propEq('id', card.taskListId))(taskLists);
+    const {card, normalizedList} = this.props;
+    const currentList = normalizedList.entities[card.taskListId];
     if (!currentList) {
       return null;
     }
@@ -169,7 +173,8 @@ const mapStateToProps = (state) => {
   return {
     card: state.task.card.card,
     toggleTaskCardModal: state.task.card.active,
-    taskLists: state.task.list.lists
+    taskLists: state.task.list.lists,
+    normalizedList: state.task.list
   };
 };
 
