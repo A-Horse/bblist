@@ -6,10 +6,13 @@ import {
   INSERT_VIRTUAL_CARD,
 } from 'actions/task/task-card';
 
+import {ALL_TASKCARD_GET_SUCCESS} from 'actions/task/task-wall';
+
 function taskCard(state = {
   isFetching: false,
   card: {},
-  active: false
+  active: false,
+  entities: []
 }, action) {
   switch (action.type) {
   case TASKCARD_POST_REQUEST:
@@ -59,6 +62,13 @@ function taskCard(state = {
       card: action.card
     });
     break;
+
+  case ALL_TASKCARD_GET_SUCCESS:
+    return Object.assign({}, state, {
+      entities: action.playload.entities.cards
+    });
+    break;
+    
   case UNSET_CURRENT_CARD:
     return Object.assign({}, state, {
       active: false,

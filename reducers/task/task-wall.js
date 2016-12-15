@@ -8,7 +8,8 @@ import {CLEAR_BOARD} from 'actions/task/task';
 
 function taskWall(state = {
   isFetching: false,
-  wall: {}, walls: []
+  entities: [],
+  result: []
 }, action) {
   switch (action.type) {
   case TASKWALL_GET_REQUEST:
@@ -19,7 +20,8 @@ function taskWall(state = {
   case TASKWALL_GET_SUCCESS:
     return Object.assign({}, state, {
       isFetching: true,
-      walls: action.playload
+      entities: action.playload.entities.board,
+      result: action.playload.result
     });
     break;
   case TASKWALL_GET_FAILURE:
@@ -52,7 +54,7 @@ function taskWall(state = {
   case ALL_TASKCARD_GET_SUCCESS:
     return Object.assign({}, state, {
       isFetching: false,
-      wall: action.playload.wall
+      entities: action.playload.entities.board
     });
     break;
   case ALL_TASKCARD_GET_FAILURE:
@@ -64,8 +66,8 @@ function taskWall(state = {
 
   case CLEAR_BOARD:
     return Object.assign({}, state, {
-      wall: {},
-      walls: []
+      entities: [],
+      result: []
     });
     break;
     

@@ -86,13 +86,12 @@ function taskList(state = {
   case TASKCARD_ENTER_START:
   case TASKCARD_ENTER_DONE:
     return Object.assign({}, state);
-
+    
   case ALL_TASKCARD_GET_SUCCESS:
     return Object.assign({}, state, {
-      lists: action.playload.lists
+      entities: action.playload.entities.track
     });
     break;
-
   case CLEAR_BOARD:
     return Object.assign({}, state, {
       lists: []

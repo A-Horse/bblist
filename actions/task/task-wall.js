@@ -22,15 +22,9 @@ export const ALL_TASKCARD_GET_REQUEST = 'TASKCARD_GET_REQUEST';
 export const ALL_TASKCARD_GET_SUCCESS = 'TASKCARD_GET_SUCCESS';
 export const ALL_TASKCARD_GET_FAILURE = 'TASKCARD_GET_FAILURE';
 
-import { normalize, Schema, arrayOf } from 'normalizr';
+import {normalize, arrayOf} from 'normalizr';
 
-const track = new Schema('track');
-const card = new Schema('cards');
-const user = new Schema('user');
-track.define({
-  cards: arrayOf(card)
-});
-
+import {track, card, user, board} from 'schema';
 
 function requestTaskWalls() {
   return {
@@ -38,10 +32,10 @@ function requestTaskWalls() {
   };
 }
 
-function receiveTaskWalls(walls) {
+function receiveTaskWalls(response) {
   return {
     type: TASKWALL_GET_SUCCESS,
-    playload: walls
+    playload: normalize(response, arrayOf(board))
   };
 }
 
@@ -60,10 +54,12 @@ function requestTaskWallCards() {
   };
 }
 
-function receiveTaskWallCards(resp) {
+function receiveTaskWallCards(response) {
+  console.log(response);
+  console.log(normalize(response, board));
   return {
     type: ALL_TASKCARD_GET_SUCCESS,
-    playload: resp
+    playload: normalize(response, board)
   };
 }
 
@@ -117,13 +113,6 @@ export function getTaskAllCards(wallId) {
     dispatch(requestTaskWallCards());
     return fetch(makeApiUrl(`/user/${userId}/task-wall/${wallId}/all`), config)
       .then(handleResponse)
-      .then(function(json){
-        const bb = normalize(json, {
-          lists: arrayOf(track)
-        });
-        console.log(bb);
-        return Promise.resolve(json);
-      })
       .then(response => dispatch(receiveTaskWallCards(response)))
       .catch(error => dispatch(receiveTaskWallCardsFail(error)));
   };

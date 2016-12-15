@@ -12,56 +12,13 @@ import {ThemeConst} from 'style/theme';
 import {CloseIcon, AddIcon} from 'services/svg-icons';
 import TaskBoardCreater from './TaskBoardCreater';
 
-import 'style/page/task/board.scss';
+import 'style/page/task/boards.scss';
 import 'style/page/task/taskboard-creater-modal.scss';
 import 'style/page/task/taskboard-card.scss';
 
-const styles = {
-  wall: {
-    
-  },
-  cardInfo: {
-    backgroundImage: 'linear-gradient(180deg,rgba(0,0,0,.3) 0, transparent)',
-    height: '50%'
-  },
-  cardTitle: {
-    
-  },
-  createCardTitle: {
-    
-  },
-  projectCard: {
-    
-  },
-  createCard: {
-    textAlign: 'center'
-  },
-  wallContainer: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
-    marginTop: '1rem'
-  },
-  addIcon: {
-    height: '1.5rem',
-    width: '1.5rem',
-    borderRadius: '50%',
-    fill: 'white'
-  }
-};
-
-const mainThemeRender = spawnMixinRender(styles);
-mainThemeRender('wall', 'lightBackground');
-mainThemeRender('addIcon', 'deepDarkBackground');
-mainThemeRender('cardTitle', 'middleFontSize', 'lightText');
-mainThemeRender('createCardTitle', 'middleFontSize');
-
-
-@Radium
 class Tasks extends Component {
   constructor() {
     super();
-
     this.state = {
       modalOpen: false
     };
@@ -82,11 +39,16 @@ class Tasks extends Component {
   }
 
   renderWalls() {
-    return this.props.walls.map(wjson => {
+    const normalizedBoard = this.props.boards;
+    return normalizedBoard.result.map(boardId => {
+      const board = normalizedBoard.entities[boardId];
       return (
-        <div className='taskboard-card' style={{backgroundImage: `url(${wjson.cover})`}} key={wjson.id} onClick={() => browserHistory.push(`/task-wall/${wjson.id}`)}>
-          <div style={styles.cardInfo}>
-            <h2 style={styles.cardTitle}>{wjson.name}</h2>
+        <div className='taskboard-card'
+             style={{backgroundImage: `url(${board.cover})`}}
+             key={board.id}
+             onClick={() => browserHistory.push(`/task-wall/${board.id}`)}>
+          <div className='taskboard-card-info'>
+            <h2>{board.name}</h2>
           </div>
         </div>
       );
@@ -97,14 +59,10 @@ class Tasks extends Component {
     return (
       <PageContainer>
         <CateLine>current walls:</CateLine>
-        <div style={styles.wallContainer}>
-          
-          {this.renderWalls()}
-          
+        <div className='taskboard-board-container'>
+          {this.renderWalls()}          
           {this.renderCreateModal()}
         </div>
-
-        
       </PageContainer>
     );
   }
@@ -116,7 +74,7 @@ class Tasks extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    walls: state.task.board.walls || []
+    board: state.task.board
   };
 };
 

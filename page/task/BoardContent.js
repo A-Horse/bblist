@@ -77,13 +77,13 @@ class BoardContent extends Component {
 
   updateTaskTrackIndexs() {
     const {dispatch} = this.props;
-    const trackIndexs = Object.values(this.trackInstanceMap).map(track => track.getTrackIdIndex());
+    const trackIndexs = Object.values(this.trackInstanceMap).map(track => track.getWrappedInstance().getTrackIdIndex());
     dispatch(updateTaskTrackIndex(this.props.params.id, trackIndexs));
   }
   
   renderList(list, index) {
     return <TaskList key={list.id}
-         ref={(track) => {this.trackInstanceMap[list.id] = track.getWrappedInstance();}}
+         ref={(track) => {this.trackInstanceMap[list.id] = track;}}
          dataIndex={index}
          listId={list.id}
          cards={list.cards}

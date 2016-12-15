@@ -82,15 +82,17 @@ class TaskWall extends Component {
   }
 
   renderTopBar() {
-    const {wall} = this.props;
+    const {id} = this.props.params;
+    const {normalizedBoard} = this.props;
+    const board = normalizedBoard.entities[id];
     return (
       <div className='taskboard-header'>
-        <h2 className='' style={styles.topBarTitle}>{wall.name}</h2>
+        <h2 className='' style={styles.topBarTitle}>{board.name}</h2>
         {this.renderSetttingMenu()}
       </div>
     );
   }
-  
+
   render() {
     return (
       <div className='board-container'>
@@ -103,8 +105,7 @@ class TaskWall extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    wall: state.task.board.wall,
-    lists: state.task.list.lists
+    normalizedBoard: state.task.board
   };
 };
 
