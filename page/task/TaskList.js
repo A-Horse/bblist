@@ -92,8 +92,10 @@ class TaskList extends Component {
     }
   }
 
-  renderCards(cards) {
-    return cards.map(card => {
+  renderCards(cardIds) {
+    const {normalizedCard} = this.props;
+    return cardIds.map(cardId => {
+      const card = normalizedCard.entities[cardId];
       if (card.virtual)  return (<CardPlaceholder height={card.height} width={card.width}/>);
       return (<TaskCard card={card} key={card.id} />);
     });
@@ -231,7 +233,7 @@ class TaskList extends Component {
   }
 
   render() {
-    const {listId, cards} = this.props;
+    const {listId, cardIds} = this.props;
     return (
       <div ref='main'
            data-index={this.props.dataIndex}
@@ -244,7 +246,7 @@ class TaskList extends Component {
         {this.renderTopBar()}
       
         <div className='task-list--body' ref='taskListBody'>
-          {this.renderCards(cards)}
+          {this.renderCards(cardIds)}
           <TaskCardCreater wallId={this.props.wallId} listId={listId} />
         </div>
         
@@ -350,7 +352,9 @@ class TaskList extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return {};
+  return {
+    normalizedCard: state.task.card
+  };
 };
 
 export default connect(mapStateToProps, null, null, {withRef: true})(TaskList);

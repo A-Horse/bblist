@@ -87,7 +87,7 @@ class TaskWall extends Component {
     const board = normalizedBoard.entities[id];
     return (
       <div className='taskboard-header'>
-        <h2 className='' style={styles.topBarTitle}>{board.name}</h2>
+        <h2 className='' style={styles.topBarTitle}>{board && board.name}</h2>
         {this.renderSetttingMenu()}
       </div>
     );

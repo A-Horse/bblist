@@ -82,11 +82,12 @@ class BoardContent extends Component {
   }
   
   renderList(list, index) {
-    return <TaskList key={list.id}
+    return <TaskList
+         key={list.id}
          ref={(track) => {this.trackInstanceMap[list.id] = track;}}
          dataIndex={index}
          listId={list.id}
-         cards={list.cards}
+         cardIds={list.cards}
          listName={list.name}
          updateTaskTrackIndexs={this.updateTaskTrackIndexs.bind(this)}
          wallId={this.props.params.id}>
@@ -94,8 +95,8 @@ class BoardContent extends Component {
   }
 
   renderLists() {
-    const {lists} = this.props;
-    return lists.map(this.renderList.bind(this));
+    const {normalizedList} = this.props;
+    return Object.values(normalizedList.entities).map(this.renderList.bind(this));
   }
 
   renderSetttingMenu() {
@@ -132,7 +133,7 @@ class BoardContent extends Component {
 const mapStateToProps = (state) => {
   return {
     wall: state.task.board.wall,
-    lists: state.task.list.lists
+    normalizedList: state.task.list
   };
 };
 
