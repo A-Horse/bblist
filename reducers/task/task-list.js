@@ -26,6 +26,7 @@ function taskList(state = {
   virtualIndex: -1,
   isFetching: false,
   movingCard: null,
+  entities: [],
   lists: []
 }, action) {
   switch (action.type) {

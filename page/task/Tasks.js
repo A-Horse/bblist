@@ -39,7 +39,7 @@ class Tasks extends Component {
   }
 
   renderWalls() {
-    const normalizedBoard = this.props.boards;
+    const {normalizedBoard} = this.props;
     return normalizedBoard.result.map(boardId => {
       const board = normalizedBoard.entities[boardId];
       return (
@@ -74,7 +74,7 @@ class Tasks extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    board: state.task.board
+    normalizedBoard: state.task.board
   };
 };
 

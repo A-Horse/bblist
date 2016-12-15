@@ -66,10 +66,9 @@ class BoardContent extends Component {
   }
 
   componentDidMount() {
-    console.log(this.trackInstanceMap);
-    //console.log(this.trackInstanceMap[1].getWrappedInstance());
+    
   }
-  
+
   getTasks(id) {
     const {dispatch} = this.props;    
     return dispatch(getTaskAllCards(id));
@@ -80,7 +79,7 @@ class BoardContent extends Component {
     const trackIndexs = Object.values(this.trackInstanceMap).map(track => track.getWrappedInstance().getTrackIdIndex());
     dispatch(updateTaskTrackIndex(this.props.params.id, trackIndexs));
   }
-  
+
   renderList(list, index) {
     return <TaskList
          key={list.id}
@@ -96,7 +95,10 @@ class BoardContent extends Component {
 
   renderLists() {
     const {normalizedList} = this.props;
-    return Object.values(normalizedList.entities).map(this.renderList.bind(this));
+    return R.compose(R.map(this.renderList.bind(this)),
+                R.sortBy(R.prop('index')),
+                R.values)
+    (normalizedList.entities);
   }
 
   renderSetttingMenu() {

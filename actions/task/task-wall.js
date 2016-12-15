@@ -55,8 +55,6 @@ function requestTaskWallCards() {
 }
 
 function receiveTaskWallCards(response) {
-  console.log(response);
-  console.log(normalize(response, board));
   return {
     type: ALL_TASKCARD_GET_SUCCESS,
     playload: normalize(response, board)
