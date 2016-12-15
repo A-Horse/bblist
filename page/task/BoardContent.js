@@ -12,7 +12,7 @@ import {Hr} from 'components/widget/Hr';
 import {PageContainer} from 'components/widget/PageContainer';
 import {deleteTaskWall, getTaskAllCards} from 'actions/task/task-wall';
 import {createTaskCard} from 'actions/task/task-card';
-import {createTaskList, deleteTaskList} from 'actions/task/task-list';
+import {createTaskList, deleteTaskList, updateTaskTrackIndex} from 'actions/task/task-list';
 import {clearBoard} from 'actions/task/task';
 import {getAssets} from 'services/assets-manager';
 import {AddIcon, SettingIcon, MIDDLE_SIZE} from 'services/svg-icons';
@@ -76,8 +76,9 @@ class BoardContent extends Component {
   }
 
   updateTaskTrackIndexs() {
+    const {dispatch} = this.props;
     const trackIndexs = Object.values(this.trackInstanceMap).map(track => track.getTrackIdIndex());
-    console.log("trackIndexs = ", trackIndexs);
+    dispatch(updateTaskTrackIndex(this.props.params.id, trackIndexs));
   }
   
   renderList(list, index) {

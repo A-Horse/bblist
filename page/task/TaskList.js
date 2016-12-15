@@ -53,7 +53,7 @@ class TaskList extends Component {
   getTrackIdIndex() {
     return {
       id: this.props.listId,
-      index: this.refs.main.dataset.index
+      index: Number(this.refs.main.dataset.index)
     };
   }
 
@@ -202,11 +202,14 @@ class TaskList extends Component {
       }
     }
 
+    const self = this;
     function onMouseUp() {
       thisTrack.classList.remove('shadowing');
       window.document.body.removeChild(movingTrack);
       window.document.body.removeEventListener('mousemove', onMouseMove);
       window.document.body.removeEventListener('mouseup', onMouseUp);
+      
+      self.props.updateTaskTrackIndexs();
     }
 
     window.document.body.appendChild(movingTrack);
