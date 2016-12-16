@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
 import {deleteTaskWall, getTaskAllCards} from 'actions/task/task-wall';
-import {taskCardDragLeaveStart, updateTaskCard, insertVirtualCard, setCurrentCard} from 'actions/task/task-card';
+import {updateTaskCard, insertVirtualCard, setCurrentCard} from 'actions/task/task-card';
 import {createTaskList, deleteTaskList} from 'actions/task/task-list';
 import {openTaskCardModal} from 'actions/event/task-wall';
 import {DropList} from 'components/widget/DropList';
@@ -22,23 +22,20 @@ import 'style/page/task/card.scss';
 class TaskCard extends Component {
   constructor() {
     super();
+    this.state = {};
   }
 
   componentWillMount() {
-    this.state = {
-      
-    };
   }
 
   onDragStart(event) {
-    const {dispatch} = this.props;
-    // TODO 移动的图标
-    
+    // TODO 移动的图标    
     const crt = this.refs.main.cloneNode(true);
 
     const width = this.refs.main.offsetWidth;
     const height = this.refs.main.offsetHeight;
-    
+
+    // TODO extract function
     this.crt = crt;
     crt.style.position = 'absolute';
     crt.style.top = '-100%';
@@ -57,15 +54,6 @@ class TaskCard extends Component {
       width,
       height
     });
-
-    // TODO remove not pass redux
-    // return dispatch(taskCardDragLeaveStart(this.props.card, {
-    //   offsetX: event.nativeEvent.offsetX,
-    //   offsetY: event.nativeEvent.offsetY,
-    //   width,
-    //   height,
-    //   fromListId: this.props.card.taskListId
-    // }));
   }
   
   onDragEnd(event) {
@@ -87,7 +75,6 @@ class TaskCard extends Component {
     return dispatch(updateTaskCard(this.props.card.id, data));
   }
 
-
   onLoad() {
     const height = this.refs.main.offsetHeight;
     this.props.card.height = height;
@@ -96,7 +83,6 @@ class TaskCard extends Component {
 
   onClick() {
     const {dispatch} = this.props;
-    console.log(this.props.card);
     dispatch(setCurrentCard(this.props.card));
   }
 
@@ -105,7 +91,8 @@ class TaskCard extends Component {
   }
   
   render() {
-    const {card} = this.props;
+    const {normalizedCard, cardId} = this.props;
+    const card = normalizedCard.entities[cardId];
     const activeRole = card.creater;
     return (
       <div className='task-card' ref='main' draggable='true'
@@ -123,8 +110,9 @@ class TaskCard extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    
+    normalizedCard: state.task.card,
+    normalizedTrack: state.task.list
   };
 };
 
-export default connect(mapStateToProps)(TaskCard);
+export default connect(mapStateToProps, null, null, {withRef: true})(TaskCard);

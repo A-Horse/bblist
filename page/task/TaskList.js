@@ -26,14 +26,14 @@ import styleVariables from '!!sass-variable-loader!style/page/task/task-list.scs
 export const listWidth = 210;
 
 
-let relativeOffsetBody;
+//let relativeOffsetBody;
+let relativeOffsetBody = 137;
 
 class TaskList extends Component {
   constructor() {
     super();
-    this.index = -1;
-
     this.resetDragMeta();
+    
   }
 
   componentWillMount() {
@@ -41,6 +41,7 @@ class TaskList extends Component {
     this.state = {
       listSetting: {}
     };
+    this.cardInstanceMap = {};
   }
 
   componentDidMount() {
@@ -48,6 +49,10 @@ class TaskList extends Component {
       relativeOffsetBody = true;
       relativeOffsetBody = getOffsetHeight(this.refs.main, 'body') + +styleVariables.topBarHeight.replace('px', '');
     }
+  }
+
+  componentDidUpdate() {
+    const {cardIds} = this.props;
   }
 
   getTrackIdIndex() {
@@ -92,16 +97,22 @@ class TaskList extends Component {
     }
   }
 
+  pickCardInstance(cardConnectedInstance, id) {
+    this.cardInstanceMap[id] = cardConnectedInstance;
+    if (!cardConnectedInstance) {
+      this.cardInstanceMap = R.omit([id], this.cardInstanceMap);
+    }
+  }
+
   renderCards(cardIds) {
-    const {normalizedCard} = this.props;
     return cardIds.map(cardId => {
-      const card = normalizedCard.entities[cardId];
-      if (card.virtual)  return (<CardPlaceholder height={card.height} width={card.width}/>);
-      return (<TaskCard card={card} key={card.id} />);
+      return (<TaskCard ref={(cardConnectedInstance) => this.pickCardInstance(cardConnectedInstance, cardId)}
+         key={cardId}
+         cardId={cardId}/>);
     });
   }
 
-  renderListName() {
+  renderTrackName() {
     const {listName} = this.props;
     return (
       <div className='task-list--title'>
@@ -114,7 +125,7 @@ class TaskList extends Component {
     const {listId} = this.props;
     return (
       <div className='task-list--top-bar' onMouseDown={this.onTopBarMouseDown.bind(this)}>
-        {this.renderListName()}
+        {this.renderTrackName()}
 
         <MoreIcon className='more-icon icon' onClick={() => this.onClickSetting(listId)}/>
           <DropList toggle={this.state.listSetting[listId]}>
@@ -154,11 +165,9 @@ class TaskList extends Component {
     let currentTrackIndex = Number(thisTrack.dataset.index);
     
     function onMouseMove(event) {
-      const {pageX, pageY} = event;
       const movingOffset = event.pageX + pageContainer.scrollLeft - thisTrackMouseOffset.left - trackHorMargin;
       movingTrack.style.transform = `translate(${movingOffset}px, 0)`;
 
-      const i = movingOffset / trackOuterWidth;
       const mouseMovingOffset = event.pageX + pageContainer.scrollLeft;
 
       const ii = Math.floor(mouseMovingOffset / trackOuterWidth);
@@ -221,15 +230,7 @@ class TaskList extends Component {
 
     window.document.body.addEventListener('mousemove', onMouseMove);
     window.document.body.addEventListener('mouseup', onMouseUp);
-    // TODO body onblur
-    
-  }
-
-  onDragStart() {
-  }
-
-  onDragEnd() {
-    
+    // TODO body onblur 
   }
 
   render() {
@@ -256,7 +257,7 @@ class TaskList extends Component {
 
   caluMovingPosition(mousePosition, dragInfo) {
     // 滚动情况
-    const {cards} = this.props;
+    const {cardIds} = this.props;
     const {y} = mousePosition;
 
     // TODO rename
@@ -266,7 +267,7 @@ class TaskList extends Component {
       return i;
     }
 
-    let cards2 = cards;
+    let cards2 = R.clone(cardIds);
     if (this.cardDragMeta.hasPalceHolderCard) {
       cards2 = R.insert(this.cardDragMeta.placeholderCardIndex, dragInfo, cards2);
     }
@@ -287,11 +288,11 @@ class TaskList extends Component {
     }
   }
 
-  addDragingMark() {
+  addDragingClass() {
     this.refs.main.className += ' has-draging-card';
   }
 
-  removeDragingMark() {
+  removeDragingClass() {
     this.refs.main.className = this.refs.main.className.replace(/\s?has-draging-card/, '');
   }
 
@@ -308,17 +309,17 @@ class TaskList extends Component {
   }
 
   onDragLeave() {
-    this.removeDragingMark();
+    this.removeDragingClass();
     this.removePlaceHolderCard();
   }
   
   onDragEnter() {
-    this.addDragingMark();
+    this.addDragingClass();
   }
 
   onDrop() {
     this.removePlaceHolderCard();
-    this.removeDragingMark();
+    this.removeDragingCLass();
     this.resetDragMeta();
   }
 
@@ -338,10 +339,10 @@ class TaskList extends Component {
     this.cardDragMeta.placeholderCard = div;
     this.cardDragMeta.hasPalceHolderCard = true;
 
-    if (placeHolderCardIndex === this.props.cards.length) {
+    if (placeHolderCardIndex === this.props.cardIds.length) {
       this.refs.taskListBody.appendChild(div);
     } else {
-      this.refs.taskListBody.insertBefore(div, this.refs.taskListBody.querySelectorAll('.task-card')[placeHolderCardIndex]);1
+      this.refs.taskListBody.insertBefore(div, this.refs.taskListBody.querySelectorAll('.task-card')[placeHolderCardIndex]);
     }    
   }
 
@@ -353,7 +354,7 @@ class TaskList extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    normalizedCard: state.task.card
+    normalizedTrack: state.task.list
   };
 };
 

@@ -53,23 +53,6 @@ function updateTaskCardError(error) {
   };
 }
 
-export const TASKCARD_LEAVE_START = 'TASKCARD_LEAVE_START';
-export const TASKCARD_LEAVE_DONE = 'TASKCARD_LEAVE_DONE';
-export const TASKCARD_ENTER_START = 'TASKCARD_ENTER_START';
-export const TASKCARD_ENTER_DONE = 'TASKCARD_ENTER_DONE';
-
-export function taskCardDragLeaveStart(card, info) {
-  return dispatch => dispatch({type: TASKCARD_LEAVE_START, card, info});
-}
-
-export function taskCardDragEnterStart(card) {
-  return dispatch => dispatch({type: TASKCARD_ENTER_DONE, card});
-}
-
-export function taskCardDragLeaveDone(card) {
-  return dispatch => dispatch({type: TASKCARD_ENTER_DONE, card});
-}
-
 export const TASKCARD_MOVE_REQUEST = 'TASKCARD_MOVE_REQUEST';
 export const TASKCARD_MOVE_SUCCESS = 'TASKCARD_MOVE_SUCCESS';
 export const TASKCARD_MOVE_FAILURE = 'TASKCARD_MOVE_FAILURE';
