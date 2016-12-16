@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
 import {deleteTaskWall, getTaskAllCards} from 'actions/task/task-wall';
-import {updateTaskCard, insertVirtualCard, setCurrentCard} from 'actions/task/task-card';
+import {updateTaskCard, insertVirtualCard, activeCardModal} from 'actions/task/task-card';
 import {createTaskList, deleteTaskList} from 'actions/task/task-list';
 import {openTaskCardModal} from 'actions/event/task-wall';
 import {DropList} from 'components/widget/DropList';
@@ -76,14 +76,13 @@ class TaskCard extends Component {
   }
 
   onLoad() {
-    const height = this.refs.main.offsetHeight;
-    // this.props.card.height = height;
-    // this.props.card.loaded = true;
+    this.height = this.refs.main.offsetHeight;
+    this.width = this.refs.main.offsetWidth;
   }
 
   onClick() {
     const {dispatch} = this.props;
-    dispatch(setCurrentCard(this.props.card));
+    return dispatch(activeCardModal(this.props.cardId));
   }
 
   checkBoxOnClick(event) {

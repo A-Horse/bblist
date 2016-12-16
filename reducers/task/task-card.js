@@ -1,7 +1,7 @@
 import {
   TASKCARD_POST_REQUEST, TASKCARD_POST_SUCCESS, TASKCARD_POST_FAILURE,
   TASKCARD_PATCH_REQUEST, TASKCARD_PATCH_SUCCESS, TASKCARD_PATCH_FAILURE,
-  SET_CURRENT_CARD, UNSET_CURRENT_CARD,
+  ACTIVE_CARD_MODAL, UNACTIVE_CARD_MODAL,
   CARD_META_REQUEST, CARD_META_SUCCESS, CARD_META_FAILURE,
   INSERT_VIRTUAL_CARD,
 } from 'actions/task/task-card';
@@ -56,7 +56,7 @@ function taskCard(state = {
     });
     break;
 
-  case SET_CURRENT_CARD:
+  case ACTIVE_CARD_MODAL:
     return Object.assign({}, state, {
       active: true,
       card: action.card
@@ -69,7 +69,7 @@ function taskCard(state = {
     });
     break;
     
-  case UNSET_CURRENT_CARD:
+  case UNACTIVE_CARD_MODAL:
     return Object.assign({}, state, {
       active: false,
       card: {}

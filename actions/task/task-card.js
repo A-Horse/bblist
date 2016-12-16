@@ -103,8 +103,8 @@ function deleteTaskCardFail(error, cardId) {
   };
 }
 
-export const SET_CURRENT_CARD = 'SET_CURRENT_CARD';
-export const UNSET_CURRENT_CARD = 'UNSET_CURRENT_CARD';
+export const ACTIVE_CARD_MODAL = 'ACTIVE_CARD_MODAL';
+export const UNACTIVE_CARD_MODAL = 'UNACTIVE_CARD_MODAL';
 export const CARD_META_REQUEST = 'CARD_META_REQUEST';
 export const CARD_META_SUCCESS = 'CARD_META_SUCCESS';
 export const CARD_META_FAILURE = 'CARD_META_FAILURE';
@@ -131,19 +131,19 @@ function requestCardMetaFail(error) {
   };
 }
 
-export function setCurrentCard(card) {
+export function activeCardModal(cardId) {
     return dispatch => {
-      dispatch(getCardDetail(card.id));
+      dispatch(getCardDetail(cardId));
       return dispatch({
-        type: SET_CURRENT_CARD,
-        card
+        type: ACTIVE_CARD_MODAL,
+        playload: cardId
       });
   };
 }
 
-export function unsetCurrentCard() {
+export function unactiveCardModal() {
   return dispatch => dispatch({
-    type: UNSET_CURRENT_CARD
+    type: UNACTIVE_CARD_MODAL
   });
 }
 

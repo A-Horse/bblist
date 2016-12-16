@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {browserHistory} from 'react-router';
 import R from 'fw-ramda';
 
-import {deleteTaskCard, updateTaskCard, unsetCurrentCard, getCardDetail} from 'actions/task/task-card';
+import {deleteTaskCard, updateTaskCard, unactiveCardModal, getCardDetail} from 'actions/task/task-card';
 import {getTaskAllCards} from 'actions/task/task-wall';
 import {createTaskCardComment} from 'actions/task/task-card-comment';
 import {spawnMixinRender} from 'style/theme-render';
@@ -34,7 +34,7 @@ class CardModal extends Component {
 
   close() {
     const {dispatch} = this.props; 
-    return dispatch(unsetCurrentCard());
+    return dispatch(unactiveCardModal());
   }
 
   onChangeTrack(track) {
