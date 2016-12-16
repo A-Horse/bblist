@@ -77,8 +77,8 @@ class TaskCard extends Component {
 
   onLoad() {
     const height = this.refs.main.offsetHeight;
-    this.props.card.height = height;
-    this.props.card.loaded = true;
+    // this.props.card.height = height;
+    // this.props.card.loaded = true;
   }
 
   onClick() {
