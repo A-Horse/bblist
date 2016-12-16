@@ -37,7 +37,7 @@ class CardModal extends Component {
     return dispatch(unsetCurrentCard());
   }
 
-  onChangeList(track) {
+  onChangeTrack(track) {
     this.updateTaskCard({taskListId: track.value});
   }
   
@@ -70,9 +70,14 @@ class CardModal extends Component {
     }
   }
 
+  getCurrentTrack() {
+    const {card, normalizedList} = this.props;
+    return normalizedList.entities[card.taskListId];
+  }
+
   render() {
     const {card, normalizedList} = this.props;
-    const currentList = normalizedList.entities[card.taskListId];
+    const currentList = this.getCurrentTrack();
     if (!currentList) {
       return null;
     }
@@ -84,7 +89,7 @@ class CardModal extends Component {
             <span className='top-bar--list-label'>LIST:</span>
             <Select defaultItem={this.buildListSelectDefaultItem(currentList)}
                     items={this.buildListSelectItems()}
-                    onSelect={this.onChangeList.bind(this)}/>
+                    onSelect={this.onChangeTrack.bind(this)}/>
           </div>
           <CloseIcon className='close-icon' onClick={this.close.bind(this)}/>
         </div>
@@ -129,7 +134,7 @@ class CardModal extends Component {
       event.preventDefault();
     }
   }
-
+  
   postComment() {
     const {dispatch, card} = this.props;
     return dispatch(createTaskCardComment(card.id, {
@@ -157,10 +162,10 @@ class CardModal extends Component {
 
   updateTaskCard(data) {
     const {dispatch} = this.props;
-    const {card, taskLists} = this.props;
-    const currentList = R.find(R.propEq('id', card.taskListId))(taskLists);
+    const currentList = this.getCurrentTrack();
     // TODO 优化
-    return dispatch(updateTaskCard(this.props.card.id, data)).then(() => dispatch(getTaskAllCards(currentList.taskWallId)));
+    return dispatch(updateTaskCard(this.props.card.id, data))
+      .then(() => dispatch(getTaskAllCards(currentList.taskWallId)));
   }
 
   deleteTaskCard() {
