@@ -239,7 +239,7 @@ class TaskList extends Component {
       <div ref='main'
            data-index={this.props.dataIndex}
            className='task-list'
-           
+
            onDragEnter={this.onDragEnter.bind(this)}
            onDrop={this.onDrop.bind(this)}
            onDragLeave={this.onDragLeave.bind(this)}
@@ -259,7 +259,7 @@ class TaskList extends Component {
     // 滚动情况
     const {cardIds} = this.props;
     const {y} = mousePosition;
-
+    const {normalizedCard} = this.props;
     // TODO rename
     let xheight = relativeOffsetBody, i = 0;
     
@@ -267,13 +267,17 @@ class TaskList extends Component {
       return i;
     }
 
-    let cards2 = R.clone(cardIds);
-    if (this.cardDragMeta.hasPalceHolderCard) {
-      cards2 = R.insert(this.cardDragMeta.placeholderCardIndex, dragInfo, cards2);
-    }
+    let cardHeigths = [];
+    cardIds.forEach((cardId, index) => {
+      const cardInstance = this.cardInstanceMap[cardId].getWrappedInstance();
+      if (this.cardDragMeta.hasPalceHolderCard && index === this.cardDragMeta.placeholderCardIndex) {
+        cardHeigths.push(dragInfo.height);
+      }
+      cardHeigths.push(cardInstance.height);
+    });
 
-    for (let max = cards2.length; i < max; ++i) {
-      xheight += cards2[i].height + 6;
+    for (let max = cardHeigths.length; i < max; ++i) {
+      xheight += cardHeigths[i] + 6;// TODO const margin 6px
       if (y < xheight) {
         return i;
       }
@@ -319,7 +323,7 @@ class TaskList extends Component {
 
   onDrop() {
     this.removePlaceHolderCard();
-    this.removeDragingCLass();
+    this.removeDragingClass();
     this.resetDragMeta();
   }
 
@@ -328,7 +332,9 @@ class TaskList extends Component {
     const mousePosition = {x: event.nativeEvent.clientX, y: event.nativeEvent.clientY};
     const dragingCardInfo = BoardCradDragHelper.getData('info');
 
+
     const placeHolderCardIndex = this.caluMovingPosition(mousePosition, dragingCardInfo);
+    console.log("placeHolderCardIndex = ", placeHolderCardIndex);
     if (placeHolderCardIndex === this.cardDragMeta.placeholderCardIndex) {
       return;
     }
@@ -340,7 +346,7 @@ class TaskList extends Component {
     this.cardDragMeta.hasPalceHolderCard = true;
 
     if (placeHolderCardIndex === this.props.cardIds.length) {
-      this.refs.taskListBody.appendChild(div);
+      this.refs.taskListBody.insertBefore(div, this.refs.taskListBody.querySelectorAll('.task-card')[placeHolderCardIndex].nextSibling);
     } else {
       this.refs.taskListBody.insertBefore(div, this.refs.taskListBody.querySelectorAll('.task-card')[placeHolderCardIndex]);
     }    

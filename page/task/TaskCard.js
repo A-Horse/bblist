@@ -29,7 +29,10 @@ class TaskCard extends Component {
   }
 
   onDragStart(event) {
-    // TODO 移动的图标    
+    // TODO 移动的图标
+    const {normalizedCard, cardId} = this.props;
+    const card = normalizedCard.entities[cardId];
+    
     const crt = this.refs.main.cloneNode(true);
 
     const width = this.refs.main.offsetWidth;
@@ -37,6 +40,7 @@ class TaskCard extends Component {
 
     // TODO extract function
     this.crt = crt;
+
     crt.style.position = 'absolute';
     crt.style.top = '-100%';
     crt.style.right = '-100%';
@@ -47,13 +51,16 @@ class TaskCard extends Component {
     
     BoardCradDragHelper.setData('info', {
       from: {
-        listId: this.props.card.taskListId
+        listId: card.taskListId
       },
       offsetX: event.nativeEvent.offsetX,
       offsetY: event.nativeEvent.offsetY,
       width,
       height
     });
+    
+    this.refs.main.style.position = 'absolute';
+    this.isDragging = true;
   }
   
   onDragEnd(event) {
