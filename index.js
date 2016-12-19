@@ -12,7 +12,7 @@ import DockMonitor from 'redux-devtools-dock-monitor';
 
 import {App} from 'components';
 // TODO split it
-import {SignIn, SignUp, Profile, Goal, Tasks, TaskWall, NotFound, DashBoard,
+import {SignIn, SignUp, Profile, Tasks, TaskWall, NotFound, DashBoard,
         IndexPage, Ideas, BoardSetting, BoardContent, TodoPage} from 'page';
 import Body from 'components/Body';
 
@@ -53,7 +53,6 @@ ReactDOM.render(
           <Route path="signup" component={SignUp}/>
           <Route path="profile" component={Profile}/>
           <Route path="idea" component={Ideas}/>
-          <Route path="goal" component={Goal}/>
           <Route path="task-wall" component={Tasks} onEnter={checkLogin}/>
           <Route path="task-wall/" component={TaskWall} onEnter={checkLogin}>
             <Route path="/task-wall/:id" component={BoardContent}>
