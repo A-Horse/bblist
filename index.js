@@ -49,8 +49,7 @@ ReactDOM.render(
           <IndexRoute component={IndexPage}/>
     
           <Route path="home" component={DashBoard} onEnter={checkLogin}/>
-          <Route path="signin" component={SignIn}/>
-          <Route path="signup" component={SignUp}/>
+          
           <Route path="profile" component={Profile}/>
           <Route path="idea" component={Ideas}/>
           <Route path="task-wall" component={Tasks} onEnter={checkLogin}/>
@@ -64,6 +63,10 @@ ReactDOM.render(
           <Route path="todo" component={TodoPage}/>
 
           <Route path="404" component={NotFound} />
+        </Route>
+        <Route component={BlankPage}>
+          <Route path="signin" component={SignIn}/>
+          <Route path="signup" component={SignUp}/>
         </Route>
       </Router>
       <DevTools />
