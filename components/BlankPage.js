@@ -3,7 +3,7 @@ import React from 'react';
 
 export default function BlankPage({children}) {
   return (
-      <div>
+    <div>
       {children}
     </div>
   );

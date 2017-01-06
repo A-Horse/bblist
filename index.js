@@ -64,6 +64,7 @@ ReactDOM.render(
 
           <Route path="404" component={NotFound} />
         </Route>
+
         <Route component={BlankPage}>
           <Route path="signin" component={SignIn}/>
           <Route path="signup" component={SignUp}/>
