@@ -72,11 +72,17 @@ class CardModal extends Component {
 
   getCurrentTrack() {
     const {card, normalizedList} = this.props;
+    console.log(card);
     return normalizedList.entities[card.taskListId];
   }
 
   render() {
     const {card, normalizedList} = this.props;
+    // TODO duplicable check
+    if (!card) {
+      return null;
+    }
+
     const currentList = this.getCurrentTrack();
     if (!currentList) {
       return null;

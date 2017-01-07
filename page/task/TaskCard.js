@@ -28,40 +28,40 @@ class TaskCard extends Component {
   componentWillMount() {
   }
 
-  onDragStart(event) {
-    // TODO 移动的图标
-    const {normalizedCard, cardId} = this.props;
-    const card = normalizedCard.entities[cardId];
+  // onDragStart(event) {
+  //   // TODO 移动的图标
+  //   const {normalizedCard, cardId} = this.props;
+  //   const card = normalizedCard.entities[cardId];
     
-    const crt = this.refs.main.cloneNode(true);
+  //   const crt = this.refs.main.cloneNode(true);
 
-    const width = this.refs.main.offsetWidth;
-    const height = this.refs.main.offsetHeight;
+  //   const width = this.refs.main.offsetWidth;
+  //   const height = this.refs.main.offsetHeight;
 
-    // TODO extract function
-    this.crt = crt;
+  //   // TODO extract function
+  //   this.crt = crt;
 
-    crt.style.position = 'absolute';
-    crt.style.top = '-100%';
-    crt.style.right = '-100%';
-    crt.style.height = height + 'px';
-    crt.style.width = width + 'px';
-    document.body.appendChild(crt);
-    event.dataTransfer.setDragImage(crt, 0, 0);
+  //   crt.style.position = 'absolute';
+  //   crt.style.top = '-100%';
+  //   crt.style.right = '-100%';
+  //   crt.style.height = height + 'px';
+  //   crt.style.width = width + 'px';
+  //   document.body.appendChild(crt);
+  //   event.dataTransfer.setDragImage(crt, 0, 0);
     
-    BoardCradDragHelper.setData('info', {
-      from: {
-        listId: card.taskListId
-      },
-      offsetX: event.nativeEvent.offsetX,
-      offsetY: event.nativeEvent.offsetY,
-      width,
-      height
-    });
+  //   BoardCradDragHelper.setData('info', {
+  //     from: {
+  //       listId: card.taskListId
+  //     },
+  //     offsetX: event.nativeEvent.offsetX,
+  //     offsetY: event.nativeEvent.offsetY,
+  //     width,
+  //     height
+  //   });
     
-    this.refs.main.style.position = 'absolute';
-    this.isDragging = true;
-  }
+  //   this.refs.main.style.position = 'absolute';
+  //   this.isDragging = true;
+  // }
   
   onDragEnd(event) {
     document.body.removeChild(this.crt);
@@ -87,7 +87,7 @@ class TaskCard extends Component {
     this.width = this.refs.main.offsetWidth;
   }
 
-  onClick() {
+  onClick(event) {
     const {dispatch} = this.props;
     return dispatch(activeCardModal(this.props.cardId));
   }
@@ -95,15 +95,55 @@ class TaskCard extends Component {
   checkBoxOnClick(event) {
     event.stopPropagation();
   }
-  
+
+  onMouseDown(event) {
+    this.mouseMoving = false;
+
+    event.preventDefault();
+    event.stopPropagation();
+    const tracks = window.document.querySelectorAll('.task-list');
+
+    const thisCard = this.refs.main;
+    
+    const movingCard = thisCard.cloneNode(true);
+    const pageContainer = window.document.body.querySelector('.board-page-container');
+
+    const self = this;
+    function onMouseMove(event) {
+      if (!self.mouseMoving) {
+        movingCard.style.height = thisCard.offsetHeight;
+        movingCard.style.width = thisCard.offsetWidth;
+        movingCard.style.position = 'absolute';
+        movingCard.style.left = event.pageX + 'px';
+        movingCard.style.top = event.pageY + 'px';
+        
+        window.document.body.appendChild(movingCard);
+      }
+      console.log('moving');
+      self.mouseMoving = true;
+      const movingOffsetY = event.pageY;
+      const movingOffsetX = event.pageX + pageContainer.scrollLeft;
+      movingCard.style.transform = `translate(${movingOffsetX}px, ${movingOffsetY}px)`;
+    }
+    
+    function onMouseUp(event) {
+      console.log('mouse up');
+      window.document.body.removeChild(movingCard);
+      window.document.body.removeEventListener('mousemove', onMouseMove.bind(this));
+      window.document.body.removeEventListener('mouseup', onMouseUp.bind(this));
+    }
+
+    window.document.body.addEventListener('mousemove', onMouseMove.bind(this));
+    window.document.body.addEventListener('mouseup', onMouseUp.bind(this));
+  }
+
   render() {
     const {normalizedCard, cardId} = this.props;
     const card = normalizedCard.entities[cardId];
     const activeRole = card.creater;
     return (
-      <div className='task-card' ref='main' draggable='true'
-           onDragStart={this.onDragStart.bind(this)}
-           onDragEnd={this.onDragEnd.bind(this)}
+      <div className='task-card' ref='main'
+           onMouseDown={this.onMouseDown.bind(this)}
            onClick={this.onClick.bind(this)}
            onLoad={this.onLoad.bind(this)}>
         <CheckBox ref='checkbox' defaultChecked={card.isDone} onChange={this.updateDone.bind(this)} onClick={this.checkBoxOnClick.bind(this)}/>
