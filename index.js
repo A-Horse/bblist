@@ -10,7 +10,7 @@ import {createDevTools} from 'redux-devtools';
 import LogMonitor from 'redux-devtools-log-monitor';
 import DockMonitor from 'redux-devtools-dock-monitor';
 
-import {App} from 'components';
+import {App, BlankPage} from 'components';
 // TODO split it
 import {SignIn, SignUp, Profile, Tasks, TaskWall, NotFound, DashBoard,
         IndexPage, Ideas, BoardSetting, BoardContent, TodoPage} from 'page';

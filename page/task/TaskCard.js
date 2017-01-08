@@ -119,7 +119,6 @@ class TaskCard extends Component {
         
         window.document.body.appendChild(movingCard);
       }
-      console.log('moving');
       self.mouseMoving = true;
       const movingOffsetY = event.pageY;
       const movingOffsetX = event.pageX + pageContainer.scrollLeft;
@@ -129,12 +128,12 @@ class TaskCard extends Component {
     function onMouseUp(event) {
       console.log('mouse up');
       window.document.body.removeChild(movingCard);
-      window.document.body.removeEventListener('mousemove', onMouseMove.bind(this));
-      window.document.body.removeEventListener('mouseup', onMouseUp.bind(this));
+      window.document.body.removeEventListener('mousemove', onMouseMove);
+      window.document.body.removeEventListener('mouseup', onMouseUp);
     }
 
-    window.document.body.addEventListener('mousemove', onMouseMove.bind(this));
-    window.document.body.addEventListener('mouseup', onMouseUp.bind(this));
+    window.document.body.addEventListener('mousemove', onMouseMove);
+    window.document.body.addEventListener('mouseup', onMouseUp);
   }
 
   render() {

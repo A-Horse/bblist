@@ -4,7 +4,6 @@ import {connect} from 'react-redux';
 import {browserHistory} from 'react-router';
 
 import {makeGravatarUrl} from 'services/gravatar';
-import {getGoalList, createGoal} from 'actions/goal/goal';
 import TodoCreater from './TodoCreater';
 import DatePicker from 'components/date-picker/DatePicker';
 import Todo from './Todo';

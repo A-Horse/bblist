@@ -4,7 +4,6 @@ import {connect} from 'react-redux';
 import {browserHistory} from 'react-router';
 
 import {makeGravatarUrl} from 'services/gravatar';
-import {getGoalList, createGoal} from 'actions/goal/goal';
 import TodoList from './TodoList';
 import PomodoraDial from './PomodoraDial';
 import {createTodo, getTodoList} from 'actions/todo/todos';
