@@ -18,6 +18,11 @@ class SignIn extends Component {
       errorMessage: {}
     };
   }
+
+  componentDidMount() {
+    this.refs.email.value = '';
+    this.refs.password.value = '';
+  }
   
   render() {
     const errorMessage = this.state.errorMessage;
@@ -25,23 +30,29 @@ class SignIn extends Component {
     return (
       <PageContainer>
         <div>
-          <div>
-            <Input type='text' ref='email' name='bblist-email'/>
-            <p>{errorMessage.email}</p>
-          </div>
-          
-          <div>
-            <Input type='password' ref='password' name='bblist-password'/>
-            <p>{errorMessage.password}</p>
-          </div>
+          <form autocomplete="off">
+            <div>
+              <Input type='text' ref='email' name='bblist-email' required placeholder="Email" autoComplete='off'/>
+              <p>{errorMessage.email}</p>
+            </div>
+            
+            <div>
+              <Input type='password' ref='password' name='bblist-password' required placeholder="Password" autoComplete='off'/>
+              <p>{errorMessage.password}</p>
+            </div>
 
-          <div>
-            <Button type='submit' onClick={this.login.bind(this)}>Login</Button>
-          </div>  
+            <div>
+              <Button type='submit' onClick={this.login.bind(this)}>Login</Button>
+            </div>
+          </form>
         </div>
         <Link to="/signup" style={styles.linkStyle}>Sign up</Link>
       </PageContainer>
     );
+  }
+
+  onInputKeyDown() {
+    
   }
 
   login() {

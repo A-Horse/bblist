@@ -8,7 +8,7 @@ export class Input extends Component {
   
   render() {
     return (
-      <input type='text' {...this.props} ref='instance' />
+      <input type='text' {...this.props} ref='instance' autoComplete='off'/>
     );
   }
 }

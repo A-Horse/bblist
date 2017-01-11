@@ -1,0 +1,17 @@
+
+.index-page {
+  width: 100%;
+  margin:0;
+  padding:0;
+  background-color:hsl(195, 100%, 7%);
+
+  canvas.sea-waves {
+    margin:0 auto;
+    display:block;
+    filter:url('#shadowed-goo');
+  }
+
+  svg{
+    display:none;
+  }
+}

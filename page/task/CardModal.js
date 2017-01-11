@@ -16,6 +16,7 @@ import Textarea from 'react-textarea-autosize';
 import {Hr} from 'components/widget/Hr';
 import {Select} from 'components/widget/Select';
 import {Button} from 'components/widget/Button';
+import {isEnterKey} from 'utils/keyboard';
 
 import 'style/page/task/taskcard-modal.scss';
 
@@ -62,12 +63,29 @@ class CardModal extends Component {
     const {dispatch, card} = this.props;
     if (card.comments) {
       return card.comments.map((comment) => {
-        return (<li key={comment.id} className='comment-item'>
-           <UserAvatar user={comment.creater}/>
-           <span>{comment.content}</span>
-           </li>);
+        console.log(comment);
+        return (
+          <div className='taskcard-modal--comments'>
+            <p></p>
+            <ul>
+              <li key={comment.id} className='comment-item'>
+                <UserAvatar user={comment.creater}/>
+                <span>{comment.content}</span>
+              </li>
+            </ul>
+          </div>
+        );
       });
     }
+  }
+  
+  renderPomodoro() {
+    return;
+    return (
+      <div className='taskcard-modal--pomodoro'>
+        <Pomodoro/>
+      </div>
+    );
   }
 
   getCurrentTrack() {
@@ -115,15 +133,10 @@ class CardModal extends Component {
           <UserAvatar user={card.creater}/>
         </div>
 
-        <div className='taskcard-modal--comments'>
-          <ul>
-            {this.renderComments()}
-          </ul>
-        </div>
+        {this.renderComments()}
+        
 
-        <div className='taskcard-modal--pomodoro'>
-          <Pomodoro/>
-        </div>
+        {this.renderPomodoro()}
 
         <div className='taskcard-modal--comment-input'>
           <Textarea ref='comment' placeholder='add comment'></Textarea>
@@ -135,7 +148,7 @@ class CardModal extends Component {
   }
 
   onTitleKeyDown(event) {
-    if (event.keyCode == 13 /*return*/) {
+    if (isEnterKey(event)) {
       this.updateTitle();
       event.preventDefault();
     }
