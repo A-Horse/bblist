@@ -122,6 +122,8 @@ class TaskCard extends Component {
       self.mouseMoving = true;
       const movingOffsetY = event.pageY;
       const movingOffsetX = event.pageX + pageContainer.scrollLeft;
+      movingCard.style.left = '0';
+      movingCard.style.top = '0';
       movingCard.style.transform = `translate(${movingOffsetX}px, ${movingOffsetY}px)`;
     }
     
