@@ -22,11 +22,9 @@ import BoardCradDragHelper from 'services/board-card-drag-helper';
 import 'style/page/task/task-list.scss';
 import styleVariables from '!!sass-variable-loader!style/page/task/task-list.scss';
 
-// FIXME
-export const listWidth = 210;
-
 
 //let relativeOffsetBody;
+// TODO auto get it
 let relativeOffsetBody = 137;
 
 class TaskList extends Component {
@@ -62,19 +60,12 @@ class TaskList extends Component {
     };
   }
 
-  toggleEditListName(listName) {
-    const obj = {};
-    obj[listName] = !this.state.isListEditings[listName];
-    this.setState({
-      isListEditings: Object.assign(this.state.isListEditings, obj)
-    });
-  }
-
   onClickSetting(listId) {
     const obj = {};
     obj[listId] = !this.state.listSetting[listId];
     // TODO rename
     this.setState({listSetting: obj});
+    // FIXME 诡异的实现
     GlobalClick.addGlobalClickHandleOnce(() => {
       const obj = {};
       obj[listId] = false;
@@ -92,8 +83,7 @@ class TaskList extends Component {
 
   onTrackNameKeyDown(event) {
     if (event.keyCode === 13) {
-      event.preventDefault();
-      return;
+      return event.preventDefault();
     }
   }
 

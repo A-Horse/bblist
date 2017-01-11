@@ -141,8 +141,6 @@ class TaskCard extends Component {
       }
 
     }
-
-
     window.document.body.addEventListener('mousemove', onMouseMove);
     window.document.body.addEventListener('mouseup', onMouseUp);
   }
