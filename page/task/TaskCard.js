@@ -136,7 +136,7 @@ class TaskCard extends Component {
 
       window.document.body.removeEventListener('mousemove', onMouseMove);
       window.document.body.removeEventListener('mouseup', onMouseUp);
-      if (!self.mouseMoving) {
+      if (self.mouseMoving) {
         window.document.body.removeChild(movingCard);
       }
 
