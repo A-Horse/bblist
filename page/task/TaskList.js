@@ -155,6 +155,8 @@ class TaskList extends Component {
     const thisTrackRect = thisTrack.getBoundingClientRect();
     const thisTrackLeft = thisTrackRect.left, thisTrackTop = thisTrackRect.top;
     const trackOuterWidth = thisTrackRect.width + trackHorMargin * 2;
+
+    // TODO getMouseElementInnerOffset
     const thisTrackMouseOffset = {left: event.pageX - thisTrackLeft, top: event.pageY - thisTrackTop};
 
     movingTrack.classList.add('moving');

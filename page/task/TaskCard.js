@@ -89,6 +89,7 @@ class TaskCard extends Component {
   }
 
   onClick(event) {
+    console.log('click');
     const {dispatch} = this.props;
     return dispatch(activeCardModal(this.props.cardId));
   }
@@ -114,7 +115,7 @@ class TaskCard extends Component {
 
     const self = this;
     function onMouseMove(event) {
-      if (!self.mouseMoving) {
+      if (!self.mouseMoving) { // 防止点击的时候还是出现clone
         movingCard.style.height = thisCard.offsetHeight;
         movingCard.style.width = thisCard.offsetWidth;
         movingCard.style.position = 'absolute';
@@ -132,10 +133,15 @@ class TaskCard extends Component {
     }
     
     function onMouseUp(event) {
-      window.document.body.removeChild(movingCard);
+
       window.document.body.removeEventListener('mousemove', onMouseMove);
       window.document.body.removeEventListener('mouseup', onMouseUp);
+      if (!self.mouseMoving) {
+        window.document.body.removeChild(movingCard);
+      }
+
     }
+
 
     window.document.body.addEventListener('mousemove', onMouseMove);
     window.document.body.addEventListener('mouseup', onMouseUp);
