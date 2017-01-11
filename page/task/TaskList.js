@@ -334,7 +334,6 @@ class TaskList extends Component {
 
 
     const placeHolderCardIndex = this.caluMovingPosition(mousePosition, dragingCardInfo);
-    console.log("placeHolderCardIndex = ", placeHolderCardIndex);
     if (placeHolderCardIndex === this.cardDragMeta.placeholderCardIndex) {
       return;
     }

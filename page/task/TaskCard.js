@@ -16,6 +16,7 @@ import {navHeight} from 'components/Nav';
 import UserAvatar from 'components/UserAvatar';
 import {CheckBox} from 'components/widget/CheckBox';
 import BoardCradDragHelper from 'services/board-card-drag-helper';
+import {getMouseElementInnerOffset} from 'utils/dom';
 
 import 'style/page/task/card.scss';
 
@@ -97,6 +98,7 @@ class TaskCard extends Component {
   }
 
   onMouseDown(event) {
+    // TODO  尝试一下 react 的方法
     this.mouseMoving = false;
 
     event.preventDefault();
@@ -107,6 +109,8 @@ class TaskCard extends Component {
     
     const movingCard = thisCard.cloneNode(true);
     const pageContainer = window.document.body.querySelector('.board-page-container');
+
+    const mouseOffsetInCard = getMouseElementInnerOffset(thisCard, event);
 
     const self = this;
     function onMouseMove(event) {
@@ -124,11 +128,10 @@ class TaskCard extends Component {
       const movingOffsetX = event.pageX + pageContainer.scrollLeft;
       movingCard.style.left = '0';
       movingCard.style.top = '0';
-      movingCard.style.transform = `translate(${movingOffsetX}px, ${movingOffsetY}px)`;
+      movingCard.style.transform = `translate(${movingOffsetX - mouseOffsetInCard.left}px, ${movingOffsetY - mouseOffsetInCard.top}px)`;
     }
     
     function onMouseUp(event) {
-      console.log('mouse up');
       window.document.body.removeChild(movingCard);
       window.document.body.removeEventListener('mousemove', onMouseMove);
       window.document.body.removeEventListener('mouseup', onMouseUp);

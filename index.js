@@ -45,14 +45,21 @@ ReactDOM.render(
   <Provider store={store}>
     <Body>
       <Router history={history}>
+        <Route path='/' component={BlankPage}>
+          <IndexRoute path='' component={IndexPage}/>
+
+          <Route path="signin" component={SignIn}/>
+          <Route path="signup" component={SignUp}/>
+        </Route>
+
         <Route path="/" component={App} >
-          <IndexRoute component={IndexPage}/>
-    
+  
           <Route path="home" component={DashBoard} onEnter={checkLogin}/>
-          
+    
           <Route path="profile" component={Profile}/>
           <Route path="idea" component={Ideas}/>
           <Route path="task-wall" component={Tasks} onEnter={checkLogin}/>
+
           <Route path="task-wall/" component={TaskWall} onEnter={checkLogin}>
             <Route path="/task-wall/:id" component={BoardContent}>
 
@@ -65,10 +72,7 @@ ReactDOM.render(
           <Route path="404" component={NotFound} />
         </Route>
 
-        <Route component={BlankPage}>
-          <Route path="signin" component={SignIn}/>
-          <Route path="signup" component={SignUp}/>
-        </Route>
+        
       </Router>
       <DevTools />
     </Body>
