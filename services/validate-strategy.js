@@ -8,6 +8,10 @@ const RULES = {
   eqTo: (c) => value => c === value
 };
 
+const defualtErrorMess = {
+  email: '请输入有效的邮箱地址'
+};
+
 
 function makeValidater(ruleString) {
   const [nameParams, message] = ruleString.split('#');
@@ -16,13 +20,14 @@ function makeValidater(ruleString) {
     if (RULES[name].apply(null, params)(value)) {
       return null;
     }
-    return message;
-  }
+    return message || defualtErrorMess[name];
+  };
 }
+
 
 export function validateFormValue(formValue, ruleMap) {
   const errorMessage = {};
-  for (let key in formValue) {
+  for (const key in formValue) {
     const rules = ruleMap[key];
     const vfs = rules.map(makeValidater);
     for (let vk in rules.map(makeValidater)) {
