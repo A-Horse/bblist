@@ -24,35 +24,13 @@ function makeValidater(ruleString) {
   };
 }
 
-
 export function validateFormValue(formValue, ruleMap) {
-  const errorMessage = {};
-  for (const key in formValue) {
-    const rules = ruleMap[key];
-    const vfs = rules.map(makeValidater);
-    for (let vk in rules.map(makeValidater)) {
-      let message = vfs[vk](formValue[key]);
-      if( message ){
-        errorMessage[key] = message;
-        break;
-      }
-    }
-  }
-  return errorMessage;
-}
-
-
-export function validateFormValue2(formValue, ruleMap) {
-  // R.keys(ruleMap).map(fieldName => {
-  //   const validateFns = ruleMap[fieldName].map(makeValidater);
-
-  //   return validateFns.map(fn => {
-  //     return fn(formValue[fieldName]);
-  //   });
-  // });
   return R.compose(
+    R.reduce(R.merge, {}),
+    R.filter(R.compose(R.length, R.head, R.values)),
     R.map(fieldName => R.compose(
-      R.
+      R.assoc(fieldName, R.__, {}),
+      R.filter(e => !R.isNil(e)),
       R.map(fn => fn(formValue[fieldName])),
       R.map(makeValidater),
       fieldName => ruleMap[fieldName])(fieldName)),
