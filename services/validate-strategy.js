@@ -8,7 +8,7 @@ const RULES = {
   eqTo: (c) => value => c === value
 };
 
-const defualtErrorMess = {
+const defualtErrorMessage = {
   email: '请输入有效的邮箱地址'
 };
 
@@ -20,7 +20,7 @@ function makeValidater(ruleString) {
     if (RULES[name].apply(null, params)(value)) {
       return null;
     }
-    return message || defualtErrorMess[name];
+    return message || defualtErrorMessage[name];
   };
 }
 
