@@ -42,6 +42,24 @@ export function validateFormValue(formValue, ruleMap) {
 }
 
 
+export function validateFormValue2(formValue, ruleMap) {
+  // R.keys(ruleMap).map(fieldName => {
+  //   const validateFns = ruleMap[fieldName].map(makeValidater);
+
+  //   return validateFns.map(fn => {
+  //     return fn(formValue[fieldName]);
+  //   });
+  // });
+  return R.compose(
+    R.map(fieldName => R.compose(
+      R.
+      R.map(fn => fn(formValue[fieldName])),
+      R.map(makeValidater),
+      fieldName => ruleMap[fieldName])(fieldName)),
+    R.keys
+  )(ruleMap);
+}
+
 
 
 

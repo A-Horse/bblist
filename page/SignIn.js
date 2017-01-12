@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {signin} from '../actions/login';
 import {browserHistory} from 'react-router';
-import {validateFormValue} from '../services/validate-strategy';
+import {validateFormValue, validateFormValue2} from '../services/validate-strategy';
 import {Button} from '../components/widget/Button';
 import {Input} from '../components/widget/Input';
 import {PageContainer} from '../components/widget/PageContainer';
@@ -72,7 +72,13 @@ class SignIn extends Component {
       email: ['email'],
       password: ['required#required']
     });
-    
+
+    const errorMessage2 = validateFormValue2(loginInfo, {
+      email: ['email'],
+      password: ['required#required']
+    });
+
+    console.log(errorMessage2);
 
     this.setState({errorMessage: errorMessage});    
     if( !Object.keys(errorMessage).length ){
