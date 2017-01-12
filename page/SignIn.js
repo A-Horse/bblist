@@ -8,9 +8,7 @@ import {Input} from '../components/widget/Input';
 import {PageContainer} from '../components/widget/PageContainer';
 import {Link} from 'react-router';
 
-const styles = {
-  
-};
+import 'style/page/signin.scss';
 
 class SignIn extends Component {  
   componentWillMount() {
@@ -20,17 +18,19 @@ class SignIn extends Component {
   }
 
   componentDidMount() {
-    this.refs.email.value = '';
-    this.refs.password.value = '';
+    setTimeout(function(){
+      this.refs.email.value = '';
+      this.refs.password.value = '';
+    });
   }
   
   render() {
     const errorMessage = this.state.errorMessage;
-    
+    // TODO experience HTML5页面才会接受 autoComplete
     return (
-      <PageContainer>
+      <PageContainer className='signin-page'>
         <div>
-          <form autocomplete="off">
+          <form autocomplete='off'>
             <div>
               <Input type='text' ref='email' name='bblist-email' required placeholder="Email" autoComplete='off'/>
               <p>{errorMessage.email}</p>
@@ -46,7 +46,7 @@ class SignIn extends Component {
             </div>
           </form>
         </div>
-        <Link to="/signup" style={styles.linkStyle}>Sign up</Link>
+        <Link to="/signup">Sign up</Link>
       </PageContainer>
     );
   }
