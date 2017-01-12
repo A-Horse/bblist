@@ -27,22 +27,23 @@ class SignIn extends Component {
   render() {
     const errorMessage = this.state.errorMessage;
     // TODO experience HTML5页面才会接受 autoComplete
+    // TODO experience button event.preventDefault 会组织 html5 的校验
     return (
       <PageContainer className='signin-page'>
         <div>
-          <form autocomplete='off'>
+          <form className='signin-form' onSubmit={this.login.bind(this)}>
             <div>
-              <Input type='text' ref='email' name='bblist-email' required placeholder="Email" autoComplete='off'/>
+              <Input type='text' ref='email' name='bblist-email' required placeholder="Email"/>
               <p>{errorMessage.email}</p>
             </div>
-            
+
             <div>
-              <Input type='password' ref='password' name='bblist-password' required placeholder="Password" autoComplete='off'/>
+              <Input type='password' ref='password' name='bblist-password' required placeholder="Password"/>
               <p>{errorMessage.password}</p>
             </div>
 
             <div>
-              <Button type='submit' onClick={this.login.bind(this)}>Login</Button>
+              <Button type='submit'>Login</Button>
             </div>
           </form>
         </div>
@@ -55,9 +56,10 @@ class SignIn extends Component {
     
   }
 
-  login() {
+  login(event) {
+    event.preventDefault();
     const {dispatch} = this.props;
-    
+
     const email = this.refs.email;
     const password = this.refs.password;
     
@@ -67,7 +69,7 @@ class SignIn extends Component {
     };
 
     const errorMessage = validateFormValue(loginInfo, {
-      email: ['required#required'],
+      email: ['email'],
       password: ['required#required']
     });
     
@@ -78,6 +80,7 @@ class SignIn extends Component {
         browserHistory.push('/');
       });
     }
+    
   }
 }
 
