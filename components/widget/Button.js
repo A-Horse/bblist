@@ -12,10 +12,14 @@ export class Button extends Component {
     const {size = 'middle', styleType = 'default'} = this.props;
     return `button ${size} ${styleType}${this.props.className ? ' ' + this.props.className : ''}`;
   }
+
+  click() {
+    this.refs.main.click();
+  }
   
   render() {
     return (
-      <button className={this.buildClassName()} onClick={this.props.onClick} type={this.props.type}>
+      <button ref='main' className={this.buildClassName()} onClick={this.props.onClick} type={this.props.type}>
           {this.props.children}
       </button>
     );
