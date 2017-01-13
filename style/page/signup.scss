@@ -1,0 +1,19 @@
+@import 'style/variable';
+@import 'style/mixin';
+
+.signup-page {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  
+  .signup-form {
+    align-self: center;
+    input {
+      @include form-input;
+    }
+  }
+}
