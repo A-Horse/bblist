@@ -20,6 +20,7 @@ import {navHeight} from 'components/Nav';
 import {spawnMixinRender} from 'style/theme-render';
 import {BoardSetting} from './BoardSetting.js';
 import TaskListCreater from './TaskListCreater';
+import {updateTitle} from 'services/title';
 
 import 'style/page/task/taskboard-header.scss';
 import 'style/page/task/board.scss';
@@ -34,15 +35,6 @@ const styles = {
   },
   topBarTitle: {
     color: 'white'
-  },
-  dimensions: {
-    
-  },
-  listContainer: {
-    position: 'relative',
-    justifyContent: 'center',
-    height: '100%',
-    whiteSpace: 'nowrap'
   }
 };
 
@@ -65,6 +57,10 @@ class TaskWall extends Component {
     }).catch(error => {
       // TODO 404
     });
+  }
+
+  componentDidMount() {
+    updateTitle('Task Board');
   }
 
   

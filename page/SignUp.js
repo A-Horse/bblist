@@ -55,7 +55,7 @@ class SignUp extends Component {
             <Input type='password' ref='password' name='bblist-repeat' required placeholder="Password Repeat"/>
           </div>
 
-          <Button type='submit'>Sign Up</Button>
+          <Button type='submit' styleType='primary' size='large'>Sign Up</Button>
         </form>
       </PageContainer>
     );
@@ -112,4 +112,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(SignUp)
+export default connect(mapStateToProps)(SignUp);

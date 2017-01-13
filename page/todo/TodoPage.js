@@ -7,6 +7,7 @@ import {makeGravatarUrl} from 'services/gravatar';
 import TodoList from './TodoList';
 import PomodoraDial from './PomodoraDial';
 import {createTodo, getTodoList} from 'actions/todo/todos';
+import {updateTitle} from 'services/title';
 
 
 class TodoPage extends Component {
@@ -17,7 +18,7 @@ class TodoPage extends Component {
   }
   
   componentDidUpdate() {
-    
+    updateTitle('Todo');
   }
   
   render() {
