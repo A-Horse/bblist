@@ -1,18 +1,29 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {signUp} from '../actions/sign-up'
+import {signUp} from '../actions/sign-up';
 import {validateFormValue} from '../services/validate-strategy';
-import { browserHistory } from 'react-router'
+import { browserHistory } from 'react-router';
+import {PageContainer} from 'components/widget/PageContainer';
+import {Input} from '../components/widget/Input';
+import {updateTitle} from 'services/title';
+import {Button} from '../components/widget/Button';
+import {isEnterKey} from 'utils/keyboard';
 
 import {
   SIGNUP_REQUEST, SIGNUP_SUCCESS, SIGNUP_FAILURE
 } from '../actions/sign-up';
+
+import 'style/page/signup.scss';
 
 class SignUp extends Component {
 
   constructor() {
     super();
     
+  }
+
+  componentDidMount() {
+    updateTitle('Sign Up');
   }
 
   componentWillMount() {
@@ -25,38 +36,36 @@ class SignUp extends Component {
     const errorMessage = this.state.errorMessage;
     
     return (
-      <form>
+      <PageContainer className='signup-page'>
+        <form ref='form' className='signup-form' onSubmit={this.signup.bind(this)}>
 
-        <div>
-          <span>email</span>
-          <input type='email' name='bblist-email' ref='email'/>
-          <p>{errorMessage.email}</p>
-        </div>
-        
-        <div>
-          <span>username</span>
-          <input type='text' name='bblist-username' ref='username'/>
-          <p>{errorMessage.username}</p>
-        </div>
-        
-        <div>
-          <span>password</span>
-          <input type='password' name='bblist-password' ref='password'/>
-          <p>{errorMessage.password}</p>
-        </div>
+          <div>
+            <Input type='text' ref='email' name='bblist-email' required placeholder="Email"/>
+          </div>
 
-        <div>
-          <span>repeat password</span>
-          <input type='password' name='bblist-repeat' ref='repeat'/>
-          <p>{errorMessage.repeat}</p>
-        </div>
+          <div>
+            <Input type='text' onKeyDown={this.inputOnKeyDown.bind(this)} ref='name' name='bblist-name' required placeholder="Name"/>
+          </div>
 
-        <button type="submit" onClick={(event) => this.handleClick(event)} >Sign Up</button>
-      </form>
+          <div>
+            <Input type='password' ref='password' name='bblist-password' required placeholder="Password"/>
+          </div>
+
+          <div>
+            <Input type='password' ref='password' name='bblist-repeat' required placeholder="Password Repeat"/>
+          </div>
+
+          <Button type='submit' styleType='primary' size='large'>Sign Up</Button>
+        </form>
+      </PageContainer>
     );
   }
 
-  handleClick(event) {
+  inputOnKeyDown(event) {
+    isEnterKey(event) && this.signup();
+  }
+
+  signup(event) {
     event.preventDefault();
     
     const { dispatch } = this.props;
@@ -65,15 +74,16 @@ class SignUp extends Component {
     const password = this.refs.password;
     const repeat = this.refs.repeat;
     const email = this.refs.email;
-
-    this.refs.username.value = 'abychen';
-    this.refs.email.value = 'abychen@outlook.com';
-    this.refs.password.value = '123456';
+    
+    // this.refs.username.value = 'abychen';
+    // this.refs.email.value = 'abychen@outlook.com';
+    // this.refs.password.value = '123456';
     
     const userInfo = {
       username: username.value.trim(),
       password: password.value.trim(),
-      email: email.value.trim()
+      email: email.value.trim(),
+      repeat: repeat.value.trim()
     };
     
     const errorMessage = validateFormValue(userInfo, {
@@ -99,7 +109,7 @@ class SignUp extends Component {
 const mapStateToProps = (state) => {
   return {
     
-  }
-}
+  };
+};
 
-export default connect(mapStateToProps)(SignUp)
+export default connect(mapStateToProps)(SignUp);
