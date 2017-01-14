@@ -106,7 +106,7 @@ class TaskList extends Component {
     const {listName} = this.props;
     return (
       <div className='task-list--title'>
-        <Textarea ref='trackName' onKeyDown={this.onTrackNameKeyDown.bind(this)} onChange={this.onTrackNameChanged.bind(this)} className='title--text' defaultValue={listName}></Textarea>
+        <Textarea ref='trackName' onMouseDown={event => event.stopPropagation()} onKeyDown={this.onTrackNameKeyDown.bind(this)} onChange={this.onTrackNameChanged.bind(this)} className='title--text' defaultValue={listName}></Textarea>
       </div>
     );
   }

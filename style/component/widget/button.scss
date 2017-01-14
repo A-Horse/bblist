@@ -7,10 +7,15 @@
   border-radius: $radius-middle;
   padding: 4px 13px;
   box-sizing: border-box;
+  line-height: 1;
 }
 
 .button.middle {
   height: 30px;
+}
+
+.button.large {
+  height: 45px;
 }
 
 .button.default {

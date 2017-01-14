@@ -110,7 +110,7 @@ class CardModal extends Component {
       <Modal className='taskcard-modal' toggle={this.props.toggleTaskCardModal} close={this.close.bind(this)}>
         <div className='taskcard-modal--top-bar'>
           <div className='top-bar-list-chooser'>
-            <span className='top-bar--list-label'>LIST:</span>
+            <span className='top-bar--list-label'>Track:</span>
             <Select defaultItem={this.buildListSelectDefaultItem(currentList)}
                     items={this.buildListSelectItems()}
                     onSelect={this.onChangeTrack.bind(this)}/>
@@ -126,7 +126,7 @@ class CardModal extends Component {
         <Hr/>
 
         <div className='taskcard-modal--content'>
-          <Textarea ref='content' onBlur={this.updateContent.bind(this)} defaultValue={card.content}></Textarea>
+          <Textarea placeholder='Add Description' ref='content' onBlur={this.updateContent.bind(this)} defaultValue={card.content}></Textarea>
         </div>
 
         <div className='taskcard-modal--people'>

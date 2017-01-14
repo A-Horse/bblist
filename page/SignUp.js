@@ -55,7 +55,7 @@ class SignUp extends Component {
             <Input type='password' ref='password' name='bblist-repeat' required placeholder="Password Repeat"/>
           </div>
 
-          <Button type='submit' styleType='primary' size='large'>Sign Up</Button>
+        <Button className='signup-button' type='submit' styleType='primary' size='large'>Sign Up</Button>
         </form>
       </PageContainer>
     );

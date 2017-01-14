@@ -1,17 +1,39 @@
 @import 'style/variable';
 
 .signin-page {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+
+  .signin-main {
+    width: 330px;
+    margin-top: -150px;
+    align-self: center;
+
+    .signup-link {
+
+    }
+  }
 
   .signin-form {
+    display: block;
     input {
+      width: 100%;
       padding: 12px;
       box-sizing: border-box;
       border: 1px solid rgba(0, 0, 0, 0.1);
       border-radius: $radius-large;
-      letter-spacing: 2px;
+      letter-spacing: 1px;
       font: {
         weight: 500;
       }
+      margin-bottom: 25px;
+    }
+
+    .signin-button {
+      width: 100%;
     }
   }
 }

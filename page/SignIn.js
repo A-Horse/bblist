@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {signin} from '../actions/login';
 import {browserHistory} from 'react-router';
-import {validateFormValue, validateFormValue2} from '../services/validate-strategy';
+import {validateFormValue} from '../services/validate-strategy';
 import {Button} from '../components/widget/Button';
 import {Input} from '../components/widget/Input';
 import {PageContainer} from '../components/widget/PageContainer';
@@ -18,10 +18,7 @@ class SignIn extends Component {
   }
 
   componentDidMount() {
-    setTimeout(function(){
-      this.refs.email.value = '';
-      this.refs.password.value = '';
-    });
+    document.title = 'Octopus Login';
   }
   
   render() {
@@ -30,7 +27,8 @@ class SignIn extends Component {
     // TODO experience button event.preventDefault 会组织 html5 的校验
     return (
       <PageContainer className='signin-page'>
-        <div>
+
+        <div className='signin-main'>
           <form className='signin-form' onSubmit={this.login.bind(this)}>
             <div>
               <Input type='text' ref='email' name='bblist-email' required placeholder="Email"/>
@@ -42,12 +40,12 @@ class SignIn extends Component {
               <p>{errorMessage.password}</p>
             </div>
 
-            <div>
-              <Button type='submit'>Login</Button>
-            </div>
+            <Button className='signin-button' size='large' type='submit' styleType='primary'>Login</Button>
+
           </form>
+          <Link className='signup-link' to="/signup">Sign up</Link>
         </div>
-        <Link to="/signup">Sign up</Link>
+        
       </PageContainer>
     );
   }
@@ -72,13 +70,6 @@ class SignIn extends Component {
       email: ['email'],
       password: ['required#required']
     });
-
-    const errorMessage2 = validateFormValue2(loginInfo, {
-      email: ['email'],
-      password: ['required#required']
-    });
-
-    console.log(errorMessage2);
 
     this.setState({errorMessage: errorMessage});    
     if( !Object.keys(errorMessage).length ){

@@ -36,6 +36,10 @@ $content-top: 150px;
     display: flex;
     width: 80%;
 
+    .top-bar--list-label {
+      font-size: 500;
+    }
+
     .select {
       margin-left: 10px;
       width: 100%;
@@ -72,10 +76,12 @@ $content-top: 150px;
     padding: 8px 11px;
     box-sizing: border-box;
     resize: none;
+    min-height: 78px;
   }
 }
 
 .taskcard-modal--people {
+  position: relative;
   border: 1px solid $border-light;
   vertical-align: middle;
   padding: 6px 6px;
@@ -85,6 +91,17 @@ $content-top: 150px;
     display: block;
     width: 30px;
     height: 30px;
+  }
+
+  &:before {
+    content: 'People';
+    letter-spacing: 1px;
+    color: $gray;
+    display: block;
+    position: absolute;
+    left: 10px;
+    top: -10px;
+    background-color: $white;
   }
 }
 
