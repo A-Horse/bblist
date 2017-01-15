@@ -44,6 +44,10 @@ $content-top: 150px;
       margin-left: 10px;
       width: 100%;
 
+      &--box {
+        border: none;  
+      }
+
       ul {
         z-index: 100;
       }
@@ -67,6 +71,7 @@ $content-top: 150px;
 }
 
 .taskcard-modal--content {
+  margin-bottom: 10px;
   textarea {
     width: 100%;
     border: 1px solid $border-light;
@@ -84,7 +89,7 @@ $content-top: 150px;
   position: relative;
   border: 1px solid $border-light;
   vertical-align: middle;
-  padding: 6px 6px;
+  padding: 18px 6px 6px;
   display: flex;
 
   .useravatar {
@@ -102,6 +107,7 @@ $content-top: 150px;
     left: 10px;
     top: -10px;
     background-color: $white;
+    padding: 0 2px;
   }
 }
 
