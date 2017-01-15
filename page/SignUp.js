@@ -8,6 +8,7 @@ import {Input} from '../components/widget/Input';
 import {updateTitle} from 'services/title';
 import {Button} from '../components/widget/Button';
 import {isEnterKey} from 'utils/keyboard';
+import {Link} from 'react-router';
 
 import {
   SIGNUP_REQUEST, SIGNUP_SUCCESS, SIGNUP_FAILURE
@@ -55,8 +56,12 @@ class SignUp extends Component {
             <Input type='password' ref='password' name='bblist-repeat' required placeholder="Password Repeat"/>
           </div>
 
-        <Button className='signup-button' type='submit' styleType='primary' size='large'>Sign Up</Button>
+          <Button className='signup-button' type='submit' styleType='primary' size='large'>Sign Up</Button>
         </form>
+        <div>
+          Already has an Account?
+          <Link className='signin-link' to="/signin">Sign In</Link>
+        </div>
       </PageContainer>
     );
   }
