@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {PageContainer} from 'components/widget/PageContainer';
 import {SeaWaves} from 'effect/SeaWaves';
 import {Button} from '../components/widget/Button';
+import {Link} from 'react-router';
 
 import 'style/page/index.scss';
 
@@ -25,6 +26,32 @@ class IndexPage extends Component {
     seaWaves.loop();
   }
 
+  renderSignBar() {
+    return (
+      <div className='sign-bar'>
+        <Link to="/signin">
+          <Button className='signin-button' styleType='primary' size='middle'>Sign In</Button>
+        </Link>
+        
+        <Link to="/signup">
+          <Button className='signup-button' styleType='default' size='middle'>Sign Up</Button>
+        </Link>
+      </div>
+    );
+  }
+
+  renderEnterBar() {
+    return (
+      <div className=''>
+        
+      </div>
+    );
+  }
+
+  renderLinkBar() {
+    
+  }
+
   render() {
     return (
       <PageContainer className='index-page'>
@@ -37,12 +64,12 @@ class IndexPage extends Component {
 
         <div className='index-main'>
           
-          <div className='sign-bar'>
-            <Button className='signin-button' styleType='primary' size='middle'>Sign In</Button>
-            <Button className='signup-button' styleType='default' size='middle'>Sign Up</Button>
-          </div>
+          
+
+          
 
         </div>
+
         
       </PageContainer>
     );

@@ -140,7 +140,7 @@ class CardModal extends Component {
 
         <div className='taskcard-modal--comment-input'>
           <Textarea ref='comment' placeholder='add comment'></Textarea>
-          <Button onClick={this.postComment.bind(this)} styleType='default'>Add</Button>
+          <Button onClick={this.postComment.bind(this)} styleType='primary'>Add</Button>
         </div>
         
       </Modal>

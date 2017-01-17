@@ -37,7 +37,7 @@ $content-top: 150px;
     width: 80%;
 
     .top-bar--list-label {
-      font-size: 500;
+      font-weight: bolder;
     }
 
     .select {
@@ -101,13 +101,13 @@ $content-top: 150px;
   &:before {
     content: 'People';
     letter-spacing: 1px;
-    color: $gray;
+    color: $gray-deep;
     display: block;
     position: absolute;
     left: 10px;
     top: -10px;
     background-color: $white;
-    padding: 0 2px;
+    padding: 0 5px;
   }
 }
 
@@ -134,14 +134,16 @@ $content-top: 150px;
   margin-top: 14px;
   width: 100%;
   left: 0;
+  padding: 6px 13px;
   display: flex;
   align-items: center;
   background-color: $gray-light-litte-depth;
 
   textarea {
+    letter-spacing: 0.5px;
     width: 100%;
-    margin: 4px 10px;
     padding: 3px 8px;
+    margin-right: 13px;
     resize: none;
     border-radius: $radius-middle;
     border-color: $gray;

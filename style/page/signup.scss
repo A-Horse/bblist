@@ -12,14 +12,15 @@
 
   .signup-main {
     width: 330px;
-    margin-top: -100px;
+    margin-top: -80px;
     align-self: center;
   }
 
   .signin-tip {
-    margin-top: 12px;
+    margin-top: 18px;
     display: flex;
     justify-content: space-between;
+    color: $black-light;
 
     .signin-link {
       font-weight: bolder;
@@ -27,8 +28,8 @@
   }
   
   .signup-form {
+    margin-top: 18px;
     width: 330px;
-
     align-self: center;
 
     input {

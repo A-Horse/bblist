@@ -7,6 +7,7 @@ import {PageContainer} from 'components/widget/PageContainer';
 import {Input} from '../components/widget/Input';
 import {updateTitle} from 'services/title';
 import {Button} from '../components/widget/Button';
+import {LogoBan} from 'components/commons/LogoBan';
 import {isEnterKey} from 'utils/keyboard';
 import {Link} from 'react-router';
 
@@ -39,8 +40,8 @@ class SignUp extends Component {
     return (
       <PageContainer className='signup-page'>
         <div className='signup-main'>
+          <LogoBan/>
           <form ref='form' className='signup-form' onSubmit={this.signup.bind(this)}>
-
             <div>
               <Input type='text' ref='email' name='bblist-email' required placeholder="Email"/>
             </div>

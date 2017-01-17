@@ -5,6 +5,7 @@ import {browserHistory} from 'react-router';
 import {validateFormValue} from '../services/validate-strategy';
 import {Button} from '../components/widget/Button';
 import {Input} from '../components/widget/Input';
+import {LogoBan} from 'components/commons/LogoBan';
 import {PageContainer} from '../components/widget/PageContainer';
 import {Link} from 'react-router';
 
@@ -29,6 +30,7 @@ class SignIn extends Component {
       <PageContainer className='signin-page'>
 
         <div className='signin-main'>
+          <LogoBan/>
           <form className='signin-form' onSubmit={this.login.bind(this)}>
             <div>
               <Input type='text' ref='email' name='bblist-email' required placeholder="Email"/>
@@ -43,7 +45,11 @@ class SignIn extends Component {
             <Button className='signin-button' size='large' type='submit' styleType='primary'>Login</Button>
 
           </form>
-          <Link className='signup-link' to="/signup">Sign up</Link>
+
+          <div className='signup-tip'>
+            Do not have an account yet?
+            <Link className='signup-link' to="/signup">Sign up</Link>
+          </div>
         </div>
         
       </PageContainer>

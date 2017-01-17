@@ -1,0 +1,14 @@
+@import 'style/variable';
+@import 'style/mixin';
+
+.logoban {
+  .logo {
+    width: 50px;
+    height: 50px;
+  }
+
+  .text-logo {
+    width: 250px;
+    margin-left: 20px;
+  }
+}

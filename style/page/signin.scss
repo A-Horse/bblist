@@ -12,12 +12,20 @@
     margin-top: -150px;
     align-self: center;
 
-    .signup-link {
+    .signup-tip {
+      margin-top: 18px;
+      display: flex;
+      justify-content: space-between;
+      color: $black-light;
 
+      .signup-link {
+        font-weight: bolder;
+      }
     }
   }
 
   .signin-form {
+    margin-top: 18px;
     input {
       width: 100%;
       padding: 12px;
