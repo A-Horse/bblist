@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Logo} from './Logo';
+import {TextLogo} from './TextLogo';
 
 import 'style/component/commons/logoban.scss';
 
@@ -13,9 +14,8 @@ export class LogoBan extends Component {
     return (
       <div className='logoban'>
         <Logo/>
-        <img className='text-logo' src='static/image/text-logo.svg'/>
+        <TextLogo/>
       </div>
     );
   }
 }
-

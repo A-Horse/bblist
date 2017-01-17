@@ -4,6 +4,7 @@ import {PageContainer} from 'components/widget/PageContainer';
 import {SeaWaves} from 'effect/SeaWaves';
 import {Button} from '../components/widget/Button';
 import {Link} from 'react-router';
+import {isLogin} from 'services/login';
 
 import 'style/page/index.scss';
 
@@ -42,14 +43,14 @@ class IndexPage extends Component {
 
   renderEnterBar() {
     return (
-      <div className=''>
+      <div className='enter-bar'>
         
       </div>
     );
   }
 
   renderLinkBar() {
-    
+    return isLogin() ? this.renderEnterBar() : this.renderSignBar();
   }
 
   render() {
@@ -65,7 +66,7 @@ class IndexPage extends Component {
         <div className='index-main'>
           
           
-
+          {this.renderLinkBar()}
           
 
         </div>
