@@ -38,29 +38,32 @@ class SignUp extends Component {
     
     return (
       <PageContainer className='signup-page'>
-        <form ref='form' className='signup-form' onSubmit={this.signup.bind(this)}>
+        <div className='signup-main'>
+          <form ref='form' className='signup-form' onSubmit={this.signup.bind(this)}>
 
-          <div>
-            <Input type='text' ref='email' name='bblist-email' required placeholder="Email"/>
+            <div>
+              <Input type='text' ref='email' name='bblist-email' required placeholder="Email"/>
+            </div>
+
+            <div>
+              <Input type='text' onKeyDown={this.inputOnKeyDown.bind(this)} ref='name' name='bblist-name' required placeholder="Name"/>
+            </div>
+
+            <div>
+              <Input type='password' ref='password' name='bblist-password' required placeholder="Password"/>
+            </div>
+
+            <div>
+              <Input type='password' ref='password' name='bblist-repeat' required placeholder="Password Repeat"/>
+            </div>
+
+            <Button className='signup-button' type='submit' styleType='primary' size='large'>Sign Up</Button>
+          </form>
+
+          <div className='signin-tip'>
+            Already has an Account?
+            <Link className='signin-link' to="/signin">Sign In</Link>
           </div>
-
-          <div>
-            <Input type='text' onKeyDown={this.inputOnKeyDown.bind(this)} ref='name' name='bblist-name' required placeholder="Name"/>
-          </div>
-
-          <div>
-            <Input type='password' ref='password' name='bblist-password' required placeholder="Password"/>
-          </div>
-
-          <div>
-            <Input type='password' ref='password' name='bblist-repeat' required placeholder="Password Repeat"/>
-          </div>
-
-          <Button className='signup-button' type='submit' styleType='primary' size='large'>Sign Up</Button>
-        </form>
-        <div>
-          Already has an Account?
-          <Link className='signin-link' to="/signin">Sign In</Link>
         </div>
       </PageContainer>
     );
