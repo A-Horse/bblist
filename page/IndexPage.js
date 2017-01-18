@@ -5,6 +5,7 @@ import {SeaWaves} from 'effect/SeaWaves';
 import {Button} from '../components/widget/Button';
 import {Link} from 'react-router';
 import {isLogin} from 'services/login';
+import {LogoBan} from 'components/commons/LogoBan';
 
 import 'style/page/index.scss';
 
@@ -65,7 +66,10 @@ class IndexPage extends Component {
 
         <div className='index-main'>
           
-          
+          <div className='logo-container'>
+            <LogoBan/>
+          </div>
+
           {this.renderLinkBar()}
           
 
