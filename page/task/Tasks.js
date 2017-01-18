@@ -58,7 +58,6 @@ class Tasks extends Component {
   render() {
     return (
       <PageContainer>
-        <CateLine>current walls:</CateLine>
         <div className='taskboard-board-container'>
           {this.renderWalls()}          
           {this.renderCreateModal()}

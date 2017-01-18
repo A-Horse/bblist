@@ -90,7 +90,6 @@ class CardModal extends Component {
 
   getCurrentTrack() {
     const {card, normalizedList} = this.props;
-    console.log(card);
     return normalizedList.entities[card.taskListId];
   }
 
@@ -100,12 +99,10 @@ class CardModal extends Component {
     if (!card) {
       return null;
     }
-
     const currentList = this.getCurrentTrack();
     if (!currentList) {
       return null;
     }
-
     return (
       <Modal className='taskcard-modal' toggle={this.props.toggleTaskCardModal} close={this.close.bind(this)}>
         <div className='taskcard-modal--top-bar'>
@@ -139,12 +136,18 @@ class CardModal extends Component {
         {this.renderPomodoro()}
 
         <div className='taskcard-modal--comment-input'>
-          <Textarea ref='comment' placeholder='add comment'></Textarea>
-          <Button onClick={this.postComment.bind(this)} styleType='primary'>Add</Button>
+          <Textarea  onKeyDown={this.onCommentInputKeyDown.bind(this)} ref='comment' placeholder='add comment (Enter to post)'></Textarea>
         </div>
         
       </Modal>
     );
+  }
+
+  onCommentInputKeyDown(event) {
+    if (!isEnterKey(event)) {
+      return;
+    }
+    this.postComment();
   }
 
   onTitleKeyDown(event) {

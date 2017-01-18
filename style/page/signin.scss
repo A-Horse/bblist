@@ -1,4 +1,5 @@
 @import 'style/variable';
+@import 'style/mixin';
 
 .signin-page {
   display: flex;
@@ -23,23 +24,16 @@
   }
 
   .signin-form {
-    // TODO extract variable
     margin-top: 25px;
     input {
-      width: 100%;
-      padding: 12px;
-      box-sizing: border-box;
-      border: 1px solid rgba(0, 0, 0, 0.1);
-      border-radius: $radius-large;
-      letter-spacing: 1px;
-      font: {
-        weight: 500;
-      }
+      @include form-input;
+    }
+
+    .error-msg {
       margin-bottom: 25px;
     }
 
     .signin-button {
-      margin-top: 25px;
       width: 100%;
     }
   }

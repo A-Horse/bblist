@@ -10,11 +10,11 @@ const RULES = {
 
 const defualtErrorMessage = {
   email: '请输入有效的邮箱地址',
-  min: '请输入最少${1}个字符'
+  min: '请输入最少 ${1} 个字符'
 };
 
 function makeErrorMessageByParams(template, params) {
-  return template.replace(/${\d}/g, matched => {
+  return template.replace(/\${\d+}/g, matched => {
     const index = R.head(matched.match(/\d+/));
     return params[index - 1];
   });
@@ -23,10 +23,8 @@ function makeErrorMessageByParams(template, params) {
 function makeValidater(ruleString) {
   const [nameParams, message] = ruleString.split('#');
   const [name, params] = R.splitAt(1, nameParams.split('@'));
-  console.log("params = ", params);
   return value => {
-    // TODO apply
-    if (RULES[name].apply(null, params)(value)) {
+    if (R.apply(RULES[name], params)(value)) {
       return null;
     }
     const template =  message || defualtErrorMessage[name];

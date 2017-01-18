@@ -37,6 +37,10 @@
       @include form-input;
     }
 
+    .error-msg {
+      margin-bottom: 25px;
+    }
+
     .signup-button {
       width: 100%;
     }

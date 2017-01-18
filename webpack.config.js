@@ -31,7 +31,7 @@ module.exports = {
     new webpack.BannerPlugin(fs.readFileSync('./.banner').toString()),
     new webpack.optimize.AggressiveMergingPlugin(),
     new BellOnBundlerErrorPlugin(),
-    new OfflinePlugin(),
+    // new OfflinePlugin(),
     new webpack.HotModuleReplacementPlugin()
   ],
   module: {

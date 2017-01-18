@@ -81,7 +81,7 @@ class SignUp extends Component {
     const email = this.refs.email.instance;
 
     return {
-      username: name.value.trim(), // TODO username => name
+      name: name.value.trim(), // TODO username => name
       password: password.value.trim(),
       email: email.value.trim(),
       repeat: repeat.value.trim()
@@ -90,8 +90,8 @@ class SignUp extends Component {
 
   validateSignUpData(signUpData) {
     return validateFormValue(signUpData, {
-      username: ['max@100#max 100', 'min@4'],
-      password: ['max@100#max 100', 'min@6#min 6'],
+      name: ['max@100#Name Up to 100 characters ', 'min@3#The name must be a minimum of three characters'],
+      password: ['max@100#Password Up to 100 characters', 'min@6#min 6'],
       repeat: [`eqTo@${signUpData.password}#password don't match`],
       email: ['email#email express wrong', 'max@150#max 150']
     });

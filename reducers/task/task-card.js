@@ -10,7 +10,7 @@ import {ALL_TASKCARD_GET_SUCCESS} from 'actions/task/task-wall';
 
 function taskCard(state = {
   isFetching: false,
-  card: {},
+  card: null,
   active: false,
   entities: []
 }, action) {
@@ -72,7 +72,7 @@ function taskCard(state = {
   case UNACTIVE_CARD_MODAL:
     return Object.assign({}, state, {
       active: false,
-      card: {}
+      card: null
     });
     break;
   

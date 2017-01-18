@@ -9,18 +9,26 @@
   ul {
     li {
       position: relative;
-      left: 16px;
+      padding-left: 18px;
+      line-height: 1.1;
+      font-weight: 300;
+      margin-bottom: 8px;
+
+      &:last-children {
+        margin-bottom: 0;
+      }
+
       &:before {
         position: absolute;
         content: '';
         display: block;
-        width: 8px;
-        height: 8px;
+        width: 6px;
+        height: 6px;
         border-radius: 50%;
         background-color: $red-litte-light;
-        left: -14px;
+        left: 0;
         top: 50%;
-        margin-top: -4px;
+        margin-top: -3px;
       }
     }
   }

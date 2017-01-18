@@ -89,7 +89,6 @@ class TaskCard extends Component {
   }
 
   onClick(event) {
-    console.log('click');
     const {dispatch} = this.props;
     return dispatch(activeCardModal(this.props.cardId));
   }

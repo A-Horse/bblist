@@ -14,6 +14,7 @@ import R from 'ramda';
 
 import 'style/page/signin.scss';
 
+// TODO 登出 ，登陆成功后清空缓存
 class SignIn extends Component {  
   componentWillMount() {
     this.state = {
