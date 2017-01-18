@@ -6,26 +6,28 @@ import {validateFormValue} from '../services/validate-strategy';
 import {Button} from '../components/widget/Button';
 import {Input} from '../components/widget/Input';
 import {LogoBan} from 'components/commons/LogoBan';
+import {ErrorMsg} from 'components/ErrorMsg';
 import {PageContainer} from '../components/widget/PageContainer';
 import {Link} from 'react-router';
+import {updateTitle} from 'services/title';
+import R from 'ramda';
 
 import 'style/page/signin.scss';
 
 class SignIn extends Component {  
   componentWillMount() {
     this.state = {
-      errorMessage: {}
+      errorMessages: {}
     };
   }
 
   componentDidMount() {
-    document.title = 'Octopus Login';
+    updateTitle('Sign In');
   }
   
   render() {
-    const errorMessage = this.state.errorMessage;
-    // TODO experience HTML5页面才会接受 autoComplete
-    // TODO experience button event.preventDefault 会组织 html5 的校验
+    const errorMessages = this.state.errorMessages;
+    // TODO experience button event.preventDefault 会阻止 html5 的校验
     return (
       <PageContainer className='signin-page'>
 
@@ -34,14 +36,14 @@ class SignIn extends Component {
           <form className='signin-form' onSubmit={this.login.bind(this)}>
             <div>
               <Input type='text' ref='email' name='bblist-email' required placeholder="Email"/>
-              <p>{errorMessage.email}</p>
             </div>
 
             <div>
               <Input type='password' ref='password' name='bblist-password' required placeholder="Password"/>
-              <p>{errorMessage.password}</p>
             </div>
 
+            <ErrorMsg messages={R.values(errorMessages)}/>
+            
             <Button className='signin-button' size='large' type='submit' styleType='primary'>Login</Button>
 
           </form>
@@ -58,8 +60,8 @@ class SignIn extends Component {
 
   login(event) {
     event.preventDefault();
-    const {dispatch} = this.props;
 
+    const {dispatch} = this.props;
     const email = this.refs.email;
     const password = this.refs.password;
     
@@ -68,13 +70,13 @@ class SignIn extends Component {
       password: password.instance.value.trim()
     };
 
-    const errorMessage = validateFormValue(loginInfo, {
+    const errorMessages = validateFormValue(loginInfo, {
       email: ['email'],
       password: ['required#required']
     });
 
-    this.setState({errorMessage: errorMessage});    
-    if( !Object.keys(errorMessage).length ){
+    this.setState({errorMessages: errorMessages});
+    if( !Object.keys(errorMessages).length ){
       dispatch(signin(loginInfo)).then(() => {
         browserHistory.push('/');
       });

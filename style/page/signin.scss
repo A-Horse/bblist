@@ -1,16 +1,14 @@
 @import 'style/variable';
 
 .signin-page {
-  position: absolute;
   display: flex;
   justify-content: center;
   height: 100%;
   width: 100%;
+  padding-top: 14%;
 
   .signin-main {
     width: 330px;
-    margin-top: -150px;
-    align-self: center;
 
     .signup-tip {
       margin-top: 18px;
@@ -25,7 +23,8 @@
   }
 
   .signin-form {
-    margin-top: 18px;
+    // TODO extract variable
+    margin-top: 25px;
     input {
       width: 100%;
       padding: 12px;
@@ -40,6 +39,7 @@
     }
 
     .signin-button {
+      margin-top: 25px;
       width: 100%;
     }
   }

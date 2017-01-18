@@ -9,7 +9,9 @@ import {updateTitle} from 'services/title';
 import {Button} from '../components/widget/Button';
 import {LogoBan} from 'components/commons/LogoBan';
 import {isEnterKey} from 'utils/keyboard';
+import {ErrorMsg} from 'components/ErrorMsg';
 import {Link} from 'react-router';
+import R from 'ramda';
 
 import {
   SIGNUP_REQUEST, SIGNUP_SUCCESS, SIGNUP_FAILURE
@@ -35,7 +37,7 @@ class SignUp extends Component {
   }
   
   render() {
-    const errorMessage = this.state.errorMessage;
+    const errorMessages = this.state.errorMessages;
     
     return (
       <PageContainer className='signup-page'>
@@ -55,8 +57,10 @@ class SignUp extends Component {
             </div>
 
             <div>
-              <Input type='password' ref='password' name='bblist-repeat' required placeholder="Password Repeat"/>
+              <Input type='password' ref='repeat' name='bblist-repeat' required placeholder="Password Repeat"/>
             </div>
+
+            <ErrorMsg messages={R.values(errorMessages)}/>
 
             <Button className='signup-button' type='submit' styleType='primary' size='large'>Sign Up</Button>
           </form>
@@ -68,46 +72,48 @@ class SignUp extends Component {
         </div>
       </PageContainer>
     );
-  }  
+  }
 
-  signup(event) {
-    event.preventDefault();
-    
-    const { dispatch } = this.props;
-    
-    const username = this.refs.username;
-    const password = this.refs.password;
-    const repeat = this.refs.repeat;
-    const email = this.refs.email;
-    
-    // this.refs.username.value = 'abychen';
-    // this.refs.email.value = 'abychen@outlook.com';
-    // this.refs.password.value = '123456';
-    
-    const userInfo = {
-      username: username.value.trim(),
+  getSignUpData() {
+    const name = this.refs.name.instance;
+    const password = this.refs.password.instance;
+    const repeat = this.refs.repeat.instance;
+    const email = this.refs.email.instance;
+
+    return {
+      username: name.value.trim(), // TODO username => name
       password: password.value.trim(),
       email: email.value.trim(),
       repeat: repeat.value.trim()
     };
-    
-    const errorMessage = validateFormValue(userInfo, {
-      username: ['required#required', 'max@100#max 100', 'min@3#min 3'],
-      password: ['required#required', 'max@100#max 100', 'min@6#min 6'],
-      repeat: ['required#required', `eqTo@${userInfo.password}#password don't match`],
-      email: ['required#required', 'email#email express wrong', 'max@150#max 150']
+  }
+
+  validateSignUpData(signUpData) {
+    return validateFormValue(signUpData, {
+      username: ['max@100#max 100', 'min@4'],
+      password: ['max@100#max 100', 'min@6#min 6'],
+      repeat: [`eqTo@${signUpData.password}#password don't match`],
+      email: ['email#email express wrong', 'max@150#max 150']
     });
     
-    this.setState({errorMessage: errorMessage});
-    
+  }
 
-    if( !Object.keys(errorMessage).length ){
-      dispatch(signUp(userInfo)).then(function(action){
-        if( action.type === SIGNUP_SUCCESS ){
-          browserHistory.push('/');
-        }
-      });
+  signup(event) {
+    event.preventDefault();
+    const {dispatch} = this.props;
+    
+    const signUpData = this.getSignUpData();
+    const errorMessages = this.validateSignUpData(signUpData);
+    this.setState({errorMessages: errorMessages});
+
+    if (Object.keys(errorMessages).length) {
+      return;
     }
+    dispatch(signUp(signUpData)).then(function(action){
+      if( action.type === SIGNUP_SUCCESS ){
+        browserHistory.push('/');
+      }
+    });
   }
 }
 

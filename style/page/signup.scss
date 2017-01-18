@@ -1,6 +1,8 @@
 @import 'style/variable';
 @import 'style/mixin';
 
+
+// TODO refactor with signin
 .signup-page {
   position: absolute;
   left: 0;
@@ -12,7 +14,6 @@
 
   .signup-main {
     width: 330px;
-    margin-top: -80px;
     align-self: center;
   }
 

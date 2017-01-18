@@ -1,2 +1,27 @@
 @import 'style/variable';
 
+.error-msg {
+  width: 100%;
+  padding: 12px;
+  background-color: $pink-light;
+  color: $red-litte-light;
+
+  ul {
+    li {
+      position: relative;
+      left: 16px;
+      &:before {
+        position: absolute;
+        content: '';
+        display: block;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: $red-litte-light;
+        left: -14px;
+        top: 50%;
+        margin-top: -4px;
+      }
+    }
+  }
+}

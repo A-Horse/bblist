@@ -9,18 +9,28 @@ const RULES = {
 };
 
 const defualtErrorMessage = {
-  email: '请输入有效的邮箱地址'
+  email: '请输入有效的邮箱地址',
+  min: '请输入最少${1}个字符'
 };
 
+function makeErrorMessageByParams(template, params) {
+  return template.replace(/${\d}/g, matched => {
+    const index = R.head(matched.match(/\d+/));
+    return params[index - 1];
+  });
+}
 
 function makeValidater(ruleString) {
   const [nameParams, message] = ruleString.split('#');
   const [name, params] = R.splitAt(1, nameParams.split('@'));
+  console.log("params = ", params);
   return value => {
+    // TODO apply
     if (RULES[name].apply(null, params)(value)) {
       return null;
     }
-    return message || defualtErrorMessage[name];
+    const template =  message || defualtErrorMessage[name];
+    return makeErrorMessageByParams(template, params);
   };
 }
 
