@@ -8,7 +8,7 @@
 .select--box {
   border: 1px solid $gray;
   border-radius: 3px;
-  padding: 0 8px;
+  padding: 0 2px;
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -16,13 +16,23 @@
   svg {
     position: relative;
     top: 2px;
-    transition: transform 50ms ease-in-out, top;
+    right: -5px;
+    transition: transform 80ms ease-in-out, top;/* TODO 贝塞尔 */
+  }
+
+  .select-box--name {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 100%;
+    color: $gray-super-deep;
   }
 
   &.select--box__opening {
     svg {
       transform: rotate(180deg);
       top: -1px;
+      right: -5px;
     }
   }
 }
@@ -32,11 +42,10 @@
   position: absolute;
   z-index: 1;
   background-color: $content-light;
-  width: auto;
+  max-width: 100%;
   border: 1px solid $gray;
   border-radius: $radius-middle;
-  height: 180px;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .select--item {
@@ -46,7 +55,10 @@
   height: 28px;
   line-height: 28px;
   padding: 0 8px;
-
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  
   &:hover {
     background-color: $gray-light-depth;
   }

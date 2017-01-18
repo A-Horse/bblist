@@ -63,7 +63,6 @@ class CardModal extends Component {
     const {dispatch, card} = this.props;
     if (card.comments) {
       return card.comments.map((comment) => {
-        console.log(comment);
         return (
           <div className='taskcard-modal--comments'>
             <p></p>

@@ -15,7 +15,7 @@ $list-vertical-margin: 15px;
   height: calc(100% - #{2 * $list-vertical-margin});
   z-index: 1;
   vertical-align: middle;
-  background-color: $gray-supper-light;
+  background-color: $gray-super-light;
   margin: $list-vertical-margin $list-horiz-margin;
   transform: translate(0, 0);
   transition: transform 200ms ease-in-out;

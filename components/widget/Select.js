@@ -48,7 +48,7 @@ export class Select extends Component {
     return (
       <div className='select'>
         <div className={this.buildBoxClassName()} onClick={this.openSelect.bind(this)}>
-          <p>{this.state.name}</p>
+        <p className='select-box--name'>{this.state.name}</p>
           <ArrowDown/>
         </div>
         <ul className='select--container' style={{display: this.state.toggle ? 'block' : 'none'}}>

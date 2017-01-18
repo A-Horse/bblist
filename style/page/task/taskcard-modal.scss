@@ -34,10 +34,11 @@ $content-top: 150px;
 
   .top-bar-list-chooser {
     display: flex;
-    width: 80%;
+    width: 90%;
 
     .top-bar--list-label {
       font-weight: bolder;
+      color: $black-light;
     }
 
     .select {
@@ -45,7 +46,7 @@ $content-top: 150px;
       width: 100%;
 
       &--box {
-        border: none;  
+        border: none;
       }
 
       ul {
