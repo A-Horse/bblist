@@ -7,7 +7,7 @@ export class TextLogo extends Component {
 
   render() {
     return (
-        <img className='text-logo' src='static/image/text-logo.svg'/>
+        <img className='text-logo' src='static/text-logo.svg'/>
     );
   }
 }

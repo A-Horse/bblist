@@ -9,7 +9,7 @@ export class Logo extends Component {
 
   render() {
     return (
-        <img className='logo' src='/static/image/logo.png'/>
+        <img className='logo' src='/static/logo.png'/>
     );
   }
 }
