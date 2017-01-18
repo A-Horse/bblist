@@ -47,7 +47,7 @@ class SignUp extends Component {
             </div>
 
             <div>
-              <Input type='text' onKeyDown={this.inputOnKeyDown.bind(this)} ref='name' name='bblist-name' required placeholder="Name"/>
+              <Input type='text' ref='name' name='bblist-name' required placeholder="Name"/>
             </div>
 
             <div>
@@ -68,11 +68,7 @@ class SignUp extends Component {
         </div>
       </PageContainer>
     );
-  }
-
-  inputOnKeyDown(event) {
-    isEnterKey(event) && this.signup();
-  }
+  }  
 
   signup(event) {
     event.preventDefault();

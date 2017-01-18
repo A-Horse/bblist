@@ -56,10 +56,6 @@ class SignIn extends Component {
     );
   }
 
-  onInputKeyDown() {
-    
-  }
-
   login(event) {
     event.preventDefault();
     const {dispatch} = this.props;
