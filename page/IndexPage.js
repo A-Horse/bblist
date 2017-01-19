@@ -21,10 +21,7 @@ class IndexPage extends Component {
   componentDidMount() {
     const seaWaves = new SeaWaves(this.refs.seaWavesCanvas);
 
-    //Initialize the CircleContainer objects
     seaWaves.initializeCircleContainers();
-
-    //Start the initial loop function for the first time
     seaWaves.loop();
   }
 
