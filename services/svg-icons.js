@@ -11,6 +11,7 @@ export FlagIcon from 'babel!svg-react!../assets/svg/ic_flag_black_24px.svg?name=
 export PlayIcon from 'babel!svg-react!../assets/svg/ic_play_arrow_black_24px.svg?name=PlayIcon';
 export CommentIcon from 'babel!svg-react!../assets/svg/ic_comment_black_24px.svg?name=CommentIcon';
 export ArrowDown from 'babel!svg-react!../assets/svg/ic_keyboard_arrow_down_black_24px.svg?name=ArrowDown';
+export Emoticon from 'babel!svg-react!../assets/svg/ic_insert_emoticon_black_24px.svg?name=Emoticon';
 
 export const SMALL_SIZE = 16;
 export const MIDDLE_SIZE = 20;

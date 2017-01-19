@@ -15,7 +15,7 @@ import {LogoBan} from 'components/commons/LogoBan';
 
 export const navHeight = 42;
 
-import  'style/nav.scss';
+import 'style/nav.scss';
 
 const styles = {
   logoArea: {
@@ -120,7 +120,7 @@ class Nav extends Component {
         <LogoBan/>
         
         <div style={styles.linkArea}>
-          <Link to="/" style={styles.linkStyle}>Home</Link>
+          <Link to="/home" style={this.activeLinkWithPath('home')}>Home</Link>
           <Link to="/task-wall" style={this.activeLinkWithPath('task-wall')}>Task</Link>
           <Link to="/todo" style={this.activeLinkWithPath('todo')}>Todo</Link>
         </div>
