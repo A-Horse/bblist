@@ -61,19 +61,14 @@ class SignIn extends Component {
 
   login(event) {
     event.preventDefault();
-
     const {dispatch} = this.props;
     const email = this.refs.email;
     const password = this.refs.password;
-    
-    const loginInfo = {
-      email: email.instance.value.trim(),
-      password: password.instance.value.trim()
-    };
+    const loginInfo = {email: email.instance.value.trim(), password: password.instance.value.trim()};
 
     const errorMessages = validateFormValue(loginInfo, {
       email: ['email'],
-      password: ['required#required']
+      password: ['max@100#Password Up to 100 characters', 'min@6#min 6']
     });
 
     this.setState({errorMessages: errorMessages});
@@ -81,8 +76,7 @@ class SignIn extends Component {
       dispatch(signin(loginInfo)).then(() => {
         browserHistory.push('/');
       });
-    }
-    
+    }    
   }
 }
 

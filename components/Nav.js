@@ -12,24 +12,15 @@ import {LightIcon} from '../services/svg-icons';
 import {DropList} from './widget/DropList';
 import {removeCachedData} from '../utils/auth';
 import {logout} from '../actions/logout';
+import {LogoBan} from 'components/commons/LogoBan';
 
 export const navHeight = 42;
 
+import  'style/nav.scss';
+
 const styles = {
-  headerStyle: {
-    position: 'relative',
-    width: '100%',
-    borderBottom: `1px solid ${ThemeConst.deepDark}`,
-    zIndex: '100',
-    height: `${navHeight}px`
-  },
   logoArea: {
-    textDecoration: 'none',
-    float: 'left',
-    marginLeft: '10px',
-    color: 'black',
-    fontWeight: '900',
-    lineHeight: `${navHeight}px`
+    
   },
   logoIcon: {
     height: '1rem',
@@ -125,20 +116,17 @@ class Nav extends Component {
   }
   
   render() {
-    const userCell = this.renderUserCell();    
     return (
-      <nav style={styles.headerStyle} className="clearfix">
-        <div style={styles.logoArea} style={styles.logoArea}>
-          <LightIcon style={styles.logoIcon} />
-          <span>LiGHT</span>
-        </div>
+      <nav className='nav'>
+        <LogoBan/>
+        
         <div style={styles.linkArea}>
           <Link to="/" style={styles.linkStyle}>Home</Link>
           <Link to="/task-wall" style={this.activeLinkWithPath('task-wall')}>Task</Link>
           <Link to="/idea" style={styles.linkStyle}>Idea</Link>
           <Link to="/todo" style={this.activeLinkWithPath('todo')}>Todo</Link>
         </div>
-        {userCell}
+        {this.renderUserCell()}
       </nav>
     );
   }
@@ -146,26 +134,18 @@ class Nav extends Component {
   renderUserCell() {
     const {user} = this.props;
     const avatorData = Storage.get('avator');
-    if (user) {
-      return (
-        <div style={styles.userArea}>
-          {avatorData ? <img ref='avator' style={styles.userAvatar} src={`data:image/png;base64,${avatorData}`} onClick={() => {this.setState({userMenuToggle: !this.state.userMenuToggle})}}/>
-            : <img ref='avator' crossOrigin="Anonymous" style={styles.userAvatar} src={makeGravatarUrl(user.email)} onClick={() => {this.setState({userMenuToggle: !this.state.userMenuToggle})}}/>}
+    return (
+      <div style={styles.userArea}>
+        {avatorData ? <img ref='avator' style={styles.userAvatar} src={`data:image/png;base64,${avatorData}`} onClick={() => {this.setState({userMenuToggle: !this.state.userMenuToggle})}}/>
+          : <img ref='avator' crossOrigin="Anonymous" style={styles.userAvatar} src={makeGravatarUrl(user.email)} onClick={() => {this.setState({userMenuToggle: !this.state.userMenuToggle})}}/>}
             <DropList toggle={this.state.userMenuToggle}>
               <ul style={styles.userMenu}>
                 <Link style={styles.menuLi} to="/profile" onClick={() => {this.setState({userMenuToggle: false})}}>Profile</Link>
                 <button style={styles.menuLi} onClick={this.onLogout.bind(this)}>Log out</button>
               </ul>
             </DropList>
-        </div>
-      );
-    }
-    return (
-      <div style={styles.userArea}>
-        <Link to="/login">Login</Link>
-        <Link to="/signup">Sign up</Link>
       </div>
-    );
+      );
   }
 }
 

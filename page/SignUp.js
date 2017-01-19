@@ -81,7 +81,7 @@ class SignUp extends Component {
     const email = this.refs.email.instance;
 
     return {
-      name: name.value.trim(), // TODO username => name
+      name: name.value.trim(),
       password: password.value.trim(),
       email: email.value.trim(),
       repeat: repeat.value.trim()

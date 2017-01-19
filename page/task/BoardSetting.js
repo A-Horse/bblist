@@ -40,7 +40,7 @@ export class BoardSetting extends Component {
       y: 10,
       width: 30,
       height: 10
-    }
+    };
 
     return (
       <div>
@@ -48,7 +48,7 @@ export class BoardSetting extends Component {
 
         <img src={this.state.coverDataURL} />
 
-        <ReactCrop src={this.state.coverDataURL} crop={crop}/>
+        <ReactCrop src={this.state.coverDataURL}/>
       </div>
     );
   }
