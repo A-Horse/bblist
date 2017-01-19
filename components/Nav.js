@@ -8,7 +8,6 @@ import {Storage, storageImage} from '../services/storage';
 import {authUser} from '../actions/login';
 import {spawnMixinRender} from '../style/theme-render';
 import {ThemeConst} from '../style/theme';
-import {LightIcon} from '../services/svg-icons';
 import {DropList} from './widget/DropList';
 import {removeCachedData} from '../utils/auth';
 import {logout} from '../actions/logout';
@@ -123,15 +122,14 @@ class Nav extends Component {
         <div style={styles.linkArea}>
           <Link to="/" style={styles.linkStyle}>Home</Link>
           <Link to="/task-wall" style={this.activeLinkWithPath('task-wall')}>Task</Link>
-          <Link to="/idea" style={styles.linkStyle}>Idea</Link>
           <Link to="/todo" style={this.activeLinkWithPath('todo')}>Todo</Link>
         </div>
-        {this.renderUserCell()}
+        {this.renderUserArea()}
       </nav>
     );
   }
 
-  renderUserCell() {
+  renderUserArea() {
     const {user} = this.props;
     const avatorData = Storage.get('avator');
     return (
