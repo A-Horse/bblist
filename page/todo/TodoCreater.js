@@ -15,7 +15,6 @@ import 'style/page/todo/todo-creater.scss';
 import {repeatItems} from './constants';
 
 class TodoCreater extends Component {
-  
   componentWillMount() {
     this.state = {
       toggle: false

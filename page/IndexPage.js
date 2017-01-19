@@ -68,10 +68,7 @@ class IndexPage extends Component {
           </div>
 
           {this.renderLinkBar()}
-          
-
         </div>
-
         
       </PageContainer>
     );
