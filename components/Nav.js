@@ -18,27 +18,6 @@ export const navHeight = 42;
 import 'style/nav.scss';
 
 const styles = {
-  userAvatar: {
-    height: '1.7rem',
-    width: '1.7rem',
-    borderRadius: '50%',
-    verticalAlign: 'middle',
-    cursor: 'pointer',
-    display: 'inline-block'
-  },
-  linkStyle: {
-    verticalAlign: 'middle',
-    textDecoration: 'none',
-    marginLeft: '10px',
-    color: ThemeConst.primaryText
-  },
-  activeLink: {
-    color: ThemeConst.mainColor,
-    fontWeight: '900'
-  },
-  floatRight: {
-    float: 'right'
-  },
   userMenu: {
     position: 'absolute',
     right: '0',
@@ -83,34 +62,33 @@ class Nav extends Component {
     return dispatch(logout()).then(removeCachedData());
   }
 
-  activeLinkWithPath(location) {
+  buildLinkClassName(keyPath) {
     const path = R.second(this.props.path.split('/'));
-    if (path === location) return Object.assign({}, styles.linkStyle, styles.activeLink);
-    return styles.linkStyle;
+    return (path === keyPath) ? 'nav-link nav-link__active' : 'nav-link';
   }
   
   render() {
     return (
       <nav className='nav'>
         <LogoBan/>
-        
-        <div className='link-area' style={styles.linkArea}>
-          <Link to="/home" style={this.activeLinkWithPath('home')}>Home</Link>
-          <Link to="/task-wall" style={this.activeLinkWithPath('task-wall')}>Task</Link>
-          <Link to="/todo" style={this.activeLinkWithPath('todo')}>Todo</Link>
+
+        <div className='nav-link' className='link-area'>
+          <Link to='/home' className={this.buildLinkClassName('home')}>Home</Link>
+          <Link to='/task-wall' className={this.buildLinkClassName('task-wall')}>Task</Link>
+          <Link to='/todo' className={this.buildLinkClassName('todo')}>Todo</Link>
         </div>
-        {this.renderUserArea()}
+        {this.renderNavUser()}
       </nav>
     );
   }
 
-  renderUserArea() {
+  renderNavUser() {
     return (
       <div className='avatar-area'>
         {this.renderAvatar()}
         <DropList toggle={this.state.userMenuToggle}>
           <ul style={styles.userMenu}>
-            <Link style={styles.menuLi} to="/profile" onClick={() => {this.setState({userMenuToggle: false})}}>Profile</Link>
+            <Link style={styles.menuLi} to='/profile' onClick={() => {this.setState({userMenuToggle: false})}}>Profile</Link>
             <button style={styles.menuLi} onClick={this.onLogout.bind(this)}>Log out</button>
           </ul>
         </DropList>
@@ -122,12 +100,12 @@ class Nav extends Component {
     const {user} = this.props;
     const avatarData = Storage.get('avator');
     return !!avatarData ? (
-      <img ref='avator' style={styles.userAvatar}
+      <img ref='avator' className='nav-avatar'
            src={`data:image/png;base64,${avatarData}`}
            onClick={() => {this.setState({userMenuToggle: !this.state.userMenuToggle})}}/>
     ) : (
-      <img ref='avator' crossOrigin='Anonymous'
-           style={styles.userAvatar} src={makeGravatarUrl(user.email)}
+      <img ref='avator' className='nav-avatar' crossOrigin='Anonymous'
+           src={makeGravatarUrl(user.email)}
            onClick={() => {this.setState({userMenuToggle: !this.state.userMenuToggle})}}/>
     );
   }

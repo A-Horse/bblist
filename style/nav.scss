@@ -15,7 +15,7 @@ nav.nav {
     height: 32px;
   }
 
-  .link-area {
+  .nav-link {
     float: left;
     marginLeft: 2rem;
     height: 100%;
@@ -24,5 +24,24 @@ nav.nav {
   .avatar-area {
     float: right;
     height: 100%;
+  }
+
+  .nav-avatar {
+    height: 1.7rem;
+    width: 1.7rem;
+    border-radius: 50%;
+    vertical-align: middle;
+    cursor: pointer;
+    display: inline-block;
+  }
+
+  .nav-link {
+    vertical-align: middle;
+    text-decoration: none;
+    margin-left: 10px;
+
+    &.nav-link__active {
+      font-weight: 900;
+    }
   }
 }
