@@ -9,7 +9,7 @@ const RULES = {
 };
 
 const defualtErrorMessage = {
-  email: '请输入有效的邮箱地址',
+  email: 'Please fill in the correct email address',
   min: '请输入最少 ${1} 个字符'
 };
 

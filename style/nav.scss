@@ -10,9 +10,19 @@ nav.nav {
 
   .logoban {
     float: left;
-    marginLeft: 10px;
+    margin-left: 10px;
     color: black;
-    
     height: 32px;
+  }
+
+  .link-area {
+    float: left;
+    marginLeft: 2rem;
+    height: 100%;
+  }
+
+  .avatar-area {
+    float: right;
+    height: 100%;
   }
 }

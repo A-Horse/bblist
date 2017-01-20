@@ -61,6 +61,10 @@ export class BoardSetting extends Component {
     reader.readAsDataURL(this.refs['cover-input'].files[0]);
   }
 
+  renderModal() {
+    
+  }
+
   render() {
     return (
       <div>

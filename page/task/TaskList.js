@@ -10,6 +10,7 @@ import CardPlaceholder from './CardPlaceholder';
 import {deleteTaskWall, getTaskAllCards} from 'actions/task/task-wall';
 import {createTaskList, deleteTaskList, updateTaskList} from 'actions/task/task-list';
 import {updateTaskCard, insertVirtualCard} from 'actions/task/task-card';
+import {Input} from 'components/widget/Input';
 import {DropList} from 'components/widget/DropList';
 import {ConfirmModal} from 'components/widget/ConfirmModal';
 import {AddIcon, MoreIcon, EditIcon, ArrowDownIcon, SettingIcon, MIDDLE_SIZE, SMALL_SIZE} from 'services/svg-icons';
@@ -106,7 +107,7 @@ class TaskList extends Component {
     const {listName} = this.props;
     return (
       <div className='task-list--title'>
-        <Textarea ref='trackName' onMouseDown={event => event.stopPropagation()} onKeyDown={this.onTrackNameKeyDown.bind(this)} onChange={this.onTrackNameChanged.bind(this)} className='title--text' defaultValue={listName}></Textarea>
+        <Input ref='trackName' onMouseDown={event => event.stopPropagation()} onKeyDown={this.onTrackNameKeyDown.bind(this)} onChange={this.onTrackNameChanged.bind(this)} className='title--text' defaultValue={listName}/>
       </div>
     );
   }

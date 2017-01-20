@@ -54,7 +54,7 @@ class SignIn extends Component {
             <Link className='signup-link' to="/signup">Sign up</Link>
           </div>
         </div>
-        
+
       </PageContainer>
     );
   }
@@ -72,7 +72,7 @@ class SignIn extends Component {
     });
 
     this.setState({errorMessages: errorMessages});
-    if( !Object.keys(errorMessages).length ){
+    if (!Object.keys(errorMessages).length) {
       dispatch(signin(loginInfo)).then(() => {
         browserHistory.push('/');
       });

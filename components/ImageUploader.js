@@ -1,12 +1,11 @@
 import React, {Component} from 'react';
 import {Button} from 'components/widget/Button';
 import {Modal} from 'components/widget/Modal';
-import CountDownTimer from 'components/CountDownTimer';
+import ReactCrop from 'react-image-crop';
 
 import 'style/image-uploader.scss';
 
 export class ImageUploader extends Component {
-
   componentWillMount() {
     
   }
@@ -20,14 +19,18 @@ export class ImageUploader extends Component {
   }
 
   renderModal() {
-
+    return (
+      <Modal>
+        <ReactCrop src={this.state.coverDataURL}/>
+      </Modal>
+    );
   }
 
   render() {
     return (
-        <div>
-        
-        </div>
+      <div>
+        <input type='file' className='' />
+      </div>
     );
   }
 }

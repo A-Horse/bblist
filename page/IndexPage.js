@@ -64,7 +64,7 @@ class IndexPage extends Component {
         <div className='index-main'>
           
           <div className='logo-container'>
-            <LogoBan/>
+            
           </div>
 
           {this.renderLinkBar()}

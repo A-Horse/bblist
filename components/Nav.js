@@ -3,14 +3,14 @@ import Radium from 'radium';
 import R from 'fw-ramda';
 import {connect} from 'react-redux';
 import {Link} from 'react-router';
-import {makeGravatarUrl} from '../services/gravatar';
-import {Storage, storageImage} from '../services/storage';
-import {authUser} from '../actions/login';
-import {spawnMixinRender} from '../style/theme-render';
-import {ThemeConst} from '../style/theme';
+import {makeGravatarUrl} from 'services/gravatar';
+import {Storage, storageImage} from 'services/storage';
+import {authUser} from 'actions/login';
+import {spawnMixinRender} from 'style/theme-render';
+import {ThemeConst} from 'style/theme';
 import {DropList} from './widget/DropList';
-import {removeCachedData} from '../utils/auth';
-import {logout} from '../actions/logout';
+import {removeCachedData} from 'utils/auth';
+import {logout} from 'actions/logout';
 import {LogoBan} from 'components/commons/LogoBan';
 
 export const navHeight = 42;
@@ -18,26 +18,6 @@ export const navHeight = 42;
 import 'style/nav.scss';
 
 const styles = {
-  logoArea: {
-    
-  },
-  logoIcon: {
-    height: '1rem',
-    width: '1rem',
-    verticalAlign: 'middle',
-    marginTop: '-3px'
-  },
-  linkArea: {
-    float: 'left',
-    marginLeft: '2rem',
-    height: '100%',
-    lineHeight: `${navHeight - 1}px`
-  },
-  userArea: {
-    float: 'right',
-    height: '100%',
-    lineHeight: `${navHeight - 1}px`
-  },
   userAvatar: {
     height: '1.7rem',
     width: '1.7rem',
@@ -75,11 +55,6 @@ const styles = {
   }
 };
 
-const themeRender = spawnMixinRender(styles);
-themeRender('userMenu', 'lightBackground', 'boxPadding', 'smallRadius');
-themeRender('headerStyle', 'lightBackground');
-
-@Radium
 class Nav extends Component {
   constructor() {
     super();
@@ -119,7 +94,7 @@ class Nav extends Component {
       <nav className='nav'>
         <LogoBan/>
         
-        <div style={styles.linkArea}>
+        <div className='link-area' style={styles.linkArea}>
           <Link to="/home" style={this.activeLinkWithPath('home')}>Home</Link>
           <Link to="/task-wall" style={this.activeLinkWithPath('task-wall')}>Task</Link>
           <Link to="/todo" style={this.activeLinkWithPath('todo')}>Todo</Link>
@@ -130,20 +105,31 @@ class Nav extends Component {
   }
 
   renderUserArea() {
-    const {user} = this.props;
-    const avatorData = Storage.get('avator');
     return (
-      <div style={styles.userArea}>
-        {avatorData ? <img ref='avator' style={styles.userAvatar} src={`data:image/png;base64,${avatorData}`} onClick={() => {this.setState({userMenuToggle: !this.state.userMenuToggle})}}/>
-          : <img ref='avator' crossOrigin="Anonymous" style={styles.userAvatar} src={makeGravatarUrl(user.email)} onClick={() => {this.setState({userMenuToggle: !this.state.userMenuToggle})}}/>}
-            <DropList toggle={this.state.userMenuToggle}>
-              <ul style={styles.userMenu}>
-                <Link style={styles.menuLi} to="/profile" onClick={() => {this.setState({userMenuToggle: false})}}>Profile</Link>
-                <button style={styles.menuLi} onClick={this.onLogout.bind(this)}>Log out</button>
-              </ul>
-            </DropList>
+      <div className='avatar-area'>
+        {this.renderAvatar()}
+        <DropList toggle={this.state.userMenuToggle}>
+          <ul style={styles.userMenu}>
+            <Link style={styles.menuLi} to="/profile" onClick={() => {this.setState({userMenuToggle: false})}}>Profile</Link>
+            <button style={styles.menuLi} onClick={this.onLogout.bind(this)}>Log out</button>
+          </ul>
+        </DropList>
       </div>
-      );
+    );
+  }
+
+  renderAvatar() {
+    const {user} = this.props;
+    const avatarData = Storage.get('avator');
+    return !!avatarData ? (
+      <img ref='avator' style={styles.userAvatar}
+           src={`data:image/png;base64,${avatarData}`}
+           onClick={() => {this.setState({userMenuToggle: !this.state.userMenuToggle})}}/>
+    ) : (
+      <img ref='avator' crossOrigin='Anonymous'
+           style={styles.userAvatar} src={makeGravatarUrl(user.email)}
+           onClick={() => {this.setState({userMenuToggle: !this.state.userMenuToggle})}}/>
+    );
   }
 }
 
