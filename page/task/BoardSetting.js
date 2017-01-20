@@ -4,6 +4,7 @@ import {browserHistory, hashHistory} from 'react-router';
 import {deleteTaskBoard} from 'actions/task/task-wall';
 import {Modal} from 'components/widget/Modal';
 import ReactCrop from 'react-image-crop';
+import {ImageUploader} from 'components/ImageUploader';
 
 import 'style/page/task/board-setting.scss';
 
@@ -46,6 +47,8 @@ export class BoardSetting extends Component {
       <div>
         <input ref='cover-input' type='file' accept="image/x-png,image/gif,image/jpeg" onChange={this.onCoverInputChange.bind(this)}/>
 
+        <ImageUploader />
+      
         <img src={this.state.coverDataURL} />
 
         <ReactCrop src={this.state.coverDataURL}/>

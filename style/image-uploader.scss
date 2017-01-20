@@ -1,1 +1,11 @@
 @import 'style/variable';
+
+.image-uploader {
+  .image-uploader--button {
+    
+  }
+
+  input[type='file'] {
+    display: none;
+  }
+}
