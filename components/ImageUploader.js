@@ -27,7 +27,7 @@ export class ImageUploader extends Component {
   renderModal() {
     return (
       <Modal toggle={this.state.modalOpen} close={this.closeModal.bind(this)}>
-        <p>sdsd</p>
+        <ReactCrop src={this.state.imageDataURL}/>
       </Modal>
     );
   }
@@ -41,6 +41,11 @@ export class ImageUploader extends Component {
   }
 
   openModal() {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      this.setState({imageDataURL: e.target.result});
+    };
+    reader.readAsDataURL(this.refs['input-file'].files[0]);
     this.setState({modalOpen: true});
   }
 
