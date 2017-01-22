@@ -18,6 +18,7 @@ module.exports = {
     'webpack-dev-server/client?http://octopus.com/',
     'webpack-hot-middleware/client',
     'webpack/hot/only-dev-server',
+    'babel-polyfill',
     './index'
   ],
   output: {
