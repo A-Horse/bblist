@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Button} from 'components/widget/Button';
 import {Modal} from 'components/widget/Modal';
 import ReactCrop from 'react-image-crop';
+import {imageCrop} from 'services/image-crop';
 
 
 import 'style/image-uploader.scss';
@@ -9,7 +10,7 @@ import 'style/image-uploader.scss';
 export class ImageUploader extends Component {
   constructor() {
     super();
-    this.state = {modalOpen: false};
+    this.state = {imageDataURL: '', cropedimageDataUrl: ''};
   }
   
   componentWillMount() {
@@ -27,12 +28,24 @@ export class ImageUploader extends Component {
   renderModal() {
     return (
       <Modal toggle={this.state.modalOpen} close={this.closeModal.bind(this)}>
-        <ReactCrop src={this.state.imageDataURL}/>
+        <div>
+          <p>Upload</p>
+          <ReactCrop onComplete={this.onCropComplete.bind(this)} src={this.state.imageDataURL}/>
+          <img src={this.state.cropedimageDataUrl} />
+        </div>
       </Modal>
     );
   }
 
-  onClickButton(event) {
+  async onCropComplete(crop, pixelCrop) {
+    console.log(crop, pixelCrop);
+    const cropedimageDataUrl = await imageCrop(this.state.imageDataURL,
+                                               pixelCrop.width, pixelCrop.height, pixelCrop.x, pixelCrop.y);
+    console.log("cropedimageDataUrl = ", cropedimageDataUrl);
+    this.setState({cropedimageDataUrl});
+  }
+
+  onClickButton() {
     this.refs['input-file'].click();
   }
 
