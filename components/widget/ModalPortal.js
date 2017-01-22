@@ -47,7 +47,6 @@ export class ModalPortal extends Component {
     this.props.close && this.props.close();
   }
 
-
   buildClassName(which, additional) {
     var className = CLASS_NAMES[which].base;
     if (this.state.afterOpen)
@@ -58,7 +57,7 @@ export class ModalPortal extends Component {
   }
 
   render() {
-    // TODO
+    // TODO fix settimeout
     if (this.props.toggle) {
       setTimeout(() => {
         this.focusContent();
