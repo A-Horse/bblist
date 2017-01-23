@@ -13,7 +13,7 @@ module.exports = {
       path.resolve('.')
     ]
   },
-  devtool: 'cheap-module-eval-source-map',
+  devtool: 'source-map',
   entry: [
     'webpack-dev-server/client?http://octopus.com/',
     'webpack-hot-middleware/client',
@@ -41,7 +41,8 @@ module.exports = {
         test: /\.js$/,
         loaders: ['babel'],
         exclude: /node_modules/,
-        include: __dirname
+        include: __dirname,
+        cacheable: true
       },
       {
         test: /\.scss$/,
