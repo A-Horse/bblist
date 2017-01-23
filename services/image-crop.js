@@ -1,5 +1,3 @@
-
-
 export function imageCrop(src, width, height, startX, startY) {
   return new Promise(resolve => {
     const img = new Image();
