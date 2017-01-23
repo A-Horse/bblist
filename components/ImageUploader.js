@@ -3,8 +3,6 @@ import {Button} from 'components/widget/Button';
 import {Modal} from 'components/widget/Modal';
 import ReactCrop from 'react-image-crop';
 import {imageCrop} from 'services/image-crop';
-
-
 import 'style/image-uploader.scss';
 
 export class ImageUploader extends Component {
@@ -30,8 +28,9 @@ export class ImageUploader extends Component {
     );
   }
 
+  // FIXME
   upload() {
-    
+    this.props.uploadFn(this.state.cropedimageDataUrl);
   }
 
   // TODO 太卡，采用DOM方法

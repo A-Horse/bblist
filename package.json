@@ -46,6 +46,7 @@
     "redux-logger": "^2.6.1",
     "redux-thunk": "^2.1.0",
     "svg-react-loader": "^0.3.7",
+    "transform-loader": "^0.2.3",
     "webpack-livereload-plugin": "^0.8.1"
   },
   "devDependencies": {

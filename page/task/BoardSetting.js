@@ -5,6 +5,7 @@ import {deleteTaskBoard} from 'actions/task/task-wall';
 import {Modal} from 'components/widget/Modal';
 import ReactCrop from 'react-image-crop';
 import {ImageUploader} from 'components/ImageUploader';
+import {uploadFile} from 'actions/common/file';
 
 import 'style/page/task/board-setting.scss';
 
@@ -32,26 +33,20 @@ export class BoardSetting extends Component {
   }
 
   close() {
+    
+  }
 
+  uploadCover(imageDataUrl) {
+    const {dispatch} = this.props;
+    const data = new FormData();
+    data.append('playload', imageDataUrl);
+    dispatch(uploadFile('/file', data));
   }
 
   renderCoverUploader() {
-    var crop = {
-      x: 20,
-      y: 10,
-      width: 30,
-      height: 10
-    };
-
     return (
       <div>
-        <input ref='cover-input' type='file' accept="image/x-png,image/gif,image/jpeg" onChange={this.onCoverInputChange.bind(this)}/>
-
-        <ImageUploader />
-      
-        <img src={this.state.coverDataURL} />
-
-        <ReactCrop src={this.state.coverDataURL}/>
+        <ImageUploader ref='board-cover-uploader' uploadFn={this.uploadCover.bind(this)}/>
       </div>
     );
   }

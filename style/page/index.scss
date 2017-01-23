@@ -5,12 +5,11 @@
   height: 100%;
   margin:0;
   padding:0;
-  background-color:hsl(195, 100%, 7%);
+
 
   canvas.sea-waves {
     margin:0 auto;
     display:block;
-    filter:url('#shadowed-goo');
   }
 
   svg{
@@ -24,7 +23,7 @@
     z-index: 10;
     left: 0;
     top: 0;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(255, 255, 255, 0.8);
   }
 
   .index-main {
