@@ -19,6 +19,10 @@ class IndexPage extends Component {
   }
 
   componentDidMount() {
+    
+  }
+
+  startSeaWaves() {
     const seaWaves = new SeaWaves(this.refs.seaWavesCanvas);
 
     seaWaves.initializeCircleContainers();
@@ -47,6 +51,14 @@ class IndexPage extends Component {
     );
   }
 
+  renderCanvas() {
+    return (
+      <canvas ref='seaWavesCanvas' className="sea-waves">
+        Your browser doesn't support canvas
+      </canvas>
+    );
+  }
+
   renderLinkBar() {
     return isLogin() ? this.renderEnterBar() : this.renderSignBar();
   }
@@ -54,10 +66,6 @@ class IndexPage extends Component {
   render() {
     return (
       <PageContainer className='index-page'>
-        
-        <canvas ref='seaWavesCanvas' className="sea-waves">
-          Your browser doesn't support canvas
-        </canvas>
 
         <div className='mask'></div>
 
