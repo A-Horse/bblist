@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {signin} from '../actions/login';
 import {browserHistory} from 'react-router';
 import {validateFormValue} from '../services/validate-strategy';
 import {Button} from '../components/widget/Button';
@@ -17,9 +16,7 @@ import 'style/page/signin.scss';
 // TODO 登出 ，登陆成功后清空缓存
 class SignIn extends Component {  
   componentWillMount() {
-    this.state = {
-      errorMessages: {}
-    };
+    this.state = {errorMessages: {}};
   }
 
   componentDidMount() {
@@ -73,17 +70,17 @@ class SignIn extends Component {
 
     this.setState({errorMessages: errorMessages});
     if (!Object.keys(errorMessages).length) {
-      dispatch(signin(loginInfo)).then(() => {
+      this.props.login(loginInfo).then(() => {
         browserHistory.push('/');
       });
     }    
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
+// const mapStateToProps = (state) => {
+//   return {
     
-  };
-};
+//   };
+// };
 
-export default connect(mapStateToProps)(SignIn);
+export default SignIn;
