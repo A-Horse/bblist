@@ -4,7 +4,7 @@ import SignIn from 'page/SignIn';
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    login(authData) {
+    uploadFile(authData) {
       return dispatch(signin(authData));
     }
   };
@@ -12,13 +12,14 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state) => {
   return {
-    
+    wall: state.task.board.wall,
+    lists: state.task.list.lists
   };
 };
 
-const SignInPage = connect(
+const BoardSettingPage = connect(
   mapStateToProps,
   mapDispatchToProps
 )(SignIn);
 
-export default SignInPage;
+export default BoardSettingPage;

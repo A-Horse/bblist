@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {signUp} from '../actions/sign-up';
+
 import {validateFormValue} from '../services/validate-strategy';
 import { browserHistory } from 'react-router';
 import {PageContainer} from 'components/widget/PageContainer';
@@ -20,12 +20,6 @@ import {
 import 'style/page/signup.scss';
 
 class SignUp extends Component {
-
-  constructor() {
-    super();
-    
-  }
-
   componentDidMount() {
     updateTitle('Sign Up');
   }
@@ -100,7 +94,6 @@ class SignUp extends Component {
 
   signup(event) {
     event.preventDefault();
-    const {dispatch} = this.props;
     
     const signUpData = this.getSignUpData();
     const errorMessages = this.validateSignUpData(signUpData);
@@ -109,7 +102,7 @@ class SignUp extends Component {
     if (Object.keys(errorMessages).length) {
       return;
     }
-    dispatch(signUp(signUpData)).then(function(action){
+    this.props.signup(signUpData).then(function(action){
       if( action.type === SIGNUP_SUCCESS ){
         browserHistory.push('/');
       }
@@ -117,10 +110,6 @@ class SignUp extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    
-  };
-};
 
-export default connect(mapStateToProps)(SignUp);
+
+export default SignUp;

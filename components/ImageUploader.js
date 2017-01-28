@@ -8,7 +8,7 @@ import 'style/image-uploader.scss';
 export class ImageUploader extends Component {
   constructor() {
     super();
-    this.state = {imageDataURL: '', cropedimageDataUrl: ''};
+    this.state = {imageDataURL: '', cropedimageDataUrl: '', crop: {width: 30, aspect: 2/1}};
   }
 
   renderModal() {
@@ -16,10 +16,11 @@ export class ImageUploader extends Component {
       <Modal toggle={this.state.modalOpen} close={this.closeModal.bind(this)}>
         <div>
           <p>Upload</p>
-          <ReactCrop onComplete={this.onCropComplete.bind(this)}
-                     onChange={this.onCropChange.bind(this)}
-                     src={this.state.imageDataURL}/>
-          <img src={this.state.cropedimageDataUrl} />
+          <ReactCrop
+            crop={this.state.crop}
+            onComplete={this.onCropComplete.bind(this)}
+            src={this.state.imageDataURL}/>
+          <img src={this.state.cropedimageDataUrl}/>
           <div>
             <Button styleType='primary' onClick={this.upload.bind(this)}>Upload</Button>
           </div>
@@ -37,11 +38,13 @@ export class ImageUploader extends Component {
   async onCropChange(crop, pixelCrop) {
     const cropedimageDataUrl = await imageCrop(this.state.imageDataURL, pixelCrop.width, pixelCrop.height, pixelCrop.x, pixelCrop.y);
     this.setState({cropedimageDataUrl});
+    this.setState({crop});
   }
 
   async onCropComplete(crop, pixelCrop) {
     const cropedimageDataUrl = await imageCrop(this.state.imageDataURL, pixelCrop.width, pixelCrop.height, pixelCrop.x, pixelCrop.y);
     this.setState({cropedimageDataUrl});
+    this.setState({crop});
   }
 
   onClickButton() {

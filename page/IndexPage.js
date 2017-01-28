@@ -70,11 +70,8 @@ class IndexPage extends Component {
         <div className='mask'></div>
 
         <div className='index-main'>
-          
           <div className='logo-container'>
-            
           </div>
-
           {this.renderLinkBar()}
         </div>
         

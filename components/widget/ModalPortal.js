@@ -39,11 +39,11 @@ export class ModalPortal extends Component {
     }
   }
 
-  onOverlayClick(event) {
+  onOverlayClick() {
     
   }
 
-  requestClose(event) {
+  requestClose() {
     this.props.close && this.props.close();
   }
 

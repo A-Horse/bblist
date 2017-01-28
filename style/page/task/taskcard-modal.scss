@@ -5,9 +5,7 @@ $content-top: 150px;
 
 .modal__content.taskcard-modal {
   width: $content-width;
-  left: 50%;
   top: $content-top;
-  margin-left: -$content-width / 2;
   padding: 8px 0 0;
 
   .hr {
