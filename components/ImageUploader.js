@@ -3,21 +3,28 @@ import {Button} from 'components/widget/Button';
 import {Modal} from 'components/widget/Modal';
 import ReactCrop from 'react-image-crop';
 import {imageCrop} from 'services/image-crop';
+
 import 'style/image-uploader.scss';
 
 export class ImageUploader extends Component {
   constructor() {
     super();
-    this.state = {imageDataURL: '', cropedimageDataUrl: '', crop: {width: 30, aspect: 2/1}};
+    const crop = {width: 30, aspect: 2/1};
+    this.state = {imageDataURL: '', cropedimageDataUrl: '', crop};
   }
 
   renderModal() {
     return (
-      <Modal toggle={this.state.modalOpen} close={this.closeModal.bind(this)}>
+      <Modal className='image-uploader-modal' toggle={this.state.modalOpen} close={this.closeModal.bind(this)}>
         <div>
-          <p>Upload</p>
+          <div>
+            <h2>Upload Image</h2>
+          </div>
+          
           <ReactCrop
+            className='image-uploader--crop-image'
             crop={this.state.crop}
+            onChange={this.onCropChange.bind(this)}
             onComplete={this.onCropComplete.bind(this)}
             src={this.state.imageDataURL}/>
           <img src={this.state.cropedimageDataUrl}/>

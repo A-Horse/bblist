@@ -9,3 +9,11 @@
     display: none;
   }
 }
+
+.image-uploader-modal {
+  max-width: 500px;
+
+  .image-uploader--crop-image {
+    max-width: 100%;
+  }
+}
