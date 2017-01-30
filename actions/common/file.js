@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-fetch';
 import {handleHttpError} from 'services/handle-error';
-import {createConfigWithAuth, createConfig, createFormDataConfig} from 'utils/header';
+import {createConfigWithAuth, createConfig, createFormDataConfigWithAuth} from 'utils/header';
 import {handleResponse, handleResponseWithoutJson} from 'utils/http-handle';
 import {Storage} from 'services/storage';
 import {getJWT} from 'utils/auth';
@@ -31,7 +31,7 @@ function uploadFileFail(error) {
 }
 
 export function uploadFile(url, data) {
-  const config = createFormDataConfig('POST', data);
+  const config = createFormDataConfigWithAuth('PUT', data);
   return dispatch => {
     dispatch(requestUploadFile());
     return fetch(makeApiUrl(url), config)

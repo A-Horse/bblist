@@ -3,6 +3,7 @@ import {Button} from 'components/widget/Button';
 import {Modal} from 'components/widget/Modal';
 import ReactCrop from 'react-image-crop';
 import {imageCrop} from 'services/image-crop';
+import {ImageIcon} from 'services/svg-icons';
 
 import 'style/image-uploader.scss';
 
@@ -20,13 +21,22 @@ export class ImageUploader extends Component {
           <div>
             <h2>Upload Image</h2>
           </div>
+
+          <div>
+            <div className='crop-image-container'>
+              <ReactCrop
+                crop={this.state.crop}
+                onChange={this.onCropChange.bind(this)}
+                onComplete={this.onCropComplete.bind(this)}
+                src={this.state.imageDataURL}/>
+            </div>
+            
+            <div className='upload-link' onClick={this.openFilePicker.bind(this)}>
+              <ImageIcon/>
+              <a>Choose Image:</a>
+            </div>
+          </div>
           
-          <ReactCrop
-            className='image-uploader--crop-image'
-            crop={this.state.crop}
-            onChange={this.onCropChange.bind(this)}
-            onComplete={this.onCropComplete.bind(this)}
-            src={this.state.imageDataURL}/>
           <img src={this.state.cropedimageDataUrl}/>
           <div>
             <Button styleType='primary' onClick={this.upload.bind(this)}>Upload</Button>
@@ -54,7 +64,7 @@ export class ImageUploader extends Component {
     this.setState({crop});
   }
 
-  onClickButton() {
+  openFilePicker() {
     this.refs['input-file'].click();
   }
 
@@ -74,7 +84,7 @@ export class ImageUploader extends Component {
   render() {
     return (
       <div className='image-uploader'>
-        <Button className='image-uploader--button' onClick={this.onClickButton.bind(this)}>Upload</Button>
+        <Button className='image-uploader--button' onClick={this.openFilePicker.bind(this)}>Upload</Button>
         <input ref='input-file' type='file' onChange={this.openModal.bind(this)}/>
         {this.renderModal()}
       </div>

@@ -12,3 +12,6 @@ export const API_PREFIX = '/api';
 export const GRAVATOR_PREFIX = '';
 
 export const LOCAL_BACKUP_URL = 'LOCAL_BACKUP_URL';
+
+export const REMOTE_STORAGE = '/storage';
+

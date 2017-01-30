@@ -1,3 +1,5 @@
+// TODO rename this file
+
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {browserHistory} from 'react-router';
@@ -11,6 +13,8 @@ import {spawnMixinRender} from 'style/theme-render';
 import {ThemeConst} from 'style/theme';
 import {CloseIcon, AddIcon} from 'services/svg-icons';
 import TaskBoardCreater from './TaskBoardCreater';
+import {makeRemoteUrl} from 'services/remote-storage';
+
 
 import 'style/page/task/boards.scss';
 import 'style/page/task/taskboard-creater-modal.scss';
@@ -44,7 +48,7 @@ class Tasks extends Component {
       const board = normalizedBoard.entities[boardId];
       return (
         <div className='taskboard-card'
-             style={{backgroundImage: `url(${board.cover})`}}
+             style={{backgroundImage: `url(${makeRemoteUrl(board.cover)})`}}
              key={board.id}
              onClick={() => browserHistory.push(`/task-wall/${board.id}`)}>
           <div className='taskboard-card-info'>

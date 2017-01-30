@@ -11,9 +11,30 @@
 }
 
 .image-uploader-modal {
-  max-width: 500px;
+  max-width: 600px;
+  min-width: 400px;
 
-  .image-uploader--crop-image {
-    max-width: 100%;
+  .upload-link {
+    svg: {
+      fill: blue;
+    }
+  }
+  
+  .crop-image-container {
+    height: 250px;
+    text-align: center;
+    background-color: $black;
+  }
+  .ReactCrop {
+    height: 100%;
+
+    .ReactCrop--image {
+      height: 100%;
+    }
+
+    .ReactCrop--image-copy {
+      height: auto;
+      height: 100%;
+    }
   }
 }

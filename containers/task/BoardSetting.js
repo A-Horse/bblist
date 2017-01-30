@@ -1,11 +1,17 @@
 import {connect} from 'react-redux';
-import {signin} from 'actions/login';
-import SignIn from 'page/SignIn';
+import {uploadFile} from 'actions/common/file';
+import {deleteTaskBoard} from 'actions/task/task-wall';
+import BoardSetting from 'page/task/BoardSetting';
+import {browserHistory, hashHistory} from 'react-router';
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    uploadFile(authData) {
-      return dispatch(signin(authData));
+    uploadCover(id, data) {
+      return dispatch(uploadFile(`/task-board/${id}/cover`, data));
+    },
+    deleteBoard(id) {
+      return dispatch(deleteTaskBoard(id))
+        .then(() => browserHistory.push('/task-wall'));
     }
   };
 };
@@ -20,6 +26,6 @@ const mapStateToProps = (state) => {
 const BoardSettingPage = connect(
   mapStateToProps,
   mapDispatchToProps
-)(SignIn);
+)(BoardSetting);
 
 export default BoardSettingPage;

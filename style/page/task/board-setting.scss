@@ -1,9 +1,18 @@
 
 $content-width: 700px;
 
-.board-setting-modal {
-  width: $content-width;
-  left: 50%;
-  top: 100px;
-  margin-left: -$content-width / 2;
+.board-setting-page {
+  width: 80%;
+  min-width: 600px;
+  margin: 0 auto;
+  display: flex;
+
+  .board-setting-side-bar {
+    width: 30%;
+  }
+
+  .board-setting-panel {
+    width: 70%;
+    background-color: #bbb;
+  }
 }

@@ -13,9 +13,10 @@ import DockMonitor from 'redux-devtools-dock-monitor';
 import {App, BlankPage} from 'components';
 // TODO split it
 import {Profile, Tasks, TaskWall, NotFound, DashBoard,
-        IndexPage, Ideas, BoardSetting, BoardContent, TodoPage} from 'page';
+        IndexPage, Ideas, BoardContent, TodoPage} from 'page';
 import SignUp from 'containers/SignUp';
 import SignIn from 'containers/SignIn';
+import BoardSetting from 'containers/task/BoardSetting';
 import Body from 'components/Body';
 
 import {checkLogin} from 'utils/auth';

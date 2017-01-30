@@ -26,3 +26,8 @@ export function createConfigWithAuth(method, body, headers = {}) {
   headers[JWT_STORAGE_KEY] = getJWT();
   return createConfig(method, body, headers);
 }
+
+export function createFormDataConfigWithAuth(method, body, headers = {}) {
+  headers[JWT_STORAGE_KEY] = getJWT();
+  return createFormDataConfig(method, body, headers);
+}
