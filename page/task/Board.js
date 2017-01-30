@@ -38,7 +38,7 @@ const styles = {
   }
 };
 
-class TaskWall extends Component {
+class Board extends Component {
   constructor() {
     super();
     this.state = {
@@ -99,10 +99,4 @@ class TaskWall extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    normalizedBoard: state.task.board
-  };
-};
-
-export default connect(mapStateToProps)(TaskWall);
+export default Board;

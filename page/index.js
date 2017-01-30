@@ -8,7 +8,6 @@ export IndexPage from './IndexPage';
 export Idea from './idea/Idea';
 
 export Tasks from './task/Tasks';
-export TaskWall from './task/TaskWall';
 export BoardSetting from './task/BoardSetting';
 export BoardContent from './task/BoardContent';
 

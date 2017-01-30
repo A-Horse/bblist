@@ -15,11 +15,15 @@ export class Infomation extends Component {
     this.props.uploadCover(this.props.params.id, data);
   }
 
-  render() {  
+  render() {
+    console.log(this.props);
     return (
-      <div>
-        <div>
-          <ImageUploader ref='board-cover-uploader' uploadFn={this.uploadCover.bind(this)}/>
+      <div class='board-setting-infomation'>
+        <div class='board-cover'>
+          <img src={this.props.wall.cover}/>
+          <div>
+            <ImageUploader ref='board-cover-uploader' uploadFn={this.uploadCover.bind(this)}/>
+          </div>
         </div>
       </div>
     );

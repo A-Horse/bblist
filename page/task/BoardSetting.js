@@ -65,7 +65,7 @@ export class BoardSetting extends Component {
     case 'preference':
       break;
     default:
-      return <Infomation uploadCover={this.props.uploadCover} params={this.props.params}/>;
+      return <Infomation wall={this.props.wall} uploadCover={this.props.uploadCover} params={this.props.params}/>;
     }
 
   }
@@ -74,7 +74,8 @@ export class BoardSetting extends Component {
     
   }
   
-  render() {    
+  render() {
+    console.log(this.props);
     return (
       <div className='board-setting-page'>
 

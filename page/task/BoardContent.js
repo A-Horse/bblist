@@ -126,7 +126,7 @@ class BoardContent extends Component {
           <TaskListCreater boardId={this.props.params.id}/>
         </div>
         <CardModal key='card-modal'/>
-      </PageContainer>
+        </PageContainer>
     );
   }
 }

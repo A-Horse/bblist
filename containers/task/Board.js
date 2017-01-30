@@ -1,7 +1,7 @@
 import {connect} from 'react-redux';
 import {uploadFile} from 'actions/common/file';
 import {deleteTaskBoard} from 'actions/task/task-wall';
-import BoardSetting from 'page/task/BoardSetting';
+import Board from 'page/task/Board';
 import {browserHistory, hashHistory} from 'react-router';
 
 const mapDispatchToProps = (dispatch) => {
@@ -18,13 +18,13 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state) => {
   return {
-    wall: state.task.board.wall
+    normalizedBoard: state.task.board
   };
 };
 
-const BoardSettingPage = connect(
+const BoardPage = connect(
   mapStateToProps,
   mapDispatchToProps
 )(BoardSetting);
 
-export default BoardSettingPage;
+export default Board;
