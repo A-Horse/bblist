@@ -2,7 +2,8 @@
 
 .image-uploader {
   .image-uploader--button {
-    
+    border: 1px solid $blue-dark;
+    color: $blue-dark;
   }
 
   input[type='file'] {

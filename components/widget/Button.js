@@ -9,8 +9,8 @@ export class Button extends Component {
   };
 
   buildClassName() {
-    const {size = 'middle', styleType = 'default'} = this.props;
-    return `button ${size} ${styleType}${this.props.className ? ' ' + this.props.className : ''}`;
+    const {size = 'middle', styleType = 'default', borderType = 'default'} = this.props;
+    return `button ${size} ${styleType} border-${borderType} ${this.props.className ? ' ' + this.props.className : ''}`;
   }
 
   click() {

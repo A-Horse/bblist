@@ -7,7 +7,6 @@ export Setting from './Setting';
 export IndexPage from './IndexPage';
 export Idea from './idea/Idea';
 
-export Tasks from './task/Tasks';
 export BoardSetting from './task/BoardSetting';
 export BoardContent from './task/BoardContent';
 

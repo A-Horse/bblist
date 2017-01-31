@@ -8,23 +8,27 @@
   padding: 4px 13px;
   box-sizing: border-box;
   line-height: 1;
-}
 
-.button.middle {
-  height: 30px;
-}
+  &.middle {
+    height: 30px;
+  }
 
-.button.large {
-  height: 45px;
-}
+  &.large {
+    height: 45px;
+  }
 
-.button.default {
-  border: 1px solid $gray;
-  background-color: $button-default;
-}
+  &.default {
+    border: 1px solid $gray;
+    background-color: $button-default;
+  }
 
-.button.primary {
-  background-color: $blue-dark;
-  border: 1px solid $blue-dark;
-  color: $white;
+  &.primary {
+    background-color: $blue-dark;
+    border: 1px solid $blue-dark;
+    color: $white;
+  }
+
+  &.border-primary {
+    border: 1px solid $blue-dark;
+  }
 }

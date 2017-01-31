@@ -3,6 +3,8 @@ import {uploadFile} from 'actions/common/file';
 import {deleteTaskBoard} from 'actions/task/task-wall';
 import BoardSetting from 'page/task/BoardSetting';
 import {browserHistory, hashHistory} from 'react-router';
+import {createSelector} from 'reselect';
+
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -18,7 +20,7 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state) => {
   return {
-    wall: state.task.board.wall
+    normalizedBoard: state.task.board
   };
 };
 

@@ -54,6 +54,7 @@ function taskWall(state = {
   case ALL_TASKCARD_GET_SUCCESS:
     return Object.assign({}, state, {
       isFetching: false,
+      // TODO merge not cover
       entities: action.playload.entities.board
     });
     break;

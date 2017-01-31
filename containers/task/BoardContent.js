@@ -1,33 +1,26 @@
 import {connect} from 'react-redux';
 import {uploadFile} from 'actions/common/file';
 import {deleteTaskBoard} from 'actions/task/task-wall';
-import Board from 'page/task/Board';
+import BoardContent from 'page/task/BoardContent';
 import {browserHistory, hashHistory} from 'react-router';
 import {deleteTaskWall, getTaskAllCards} from 'actions/task/task-wall';
 import {createTaskList, deleteTaskList, updateTaskTrackIndex} from 'actions/task/task-list';
-import {clearBoard} from 'actions/task/task';
+import {wrapDispathToAction} from 'utils/wrap-props';
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    getBoardData(id) {
-      // TODO rename get wall all info
-      return dispatch(getTaskAllCards(id));
-    },
-    clearBoard() {
-      return dispatch(clearBoard());
-    }
-  };
+const actions = {
+  updateTaskTrackIndex
 };
 
 const mapStateToProps = (state) => {
   return {
-    normalizedBoard: state.task.board
+    wall: state.task.board.wall,
+    normalizedList: state.task.list
   };
 };
 
-const BoardPage = connect(
+const BoardContentPage = connect(
   mapStateToProps,
-  mapDispatchToProps
-)(Board);
+  wrapDispathToAction(actions)
+)(BoardContent);
 
-export default BoardPage;
+export default BoardContentPage;

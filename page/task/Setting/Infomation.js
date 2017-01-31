@@ -3,9 +3,9 @@ import {connect} from 'react-redux';
 import {Modal} from 'components/widget/Modal';
 import ReactCrop from 'react-image-crop';
 import {ImageUploader} from 'components/ImageUploader';
+import {makeRemoteUrl} from 'services/remote-storage';
 
-
-import 'style/page/task/board-setting.scss';
+import 'style/page/task/setting/infomation.scss';
 
 export class Infomation extends Component {
   uploadCover(imageDataUrl) {
@@ -16,13 +16,15 @@ export class Infomation extends Component {
   }
 
   render() {
-    console.log(this.props);
     return (
-      <div class='board-setting-infomation'>
-        <div class='board-cover'>
-          <img src={this.props.wall.cover}/>
-          <div>
-            <ImageUploader ref='board-cover-uploader' uploadFn={this.uploadCover.bind(this)}/>
+      <div className='board-setting-infomation'>
+        <div className='board-cover'>
+          <div>Board Cover:</div>
+          <div className='board-cover-wrapper'>
+            <img className='cover-image' src={this.props.board && makeRemoteUrl(this.props.board.cover)}/>
+            <div>
+              <ImageUploader ref='board-cover-uploader' uploadFn={this.uploadCover.bind(this)}>Upload new Cover</ImageUploader>
+            </div>
           </div>
         </div>
       </div>

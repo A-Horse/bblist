@@ -13,7 +13,7 @@ import {PageContainer} from 'components/widget/PageContainer';
 import {deleteTaskWall, getTaskAllCards} from 'actions/task/task-wall';
 import {createTaskCard} from 'actions/task/task-card';
 import {createTaskList, deleteTaskList} from 'actions/task/task-list';
-import {clearBoard} from 'actions/task/task';
+
 import {getAssets} from 'services/assets-manager';
 import {AddIcon, SettingIcon, MIDDLE_SIZE} from 'services/svg-icons';
 import {navHeight} from 'components/Nav';
@@ -49,9 +49,7 @@ class Board extends Component {
 
   componentWillMount() {
     const {id} = this.props.params;
-    const {dispatch} = this.props;
-    
-    dispatch(clearBoard());
+
     this.getTasks(id).then(() => {
       
     }).catch(error => {
@@ -65,8 +63,7 @@ class Board extends Component {
 
   
   getTasks(id) {
-    const {dispatch} = this.props;    
-    return dispatch(getTaskAllCards(id));
+    return this.props.getBoardData(id);
   }
   
   renderSetttingMenu() {

@@ -12,11 +12,14 @@ import DockMonitor from 'redux-devtools-dock-monitor';
 
 import {App, BlankPage} from 'components';
 // TODO split it
-import {Profile, Tasks, TaskWall, NotFound, DashBoard,
-        IndexPage, Ideas, BoardContent, TodoPage} from 'page';
+import {Profile, NotFound, DashBoard,
+        IndexPage, Ideas, TodoPage} from 'page';
 import SignUp from 'containers/SignUp';
 import SignIn from 'containers/SignIn';
+import Boards from 'containers/task/Boards';
+import Board from 'containers/task/Board';
 import BoardSetting from 'containers/task/BoardSetting';
+import BoardContent from 'containers/task/BoardContent';
 import Body from 'components/Body';
 
 import {checkLogin} from 'utils/auth';
@@ -40,7 +43,7 @@ const createStoreWithMiddleware = applyMiddleware(thunkMiddleware)(createStore);
 
 const store = createStoreWithMiddleware(
   reducer,
-  // DevTools.instrument()
+  DevTools.instrument()
 );
 const history = syncHistoryWithStore(browserHistory, store);
 
@@ -61,9 +64,9 @@ ReactDOM.render(
     
           <Route path="profile" component={Profile}/>
           <Route path="idea" component={Ideas}/>
-          <Route path="task-wall" component={Tasks} onEnter={checkLogin}/>
+          <Route path="task-wall" component={Boards} onEnter={checkLogin}/>
 
-          <Route path="task-wall/" component={TaskWall} onEnter={checkLogin}>
+          <Route path="task-wall/" component={Board} onEnter={checkLogin}>
             <Route path="/task-wall/:id" component={BoardContent}/>
             <Route path="/task-wall/:id/setting" component={BoardSetting}/>
           </Route>          

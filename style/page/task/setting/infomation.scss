@@ -1,0 +1,17 @@
+@import 'style/variable';
+@import 'style/mixin';
+
+.board-setting-infomation {
+  
+  .board-cover {
+
+    .cover-image {
+      
+    }
+
+    .board-cover-wrapper {
+      display: flex;
+      align-items: flex-end;
+    }
+  }
+}

@@ -3,8 +3,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {browserHistory} from 'react-router';
-import Radium from 'radium';
-import {createTaskWall, getAllTaskWall} from 'actions/task/task-wall';
+
 import {Modal} from 'components/widget/Modal';
 import {Select} from 'components/widget/Select';
 import {PageContainer} from 'components/widget/PageContainer';
@@ -15,27 +14,20 @@ import {CloseIcon, AddIcon} from 'services/svg-icons';
 import TaskBoardCreater from './TaskBoardCreater';
 import {makeRemoteUrl} from 'services/remote-storage';
 
-
 import 'style/page/task/boards.scss';
 import 'style/page/task/taskboard-creater-modal.scss';
 import 'style/page/task/taskboard-card.scss';
 
-class Tasks extends Component {
+class Boards extends Component {
   constructor() {
     super();
     this.state = {
       modalOpen: false
     };
-    this.backgroundValue = null;
-  }
-
-  getWalls() {
-    const {dispatch} = this.props;
-    return dispatch(getAllTaskWall());
   }
 
   componentWillMount() {
-    this.getWalls();
+    return this.props.getAllTaskBoard();
   }
 
   renderCreateModal() {
@@ -69,16 +61,6 @@ class Tasks extends Component {
       </PageContainer>
     );
   }
-
-  handleClick() {
-    
-  }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    normalizedBoard: state.task.board
-  };
-};
-
-export default connect(mapStateToProps)(Tasks);
+export default Boards;

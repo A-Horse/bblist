@@ -13,6 +13,12 @@ export class BoardSetting extends Component {
     super();
   }
 
+  getCurrentBoard() {
+    const {normalizedBoard} = this.props;
+    console.log(normalizedBoard);
+    return normalizedBoard.entities[this.props.params.id];
+  }
+
   componentWillMount() {
     this.state = {
       coverDataURL: ''
@@ -35,7 +41,7 @@ export class BoardSetting extends Component {
     // TODO extract commons
     const data = new FormData();
     data.append('playload', imageDataUrl);
-    this.props.uploadCover(this.props.params.id, data);
+    this.propins.uploadCover(this.props.params.id, data);
   }
 
   renderCoverUploader() {
@@ -65,9 +71,8 @@ export class BoardSetting extends Component {
     case 'preference':
       break;
     default:
-      return <Infomation wall={this.props.wall} uploadCover={this.props.uploadCover} params={this.props.params}/>;
+      return <Infomation board={this.getCurrentBoard()} uploadCover={this.props.uploadCover} params={this.props.params}/>;
     }
-
   }
 
   switchPanel(name) {
@@ -75,7 +80,6 @@ export class BoardSetting extends Component {
   }
   
   render() {
-    console.log(this.props);
     return (
       <div className='board-setting-page'>
 

@@ -10,9 +10,9 @@ import {DropList} from 'components/widget/DropList';
 import {ConfirmModal} from 'components/widget/ConfirmModal';
 import {Hr} from 'components/widget/Hr';
 import {PageContainer} from 'components/widget/PageContainer';
-import {deleteTaskWall, getTaskAllCards} from 'actions/task/task-wall';
+
 import {createTaskCard} from 'actions/task/task-card';
-import {createTaskList, deleteTaskList, updateTaskTrackIndex} from 'actions/task/task-list';
+
 import {clearBoard} from 'actions/task/task';
 import {getAssets} from 'services/assets-manager';
 import {AddIcon, SettingIcon, MIDDLE_SIZE} from 'services/svg-icons';
@@ -65,19 +65,9 @@ class BoardContent extends Component {
     this.trackInstanceMap = {};
   }
 
-  componentDidMount() {
-    
-  }
-
-  getTasks(id) {
-    const {dispatch} = this.props;    
-    return dispatch(getTaskAllCards(id));
-  }
-
   updateTaskTrackIndexs() {
-    const {dispatch} = this.props;
     const trackIndexs = Object.values(this.trackInstanceMap).map(track => track.getWrappedInstance().getTrackIdIndex());
-    dispatch(updateTaskTrackIndex(this.props.params.id, trackIndexs));
+    this.props.updateTaskTrackIndex(this.props.params.id, trackIndexs);
   }
 
   renderList(list, index) {
@@ -126,16 +116,9 @@ class BoardContent extends Component {
           <TaskListCreater boardId={this.props.params.id}/>
         </div>
         <CardModal key='card-modal'/>
-        </PageContainer>
+      </PageContainer>
     );
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    wall: state.task.board.wall,
-    normalizedList: state.task.list
-  };
-};
-
-export default connect(mapStateToProps)(BoardContent);
+export default BoardContent;

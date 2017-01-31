@@ -84,7 +84,7 @@ export class ImageUploader extends Component {
   render() {
     return (
       <div className='image-uploader'>
-        <Button className='image-uploader--button' onClick={this.openFilePicker.bind(this)}>Upload</Button>
+        <Button borderType='primary' className='image-uploader--button' onClick={this.openFilePicker.bind(this)}>{this.props.children || 'Upload'}</Button>
         <input ref='input-file' type='file' onChange={this.openModal.bind(this)}/>
         {this.renderModal()}
       </div>

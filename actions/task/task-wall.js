@@ -116,7 +116,7 @@ export function getTaskAllCards(wallId) {
   };
 }
 
-export function getAllTaskWall() {
+export function getAllTaskBoard() {
   const config = createConfigWithAuth('GET');
   return dispatch => {
     dispatch(requestTaskWalls());
