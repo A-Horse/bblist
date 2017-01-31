@@ -16,9 +16,9 @@ const mapStateToProps = (state) => {
   };
 };
 
-const SignInPage = connect(
+const SignInContainer = connect(
   mapStateToProps,
   mapDispatchToProps
 )(SignIn);
 
-export default SignInPage;
+export default SignInContainer;

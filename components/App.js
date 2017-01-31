@@ -1,5 +1,5 @@
 import React from 'react';
-import Nav from './Nav';
+import Nav from 'containers/Nav';
 
 export default function App({children}) {
   return (

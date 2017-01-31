@@ -11,7 +11,6 @@ export class LogoBan extends Component {
   }
 
   render() {
-    // TODO inline text-logo svg
     return (
         <div className='logoban' onClick={this.onClick.bind(this)}>
         <Logo/>
