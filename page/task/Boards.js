@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {browserHistory} from 'react-router';
 import {PageContainer} from 'components/widget/PageContainer';
 import {ThemeConst} from 'style/theme';
-import {CloseIcon, AddIcon} from 'services/svg-icons';
+import {CloseIcon, AddIcon, ViewListIcon} from 'services/svg-icons';
 import TaskBoardCreater from './TaskBoardCreater';
 import {makeRemoteUrl} from 'services/remote-storage';
 import {DEFAULT_BOARD_COVER_SRC} from 'constants';
@@ -38,7 +38,10 @@ class Boards extends Component {
         <TaskBoardCreater getAllTaskBoard={this.props.getAllTaskBoard} createTaskBoard={this.props.createTaskBoard}/>
         <div className='taskboard-boards'>
           <div className='board-group'>
-            <div className='board-group--name'>Default:</div>
+            <div className='board-group--name'>
+              <ViewListIcon className='view-list-icon'/>
+              Default:
+            </div>
             <div className='board-card-container'>
               {this.renderWalls()}
             </div>

@@ -1,12 +1,10 @@
 import React, {Component} from 'react';
-import Radium from 'radium';
 import R from 'fw-ramda';
 import {connect} from 'react-redux';
 import {Link} from 'react-router';
 import {makeGravatarUrl} from 'services/gravatar';
 import {Storage, storageImage} from 'services/storage';
 import {authUser} from 'actions/login';
-import {spawnMixinRender} from 'style/theme-render';
 import {ThemeConst} from 'style/theme';
 import {DropList} from './widget/DropList';
 import {removeCachedData} from 'utils/auth';
@@ -73,7 +71,7 @@ class Nav extends Component {
         <LogoBan/>
 
         <div className='nav-link' className='link-area'>
-          <Link to='/home' className={this.buildLinkClassName('home')}>Home</Link>
+          <Link to='/dash' className={this.buildLinkClassName('dash')}>Dash</Link>
           <Link to='/task-wall' className={this.buildLinkClassName('task-wall')}>Task</Link>
           <Link to='/todo' className={this.buildLinkClassName('todo')}>Todo</Link>
         </div>
