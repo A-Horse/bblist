@@ -24,16 +24,16 @@ class TaskBoardCreater extends Component {
     
   }
 
-  componentDidUpdate(props) {
-  
+  closeModal() {
+    this.setState({modalOpen: false});
   }
 
   renderModal() {
     return (
-      <Modal className='taskboard-creater-modal' toggle={this.state.modalOpen}>
+        <Modal className='taskboard-creater-modal' toggle={this.state.modalOpen} close={this.closeModal.bind(this)}>
         <div>
-          <button key='modal-close' className='close-button'>
-            <CloseIcon className='clear-icon' onClick={() => this.setState({modalOpen: false})}/>
+          <button className='close-button'>
+            <CloseIcon className='clear-icon' onClick={this.closeModal.bind(this)}/>
           </button>
           
           <div className='taskboard-creater--topbar'>Create Wall</div>
@@ -50,13 +50,12 @@ class TaskBoardCreater extends Component {
     return (
       <div className='taskboard-creater' onClick={() => this.setState({modalOpen: true})}>
         <AddIcon/>
-        <h2>New Task Wall</h2>
+        <div>New Task Wall</div>
         {this.renderModal()}
       </div>
     );
   }
 }
 
-const mapStateToProps = () => ({});
 
-export default connect(mapStateToProps)(TaskBoardCreater);
+export default TaskBoardCreater;

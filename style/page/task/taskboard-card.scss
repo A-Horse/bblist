@@ -1,17 +1,19 @@
 @import 'style/variable';
 
+$board-card-width: 250px;
+$board-card-height: 125px;
+
 .taskboard-card {
   flex: 1 0 auto;
   border-radius: 3px;
   margin: 8px 20px;
-  width: 263px;
-  max-width: 263px;
-  height: 107px;
+  width: $board-card-width;
+  max-width: $board-card-width;
+  height: $board-card-height;
   cursor: pointer;
   transition: box-shadow 218ms ease-in-out,transform 218ms ease-in-out,-webkit-transform 218ms ease-in-out;
   box-shadow: 0 2px 3px 0 rgba(0, 0, 0, .0470588);
   background-size: cover;
-  
   &:hover {
     transform: translate3d(0, -5px, 0);
     boxShadow: 0 7px 21px rgba(0, 0, 0, .15);
