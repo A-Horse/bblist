@@ -1,17 +1,32 @@
 @import 'style/variable';
+@import 'style/mixin';
 
 .taskboard-creater {
   display: flex;
-  margin: 8px 20px;
-  width: 200px;
-  height: 78px;
-  maxWidth: 200px;
   cursor: pointer;
   transition: box-shadow 218ms ease-in-out,transform 218ms ease-in-out,-webkit-transform 218ms ease-in-out;
   boxShadow: 0 2px 3px 0 rgba(0,0,0,.0470588);
+  margin-top: 20px;
+
+  & > * {
+    vertical-align: middle;
+  }
+
+  .add-icon {
+    margin-right: 10px;
+    fill: $gray-super-deep;
+  }
+
+  .taskboard-creater-title {
+    font-weight: bolder;
+    color: $gray-super-deep;
+    font-size: $font-size-large;
+  }
 }
 
 .taskboard-creater-modal {
+  width: 350px;
+  margin-top: 50px;
   .close-button {
     position: absolute;
     width: 2rem;
@@ -32,29 +47,42 @@
   }
 }
 
-.taskboard-creater--topbar {
-  text-align: center;
-  border-bottom: 1px solid $gray;
+.taskboard-creater--name {
+  font-weight: bolder;
+  font-size: $font-size-x-large;
+  color: $gray-super-deep;
+  border-bottom: 1px solid $gray-light-litte-depth;
   padding: 0 0 10px;
   margin: -8px 0 0;
 }
 
 .taskboard-creater--quota {
-  font-size: $font-size-small;
-  text-align: center;
+  font-size: $font-size-middle;
+  margin: 8px 0 40px;
+  color: $gray-super-deep;
+}
+
+.taskboard-creater--illustration {
+  width: 108px;
+  display: block;
+  margin: 0 auto 30px;
 }
 
 .taskboard-creater--name-input {
   width: 100%;
-  border-radius: 1px;
-  border: 1px solid $gray-deep;
-  margin: 10px 0;
+  border: none;
+  border: 1px solid rgba(0, 0, 0, 0.1);
   padding: 4px 8px;
-  font-size: $font-size-middle;
+  border-radius: $radius-small;
+  margin-bottom: 20px;
+
+  &::placeholder {
+    color: $gray-light-deep;
+  }
 }
 
 .taskboard-creater--create-button {
   width: 100%;
-  border: none;
-  font-size: $font-size-middle;
+  font-weight: normal;
+  letter-spacing: 0.5px;
 }

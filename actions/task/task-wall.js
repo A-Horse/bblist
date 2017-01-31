@@ -127,7 +127,7 @@ export function getAllTaskBoard() {
   };
 }
 
-export function createTaskWall(CreateWallInfo) {
+export function createTaskBoard(CreateWallInfo) {
   const config = createConfigWithAuth('POST', CreateWallInfo);
   return dispatch => {
     dispatch(requestCreateTaskWall());

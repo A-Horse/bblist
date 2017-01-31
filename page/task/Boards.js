@@ -5,7 +5,7 @@ import {ThemeConst} from 'style/theme';
 import {CloseIcon, AddIcon} from 'services/svg-icons';
 import TaskBoardCreater from './TaskBoardCreater';
 import {makeRemoteUrl} from 'services/remote-storage';
-
+import {DEFAULT_BOARD_COVER_SRC} from 'constants';
 import 'style/page/task/boards.scss';
 import 'style/page/task/taskboard-creater-modal.scss';
 import 'style/page/task/taskboard-card.scss';
@@ -21,11 +21,11 @@ class Boards extends Component {
       const board = normalizedBoard.entities[boardId];
       return (
         <div className='taskboard-card'
-             style={{backgroundImage: `url(${makeRemoteUrl(board.cover)})`}}
+             style={{backgroundImage: board.cover ? `url(${makeRemoteUrl(board.cover)})` : `url(${DEFAULT_BOARD_COVER_SRC})`}}
              key={board.id}
              onClick={() => browserHistory.push(`/task-wall/${board.id}`)}>
           <div className='taskboard-card-info'>
-            <h2>{board.name}</h2>
+            <div className='taskboard-card-info--name'>{board.name}</div>
           </div>
         </div>
       );
@@ -35,9 +35,14 @@ class Boards extends Component {
   render() {
     return (
       <PageContainer>
-        <TaskBoardCreater/>
-        <div className='taskboard-board-container'>
-          {this.renderWalls()}
+        <TaskBoardCreater getAllTaskBoard={this.props.getAllTaskBoard} createTaskBoard={this.props.createTaskBoard}/>
+        <div className='taskboard-boards'>
+          <div className='board-group'>
+            <div className='board-group--name'>Default:</div>
+            <div className='board-card-container'>
+              {this.renderWalls()}
+            </div>
+          </div>
         </div>
       </PageContainer>
     );

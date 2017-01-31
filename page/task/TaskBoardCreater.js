@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {createTaskWall, getAllTaskWall} from 'actions/task/task-wall';
+
 import {CloseIcon, AddIcon} from 'services/svg-icons';
 import {Modal} from 'components/widget/Modal';
+import {Button} from 'components/widget/Button';
+import {Input} from 'components/widget/Input';
 import 'style/page/task/taskboard-creater.scss';
 
 class TaskBoardCreater extends Component {  
@@ -11,12 +13,11 @@ class TaskBoardCreater extends Component {
     this.state = {modalOpen: false};
   }
 
-  createBoard() {
-    const {dispatch} = this.props;
-    const name = this.refs.name;
-    dispatch(createTaskWall({name: name.value.trim()})).then(() => {
-      dispatch(getAllTaskWall());
-      this.setState({modalOpen: false});
+  onCreateClick() {
+    const name = this.refs.name.instance;
+    this.props.createTaskBoard({name: name.value.trim()}).then(() => {
+      this.props.getAllTaskBoard();
+      this.closeModal();
     });
   }
 
@@ -30,17 +31,20 @@ class TaskBoardCreater extends Component {
 
   renderModal() {
     return (
-        <Modal className='taskboard-creater-modal' toggle={this.state.modalOpen} close={this.closeModal.bind(this)}>
+      <Modal className='taskboard-creater-modal' toggle={this.state.modalOpen} close={this.closeModal.bind(this)}>
         <div>
           <button className='close-button'>
             <CloseIcon className='clear-icon' onClick={this.closeModal.bind(this)}/>
           </button>
           
-          <div className='taskboard-creater--topbar'>Create Wall</div>
-          
-          <p className='taskboard-creater--quota'>Establish their own projects for different transactions.</p>
-          <input className='taskboard-creater--name-input' type='text' ref='name' placeholder='board Name'/>
-          <button className='taskboard-creater--create-button' onClick={() => this.createBoard()} >Complete And Create</button>
+          <div className='taskboard-creater--name'>Create Wall:</div>
+
+          <p className='taskboard-creater--quota'>Establish their own Board for different transactions.</p>
+
+          <img className='taskboard-creater--illustration' src='/static/image/task/illustration@3x.png'/>
+
+          <Input className='taskboard-creater--name-input' type='text' ref='name' placeholder='Board Name'/>
+          <Button styleType='primary' className='taskboard-creater--create-button' onClick={this.onCreateClick.bind(this)} >Complete And Create</Button>
         </div>
       </Modal>
     );
@@ -49,8 +53,8 @@ class TaskBoardCreater extends Component {
   render() {
     return (
       <div className='taskboard-creater' onClick={() => this.setState({modalOpen: true})}>
-        <AddIcon/>
-        <div>New Task Wall</div>
+        <AddIcon className='add-icon'/>
+        <span className='taskboard-creater-title'>New Task Wall</span>
         {this.renderModal()}
       </div>
     );

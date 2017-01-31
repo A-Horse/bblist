@@ -5,10 +5,11 @@ import Boards from 'page/task/Boards';
 import {browserHistory, hashHistory} from 'react-router';
 import {createSelector} from 'reselect';
 import {wrapDispathToAction} from 'utils/wrap-props';
-import {getAllTaskBoard} from 'actions/task/task-wall';
+import {createTaskBoard, getAllTaskBoard} from 'actions/task/task-wall';
 
 const actions = {
-  getAllTaskBoard
+  getAllTaskBoard,
+  createTaskBoard
 };
 
 

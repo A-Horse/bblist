@@ -15,3 +15,5 @@ export const LOCAL_BACKUP_URL = 'LOCAL_BACKUP_URL';
 
 export const REMOTE_STORAGE = '/storage';
 
+export const DEFAULT_BOARD_COVER_SRC = '/static/image/board-cover/world-circle.png';
+
