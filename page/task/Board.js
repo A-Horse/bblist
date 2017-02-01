@@ -1,42 +1,13 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
 import {browserHistory} from 'react-router';
 import R from 'fw-ramda';
-
-import TaskList, {listWidth} from './TaskList';
-import CardModal from './CardModal';
-//import TaskCardModal from 
-import {DropList} from 'components/widget/DropList';
-import {ConfirmModal} from 'components/widget/ConfirmModal';
-import {Hr} from 'components/widget/Hr';
-import {PageContainer} from 'components/widget/PageContainer';
-import {deleteTaskWall, getTaskAllCards} from 'actions/task/task-wall';
-import {createTaskCard} from 'actions/task/task-card';
-import {createTaskList, deleteTaskList} from 'actions/task/task-list';
-
-import {getAssets} from 'services/assets-manager';
-import {AddIcon, SettingIcon, MIDDLE_SIZE} from 'services/svg-icons';
-import {navHeight} from 'components/Nav';
-import {spawnMixinRender} from 'style/theme-render';
-import {BoardSetting} from './BoardSetting.js';
-import TaskListCreater from './TaskListCreater';
+import {SettingIcon, StarBorderIcon} from 'services/svg-icons';
 import {updateTitle} from 'services/title';
+import {Link} from 'react-router';
 
 import 'style/page/task/taskboard-header.scss';
 import 'style/page/task/board.scss';
 
-const styles = {
-  settingIcon: {
-    fill: 'white',
-    verticalAlign: 'middle'
-  },
-  settingContainer: {
-    display: 'block'
-  },
-  topBarTitle: {
-    color: 'white'
-  }
-};
 
 class Board extends Component {
   constructor() {
@@ -66,10 +37,11 @@ class Board extends Component {
     return this.props.getBoardData(id);
   }
   
-  renderSetttingMenu() {
+  renderSetttingArea() {
     return (
-      <div style={styles.settingContainer} onClick={() => {}}>
-        <SettingIcon style={styles.settingIcon} onClick={() => browserHistory.push(`/task-wall/${this.props.params.id}/setting`)}/>
+      <div className='taskboard-header-setting' onClick={() => browserHistory.push(`/task-wall/${this.props.params.id}/setting`)}>
+        <SettingIcon className='setting-icon'/>
+        <span>setting</span>
       </div>
     );
   }
@@ -80,8 +52,11 @@ class Board extends Component {
     const board = normalizedBoard.entities[id];
     return (
       <div className='taskboard-header'>
-        <h2 className='' style={styles.topBarTitle}>{board && board.name}</h2>
-        {this.renderSetttingMenu()}
+        <div className='taskboard-name'>
+          <StarBorderIcon className='taskboard-name--star'/>
+          <Link className='taskboard-name--text' to={`/task-wall/${id}`}>{board && board.name}</Link>
+        </div>
+        {this.renderSetttingArea()}
       </div>
     );
   }

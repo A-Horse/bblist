@@ -14,6 +14,7 @@ export ArrowDown from 'babel!svg-react!../assets/svg/ic_keyboard_arrow_down_blac
 export Emoticon from 'babel!svg-react!../assets/svg/ic_insert_emoticon_black_24px.svg?name=Emoticon';
 export ImageIcon from 'babel!svg-react!../assets/svg/ic_image_black_24px.svg?name=ImageIcon';
 export ViewListIcon from 'babel!svg-react!../assets/svg/ic_view_list_black_18px.svg?name=ViewListIcon';
+export StarBorderIcon from 'babel!svg-react!../assets/svg/ic_star_border_black_24px.svg?name=StarBorderIcon';
 
 export const SMALL_SIZE = 16;
 export const MIDDLE_SIZE = 20;
