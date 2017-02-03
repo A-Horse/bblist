@@ -7,7 +7,7 @@ import {addBodyEventListenerOnce} from 'actions/event/body';
 import {Button} from 'components/widget/Button';
 import {Hr} from 'components/widget/Hr';
 import UserAvatar from 'components/UserAvatar';
-import {MoreIcon} from 'services/svg-icons';
+import {MoreIcon, AddIcon} from 'services/svg-icons';
 
 import 'style/page/task/taskcard-creater.scss';
 
@@ -46,6 +46,7 @@ class TaskCardCreater extends Component {
   toggle(event) {
     const {dispatch} = this.props;
     this.setState({toggle: true});
+    // TODO use to clickoutside
     dispatch(addBodyEventListenerOnce(() => {
       this.setState({toggle: false});
     }));
@@ -60,7 +61,8 @@ class TaskCardCreater extends Component {
   renderToggle() {
     return (
       <div onClick={this.toggle.bind(this)} className='taskcard-creater--toggle'>
-        Add a card…
+        <AddIcon className='add-icon'/>
+        <span>Add a card...</span>
       </div>
     );
   }

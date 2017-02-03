@@ -1,9 +1,11 @@
 @import './task-list';
 @import 'style/variable';
+@import './_task-variable';
 
 .tasklist-creater {
   border-radius: $list-radius;
-  padding: 0.3rem 0.4rem;
+  height: $top-bar-height;
+  padding: 0 8px;
   display: inline-flex;
   vertical-align: top;
   width: $list-width;
@@ -15,13 +17,12 @@
 .task-list--toggle {
   display: flex;
   align-items: center;
-  
+  color: $gray-deep;
+  font-weight: bolder;
+
   .add-icon {
-    background-color: $black;
-    fill: $white;
-    border-radius: 50%;
-    height: $icon-small;
-    width: $icon-small;
-    margin-right: 7px;
+    fill: $gray-deep;
+    margin-right: 8px;
+    vertical-align: middle;
   }
 }

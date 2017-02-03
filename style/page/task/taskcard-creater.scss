@@ -20,9 +20,21 @@ $list-vertical-padding: 12px;
 }
 
 .taskcard-creater--toggle {
-  font-weight: 500;
+  font-weight: bolder;
   color: $gray-deep;
-  margin: 8px 14px 10px;
+  margin: 8px 10px 10px;
+  cursor: pointer;
+
+  span {
+    vertical-align: middle;
+  }
+
+  .add-icon {
+    fill: $gray-deep;
+    vertical-align: middle;
+    margin-right: 8px;
+
+  }
 }
 
 .taskcard-creater--user, .taskcard-creater--operation, .taskcard-creater--participants {

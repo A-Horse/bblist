@@ -1,10 +1,5 @@
 @import 'style/variable';
-
-$top-bar-height: 45px;
-$list-width: 300px;
-$list-radius: 3px;
-$list-horiz-margin: 24px;
-$list-vertical-margin: 15px;
+@import './_task-variable';
 
 .task-list {
   border-radius: $list-radius;
@@ -57,12 +52,13 @@ $list-vertical-margin: 15px;
   flex-direction: column;
 }
 
-.task-list--title {
-  .title--text {
+.task-list--name {
+  .task-list--input {
     resize: none;
     border: none;
     background-color: $white;
-    border-radius: $radius-middle;
+    border-radius: $radius-small;
+    padding: 0 3px;
   }
 }
 
@@ -75,6 +71,7 @@ $list-vertical-margin: 15px;
   justify-content: space-between;
   align-items: center;
   margin: 0;
+  padding: 0 8px;
 
   .more-icon {
     cursor: pointer;

@@ -21,7 +21,8 @@ import {getOffsetHeight} from 'utils/dom';
 import BoardCradDragHelper from 'services/board-card-drag-helper';
 
 import 'style/page/task/task-list.scss';
-import styleVariables from '!!sass-variable-loader!style/page/task/task-list.scss';
+
+import styleVariables from '!!sass-variable-loader!style/page/task/_task-variable.scss';
 
 
 //let relativeOffsetBody;
@@ -106,8 +107,8 @@ class TaskList extends Component {
   renderTrackName() {
     const {listName} = this.props;
     return (
-      <div className='task-list--title'>
-        <Input ref='trackName' onMouseDown={event => event.stopPropagation()} onKeyDown={this.onTrackNameKeyDown.bind(this)} onChange={this.onTrackNameChanged.bind(this)} className='title--text' defaultValue={listName}/>
+      <div className='task-list--name'>
+        <Input className='task-list--input' ref='trackName' onMouseDown={event => event.stopPropagation()} onKeyDown={this.onTrackNameKeyDown.bind(this)} onChange={this.onTrackNameChanged.bind(this)} defaultValue={listName}/>
       </div>
     );
   }
