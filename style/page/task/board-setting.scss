@@ -1,3 +1,4 @@
+@import 'style/variable';
 
 $content-width: 700px;
 
@@ -6,13 +7,34 @@ $content-width: 700px;
   min-width: 600px;
   margin: 0 auto;
   display: flex;
+  padding-top: 30px;
 
   .board-setting-side-bar {
-    width: 30%;
+    width: 25%;
+    margin-right: 5%;
+    ul {
+      background-color: $white;
+      border-radius: $radius-small;
+      border: 1px solid $gray-light;
+
+      li {
+        height: 40px;
+        line-height: 40px;
+        padding-left: 10px;
+        border-bottom: 1px solid $gray-light;
+        cursor: pointer;
+        &:last-child {
+          border-bottom: none;
+        }
+      }
+    }
   }
 
   .board-setting-panel {
     width: 70%;
-
+    background-color: $white;
+    border-radius: $radius-small;
+    border: 1px solid $gray-light;
+    padding: 10px;
   }
 }

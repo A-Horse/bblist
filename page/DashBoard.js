@@ -2,36 +2,28 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {PageContainer} from '../components/widget/PageContainer';
 
+import Building from 'page/Building';
+
 class DashBoard extends Component {
   constructor() {
-    super()
+    super();
   }
   
   render() {
     return (
       <PageContainer>
 
-        <div>
-          <h2>Task</h2>
-        </div>
-
-        <div>
-          <h2>Idea</h2>
-        </div>
-
-        <div>
-          <h2>Chat</h2>
-        </div>
+        <Building/>
         
       </PageContainer>
-    )
+    );
   }
 }
 
 const mapStateToProps = (state) => {
   return {
     
-  }
+  };
 };
 
 export default connect(mapStateToProps)(DashBoard);

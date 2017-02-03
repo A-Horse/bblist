@@ -54,7 +54,7 @@ class TaskListCreater extends Component {
   }
 
   renderInput() {
-    return <input ref='name' onKeyDown={this.onKeyDown.bind(this)} onClick={(event) => event.stopPropagation()}/>;
+    return <input type='text' ref='name' onKeyDown={this.onKeyDown.bind(this)} onClick={(event) => event.stopPropagation()}/>;
   }
 
   renderToggle() {

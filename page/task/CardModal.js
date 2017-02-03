@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {browserHistory} from 'react-router';
 import R from 'fw-ramda';
+import moment from 'moment';
 
 import {deleteTaskCard, updateTaskCard, unactiveCardModal, getCardDetail} from 'actions/task/task-card';
 import {getTaskAllCards} from 'actions/task/task-wall';
@@ -62,20 +63,24 @@ class CardModal extends Component {
   renderComments() {
     const {dispatch, card} = this.props;
     if (card.comments) {
-      return card.comments.map((comment) => {
+      const comments = card.comments.map(comment => {
         return (
-          <div className='taskcard-modal--comments'>
-            <p></p>
-            <ul>
-              <li key={comment.id} className='comment-item'>
-                <UserAvatar user={comment.creater}/>
-                <span>{comment.content}</span>
-              </li>
-            </ul>
-          </div>
+          <li key={comment.id} className='comment-item'>
+            <UserAvatar user={comment.creater}/>
+            <span className='comment-item--content'>{comment.content}</span>
+            <span className='comment-item--date'>{moment(comment.updated_at ? comment.updated_at : comment.created_at).format('MMMM Do YYYY, h:mm:ss a')}</span>
+          </li>
         );
       });
+      return (
+        <div className='taskcard-modal--comments'>
+          <ul>
+            {comments}
+          </ul>
+        </div>
+      );
     }
+    return null;
   }
   
   renderPomodoro() {

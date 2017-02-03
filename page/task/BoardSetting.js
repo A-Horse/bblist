@@ -85,9 +85,9 @@ export class BoardSetting extends Component {
 
         <div className='board-setting-side-bar'>
           <ul>
-            <li onClick={this.switchPanel('infomation')}>Infomation</li>
-            <li onClick={this.switchPanel('preference')}>Preference</li>
-            <li onClick={this.switchPanel('operation')}>Operatioon</li>
+            <li className={this.state.currentPanel === 'infomation' ? 'active' : ''} onClick={this.switchPanel('infomation')}>Infomation</li>
+            <li className= onClick={this.switchPanel('preference')}>Preference</li>
+            <li className= onClick={this.switchPanel('operation')}>Operatioon</li>
           </ul>
         </div>
 

@@ -12,6 +12,15 @@
   margin: $list-vertical-margin $list-horiz-margin;
   justify-content: space-between;
   background-color: $gray-super-light;
+  align-items: center;
+
+  input {
+    height: 22px;
+    border: none;
+    background-color: #FFF;
+    border-radius: 3px;
+    padding: 0 3px;
+  }
 }
 
 .task-list--toggle {

@@ -29,7 +29,7 @@ class Setting extends Component {
 const mapStateToProps = (state) => {
   return {
     
-  }
+  };
 }
 
 export default connect(mapStateToProps)(Setting)

@@ -1,7 +1,7 @@
 @import 'style/variable';
 
 $content-width: 409px;
-$content-top: 150px;
+$content-top: 80px;
 
 .modal__content.taskcard-modal {
   width: $content-width;
@@ -112,16 +112,41 @@ $content-top: 150px;
 }
 
 .taskcard-modal--comments {
+  position: relative;
+  padding: 14px 8px 0px;
   margin-top: 14px;
   border: 1px solid $border-light;
 
-  .useravatar {
-    width: 20px;
-    height: 20px;
+  &:before {
+    content: 'Comments';
+    letter-spacing: 1px;
+    color: $gray-deep;
+    display: block;
+    position: absolute;
+    left: 10px;
+    top: -10px;
+    background-color: $white;
+    padding: 0 8px;
+    font-size: 15px;
   }
 
   .comment-item {
+    margin-bottom: 8px;
     display: flex;
+    align-items: space-between;
+    .useravatar {
+      width: 20px;
+      height: 20px;
+      margin-right: 8px;
+    }
+    .comment-item--content {
+      flex-grow: 2;
+    }
+    .comment-item--date {
+      flex-shrink: 2;
+      align-self: flex-start;
+      font-size: $font-size-small;
+    }
   }
 }
 
