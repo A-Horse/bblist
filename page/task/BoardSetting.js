@@ -8,14 +8,13 @@ import R from 'ramda';
 import Infomation from './Setting/Infomation';
 import Operation from './Setting/Operation';
 import Preference from './Setting/Preference';
-
 import 'style/page/task/board-setting.scss';
+
+import {Router, Route, IndexRoute, browserHistory} from 'react-router';
 
 export class BoardSetting extends Component {
   constructor() {
     super();
-    this.panels = [<Infomation/>, <Operation/>, <Preference/>];
-    this.state = {currentPanel: R.head(this.panels)};
   }
 
   getCurrentBoard() {
@@ -23,10 +22,34 @@ export class BoardSetting extends Component {
     return normalizedBoard.entities[this.props.params.id];
   }
 
-  componentDidMount() {
-    
+  componentWillMount() {
+    console.log(0, this.getCurrentBoard());
+    this.panels = [
+      <Infomation key='infomation' board={this.getCurrentBoard()} uploadCover={this.props.uploadCover} params={this.props.params}/>,
+      <Operation key='operation'/>,
+      <Preference key='preference'/>
+    ];
+    this.state = {currentPanel: R.head(this.panels)};
   }
 
+  componentDidMount() {
+        console.log(1, this.getCurrentBoard());
+      }
+
+      componentDidUpdate() {
+        
+      }
+
+      componentWillReceiveProps() {
+        this.panels = [
+            <Infomation key='infomation' board={this.getCurrentBoard()} uploadCover={this.props.uploadCover} params={this.props.params}/>,
+          <Operation key='operation'/>,
+          <Preference key='preference'/>
+          ];
+          this.state = {currentPanel: R.head(this.panels)};
+          this.render();
+          }
+      
   deleteTaskBoard() {
     this.props.deleteBoard(this.props.params.id);
   }
@@ -42,18 +65,6 @@ export class BoardSetting extends Component {
     );
   }
 
-  renderPanel(name) {
-    switch (name) {
-    case 'infomation':
-      return <Infomation/>;
-      break;
-    case 'preference':
-      break;
-    default:
-      return <Infomation board={this.getCurrentBoard()} uploadCover={this.props.uploadCover} params={this.props.params}/>;
-    }
-  }
-
   switchPanel(panel) {
     this.setState({currentPanel: panel});
   }
@@ -61,7 +72,7 @@ export class BoardSetting extends Component {
   renderSideBarItems() {
     return this.panels.map(panelWrapper => {
       const name = panelWrapper.type.name;
-      return (<li className={this.state.currentPanel.type.name === name ? 'active' : null}
+      return (<li key={name} className={this.state.currentPanel.type.name === name ? 'active' : null}
          onClick={() => this.switchPanel(panelWrapper)}>
          {name}
         </li>);
@@ -79,7 +90,12 @@ export class BoardSetting extends Component {
         </div>
 
         <div className='board-setting-panel'>
-          {this.renderPanel(this.state.currentPanel)}
+          <Router>
+
+            <Route path="/s" component={Infomation} />
+
+            
+          </Router>
         </div>        
       </div>
     );

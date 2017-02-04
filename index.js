@@ -68,7 +68,9 @@ ReactDOM.render(
 
           <Route path="task-wall/" component={Board} onEnter={checkLogin}>
             <Route path="/task-wall/:id" component={BoardContent}/>
-            <Route path="/task-wall/:id/setting" component={BoardSetting}/>
+            <Route path="/task-wall/:id/setting" component={BoardSetting}>
+              <Route path="/infomation" component={TaskSettingInfomation}/>
+            </Route>
           </Route>          
 
           <Route path="todo" component={TodoPage}/>

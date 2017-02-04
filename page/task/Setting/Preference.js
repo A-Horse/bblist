@@ -17,6 +17,7 @@ class Preference extends Component {
   render() {
     return (
       <div className='board-setting-preference'>
+        <h3>Preference</h3>
       </div>
     );
   }

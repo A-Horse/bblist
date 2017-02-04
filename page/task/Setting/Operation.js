@@ -16,6 +16,7 @@ class Operation extends Component {
   render() {
     return (
       <div className='board-setting-operation'>
+        <h3>Operation</h3>
       </div>
     );
   }

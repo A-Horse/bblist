@@ -23,6 +23,7 @@ class Infomation extends Component {
   render() {
     return (
       <div className='board-setting-infomation'>
+        <h3>Infomation</h3>
         <div className='board-cover'>
           <div>Board Cover:</div>
           <div className='board-cover-wrapper'>
