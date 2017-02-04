@@ -18,6 +18,7 @@ $content-width: 700px;
       border: 1px solid $gray-light;
 
       li {
+        position: relative;
         height: 40px;
         line-height: 40px;
         padding-left: 10px;
@@ -25,6 +26,17 @@ $content-width: 700px;
         cursor: pointer;
         &:last-child {
           border-bottom: none;
+        }
+
+        &.active:before {
+          content: '';
+          display: block;
+          position: absolute;
+          left: 0;
+          top: 0;
+          height: 100%;
+          width: 3px;
+          background-color: $red-litte-light;
         }
       }
     }

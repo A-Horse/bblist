@@ -7,7 +7,12 @@ import {makeRemoteUrl} from 'services/remote-storage';
 
 import 'style/page/task/setting/infomation.scss';
 
-export class Infomation extends Component {
+class Infomation extends Component {
+
+  static get name() {
+    return 'infomation';
+  }
+  
   uploadCover(imageDataUrl) {
     // TODO extract commons
     const data = new FormData();

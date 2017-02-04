@@ -3,26 +3,24 @@ import {connect} from 'react-redux';
 import {Modal} from 'components/widget/Modal';
 import ReactCrop from 'react-image-crop';
 import {ImageUploader} from 'components/ImageUploader';
+import R from 'ramda';
 
 import Infomation from './Setting/Infomation';
+import Operation from './Setting/Operation';
+import Preference from './Setting/Preference';
 
 import 'style/page/task/board-setting.scss';
 
 export class BoardSetting extends Component {
   constructor() {
     super();
+    this.panels = [<Infomation/>, <Operation/>, <Preference/>];
+    this.state = {currentPanel: R.head(this.panels)};
   }
 
   getCurrentBoard() {
     const {normalizedBoard} = this.props;
-    console.log(normalizedBoard);
     return normalizedBoard.entities[this.props.params.id];
-  }
-
-  componentWillMount() {
-    this.state = {
-      coverDataURL: ''
-    };
   }
 
   componentDidMount() {
@@ -32,26 +30,7 @@ export class BoardSetting extends Component {
   deleteTaskBoard() {
     this.props.deleteBoard(this.props.params.id);
   }
-
-  close() {
-    
-  }
-
-  uploadCover(imageDataUrl) {
-    // TODO extract commons
-    const data = new FormData();
-    data.append('playload', imageDataUrl);
-    this.propins.uploadCover(this.props.params.id, data);
-  }
-
-  renderCoverUploader() {
-    return (
-      <div>
-        <ImageUploader ref='board-cover-uploader' uploadFn={this.uploadCover.bind(this)}/>
-      </div>
-    );
-  }
-
+  
   renderInfotmationSetting() {
     return (
       <div>
@@ -75,8 +54,18 @@ export class BoardSetting extends Component {
     }
   }
 
-  switchPanel(name) {
-    
+  switchPanel(panel) {
+    this.setState({currentPanel: panel});
+  }
+  
+  renderSideBarItems() {
+    return this.panels.map(panelWrapper => {
+      const name = panelWrapper.type.name;
+      return (<li className={this.state.currentPanel.type.name === name ? 'active' : null}
+         onClick={() => this.switchPanel(panelWrapper)}>
+         {name}
+        </li>);
+    });
   }
   
   render() {
@@ -85,9 +74,7 @@ export class BoardSetting extends Component {
 
         <div className='board-setting-side-bar'>
           <ul>
-            <li className={this.state.currentPanel === 'infomation' ? 'active' : ''} onClick={this.switchPanel('infomation')}>Infomation</li>
-            <li className= onClick={this.switchPanel('preference')}>Preference</li>
-            <li className= onClick={this.switchPanel('operation')}>Operatioon</li>
+            {this.renderSideBarItems()}
           </ul>
         </div>
 
