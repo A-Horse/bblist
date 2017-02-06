@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {createStore, combineReducers} from 'redux';
 import {Provider} from 'react-redux';
-import {Router, Route, IndexRoute, browserHistory} from 'react-router';
+import {Router, Route, IndexRoute, browserHistory, IndexRedirect} from 'react-router';
 import {syncHistoryWithStore, routerReducer} from 'react-router-redux';
 import {applyMiddleware} from 'redux';
 import thunkMiddleware from 'redux-thunk';
@@ -20,6 +20,10 @@ import Boards from 'containers/task/Boards';
 import Board from 'containers/task/Board';
 import BoardSetting from 'containers/task/BoardSetting';
 import BoardContent from 'containers/task/BoardContent';
+import TaskSettingInfomation from 'containers/task/Setting/Infomation';
+import TaskSettingOperation from 'containers/task/Setting/Operation';
+import TaskSettingPreference from 'containers/task/Setting/Preference';
+
 import Body from 'components/Body';
 
 import {checkLogin} from 'utils/auth';
@@ -54,28 +58,31 @@ ReactDOM.render(
         <Route path='/' component={BlankPage}>
           <IndexRoute path='' component={IndexPage}/>
 
-          <Route path="signin" component={SignIn}/>
-          <Route path="signup" component={SignUp}/>
+          <Route path='signin' component={SignIn}/>
+          <Route path='signup' component={SignUp}/>
         </Route>
 
-        <Route path="/" component={App} >
+        <Route path='/' component={App} >
   
-          <Route path="dash" component={DashBoard} onEnter={checkLogin}/>
+          <Route path='dash' component={DashBoard} onEnter={checkLogin}/>
     
-          <Route path="profile" component={Profile}/>
+          <Route path='profile' component={Profile}/>
           <Route path="idea" component={Ideas}/>
-          <Route path="task-wall" component={Boards} onEnter={checkLogin}/>
+          <Route path='task-wall' component={Boards} onEnter={checkLogin}/>
 
-          <Route path="task-wall/" component={Board} onEnter={checkLogin}>
-            <Route path="/task-wall/:id" component={BoardContent}/>
-            <Route path="/task-wall/:id/setting" component={BoardSetting}>
-              <Route path="/infomation" component={TaskSettingInfomation}/>
+          <Route path='task-wall/' component={Board} onEnter={checkLogin}>
+            <Route path='/task-wall/:id' component={BoardContent}/>
+            <Route path='/task-wall/:id/setting' component={BoardSetting}>
+              <Route path='infomation' component={TaskSettingInfomation}/>
+              <Route path='operation' component={TaskSettingOperation}/>
+              <Route path='perference' component={TaskSettingPreference}/>
+              <IndexRedirect to='infomation'/>
             </Route>
           </Route>          
 
-          <Route path="todo" component={TodoPage}/>
+          <Route path='todo' component={TodoPage}/>
 
-          <Route path="404" component={NotFound} />
+          <Route path='404' component={NotFound} />
         </Route>
 
         

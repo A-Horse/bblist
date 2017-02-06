@@ -1,17 +1,16 @@
 import {connect} from 'react-redux';
 import {uploadFile} from 'actions/common/file';
 import {deleteTaskBoard} from 'actions/task/task-wall';
-import Boards from 'page/task/Boards';
+import Infomation from 'page/task/Setting/Infomation';
 import {browserHistory, hashHistory} from 'react-router';
 import {createSelector} from 'reselect';
-import {wrapDispathToAction} from 'utils/wrap-props';
-import {createTaskBoard, getAllTaskBoard} from 'actions/task/task-wall';
 
-const actions = {
-  getAllTaskBoard,
-  createTaskBoard
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    
+  };
 };
-
 
 const mapStateToProps = (state) => {
   return {
@@ -19,9 +18,9 @@ const mapStateToProps = (state) => {
   };
 };
 
-const BoardsContainer = connect(
+const PreferenceContainer = connect(
   mapStateToProps,
-  wrapDispathToAction(actions)
-)(Boards);
+  mapDispatchToProps
+)(Infomation);
 
-export default BoardsContainer;
+export default PreferenceContainer;

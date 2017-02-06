@@ -1,15 +1,15 @@
 import {connect} from 'react-redux';
-import {uploadFile} from 'actions/common/file';
 import {deleteTaskBoard} from 'actions/task/task-wall';
-import Infomation from 'page/task/Setting/Infomation';
 import {browserHistory, hashHistory} from 'react-router';
 import {createSelector} from 'reselect';
 
+import Operation from 'page/task/Setting/Operation';
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    uploadCover(id, data) {
-      return dispatch(uploadFile(`/task-board/${id}/cover`, data));
+    deleteBoard(id) {
+      return dispatch(deleteTaskBoard(id))
+        .then(() => browserHistory.push('/task-wall'));
     }
   };
 };
@@ -20,9 +20,9 @@ const mapStateToProps = (state) => {
   };
 };
 
-const InfomationContainer = connect(
+const OperationContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(Infomation);
+)(Operation);
 
-export default InfomationContainer;
+export default OperationContainer;

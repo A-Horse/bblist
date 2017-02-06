@@ -8,9 +8,9 @@ import {makeRemoteUrl} from 'services/remote-storage';
 import 'style/page/task/setting/infomation.scss';
 
 class Infomation extends Component {
-
-  static get name() {
-    return 'infomation';
+  getCurrentBoard() {
+    const {normalizedBoard} = this.props;
+    return normalizedBoard.entities[this.props.params.id];
   }
   
   uploadCover(imageDataUrl) {
@@ -21,13 +21,15 @@ class Infomation extends Component {
   }
 
   render() {
+    const board = this.getCurrentBoard();
+    
     return (
       <div className='board-setting-infomation'>
         <h3>Infomation</h3>
         <div className='board-cover'>
           <div>Board Cover:</div>
           <div className='board-cover-wrapper'>
-            <img className='cover-image' src={this.props.board && makeRemoteUrl(this.props.board.cover)}/>
+            <img className='cover-image' src={board && makeRemoteUrl(board.cover)}/>
             <div>
               <ImageUploader ref='board-cover-uploader' uploadFn={this.uploadCover.bind(this)}>Upload new Cover</ImageUploader>
             </div>

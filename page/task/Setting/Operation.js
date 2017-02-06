@@ -17,6 +17,9 @@ class Operation extends Component {
     return (
       <div className='board-setting-operation'>
         <h3>Operation</h3>
+        <div>
+          <button onClick={this.deleteTaskBoard.bind(this)}>Delete this wall</button>
+        </div>
       </div>
     );
   }

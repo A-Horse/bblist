@@ -20,7 +20,6 @@ class Board extends Component {
 
   componentWillMount() {
     const {id} = this.props.params;
-
     this.getTasks(id).then(() => {
       
     }).catch(error => {
@@ -32,14 +31,13 @@ class Board extends Component {
     updateTitle('Task Board');
   }
 
-  
   getTasks(id) {
     return this.props.getBoardData(id);
   }
   
   renderSetttingArea() {
     return (
-      <div className='taskboard-header-setting' onClick={() => browserHistory.push(`/task-wall/${this.props.params.id}/setting`)}>
+      <div className='taskboard-header-setting' onClick={() => browserHistory.push(`/task-wall/${this.props.params.id}/setting/infomation`)}>
         <SettingIcon className='setting-icon'/>
         <span>setting</span>
       </div>

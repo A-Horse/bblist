@@ -24,9 +24,9 @@ const mapStateToProps = (state) => {
   };
 };
 
-const BoardSettingPage = connect(
+const BoardSettingContainer = connect(
   mapStateToProps,
   mapDispatchToProps
 )(BoardSetting);
 
-export default BoardSettingPage;
+export default BoardSettingContainer;
