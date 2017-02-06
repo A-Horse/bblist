@@ -9,9 +9,13 @@
       
     }
 
-    .board-cover-wrapper {
+    .board-cover--wrapper {
       display: flex;
       align-items: flex-end;
+    }
+
+    .board-cover--uploader {
+      margin-left: 20px;
     }
   }
 }

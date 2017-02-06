@@ -4,6 +4,7 @@ import {Modal} from 'components/widget/Modal';
 import ReactCrop from 'react-image-crop';
 import {ImageUploader} from 'components/ImageUploader';
 import {makeRemoteUrl} from 'services/remote-storage';
+import Input from 'components/widget/Input';
 
 import 'style/page/task/setting/infomation.scss';
 
@@ -26,15 +27,21 @@ class Infomation extends Component {
     return (
       <div className='board-setting-infomation'>
         <h3>Infomation</h3>
+
+        <div className='board-cover'>
+          <Input/>            
+        </div>
+        
         <div className='board-cover'>
           <div>Board Cover:</div>
-          <div className='board-cover-wrapper'>
+          <div className='board-cover--wrapper'>
             <img className='cover-image' src={board && makeRemoteUrl(board.cover)}/>
-            <div>
+            <div className='board-cover--uploader'>
               <ImageUploader ref='board-cover-uploader' uploadFn={this.uploadCover.bind(this)}>Upload new Cover</ImageUploader>
             </div>
           </div>
         </div>
+
       </div>
     );
   }

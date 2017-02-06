@@ -19,11 +19,12 @@ $content-width: 700px;
 
       li {
         position: relative;
-        height: 40px;
-        line-height: 40px;
+        height: 60px;
+        line-height: 60px;
         padding-left: 10px;
         border-bottom: 1px solid $gray-light;
         cursor: pointer;
+
         &:last-child {
           border-bottom: none;
         }
@@ -48,5 +49,9 @@ $content-width: 700px;
     border-radius: $radius-small;
     border: 1px solid $gray-light;
     padding: 10px;
+
+    h3 {
+      
+    }
   }
 }

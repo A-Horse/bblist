@@ -8,10 +8,6 @@ import {makeRemoteUrl} from 'services/remote-storage';
 import 'style/page/task/setting/infomation.scss';
 
 class Operation extends Component {
-
-  static get name() {
-    return 'operation';
-  }
   
   render() {
     return (
