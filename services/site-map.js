@@ -1,6 +1,6 @@
 
 export const SITE_MAP = {
-  taskBoard: {
+  TaskBoard: {
     url: '/task-wall'
   }
 };

@@ -5,6 +5,7 @@ import ReactCrop from 'react-image-crop';
 import {ImageUploader} from 'components/ImageUploader';
 import {makeRemoteUrl} from 'services/remote-storage';
 import Input from 'components/widget/Input';
+import Button from 'components/widget/Button';
 
 import 'style/page/task/setting/infomation.scss';
 
@@ -28,8 +29,12 @@ class Infomation extends Component {
       <div className='board-setting-infomation'>
         <h3>Infomation</h3>
 
-        <div className='board-cover'>
-          <Input/>            
+        <div className='board-name'>
+          <div>Board Name:</div>
+          <div>
+            <Input className='board-name--input'/>
+            <Button>Change</Button>
+          </div>
         </div>
         
         <div className='board-cover'>

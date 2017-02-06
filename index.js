@@ -75,7 +75,7 @@ ReactDOM.render(
             <Route path='/task-wall/:id/setting' component={BoardSetting}>
               <Route path='infomation' component={TaskSettingInfomation}/>
               <Route path='operation' component={TaskSettingOperation}/>
-              <Route path='perference' component={TaskSettingPreference}/>
+              <Route path='preference' component={TaskSettingPreference}/>
               <IndexRedirect to='infomation'/>
             </Route>
           </Route>          

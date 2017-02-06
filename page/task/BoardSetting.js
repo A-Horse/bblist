@@ -10,6 +10,7 @@ import Operation from './Setting/Operation';
 import Preference from './Setting/Preference';
 import 'style/page/task/board-setting.scss';
 import {Link} from 'react-router';
+import {SITE_MAP} from 'services/site-map';
 
 // TODO remove container because do not need
 export class BoardSetting extends Component {
@@ -33,11 +34,12 @@ export class BoardSetting extends Component {
   }
   
   renderSideBarItems() {
+    
     return (
       <ul>
-        <li><Link to='infomation'>Infomation</Link></li>
-        <li><Link to='preference'>Preference</Link></li>
-        <li><Link to='operation'>Operation</Link></li>
+        <li><Link activeClassName='active' to={`/task-wall/${this.props.params.id}/setting/infomation`}>Infomation</Link></li>
+        <li><Link activeClassName='active' to={`/task-wall/${this.props.params.id}/setting/preference`}>Preference</Link></li>
+        <li><Link activeClassName='active' to={`/task-wall/${this.props.params.id}/setting/operation`}>Operation</Link></li>
       </ul>
     );
   }
@@ -47,9 +49,7 @@ export class BoardSetting extends Component {
       <div className='board-setting-page'>
 
         <div className='board-setting-side-bar'>
-          <ul>
-            {this.renderSideBarItems()}
-          </ul>
+          {this.renderSideBarItems()}
         </div>
 
         <div className='board-setting-panel'>

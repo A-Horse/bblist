@@ -10,7 +10,7 @@ $content-width: 700px;
   padding-top: 30px;
 
   .board-setting-side-bar {
-    width: 25%;
+    width: 20%;
     margin-right: 5%;
     ul {
       background-color: $white;
@@ -19,32 +19,38 @@ $content-width: 700px;
 
       li {
         position: relative;
-        height: 60px;
-        line-height: 60px;
-        padding-left: 10px;
+        height: 50px;
+        line-height: 50px;
         border-bottom: 1px solid $gray-light;
         cursor: pointer;
 
-        &:last-child {
-          border-bottom: none;
+        a {
+          position: relative;
+          height: 100%;
+          width: 100%;
+          padding-left: 10px;
+
+          &.active:before {
+            content: '';
+            display: block;
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 3px;
+            background-color: $red-litte-light;
+          }
         }
 
-        &.active:before {
-          content: '';
-          display: block;
-          position: absolute;
-          left: 0;
-          top: 0;
-          height: 100%;
-          width: 3px;
-          background-color: $red-litte-light;
+        &:last-child {
+          border-bottom: none;
         }
       }
     }
   }
 
   .board-setting-panel {
-    width: 70%;
+    width: 75%;
     background-color: $white;
     border-radius: $radius-small;
     border: 1px solid $gray-light;

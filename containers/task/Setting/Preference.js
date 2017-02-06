@@ -1,7 +1,7 @@
 import {connect} from 'react-redux';
 import {uploadFile} from 'actions/common/file';
 import {deleteTaskBoard} from 'actions/task/task-wall';
-import Infomation from 'page/task/Setting/Infomation';
+import Preference from 'page/task/Setting/Preference';
 import {browserHistory, hashHistory} from 'react-router';
 import {createSelector} from 'reselect';
 
@@ -21,6 +21,6 @@ const mapStateToProps = (state) => {
 const PreferenceContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(Infomation);
+)(Preference);
 
 export default PreferenceContainer;
