@@ -18,4 +18,31 @@
       margin-left: 20px;
     }
   }
+
+  .board-name {
+    &--input {
+      padding: 8px;
+      box-sizing: border-box;
+      border-radius: $radius-middle;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      width: 300px;
+    }
+  }
+
+  .board-description {
+    &--input {
+      padding: 8px;
+      border-radius: $radius-middle;
+      box-sizing: border-box;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      width: 300px;
+    }
+  }
+
+  .board-name, .board-description {
+    margin-top: 20px;
+    &--heading {
+      margin-bottom: 10px;
+    }
+  }
 }

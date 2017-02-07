@@ -5,6 +5,7 @@ import ReactCrop from 'react-image-crop';
 import {ImageUploader} from 'components/ImageUploader';
 import {makeRemoteUrl} from 'services/remote-storage';
 import RadioGroup from 'components/widget/RadioGroup';
+import Button from 'components/widget/Button';
 
 import 'style/page/task/setting/preference.scss';
 
@@ -24,14 +25,13 @@ class Preference extends Component {
                         {value: false, text: 'Notifications are not received'}
                       ]}/>
           
-
+          <Button>OK</Button>
         </div>
       </div>
     );
   }
 
   onNotificationSettingChange() {
-    
   }
 }
 

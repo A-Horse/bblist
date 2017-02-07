@@ -18,8 +18,8 @@ class Operation extends Component {
         <div className='board-operation-delete'>
           <div className='board-operation-delete--heading'>Delete this Board</div>
           <div>
-            <span>remove all data!</span>
-            <Button>Confirm delete</Button>
+            <p>remove all data!</p>
+            <Button>Delete</Button>
           </div>
         </div>
       </div>

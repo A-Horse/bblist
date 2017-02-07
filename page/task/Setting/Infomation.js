@@ -6,6 +6,7 @@ import {ImageUploader} from 'components/ImageUploader';
 import {makeRemoteUrl} from 'services/remote-storage';
 import Input from 'components/widget/Input';
 import Button from 'components/widget/Button';
+import Textarea from 'react-textarea-autosize';
 
 import 'style/page/task/setting/infomation.scss';
 
@@ -30,10 +31,16 @@ class Infomation extends Component {
         <h3>Infomation</h3>
 
         <div className='board-name'>
-          <div>Board Name:</div>
+          <div className='board-name--heading'>Board Name:</div>
           <div>
-            <Input className='board-name--input'/>
-            <Button>Change</Button>
+            <Input className='board-name--input' value={board && board.name}/>
+          </div>
+        </div>
+
+        <div className='board-description'>
+          <div className='board-description--heading'>Board Description:</div>
+          <div>
+            <textarea className='board-description--input'/>
           </div>
         </div>
         
