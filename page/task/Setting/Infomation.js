@@ -7,6 +7,7 @@ import {makeRemoteUrl} from 'services/remote-storage';
 import Input from 'components/widget/Input';
 import Button from 'components/widget/Button';
 import Textarea from 'react-textarea-autosize';
+import Loading from 'components/Loading';
 
 import 'style/page/task/setting/infomation.scss';
 
@@ -23,9 +24,16 @@ class Infomation extends Component {
     this.props.uploadCover(this.props.params.id, data);
   }
 
+  onBoardNameChange(value) {
+    console.log(value);
+  }
+
   render() {
-    const board = this.getCurrentBoard();
-    
+    const board = this.props.board;
+    if (!board) {
+      return <Loading/>;
+    }
+
     return (
       <div className='board-setting-infomation'>
         <h3>Infomation</h3>
@@ -33,7 +41,7 @@ class Infomation extends Component {
         <div className='board-name'>
           <div className='board-name--heading'>Board Name:</div>
           <div>
-            <Input className='board-name--input' value={board && board.name}/>
+            <Input className='board-name--input' defaultValue={board.name} onChange={this.onBoardNameChange.bind(this)}/>
           </div>
         </div>
 
@@ -53,7 +61,6 @@ class Infomation extends Component {
             </div>
           </div>
         </div>
-
       </div>
     );
   }

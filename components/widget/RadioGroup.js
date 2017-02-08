@@ -10,7 +10,7 @@ export class RadioGroup extends Component {
   renderRadios() {
     return this.props.radioArray.map(radio => {
       return (
-        <div>
+        <div key={radio.value}>
           <input onChange={this.onChange.bind(this)} type='radio' name={this.props.name} value={radio.value}/>
           <span>{radio.text}</span>
         </div>

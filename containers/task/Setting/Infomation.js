@@ -14,9 +14,14 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-const mapStateToProps = (state) => {
+function getCurrentBoard(normalizedBoard, params) {
+  return normalizedBoard.entities[params.id];
+}
+
+const mapStateToProps = (state, props) => {
   return {
-    normalizedBoard: state.task.board
+    normalizedBoard: state.task.board,
+    board: getCurrentBoard(state.task.board, props.params)
   };
 };
 
