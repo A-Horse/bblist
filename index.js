@@ -26,14 +26,45 @@ import TaskSettingPreference from 'containers/task/Setting/Preference';
 
 import Body from 'components/Body';
 
+import { combineEpics, createEpicMiddleware } from 'redux-observable';
+
 import {checkLogin} from 'utils/auth';
 import * as reducers from 'reducers';
+
+import 'rxjs'; // https://redux-observable.js.org/docs/Troubleshooting.html RxJS operators are missing!
+
 
 import 'style/normalize.css';
 import 'style/app.scss';
 
+
+const pingEpic = action$ =>
+      action$.filter(action => action.type === 'PING')
+      .mapTo({ type: 'PONG' });
+
+export const rootEpic = combineEpics(
+  pingEpic
+);
+
+const epicMiddleware = createEpicMiddleware(rootEpic);
+
+
+const pingReducer = (state = { isPinging: false }, action) => {
+  switch (action.type) {
+  case 'PING':
+    return { isPinging: true };
+
+  case 'PONG':
+    return { isPinging: false };
+
+  default:
+    return state;
+  }
+};
+
 const reducer = combineReducers({
   ...reducers,
+  pingReducer,
   routing: routerReducer
 });
 
@@ -43,12 +74,24 @@ const DevTools = createDevTools(
   </DockMonitor>
 );
 
-const createStoreWithMiddleware = applyMiddleware(thunkMiddleware)(createStore);
 
-const store = createStoreWithMiddleware(
+const store = createStore(
   reducer,
-  DevTools.instrument()
+  DevTools.instrument(),
+  applyMiddleware(
+    epicMiddleware,
+    thunkMiddleware, // 允许我们 dispatch() 函数
+  ),
+  
 );
+
+// const createStoreWithMiddleware = applyMiddleware(thunkMiddleware)(createStore);
+
+// const store = createStoreWithMiddleware(
+//   reducer,
+//   DevTools.instrument()
+// );
+
 const history = syncHistoryWithStore(browserHistory, store);
 
 ReactDOM.render(

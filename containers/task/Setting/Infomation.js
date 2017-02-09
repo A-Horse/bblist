@@ -6,7 +6,8 @@ import {browserHistory, hashHistory} from 'react-router';
 import {createSelector} from 'reselect';
 
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch, props) => {
+  // TODO props
   return {
     uploadCover(id, data) {
       return dispatch(uploadFile(`/task-board/${id}/cover`, data));
@@ -14,14 +15,15 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-function getCurrentBoard(normalizedBoard, params) {
-  return normalizedBoard.entities[params.id];
-}
+const getCurrentBoard = createSelector(
+  [(state, props) => state.task.board.entities[props.params.id]],
+  (board) => {
+    return board;
+  });
 
 const mapStateToProps = (state, props) => {
   return {
-    normalizedBoard: state.task.board,
-    board: getCurrentBoard(state.task.board, props.params)
+    board: getCurrentBoard(state, props)
   };
 };
 

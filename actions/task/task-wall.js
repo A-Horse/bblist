@@ -147,3 +147,4 @@ export function deleteTaskBoard(boardId) {
       .then(response => dispatch(deleteTaskWallSuccess(response)));
   };
 }
+

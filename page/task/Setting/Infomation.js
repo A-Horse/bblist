@@ -12,10 +12,6 @@ import Loading from 'components/Loading';
 import 'style/page/task/setting/infomation.scss';
 
 class Infomation extends Component {
-  getCurrentBoard() {
-    const {normalizedBoard} = this.props;
-    return normalizedBoard.entities[this.props.params.id];
-  }
   
   uploadCover(imageDataUrl) {
     // TODO extract commons
