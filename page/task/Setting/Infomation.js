@@ -53,7 +53,7 @@ class Infomation extends Component {
           <div className='board-cover--wrapper'>
             <img className='cover-image' src={board && makeRemoteUrl(board.cover)}/>
             <div className='board-cover--uploader'>
-              <ImageUploader ref='board-cover-uploader' uploadFn={this.uploadCover.bind(this)}>Upload new Cover</ImageUploader>
+              <ImageUploader ref='board-cover-uploader' uploadFn={::this.uploadCover}>Upload new Cover</ImageUploader>
             </div>
           </div>
         </div>

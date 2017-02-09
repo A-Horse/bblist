@@ -80,17 +80,10 @@ const store = createStore(
   DevTools.instrument(),
   applyMiddleware(
     epicMiddleware,
-    thunkMiddleware, // 允许我们 dispatch() 函数
-  ),
-  
+    thunkMiddleware // 允许我们 dispatch() 函数
+  )
 );
 
-// const createStoreWithMiddleware = applyMiddleware(thunkMiddleware)(createStore);
-
-// const store = createStoreWithMiddleware(
-//   reducer,
-//   DevTools.instrument()
-// );
 
 const history = syncHistoryWithStore(browserHistory, store);
 

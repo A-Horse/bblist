@@ -4,7 +4,6 @@ import Radium from 'radium';
 
 import 'style/page/todo/pomodora-dial.scss';
 
-@Radium
 class PomodoraDial extends Component {
   constructor() {
     super();
