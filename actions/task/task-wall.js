@@ -104,6 +104,27 @@ function deleteTaskWallError() {
   };
 }
 
+export const TASKBOARD_RENAME_REQUEST = 'TASKBOARD_RENAME_REQUEST';
+
+export function requestRenameTaskBoard(boardId, newName) {
+  return {
+    type: TASKBOARD_RENAME_REQUEST,
+    playload: {
+      boardId: boardId,
+      name: newName
+    }
+  };
+}
+
+export const TASKBOARD_PATCH_SUCCESS = 'TASKBOARD_PATCH_REQUEST';
+
+export function updateTaskBoardSuccess(board) {
+  return {
+    type: TASKBOARD_PATCH_SUCCESS,
+    playload: board
+  };
+}
+
 export function getTaskAllCards(wallId) {
   const config = createConfigWithAuth('GET');
   const userId = getAuthData(CACHED_USERID);
@@ -147,4 +168,3 @@ export function deleteTaskBoard(boardId) {
       .then(response => dispatch(deleteTaskWallSuccess(response)));
   };
 }
-

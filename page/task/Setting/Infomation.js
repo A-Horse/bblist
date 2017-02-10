@@ -21,7 +21,7 @@ class Infomation extends Component {
   }
 
   onBoardNameChange(value) {
-    console.log(value);
+    this.props.modifyTaskBoardName(value);
   }
 
   render() {
