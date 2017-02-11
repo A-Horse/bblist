@@ -35,7 +35,7 @@ function requestTaskWalls() {
 function receiveTaskWalls(response) {
   return {
     type: TASKWALL_GET_SUCCESS,
-    playload: normalize(response, arrayOf(board))
+    playload: response//normalize(response, arrayOf(board))
   };
 }
 
@@ -46,7 +46,6 @@ function receiveTaskWallsFail(error) {
     error: true
   };
 }
-
 
 function requestTaskWallCards() {
   return {
@@ -112,6 +111,18 @@ export function requestRenameTaskBoard(boardId, newName) {
     playload: {
       boardId: boardId,
       name: newName
+    }
+  };
+}
+
+export const TASKBOARD_DESCRIPTION_UPDATE_REQUEST = 'TASKBOARD_DESCRIPT_UPDATE_REQUEST';
+
+export function requestUpdateTaskBoardDescription(boardId, description) {
+  return {
+    type: TASKBOARD_DESCRIPTION_UPDATE_REQUEST,
+    playload: {
+      boardId: board,
+      description: description
     }
   };
 }

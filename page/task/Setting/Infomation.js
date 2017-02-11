@@ -37,7 +37,7 @@ class Infomation extends Component {
         <div className='board-name'>
           <div className='board-name--heading'>Board Name:</div>
           <div>
-            <Input className='board-name--input' defaultValue={board.name} onChange={this.onBoardNameChange.bind(this)}/>
+            <Input className='board-name--input' defaultValue={board.name} onChange={::this.onBoardNameChange}/>
           </div>
         </div>
 
@@ -49,9 +49,9 @@ class Infomation extends Component {
         </div>
         
         <div className='board-cover'>
-          <div>Board Cover:</div>
+          <div className='board-cover--heading'>Board Cover:</div>
           <div className='board-cover--wrapper'>
-            <img className='cover-image' src={board && makeRemoteUrl(board.cover)}/>
+            <img className='cover-image' src={makeRemoteUrl(board.cover)}/>
             <div className='board-cover--uploader'>
               <ImageUploader ref='board-cover-uploader' uploadFn={::this.uploadCover}>Upload new Cover</ImageUploader>
             </div>

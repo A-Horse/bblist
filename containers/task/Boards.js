@@ -13,7 +13,7 @@ const actions = {
 };
 
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, props) => {
   return {
     normalizedBoard: state.task.board
   };

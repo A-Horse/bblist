@@ -13,7 +13,6 @@ const mapDispatchToProps = (dispatch, props) => {
       return dispatch(uploadFile(`/task-board/${id}/cover`, data));
     },
     modifyTaskBoardName(name) {
-      console.log('-');
       return dispatch(requestRenameTaskBoard(props.params.id, name));
     }
   };

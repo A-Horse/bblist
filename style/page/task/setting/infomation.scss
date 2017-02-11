@@ -6,7 +6,8 @@
   .board-cover {
 
     .cover-image {
-      
+      border-radius: $radius-middle;
+      border: 1px solid $gray;
     }
 
     .board-cover--wrapper {
@@ -39,7 +40,7 @@
     }
   }
 
-  .board-name, .board-description {
+  .board-name, .board-description, .board-cover {
     margin-top: 20px;
     &--heading {
       margin-bottom: 10px;
