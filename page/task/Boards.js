@@ -6,6 +6,8 @@ import {CloseIcon, AddIcon, ViewListIcon} from 'services/svg-icons';
 import TaskBoardCreater from './TaskBoardCreater';
 import {makeRemoteUrl} from 'services/remote-storage';
 import {DEFAULT_BOARD_COVER_SRC} from 'constants';
+import Loading from 'components/Loading';
+
 import 'style/page/task/boards.scss';
 import 'style/page/task/taskboard-creater-modal.scss';
 import 'style/page/task/taskboard-card.scss';
@@ -16,9 +18,11 @@ class Boards extends Component {
   }
 
   renderWalls() {
-    const {normalizedBoard} = this.props;
-    return normalizedBoard.result.map(boardId => {
-      const board = normalizedBoard.entities[boardId];
+    if (this.props.isFetching) {
+      return <Loading/>;
+    }
+    console.log(this.props.boards);
+    return this.props.boards.map(board => {
       return (
         <div className='taskboard-card'
              style={{backgroundImage: board.cover ? `url(${makeRemoteUrl(board.cover)})` : `url(${DEFAULT_BOARD_COVER_SRC})`}}

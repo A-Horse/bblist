@@ -12,12 +12,17 @@ import {track, card, user, board} from 'schema';
 
 function taskWall(state = {
   entities: [],
-  result: []
+  result: [],
+  isTaskBoardsFetching: true
 }, action) {
   switch (action.type) {
 
+  case TASKWALL_GET_REQUEST:
+    return Object(state, {isTaskBoardsFetching: true});
+    break;
+
   case TASKWALL_GET_SUCCESS:
-    return Object.assign({}, state, normalize(action.playload, arrayOf(board)));
+    return Object.assign({}, state, {isTaskBoardsFetching: false}, normalize(action.playload, arrayOf(board)));
     break;
 
   case TASKWALL_DELETE_SUCCESS:
@@ -41,7 +46,7 @@ function taskWall(state = {
       entities: [],
       result: []
     });
-    abreak;
+    break;
 
   case TASKBOARD_PATCH_SUCCESS:
     

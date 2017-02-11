@@ -8,6 +8,9 @@ import TodoList from './TodoList';
 import PomodoraDial from './PomodoraDial';
 import {createTodo, getTodoList} from 'actions/todo/todos';
 import {updateTitle} from 'services/title';
+import TodoBoxs from './TodoBoxs';
+
+import 'style/page/todo/todo-page.scss';
 
 
 class TodoPage extends Component {
@@ -23,9 +26,13 @@ class TodoPage extends Component {
   
   render() {
     return (
-      <PageContainer className='todo-page'>
-        <TodoList />
-        <PomodoraDial />
+      <PageContainer className='todo-page cover'>
+        <div className='todo-box-container'>
+          <TodoBoxs/>
+        </div>
+        <div className='todo-list-container'>
+          <TodoList/>
+        </div>        
       </PageContainer>
     );
   }

@@ -6,7 +6,6 @@ var LiveReloadPlugin = require('webpack-livereload-plugin');
 var BellOnBundlerErrorPlugin = require('bell-on-bundler-error-plugin');
 var OfflinePlugin = require('offline-plugin');
 
-
 module.exports = {
   resolve: {
     root: [
@@ -41,8 +40,7 @@ module.exports = {
         test: /\.js$/,
         loaders: ['babel'],
         exclude: /node_modules/,
-        include: __dirname,
-        cacheable: true
+        include: __dirname
       },
       {
         test: /\.scss$/,

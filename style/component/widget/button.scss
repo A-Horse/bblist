@@ -17,6 +17,11 @@
     height: 45px;
   }
 
+  &.dangerous {
+    background-color: $color-dangerous;
+    color: $white;
+  }
+
   &.default {
     border: 1px solid $gray;
     background-color: $button-default;

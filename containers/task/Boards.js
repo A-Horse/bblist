@@ -3,21 +3,24 @@ import {uploadFile} from 'actions/common/file';
 import {deleteTaskBoard} from 'actions/task/task-wall';
 import Boards from 'page/task/Boards';
 import {browserHistory, hashHistory} from 'react-router';
-import {createSelector} from 'reselect';
+import R from 'ramda';
 import {wrapDispathToAction} from 'utils/wrap-props';
 import {createTaskBoard, getAllTaskBoard} from 'actions/task/task-wall';
+import {createSelector} from 'reselect';
 
 const actions = {
   getAllTaskBoard,
   createTaskBoard
 };
 
-
 const mapStateToProps = (state, props) => {
   return {
-    normalizedBoard: state.task.board
+    boards: createSelector([state => R.values(state.task.board.entities.board)], R.identity)(state, props),
+    isFetching: state.task.board.isTaskBoardsFetching
   };
 };
+
+
 
 const BoardsContainer = connect(
   mapStateToProps,

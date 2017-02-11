@@ -4,6 +4,7 @@ import {deleteTaskBoard, requestRenameTaskBoard} from 'actions/task/task-wall';
 import Infomation from 'page/task/Setting/Infomation';
 import {browserHistory, hashHistory} from 'react-router';
 import {createSelector} from 'reselect';
+import R from 'ramda';
 
 
 const mapDispatchToProps = (dispatch, props) => {
@@ -18,15 +19,9 @@ const mapDispatchToProps = (dispatch, props) => {
   };
 };
 
-const getCurrentBoard = createSelector(
-  [(state, props) => state.task.board.entities[props.params.id]],
-  (board) => {
-    return board;
-  });
-
 const mapStateToProps = (state, props) => {
   return {
-    board: getCurrentBoard(state, props)
+    board: createSelector([(state, props) => state.task.board.entities[props.params.id]], R.identity)(state, props)
   };
 };
 

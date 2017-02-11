@@ -16,7 +16,7 @@ class Preference extends Component {
         <h3>Preference</h3>
 
         <div className='board-notification'>
-          <div className='board-notification--heading'>Notification</div>
+          <div className='board-notification--heading'>Notification:</div>
 
           <RadioGroup name='board-preference-notification'
                       onChange={this.onNotificationSettingChange.bind(this)}
@@ -24,8 +24,6 @@ class Preference extends Component {
                         {value: true, text: 'Receive notification'},
                         {value: false, text: 'Notifications are not received'}
                       ]}/>
-          
-          <Button>OK</Button>
         </div>
       </div>
     );

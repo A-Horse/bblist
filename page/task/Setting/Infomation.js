@@ -30,9 +30,20 @@ class Infomation extends Component {
       return <Loading/>;
     }
 
+    // TODO default cover
     return (
       <div className='board-setting-infomation'>
         <h3>Infomation</h3>
+
+        <div className='board-cover'>
+          <div className='board-cover--heading'>Board Cover:</div>
+          <div className='board-cover--wrapper'>
+            <img className='cover-image' src={makeRemoteUrl(board.cover)}/>
+            <div className='board-cover--uploader'>
+              <ImageUploader ref='board-cover-uploader' uploadFn={::this.uploadCover}>Upload new Cover</ImageUploader>
+            </div>
+          </div>
+        </div>
 
         <div className='board-name'>
           <div className='board-name--heading'>Board Name:</div>
@@ -47,16 +58,7 @@ class Infomation extends Component {
             <textarea className='board-description--input'/>
           </div>
         </div>
-        
-        <div className='board-cover'>
-          <div className='board-cover--heading'>Board Cover:</div>
-          <div className='board-cover--wrapper'>
-            <img className='cover-image' src={makeRemoteUrl(board.cover)}/>
-            <div className='board-cover--uploader'>
-              <ImageUploader ref='board-cover-uploader' uploadFn={::this.uploadCover}>Upload new Cover</ImageUploader>
-            </div>
-          </div>
-        </div>
+
       </div>
     );
   }

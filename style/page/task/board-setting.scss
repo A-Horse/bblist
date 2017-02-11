@@ -26,10 +26,12 @@ $content-width: 700px;
         cursor: pointer;
 
         a {
+          display: block;
           position: relative;
           height: 100%;
           width: 100%;
           padding-left: 10px;
+          box-sizing: border-box;
 
           &.active:before {
             content: '';
@@ -55,11 +57,11 @@ $content-width: 700px;
     background-color: $white;
     border-radius: $radius-small;
     border: 1px solid $gray-light;
-    padding: 10px 10px 30px;
+    padding: 20px 20px 30px;
     
     h3 {
-      color: $gray-super-deep;
-      font-size: $font-size-xx-large;
+      color: $color-text-primary;
+      font-size: $font-size-lg;
     }
   }
 }

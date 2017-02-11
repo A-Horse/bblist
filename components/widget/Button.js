@@ -5,7 +5,7 @@ import 'style/component/widget/button.scss';
 export class Button extends Component {
   static propTypes = {
     size: React.PropTypes.oneOf(['small', 'middle', 'large']),
-    styleType: React.PropTypes.oneOf(['default', 'primary', 'disable'])
+    styleType: React.PropTypes.oneOf(['default', 'primary', 'disable', 'dangerous'])
   };
 
   buildClassName() {

@@ -1,0 +1,25 @@
+@import 'style/variable';
+
+.todo-boxs {
+  padding: 20px;
+  box-sizing: border-box;
+
+  a {
+    color: $color-text-primary;
+  }
+
+  .box-group--name {
+    svg {
+      margin-right: 10px;
+    }
+    svg, span {
+      vertical-align: middle;
+    }
+  }
+
+  .all-todo-filter {
+    svg {
+      fill: $md-light-blue-400
+    }
+  }
+}

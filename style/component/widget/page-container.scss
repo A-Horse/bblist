@@ -1,7 +1,16 @@
+@import 'style/variable';
 
 .page-container {
   position: relative;
   width: 90%;
   margin: auto;
   height: 100%;
+
+  &.cover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    padding-top: $nav-height;
+  }
 }

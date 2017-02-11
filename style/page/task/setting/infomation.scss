@@ -43,6 +43,7 @@
   .board-name, .board-description, .board-cover {
     margin-top: 20px;
     &--heading {
+      color: $color-text-primary;
       margin-bottom: 10px;
     }
   }

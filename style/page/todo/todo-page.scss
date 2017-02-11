@@ -1,5 +1,19 @@
 @import 'style/variable';
 
 .todo-page {
+  position: relative;
   display: flex;
+  width: 90%;
+  margin: 0 5%;
+
+  .todo-box-container {
+    height: 100%;
+    background-color: $white;
+    width: 20%;
+    margin-right: 5%;
+  }
+
+  .todo-list-container {
+    width: 75%;
+  }
 }

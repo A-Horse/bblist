@@ -35,7 +35,7 @@ function requestTaskWalls() {
 function receiveTaskWalls(response) {
   return {
     type: TASKWALL_GET_SUCCESS,
-    playload: response//normalize(response, arrayOf(board))
+    playload: response
   };
 }
 

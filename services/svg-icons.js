@@ -15,6 +15,8 @@ export Emoticon from 'babel!svg-react!../assets/svg/ic_insert_emoticon_black_24p
 export ImageIcon from 'babel!svg-react!../assets/svg/ic_image_black_24px.svg?name=ImageIcon';
 export ViewListIcon from 'babel!svg-react!../assets/svg/ic_view_list_black_18px.svg?name=ViewListIcon';
 export StarBorderIcon from 'babel!svg-react!../assets/svg/ic_star_border_black_24px.svg?name=StarBorderIcon';
+export FormatListIcon from 'babel!svg-react!../assets/svg/ic_format_list_bulleted_black_24px.svg?name=FormatListIcon';
+export UnarchinveIcon from 'babel!svg-react!../assets/svg/ic_unarchive_black_24px.svg?name=UnarchinveIcon';
 
 export const SMALL_SIZE = 16;
 export const MIDDLE_SIZE = 20;
