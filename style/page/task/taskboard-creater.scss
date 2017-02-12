@@ -5,7 +5,7 @@
   display: flex;
   cursor: pointer;
   transition: box-shadow 218ms ease-in-out,transform 218ms ease-in-out,-webkit-transform 218ms ease-in-out;
-  boxShadow: 0 2px 3px 0 rgba(0,0,0,.0470588);
+  box-shadow: 0 2px 3px 0 rgba(0,0,0,.0470588);
   margin-top: 20px;
 
   & > * {

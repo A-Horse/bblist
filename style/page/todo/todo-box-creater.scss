@@ -1,0 +1,14 @@
+@import 'style/variable';
+
+
+.todo-box-creater--toggle {
+
+  svg span {
+    vertical-align: middle;
+  }
+  
+  .add-icon {
+    margin-right: 10px;
+    fill: $gray-super-deep;
+  }
+}

@@ -1,11 +1,32 @@
 @import 'style/variable';
 
 .todo-boxs {
-  padding: 20px;
+  position: relative;
   box-sizing: border-box;
+
+  .todo-box-creater-container {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-top: 1px solid $color-border;
+    background-color: $color-backgroup-light-alternative;
+  }
+
+  .todo-box-group-list {
+    padding: 20px;
+  }
 
   a {
     color: $color-text-primary;
+  }
+
+  .box-group {
+    margin-bottom: 12px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 
   .box-group--name {
@@ -14,6 +35,14 @@
     }
     svg, span {
       vertical-align: middle;
+    }
+  }
+
+  .board-group {
+    .box-group--name {
+      svg {
+        fill: $md-purple-600;
+      }
     }
   }
 

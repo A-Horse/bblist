@@ -8,7 +8,8 @@ import PomodoraDial from './PomodoraDial';
 import {createTodo, getTodoList} from 'actions/todo/todos';
 import {updateTitle} from 'services/title';
 import {Link} from 'react-router';
-import {FormatListIcon, UnarchinveIcon} from 'services/svg-icons';
+import {AddIcon, FormatListIcon, UnarchinveIcon} from 'services/svg-icons';
+import TodoBoxCreater from './TodoBoxCreater';
 
 import 'style/page/todo/todo-boxs.scss';
 
@@ -20,25 +21,40 @@ class TodoBoxs extends Component {
   renderProjectBoxs() {
     
   }
-  
+
   render() {
     return (
       <ul className='todo-boxs'>
-        <div className='box-group'>
-          <div className='box-group--name all-todo-filter'>
-            <Link to='/todo/'>
-              <FormatListIcon/>
-              <span>All</span>
-            </Link>
+        <div className='todo-box-group-list'>
+          <div className='box-group'>
+            <div className='box-group--name all-todo-filter'>
+              <Link to='/todo/'>
+                <FormatListIcon/>
+                <span>All</span>
+              </Link>
+            </div>
+          </div>
+
+          <div className='box-group'>
+            <div className='box-group--name all-todo-filter'>
+              <Link to='/todo/'>
+                <FormatListIcon/>
+                <span>Default</span>
+              </Link>
+            </div>
+          </div>
+
+          <div className='box-group board-group'>
+            <div className='box-group--name'>
+              <UnarchinveIcon/>
+              <span>Board</span>
+            </div>
+            {this.renderProjectBoxs}
           </div>
         </div>
 
-        <div className='box-group'>
-          <div className='box-group--name'>
-            <UnarchinveIcon/>
-            <span>Project</span>
-          </div>
-          {this.renderProjectBoxs}
+        <div className='todo-box-creater-container'>
+          <TodoBoxCreater/>
         </div>
         
       </ul>

@@ -3,6 +3,7 @@
 $white: #FFF;
 $black: #000;
 $black-light: #555;
+$drak-light: #444;
 
 $green: #1ab20a;
 
@@ -34,7 +35,8 @@ $md-blue-grey-500: #607D8B;
 $md-blue-grey-400: #78909C;
 $md-blue-grey-300: #90A4AE;
 $md-blue-grey-200: #B0BEC5;
-$md-blue-grey-200: #CFD8DC;
+$md-blue-grey-100: #CFD8DC;
+$md-blue-grey-50: #ECEFF1;
 
 $md-red-900: #B71C1C;
 $md-red-800: #C62828;
@@ -94,10 +96,15 @@ $color-text-secondary: $md-blue-grey-500;
 
 $color-dangerous: $md-red-500;
 
+$color-border: $md-grey-500;
+$color-divider: $md-grey-500;
+
+$color-backgroup-light: $white;
+$color-backgroup-light-alternative: $md-blue-grey-50;
 
 $blue-dark: #0081FF;
 
-$drak-light: #444;
+
 
 $red-litte-light: #F74555;
 $pink-light: #fff4f4;
