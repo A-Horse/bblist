@@ -2,10 +2,10 @@ import React, {Component} from 'react';
 import {Modal} from 'components/widget/Modal';
 import {DateIcon, CloseIcon} from 'services/svg-icons';
 import {getWindowScrollPosition} from 'services/scroll';
+import ClickOutSide from 'components/utils/ClickOutSide';
 import 'style/component/popup.scss';
 
 class Popup extends Component {
-
   constructor() {
     super();
     this.state = {toggle: false};
@@ -49,9 +49,11 @@ class Popup extends Component {
   render() {    
     if (this.props.toggle) {
       return (
-        <div ref='main' className={this.buildClassName()}>
-          {this.props.children}
-        </div>
+        <ClickOutSide onClickOutside={this.props.close ? this.props.close : null}>
+          <div ref='main' className={this.buildClassName()}>
+            {this.props.children}
+          </div>
+        </ClickOutSide>
       );
     }
     return React.DOM.noscript();

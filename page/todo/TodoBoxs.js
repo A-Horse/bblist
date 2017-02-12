@@ -36,7 +36,7 @@ class TodoBoxs extends Component {
           </div>
 
           <div className='box-group'>
-            <div className='box-group--name all-todo-filter'>
+            <div className='box-group--name default-todo-filter'>
               <Link to='/todo/'>
                 <ReorderIcon/>
                 <span>Default</span>

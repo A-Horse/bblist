@@ -10,7 +10,7 @@
     position: absolute;
     bottom: 0;
     left: 0;
-    border-top: 1px solid $color-border;
+    border-top: 1px solid $color-divider;
   }
 
   .todo-box-group-list {
@@ -43,6 +43,12 @@
       svg {
         fill: $md-purple-600;
       }
+    }
+  }
+
+  .default-todo-filter {
+    svg {
+      fill: $md-green-500;
     }
   }
 

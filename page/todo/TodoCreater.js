@@ -9,6 +9,9 @@ import DatePicker from 'components/date-picker/DatePicker';
 import Popup from 'components/Popup';
 import {Select} from 'components/widget/Select';
 import Textarea from 'react-textarea-autosize';
+import {isEnterKey} from 'utils/keyboard';
+
+import ClickOutSide from 'components/utils/ClickOutSide';
 
 import 'style/page/todo/todo-creater.scss';
 
@@ -29,67 +32,69 @@ class TodoCreater extends Component {
       //label: this.refs.label.trim().split(';')
     };
     return dispatch(createTodo(data)).then(() => {
+      this.close();
       return dispatch(getTodoList(this.props.wallId));
     });
   }
   
-  toggle(event) {
-    const {dispatch} = this.props;
+  toggle() {
     this.setState({toggle: true});
-    dispatch(addBodyEventListenerOnce(() => {
-      this.setState({toggle: false});
-    }));
-    event.stopPropagation();
   }
 
   close() {
-    const {dispatch} = this.props;
-    // TODO remove close event lisenter
     this.setState({toggle: false});
   }
 
+  onInputKeyDown(event) {
+    if (isEnterKey(event)) {
+      event.preventDefault();
+      this.createTodo();
+    }
+  }
+
   render() {
-    if (this.state.toggle) return this.renderBody();
+    if (this.state.toggle) return this.renderCreater();
     return this.renderToggle();
   }
 
   renderToggle() {
     return (
-      <div className='todo-creater--toggle' onClick={this.toggle.bind(this)}>
-        <AddIcon className='add-icon' />
+      <div className='todo-creater--toggle' onClick={::this.toggle}>
+        <AddIcon className='add-icon'/>
         <span className='toggle-text'>Add Todo</span>
       </div>
     );
   }
   
-  renderBody() {
+  renderCreater() {
     return (
-      <div className='todo-creater-body'
-           onClick={event => event.stopPropagation()}>
+      <ClickOutSide onClickOutside={::this.close}>
+        <div className='todo-creater-body'>
 
-        <div>
-          <Textarea placeholder='write your todo' className='todo-creater--content' type='text' ref='content'></Textarea>  
-        </div>
+          <div className='todo-creater--input'>
+            <Textarea onKeyDown={::this.onInputKeyDown} placeholder='write your todo' className='todo-creater--content' type='text' ref='content'></Textarea>  
+          </div>
 
-        <div className='todo-creater-deadline'>
-          <label>Deadline:</label>
-          <DatePicker ref='datePicker' arrow='auto'/>
-        </div>
+          <div className='todo-creater-deadline'>
+            <label>Deadline:</label>
+            <DatePicker ref='datePicker' arrow='auto'/>
+          </div>
 
-        <div className='repeat-input hidden'>
-          <label>Repeat:</label>
-          <Select items={repeatItems}/>
+          <div className='repeat-input hidden'>
+            <label>Repeat:</label>
+            <Select items={repeatItems}/>
+          </div>
+          
+          <div className='todo-creater--label hidden'>
+            <Textarea type='text' placeholder='Label' ref='label'></Textarea>
+          </div>
+
+          <div className='todo-creater-operation'>
+            <Button styleType='primary' onClick={::this.createTodo}>Add Todo</Button>
+            <Button className='cancel-button' styleType='default' onClick={::this.close}>Cancel</Button>
+          </div>
         </div>
-                
-        <div className='todo-creater--label hidden'>
-          <Textarea type='text' placeholder='Label' ref='label'></Textarea>
-        </div>
-        
-        <div className='todo-creater-operation'>
-          <Button styleType='primary' onClick={this.createTodo.bind(this)}>Add Todo</Button>
-          <Button className='cancel-button' styleType='default'>Cancel</Button>
-        </div>
-      </div>
+      </ClickOutSide>
     );
   }
 }

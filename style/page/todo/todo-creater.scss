@@ -1,18 +1,18 @@
 @import 'style/variable';
+@import 'style/page/todo/variable';
 
 .todo-creater--toggle {
+  padding: $todo-item-padding;
   margin: 14px 0 6px;
   cursor: pointer;
   display: flex;
   align-items: center;
-
+  background-color: $color-background-light;
+  border-radius: $radius-middle;
+  
   .add-icon {
-    fill: $white;
-    background-color: $black;
-    border-radius: 50%;
-    height: 20px;
-    width: 20px;
-    margin-right: 14px;
+    margin-right: 10px;
+    fill: $gray-super-deep;
   }
 
   .toggle-text {
@@ -21,17 +21,24 @@
 }
 
 .todo-creater-body {
-  box-shadow: 1px 2px 5px #ddd;
-  padding: 9px 13px;
+  border-radius: $radius-middle;
+  padding: $todo-item-padding;
   margin-top: 14px;
+  background-color: $color-background-light;
+  margin-bottom: 5px;
 
-  .todo-creater--content {
-    resize: none;
-    border: 1px solid $border-light;
-    width: 100%;
-    box-sizing: border-box;
-    overflow: hidden;
-    padding: 3px 8px;
+  .todo-creater--input {
+    textarea {
+      resize: none;
+      width: 100%;
+      border: none;
+      box-sizing: border-box;
+      overflow: hidden;
+      padding: 6px 10px;
+      color: #000;
+      background-color: $color-background-light-alternative;
+      border-radius: $radius-small;
+    }
   }
 
   .todo-creater--label {

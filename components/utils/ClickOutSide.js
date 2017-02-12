@@ -24,3 +24,5 @@ export default class ClickOutSide extends Component {
     if (!el.contains(e.target)) onClickOutside(e);
   };
 }
+
+// https://github.com/tj/react-click-outside

@@ -1,16 +1,17 @@
 @import 'style/variable';
+@import 'style/page/todo/variable';
 
 .todo {
-  border-bottom: 1px solid $gray-light;
-  padding: 15px 0 7px;
+  padding: $todo-item-padding;
+  background-color: $color-background-light;
+  border-radius: $radius-middle;
+  margin-bottom: 5px;
+  transition: height 300ms;
 }
 
 .todo--main {
   display: flex;
   justify-content: space-between;
-
-
-  
 }
 
 .todo--content {
@@ -43,14 +44,6 @@
   }
 }
 
-.todo--operation {
-  position: relative;
-  .more-icon {
-    cursor: pointer;
-  }
-}
-
-
-.todo-operation--list {
-  
+.todo-editing--meta {
+  margin-top: 10px;
 }

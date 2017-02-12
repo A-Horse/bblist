@@ -7,8 +7,12 @@ import {MoreIcon} from 'services/svg-icons';
 import Textarea from 'react-textarea-autosize';
 import {Button} from 'components/widget/Button';
 import {DropList} from 'components/widget/DropList';
+import ClickOutSide from 'components/utils/ClickOutSide';
+import {timeout} from 'utils/timeout';
 
 import 'style/page/todo/todo.scss';
+
+const todoMetaHeight = 24;
 
 class Todo extends Component {
   constructor() {
@@ -21,14 +25,6 @@ class Todo extends Component {
       operationToggle: false
     };
   }
-
-  onDragStart(event) {
-    
-  }
-  
-  onDragEnd(event) {
-    
-  }
   
   finishTodo() {
     
@@ -39,12 +35,27 @@ class Todo extends Component {
     
   }
 
-  onContentClick() {
+  async closeEditable() {
+    const currentTodoHeight = this.refs.main.offsetHeight;
+    this.refs.main.style.height = currentTodoHeight + 'px';
+    await timeout();
+    this.refs.main.style.height = currentTodoHeight - todoMetaHeight + 'px';
+    this.setState({editToggle: false});
+    await timeout(300);
+    this.refs.main.style.height = 'auto';
+  }
+
+  async onContentClick() {
+    const currentTodoHeight = this.refs.main.offsetHeight;
+    this.refs.main.style.height = currentTodoHeight + 'px';
+    await timeout();
+    this.refs.main.style.height = currentTodoHeight + todoMetaHeight + 'px';
+    await timeout(300);
     this.setState({editToggle: true});
+    this.refs.main.style.height = 'auto';
   }
 
   updateEditingTodo() {
-    const {dispatch, todo} = this.props;
     const newTodo = {content: this.refs.content.value.trim()};
     this.setState({editToggle: false});
     this.updateTodo(newTodo);
@@ -79,40 +90,34 @@ class Todo extends Component {
     const newTodo = {isDone: this.refs.checkbox.checked};
     this.updateTodo(newTodo);
   }
-    
+
+  onClickOutside() {
+    if (this.state.editToggle) {
+      this.closeEditable();
+    }
+  }
+  
   render() {
     const {todo} = this.props;
     return (
-      <div className='todo' ref='main' onDragStart={this.onDragStart.bind(this)}
-           onClick={this.onClick.bind(this)}
-           onDragEnd={this.onDragEnd.bind(this)}>
+      <ClickOutSide onClickOutside={::this.onClickOutside} >
+        <div className='todo' ref='main' onClick={this.onClick.bind(this)}>
+          <div className='todo--main'>
+            <CheckBox ref='checkbox' defaultChecked={todo.isDone} onChange={this.updateDone.bind(this)}/>
+            <p style={{display: !this.state.editToggle ? 'block' : 'none'}} className='todo--content' onClick={this.onContentClick.bind(this)}>{todo.content}</p>
+            <Textarea ref='content' onKeyDown={this.onContendChanged.bind(this)} className='todo--content__input' style={{display: this.state.editToggle ? 'block' : 'none'}} defaultValue={todo.content}></Textarea>
+          </div>
 
-        <div className='todo--main'>
-          <CheckBox ref='checkbox' defaultChecked={todo.isDone} onChange={this.updateDone.bind(this)}/>
-          <p style={{display: !this.state.editToggle ? 'block' : 'none'}} className='todo--content' onClick={this.onContentClick.bind(this)}>{todo.content}</p>
-          <Textarea ref='content' onKeyDown={this.onContendChanged.bind(this)} className='todo--content__input' style={{display: this.state.editToggle ? 'block' : 'none'}} defaultValue={todo.content}></Textarea>
-          
-          <div className='todo--operation'>
-            <MoreIcon className='more-icon' onClick={() => this.setState({operationToggle: !this.state.operationToggle})}/>
-              <DropList toggle={this.state.operationToggle} className='todo-operation--list'>
-                <li onClick={this.destroyTodo.bind(this)}>Delete</li>
-            </DropList>
+          <div className='todo-editing--meta' style={{display: this.state.editToggle ? 'block' : 'none'}}>
+
+            <div className='todo-editing--deadline'>
+              <label>Deadline:</label>
+              <DatePicker ref='date-picker' defaultValue={todo.deadline}/>
+            </div>
+            
           </div>
         </div>
-
-        <div className='todo-editing--meta' style={{display: this.state.editToggle ? 'block' : 'none'}}>
-          <div className='todo-editing--deadline'>
-            <label>Deadline:</label>
-            <DatePicker ref='date-picker' defaultValue={todo.deadline} />
-          </div>
-
-          <div>
-            <Button styleType='primary' onClick={this.updateEditingTodo.bind(this)}>OK</Button>
-          </div>
-          
-        </div>
-
-      </div>
+      </ClickOutSide>
     );
   }
 }

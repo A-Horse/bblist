@@ -15,6 +15,7 @@ class DatePicker extends Component {
   constructor() {
     super();
     this.state = {toggle: false};
+    // TODO 状态不同步
     this.value = null;
   }
 
@@ -30,7 +31,6 @@ class DatePicker extends Component {
       day: activeDay.getDate()
     });
     if (this.props.defaultValue) {
-      this.refs.input.value = moment(this.props.defaultValue).format('MMM Do YY');
       this.value = this.props.defaultValue;
     }
   }
@@ -41,10 +41,6 @@ class DatePicker extends Component {
 
   onClick() {
     this.setState({toggle: !this.state.toggle});
-    // dispatch(addBodyEventListenerOnce(() => {
-    //   this.setState({toggle: false});
-    // }));
-    // event.stopPropagation();
   }
 
   close() {
@@ -70,7 +66,6 @@ class DatePicker extends Component {
   }
 
   onSelected(date) {
-    this.refs.input.value = moment(date).format('MMM Do YY');
     this.value = date;
     this.setState({
       year: date.getFullYear(),
@@ -89,14 +84,13 @@ class DatePicker extends Component {
   }
 
   render() {
+    const dateString = this.value ? moment(this.value).format('MMM Do YY') : null;
     return (
       <div className={this.buildClassName()} ref='main'>
-        <DateIcon onClick={this.onClick.bind(this)}/>
-        <input ref='input' onClick={this.onClick.bind(this)} disabled />
+        <DateIcon className='date-picker--icon' onClick={this.onClick.bind(this)}/>
+        <span onClick={this.onClick.bind(this)}>{dateString}</span>
 
         <Popup className='date-picker-popup' parent={this.refs.main} toggle={this.state.toggle} onOverlayClick={this.close.bind(this)} close={this.close.bind(this)}>
-          <CloseIcon className='close-icon' onClick={this.close.bind(this)}/>
-
           <Calendar year={this.state.year} month={this.state.month} day={this.state.day}
                     selectYear={this.selectYear.bind(this)}
                     selectMonth={this.selectMonth.bind(this)}

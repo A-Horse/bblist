@@ -38,7 +38,7 @@ class TodoList extends Component {
   render() {
     return (
       <div className='todo-list'>
-        <TodoCreater />
+        <TodoCreater/>
         {this.renderList()}
       </div>
     );
