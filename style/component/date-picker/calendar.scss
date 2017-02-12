@@ -1,4 +1,48 @@
+@import 'style/variable';
 
 .calendar {
   user-select: none;
+
+  .calendar-header {
+    display: flex;
+    justify-content: space-between;
+
+    svg {
+      &:hover {
+        background-color: $color-background-light-alternative;
+        border-radius: $radius-small;
+      }
+    }
+
+    &--year-month {
+      flex-grow: 2;
+      text-align: center;
+      border-radius: $radius-small;
+
+      &:hover {
+        background-color: $color-background-light-alternative;  
+      }
+    }
+  }
+
+  .month-table {
+    table-layout: fixed;
+    white-space: nowrap;
+    
+    td {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: inline-block;
+      width: 35px;
+      line-height: 35px;
+      text-align: center;
+    }
+
+    .week-text {
+      color: $color-text-secondary;
+      font-weight: bolder;
+    }
+  }
 }
+

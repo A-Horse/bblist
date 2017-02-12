@@ -84,7 +84,7 @@ class DatePicker extends Component {
   }
 
   render() {
-    const dateString = this.value ? moment(this.value).format('MMM Do YY') : null;
+    const dateString = this.value ? moment(this.value).format('MMMM Do YYYY') : null;
     return (
       <div className={this.buildClassName()} ref='main'>
         <DateIcon className='date-picker--icon' onClick={this.onClick.bind(this)}/>

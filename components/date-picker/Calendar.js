@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Modal} from 'components/widget/Modal';
-import {DateIcon, CloseIcon} from 'services/svg-icons';
+import {KeyBoardArrowLeftIcon, KeyBoardArrowRightIcon} from 'services/svg-icons';
 import {weekFirstDay, weekDayName, monthNames} from './constant';
 import {daysInMonth, firstDayInMonthOffset} from './util';
 import Week from './Week';
@@ -17,7 +17,7 @@ class Calendar extends Component {
   }
 
   componentWillMount() {
-    this.selectYearItems = this.buildYears();
+    // this.selectYearItems = this.buildYears();
     this.selectMonthItems = this.buildMonths();
   }
 
@@ -29,15 +29,15 @@ class Calendar extends Component {
     this.props.selectMonth(item.value);
   }
 
-  buildYears() {
-    const currentYear = new Date().getFullYear();
-    let years = [];
-    // TODO 可配置化
-    for (let i = currentYear - 10; i < currentYear + 10; i++) {
-      years.push(i);
-    }
-    return years.map(year => ({value: year, name: year}));
-  }
+  // buildYears() {
+  //   const currentYear = new Date().getFullYear();
+  //   let years = [];
+  //   // TODO 可配置化
+  //   for (let i = currentYear - 10; i < currentYear + 10; i++) {
+  //     years.push(i);
+  //   }
+  //   return years.map(year => ({value: year, name: year}));
+  // }
 
   buildDefaultYear() {
     return {value: this.props.year, name: this.props.year};
@@ -51,13 +51,16 @@ class Calendar extends Component {
     return monthNames.map((monthName, i) => ({value: ++i, name: monthName}));
   }
 
+  onHeaderClick() {
+    
+  }
+
   renderHeader() {
     return (
       <div className='calendar-header'>
-        <Button key='next' onClick={this.props.nextMonth.bind(this)}>next</Button>
-        <Select key='year-select' onSelect={this.onYearSelect.bind(this)} items={this.selectYearItems} defaultItem={this.buildDefaultYear()}></Select>
-        <Select key='month-select' onSelect={this.onMonthSelect.bind(this)} items={this.selectMonthItems} defaultItem={this.buildDefaultMonth()}></Select>
-        <Button key='last' onClick={this.props.lastMonth.bind(this)}>Last</Button>
+        <KeyBoardArrowLeftIcon key='next' onClick={this.props.nextMonth}/>
+        <span className='calendar-header--year-month' onClick={::this.onHeaderClick}>{`${this.props.year} ${monthNames[this.props.month - 1]}`}</span>
+        <KeyBoardArrowRightIcon key='last' onClick={this.props.lastMonth}/>
       </div>
     );
   }

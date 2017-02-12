@@ -27,7 +27,7 @@ class Month extends Component {
 
   renderWeekText() {
     const {firstDayOfweekOffset = 0} = this.props;
-    return (<tr>{weekDayName.map(name => (<td key={name}>{name}</td>))}</tr>);
+    return (<tr className='week-text'>{weekDayName.map(name => (<td className='week-day-name' key={name}>{name}</td>))}</tr>);
   }
 
   renderWeeks() {
@@ -78,18 +78,9 @@ class Month extends Component {
     return result.map((days, i) => <Week key={i} days={days} {...this.props}/>);
   }
 
-  renderHeader() {
-    return (
-      <div>
-        <Button key='next'>next</Button>
-        <Button key='last'>Last</Button>
-      </div>
-    );
-  }
-  
   render() {
     return (
-      <table>
+      <table className='month-table'>
         <tbody>
           {this.renderWeekText()}
           {this.renderWeeks()}

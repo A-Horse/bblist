@@ -5,6 +5,11 @@
   display: flex;
   align-items: center;
   cursor: pointer;
+
+  &--icon {
+    fill: $md-light-blue-500;
+    margin-right: 10px;
+  }
 }
 
 .modal__content.date-picker {
@@ -16,11 +21,9 @@
 }
 
 .date-picker-popup {
-  padding: 9px 13px;
+  padding: 20px;
   transform: translate(-50%, 0);
   left: 12px;
-  height: 300px;
-  width: 300px;
 
   &.top {
     bottom: calc(100% + 10px);

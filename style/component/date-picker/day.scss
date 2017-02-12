@@ -3,12 +3,16 @@
 .date-picker--day {
   cursor: pointer;
   text-align: center;
+  color: $color-text-primary;
+
   &:hover {
     background-color: $gray-light-depth;
+    border-radius: $radius-small;
   }
   
   &.out-range {
     opacity: 0.5;
+    color: $color-text-disable;
   }
 
   &.today {

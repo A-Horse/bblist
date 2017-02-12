@@ -18,7 +18,5 @@ export StarBorderIcon from 'babel!svg-react!../assets/svg/ic_star_border_black_2
 export FormatListIcon from 'babel!svg-react!../assets/svg/ic_format_list_bulleted_black_24px.svg?name=FormatListIcon';
 export UnarchinveIcon from 'babel!svg-react!../assets/svg/ic_unarchive_black_24px.svg?name=UnarchinveIcon';
 export ReorderIcon from 'babel!svg-react!../assets/svg/ic_reorder_black_24px.svg?name=ReorderIcon';
-
-export const SMALL_SIZE = 16;
-export const MIDDLE_SIZE = 20;
-export const LARGE_SIZE = 30;
+export KeyBoardArrowLeftIcon from 'babel!svg-react!../assets/svg/ic_keyboard_arrow_left_black_24px.svg?name=KeyBoardArrowLeftIcon';
+export KeyBoardArrowRightIcon from 'babel!svg-react!../assets/svg/ic_keyboard_arrow_right_black_24px.svg?name=KeyBoardArrowRightIcon';
