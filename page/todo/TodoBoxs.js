@@ -8,7 +8,7 @@ import PomodoraDial from './PomodoraDial';
 import {createTodo, getTodoList} from 'actions/todo/todos';
 import {updateTitle} from 'services/title';
 import {Link} from 'react-router';
-import {AddIcon, FormatListIcon, UnarchinveIcon} from 'services/svg-icons';
+import {ReorderIcon, FormatListIcon, UnarchinveIcon} from 'services/svg-icons';
 import TodoBoxCreater from './TodoBoxCreater';
 
 import 'style/page/todo/todo-boxs.scss';
@@ -38,7 +38,7 @@ class TodoBoxs extends Component {
           <div className='box-group'>
             <div className='box-group--name all-todo-filter'>
               <Link to='/todo/'>
-                <FormatListIcon/>
+                <ReorderIcon/>
                 <span>Default</span>
               </Link>
             </div>

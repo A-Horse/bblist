@@ -2,6 +2,7 @@
 
 .todo-boxs {
   position: relative;
+  height: 100%;
   box-sizing: border-box;
 
   .todo-box-creater-container {
@@ -10,7 +11,6 @@
     bottom: 0;
     left: 0;
     border-top: 1px solid $color-border;
-    background-color: $color-backgroup-light-alternative;
   }
 
   .todo-box-group-list {
