@@ -25,4 +25,4 @@ export default class ClickOutSide extends Component {
   };
 }
 
-// https://github.com/tj/react-click-outside
+// From: https://github.com/tj/react-click-outside

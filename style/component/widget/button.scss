@@ -17,6 +17,10 @@
     height: 45px;
   }
 
+  &.small {
+    height: 22px;
+  }
+
   &.dangerous {
     background-color: $color-dangerous;
     color: $white;

@@ -4,8 +4,7 @@
 
 .tasklist-creater {
   border-radius: $list-radius;
-  height: $top-bar-height;
-  padding: 0 8px;
+  padding: 8px;
   display: inline-flex;
   vertical-align: top;
   width: $list-width;
@@ -14,13 +13,17 @@
   background-color: $gray-super-light;
   align-items: center;
 
+  
   input {
     height: 22px;
     border: none;
     background-color: #FFF;
     border-radius: 3px;
     padding: 0 3px;
+    display: block;
+    margin-bottom: 8px;
   }
+
 }
 
 .task-list--toggle {

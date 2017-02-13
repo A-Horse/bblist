@@ -10,7 +10,7 @@ import Popup from 'components/Popup';
 import {Select} from 'components/widget/Select';
 import Textarea from 'react-textarea-autosize';
 import {Modal} from 'components/widget/Modal';
-import Input from 'components/Input';
+import Input from 'components/widget/Input';
 
 import 'style/page/todo/todo-box-creater.scss';
 

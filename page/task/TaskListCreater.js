@@ -9,7 +9,8 @@ import {Button} from 'components/widget/Button';
 import {Hr} from 'components/widget/Hr';
 import UserAvatar from 'components/UserAvatar';
 import {MoreIcon, AddIcon} from 'services/svg-icons';
-import {ClickOut}
+import {isEnterKey} from 'utils/keyboard';
+import ClickOutSide from 'components/utils/ClickOutSide';
 
 import 'style/page/task/tasklist-creater.scss';
 
@@ -24,26 +25,25 @@ class TaskListCreater extends Component {
     };
   }
 
-  createTaskList() {
+  createTaskTrack() {
     const {dispatch} = this.props;
     const name = this.refs.name.value.trim();
     // TODO 优化？不请求后台了?
     return dispatch(createTaskList(this.props.boardId, {name})).then(() => dispatch(getTaskAllCards(this.props.boardId)));
   }
 
-  toggle(event) {
-    const {dispatch} = this.props;
+  toggle() {
     this.setState({toggle: true});
-    dispatch(addBodyEventListenerOnce(() => {
-      this.setState({toggle: false});
-    }));
-    event.stopPropagation();
+  }
+
+  close() {
+    this.setState({toggle: false});
   }
 
   onKeyDown(event) {
-    if (event.which === 13) {
-      this.createTaskList();
-      this.setState({toggle: false});
+    if (isEnterKey(event)) {
+      this.createTaskTrack();
+      this.close();
     }
   }
 
@@ -55,12 +55,17 @@ class TaskListCreater extends Component {
   }
 
   renderInput() {
-    return <input type='text' ref='name' onKeyDown={this.onKeyDown.bind(this)} onClick={(event) => event.stopPropagation()}/>;
+    return (
+      <div className='task-list-input'>
+        <input type='text' ref='name' placeholder='write track name' onKeyDown={::this.onKeyDown}/>
+        <Button styleType='primary' size='small' onClick={::this.createTaskTrack}>OK</Button>
+      </div>
+    );
   }
 
   renderToggle() {
     return (
-      <div onClick={this.toggle.bind(this)} className='task-list--toggle'>
+      <div onClick={::this.toggle} className='task-list--toggle'>
         <AddIcon className='add-icon'/>
         <span>Add a Track...</span>
       </div>
@@ -69,7 +74,7 @@ class TaskListCreater extends Component {
 
   render() {
     return (
-      <div className='tasklist-creater' key='createList'>
+      <div className='tasklist-creater'>
         {this.renderBody()}
       </div>
     );
