@@ -88,7 +88,7 @@ class DatePicker extends Component {
     return (
       <div className={this.buildClassName()} ref='main'>
         <DateIcon className='date-picker--icon' onClick={this.onClick.bind(this)}/>
-        <span onClick={this.onClick.bind(this)}>{dateString}</span>
+        <span className='date-picker--text' onClick={this.onClick.bind(this)}>{dateString}</span>
 
         <Popup className='date-picker-popup' parent={this.refs.main} toggle={this.state.toggle} onOverlayClick={this.close.bind(this)} close={this.close.bind(this)}>
           <Calendar year={this.state.year} month={this.state.month} day={this.state.day}

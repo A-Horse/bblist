@@ -10,7 +10,7 @@ import Month from './Month';
 
 import 'style/component/date-picker/calendar.scss';
 
-class Calendar extends Component {
+export default class Calendar extends Component {
 
   constructor() {
     super();
@@ -58,9 +58,9 @@ class Calendar extends Component {
   renderHeader() {
     return (
       <div className='calendar-header'>
-        <KeyBoardArrowLeftIcon key='next' onClick={this.props.nextMonth}/>
+        <KeyBoardArrowLeftIcon onClick={this.props.lastMonth}/>
         <span className='calendar-header--year-month' onClick={::this.onHeaderClick}>{`${this.props.year} ${monthNames[this.props.month - 1]}`}</span>
-        <KeyBoardArrowRightIcon key='last' onClick={this.props.lastMonth}/>
+        <KeyBoardArrowRightIcon onClick={this.props.nextMonth}/>
       </div>
     );
   }
@@ -74,5 +74,3 @@ class Calendar extends Component {
     );
   }
 }
-
-export default Calendar;

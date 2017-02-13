@@ -9,6 +9,7 @@ import {Button} from 'components/widget/Button';
 import {Hr} from 'components/widget/Hr';
 import UserAvatar from 'components/UserAvatar';
 import {MoreIcon, AddIcon} from 'services/svg-icons';
+import {ClickOut}
 
 import 'style/page/task/tasklist-creater.scss';
 

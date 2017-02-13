@@ -25,6 +25,10 @@ class TodoBoxs extends Component {
   render() {
     return (
       <ul className='todo-boxs'>
+        <div className='todo-box-creater-container'>
+          <TodoBoxCreater/>
+        </div>
+        
         <div className='todo-box-group-list'>
           <div className='box-group'>
             <div className='box-group--name all-todo-filter'>
@@ -52,11 +56,6 @@ class TodoBoxs extends Component {
             {this.renderProjectBoxs}
           </div>
         </div>
-
-        <div className='todo-box-creater-container'>
-          <TodoBoxCreater/>
-        </div>
-        
       </ul>
     );
   }

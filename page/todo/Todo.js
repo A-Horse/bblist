@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {CheckBox} from 'components/widget/CheckBox';
 import DatePicker from 'components/date-picker/DatePicker';
 import {getTodoList, updateTodo, destroyTodo} from 'actions/todo/todos';
-import {MoreIcon} from 'services/svg-icons';
+import {MoreIcon, StarBorderIcon} from 'services/svg-icons';
 import Textarea from 'react-textarea-autosize';
 import {Button} from 'components/widget/Button';
 import {DropList} from 'components/widget/DropList';
@@ -106,6 +106,8 @@ class Todo extends Component {
             <CheckBox ref='checkbox' defaultChecked={todo.isDone} onChange={this.updateDone.bind(this)}/>
             <p style={{display: !this.state.editToggle ? 'block' : 'none'}} className='todo--content' onClick={this.onContentClick.bind(this)}>{todo.content}</p>
             <Textarea ref='content' onKeyDown={this.onContendChanged.bind(this)} className='todo--content__input' style={{display: this.state.editToggle ? 'block' : 'none'}} defaultValue={todo.content}></Textarea>
+            
+            <StarBorderIcon/>
           </div>
 
           <div className='todo-editing--meta' style={{display: this.state.editToggle ? 'block' : 'none'}}>

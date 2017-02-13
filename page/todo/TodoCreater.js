@@ -90,7 +90,7 @@ class TodoCreater extends Component {
           </div>
 
           <div className='todo-creater-operation'>
-            <Button styleType='primary' onClick={::this.createTodo}>Add Todo</Button>
+            <Button styleType='primary' onClick={::this.createTodo}>Create Todo</Button>
             <Button className='cancel-button' styleType='default' onClick={::this.close}>Cancel</Button>
           </div>
         </div>
