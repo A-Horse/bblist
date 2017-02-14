@@ -13,16 +13,6 @@ export const navHeight = 42;
 
 import 'style/nav.scss';
 
-const styles = {
-  menuLi: {
-    display: 'block',
-    backgroundColor: 'white',
-    textAlign: 'right',
-    border: 'none',
-    padding: '0'
-  }
-};
-
 class Nav extends Component {
   constructor() {
     super();

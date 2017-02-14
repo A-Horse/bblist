@@ -58,7 +58,8 @@ class TaskListCreater extends Component {
     return (
       <div className='task-list-input'>
         <input type='text' ref='name' placeholder='write track name' onKeyDown={::this.onKeyDown}/>
-        <Button styleType='primary' size='small' onClick={::this.createTaskTrack}>OK</Button>
+        <Button className='creater-button' styleType='primary' onClick={::this.createTaskTrack}>OK</Button>
+        <Button>Cancel</Button>
       </div>
     );
   }
