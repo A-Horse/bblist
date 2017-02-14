@@ -10,10 +10,10 @@ import {createDevTools} from 'redux-devtools';
 import LogMonitor from 'redux-devtools-log-monitor';
 import DockMonitor from 'redux-devtools-dock-monitor';
 
-import {App, BlankPage} from 'components';
 // TODO split it
 import {Profile, NotFound, DashBoard,
         IndexPage, Ideas, TodoPage} from 'page';
+import App from 'containers/App';
 import SignUp from 'containers/SignUp';
 import SignIn from 'containers/SignIn';
 import Boards from 'containers/task/Boards';
@@ -25,6 +25,8 @@ import TaskSettingOperation from 'containers/task/Setting/Operation';
 import TaskSettingPreference from 'containers/task/Setting/Preference';
 
 import Body from 'components/Body';
+
+import Building from 'page/Building';
 
 import {combineEpics, createEpicMiddleware} from 'redux-observable';
 
@@ -71,7 +73,7 @@ ReactDOM.render(
   <Provider store={store}>
     <Body>
       <Router history={history}>
-        <Route path='/' component={BlankPage}>
+        <Route path='/' component={Building}>
           <IndexRoute path='' component={IndexPage}/>
 
           <Route path='signin' component={SignIn}/>

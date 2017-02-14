@@ -3,19 +3,6 @@ import React, {Component, PropTypes} from 'react';
 import 'style/component/widget/drop-list.scss';
 
 export class DropList extends Component {
-  defaultProps: {
-    toggle: PropTypes.required
-  }
-  
-  constructor() {
-    super();
-    
-  }
-  
-  init() {
-    
-  }
-
   componentDidMount() {
     
   }

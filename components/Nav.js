@@ -16,11 +16,7 @@ import 'style/nav.scss';
 class Nav extends Component {
   constructor() {
     super();
-    this.state = {userMenuToggle: false};
-  }
-
-  componentWillMount() {
-    this.props.authUser();
+    this.state = {dropDownToggle: false};
   }
 
   componentDidUpdate() {
@@ -48,13 +44,29 @@ class Nav extends Component {
   }
 
   renderNavUser() {
+    // TODO: loading
+    const userName = this.props.user.username;
     return (
       <div className='avatar-area'>
         {this.renderAvatar()}
-        <DropList toggle={this.state.userMenuToggle}>
+        <DropList toggle={this.state.dropDownToggle}>
           <ul>
-            <Link to='/profile' onClick={() => {this.setState({userMenuToggle: false})}}>Profile</Link>
-            <button onClick={this.props.onLogout}>Log out</button>
+            <section>
+              <li>Signed in as <strong>{userName}</strong></li>
+            </section>
+            <section>
+              <li>
+                <Link to='/profile'>Profile</Link>
+              </li>
+            </section>
+            <section>
+              <li>
+                <Link to='/setting'>
+                  setting
+                </Link>
+              </li>
+              <li onClick={this.props.logout}>logout</li>
+            </section>
           </ul>
         </DropList>
       </div>
@@ -67,11 +79,11 @@ class Nav extends Component {
     return !!avatarData ? (
       <img ref='avator' className='nav-avatar'
            src={`data:image/png;base64,${avatarData}`}
-           onClick={() => {this.setState({userMenuToggle: !this.state.userMenuToggle})}}/>
+           onClick={() => this.setState({dropDownToggle: !this.state.dropDownToggle})}/>
     ) : (
       <img ref='avator' className='nav-avatar' crossOrigin='Anonymous'
            src={makeGravatarUrl(user.email)}
-           onClick={() => {this.setState({userMenuToggle: !this.state.userMenuToggle})}}/>
+           onClick={() => this.setState({dropDownToggle: !this.state.dropDownToggle})}/>
     );
   }
 }

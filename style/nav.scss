@@ -60,4 +60,19 @@ nav.nav {
     vertical-align: middle;
     cursor: pointer;
   }
+
+  .drop-menu {
+    width: 200px;
+    border-radius: $radius-middle;
+     section {
+       border-bottom: 1px solid $color-divider;
+       &:last-child {
+         border-bottom: none;
+       }
+     }
+
+     li {
+       font-size: $font-size-sm;
+    }
+  }
 }

@@ -33,7 +33,7 @@ class Profile extends Component {
             <input type='text' ref='repeat'/>
           </div>
         </div>
-      )
+      );
     }
 
     if (user) {

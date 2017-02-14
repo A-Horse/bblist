@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import Nav from 'components/Nav';
+import App from 'components/App';
 import {authUser} from 'actions/login';
 import {removeCachedData} from 'utils/auth';
 import {wrapDispathToAction} from 'utils/wrap-props';
@@ -14,7 +14,7 @@ const actions = {
 const mapDispatchToProps = (dispatch) => {
   return {
     // TODO logout staus error
-    logout() {
+    onLogout() {
       return dispatch(logout()).then(() => {
         removeCachedData();
         browserHistory.push('/');
@@ -24,15 +24,12 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 const mapStateToProps = (state) => {
-  return {
-    user: state.auth.loginedUser,
-    path: state.routing.locationBeforeTransitions.pathname
-  };
+  return {};
 };
 
-const NavContainer = connect(
+const AppContainer = connect(
   mapStateToProps,
   wrapDispathToAction(actions, mapDispatchToProps)
-)(Nav);
+)(App);
 
-export default NavContainer;
+export default AppContainer;

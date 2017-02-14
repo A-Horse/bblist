@@ -1,35 +1,22 @@
-import React, { Component, PropTypes } from 'react'
-import fetch from 'isomorphic-fetch'
-import { connect } from 'react-redux'
-import { browserHistory } from 'react-router'
+import React, { Component, PropTypes } from 'react';
+import fetch from 'isomorphic-fetch';
+import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
 
 
 
-class Setting extends Component {
-  constructor() {
-    super()
-    
-    
-  }
+export default class Setting extends Component {
   
   render() {
 
     return (
-        <div>
+      <div>
         
         <h2>Setting</h2>
         
-        </div>
-    )
+      </div>
+    );
   }
 
   
 }
-
-const mapStateToProps = (state) => {
-  return {
-    
-  };
-}
-
-export default connect(mapStateToProps)(Setting)

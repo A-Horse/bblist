@@ -1,11 +1,17 @@
-import React from 'react';
+import React, {Component} from 'react';
 import Nav from 'containers/Nav';
 
-export default function App({children}) {
-  return (
-    <div>
-      <Nav/>
-      {children}
-    </div>
-  );
+export default class App extends Component {
+  componentWillMount() {
+    this.props.authUser();
+  }
+
+  render() {
+    return (
+      <div>
+        <Nav/>
+        {this.props.children}
+      </div>
+    );
+  }
 }
