@@ -31,21 +31,16 @@ class Nav extends Component {
     }
   }
 
-  buildLinkClassName(keyPath) {
-    const path = R.second(this.props.path.split('/'));
-    return (path === keyPath) ? 'nav-link nav-link__active' : 'nav-link';
-  }
-  
   render() {
     return (
       <nav className='nav'>
         <LogoBan/>
 
         <div className='nav-link-area'>
-          <Link to='/dash' className={this.buildLinkClassName('dash')}>Dash</Link>
-          <Link to='/task-wall' className={this.buildLinkClassName('task-wall')}>Task</Link>
-          <Link to='/todo' className={this.buildLinkClassName('todo')}>Todo</Link>
-          <Link to='/idea' className={this.buildLinkClassName('idea')}>Idea</Link>
+          <Link to='/dash' activeClassName='nav-link__active'>Dash</Link>
+          <Link to='/task-wall' activeClassName='nav-link__active'>Task</Link>
+          <Link to='/todo' activeClassName='nav-link__active'>Todo</Link>
+          <Link to='/idea' activeClassName='nav-link__active'>Idea</Link>
         </div>
         {this.renderNavUser()}
       </nav>
