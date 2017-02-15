@@ -5,7 +5,7 @@ import {Link} from 'react-router';
 import {makeGravatarUrl} from 'services/gravatar';
 import {Storage, storageImage} from 'services/storage';
 import {DropList} from './widget/DropList';
-
+import ClickOutSide from 'components/utils/ClickOutSide';
 
 import {LogoBan} from 'components/commons/LogoBan';
 
@@ -47,7 +47,7 @@ class Nav extends Component {
     // TODO: loading
     const userName = this.props.user.username;
     return (
-      <div className='avatar-area'>
+      <ClickOutSide className='avatar-area' onClickOutside={() => {this.state.dropDownToggle && this.setState({dropDownToggle: false})}}>
         {this.renderAvatar()}
         <DropList toggle={this.state.dropDownToggle}>
           <ul>
@@ -69,7 +69,7 @@ class Nav extends Component {
             </section>
           </ul>
         </DropList>
-      </div>
+      </ClickOutSide>
     );
   }
 

@@ -34,12 +34,12 @@ nav.nav {
     flex-grow: 2;
     margin-top: 8px;
     margin-left: 20px;
-  }
 
-  .nav-link {
-    margin-left: 10px;
-    color: $black-light;
-    letter-spacing: 0.3px;
+    a {
+      margin-left: 10px;
+      color: $black-light;
+      letter-spacing: 0.3px;
+    }
   }
 
   .nav-link__active {
@@ -61,8 +61,8 @@ nav.nav {
     cursor: pointer;
   }
 
-  .drop-menu {
-    width: 200px;
+  .drop-list {
+    width: 180px;
     border-radius: $radius-middle;
      section {
        border-bottom: 1px solid $color-divider;
@@ -72,7 +72,13 @@ nav.nav {
      }
 
      li {
+       padding: 0 10px;
        font-size: $font-size-sm;
+       color: $color-text-primary;
+       cursor: pointer;
+       a {
+         color: inherit;
+       }
     }
   }
 }

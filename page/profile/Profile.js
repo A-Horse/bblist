@@ -48,11 +48,11 @@ class Profile extends Component {
           </div>
           {changePasswordArea}
         </PageContainer>
-      )
+      );
     }
     return (
       <Loading/>
-    )
+    );
   }
 }
 
