@@ -1,17 +1,19 @@
 @import 'style/variable';
 
-$content-width: 700px;
+$setting-side-bar-width: 250px;
 
-.board-setting-page {
+.setting-page {
   width: 80%;
   margin: 0 auto;
   display: flex;
   padding-top: 30px;
   align-items: flex-start;
 
-  .board-setting-side-bar {
-    width: 20%;
-    margin-right: 5%;
+  .setting-side-bar {
+    width: $setting-side-bar-width;
+    min-width: $setting-side-bar-width;
+
+    // TODO board-setting same
     ul {
       background-color: $white;
       border-radius: $radius-small;
@@ -51,16 +53,7 @@ $content-width: 700px;
     }
   }
 
-  .board-setting-panel {
-    width: 75%;
-    background-color: $white;
-    border-radius: $radius-small;
-    border: 1px solid $gray-light;
-    padding: 20px 20px 30px;
-
-    h3 {
-      color: $color-text-primary;
-      font-size: $font-size-lg;
-    }
+  .setting-panel {
+    width: 100%;
   }
 }

@@ -3,29 +3,22 @@ import {connect} from 'react-redux';
 import {browserHistory} from 'react-router';
 import {PageContainer} from '../../components/widget/PageContainer';
 import {makeGravatarUrl} from '../../services/gravatar';
+import Loading from '../../components/widget/loading';
 
-import 'style/page/profile/profile.scss';
-
-export default class Profile extends Component {
+export default class Security extends Component {
   componentWillMount() {
-    
+
   }
 
   render() {
     return (
-      <div className='profile-page'>
+      <section className='setting-security'>
 
-        <div className='profile-infomation'>
-          
-        </div>
+        <section className=''>
 
-        <div className='profile-works'>
-          
-        </div>
+        </section>
 
-        
-        
-      </div>
+      </section>
     );
   }
 }

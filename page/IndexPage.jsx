@@ -15,11 +15,11 @@ class IndexPage extends Component {
   }
 
   componentWillMount() {
-    
+
   }
 
   componentDidMount() {
-    
+
   }
 
   startSeaWaves() {
@@ -35,7 +35,7 @@ class IndexPage extends Component {
         <Link to="/signin">
           <Button className='signin-button' styleType='primary' size='middle'>Sign In</Button>
         </Link>
-        
+
         <Link to="/signup">
           <Button className='signup-button' styleType='default' size='middle'>Sign Up</Button>
         </Link>
@@ -46,7 +46,7 @@ class IndexPage extends Component {
   renderEnterBar() {
     return (
       <div className='enter-bar'>
-        
+        <Button className='signup-button' styleType='default' size='middle'>Enter Octopus</Button>
       </div>
     );
   }
@@ -67,14 +67,15 @@ class IndexPage extends Component {
     return (
       <PageContainer className='index-page'>
 
-        <div className='mask'></div>
-
         <div className='index-main'>
-          <div className='logo-container'>
+
+          <div className='octopus'>
+            <img className='octopus--svg' src='/static/octopus.svg'/>
           </div>
+
           {this.renderLinkBar()}
         </div>
-        
+
       </PageContainer>
     );
   }
@@ -82,7 +83,7 @@ class IndexPage extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    
+
   };
 };
 

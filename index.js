@@ -24,6 +24,10 @@ import TaskSettingInfomation from 'containers/task/Setting/Infomation';
 import TaskSettingOperation from 'containers/task/Setting/Operation';
 import TaskSettingPreference from 'containers/task/Setting/Preference';
 
+import Setting from 'containers/setting/Setting';
+import SettingSecurity from 'page/setting/Security';
+import SettingProfile from 'page/setting/Profile';
+
 import Body from 'components/Body';
 
 import Building from 'page/Building';
@@ -73,7 +77,7 @@ ReactDOM.render(
   <Provider store={store}>
     <Body>
       <Router history={history}>
-        <Route path='/' component={Building}>
+        <Route path='/'>
           <IndexRoute path='' component={IndexPage}/>
 
           <Route path='signin' component={SignIn}/>
@@ -81,9 +85,9 @@ ReactDOM.render(
         </Route>
 
         <Route path='/' component={App} >
-  
+
           <Route path='dash' component={DashBoard} onEnter={checkLogin}/>
-    
+
           <Route path='profile' component={Profile}/>
           <Route path="idea" component={Ideas}/>
           <Route path='task-wall' component={Boards} onEnter={checkLogin}/>
@@ -96,14 +100,20 @@ ReactDOM.render(
               <Route path='preference' component={TaskSettingPreference}/>
               <IndexRedirect to='infomation'/>
             </Route>
-          </Route>          
+          </Route>
+
+          <Route path='setting' component={Setting} onEnter={checkLogin}>
+            <Route path='/profile' component={SettingProfile}/>
+            <Route path='/security' component={SettingSecurity}/>
+            <IndexRedirect to='profile'/>
+          </Route>
 
           <Route path='todo' component={TodoPage}/>
 
           <Route path='404' component={NotFound} />
         </Route>
 
-        
+
       </Router>
       <DevTools />
     </Body>

@@ -1,35 +1,37 @@
-import React, { Component, PropTypes } from 'react'
-import fetch from 'isomorphic-fetch'
-import { connect } from 'react-redux'
-import { browserHistory } from 'react-router'
+import React, { Component, PropTypes } from 'react';
+import fetch from 'isomorphic-fetch';
+import {connect } from 'react-redux';
+import {updateTitle} from 'services/title';
+import {Link, browserHistory} from 'react-router';
 
+import 'style/setting/setting.scss';
 
-
-class Setting extends Component {
-  constructor() {
-    super()
-    
-    
+export default class Setting extends Component {
+  componentDidMount() {
+    updateTitle('Setting');
   }
-  
-  render() {
 
+  renderSideBar() {
     return (
-        <div>
-        
-        <h2>Setting</h2>
-        
-        </div>
-    )
+      <ul>
+        <li><Link activeClassName='active' to='/setting/profile'>Profile</Link></li>
+        <li><Link activeClassName='active' to='/setting/security'>Security</Link></li>
+      </ul>
+    );
   }
 
-  
-}
+  render() {
+    return (
+      <section className='setting-page'>
+        <div className='setting-side-bar'>
+          {this.renderSideBar()}
+        </div>
 
-const mapStateToProps = (state) => {
-  return {
-    
-  };
-}
+        <div className='setting-panel'>
+          {this.props.children}
+        </div>
 
-export default connect(mapStateToProps)(Setting)
+      </section>
+    );
+  }
+}

@@ -14,10 +14,6 @@ import {SITE_MAP} from 'services/site-map';
 
 // TODO remove container because do not need
 export class BoardSetting extends Component {
-  getCurrentBoard() {
-    const {normalizedBoard} = this.props;
-    return normalizedBoard.entities[this.props.params.id];
-  }
 
   componentWillMount() {
   }
@@ -46,16 +42,16 @@ export class BoardSetting extends Component {
   
   render() {
     return (
-      <div className='board-setting-page'>
+      <section className='board-setting-page'>
 
         <div className='board-setting-side-bar'>
           {this.renderSideBarItems()}
         </div>
-
+        
         <div className='board-setting-panel'>
           {this.props.children}
         </div>        
-      </div>
+      </section>
     );
   }
 }
