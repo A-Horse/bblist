@@ -32,24 +32,22 @@
   /*   background-color: rgba(255, 255, 255, 0.8); */
   /* } */
 
-  .index-main {
-
-  }
-
   .logo-container {
-    margin: 0 auto;
-    width: 350px;
-    border-radius: 10px;
-    background-color: rgba(255, 255, 255, 0.5);
     text-align: center;
+    margin-top: 150px;
   }
 
   .sign-bar {
+    text-align: center;
     button: {
       font: {
         width: 700;
       }
     }
+  }
 
+  .enter-bar {
+    margin-top: 20px;
+    text-align: center;
   }
 }

@@ -2,8 +2,9 @@
 @import 'style/mixin';
 
 .logoban {
+  display: inline-block;
   cursor: pointer;
-  .logo {    
+  .logo {
     height: 60px;
   }
 

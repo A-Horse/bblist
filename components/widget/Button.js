@@ -16,7 +16,7 @@ export class Button extends Component {
   click() {
     this.refs.main.click();
   }
-  
+
   render() {
     return (
       <button ref='main' className={this.buildClassName()} onClick={this.props.onClick} type={this.props.type}>

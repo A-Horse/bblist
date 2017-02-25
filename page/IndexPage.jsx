@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {PageContainer} from 'components/widget/PageContainer';
 import {SeaWaves} from 'effect/SeaWaves';
 import {Button} from '../components/widget/Button';
-import {Link} from 'react-router';
+import {Link, browserHistory} from 'react-router';
 import {isLogin} from 'services/login';
 import {LogoBan} from 'components/commons/LogoBan';
 
@@ -33,11 +33,11 @@ class IndexPage extends Component {
     return (
       <div className='sign-bar'>
         <Link to="/signin">
-          <Button className='signin-button' styleType='primary' size='middle'>Sign In</Button>
+          <Button className='signin-button' styleType='primary' size='middle' onClick={() => {browserHistory.push('/signin')}}>Sign In</Button>
         </Link>
 
         <Link to="/signup">
-          <Button className='signup-button' styleType='default' size='middle'>Sign Up</Button>
+          <Button className='signup-button' styleType='default' size='middle' onClick={() => {browserHistory.push('/signup')}}>Sign Up</Button>
         </Link>
       </div>
     );
@@ -46,7 +46,7 @@ class IndexPage extends Component {
   renderEnterBar() {
     return (
       <div className='enter-bar'>
-        <Button className='signup-button' styleType='default' size='middle'>Enter Octopus</Button>
+        <Button className='signup-button' styleType='primary' size='large' onClick={() => {browserHistory.push('/home')}}>Enter Octopus</Button>
       </div>
     );
   }
@@ -68,6 +68,10 @@ class IndexPage extends Component {
       <PageContainer className='index-page'>
 
         <div className='index-main'>
+
+          <div className='logo-container'>
+            <LogoBan/>
+          </div>
 
           <div className='octopus'>
             <img className='octopus--svg' src='/static/octopus.svg'/>

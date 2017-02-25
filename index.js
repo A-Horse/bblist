@@ -86,7 +86,7 @@ ReactDOM.render(
 
         <Route path='/' component={App} >
 
-          <Route path='dash' component={DashBoard} onEnter={checkLogin}/>
+          <Route path='home' component={DashBoard} onEnter={checkLogin}/>
 
           <Route path='profile' component={Profile}/>
           <Route path="idea" component={Ideas}/>
