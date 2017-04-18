@@ -7,6 +7,12 @@
   border-radius: $radius-middle;
   margin-bottom: 5px;
   transition: height 300ms;
+
+  &:hover {
+    .todo-hover-operation {
+      visibility: visible;
+    }
+  }
 }
 
 .todo--main {
@@ -45,4 +51,17 @@
 
 .todo-editing--meta {
   margin-top: 10px;
+}
+
+.todo-hover-operation {
+  visibility: hidden;
+  margin-right: 20px;
+
+  svg {
+    cursor: pointer;
+
+    &.delete-icon {
+      fill: $md-grey-700;
+    }
+  }
 }

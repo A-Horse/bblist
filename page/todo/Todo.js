@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {CheckBox} from 'components/widget/CheckBox';
 import DatePicker from 'components/date-picker/DatePicker';
 import {getTodoList, updateTodo, destroyTodo} from 'actions/todo/todos';
-import {MoreIcon, StarBorderIcon} from 'services/svg-icons';
+import {MoreIcon, StarBorderIcon, DeleteIcon} from 'services/svg-icons';
 import Textarea from 'react-textarea-autosize';
 import {Button} from 'components/widget/Button';
 import {DropList} from 'components/widget/DropList';
@@ -25,14 +25,14 @@ class Todo extends Component {
       operationToggle: false
     };
   }
-  
+
   finishTodo() {
-    
+
   }
-  
+
 
   onClick() {
-    
+
   }
 
   async closeEditable() {
@@ -80,7 +80,7 @@ class Todo extends Component {
   destroyTodo() {
     const {todo, dispatch} = this.props;
     dispatch(destroyTodo(todo.id)).then(function() {
-      // TODO 
+      // TODO
       dispatch(getTodoList());
     });
   }
@@ -96,7 +96,7 @@ class Todo extends Component {
       this.closeEditable();
     }
   }
-  
+
   render() {
     const {todo} = this.props;
     return (
@@ -106,7 +106,11 @@ class Todo extends Component {
             <CheckBox ref='checkbox' defaultChecked={todo.isDone} onChange={this.updateDone.bind(this)}/>
             <p style={{display: !this.state.editToggle ? 'block' : 'none'}} className='todo--content' onClick={this.onContentClick.bind(this)}>{todo.content}</p>
             <Textarea ref='content' onKeyDown={this.onContendChanged.bind(this)} className='todo--content__input' style={{display: this.state.editToggle ? 'block' : 'none'}} defaultValue={todo.content}></Textarea>
-            
+
+            <div className='todo-hover-operation'>
+              <DeleteIcon className='delete-icon' onClick={::this.destroyTodo}/>
+            </div>
+
             <StarBorderIcon/>
           </div>
 
@@ -116,7 +120,7 @@ class Todo extends Component {
               <label>Deadline:</label>
               <DatePicker ref='date-picker' defaultValue={todo.deadline}/>
             </div>
-            
+
           </div>
         </div>
       </ClickOutSide>

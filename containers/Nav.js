@@ -25,6 +25,7 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state) => {
   return {
+    userIsFetching: state.auth.isFetching,
     user: state.auth.loginedUser,
     path: state.routing.locationBeforeTransitions.pathname
   };

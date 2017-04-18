@@ -13,7 +13,7 @@ import R from 'ramda';
 import 'style/page/signin.scss';
 
 // TODO 登出 ，登陆成功后清空缓存
-class SignIn extends Component {  
+class SignIn extends Component {
   componentWillMount() {
     this.state = {errorMessages: {}};
   }
@@ -21,7 +21,7 @@ class SignIn extends Component {
   componentDidMount() {
     updateTitle('Sign In');
   }
-  
+
   render() {
     const errorMessages = this.state.errorMessages;
     // TODO experience button event.preventDefault 会阻止 html5 的校验
@@ -40,7 +40,7 @@ class SignIn extends Component {
             </div>
 
             <ErrorMsg messages={R.values(errorMessages)}/>
-            
+
             <Button className='signin-button' size='large' type='submit' styleType='primary'>Login</Button>
 
           </form>
@@ -72,13 +72,13 @@ class SignIn extends Component {
       this.props.login(loginInfo).then(() => {
         browserHistory.push('/');
       });
-    }    
+    }
   }
 }
 
 // const mapStateToProps = (state) => {
 //   return {
-    
+
 //   };
 // };
 

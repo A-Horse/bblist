@@ -8,11 +8,11 @@
 
   .logo-container {
     text-align: center;
-    margin-top: 150px;
+    margin-top: 100px;
   }
 
   .octopus {
-    margin: -150px auto 0;
+    margin: -120px auto 0;
     &--svg {
       margin: 0 auto;
       display: block;
@@ -20,9 +20,9 @@
     }
   }
 
-
   .sign-bar {
     text-align: center;
+    margin-top: 30px;
     button: {
       font: {
         width: 700;
@@ -31,7 +31,11 @@
   }
 
   .enter-bar {
-    margin-top: 20px;
+    margin-top: 60px;
     text-align: center;
+
+    .button {
+      width: 200px;
+    }
   }
 }

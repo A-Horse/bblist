@@ -46,12 +46,12 @@ function taskList(state = {
       message: action.message
     });
     break;
-    
+
   case TASKLIST_PATCH_REQUEST:
     return Object.assign({}, state, {
       isFetching: true,
       taskCard: action.taskCard
-    })
+    });
     break;
   case TASKLIST_PATCH_SUCCESS:
     return Object.assign({}, state, {
@@ -87,7 +87,7 @@ function taskList(state = {
   case TASKCARD_ENTER_START:
   case TASKCARD_ENTER_DONE:
     return Object.assign({}, state);
-    
+
   case ALL_TASKCARD_GET_SUCCESS:
     return Object.assign({}, state, {
       entities: action.playload.entities.track
@@ -105,7 +105,7 @@ function taskList(state = {
     currentList.cards.splice(index, 1, Object.assign({}, currentList.cards[index], action.playload));
     // currentList.cards = Array.of(...currentList.cards);
     currentList.cards[index] = Object.assign({}, currentList.cards[index]);
-    
+
     return Object.assign({}, state, {
       lists: state.lists
     });
@@ -127,7 +127,7 @@ function taskList(state = {
     });
     }
     break;
-    
+
   default:
     return state;
   }

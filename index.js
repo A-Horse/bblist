@@ -63,7 +63,7 @@ const DevTools = createDevTools(
 
 const store = createStore(
   reducer,
-  DevTools.instrument(),
+  // DevTools.instrument(),
   applyMiddleware(
     thunkMiddleware, // 允许我们 dispatch() 函数
     epicMiddleware

@@ -33,7 +33,7 @@ class Nav extends Component {
         <LogoBan/>
 
         <div className='nav-link-area'>
-          <Link to='/dash' activeClassName='nav-link__active'>Dash</Link>
+          <Link to='/home' activeClassName='nav-link__active'>Dash</Link>
           <Link to='/task-wall' activeClassName='nav-link__active'>Task</Link>
           <Link to='/todo' activeClassName='nav-link__active'>Todo</Link>
           <Link to='/idea' activeClassName='nav-link__active'>Idea</Link>
@@ -44,7 +44,11 @@ class Nav extends Component {
   }
 
   renderNavUser() {
-    // TODO: loading
+    if (this.props.userIsFetching) {
+      // TODO: loading
+      return null;
+    }
+
     const userName = this.props.user.username;
     return (
       <ClickOutSide className='avatar-area' onClickOutside={() => {this.state.dropDownToggle && this.setState({dropDownToggle: false})}}>
@@ -89,4 +93,3 @@ class Nav extends Component {
 }
 
 export default Nav;
-

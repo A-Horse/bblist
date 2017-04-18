@@ -20,3 +20,4 @@ export UnarchinveIcon from 'babel!svg-react!../assets/svg/ic_unarchive_black_24p
 export ReorderIcon from 'babel!svg-react!../assets/svg/ic_reorder_black_24px.svg?name=ReorderIcon';
 export KeyBoardArrowLeftIcon from 'babel!svg-react!../assets/svg/ic_keyboard_arrow_left_black_24px.svg?name=KeyBoardArrowLeftIcon';
 export KeyBoardArrowRightIcon from 'babel!svg-react!../assets/svg/ic_keyboard_arrow_right_black_24px.svg?name=KeyBoardArrowRightIcon';
+export DeleteIcon from 'babel!svg-react!../assets/svg/ic_delete_black_24px.svg?name=DeleteIcon';
