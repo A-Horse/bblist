@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "description": "Redux Todos example",
   "scripts": {
-    "start": "webpack-dev-server --history-api-fallback --watch --hot",
+    "start": "webpack-dev-server --history-api-fallback --watch --hot --host 0.0.0.0",
     "test": "cross-env NODE_ENV=test mocha --recursive --compilers js:babel-register --require ./test/setup.js",
     "test:watch": "npm test -- --watch"
   },
