@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {browserHistory} from 'react-router';
-import Radium from 'radium';
 import R from 'fw-ramda';
 
 import TaskCard from './TaskCard';
@@ -33,7 +32,7 @@ class TaskList extends Component {
   constructor() {
     super();
     this.resetDragMeta();
-    
+
   }
 
   componentWillMount() {
@@ -125,7 +124,7 @@ class TaskList extends Component {
               <li onClick={() => this.refs.listDeleteConfirm.open()}>Delete</li>
             </ul>
           </DropList>
-          
+
           <ConfirmModal confirmFn={() => deleteTaskList(listId)} ref='listDeleteConfirm' ></ConfirmModal>
       </div>
     );
@@ -137,7 +136,7 @@ class TaskList extends Component {
     const movingTrack = thisTrack.cloneNode(true);
 
     const trackOffsetLeft = thisTrack.offsetLeft;
-    
+
     const pageContainer = window.document.body.querySelector('.board-page-container');
     const trackHorMargin = 24;
     const trackVerMargin = 15;
@@ -157,7 +156,7 @@ class TaskList extends Component {
     movingTrack.style.top = thisTrackRect.top - trackVerMargin + 'px';
 
     let currentTrackIndex = Number(thisTrack.dataset.index);
-    
+
     function onMouseMove(event) {
       const movingOffset = event.pageX + pageContainer.scrollLeft - thisTrackMouseOffset.left - trackHorMargin;
       movingTrack.style.transform = `translate(${movingOffset}px, 0)`;
@@ -213,7 +212,7 @@ class TaskList extends Component {
       window.document.body.removeChild(movingTrack);
       window.document.body.removeEventListener('mousemove', onMouseMove);
       window.document.body.removeEventListener('mouseup', onMouseUp);
-      
+
       self.props.updateTaskTrackIndexs();
     }
 
@@ -224,7 +223,7 @@ class TaskList extends Component {
 
     window.document.body.addEventListener('mousemove', onMouseMove);
     window.document.body.addEventListener('mouseup', onMouseUp);
-    // TODO body onblur 
+    // TODO body onblur
   }
 
   render() {
@@ -239,12 +238,12 @@ class TaskList extends Component {
            onDragLeave={this.onDragLeave.bind(this)}
            onDragOver={this.onDragOver.bind(this)}>
         {this.renderTopBar()}
-      
+
         <div className='task-list--body' ref='taskListBody'>
           {this.renderCards(cardIds)}
           <TaskCardCreater wallId={this.props.wallId} listId={listId} />
         </div>
-        
+
       </div>
     );
   }
@@ -256,7 +255,7 @@ class TaskList extends Component {
     const {normalizedCard} = this.props;
     // TODO rename
     let xheight = relativeOffsetBody, i = 0;
-    
+
     if (y < xheight) {
       return i;
     }
@@ -310,7 +309,7 @@ class TaskList extends Component {
     this.removeDragingClass();
     this.removePlaceHolderCard();
   }
-  
+
   onDragEnter() {
     this.addDragingClass();
   }
@@ -342,7 +341,7 @@ class TaskList extends Component {
       this.refs.taskListBody.insertBefore(div, this.refs.taskListBody.querySelectorAll('.task-card')[placeHolderCardIndex].nextSibling);
     } else {
       this.refs.taskListBody.insertBefore(div, this.refs.taskListBody.querySelectorAll('.task-card')[placeHolderCardIndex]);
-    }    
+    }
   }
 
   requestMoveCardToThisList(card) {

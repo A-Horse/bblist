@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import Radium from 'radium';
+
 
 import 'style/page/todo/pomodora-dial.scss';
 
@@ -11,18 +11,18 @@ class PomodoraDial extends Component {
 
   componentWillMount() {
     this.state = {
-      
+
     };
   }
-  
+
   onClick() {
-    
+
   }
-  
+
   render() {
     return (
       <div className='pomodora-dial'>
-        
+
       </div>
     );
   }
@@ -30,7 +30,7 @@ class PomodoraDial extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    
+
   };
 };
 
