@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "description": "octopus",
   "scripts": {
-    "build-dev": "webpack --config webpack.config.dev.js",
-    "build-prod": "webpack --config webpack.config.prod.js",
+    "build-dev": "webpack --config ./build/webpack.config.dev.js",
+    "build-prod": "webpack --config ./build/webpack.config.prod.js",
     "start": "webpack-dev-server --history-api-fallback --watch --hot --host 0.0.0.0"
   },
   "repository": {
