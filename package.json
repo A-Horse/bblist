@@ -4,7 +4,7 @@
   "description": "octopus",
   "scripts": {
     "webpack-build-dev": "webpack --config ./webpack.config.dev.js",
-    "webpack-build-prod": "webpack --config ./webpack.config.prod.js",
+    "webpack-build-prod": "NODE_ENV=production webpack --config ./webpack.config.prod.js",
     "start": "webpack-dev-server --history-api-fallback --watch --hot --host 0.0.0.0"
   },
   "repository": {
