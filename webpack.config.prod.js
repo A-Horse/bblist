@@ -3,7 +3,6 @@ var path = require('path');
 var webpack = require('webpack');
 
 var BellOnBundlerErrorPlugin = require('bell-on-bundler-error-plugin');
-// var OfflinePlugin = require('offline-plugin');
 
 module.exports = {
   resolve: {
@@ -26,9 +25,7 @@ module.exports = {
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.BannerPlugin(fs.readFileSync('./.banner').toString()),
     new webpack.optimize.AggressiveMergingPlugin(),
-    new BellOnBundlerErrorPlugin(),
-    // new OfflinePlugin(),
-    new webpack.HotModuleReplacementPlugin()
+    new BellOnBundlerErrorPlugin()
   ],
   module: {
     loaders: [
