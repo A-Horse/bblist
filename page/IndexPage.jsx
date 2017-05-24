@@ -23,7 +23,7 @@ class IndexPage extends Component {
       const windWidth = window.innerWidth;
       const windHeight = window.innerHeight;
       var s = Snap(".svg-main");
-      var bigCircle = s.circle(150, 150, 100);
+      var bigCircle = s.circle(150, 150, 50);
       bigCircle.attr({
         fill: "#7fd5f3"
       });
