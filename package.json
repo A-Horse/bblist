@@ -5,17 +5,17 @@
   "scripts": {
     "webpack-build-dev": "webpack --config ./webpack.config.dev.js",
     "webpack-build-prod": "NODE_ENV=production webpack --config ./webpack.config.prod.js",
-    "start": "webpack-dev-server --history-api-fallback --watch --hot --host 0.0.0.0"
+    "start": "webpack-dev-server --config ./webpack.config.prod.js --history-api-fallback --watch --hot --host 0.0.0.0"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/A-Horse/bblist.git"
-  },
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/A-Horse/bblist/issues"
-  },
-  "homepage": "https://github.com/A-Horse/bblist",
+   },
+   "license": "MIT",
+   "bugs": {
+     "url": "https://github.com/A-Horse/bblist/issues"
+   },
+   "homepage": "https://github.com/A-Horse/bblist",
   "dependencies": {
     "babel-polyfill": "^6.22.0",
     "babel-runtime": "^6.22.0",

@@ -19,7 +19,15 @@ class IndexPage extends Component {
   }
 
   componentDidMount() {
-
+    setTimeout(() => {
+      const windWidth = window.innerWidth;
+      const windHeight = window.innerHeight;
+      var s = Snap(".svg-main");
+      var bigCircle = s.circle(150, 150, 100);
+      bigCircle.attr({
+        fill: "#7fd5f3"
+      });
+    }, 1000);
   }
 
   startSeaWaves() {
@@ -63,21 +71,29 @@ class IndexPage extends Component {
     return isLogin() ? this.renderEnterBar() : this.renderSignBar();
   }
 
+  renderIndex() {
+    return (
+      <div className='index-main'>
+
+        <div className='logo-container'>
+          <LogoBan/>
+        </div>
+
+        <div className='octopus'>
+          <img className='octopus--svg' src='/static/octopus.svg'/>
+        </div>
+
+        {this.renderLinkBar()}
+      </div>
+    );
+  }
+
   render() {
     return (
       <PageContainer className='index-page'>
 
-        <div className='index-main'>
-
-          <div className='logo-container'>
-            <LogoBan/>
-          </div>
-
-          <div className='octopus'>
-            <img className='octopus--svg' src='/static/octopus.svg'/>
-          </div>
-
-          {this.renderLinkBar()}
+        <div ref="svg-main">
+          <svg className="svg-main" width="600" height="600"/>
         </div>
 
       </PageContainer>

@@ -7,7 +7,6 @@ import {Observable} from 'rxjs/Observable';
 import {JWT_STORAGE_KEY} from '../../constants';
 import {getJWT} from 'utils/auth';
 
-
 function patchTaskBoard(boardId, data) {
   const header = {};
   header[JWT_STORAGE_KEY] = getJWT();
