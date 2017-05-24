@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Octopus</title>
+  </head>
+  <body>
+
+
+
+    <script src="/assets/vendor/snap.svg-min.js"></script>
+    <script>
+      const windWidth = window.innerWidth;
+      const windHeight = window.innerHeight;
+      var s = Snap(windWidth, windHeight);
+      var bigCircle = s.circle(150, 150, 50);
+      bigCircle.attr({
+        fill: "#7fd5f3"
+      });
+    </script>
+  </body>
+</html>
