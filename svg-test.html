@@ -66,13 +66,13 @@
       }
 
       Snap.load('/assets/svg-image/red-octopus.svg', (f) => {
-        const octopus = f.select('#octopus');
+        const octopus = pager.g(f.select('#red-octopus'));
 
         pager.add(octopus);
         octopus.attr({
-          cx: windWidth / 2 - 180 / 2,
-          cy: windHeight - 300
+
         });
+        octopus.transform(`translate(${windWidth / 2 - 80}, ${windHeight - 450})`)
       });
 
 
