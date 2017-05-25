@@ -15,68 +15,90 @@
 
     <script src="/assets/vendor/snap.svg-min.js"></script>
     <script>
-      const windWidth = window.innerWidth;
-      const windHeight = window.innerHeight;
-      const waveCircleRadius = 40;
-      const waveNum = Math.floor(windWidth / waveCircleRadius);
-      const SEA_BG = "#7fd5f3";
+      window.onload = () => {
+        const windWidth = window.innerWidth;
+        const windHeight = window.innerHeight;
+        const waveCircleRadius = 40;
+        const waveNum = Math.floor(windWidth / waveCircleRadius);
+        const SEA_BG = "#7fd5f3";
 
-      class Octopus {
-        constructor(options) {
-          this.pager = options.pager;
+        class Octopus {
+          constructor(options) {
+            this.pager = options.pager;
+          }
+
+          render() {
+
+          }
         }
 
-        render() {
+        var pager = Snap(windWidth, windHeight);
 
+        var waves = pager.g();
+        for (let i = 0, max = waveNum; i < max; i++) {
+          const x = waveCircleRadius + waveCircleRadius * 2 * i - 20 * i - 20;
+          const y = windHeight + waveCircleRadius * 2;
+          var waveCircle = pager.circle(x, y, waveCircleRadius);
+          waveCircle.attr({
+            fill: SEA_BG
+          });
+          waves.add(waveCircle);
         }
-      }
-
-      var pager = Snap(windWidth, windHeight);
-
-      var waves = pager.g();
-      for (let i = 0, max = waveNum; i < max; i++) {
-        const x = waveCircleRadius + waveCircleRadius * 2 * i - 20 * i - 20;
-        const y = windHeight + waveCircleRadius * 2;
-        var waveCircle = pager.circle(x, y, waveCircleRadius);
-        waveCircle.attr({
+        const seaRect = pager.rect(0, windHeight + waveCircleRadius * 2, windWidth, 400);
+        seaRect.attr({
           fill: SEA_BG
         });
-        waves.add(waveCircle);
-      }
-      const seaRect = pager.rect(0, windHeight + waveCircleRadius * 2, windWidth, 400);
-      seaRect.attr({
-        fill: SEA_BG
-      });
-      const sea = pager.g(waves, seaRect);
+        const sea = pager.g(waves, seaRect);
 
-      sea.animate({
-        transform: 'translate(0, -350)',
-      }, 600);
+        sea.animate({
+          transform: 'translate(0, -350)',
+        }, 600);
 
-      function wavesLeft() {
-        waves.animate({
-          transform: 'translate(-100, 0)'
-        }, 3000, mina.linear, wavesRight);
-      }
+        function wavesLeft() {
+          waves.animate({
+            transform: 'translate(-100, 0)'
+          }, 3000, mina.linear, wavesRight);
+        }
 
-      function wavesRight() {
-        waves.animate({
-          transform: 'translate(0, 0)'
-        }, 3000, mina.linear, wavesLeft);
-      }
+        function wavesRight() {
+          waves.animate({
+            transform: 'translate(0, 0)'
+          }, 3000, mina.linear, wavesLeft);
+        }
 
-      Snap.load('/assets/svg-image/red-octopus.svg', (f) => {
-        const octopus = pager.g(f.select('#red-octopus'));
+        Snap.load('/assets/svg-image/red-octopus.svg', (f) => {
+          const octopus = pager.g(f.select('#red-octopus'));
 
-        pager.add(octopus);
-        octopus.attr({
+          pager.add(octopus);
+          octopus.attr({
 
+          });
+          octopus.transform(`translate(${windWidth / 2 - 80}, ${windHeight - 450})`);
+
+          const rect = pager.rect(0, 0, 160, 0).attr({fill: '#fff'});
+          octopus.attr({
+            mask: rect
+          });
+          rect.animate({
+            height: 247,
+            y: 0
+          }, 1500);
+          octopus.transform(`translate(${windWidth / 2 - 80}, ${windHeight - 203})`);
+          octopus.animate({
+            transform: `translate(${windWidth / 2 - 80}, ${windHeight - 450})`
+          }, 1500);
+
+          // const rect2 = pager.rect(windWidth / 2 - 80, windHeight - 450 + 207, 160, 20)
+          //const mask = pager.mask();
+
+          // mask.add(octopus, rect);
+          // mask.add(rect);
         });
-        octopus.transform(`translate(${windWidth / 2 - 80}, ${windHeight - 450})`)
-      });
+
+        wavesLeft();
+      };
 
 
-      wavesLeft();
     </script>
   </body>
 </html>
