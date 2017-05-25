@@ -3,20 +3,80 @@
   <head>
     <meta charset="UTF-8">
     <title>Octopus</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+      }
+    </style>
   </head>
   <body>
-
-
 
     <script src="/assets/vendor/snap.svg-min.js"></script>
     <script>
       const windWidth = window.innerWidth;
       const windHeight = window.innerHeight;
-      var s = Snap(windWidth, windHeight);
-      var bigCircle = s.circle(150, 150, 50);
-      bigCircle.attr({
-        fill: "#7fd5f3"
+      const waveCircleRadius = 40;
+      const waveNum = Math.floor(windWidth / waveCircleRadius);
+      const SEA_BG = "#7fd5f3";
+
+      class Octopus {
+        constructor(options) {
+          this.pager = options.pager;
+        }
+
+        render() {
+
+        }
+      }
+
+      var pager = Snap(windWidth, windHeight);
+
+      var waves = pager.g();
+      for (let i = 0, max = waveNum; i < max; i++) {
+        const x = waveCircleRadius + waveCircleRadius * 2 * i - 20 * i - 20;
+        const y = windHeight + waveCircleRadius * 2;
+        var waveCircle = pager.circle(x, y, waveCircleRadius);
+        waveCircle.attr({
+          fill: SEA_BG
+        });
+        waves.add(waveCircle);
+      }
+      const seaRect = pager.rect(0, windHeight + waveCircleRadius * 2, windWidth, 400);
+      seaRect.attr({
+        fill: SEA_BG
       });
+      const sea = pager.g(waves, seaRect);
+
+      sea.animate({
+        transform: 'translate(0, -350)',
+      }, 600);
+
+      function wavesLeft() {
+        waves.animate({
+          transform: 'translate(-100, 0)'
+        }, 3000, mina.linear, wavesRight);
+      }
+
+      function wavesRight() {
+        waves.animate({
+          transform: 'translate(0, 0)'
+        }, 3000, mina.linear, wavesLeft);
+      }
+
+      Snap.load('/assets/svg-image/red-octopus.svg', (f) => {
+        const octopus = f.select('#octopus');
+
+        pager.add(octopus);
+        octopus.attr({
+          cx: windWidth / 2 - 180 / 2,
+          cy: windHeight - 300
+        });
+      });
+
+
+      wavesLeft();
     </script>
   </body>
 </html>

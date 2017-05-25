@@ -7,8 +7,8 @@ import {syncHistoryWithStore, routerReducer} from 'react-router-redux';
 import {applyMiddleware} from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import {createDevTools} from 'redux-devtools';
-import LogMonitor from 'redux-devtools-log-monitor';
-import DockMonitor from 'redux-devtools-dock-monitor';
+// import LogMonitor from 'redux-devtools-log-monitor';
+// import DockMonitor from 'redux-devtools-dock-monitor';
 
 // TODO split it
 import {Profile, NotFound, DashBoard,
@@ -54,11 +54,11 @@ const reducer = combineReducers({
   routing: routerReducer
 });
 
-const DevTools = createDevTools(
-  <DockMonitor toggleVisibilityKey="ctrl-h" changePositionKey="ctrl-q">
-    <LogMonitor theme="tomorrow" preserveScrollTop={false} />
-  </DockMonitor>
-);
+// const DevTools = createDevTools(
+//   <DockMonitor toggleVisibilityKey="ctrl-h" changePositionKey="ctrl-q">
+//     <LogMonitor theme="tomorrow" preserveScrollTop={false} />
+//   </DockMonitor>
+// );
 
 
 const store = createStore(
@@ -115,7 +115,7 @@ ReactDOM.render(
 
 
       </Router>
-      <DevTools />
+      {/*<DevTools />*/}
     </Body>
   </Provider>,
   document.getElementById('root')
