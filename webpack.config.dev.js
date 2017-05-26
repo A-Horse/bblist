@@ -3,20 +3,24 @@ var path = require('path');
 var webpack = require('webpack');
 
 var BellOnBundlerErrorPlugin = require('bell-on-bundler-error-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+
 // var OfflinePlugin = require('offline-plugin');
 
 module.exports = {
   resolve: {
-    extensions: ['', '.js', '.jsx'],
-    root: [
-      path.resolve('.')
+    extensions: ['.js', '.jsx', '.scss', '.css'],
+    modules: [
+      path.resolve('.'),
+      "node_modules"
     ]
   },
   devtool: 'source-map',
   entry: [
-    'webpack-dev-server/client?http://octopus.com/',
-    'webpack-hot-middleware/client',
-    'webpack/hot/only-dev-server',
+    // 'webpack-dev-server/client?http://octopus.com/',
+    // 'webpack-hot-middleware/client',
+    // 'webpack/hot/only-dev-server',
     'babel-polyfill',
     './index'
   ],
@@ -26,29 +30,62 @@ module.exports = {
     publicPath: '/js/'
   },
   plugins: [
-    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.BannerPlugin(fs.readFileSync('./.banner').toString()),
-    new webpack.optimize.AggressiveMergingPlugin(),
+    // new webpack.optimize.AggressiveMergingPlugin(),
     new BellOnBundlerErrorPlugin(),
+    new ExtractTextPlugin("styles.css"),
     // new OfflinePlugin(),
-    new webpack.HotModuleReplacementPlugin()
+    // new webpack.HotModuleReplacementPlugin(),
+    // new UglifyJsPlugin({
+    //   sourceMap: true
+    // })
   ],
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.jsx?$/,
-        loaders: ['babel'],
+        use: [
+          {
+            loader: 'babel-loader'
+          }
+        ],
         exclude: /node_modules/,
         include: __dirname
       },
       {
         test: /\.scss$/,
-        loader: 'style-loader!css-loader!sass-loader!autoprefixer-loader?{browsers:[">1%"]}',
-        includePaths: [path.resolve(__dirname, './style')]
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            {
+              loader: "css-loader"
+            },
+            {
+              loader: "sass-loader"
+            },
+            {
+              loader: "autoprefixer-loader",
+              options: {
+                browsers: [">1%"]
+              }
+            }
+          ]
+        }),
+        // loader: 'style-loader!css-loader!sass-loader!autoprefixer-loader?{browsers:[">1%"]}',
+        include: [path.resolve(__dirname, './style')]
       },
       {
         test: /\.css$/,
-        loader: 'style-loader!css-loader'
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            {
+              loader: "css-loader"
+            }
+          ]
+        })
+        // loader: 'style-loader!css-loader'
       }
     ]
   }

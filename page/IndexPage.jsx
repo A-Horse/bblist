@@ -19,15 +19,15 @@ class IndexPage extends Component {
   }
 
   componentDidMount() {
-    setTimeout(() => {
-      const windWidth = window.innerWidth;
-      const windHeight = window.innerHeight;
-      var s = Snap(".svg-main");
-      var bigCircle = s.circle(150, 150, 50);
-      bigCircle.attr({
-        fill: "#7fd5f3"
-      });
-    }, 1000);
+    /* setTimeout(() => {
+     *   const windWidth = window.innerWidth;
+     *   const windHeight = window.innerHeight;
+     *   var s = Snap(".svg-main");
+     *   var bigCircle = s.circle(150, 150, 50);
+     *   bigCircle.attr({
+     *     fill: "#7fd5f3"
+     *   });
+     * }, 1000);*/
   }
 
   startSeaWaves() {
@@ -92,9 +92,9 @@ class IndexPage extends Component {
     return (
       <PageContainer className='index-page'>
 
-        <div ref="svg-main">
-          <svg className="svg-main" width="600" height="600"/>
-        </div>
+        {/* <div ref="svg-main">
+            <svg className="svg-main" width="600" height="600"/>
+            </div> */}
 
       </PageContainer>
     );

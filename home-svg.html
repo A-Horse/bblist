@@ -68,6 +68,9 @@
 
         Snap.load('/assets/svg-image/red-octopus.svg', (f) => {
           const octopus = pager.g(f.select('#red-octopus'));
+          const OCTOPUS_BOTTOM_RADIUS = 376;
+          const OCTOPUS_WIDTH = 160;
+          const OCTOPUS_HEIGHT = 247;
 
           pager.add(octopus);
           octopus.attr({
@@ -75,24 +78,23 @@
           });
           octopus.transform(`translate(${windWidth / 2 - 80}, ${windHeight - 450})`);
 
-          const rect = pager.rect(0, 0, 160, 0).attr({fill: '#fff'});
+          const mask = pager.circle(
+            OCTOPUS_WIDTH / 2,
+            - OCTOPUS_BOTTOM_RADIUS - 50,
+            OCTOPUS_BOTTOM_RADIUS).attr({fill: '#fff'});
           octopus.attr({
-            mask: rect
+            mask: mask
           });
-          rect.animate({
-            height: 247,
-            y: 0
-          }, 1500);
-          octopus.transform(`translate(${windWidth / 2 - 80}, ${windHeight - 203})`);
-          octopus.animate({
-            transform: `translate(${windWidth / 2 - 80}, ${windHeight - 450})`
-          }, 1500);
 
-          // const rect2 = pager.rect(windWidth / 2 - 80, windHeight - 450 + 207, 160, 20)
-          //const mask = pager.mask();
-
-          // mask.add(octopus, rect);
-          // mask.add(rect);
+          setTimeout(() => {
+            mask.animate({
+              cy: - OCTOPUS_BOTTOM_RADIUS + OCTOPUS_HEIGHT,
+            }, 1500);
+            octopus.transform(`translate(${windWidth / 2 - 80}, ${windHeight - 203})`);
+            octopus.animate({
+              transform: `translate(${windWidth / 2 - 80}, ${windHeight - 450})`
+            }, 1500);
+          }, 500);
         });
 
         wavesLeft();
