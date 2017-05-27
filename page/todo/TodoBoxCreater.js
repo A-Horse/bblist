@@ -18,7 +18,7 @@ class TodoBoxCreater extends Component {
   componentWillMount() {
     this.state = {toggle: false};
   }
-  
+
   toggle() {
     this.setState({toggle: true});
   }
@@ -37,7 +37,7 @@ class TodoBoxCreater extends Component {
   }
 
   createTodoBox() {
-    
+
   }
 
   renderCreater() {
