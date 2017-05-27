@@ -55,36 +55,36 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [
-            {
-              loader: "css-loader"
-            },
-            {
-              loader: "sass-loader"
-            },
-            {
-              loader: "autoprefixer-loader",
-              options: {
-                browsers: [">1%"]
-              }
+        use: [
+          {
+            loader: "style-loader"
+          },
+          {
+            loader: "css-loader"
+          },
+          {
+            loader: "sass-loader"
+          },
+          {
+            loader: "autoprefixer-loader",
+            options: {
+              browsers: [">1%"]
             }
-          ]
-        }),
+          }
+        ],
         // loader: 'style-loader!css-loader!sass-loader!autoprefixer-loader?{browsers:[">1%"]}',
         include: [path.resolve(__dirname, './style')]
       },
       {
         test: /\.css$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [
-            {
-              loader: "css-loader"
-            }
-          ]
-        })
+        use: [
+          {
+            loader: "style-loader"
+          },
+          {
+            loader: "css-loader"
+          }
+        ]
         // loader: 'style-loader!css-loader'
       }
     ]

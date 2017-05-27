@@ -2,6 +2,7 @@
 @import './reset';
 @import './icon';
 @import './vendor';
+@import './variable';
 
 .clearfix {
   @include clearfix;
@@ -12,8 +13,8 @@
 }
 
 html {
-  /* background-color: #F8F8F8; */
-  background-color: #4a4b50;
+  background-color: $page-background-gray;
+  /* background-color: #4a4b50; */
 }
 
 /* html * { */

@@ -4,7 +4,7 @@ import {
   LOGIN_AUTH_REQUEST, LOGIN_AUTH_SUCCESS, LOGIN_AUTH_FAILURE,
 } from 'actions/login';
 import {Storage} from 'services/storage';
-import {JWT_STORAGE_KEY, CACHED_USERNAME, CACHED_USERID, CACHED_USEREMAIL} from 'constants';
+import {JWT_STORAGE_KEY, CACHED_USERNAME, CACHED_USERID, CACHED_USEREMAIL} from '../constants';
 import {saveAuthData} from 'utils/auth';
 
 function login(state = {

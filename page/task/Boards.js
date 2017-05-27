@@ -5,7 +5,7 @@ import {ThemeConst} from 'style/theme';
 import {CloseIcon, AddIcon, ViewListIcon} from 'services/svg-icons';
 import TaskBoardCreater from './TaskBoardCreater';
 import {makeRemoteUrl} from 'services/remote-storage';
-import {DEFAULT_BOARD_COVER_SRC} from 'constants';
+import {DEFAULT_BOARD_COVER_SRC} from '../../constants';
 import Loading from 'components/Loading';
 
 import 'style/page/task/boards.scss';
@@ -35,7 +35,7 @@ class Boards extends Component {
       );
     });
   }
-  
+
   render() {
     return (
       <PageContainer>

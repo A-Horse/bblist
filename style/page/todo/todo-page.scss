@@ -3,8 +3,9 @@
 .todo-page {
   position: relative;
   display: flex;
-  width: 90%;
-  margin: 0 5%;
+  width: 100%;
+  padding-left: 5%;
+  padding-right: 5%;
 
   .todo-box-container {
     height: 100%;

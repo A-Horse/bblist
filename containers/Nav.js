@@ -7,8 +7,7 @@ import {logout} from 'actions/logout';
 import {browserHistory} from 'react-router';
 
 const actions = {
-  authUser,
-  removeCachedData
+  authUser
 };
 
 const mapDispatchToProps = (dispatch) => {
@@ -16,7 +15,6 @@ const mapDispatchToProps = (dispatch) => {
     // TODO logout staus error
     logout() {
       return dispatch(logout()).then(() => {
-        removeCachedData();
         browserHistory.push('/');
       });
     }
