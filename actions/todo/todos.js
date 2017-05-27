@@ -119,6 +119,7 @@ export function destroyTodo(id) {
 export function getTodoList() {
   const config = createConfigWithAuth('GET');
   const userId = getAuthData(CACHED_USERID);
+  console.log("userId = ", userId);
   return dispatch => {
     dispatch(requestTodoList());
     return fetch(makeApiUrl(`/user/${userId}/todo`), config)
