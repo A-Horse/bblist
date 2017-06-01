@@ -7,6 +7,18 @@
   margin:0;
   padding:0;
 
+  .image-container {
+
+    .octopus {
+      background-image: url("/assets/images/octopus-sunbathe.png");
+      background-size: cover;
+      display: block;
+      width: 350px;
+      height: 422.94px;
+      margin: 0 auto;
+    }
+  }
+
   .logo-container {
     text-align: center;
     margin-top: 100px;

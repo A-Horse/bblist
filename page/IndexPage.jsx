@@ -37,6 +37,10 @@ class IndexPage extends Component {
     seaWaves.loop();
   }
 
+  renderLogo() {
+
+  }
+
   renderSignBar() {
     return (
       <div className='sign-bar'>
@@ -92,9 +96,11 @@ class IndexPage extends Component {
     return (
       <PageContainer className='index-page'>
 
-        {/* <div ref="svg-main">
-            <svg className="svg-main" width="600" height="600"/>
-            </div> */}
+        <div className="image-container">
+          <div className="octopus"></div>
+        </div>
+
+        {this.renderLinkBar()}
 
       </PageContainer>
     );
