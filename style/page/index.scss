@@ -6,6 +6,7 @@
   position: absolute;
   margin:0;
   padding:0;
+  text-align: center;
 
   .image-container {
 
@@ -16,7 +17,12 @@
       width: 350px;
       height: 422.94px;
       margin: 0 auto;
+      margin-bottom: -60px;
     }
+  }
+
+  .logoban {
+
   }
 
   .logo-container {
