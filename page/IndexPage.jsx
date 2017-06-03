@@ -98,7 +98,7 @@ class IndexPage extends Component {
           <div className="octopus"></div>
         </div>
 
-        <div dangerouslySetInnerHTML={ {__html: require('../html/wave.html')} } />
+        <div className="svg-container" dangerouslySetInnerHTML={ {__html: require('../html/wave.html')} } />
 
 
         {this.renderLinkBar()}
