@@ -86,6 +86,15 @@ module.exports = {
           }
         ]
         // loader: 'style-loader!css-loader'
+      },
+      {
+        test: /\.html$/,
+        use: [ {
+          loader: 'html-loader',
+          options: {
+            minimize: true
+          }
+        }]
       }
     ]
   }
