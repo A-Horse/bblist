@@ -30,7 +30,7 @@ class Nav extends Component {
   render() {
     return (
       <nav className='nav'>
-        <LogoBan/>
+        <LogoBan white={true}/>
 
         <div className='nav-link-area'>
           <Link to='/home' activeClassName='nav-link__active'>Dash</Link>

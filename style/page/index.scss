@@ -9,7 +9,7 @@
   text-align: center;
 
   .image-container {
-
+    margin-top: 30px;
     .octopus {
       background-image: url("/assets/images/octopus-sunbathe.png");
       background-size: cover;
@@ -21,8 +21,16 @@
     }
   }
 
-  .logoban {
+  .svg-container {
+    z-index: -1;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
 
+  .logoban {
+    margin-top: 70px;
   }
 
   .logo-container {
@@ -58,9 +66,5 @@
     }
   }
 
-  .svg-container {
-    width: 800px;
-    height: 800px;
-    position: relative;
-  }
+
 }

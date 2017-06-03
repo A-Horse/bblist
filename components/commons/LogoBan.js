@@ -14,7 +14,7 @@ export class LogoBan extends Component {
     return (
         <div className='logoban' onClick={this.onClick.bind(this)}>
         <Logo/>
-        <TextLogo/>
+        <TextLogo white={this.props.white}/>
       </div>
     );
   }

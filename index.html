@@ -5,8 +5,88 @@
     <title>Octopus</title>
     <!-- <link rel="stylesheet" href="/js/styles.css"> -->
   </head>
+
+  <style>
+    .octopus-loading {
+      position: absolute;
+      border-radius: 50%;
+      height: 100px;
+      width: 100px;
+      left: 50%;
+      top: 50%;
+      margin: -50px -50px;
+      background-color: #e35a55;
+    }
+
+    .octopus-loading:before {
+      position: absolute;
+      display: block;
+      content: '';
+      z-index: -1;
+      height: 143.253px;
+      width: 150px;
+      left: 50%;
+      top: 50%;
+      margin-left: -86px;
+      margin-top: -67px;
+      background-image: url("/assets/images/wave.png");
+      background-size: cover;
+      animation: wave-rotate 2s linear infinite;
+      transform-origin: 57% 48%;
+    }
+
+    .octopus-loading .eye {
+      position: absolute;
+      background-color: #fff;
+      height: 55%;
+      width: 55%;
+      border-radius: 50%;
+      left: 50%;
+      top: 50%;
+      margin: -27.5% -27.5%;
+    }
+
+    .octopus-loading .eyeball {
+      position: absolute;
+      background-color: #000;
+      height: 60%;
+      width: 60%;
+      border-radius: 50%;
+      left: 65%;
+      top: 50%;
+      margin: -30% -30%;
+      transform-origin: 30% 50%;
+      animation: rotate 1.3s ease-in infinite;
+    }
+
+    @keyframes rotate {
+      0% {transform: rotate(0deg)}
+      100% {transform: rotate(360deg)}
+    }
+
+    @keyframes wave-rotate {
+      0% {transform: scale(1, 1) rotate(0deg)}
+      50% {transform: scale(1.1, 1.1) rotate(180deg)}
+      100% {transform: scale(1, 1) rotate(360deg)}
+    }
+  </style>
+
   <body>
-    <div id="root"></div>
+    <div id="root" style="opacity: 0; transition: opacity ease-in 1s;"></div>
+
+    <div class="octopus-loading">
+      <div class="eye">
+        <div class="eyeball"></div>
+      </div>
+    </div>
+
+    <script>
+      window.onload = function() {
+
+        document.body.querySelector('.octopus-loading').remove();
+        document.body.querySelector('#root').style.opacity = 1;
+      }
+    </script>
 
     <script src="/js/bundle.js"></script>
   </body>

@@ -9,11 +9,14 @@ export default class Building extends Component {
       errorMessage: {}
     };
   }
-  
+
   render() {
     return (
       <div className='building'>
-        <img className='building--illustration' src='/static/image/building-illustration.png'/>
+        <div className="text">
+          Building
+        </div>
+        <img className='building--illustration' src='/assets/images/octopus-building.png'/>
       </div>
     );
   }
