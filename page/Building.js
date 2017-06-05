@@ -13,10 +13,13 @@ export default class Building extends Component {
   render() {
     return (
       <div className='building'>
-        <div className="text">
-          Building
+        <div>
+          <img className='building--illustration' src='/assets/images/octopus-building.png'/>
         </div>
-        <img className='building--illustration' src='/assets/images/octopus-building.png'/>
+
+        <div className="text">
+          This page is under building
+        </div>
       </div>
     );
   }

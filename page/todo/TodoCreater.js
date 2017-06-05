@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import {addBodyEventListenerOnce} from 'actions/event/body';
 import {createTodo, getTodoList} from 'actions/todo/todos';
 import {AddIcon, AlarmIcon, FlagIcon} from 'services/svg-icons';
+import {IconAdd} from 'services/image-icon';
 import {Button} from 'components/widget/Button';
 import DatePicker from 'components/date-picker/DatePicker';
 import Popup from 'components/Popup';
@@ -36,7 +37,7 @@ class TodoCreater extends Component {
       return dispatch(getTodoList(this.props.wallId));
     });
   }
-  
+
   toggle() {
     this.setState({toggle: true});
   }
@@ -60,19 +61,19 @@ class TodoCreater extends Component {
   renderToggle() {
     return (
       <div className='todo-creater--toggle' onClick={::this.toggle}>
-        <AddIcon className='add-icon'/>
+        <IconAdd className='add-icon'/>
         <span className='toggle-text'>Add Todo</span>
       </div>
     );
   }
-  
+
   renderCreater() {
     return (
       <ClickOutSide onClickOutside={::this.close}>
         <div className='todo-creater-body'>
 
           <div className='todo-creater--input'>
-            <Textarea onKeyDown={::this.onInputKeyDown} placeholder='write your todo' className='todo-creater--content' type='text' ref='content'></Textarea>  
+            <Textarea onKeyDown={::this.onInputKeyDown} placeholder='write your todo' className='todo-creater--content' type='text' ref='content'></Textarea>
           </div>
 
           <div className='todo-creater-deadline'>
@@ -84,7 +85,7 @@ class TodoCreater extends Component {
             <label>Repeat:</label>
             <Select items={repeatItems}/>
           </div>
-          
+
           <div className='todo-creater--label hidden'>
             <Textarea type='text' placeholder='Label' ref='label'></Textarea>
           </div>
@@ -101,7 +102,7 @@ class TodoCreater extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    
+
   };
 };
 

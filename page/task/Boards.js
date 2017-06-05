@@ -21,7 +21,6 @@ class Boards extends Component {
     if (this.props.isFetching) {
       return <Loading/>;
     }
-    console.log(this.props.boards);
     return this.props.boards.map(board => {
       return (
         <div className='taskboard-card'
