@@ -40,10 +40,10 @@ gulp.task('inject', [
   'inject:extract-styles'
  ]);
 
- gulp.task('inject:extract-styles', function() {
-   var sources = gulp.src('./dist/assets/styles.css', {read: false}, {relative: false});
+gulp.task('inject:extract-styles', function() {
+  var sources = gulp.src('./dist/assets/styles.css', {read: false});
   return gulp.src('./dist/index.html')
-    .pipe(inject(sources))
+    .pipe(inject(sources, {relative: true}))
     .pipe(gulp.dest('./dist/'));
 });
 
