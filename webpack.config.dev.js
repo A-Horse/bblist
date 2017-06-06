@@ -3,10 +3,6 @@ var path = require('path');
 var webpack = require('webpack');
 
 var BellOnBundlerErrorPlugin = require('bell-on-bundler-error-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
-
-// var OfflinePlugin = require('offline-plugin');
 
 module.exports = {
   resolve: {
@@ -18,27 +14,19 @@ module.exports = {
   },
   devtool: 'source-map',
   entry: [
-    // 'webpack-dev-server/client?http://octopus.com/',
-    // 'webpack-hot-middleware/client',
-    // 'webpack/hot/only-dev-server',
     'babel-polyfill',
     './index'
   ],
   output: {
-    path: path.join(__dirname, 'dist/js'),
+    path: path.join(__dirname, 'dist/assets'),
     filename: 'bundle.js',
-    publicPath: '/js/'
+    publicPath: '/assets/'
   },
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.BannerPlugin(fs.readFileSync('./.banner').toString()),
-    // new webpack.optimize.AggressiveMergingPlugin(),
+    new webpack.optimize.AggressiveMergingPlugin(),
     new BellOnBundlerErrorPlugin()
-    // new OfflinePlugin(),
-    // new webpack.HotModuleReplacementPlugin(),
-    // new UglifyJsPlugin({
-    //   sourceMap: true
-    // })
   ],
   module: {
     rules: [
@@ -71,7 +59,6 @@ module.exports = {
             }
           }
         ],
-        // loader: 'style-loader!css-loader!sass-loader!autoprefixer-loader?{browsers:[">1%"]}',
         include: [path.resolve(__dirname, './style')]
       },
       {
@@ -84,7 +71,6 @@ module.exports = {
             loader: "css-loader"
           }
         ]
-        // loader: 'style-loader!css-loader'
       },
       {
         test: /\.html$/,

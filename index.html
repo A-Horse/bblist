@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8">
     <title>Octopus</title>
-    <!-- <link rel="stylesheet" href="/js/styles.css"> -->
+    <!-- inject:css -->
+    <!-- endinject -->
   </head>
 
   <style>
@@ -82,12 +83,11 @@
 
     <script>
       window.onload = function() {
-
         document.body.querySelector('.octopus-loading').remove();
         document.body.querySelector('#root').style.opacity = 1;
       }
     </script>
 
-    <script src="/js/bundle.js"></script>
+    <script src="/assets/bundle.js"></script>
   </body>
 </html>

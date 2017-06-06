@@ -2,11 +2,9 @@ var fs = require('fs');
 var path = require('path');
 var webpack = require('webpack');
 
-var BellOnBundlerErrorPlugin = require('bell-on-bundler-error-plugin');
+const BellOnBundlerErrorPlugin = require('bell-on-bundler-error-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
-
-// var OfflinePlugin = require('offline-plugin');
 
 module.exports = {
   resolve: {
@@ -21,17 +19,18 @@ module.exports = {
     './index'
   ],
   output: {
-    path: path.join(__dirname, 'dist/js'),
+    path: path.join(__dirname, 'dist/assets'),
     filename: 'bundle.js',
-    publicPath: '/js/'
+    publicPath: '/assets/'
   },
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.BannerPlugin(fs.readFileSync('./.banner').toString()),
     new BellOnBundlerErrorPlugin(),
     new ExtractTextPlugin("styles.css"),
-    new UglifyJsPlugin({
-      sourceMap: true
+    new UglifyJsPlugin(),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('production')
     })
   ],
   module: {
@@ -58,10 +57,7 @@ module.exports = {
               loader: "sass-loader"
             },
             {
-              loader: "autoprefixer-loader",
-              options: {
-                browsers: [">1%"]
-              }
+              loader: "autoprefixer-loader"
             }
           ]
         }),
