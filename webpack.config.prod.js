@@ -16,11 +16,7 @@ module.exports = {
       "node_modules"
     ]
   },
-  devtool: 'source-map',
   entry: [
-    // 'webpack-dev-server/client?http://octopus.com/',
-    // 'webpack-hot-middleware/client',
-    // 'webpack/hot/only-dev-server',
     'babel-polyfill',
     './index'
   ],
@@ -32,14 +28,11 @@ module.exports = {
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.BannerPlugin(fs.readFileSync('./.banner').toString()),
-    // new webpack.optimize.AggressiveMergingPlugin(),
     new BellOnBundlerErrorPlugin(),
     new ExtractTextPlugin("styles.css"),
-    // new OfflinePlugin(),
-    // new webpack.HotModuleReplacementPlugin(),
-    // new UglifyJsPlugin({
-    //   sourceMap: true
-    // })
+    new UglifyJsPlugin({
+      sourceMap: true
+    })
   ],
   module: {
     rules: [
@@ -72,7 +65,6 @@ module.exports = {
             }
           ]
         }),
-        // loader: 'style-loader!css-loader!sass-loader!autoprefixer-loader?{browsers:[">1%"]}',
         include: [path.resolve(__dirname, './style')]
       },
       {
@@ -85,7 +77,6 @@ module.exports = {
             }
           ]
         })
-        // loader: 'style-loader!css-loader'
       }
     ]
   }

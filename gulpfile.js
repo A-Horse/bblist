@@ -4,7 +4,7 @@ var runSequence = require('run-sequence');
 
 gulp.task('webpack', function(){
   return gulp.src('src/main.js')
-    .pipe(webpack( require('./webpack.config.js')))
+    .pipe(webpack(require('./webpack.config.dev.js')))
     .pipe(gulp.dest('dist/'));
 });
 

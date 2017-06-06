@@ -11,21 +11,21 @@ function login(state = {
   isFetching: false,
   isAuthenticated: Storage.get(JWT_STORAGE_KEY) ? true : false
 }, action) {
-  switch (action.type) {
-  case LOGIN_REQUEST:
-    return Object.assign({}, state, {
-      isFetching: true,
-      user: action.creds
-    });
-    break;
-  case LOGIN_SUCCESS:
-    const cachedData = {};
-    cachedData[CACHED_USEREMAIL] = action.user.email;
-    cachedData[CACHED_USERID] = action.user.id;
-    cachedData[CACHED_USERNAME] = action.user.username;
-    saveAuthData(action.jwt, cachedData);
-    return Object.assign({}, state, {
-      isFetching: false,
+   switch (action.type) {
+   case LOGIN_REQUEST:
+     return Object.assign({}, state, {
+       isFetching: true,
+       user: action.creds
+     });
+     break;
+   case LOGIN_SUCCESS:
+     const cachedData = {};
+     cachedData[CACHED_USEREMAIL] = action.user.email;
+     cachedData[CACHED_USERID] = action.user.id;
+     cachedData[CACHED_USERNAME] = action.user.username;
+     saveAuthData(action.jwt, cachedData);
+     return Object.assign({}, state, {
+       isFetching: false,
       isAuthenticated: true
     });
     break;

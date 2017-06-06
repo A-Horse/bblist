@@ -33,8 +33,7 @@ module.exports = {
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.BannerPlugin(fs.readFileSync('./.banner').toString()),
     // new webpack.optimize.AggressiveMergingPlugin(),
-    new BellOnBundlerErrorPlugin(),
-    new ExtractTextPlugin("styles.css"),
+    new BellOnBundlerErrorPlugin()
     // new OfflinePlugin(),
     // new webpack.HotModuleReplacementPlugin(),
     // new UglifyJsPlugin({

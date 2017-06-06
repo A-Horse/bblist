@@ -3,10 +3,10 @@
   "version": "0.0.0",
   "description": "octopus",
   "scripts": {
-    "webpack-build-dev": "webpack --config ./webpack.config.dev.js",
-    "webpack-build-prod": "NODE_ENV=production webpack --config ./webpack.config.prod.js",
+    "build-dev": "webpack --config ./webpack.config.dev.js",
+    "build-prod": "NODE_ENV=production webpack --config ./webpack.config.prod.js",
     "start": "webpack-dev-server --public 0.0.0.0:8080 --config ./webpack.config.dev.js --history-api-fallback --watch --hot --host 0.0.0.0",
-    "bundle-analyze": "webpack --config ./webpack.config.dev.js --json | webpack-bundle-size-analyzer"
+    "analyze": "webpack --config ./webpack.config.dev.js --json | webpack-bundle-size-analyzer"
   },
   "repository": {
     "type": "git",
