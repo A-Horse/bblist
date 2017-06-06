@@ -13,6 +13,12 @@ module.exports = {
     ]
   },
   devtool: 'source-map',
+  devServer: {
+    port: 9000,
+    proxy: {
+      '/api': 'http://localhost:5500'
+    }
+  },
   entry: [
     'babel-polyfill',
     './index'
