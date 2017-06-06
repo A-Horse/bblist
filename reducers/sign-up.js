@@ -1,7 +1,7 @@
 
 import {
   SIGNUP_REQUEST, SIGNUP_SUCCESS, SIGNUP_FAILURE
-} from '../actions/sign-up'
+} from '../actions/sign-up';
 
 function signup(state = {
   isFetching: false
@@ -11,19 +11,19 @@ function signup(state = {
     return Object.assign({}, state, {
       isFetching: true,
       user: action.user
-    })
+    });
     break;
   case SIGNUP_SUCCESS:
     return Object.assign({}, state, {
       isFetching: true,
       user: action.user
-    })
+    });
     break;
   case SIGNUP_FAILURE:
     return Object.assign({}, state, {
       isFetching: true,
       message: action.message
-    })
+    });
     break;
   default:
     return state;

@@ -69,17 +69,9 @@ class SignIn extends Component {
 
     this.setState({errorMessages: errorMessages});
     if (!Object.keys(errorMessages).length) {
-      this.props.login(loginInfo).then(() => {
-        browserHistory.push('/');
-      });
+      this.props.login(loginInfo);
     }
   }
 }
-
-// const mapStateToProps = (state) => {
-//   return {
-
-//   };
-// };
 
 export default SignIn;

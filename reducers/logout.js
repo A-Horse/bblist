@@ -15,7 +15,6 @@ function logout(state = {
     break;
   case LOGOUT_SUCCESS:
     destoryAuthData();
-    browserHistory.push('/logout');
     return Object.assign({}, state, {
       isFetching: false
     });
