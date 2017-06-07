@@ -60,7 +60,6 @@ const reducer = combineReducers({
 //   </DockMonitor>
 // );
 
-
 const store = createStore(
   reducer,
   // DevTools.instrument(),
@@ -103,8 +102,8 @@ ReactDOM.render(
           </Route>
 
           <Route path='setting' component={Setting} onEnter={checkLogin}>
-            <Route path='/profile' component={SettingProfile}/>
-            <Route path='/security' component={SettingSecurity}/>
+            <Route path='profile' component={SettingProfile}/>
+            <Route path='security' component={SettingSecurity}/>
             <IndexRedirect to='profile'/>
           </Route>
 

@@ -52,10 +52,10 @@ function requestAuthLogin() {
   };
 }
 
-function authLoginError(message) {
+function authLoginError(playload) {
   return {
     type: LOGIN_AUTH_FAILURE,
-    message: message
+    playload
   };
 }
 
@@ -87,5 +87,5 @@ export function authUser() {
       .then(handleResponse)
       .then(response => dispatch(authLoginSuccess(response)))
       .catch(err => dispatch(authLoginError(err.message)));
-  }; 
+  };
 }

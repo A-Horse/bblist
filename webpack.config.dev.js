@@ -17,7 +17,7 @@ module.exports = {
     port: 9000,
     proxy: {
       '/api': 'http://localhost:5500',
-      'storage': 'http://localhost:5500'
+      '/storage': 'http://localhost:5500'
     }
   },
   entry: [

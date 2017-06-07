@@ -13,13 +13,7 @@ const actions = {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    // TODO logout staus error
-    onLogout() {
-      return dispatch(logout()).then(() => {
-        removeCachedData();
-        browserHistory.push('/');
-      });
-    }
+
   };
 };
 
