@@ -53,6 +53,7 @@
     "svg-inline-loader": "^0.7.1",
     "svg-react-loader": "^0.3.7",
     "transform-loader": "^0.2.3",
+    "uglify-es-webpack-plugin": "0.0.2",
     "webpack-livereload-plugin": "^0.8.1",
     "webpack-stream": "^3.2.0"
   },
@@ -87,7 +88,6 @@
     "sass-loader": "^3.0.0",
     "sass-variable-loader": "0.0.4",
     "style-loader": "^0.12.4",
-    "uglifyjs-webpack-plugin": "^0.4.3",
     "webpack": "^2.6.1",
     "webpack-dev-middleware": "^1.10.2",
     "webpack-dev-server": "^2.4.5",
