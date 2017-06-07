@@ -3,7 +3,7 @@ var path = require('path');
 var webpack = require('webpack');
 
 const BellOnBundlerErrorPlugin = require('bell-on-bundler-error-plugin');
-const UglifyESPlugin = require('uglify-es-webpack-plugin');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
@@ -28,7 +28,7 @@ module.exports = {
     new webpack.BannerPlugin(fs.readFileSync('./.banner').toString()),
     new BellOnBundlerErrorPlugin(),
     new ExtractTextPlugin("styles.css"),
-    new UglifyESPlugin({exclude: /\.css$/}),
+    new UglifyJSPlugin({exclude: /\.css$/}),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production')
     })
