@@ -19,12 +19,18 @@
 .todo--main {
   display: flex;
   justify-content: space-between;
+
+  .checkbox {
+    top: 2px;
+  }
 }
 
 .todo--content {
   flex-grow: 1;
   margin-left: 15px;
+  line-height: 26px;
   user-select: initial;
+  vertical-align: middle;
 }
 
 .todo--content__input {
@@ -55,13 +61,9 @@
 
 .todo-hover-operation {
   visibility: hidden;
-  margin-right: 20px;
+  margin-right: 12px;
 
-  svg {
+  .image-icon {
     cursor: pointer;
-
-    &.delete-icon {
-      fill: $md-grey-700;
-    }
   }
 }

@@ -9,6 +9,12 @@ class Icon extends Component {
 
 export class IconAdd extends Icon {
   render() {
-    return <img className={this.buildClassName()} src="/assets/icons/add.png"/>;
+    return <img src="/assets/icons/add.png" {...this.props} className={this.buildClassName()}/>;
+  }
+}
+
+export class IconDelete extends Icon {
+  render() {
+    return <img src="/assets/icons/trash.png" {...this.props} className={this.buildClassName()}/>;
   }
 }

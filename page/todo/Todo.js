@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {CheckBox} from 'components/widget/CheckBox';
+import { CheckBox } from 'components/widget/CheckBox';
+import { StarCheckBox } from 'components/widget/StarCheckBox';
 import DatePicker from 'components/date-picker/DatePicker';
 import {getTodoList, updateTodo, destroyTodo} from 'actions/todo/todos';
 import {MoreIcon, StarBorderIcon, DeleteIcon} from 'services/svg-icons';
+import { IconDelete } from 'services/image-icon';
 import Textarea from 'react-textarea-autosize';
 import {Button} from 'components/widget/Button';
 import {DropList} from 'components/widget/DropList';
@@ -40,7 +42,7 @@ class Todo extends Component {
     this.refs.main.style.height = currentTodoHeight + 'px';
     await timeout();
     this.refs.main.style.height = currentTodoHeight - todoMetaHeight + 'px';
-    this.setState({editToggle: false});
+    this.setState({ editToggle: false });
     await timeout(300);
     this.refs.main.style.height = 'auto';
   }
@@ -108,10 +110,10 @@ class Todo extends Component {
             <Textarea ref='content' onKeyDown={this.onContendChanged.bind(this)} className='todo--content__input' style={{display: this.state.editToggle ? 'block' : 'none'}} defaultValue={todo.content}></Textarea>
 
             <div className='todo-hover-operation'>
-              <DeleteIcon className='delete-icon' onClick={::this.destroyTodo}/>
+              <IconDelete onClick={::this.destroyTodo}/>
             </div>
 
-            <StarBorderIcon/>
+            <StarCheckBox/>
           </div>
 
           <div className='todo-editing--meta' style={{display: this.state.editToggle ? 'block' : 'none'}}>
