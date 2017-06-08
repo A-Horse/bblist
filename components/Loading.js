@@ -7,6 +7,7 @@ export class Loading extends Component {
   render() {
     return (
       <div className="octopus-loading">
+        <div className="octopus-loading--wave"></div>
         <div className="eye">
           <div className="eyeball"></div>
         </div>

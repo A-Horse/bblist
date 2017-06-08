@@ -19,21 +19,69 @@
       background-color: #e35a55;
     }
 
-    .octopus-loading:before {
-      position: absolute;
-      display: block;
-      content: '';
+    /* .octopus-loading:before {
+       position: absolute;
+       display: block;
+       content: '';
+       z-index: -1;
+       height: 143.253px;
+       width: 150px;
+       left: 50%;
+       top: 50%;
+       margin-left: -86px;
+       margin-top: -67px;
+       background-image: url("/assets/images/wave.png");
+       background-size: cover;
+       animation: wave-rotate 2s linear infinite;
+       transform-origin: 57% 48%;
+       }
+     */
+
+    .octopus-loading--wave {
       z-index: -1;
-      height: 143.253px;
-      width: 150px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      position: absolute;
       left: 50%;
       top: 50%;
-      margin-left: -86px;
-      margin-top: -67px;
-      background-image: url("/assets/images/wave.png");
-      background-size: cover;
-      animation: wave-rotate 2s linear infinite;
-      transform-origin: 57% 48%;
+      margin: -10px -10px;
+    }
+
+    .octopus-loading--wave:before {
+      display: block;
+      content: '';
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      margin: -10px -10px;
+      background-color: blue;
+      animation: wave-animate 3s 0s infinite ease-out;
+    }
+
+    .octopus-loading--wave:after {
+      display: block;
+      content: '';
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      margin: -10px -10px;
+      background-color: blue;
+      animation: wave-animate 3s -1s infinite ease-out;
+    }
+
+    .octopus-loading--wave-b:after {
+      animation: wave-animate 3s -2s infinite ease-out;
+    }
+
+    .octopus-loading--wave-b:before {
+      animation: wave-animate 3s -3s infinite ease-out;
     }
 
     .octopus-loading .eye {
@@ -70,12 +118,27 @@
       50% {transform: scale(1.1, 1.1) rotate(180deg)}
       100% {transform: scale(1, 1) rotate(360deg)}
     }
+
+    @keyframes wave-animate {
+      0% {
+        transform: scale(0);
+        opacity: 1;
+        transform-origin: center;
+      }
+      100% {
+        transform: scale(10);
+        opacity: 0;
+        transform-origin: center;
+      }
+    }
   </style>
 
   <body>
     <div id="root" style="opacity: 0; transition: opacity ease-in 1s;"></div>
 
     <div class="octopus-loading">
+      <div class="octopus-loading--wave"></div>
+      <div class="octopus-loading--wave-b"></div>
       <div class="eye">
         <div class="eyeball"></div>
       </div>
