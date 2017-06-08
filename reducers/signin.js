@@ -6,7 +6,8 @@ import { JWT_STORAGE_KEY, CACHED_USERNAME, CACHED_USERID, CACHED_USEREMAIL } fro
 import { saveAuthData } from 'utils/auth';
 
 function signin(state = {
-  // isAuthenticated: Storage.get(JWT_STORAGE_KEY) ? true : false
+  isAuthenticated: Storage.get(JWT_STORAGE_KEY) ? true : false,
+  isFetching: false
 }, action) {
   switch (action.type) {
   case LOGIN_REQUEST:

@@ -1,8 +1,13 @@
 import {
   LOGIN_AUTH_REQUEST, LOGIN_AUTH_SUCCESS, LOGIN_AUTH_FAILURE,
 } from '../actions/login';
+import { Storage } from 'services/storage';
+import { JWT_STORAGE_KEY } from '../constants';
 
-function auth(state = {}, action) {
+function auth(state = {
+  isAuthenticated: Storage.get(JWT_STORAGE_KEY) ? true : false,
+  isFetching: true
+}, action) {
   switch (action.type) {
   case LOGIN_AUTH_REQUEST:
     return Object.assign({}, state, {

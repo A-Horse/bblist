@@ -136,7 +136,7 @@
   <body>
     <div id="root" style="opacity: 0; transition: opacity ease-in 1s;"></div>
 
-    <div class="octopus-loading">
+    <div id="dash-loading" class="octopus-loading">
       <div class="octopus-loading--wave"></div>
       <div class="octopus-loading--wave-b"></div>
       <div class="eye">
@@ -146,7 +146,7 @@
 
     <script>
       window.onload = function() {
-        document.body.querySelector('.octopus-loading').remove();
+        document.body.querySelector('#dash-loading').remove();
         document.body.querySelector('#root').style.opacity = 1;
       }
     </script>
