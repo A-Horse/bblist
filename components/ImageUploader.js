@@ -30,14 +30,14 @@ export class ImageUploader extends Component {
                 onComplete={this.onCropComplete.bind(this)}
                 src={this.state.imageDataURL}/>
             </div>
-            
+
             <div className='upload-link' onClick={this.openFilePicker.bind(this)}>
               <ImageIcon/>
               <a>Choose Image:</a>
             </div>
           </div>
-          
-          <img src={this.state.cropedimageDataUrl}/>
+
+          <img className='upload--preview-image' src={this.state.cropedimageDataUrl}/>
           <div>
             <Button styleType='primary' onClick={this.upload.bind(this)}>Upload</Button>
           </div>
@@ -91,4 +91,3 @@ export class ImageUploader extends Component {
     );
   }
 }
-

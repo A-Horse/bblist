@@ -2,8 +2,8 @@
 @import 'style/page/todo/variable';
 
 .todo-creater--toggle {
-  padding: $todo-item-padding;
-  margin: 14px 0 6px;
+  padding: 10px 9px;
+  margin: 0 0 10px;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -21,6 +21,7 @@
 
   &:hover {
     background-color: $primary-bg-secondary;
+    box-shadow: 0 0 5px $primary-bg-secondary;
   }
 }
 
@@ -28,7 +29,7 @@
   border-radius: $radius-middle;
   padding: $todo-item-padding;
   margin-top: 14px;
-  background-color: $color-background-light;
+  background-color: $primary-bg-secondary;
   margin-bottom: 5px;
 
   .todo-creater--input {
@@ -40,7 +41,7 @@
       overflow: hidden;
       padding: 6px 10px;
       color: #000;
-      background-color: $color-background-light-alternative;
+      background-color: $primary-bg-secondary-alternative;
       border-radius: $radius-small;
     }
   }

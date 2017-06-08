@@ -2,12 +2,13 @@
 @import 'style/mixin';
 
 .board-setting-infomation {
-  
+
   .board-cover {
 
     .cover-image {
       border-radius: $radius-middle;
       border: 1px solid $gray;
+      max-width: 100%;
     }
 
     .board-cover--wrapper {
@@ -16,7 +17,7 @@
     }
 
     .board-cover--uploader {
-      margin-left: 20px;
+      margin-top: 10px;
     }
   }
 

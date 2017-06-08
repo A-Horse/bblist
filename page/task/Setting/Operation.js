@@ -9,7 +9,6 @@ import Button from 'components/widget/Button';
 import 'style/page/task/setting/operation.scss';
 
 class Operation extends Component {
-  
   render() {
     return (
       <div className='board-setting-operation'>
@@ -18,7 +17,7 @@ class Operation extends Component {
         <div className='board-delete'>
           <div className='board-delete--heading'>Delete this Board:</div>
           <div>
-            <Button styleType='dangerous'>Delete</Button>
+            <Button styleType='dangerous' onClick={() => this.props.deleteBoard(this.props.params.id)}>Delete</Button>
           </div>
         </div>
       </div>

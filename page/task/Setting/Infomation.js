@@ -12,7 +12,7 @@ import Loading from 'components/Loading';
 import 'style/page/task/setting/infomation.scss';
 
 class Infomation extends Component {
-  
+
   uploadCover(imageDataUrl) {
     // TODO extract commons
     const data = new FormData();
@@ -39,9 +39,9 @@ class Infomation extends Component {
           <div className='board-cover--heading'>Board Cover:</div>
           <div className='board-cover--wrapper'>
             <img className='cover-image' src={makeRemoteUrl(board.cover)}/>
-            <div className='board-cover--uploader'>
-              <ImageUploader ref='board-cover-uploader' uploadFn={::this.uploadCover}>Upload new Cover</ImageUploader>
-            </div>
+          </div>
+          <div className='board-cover--uploader'>
+            <ImageUploader ref='board-cover-uploader' uploadFn={::this.uploadCover}>Upload new Cover</ImageUploader>
           </div>
         </div>
 
