@@ -5,7 +5,13 @@ import 'style/component/loading.scss';
 export class Loading extends Component {
 
   render() {
-    return <section className='loading'><span className='loader loader-quart'> </span></section>;
+    return (
+      <div className="octopus-loading">
+        <div className="eye">
+          <div className="eyeball"></div>
+        </div>
+      </div>
+    );
   }
 }
 

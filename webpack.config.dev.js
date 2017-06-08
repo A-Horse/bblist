@@ -60,10 +60,7 @@ module.exports = {
             loader: "sass-loader"
           },
           {
-            loader: "autoprefixer-loader",
-            options: {
-              browsers: [">1%"]
-            }
+            loader: "autoprefixer-loader"
           }
         ],
         include: [path.resolve(__dirname, './style')]
@@ -82,10 +79,7 @@ module.exports = {
       {
         test: /\.html$/,
         use: [ {
-          loader: 'html-loader',
-          options: {
-            minimize: true
-          }
+          loader: 'html-loader'
         }]
       }
     ]

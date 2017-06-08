@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Nav from 'containers/Nav';
+import Loading from 'components/Loading';
 
 export default class App extends Component {
   componentWillMount() {
@@ -8,11 +9,15 @@ export default class App extends Component {
   }
 
   render() {
-    return (
-      <div>
-        <Nav/>
-        {this.props.children}
-      </div>
-    );
+    if (this.props.isAuthenticated) {
+      return (
+        <div>
+          <Nav/>
+          {this.props.children}
+        </div>
+      );
+    } else {
+      return <Loading/>;
+    }
   }
 }

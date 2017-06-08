@@ -18,7 +18,9 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 const mapStateToProps = (state) => {
-  return {};
+  return {
+    isAuthenticated: state.auth.isAuthenticated
+  };
 };
 
 const AppContainer = connect(
