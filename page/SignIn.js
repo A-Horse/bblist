@@ -1,13 +1,13 @@
-import React, {Component} from 'react';
-import {browserHistory} from 'react-router';
-import {validateFormValue} from '../services/validate-strategy';
-import {Button} from '../components/widget/Button';
-import {Input} from '../components/widget/Input';
-import {LogoBan} from 'components/commons/LogoBan';
-import {ErrorMsg} from 'components/ErrorMsg';
-import {PageContainer} from '../components/widget/PageContainer';
-import {Link} from 'react-router';
-import {updateTitle} from 'services/title';
+import React, { Component } from 'react';
+
+import { validateFormValue } from '../services/validate-strategy';
+import { Button } from '../components/widget/Button';
+import { Input } from '../components/widget/Input';
+import { LogoBan } from 'components/commons/LogoBan';
+import { ErrorMsg } from 'components/ErrorMsg';
+import { PageContainer } from '../components/widget/PageContainer';
+import { Link } from 'react-router';
+import { updateTitle } from 'services/title';
 import R from 'ramda';
 
 import 'style/page/signin.scss';
@@ -23,7 +23,6 @@ class SignIn extends Component {
   }
 
   render() {
-    const errorMessages = this.state.errorMessages;
     // TODO experience button event.preventDefault 会阻止 html5 的校验
     return (
       <PageContainer className='signin-page'>
@@ -39,8 +38,8 @@ class SignIn extends Component {
               <Input type='password' ref='password' name='bblist-password' required placeholder="Password"/>
             </div>
 
-            <ErrorMsg messages={R.values(errorMessages)}/>
-
+            <ErrorMsg messages={R.values(this.state.errorMessages)}/>
+            <ErrorMsg messages={this.props.loginErrorMessages}/>
             <Button className='signin-button' size='large' type='submit' styleType='primary'>Login</Button>
 
           </form>

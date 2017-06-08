@@ -1,7 +1,7 @@
-import {connect} from 'react-redux';
-import {signin} from 'actions/login';
+import { connect } from 'react-redux';
+import { signin } from 'actions/login';
 import SignIn from 'page/SignIn';
-import {browserHistory} from 'react-router';
+import { browserHistory } from 'react-router';
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -15,7 +15,7 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state) => {
   return {
-
+    loginErrorMessages: state.signin.errorMessage ? [state.signin.errorMessage] : []
   };
 };
 

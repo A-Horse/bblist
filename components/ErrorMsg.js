@@ -8,10 +8,15 @@ export class ErrorMsg extends Component {
   }
 
   renderMessages() {
-    const messagesLists = this.props.messages.map(message => {
-      return (<li>{message}</li>);
-    });
-    return (<ul>{messagesLists}</ul>);
+    return (
+      <ul>
+        {
+          this.props.messages.map((message, i) => {
+            return <li key={i}>{message}</li>
+          })
+        }
+      </ul>
+    );
   }
 
   render() {

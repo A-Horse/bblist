@@ -1,15 +1,12 @@
-import {combineReducers} from 'redux';
 import {
   LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE,
-  LOGIN_AUTH_REQUEST, LOGIN_AUTH_SUCCESS, LOGIN_AUTH_FAILURE,
 } from 'actions/login';
-import {Storage} from 'services/storage';
-import {JWT_STORAGE_KEY, CACHED_USERNAME, CACHED_USERID, CACHED_USEREMAIL} from '../constants';
-import {saveAuthData} from 'utils/auth';
+import { Storage } from 'services/storage';
+import { JWT_STORAGE_KEY, CACHED_USERNAME, CACHED_USERID, CACHED_USEREMAIL } from '../constants';
+import { saveAuthData } from 'utils/auth';
 
-function login(state = {
-  isFetching: false,
-  isAuthenticated: Storage.get(JWT_STORAGE_KEY) ? true : false
+function signin(state = {
+  // isAuthenticated: Storage.get(JWT_STORAGE_KEY) ? true : false
 }, action) {
   switch (action.type) {
   case LOGIN_REQUEST:
@@ -30,7 +27,6 @@ function login(state = {
     });
     break;
   case LOGIN_FAILURE:
-
     return Object.assign({}, state, {
       isFetching: false,
       isAuthenticated: false,
@@ -42,4 +38,4 @@ function login(state = {
   }
 }
 
-export default login;
+export default signin;

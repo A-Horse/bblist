@@ -30,4 +30,4 @@ function signup(state = {
   }
 }
 
-export default signup
+export default signup;

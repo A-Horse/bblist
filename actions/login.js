@@ -1,10 +1,8 @@
 import fetch from 'isomorphic-fetch';
-import {handleHttpError} from '../services/handle-error';
-import {createConfigWithAuth, createConfig} from '../utils/header';
-import {handleResponse, handleResponseWithoutJson} from '../utils/http-handle';
-import {Storage} from '../services/storage';
-import {getJWT} from '../utils/auth';
-import {makeApiUrl} from 'utils/api';
+import { createConfigWithAuth, createConfig } from 'utils/header';
+import { handleResponse, handleResponseWithoutJson } from 'utils/http-handle';
+import { getJWT} from 'utils/auth';
+import { makeApiUrl } from 'utils/api';
 
 export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
@@ -31,7 +29,7 @@ function receiveLogin(token, user) {
   };
 }
 
-function loginError(message) {
+function loginFail(message) {
   return {
     type: LOGIN_FAILURE,
     isFetching: false,
@@ -73,7 +71,14 @@ export function signin(creds) {
     return fetch(makeApiUrl('/signin'), config)
       .then(handleResponse)
       .then(response => dispatch(receiveLogin(response.jwt, response.user)))
-      .catch(error => dispatch(loginError(error.message)));
+      .catch(error => {
+        console.log(error);
+        console.log(error.name);
+        if (error.name === 'NotAuthError') {
+          return dispatch(loginFail('Email or password not match!'));
+        }
+        return dispatch(loginFail(error.message));
+      });
   };
 }
 

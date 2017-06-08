@@ -41,10 +41,7 @@ class Boards extends Component {
         <TaskBoardCreater getAllTaskBoard={this.props.getAllTaskBoard} createTaskBoard={this.props.createTaskBoard}/>
         <div className='taskboard-boards'>
           <div className='board-group'>
-            <div className='board-group--name'>
-              <ViewListIcon className='view-list-icon'/>
-              Default:
-            </div>
+
             <div className='board-card-container'>
               {this.renderWalls()}
             </div>
