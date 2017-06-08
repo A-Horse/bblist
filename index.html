@@ -11,11 +11,11 @@
     .octopus-loading {
       position: absolute;
       border-radius: 50%;
-      height: 100px;
-      width: 100px;
+      height: 50px;
+      width: 50px;
       left: 50%;
       top: 50%;
-      margin: -50px -50px;
+      margin: -25px -25px;
       background-color: #e35a55;
     }
 
@@ -51,28 +51,28 @@
     .octopus-loading--wave:before {
       display: block;
       content: '';
-      width: 20px;
-      height: 20px;
+      width: 10px;
+      height: 10px;
       border-radius: 50%;
       position: absolute;
       left: 50%;
       top: 50%;
-      margin: -10px -10px;
-      background-color: blue;
+      margin: -5px -5px;
+      background-color: #019ef1;
       animation: wave-animate 3s 0s infinite ease-out;
     }
 
     .octopus-loading--wave:after {
       display: block;
       content: '';
-      width: 20px;
-      height: 20px;
+      width: 10px;
+      height: 10px;
       border-radius: 50%;
       position: absolute;
       left: 50%;
       top: 50%;
-      margin: -10px -10px;
-      background-color: blue;
+      margin: -5px -5px;
+      background-color: #019ef1;
       animation: wave-animate 3s -1s infinite ease-out;
     }
 
@@ -105,7 +105,7 @@
       top: 50%;
       margin: -30% -30%;
       transform-origin: 30% 50%;
-      animation: rotate 1.3s ease-in infinite;
+      animation: rotate 0.9s ease-in infinite;
     }
 
     @keyframes rotate {
@@ -122,7 +122,7 @@
     @keyframes wave-animate {
       0% {
         transform: scale(0);
-        opacity: 1;
+        opacity: 0.5;
         transform-origin: center;
       }
       100% {
@@ -138,7 +138,7 @@
 
     <div id="dash-loading" class="octopus-loading">
       <div class="octopus-loading--wave"></div>
-      <div class="octopus-loading--wave-b"></div>
+      <div class="octopus-loading--wave octopus-loading--wave-b"></div>
       <div class="eye">
         <div class="eyeball"></div>
       </div>

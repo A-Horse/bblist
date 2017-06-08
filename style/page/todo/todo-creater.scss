@@ -9,7 +9,7 @@
   align-items: center;
   background-color: $color-background-light;
   border-radius: $radius-middle;
-  
+  transition: background 1s ease-out;
   .add-icon {
     margin-right: 10px;
     fill: $gray-super-deep;
@@ -17,6 +17,10 @@
 
   .toggle-text {
     font-weight: bolder;
+  }
+
+  &:hover {
+    background-color: $primary-bg-secondary;
   }
 }
 

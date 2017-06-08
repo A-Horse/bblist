@@ -3,6 +3,7 @@
 @import './icon';
 @import './vendor';
 @import './variable';
+@import './font';
 
 .clearfix {
   @include clearfix;
@@ -14,6 +15,7 @@
 
 html {
   background-color: $page-background-gray;
+  font-family: Averia Sans Libre,Arial,freesans,clean,sans-serif;
   /* background-color: #4a4b50; */
 }
 
