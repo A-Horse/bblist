@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
 
+import {IconAdd} from 'services/image-icon';
 import {CloseIcon, AddIcon} from 'services/svg-icons';
 import {Modal} from 'components/widget/Modal';
 import {Button} from 'components/widget/Button';
 import {Input} from 'components/widget/Input';
 import 'style/page/task/taskboard-creater.scss';
 
-class TaskBoardCreater extends Component {  
+class TaskBoardCreater extends Component {
   constructor() {
     super();
     this.state = {modalOpen: false};
@@ -22,7 +22,7 @@ class TaskBoardCreater extends Component {
   }
 
   componentWillMount() {
-    
+
   }
 
   closeModal() {
@@ -36,7 +36,7 @@ class TaskBoardCreater extends Component {
           <button className='close-button'>
             <CloseIcon className='clear-icon' onClick={this.closeModal.bind(this)}/>
           </button>
-          
+
           <div className='taskboard-creater--name'>Create Wall:</div>
 
           <p className='taskboard-creater--quota'>Establish their own Board for different transactions.</p>
@@ -53,7 +53,7 @@ class TaskBoardCreater extends Component {
   render() {
     return (
       <div className='taskboard-creater' onClick={() => this.setState({modalOpen: true})}>
-        <AddIcon className='add-icon'/>
+        <IconAdd/>
         <span className='taskboard-creater-title'>New Task Wall</span>
         {this.renderModal()}
       </div>

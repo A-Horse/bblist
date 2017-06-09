@@ -1,11 +1,9 @@
-import React, {Component} from 'react';
-import {browserHistory} from 'react-router';
-import {PageContainer} from 'components/widget/PageContainer';
-import {ThemeConst} from 'style/theme';
-import {CloseIcon, AddIcon, ViewListIcon} from 'services/svg-icons';
+import React, { Component } from 'react';
+import { browserHistory } from 'react-router';
+import { PageContainer } from 'components/widget/PageContainer';
 import TaskBoardCreater from './TaskBoardCreater';
-import {makeRemoteUrl} from 'services/remote-storage';
-import {DEFAULT_BOARD_COVER_SRC} from '../../constants';
+import { makeRemoteUrl } from 'services/remote-storage';
+import { DEFAULT_BOARD_COVER_SRC } from '../../constants';
 import Loading from 'components/Loading';
 
 import 'style/page/task/boards.scss';
@@ -17,9 +15,20 @@ class Boards extends Component {
     return this.props.getAllTaskBoard();
   }
 
+  renderEmpty() {
+    return (
+      <div className="taskboard-empty">
+        You do not have some boards yet.
+      </div>
+    )
+  }
+
   renderWalls() {
     if (this.props.isFetching) {
       return <Loading/>;
+    }
+    if (!this.props.boards.length) {
+      return this.renderEmpty();
     }
     return this.props.boards.map(board => {
       return (

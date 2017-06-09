@@ -3,7 +3,6 @@ import {connect} from 'react-redux';
 
 import {addBodyEventListenerOnce} from 'actions/event/body';
 import {createTodo, getTodoList} from 'actions/todo/todos';
-import {AddIcon, AlarmIcon, FlagIcon} from 'services/svg-icons';
 import {IconAdd} from 'services/image-icon';
 import {Button} from 'components/widget/Button';
 import DatePicker from 'components/date-picker/DatePicker';
