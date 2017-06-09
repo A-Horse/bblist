@@ -1,20 +1,33 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import { IconAdd } from 'services/image-icon';
+import { CloseIcon } from 'services/svg-icons';
+import { Modal } from 'components/widget/Modal';
+import { Button } from 'components/widget/Button';
+import { Input } from 'components/widget/Input';
+import { ErrorMsg } from 'components/ErrorMsg';
+import { validateFormValue } from 'services/validate-strategy';
+import R from 'ramda';
 
-import {IconAdd} from 'services/image-icon';
-import {CloseIcon, AddIcon} from 'services/svg-icons';
-import {Modal} from 'components/widget/Modal';
-import {Button} from 'components/widget/Button';
-import {Input} from 'components/widget/Input';
 import 'style/page/task/taskboard-creater.scss';
 
 class TaskBoardCreater extends Component {
   constructor() {
     super();
-    this.state = {modalOpen: false};
+    this.state = {modalOpen: false, createErrorMessages: []};
   }
 
-  onCreateClick() {
+  onCreateClick(event) {
+    event.preventDefault();
     const name = this.refs.name.instance;
+    const data = {name: name.value.trim()};
+
+    const createErrorMessages = validateFormValue(data, {
+      name: ['required']
+    });
+    this.setState({createErrorMessages: createErrorMessages});
+    if (Object.keys(createErrorMessages).length) {
+      return;
+    }
     this.props.createTaskBoard({name: name.value.trim()}).then(() => {
       this.props.getAllTaskBoard();
       this.closeModal();
@@ -41,9 +54,10 @@ class TaskBoardCreater extends Component {
 
           <p className='taskboard-creater--quota'>Establish their own Board for different transactions.</p>
 
-          <img className='taskboard-creater--illustration' src='/static/image/task/illustration@3x.png'/>
+          <img className='taskboard-creater--illustration' src='/assets/images/work.png' />
 
           <Input className='taskboard-creater--name-input' type='text' ref='name' placeholder='Board Name'/>
+          <ErrorMsg messages={R.values(this.state.createErrorMessages)}/>
           <Button styleType='primary' className='taskboard-creater--create-button' onClick={this.onCreateClick.bind(this)} >Complete And Create</Button>
         </div>
       </Modal>
@@ -53,7 +67,7 @@ class TaskBoardCreater extends Component {
   render() {
     return (
       <div className='taskboard-creater' onClick={() => this.setState({modalOpen: true})}>
-        <IconAdd/>
+        <IconAdd className="icon-add"/>
         <span className='taskboard-creater-title'>New Task Wall</span>
         {this.renderModal()}
       </div>

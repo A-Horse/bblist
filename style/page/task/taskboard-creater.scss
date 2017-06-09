@@ -3,15 +3,16 @@
 
 .taskboard-creater {
   cursor: pointer;
-  margin-top: 20px;
+  margin-top: 15px;
+  border-radius: $radius-middle;
+  padding: 3px 10px;
 
   & > * {
     vertical-align: middle;
   }
 
-  .add-icon {
+  .icon-add {
     margin-right: 10px;
-    fill: $gray-super-deep;
   }
 
   .taskboard-creater-title {
@@ -19,11 +20,19 @@
     color: $gray-super-deep;
     font-size: $font-size-large;
   }
+
+  &:hover {
+    background-color: $primary-bg-secondary;
+    box-shadow: 0 0 5px $primary-bg-secondary;
+  }
 }
 
 .taskboard-creater-modal {
   width: 350px;
-  margin-top: 50px;
+  margin-top: 70px;
+  border: 1px solid #e8e8e8;
+  box-shadow: 2px 2px 5px #e8e8e8;
+
   .close-button {
     position: absolute;
     width: 2rem;

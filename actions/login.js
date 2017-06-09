@@ -72,8 +72,6 @@ export function signin(creds) {
       .then(handleResponse)
       .then(response => dispatch(receiveLogin(response.jwt, response.user)))
       .catch(error => {
-        console.log(error);
-        console.log(error.name);
         if (error.name === 'NotAuthError') {
           return dispatch(loginFail('Email or password not match!'));
         }

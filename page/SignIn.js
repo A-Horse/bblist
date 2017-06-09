@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
-import { validateFormValue } from '../services/validate-strategy';
-import { Button } from '../components/widget/Button';
-import { Input } from '../components/widget/Input';
+import { validateFormValue } from 'services/validate-strategy';
+import { Button } from 'components/widget/Button';
+import { Input } from 'components/widget/Input';
 import { LogoBan } from 'components/commons/LogoBan';
 import { ErrorMsg } from 'components/ErrorMsg';
 import { PageContainer } from '../components/widget/PageContainer';
@@ -68,8 +68,9 @@ class SignIn extends Component {
 
     this.setState({errorMessages: errorMessages});
     if (!Object.keys(errorMessages).length) {
-      this.props.login(loginInfo);
+      return;
     }
+    this.props.login(loginInfo);
   }
 }
 

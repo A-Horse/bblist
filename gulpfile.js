@@ -13,6 +13,7 @@ gulp.task('webpack', function(){
 gulp.task('copy', [
   'copy:assets',
   'copy:static',
+  'copy:favicon',
   'copy:index'
 ]);
 

@@ -20,7 +20,7 @@
       border-radius: $radius-small;
 
       &:hover {
-        background-color: $color-background-light-alternative;  
+        background-color: $color-background-light-alternative;
       }
     }
   }
@@ -28,7 +28,7 @@
   .month-table {
     table-layout: fixed;
     white-space: nowrap;
-    
+
     td {
       white-space: nowrap;
       overflow: hidden;
@@ -40,9 +40,8 @@
     }
 
     .week-text {
-      color: $color-text-secondary;
+      color: $text-secondary;
       font-weight: bolder;
     }
   }
 }
-

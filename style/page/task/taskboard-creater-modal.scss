@@ -1,3 +1,5 @@
+@import 'style/variable';
+
 .modal__overlay.taskboard-creater {
   position: fixed;
   top: 0;
@@ -14,7 +16,8 @@
   width: 320px;
   height: auto;
   transform: translate(-50%, -60%);
-  border: 1px solid #ccc;
+  border: 1px solid #f8f8f8;
+  box-shadow: 2px 2px 5px #f8f8f8;
   background: #fff;
   --webkit-overflow-scrolling: touch;
   border-radius: 4px;

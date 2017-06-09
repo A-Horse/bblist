@@ -1,0 +1,23 @@
+@import 'style/variable';
+
+.nothing {
+  border: 1px solid $border-light;
+  text-align: center;
+  color: $text-primary;
+  margin-top: 1rem;
+  padding: 20px;
+  border-radius: $radius-middle;
+
+  img {
+    width: 130px;
+    opacity: 0.35;
+  }
+
+  &--heading {
+    font-size: 30px;
+  }
+
+  &--text {
+    font-size: 18px;
+  }
+}

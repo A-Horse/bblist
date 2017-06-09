@@ -10,7 +10,8 @@ const RULES = {
 
 const defualtErrorMessage = {
   email: 'Please fill in the correct email address',
-  min: '请输入最少 ${1} 个字符'
+  min: '请输入最少 ${1} 个字符',
+  required: 'Please fill the form'
 };
 
 function makeErrorMessageByParams(template, params) {
@@ -45,9 +46,3 @@ export function validateFormValue(formValue, ruleMap) {
     R.keys
   )(ruleMap);
 }
-
-
-
-
-
-
