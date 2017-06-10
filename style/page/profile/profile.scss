@@ -1,5 +1,23 @@
 @import 'style/variable';
 
 .profile-page {
-  
+  display: flex;
+  width: 1300px;
+  margin: 0 auto;
+  padding-top: 20px;
+
+  .profile-infomation {
+    width: 300px;
+    .profile-avatar {
+      border-radius: 10px;
+    }
+  }
+
+  .profile-detail {
+    &-number {
+      color: $red;
+      font-size: 28px;
+    }
+    padding-left: 60px;
+  }
 }

@@ -1,0 +1,24 @@
+@import 'style/variable';
+
+.active-calendar {
+
+  .ac-week {
+    display: inline-block;
+    width: 10px;
+    margin-right: 3px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+  .ac-day {
+    width: 10px;
+    height: 10px;
+    background-color: #bbb;
+    margin-bottom: 3px;
+    cursor: pointer;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
