@@ -11,13 +11,11 @@ import UserAvatar from 'components/UserAvatar';
 import {MoreIcon, AddIcon} from 'services/svg-icons';
 import {isEnterKey} from 'utils/keyboard';
 import ClickOutSide from 'components/utils/ClickOutSide';
+import { IconAdd } from 'services/image-icon';
 
 import 'style/page/task/tasklist-creater.scss';
 
-class TaskListCreater extends Component {
-  constructor() {
-    super();
-  }
+class TaskTrackCreater extends Component {
 
   componentWillMount() {
     this.state = {
@@ -29,7 +27,11 @@ class TaskListCreater extends Component {
     const {dispatch} = this.props;
     const name = this.refs.name.value.trim();
     // TODO 优化？不请求后台了?
-    return dispatch(createTaskList(this.props.boardId, {name})).then(() => dispatch(getTaskAllCards(this.props.boardId)));
+    return dispatch(createTaskList(this.props.boardId, {name}))
+      .then(() => {
+        this.close();
+        dispatch(getTaskAllCards(this.props.boardId))
+      });
   }
 
   toggle() {
@@ -59,7 +61,7 @@ class TaskListCreater extends Component {
       <div className='task-list-input'>
         <input type='text' ref='name' placeholder='write track name' onKeyDown={::this.onKeyDown}/>
         <Button className='creater-button' styleType='primary' onClick={::this.createTaskTrack}>OK</Button>
-        <Button>Cancel</Button>
+        <Button onClick={::this.close}>Cancel</Button>
       </div>
     );
   }
@@ -87,4 +89,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(TaskListCreater);
+export default connect(mapStateToProps)(TaskTrackCreater);

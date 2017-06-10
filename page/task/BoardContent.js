@@ -1,25 +1,10 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {browserHistory} from 'react-router';
+import React, { Component } from 'react';
 import R from 'fw-ramda';
-
-import TaskList, {listWidth} from './TaskList';
+import TaskList from './TaskList';
 import CardModal from './CardModal';
-//import TaskCardModal from 
-import {DropList} from 'components/widget/DropList';
-import {ConfirmModal} from 'components/widget/ConfirmModal';
-import {Hr} from 'components/widget/Hr';
-import {PageContainer} from 'components/widget/PageContainer';
-
-import {createTaskCard} from 'actions/task/task-card';
-
-import {clearBoard} from 'actions/task/task';
-import {getAssets} from 'services/assets-manager';
-import {AddIcon, SettingIcon, MIDDLE_SIZE} from 'services/svg-icons';
-import {navHeight} from 'components/Nav';
-import {spawnMixinRender} from 'style/theme-render';
-import {BoardSetting} from './BoardSetting.js';
-import TaskListCreater from './TaskListCreater';
+import { PageContainer } from 'components/widget/PageContainer';
+import { SettingIcon } from 'services/svg-icons';
+import TaskTrackCreater from './TaskTrackCreater';
 
 import 'style/page/task/taskboard-header.scss';
 import 'style/page/task/board.scss';
@@ -44,7 +29,7 @@ const styles = {
     color: 'white'
   },
   dimensions: {
-    
+
   },
   listContainer: {
     position: 'relative',
@@ -107,13 +92,13 @@ class BoardContent extends Component {
       </div>
     );
   }
-  
+
   render() {
     return (
       <PageContainer className='board-page-container'>
         <div className='board-track-container' style={styles.listContainer}>
           {this.renderLists()}
-          <TaskListCreater boardId={this.props.params.id}/>
+          <TaskTrackCreater boardId={this.props.params.id}/>
         </div>
         <CardModal key='card-modal'/>
       </PageContainer>

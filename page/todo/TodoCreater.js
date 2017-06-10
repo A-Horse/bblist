@@ -1,15 +1,13 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
-import {addBodyEventListenerOnce} from 'actions/event/body';
-import {createTodo, getTodoList} from 'actions/todo/todos';
-import {IconAdd} from 'services/image-icon';
+import { createTodo, getTodoList } from 'actions/todo/todos';
+import { IconAdd } from 'services/image-icon';
 import {Button} from 'components/widget/Button';
 import DatePicker from 'components/date-picker/DatePicker';
-import Popup from 'components/Popup';
-import {Select} from 'components/widget/Select';
+import { Select } from 'components/widget/Select';
 import Textarea from 'react-textarea-autosize';
-import {isEnterKey} from 'utils/keyboard';
+import { isEnterKey } from 'utils/keyboard';
 
 import ClickOutSide from 'components/utils/ClickOutSide';
 
