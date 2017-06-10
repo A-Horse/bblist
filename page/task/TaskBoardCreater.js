@@ -22,7 +22,7 @@ class TaskBoardCreater extends Component {
     const data = {name: name.value.trim()};
 
     const createErrorMessages = validateFormValue(data, {
-      name: ['required']
+      name: ['required@Please fill the name.']
     });
     this.setState({createErrorMessages: createErrorMessages});
     if (Object.keys(createErrorMessages).length) {
@@ -56,7 +56,7 @@ class TaskBoardCreater extends Component {
 
           <img className='taskboard-creater--illustration' src='/assets/images/work.png' />
 
-          <Input className='taskboard-creater--name-input' type='text' ref='name' placeholder='Board Name'/>
+          <Input className='taskboard-creater--name-input' type='text' ref='name' placeholder='Board Name' onKeyPress={(event) => event.key === 'Enter' && this.onCreateClick.bind(this)(event)}/>
           <ErrorMsg messages={R.values(this.state.createErrorMessages)}/>
           <Button styleType='primary' className='taskboard-creater--create-button' onClick={this.onCreateClick.bind(this)} >Complete And Create</Button>
         </div>

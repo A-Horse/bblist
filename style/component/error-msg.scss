@@ -2,9 +2,10 @@
 
 .error-msg {
   width: 100%;
-  padding: 12px;
+  padding: 8px 12px;
   background-color: $pink-light;
   color: $red-litte-light;
+  border-radius: $radius-small;
 
   ul {
     li {
@@ -12,7 +13,6 @@
       padding-left: 18px;
       line-height: 1.1;
       font-weight: 300;
-      margin-bottom: 8px;
 
       &:last-children {
         margin-bottom: 0;

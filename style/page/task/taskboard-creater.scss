@@ -5,7 +5,7 @@
   cursor: pointer;
   margin-top: 15px;
   border-radius: $radius-middle;
-  padding: 3px 10px;
+  padding: 3px 10px 5px;
 
   & > * {
     vertical-align: middle;
@@ -51,6 +51,11 @@
     height: 1rem;
     transition: all 80ms ease;
   }
+
+  .error-msg {
+    margin-top: -10px;
+    margin-bottom: 10px;
+  }
 }
 
 .taskboard-creater--name {
@@ -63,7 +68,7 @@
 }
 
 .taskboard-creater--quota {
-  font-size: $font-size-middle;
+  font-size: 14px;
   margin: 8px 0 40px;
   color: $gray-super-deep;
 }

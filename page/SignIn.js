@@ -67,7 +67,7 @@ class SignIn extends Component {
     });
 
     this.setState({errorMessages: errorMessages});
-    if (!Object.keys(errorMessages).length) {
+    if (Object.keys(errorMessages).length) {
       return;
     }
     this.props.login(loginInfo);
