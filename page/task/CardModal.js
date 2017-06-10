@@ -181,9 +181,7 @@ class CardModal extends Component {
   updateTaskCard(data) {
     const {dispatch} = this.props;
     const currentList = this.getCurrentTrack();
-    // TODO 优化
-    return dispatch(updateTaskCard(this.props.card.id, data))
-      .then(() => dispatch(getTaskAllCards(currentList.taskWallId)));
+    return dispatch(updateTaskCard(this.props.card.id, data));
   }
 
   deleteTaskCard() {

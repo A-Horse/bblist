@@ -18,6 +18,7 @@ import { CheckBox } from 'components/widget/CheckBox';
 import BoardCradDragHelper from 'services/board-card-drag-helper';
 import { getMouseElementInnerOffset } from 'utils/dom';
 import { browserHistory } from 'react-router';
+import R from 'ramda';
 
 import 'style/page/task/card.scss';
 
@@ -147,26 +148,29 @@ class TaskCard extends Component {
   }
 
   render() {
-
     const {normalizedCards, cardId} = this.props;
     const card = normalizedCards.entities[cardId];
-    console.log('render', cardId);
     const activeRole = card.creater;
     return (
       <div className='task-card' ref='main'
-           onMouseDown={this.onMouseDown.bind(this)}
-           onClick={this.onClick.bind(this)}
-           onLoad={this.onLoad.bind(this)}>
+        onMouseDown={this.onMouseDown.bind(this)}
+        onClick={this.onClick.bind(this)}
+        onLoad={this.onLoad.bind(this)}>
         <CheckBox ref='checkbox' defaultChecked={card.isDone} onChange={this.updateDone.bind(this)} onClick={this.checkBoxOnClick.bind(this)}/>
         <p className='task-card--title'>{card.title}</p>
         <UserAvatar user={activeRole}/>
       </div>
     );
   }
+
+  shouldComponentUpdate(nextProps) {
+    return !R.equals(nextProps.card, this.props.card);
+  }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, props) => {
   return {
+    card: state.task.card.entities[props.cardId],
     normalizedCards: state.task.card,
     normalizedTrack: state.task.list
   };

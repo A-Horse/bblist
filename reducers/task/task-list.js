@@ -93,21 +93,10 @@ function taskList(state = {
       entities: action.playload.entities.track
     });
     break;
+
   case CLEAR_BOARD:
     return Object.assign({}, state, {
       lists: []
-    });
-    break;
-
-  case TASKCARD_PATCH_SUCCESS:
-    const currentList = R.find(R.propEq('id', action.playload.taskListId))(state.lists);
-    const index = R.findIndex(R.propEq('id', action.playload.id))(currentList.cards);
-    currentList.cards.splice(index, 1, Object.assign({}, currentList.cards[index], action.playload));
-    // currentList.cards = Array.of(...currentList.cards);
-    currentList.cards[index] = Object.assign({}, currentList.cards[index]);
-
-    return Object.assign({}, state, {
-      lists: state.lists
     });
     break;
 

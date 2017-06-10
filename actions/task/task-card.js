@@ -169,6 +169,8 @@ export function deleteTaskCard(cardId) {
   };
 }
 
+
+// TODO combine
 export function moveTaskCard(cardId, data) {
   const config = createConfigWithAuth('PATCH', data);
   return dispatch => {
@@ -181,6 +183,7 @@ export function moveTaskCard(cardId, data) {
 }
 
 export function updateTaskCard(cardId, data) {
+
   const config = createConfigWithAuth('PATCH', data);
   return dispatch => {
     return fetch(makeApiUrl(`/task-card/${cardId}`), config)
