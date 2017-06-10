@@ -11,7 +11,7 @@ import {createDevTools} from 'redux-devtools';
 // import DockMonitor from 'redux-devtools-dock-monitor';
 
 // TODO split it
-import {Profile, NotFound, DashBoard,
+import {NotFound, DashBoard,
         IndexPage, Ideas, TodoPage} from 'page';
 import App from 'containers/App';
 import SignUp from 'containers/SignUp';
@@ -24,6 +24,8 @@ import TaskCardModal from 'page/task/CardModal';
 import TaskSettingInfomation from 'containers/task/Setting/Infomation';
 import TaskSettingOperation from 'containers/task/Setting/Operation';
 import TaskSettingPreference from 'containers/task/Setting/Preference';
+
+import Profile from 'containers/Profile';
 
 import Setting from 'containers/setting/Setting';
 import SettingSecurity from 'page/setting/Security';
@@ -88,7 +90,6 @@ ReactDOM.render(
 
           <Route path='home' component={DashBoard} onEnter={checkLogin}/>
 
-          <Route path='profile' component={Profile}/>
           <Route path="idea" component={Ideas}/>
           <Route path='task-wall' component={Boards} onEnter={checkLogin}/>
 
@@ -111,6 +112,7 @@ ReactDOM.render(
           </Route>
 
           <Route path='todo' component={TodoPage}/>
+          <Route path='profile' component={Profile}/>
 
           <Route path='404' component={NotFound} />
         </Route>

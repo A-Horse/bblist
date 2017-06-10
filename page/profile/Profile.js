@@ -8,7 +8,7 @@ import 'style/page/profile/profile.scss';
 
 export default class Profile extends Component {
   componentWillMount() {
-    
+
   }
 
   render() {
@@ -16,15 +16,15 @@ export default class Profile extends Component {
       <div className='profile-page'>
 
         <div className='profile-infomation'>
-          
+
         </div>
 
         <div className='profile-works'>
-          
+
         </div>
 
-        
-        
+
+
       </div>
     );
   }

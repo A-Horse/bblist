@@ -3,33 +3,31 @@ import fetch from 'isomorphic-fetch';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 import {PageContainer} from '../../components/widget/PageContainer';
+import Building from 'page/Building';
 
 class Ideas extends Component {
-  constructor() {
-    super()
-  }
 
   getWalls() {
-    
+
   }
 
   componentWillMount() {
 
   }
-  
+
   render() {
     return (
       <PageContainer>
-        Ideas
+        <Building />
       </PageContainer>
-    )
+    );
   }
 }
 
 const mapStateToProps = (state) => {
   return {
-    
-  }
-}
 
-export default connect(mapStateToProps)(Ideas)
+  };
+};
+
+export default connect(mapStateToProps)(Ideas);
