@@ -19,20 +19,12 @@ import { Select } from 'components/widget/Select';
 import { Button } from 'components/widget/Button';
 import { isEnterKey } from 'utils/keyboard';
 
-
 import 'style/page/task/taskcard-modal.scss';
 
 class CardModal extends Component {
-  constructor() {
-    super();
-  }
 
   componentWillMount() {
     this.state = {};
-  }
-
-  componentDidMount() {
-
   }
 
   close() {
@@ -102,8 +94,6 @@ class CardModal extends Component {
     const cardId = this.props.params.cardId;
     const card = normalizedCards.entities[cardId];
 
-    console.log(this.props.card);
-
     // TODO duplicable check
     if (!card) {
       return null;
@@ -140,8 +130,6 @@ class CardModal extends Component {
         </div>
 
         {this.renderComments()}
-
-        {this.renderPomodoro()}
 
         <div className='taskcard-modal--comment-input'>
           <Textarea  onKeyDown={this.onCommentInputKeyDown.bind(this)} ref='comment' placeholder='add comment (Enter to post)'></Textarea>
@@ -205,8 +193,6 @@ class CardModal extends Component {
 }
 
 const mapStateToProps = (state, props) => {
-  console.log(state.task.card.entities, props.params.cardId);
-  console.log(state.task.card[props.params.cardId]);
   return {
     // card: state.task.card.card,
     // toggleTaskCardModal: state.task.card.active,

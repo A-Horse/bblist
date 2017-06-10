@@ -147,8 +147,10 @@ class TaskCard extends Component {
   }
 
   render() {
+
     const {normalizedCards, cardId} = this.props;
     const card = normalizedCards.entities[cardId];
+    console.log('render', cardId);
     const activeRole = card.creater;
     return (
       <div className='task-card' ref='main'
