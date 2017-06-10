@@ -1,23 +1,23 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {browserHistory} from 'react-router';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
 import R from 'fw-ramda';
 import moment from 'moment';
 
-import {deleteTaskCard, updateTaskCard, unactiveCardModal, getCardDetail} from 'actions/task/task-card';
-import {getTaskAllCards} from 'actions/task/task-wall';
-import {createTaskCardComment} from 'actions/task/task-card-comment';
-import {spawnMixinRender} from 'style/theme-render';
-import {CloseIcon, CommentIcon} from 'services/svg-icons';
+import { deleteTaskCard, updateTaskCard, unactiveCardModal, getCardDetail } from 'actions/task/task-card';
+import { getTaskAllCards } from 'actions/task/task-wall';
+import { createTaskCardComment } from 'actions/task/task-card-comment';
+import { spawnMixinRender } from 'style/theme-render';
+import { CloseIcon, CommentIcon } from 'services/svg-icons';
 import UserAvatar from 'components/UserAvatar';
-import {Modal} from 'components/widget/Modal';
-import {CheckBox} from 'components/widget/CheckBox';
-import {Pomodoro} from 'components/Pomodoro';
+import { Modal } from 'components/widget/Modal';
+import { CheckBox } from 'components/widget/CheckBox';
+import { Pomodoro } from 'components/Pomodoro';
 import Textarea from 'react-textarea-autosize';
-import {Hr} from 'components/widget/Hr';
-import {Select} from 'components/widget/Select';
-import {Button} from 'components/widget/Button';
-import {isEnterKey} from 'utils/keyboard';
+import { Hr } from 'components/widget/Hr';
+import { Select } from 'components/widget/Select';
+import { Button } from 'components/widget/Button';
+import { isEnterKey } from 'utils/keyboard';
 
 
 import 'style/page/task/taskcard-modal.scss';
