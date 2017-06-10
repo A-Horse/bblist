@@ -17,6 +17,7 @@ import UserAvatar from 'components/UserAvatar';
 import { CheckBox } from 'components/widget/CheckBox';
 import BoardCradDragHelper from 'services/board-card-drag-helper';
 import { getMouseElementInnerOffset } from 'utils/dom';
+import { browserHistory } from 'react-router';
 
 import 'style/page/task/card.scss';
 
@@ -92,6 +93,8 @@ class TaskCard extends Component {
   onClick(event) {
     /* const {dispatch} = this.props;
      * return dispatch(activeCardModal(this.props.cardId));*/
+
+    browserHistory.push(`/task-wall/${this.props.boardId}/${this.props.cardId}`);
   }
 
   checkBoxOnClick(event) {
@@ -133,7 +136,6 @@ class TaskCard extends Component {
     }
 
     function onMouseUp(event) {
-
       window.document.body.removeEventListener('mousemove', onMouseMove);
       window.document.body.removeEventListener('mouseup', onMouseUp);
       if (self.mouseMoving) {

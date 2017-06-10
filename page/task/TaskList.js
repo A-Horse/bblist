@@ -100,6 +100,7 @@ class TaskList extends Component {
       return (
         <TaskCard ref={(cardConnectedInstance) => this.pickCardInstance(cardConnectedInstance, cardId)}
           key={cardId}
+          boardId={this.props.wallId}
           cardId={cardId}/>
       );
     });

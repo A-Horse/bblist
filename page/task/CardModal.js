@@ -19,6 +19,7 @@ import {Select} from 'components/widget/Select';
 import {Button} from 'components/widget/Button';
 import {isEnterKey} from 'utils/keyboard';
 
+
 import 'style/page/task/taskcard-modal.scss';
 
 class CardModal extends Component {
@@ -35,8 +36,7 @@ class CardModal extends Component {
   }
 
   close() {
-    const {dispatch} = this.props;
-    return dispatch(unactiveCardModal());
+    browserHistory.push(`/task-wall/${this.props.params.id}`);
   }
 
   onChangeTrack(track) {
@@ -61,7 +61,7 @@ class CardModal extends Component {
   }
 
   renderComments() {
-    const {dispatch, card} = this.props;
+    const { card } = this.props;
     if (card.comments) {
       const comments = card.comments.map(comment => {
         return (
@@ -93,14 +93,16 @@ class CardModal extends Component {
   }
 
   getCurrentTrack() {
-    const {card, normalizedList} = this.props;
+    const { card, normalizedList } = this.props;
     return normalizedList.entities[card.taskListId];
   }
 
   render() {
     const { normalizedCards } = this.props;
-    const cardId = this.props.params.id;
+    const cardId = this.props.params.cardId;
     const card = normalizedCards.entities[cardId];
+
+    console.log(this.props.card);
 
     // TODO duplicable check
     if (!card) {
@@ -111,7 +113,7 @@ class CardModal extends Component {
       return null;
     }
     return (
-      <Modal className='taskcard-modal' toggle={this.props.toggleTaskCardModal} close={this.close.bind(this)}>
+      <Modal className='taskcard-modal' toggle={true} close={this.close.bind(this)}>
         <div className='taskcard-modal--top-bar'>
           <div className='top-bar-list-chooser'>
             <span className='top-bar--list-label'>Track:</span>
@@ -202,10 +204,13 @@ class CardModal extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, props) => {
+  console.log(state.task.card.entities, props.params.cardId);
+  console.log(state.task.card[props.params.cardId]);
   return {
     // card: state.task.card.card,
     // toggleTaskCardModal: state.task.card.active,
+    card: state.task.card.entities[props.params.cardId],
     normalizedCards: state.task.card,
     taskLists: state.task.list.lists,
     normalizedList: state.task.list

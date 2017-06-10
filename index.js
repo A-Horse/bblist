@@ -93,8 +93,9 @@ ReactDOM.render(
           <Route path='task-wall' component={Boards} onEnter={checkLogin}/>
 
           <Route path='task-wall/' component={Board} onEnter={checkLogin}>
-            <Route path='/task-wall/:id' component={BoardContent}/>
-            <Route path='/task-wall/:id/:cardId' component={TaskCardModal} />
+            <Route path='/task-wall/:id' component={BoardContent}>
+              <Route path='/task-wall/:id/:cardId' component={TaskCardModal} />
+            </Route>
             <Route path='/task-wall/:id/setting' component={BoardSetting}>
               <Route path='infomation' component={TaskSettingInfomation}/>
               <Route path='operation' component={TaskSettingOperation}/>

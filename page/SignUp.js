@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
 
 import {validateFormValue} from '../services/validate-strategy';
 import { browserHistory } from 'react-router';
@@ -8,7 +7,6 @@ import {Input} from '../components/widget/Input';
 import {updateTitle} from 'services/title';
 import {Button} from '../components/widget/Button';
 import {LogoBan} from 'components/commons/LogoBan';
-import {isEnterKey} from 'utils/keyboard';
 import {ErrorMsg} from 'components/ErrorMsg';
 import {Link} from 'react-router';
 import R from 'ramda';
@@ -29,10 +27,10 @@ class SignUp extends Component {
       errorMessage: {}
     };
   }
-  
+
   render() {
     const errorMessages = this.state.errorMessages;
-    
+
     return (
       <PageContainer className='signup-page'>
         <div className='signup-main'>
@@ -89,12 +87,12 @@ class SignUp extends Component {
       repeat: [`eqTo@${signUpData.password}#password don't match`],
       email: ['email#email express wrong', 'max@150#max 150']
     });
-    
+
   }
 
   signup(event) {
     event.preventDefault();
-    
+
     const signUpData = this.getSignUpData();
     const errorMessages = this.validateSignUpData(signUpData);
     this.setState({errorMessages: errorMessages});
