@@ -107,7 +107,7 @@ export function createTaskList(wallId, info) {
 export function updateTaskTrackIndex(boardId, trackIndexs) {
   const config = createConfigWithAuth('PATCH', {trackIndexs});
   return dispatch => {
-    return fetch(makeApiUrl(`/task-board/${boardId}/track`), config)
+    return fetch(makeApiUrl(`/task-board/${boardId}/track/index`), config)
       .then(handleResponse)
       .then((response) => dispatch(updateTaskTrackIndexSuccess));
   };

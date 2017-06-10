@@ -156,7 +156,11 @@ class TaskCard extends Component {
         onMouseDown={this.onMouseDown.bind(this)}
         onClick={this.onClick.bind(this)}
         onLoad={this.onLoad.bind(this)}>
-        <CheckBox ref='checkbox' defaultChecked={card.isDone} onChange={this.updateDone.bind(this)} onClick={this.checkBoxOnClick.bind(this)}/>
+        <CheckBox ref='checkbox'
+          defaultChecked={card.isDone}
+          checked={card.isDone}
+          onChange={this.updateDone.bind(this)}
+          onClick={this.checkBoxOnClick.bind(this)}/>
         <p className='task-card--title'>{card.title}</p>
         <UserAvatar user={activeRole}/>
       </div>

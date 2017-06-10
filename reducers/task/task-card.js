@@ -63,11 +63,9 @@ function taskCard(state = {
     break;
 
   case ALL_TASKCARD_GET_SUCCESS:
-    console.log(action.playload.entities.cards);
     return Object.assign({}, state, {
       entities: action.playload.entities.cards
     });
-
     break;
 
   case UNACTIVE_CARD_MODAL:

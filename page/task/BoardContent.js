@@ -51,7 +51,8 @@ class BoardContent extends Component {
   }
 
   updateTaskTrackIndexs() {
-    const trackIndexs = Object.values(this.trackInstanceMap).map(track => track.getWrappedInstance().getTrackIdIndex());
+    const trackIndexs = Object.values(this.trackInstanceMap)
+                              .map(track => track.getWrappedInstance().getTrackIdIndex());
     this.props.updateTaskTrackIndex(this.props.params.id, trackIndexs);
   }
 
