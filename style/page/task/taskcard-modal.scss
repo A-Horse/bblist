@@ -156,19 +156,25 @@ $content-top: 80px;
 }
 
 .taskcard-modal--comment-input {
+  border-bottom-radius: 4px;
   margin-top: 14px;
-  width: 100%;
-  left: 0;
+  width: calc(100% + 2px);
+  left: -1px;
+  top: 1px;
+  position: relative;
+  z-index: 1;
   padding: 6px 13px;
   display: flex;
   align-items: center;
-  background-color: #f3f3f3;
+  background-color: $md-light-blue-100;
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px;
 
   textarea {
     width: 100%;
     padding: 3px 8px;
     resize: none;
     border-radius: $radius-middle;
-    border-color: $gray;
+    border: none;
   }
 }

@@ -97,9 +97,11 @@ class TaskList extends Component {
 
   renderCards(cardIds) {
     return cardIds.map(cardId => {
-      return (<TaskCard ref={(cardConnectedInstance) => this.pickCardInstance(cardConnectedInstance, cardId)}
-         key={cardId}
-         cardId={cardId}/>);
+      return (
+        <TaskCard ref={(cardConnectedInstance) => this.pickCardInstance(cardConnectedInstance, cardId)}
+          key={cardId}
+          cardId={cardId}/>
+      );
     });
   }
 

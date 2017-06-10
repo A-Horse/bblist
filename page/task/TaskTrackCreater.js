@@ -69,7 +69,7 @@ class TaskTrackCreater extends Component {
   renderToggle() {
     return (
       <div onClick={::this.toggle} className='task-list--toggle'>
-        <AddIcon className='add-icon'/>
+        <IconAdd className='icon-add'/>
         <span>Add a Track...</span>
       </div>
     );

@@ -1,13 +1,14 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {createTaskCard} from 'actions/task/task-card';
-import {getTaskAllCards} from 'actions/task/task-wall';
-import {spawnMixinRender} from 'style/theme-render';
-import {addBodyEventListenerOnce} from 'actions/event/body';
-import {Button} from 'components/widget/Button';
-import {Hr} from 'components/widget/Hr';
+import React, { Component } from 'react';
+import { connect} from 'react-redux';
+import { createTaskCard } from 'actions/task/task-card';
+import { getTaskAllCards } from 'actions/task/task-wall';
+import { spawnMixinRender } from 'style/theme-render';
+import { addBodyEventListenerOnce } from 'actions/event/body';
+import { Button} from 'components/widget/Button';
+import { Hr} from 'components/widget/Hr';
 import UserAvatar from 'components/UserAvatar';
-import {MoreIcon, AddIcon} from 'services/svg-icons';
+import { MoreIcon, AddIcon } from 'services/svg-icons';
+import { IconAdd } from 'services/image-icon';
 
 import 'style/page/task/taskcard-creater.scss';
 
@@ -61,18 +62,22 @@ class TaskCardCreater extends Component {
   renderToggle() {
     return (
       <div onClick={this.toggle.bind(this)} className='taskcard-creater--toggle'>
-        <AddIcon className='add-icon'/>
+        <IconAdd className='icon-add'/>
         <span>Add a card...</span>
       </div>
     );
   }
-  
+
   renderBody() {
     return (
       <div className='taskcard-creater--body'
-           onClick={event => event.stopPropagation()}>
+        onClick={event => event.stopPropagation()}>
         <div>
-          <textarea type='text' ref='taskCardTitle' placeholder='Task Content' />
+          <textarea type='text' ref='taskCardTitle' placeholder='Task Content'
+            onKeyPress={(event) => {
+                if (event.ctrlKey && event.key === 'Enter')
+                  this.createCard.bind(this)()
+              }}/>
         </div>
         <div className='taskcard-creater--user'>
           <UserAvatar user={this.props.user}/>
@@ -91,8 +96,10 @@ class TaskCardCreater extends Component {
             <MoreIcon />
             <span>more</span>
           </div>
-          <Button styleType='default'>Cancel</Button>
-          <Button styleType='primary' onClick={this.createCard.bind(this)}>OK</Button>
+          <div>
+            <Button className="btn-cancel" styleType='default' onClick={::this.close}>Cancel</Button>
+            <Button styleType='primary' onClick={this.createCard.bind(this)}>OK</Button>
+          </div>
         </div>
       </div>
     );

@@ -29,8 +29,7 @@ $list-vertical-padding: 12px;
     vertical-align: middle;
   }
 
-  .add-icon {
-    fill: $gray-deep;
+  .icon-add {
     vertical-align: middle;
     margin-right: 8px;
 
@@ -60,6 +59,10 @@ $list-vertical-padding: 12px;
   svg {
     fill: $gray-light-deep;
   }
+
+  .btn-cancel {
+    margin-right: 20px;
+  }
 }
 
 .taskcard-creater--operation, .taskcard-creater--operation > div {
@@ -70,5 +73,5 @@ $list-vertical-padding: 12px;
 
 
 .taskcard-creater--participants {
-  
+
 }

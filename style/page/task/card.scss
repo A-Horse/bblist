@@ -14,7 +14,8 @@ $card-padding: 12px;
   margin: $card-margin / 2 0;
   padding: $card-padding;
   box-shadow: 0 2px 4px $gray-light-litte-depth;
-  
+  cursor: pointer;
+
   .task-card--title {
     padding: 0 12px;
     width: 205px;

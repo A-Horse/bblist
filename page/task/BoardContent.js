@@ -100,7 +100,8 @@ class BoardContent extends Component {
           {this.renderLists()}
           <TaskTrackCreater boardId={this.props.params.id}/>
         </div>
-        <CardModal key='card-modal'/>
+        {this.props.children}
+        {/*         <CardModal key='card-modal'/> */}
       </PageContainer>
     );
   }

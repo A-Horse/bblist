@@ -27,13 +27,14 @@ class TaskCard extends Component {
   }
 
   componentWillMount() {
+
   }
 
   // onDragStart(event) {
   //   // TODO 移动的图标
-  //   const {normalizedCard, cardId} = this.props;
-  //   const card = normalizedCard.entities[cardId];
-    
+  //   const {normalizedCards, cardId} = this.props;
+  //   const card = normalizedCards.entities[cardId];
+
   //   const crt = this.refs.main.cloneNode(true);
 
   //   const width = this.refs.main.offsetWidth;
@@ -49,7 +50,7 @@ class TaskCard extends Component {
   //   crt.style.width = width + 'px';
   //   document.body.appendChild(crt);
   //   event.dataTransfer.setDragImage(crt, 0, 0);
-    
+
   //   BoardCradDragHelper.setData('info', {
   //     from: {
   //       listId: card.taskListId
@@ -59,15 +60,15 @@ class TaskCard extends Component {
   //     width,
   //     height
   //   });
-    
+
   //   this.refs.main.style.position = 'absolute';
   //   this.isDragging = true;
   // }
-  
+
   onDragEnd(event) {
     document.body.removeChild(this.crt);
   }
-  
+
   openTaskCardModal() {
     const {dispatch} = this.props;
     return dispatch(openTaskCardModal(this.props.card));
@@ -75,12 +76,12 @@ class TaskCard extends Component {
 
   updateDone() {
     const isDone = this.refs.checkbox.checked;
-    this.updateTaskCard({isDone});    
+    this.updateTaskCard({isDone});
   }
 
   updateTaskCard(data) {
     const {dispatch} = this.props;
-    return dispatch(updateTaskCard(this.props.card.id, data));
+    return dispatch(updateTaskCard(this.props.cardId, data));
   }
 
   onLoad() {
@@ -89,8 +90,8 @@ class TaskCard extends Component {
   }
 
   onClick(event) {
-    const {dispatch} = this.props;
-    return dispatch(activeCardModal(this.props.cardId));
+    /* const {dispatch} = this.props;
+     * return dispatch(activeCardModal(this.props.cardId));*/
   }
 
   checkBoxOnClick(event) {
@@ -106,7 +107,7 @@ class TaskCard extends Component {
     const tracks = window.document.querySelectorAll('.task-list');
 
     const thisCard = this.refs.main;
-    
+
     const movingCard = thisCard.cloneNode(true);
     const pageContainer = window.document.body.querySelector('.board-page-container');
 
@@ -120,7 +121,7 @@ class TaskCard extends Component {
         movingCard.style.position = 'absolute';
         movingCard.style.left = event.pageX + 'px';
         movingCard.style.top = event.pageY + 'px';
-        
+
         window.document.body.appendChild(movingCard);
       }
       self.mouseMoving = true;
@@ -130,7 +131,7 @@ class TaskCard extends Component {
       movingCard.style.top = '0';
       movingCard.style.transform = `translate(${movingOffsetX - mouseOffsetInCard.left}px, ${movingOffsetY - mouseOffsetInCard.top}px)`;
     }
-    
+
     function onMouseUp(event) {
 
       window.document.body.removeEventListener('mousemove', onMouseMove);
@@ -138,15 +139,14 @@ class TaskCard extends Component {
       if (self.mouseMoving) {
         window.document.body.removeChild(movingCard);
       }
-
     }
     window.document.body.addEventListener('mousemove', onMouseMove);
     window.document.body.addEventListener('mouseup', onMouseUp);
   }
 
   render() {
-    const {normalizedCard, cardId} = this.props;
-    const card = normalizedCard.entities[cardId];
+    const {normalizedCards, cardId} = this.props;
+    const card = normalizedCards.entities[cardId];
     const activeRole = card.creater;
     return (
       <div className='task-card' ref='main'
@@ -163,7 +163,7 @@ class TaskCard extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    normalizedCard: state.task.card,
+    normalizedCards: state.task.card,
     normalizedTrack: state.task.list
   };
 };

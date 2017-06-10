@@ -15,6 +15,7 @@ $board-card-height: 125px;
   box-shadow: 0 2px 3px 0 rgba(0, 0, 0, .0470588);
   background-size: cover;
   border-radius: $radius-middle;
+  cursor: pointer;
 
   &:hover {
     transform: translate3d(0, -5px, 0);
