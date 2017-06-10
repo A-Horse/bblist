@@ -20,6 +20,7 @@ import Boards from 'containers/task/Boards';
 import Board from 'containers/task/Board';
 import BoardSetting from 'containers/task/BoardSetting';
 import BoardContent from 'containers/task/BoardContent';
+import TaskCardModal from 'page/task/CardModal';
 import TaskSettingInfomation from 'containers/task/Setting/Infomation';
 import TaskSettingOperation from 'containers/task/Setting/Operation';
 import TaskSettingPreference from 'containers/task/Setting/Preference';
@@ -93,6 +94,7 @@ ReactDOM.render(
 
           <Route path='task-wall/' component={Board} onEnter={checkLogin}>
             <Route path='/task-wall/:id' component={BoardContent}/>
+            <Route path='/task-wall/:id/:cardId' component={TaskCardModal} />
             <Route path='/task-wall/:id/setting' component={BoardSetting}>
               <Route path='infomation' component={TaskSettingInfomation}/>
               <Route path='operation' component={TaskSettingOperation}/>

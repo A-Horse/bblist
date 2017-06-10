@@ -1,22 +1,22 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
-import {deleteTaskWall, getTaskAllCards} from 'actions/task/task-wall';
-import {updateTaskCard, insertVirtualCard, activeCardModal} from 'actions/task/task-card';
-import {createTaskList, deleteTaskList} from 'actions/task/task-list';
-import {openTaskCardModal} from 'actions/event/task-wall';
-import {DropList} from 'components/widget/DropList';
-import {ConfirmModal} from 'components/widget/ConfirmModal';
-import {PageContainer} from 'components/widget/PageContainer';
-import {Hr} from 'components/widget/Hr';
-import {getAssets} from 'services/assets-manager';
-import {spawnMixinRender} from 'style/theme-render';
-import {AddIcon, EditIcon, ArrowDownIcon, SettingIcon} from 'services/svg-icons';
-import {navHeight} from 'components/Nav';
+import { deleteTaskWall, getTaskAllCards } from 'actions/task/task-wall';
+import { updateTaskCard, insertVirtualCard, activeCardModal } from 'actions/task/task-card';
+import { createTaskList, deleteTaskList } from 'actions/task/task-list';
+import { openTaskCardModal } from 'actions/event/task-wall';
+import { DropList } from 'components/widget/DropList';
+import { ConfirmModal } from 'components/widget/ConfirmModal';
+import { PageContainer } from 'components/widget/PageContainer';
+import { Hr } from 'components/widget/Hr';
+import { getAssets } from 'services/assets-manager';
+import { spawnMixinRender } from 'style/theme-render';
+import { AddIcon, EditIcon, ArrowDownIcon, SettingIcon } from 'services/svg-icons';
+import { navHeight } from 'components/Nav';
 import UserAvatar from 'components/UserAvatar';
-import {CheckBox} from 'components/widget/CheckBox';
+import { CheckBox } from 'components/widget/CheckBox';
 import BoardCradDragHelper from 'services/board-card-drag-helper';
-import {getMouseElementInnerOffset} from 'utils/dom';
+import { getMouseElementInnerOffset } from 'utils/dom';
 
 import 'style/page/task/card.scss';
 

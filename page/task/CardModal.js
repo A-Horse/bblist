@@ -31,18 +31,18 @@ class CardModal extends Component {
   }
 
   componentDidMount() {
-    
+
   }
 
   close() {
-    const {dispatch} = this.props; 
+    const {dispatch} = this.props;
     return dispatch(unactiveCardModal());
   }
 
   onChangeTrack(track) {
     this.updateTaskCard({taskListId: track.value});
   }
-  
+
   getCardDetail() {
     const {dispatch, card} = this.props;
     return dispatch(getCardDetail(card.id));
@@ -82,7 +82,7 @@ class CardModal extends Component {
     }
     return null;
   }
-  
+
   renderPomodoro() {
     return;
     return (
@@ -98,7 +98,10 @@ class CardModal extends Component {
   }
 
   render() {
-    const {card, normalizedList} = this.props;
+    const { normalizedCards } = this.props;
+    const cardId = this.props.params.id;
+    const card = normalizedCards.entities[cardId];
+
     // TODO duplicable check
     if (!card) {
       return null;
@@ -135,14 +138,13 @@ class CardModal extends Component {
         </div>
 
         {this.renderComments()}
-        
 
         {this.renderPomodoro()}
 
         <div className='taskcard-modal--comment-input'>
           <Textarea  onKeyDown={this.onCommentInputKeyDown.bind(this)} ref='comment' placeholder='add comment (Enter to post)'></Textarea>
         </div>
-        
+
       </Modal>
     );
   }
@@ -160,7 +162,7 @@ class CardModal extends Component {
       event.preventDefault();
     }
   }
-  
+
   postComment() {
     const {dispatch, card} = this.props;
     return dispatch(createTaskCardComment(card.id, {
@@ -202,8 +204,9 @@ class CardModal extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    card: state.task.card.card,
-    toggleTaskCardModal: state.task.card.active,
+    // card: state.task.card.card,
+    // toggleTaskCardModal: state.task.card.active,
+    normalizedCards: state.task.card,
     taskLists: state.task.list.lists,
     normalizedList: state.task.list
   };
