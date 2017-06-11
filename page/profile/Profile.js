@@ -16,9 +16,6 @@ export default class Profile extends Component {
 
   render() {
     const { user } = this.props;
-    console.log(
-      user
-    );
     return (
       <div className='profile-page'>
 
@@ -26,8 +23,7 @@ export default class Profile extends Component {
           <div>{user.email}</div>
           <div>{user.name}</div>
           <img ref='avator' className='profile-avatar' crossOrigin='Anonymous'
-            src={makeGravatarUrl(user.email, 300)}
-            onClick={() => this.setState({dropDownToggle: !this.state.dropDownToggle})}/>
+            src={makeGravatarUrl(user.email, 300)}/>
           <p>
             We use <a target="_blank" href="https://www.gravatar.com/">Gravatar</a> to display you avatar.
             you can change avatar in gravatar by your email;

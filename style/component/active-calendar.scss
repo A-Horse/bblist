@@ -2,9 +2,19 @@
 
 .active-calendar {
 
+  .ac-month-name {
+    width: 9px;
+    margin-right: 3px;
+    display: inline-block;
+    font-size: 9px;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
   .ac-week {
     display: inline-block;
-    width: 10px;
+    width: 9px;
     margin-right: 3px;
 
     &:last-child {
@@ -12,13 +22,23 @@
     }
   }
   .ac-day {
-    width: 10px;
-    height: 10px;
+    width: 9px;
+    height: 9px;
     background-color: #bbb;
     margin-bottom: 3px;
     cursor: pointer;
     &:last-child {
       margin-bottom: 0;
+    }
+
+    &.ac-day-1 {
+      background-color: #c6e48b;
+    }
+    &.ac-day-2 {
+      background-color: #7bc96f;
+    }
+    &.ac-day-3 {
+      background-color: #239a3b;
     }
   }
 }
