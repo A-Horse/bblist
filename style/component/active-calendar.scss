@@ -1,12 +1,15 @@
 @import 'style/variable';
 
 .active-calendar {
-
+  margin-top: 20px;
+  padding: 10px;
+  border-radius: $radius-middle;
+  border: 1px solid $border-light;
   .ac-month-name {
     width: 9px;
     margin-right: 3px;
     display: inline-block;
-    font-size: 9px;
+    font-size: 10px;
     &:last-child {
       margin-right: 0;
     }

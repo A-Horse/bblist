@@ -23,7 +23,7 @@ export default class Profile extends Component {
           <div>{user.email}</div>
           <div>{user.name}</div>
           <img ref='avator' className='profile-avatar' crossOrigin='Anonymous'
-            src={makeGravatarUrl(user.email, 300)}/>
+            src={makeGravatarUrl(user.email, 200)}/>
           <p>
             We use <a target="_blank" href="https://www.gravatar.com/">Gravatar</a> to display you avatar.
             you can change avatar in gravatar by your email;

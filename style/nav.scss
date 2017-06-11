@@ -79,6 +79,9 @@ nav.nav {
        cursor: pointer;
        a {
          color: inherit;
+         display: inline-block;
+         height: 100%;
+         width: 100%;
        }
     }
   }
