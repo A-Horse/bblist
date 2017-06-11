@@ -1,28 +1,25 @@
-import React, {Component} from 'react';
-import {Modal} from 'components/widget/Modal';
-import {DateIcon, CloseIcon} from 'services/svg-icons';
-import {weekFirstDay, weekDayName} from './constant';
-import {daysInMonth, firstDayInMonthOffset} from './util';
+import React, { Component } from 'react';
+import { weekDayName } from './constant';
+import { daysInMonth, firstDayInMonthOffset } from './util';
 import Week from './Week';
-import {Button} from 'components/widget/Button';
 
 class Month extends Component {
 
   constructor() {
     super();
-    
+
   }
 
   onClick() {
-    
+
   }
 
   onClose() {
-    
+
   }
 
   onSelect() {
-    
+
   }
 
   renderWeekText() {

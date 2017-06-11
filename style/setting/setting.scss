@@ -1,6 +1,6 @@
 @import 'style/variable';
 
-$setting-side-bar-width: 250px;
+$setting-side-bar-width: 200px;
 
 .setting-page {
   width: 80%;
@@ -12,7 +12,7 @@ $setting-side-bar-width: 250px;
   .setting-side-bar {
     width: $setting-side-bar-width;
     min-width: $setting-side-bar-width;
-
+    margin-right: 50px;
     // TODO board-setting same
     ul {
       background-color: $white;

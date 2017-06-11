@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {Modal} from 'components/widget/Modal';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Modal } from 'components/widget/Modal';
 import ReactCrop from 'react-image-crop';
-import {ImageUploader} from 'components/ImageUploader';
-import {makeRemoteUrl} from 'services/remote-storage';
+import { ImageUploader } from 'components/ImageUploader';
+import { makeRemoteUrl } from 'services/remote-storage';
 import Input from 'components/widget/Input';
 import Button from 'components/widget/Button';
 import Textarea from 'react-textarea-autosize';

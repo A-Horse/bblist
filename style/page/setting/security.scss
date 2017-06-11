@@ -1,0 +1,29 @@
+@import 'style/variable';
+
+.setting-security {
+  border-radius: $radius-small;
+  border: 1px solid $gray-light;
+  padding: 10px;
+
+  .heading {
+    color: $text-primary;
+    margin-bottom: 10px;
+  }
+
+  .input {
+    padding: 8px;
+    box-sizing: border-box;
+    border-radius: $radius-middle;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    width: 300px;
+    margin-bottom: 20px;
+
+  }
+
+  .section-heading {
+    color: $text-primary;
+    font-size: 22px;
+    margin-bottom: 10px;
+    font-weight: bolder;
+  }
+}

@@ -33,12 +33,11 @@ export class ActiveCalendar extends Component {
     }
     let domResult = [];
     for (let i = 0; i < 52; i++) {
-      const text = <div className="ac-month-name">{result[i] ? result[i] : ''}</div>;
+      const text = <div key={i} className="ac-month-name">{result[i] ? result[i] : ''}</div>;
       domResult.push(text);
     }
     return <div>{domResult}</div>
   }
-
 
   renderWeek(data, wi) {
     return (
@@ -50,6 +49,25 @@ export class ActiveCalendar extends Component {
          })}
       </div>
     );
+  }
+
+  renderLongestStreak(data) {
+    const n = R.compose(
+      R.apply(R.max),
+      R.map(R.length),
+      R.split('0')
+    )(data);
+    return <div key="longest">Longest Streak <span className="ac-spec-number">{n}</span> days.</div>;
+  }
+
+  renderCurrentStreak(data) {
+    const n = R.compose(
+      R.length,
+      R.head,
+      R.split('0'),
+      R.reverse
+    )(data);
+    return <div key="current">Current Streak <span className="ac-spec-number">{n}</span> days.</div>;
   }
 
   render() {
@@ -65,6 +83,8 @@ export class ActiveCalendar extends Component {
         <div className="ac-year">
           {weekColumns.map(::this.renderWeek)}
         </div>
+        {this.renderLongestStreak(data)}
+        {this.renderCurrentStreak(data)}
       </div>
     );
   }

@@ -5,6 +5,12 @@
   padding: 10px;
   border-radius: $radius-middle;
   border: 1px solid $border-light;
+
+  .ac-spec-number {
+    color: $red;
+    font-size: 18px;
+  }
+
   .ac-month-name {
     width: 9px;
     margin-right: 3px;

@@ -28,7 +28,7 @@ import TaskSettingPreference from 'containers/task/Setting/Preference';
 import Profile from 'containers/Profile';
 
 import Setting from 'containers/setting/Setting';
-import SettingSecurity from 'page/setting/Security';
+import SettingSecurity from 'containers/setting/Security';
 import SettingProfile from 'page/setting/Profile';
 
 import Body from 'components/Body';
