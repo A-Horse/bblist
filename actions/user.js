@@ -1,6 +1,5 @@
 import fetch from 'isomorphic-fetch';
 import { createConfig } from '../utils/header';
-import { handleHttpError } from '../services/handle-error';
 import { makeApiUrl } from 'utils/api';
 import {handleResponse, handleResponseWithoutJson} from 'utils/http-handle';
 
@@ -32,6 +31,6 @@ export function updatePassword(data) {
   return dispatch =>
     fetch(makeApiUrl('/update-password'), config)
     .then(handleResponseWithoutJson)
-    .then(response => dispatch(updatePasswordSuccess()))
+    .then(() => dispatch(updatePasswordSuccess()))
     .catch(updatePasswordFail());
 }
