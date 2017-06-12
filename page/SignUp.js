@@ -48,7 +48,7 @@ class SignUp extends Component {
             </div>
 
             <div>
-              <Input type='password' ref='repeat' name='bblist-repeat' required placeholder="Password Repeat"/>
+              <Input type='password' ref='confirmPassword' name='bblist-confirmPassword' required placeholder="Password ConfirmPassword"/>
             </div>
 
             <ErrorMsg messages={R.values(errorMessages)}/>
@@ -68,13 +68,13 @@ class SignUp extends Component {
   getSignUpData() {
     const name = this.refs.name.instance;
     const password = this.refs.password.instance;
-    const repeat = this.refs.repeat.instance;
+    const confirmPassword = this.refs.confirmPassword.instance;
     const email = this.refs.email.instance;
     return {
       name: name.value.trim(),
       password: password.value.trim(),
       email: email.value.trim(),
-      repeat: repeat.value.trim()
+      confirmPassword: confirmPassword.value.trim()
     };
   }
 
@@ -82,7 +82,7 @@ class SignUp extends Component {
     return validateFormValue(signUpData, {
       name: ['max@100#Name Up to 100 characters ', 'min@3#The name must be a minimum of three characters'],
       password: ['max@100#Password Up to 100 characters', 'min@6#min 6'],
-      repeat: [`eqTo@${signUpData.password}#password don't match`],
+      confirmPassword: [`eqTo@${signUpData.password}#password don't match`],
       email: ['email#email express wrong', 'max@150#max 150']
     });
 
