@@ -1,14 +1,13 @@
-import React, {Component} from 'react';
-
-import {validateFormValue} from '../services/validate-strategy';
+import React, { Component } from 'react';
+import { validateFormValue } from '../services/validate-strategy';
 import { browserHistory } from 'react-router';
-import {PageContainer} from 'components/widget/PageContainer';
-import {Input} from '../components/widget/Input';
-import {updateTitle} from 'services/title';
-import {Button} from '../components/widget/Button';
-import {LogoBan} from 'components/commons/LogoBan';
-import {ErrorMsg} from 'components/ErrorMsg';
-import {Link} from 'react-router';
+import { PageContainer } from 'components/widget/PageContainer';
+import { Input } from '../components/widget/Input';
+import { updateTitle } from 'services/title';
+import { Button } from '../components/widget/Button';
+import { LogoBan } from 'components/commons/LogoBan';
+import { ErrorMsg } from 'components/ErrorMsg';
+import { Link } from 'react-router';
 import R from 'ramda';
 
 import {
