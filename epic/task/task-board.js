@@ -1,3 +1,7 @@
+import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/mergeMap';
+import 'rxjs/add/operator/catch';
 import { ajax } from 'rxjs/observable/dom/ajax';
 import { AjaxObservable} from 'rxjs/observable/dom/AjaxObservable';
 import { TASKBOARD_RENAME_REQUEST, TASKBOARD_DESCRIPTION_UPDATE_REQUEST,

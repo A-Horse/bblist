@@ -43,7 +43,7 @@ import * as reducers from 'reducers';
 import rootEpic from './epic';
 
 // TODO 不应该全部引入
-import 'rxjs'; // https://redux-observable.js.org/docs/Troubleshooting.html RxJS operators are missing!
+/// import 'rxjs'; // https://redux-observable.js.org/docs/Troubleshooting.html RxJS operators are missing!
 
 import 'style/normalize.css';
 import 'style/app.scss';
