@@ -30,7 +30,7 @@ class TaskCardCreater extends Component {
   createCard() {
     const {dispatch} = this.props;
     const data = {
-      taskWallId: +this.props.wallId,
+      taskBoardId: +this.props.wallId,
       taskListId: +this.props.listId,
       title: this.refs.taskCardTitle.value.trim()
     };
