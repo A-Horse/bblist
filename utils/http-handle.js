@@ -1,5 +1,5 @@
 import {NotAuthError, NotFoundError, RequestError, ServerError, UnprocessableError,
-        UnKnownError} from './http-error';
+        UnKnownError, TimeoutError} from './http-error';
 
 function handleError(response) {
   switch(response.status) {
@@ -18,6 +18,8 @@ function handleError(response) {
   case 500:
     throw new ServerError();
     break;
+  case 504:
+    throw new TimeoutError();
   default:
     break;
   }

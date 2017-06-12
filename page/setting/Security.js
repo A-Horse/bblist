@@ -6,6 +6,8 @@ import { makeGravatarUrl } from 'services/gravatar';
 import Loading from 'components/widget/loading';
 import Input from 'components/widget/Input';
 import {Button} from 'components/widget/Button';
+import { ErrorMsg } from 'components/ErrorMsg';
+import { validateFormValue } from 'services/validate-strategy';
 
 import 'style/page/setting/security.scss';
 
@@ -22,23 +24,23 @@ export default class Security extends Component {
           <div className="section-heading">Password</div>
           <div className="heading">Old password</div>
           <div>
-            <Input className='input'/>
+            <Input type="password" className='input'/>
           </div>
 
           <div className="heading">New password</div>
           <div>
-            <Input className='input'/>
+            <Input type="password" className='input'/>
           </div>
 
           <div className="heading">Confirm new password</div>
           <div>
-            <Input className='input'/>
+            <Input type="password" className='input'/>
           </div>
 
           <Button className='signin-button'
             styleType='primary'
-            size='middle' onClick={() => {browserHistory.push('/signin')}}>
-            Sign In
+            size='middle'>
+            Update Passoword
           </Button>
         </section>
 

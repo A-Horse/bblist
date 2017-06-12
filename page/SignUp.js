@@ -71,7 +71,6 @@ class SignUp extends Component {
     const password = this.refs.password.instance;
     const repeat = this.refs.repeat.instance;
     const email = this.refs.email.instance;
-
     return {
       name: name.value.trim(),
       password: password.value.trim(),
@@ -107,7 +106,5 @@ class SignUp extends Component {
     });
   }
 }
-
-
 
 export default SignUp;

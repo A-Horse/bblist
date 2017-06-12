@@ -45,3 +45,11 @@ export class UnKnownError extends Error {
     this.name = this.constructor.name;
   }
 }
+
+export class TimeoutError extends Error {
+  constructor(message = 'Gateway timeout!') {
+    super(message);
+    this.message = message;
+    this.name = 'TimeoutError';
+  }
+}
