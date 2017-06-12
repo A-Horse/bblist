@@ -1,8 +1,7 @@
 import fetch from 'isomorphic-fetch';
-import {browserHistory} from 'react-router';
-import {createConfigWithAuth, createConfig} from '../utils/header';
-import {handleHttpError} from '../services/handle-error';
-import {makeApiUrl} from 'utils/api';
+import { createConfig } from '../utils/header';
+import { handleHttpError } from '../services/handle-error';
+import { makeApiUrl } from 'utils/api';
 
 export const SIGNUP_REQUEST = 'SIGNUP_REQUEST';
 export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
@@ -42,4 +41,3 @@ export function signUp(userInfo){
       }).catch(handleHttpError);
   };
 }
-

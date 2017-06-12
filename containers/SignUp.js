@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import {signUp} from '../actions/sign-up';
+import {signUp} from '../actions/signup';
 import SignUp from 'page/SignUp';
 
 const mapDispatchToProps = (dispatch) => {
@@ -12,7 +12,7 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state) => {
   return {
-    
+
   };
 };
 

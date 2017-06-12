@@ -1,11 +1,11 @@
 import { ajax } from 'rxjs/observable/dom/ajax';
-import {AjaxObservable} from 'rxjs/observable/dom/AjaxObservable';
-import {TASKBOARD_RENAME_REQUEST, TASKBOARD_DESCRIPTION_UPDATE_REQUEST,
-        updateTaskBoardSuccess} from 'actions/task/task-wall';
-import {makeApiUrl} from '../../utils/api';
-import {Observable} from 'rxjs/Observable';
-import {JWT_STORAGE_KEY} from '../../constants';
-import {getJWT} from 'utils/auth';
+import { AjaxObservable} from 'rxjs/observable/dom/AjaxObservable';
+import { TASKBOARD_RENAME_REQUEST, TASKBOARD_DESCRIPTION_UPDATE_REQUEST,
+        updateTaskBoardSuccess } from 'actions/task/task-wall';
+import { makeApiUrl } from '../../utils/api';
+import { Observable } from 'rxjs/Observable';
+import { JWT_STORAGE_KEY } from '../../constants';
+import { getJWT } from 'utils/auth';
 
 function patchTaskBoard(boardId, data) {
   const header = {};

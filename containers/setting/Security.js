@@ -1,9 +1,18 @@
 import { connect } from 'react-redux';
 import Security from 'page/setting/Security';
+import { bindActionCreators } from 'redux';
+
+
+
+const actions = {
+  updatePassword(data) {
+
+  }
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
-
+    actions: bindActionCreators(actions, dispatch)
   };
 };
 

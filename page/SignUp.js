@@ -12,7 +12,7 @@ import R from 'ramda';
 
 import {
   SIGNUP_REQUEST, SIGNUP_SUCCESS, SIGNUP_FAILURE
-} from '../actions/sign-up';
+} from '../actions/signup';
 
 import 'style/page/signup.scss';
 
@@ -85,7 +85,6 @@ class SignUp extends Component {
       confirmPassword: [`eqTo@${signUpData.password}#password don't match`],
       email: ['email#email express wrong', 'max@150#max 150']
     });
-
   }
 
   signup(event) {

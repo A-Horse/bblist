@@ -1,7 +1,6 @@
-
 import {
   SIGNUP_REQUEST, SIGNUP_SUCCESS, SIGNUP_FAILURE
-} from '../actions/sign-up';
+} from '../actions/signup';
 
 function signup(state = {
   isFetching: false
