@@ -9,10 +9,19 @@ export default class App extends Component {
     this.props.authUser();
   }
 
+  componentWillReceiveProps(newProps) {
+    if (!newProps.isFetching && !newProps.isAuthenticated) {
+      return browserHistory.push('/signin');
+    }
+  }
+
   render() {
     if (this.props.isFetching) {
       return <Loading/>;
+    } else if (!this.props.isFetching && !this.props.isAuthenticated) {
+      return null;
     } else {
+      console.log(this.props);
       return (<div><Nav/>{this.props.children}</div>)
     }
   }
