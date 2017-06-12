@@ -1,6 +1,4 @@
 import React, {Component} from 'react';
-import R from 'fw-ramda';
-import {connect} from 'react-redux';
 import {Link} from 'react-router';
 import {makeGravatarUrl} from 'services/gravatar';
 import {Storage, storageImage} from 'services/storage';

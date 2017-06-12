@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import R from 'fw-ramda';
+import R from 'ramda';
 import TaskList from './TaskList';
 import CardModal from './CardModal';
 import { PageContainer } from 'components/widget/PageContainer';

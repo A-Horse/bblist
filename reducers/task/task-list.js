@@ -20,7 +20,7 @@ import {
 
 import {CLEAR_BOARD} from 'actions/task/task';
 
-import R from 'fw-ramda';
+import R from 'ramda';
 
 function taskList(state = {
   virtualIndex: -1,

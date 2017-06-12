@@ -1,7 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-
 import {Modal} from './Modal';
-import R from 'fw-ramda';
 import {getAssets} from '../../services/assets-manager';
 
 const modalStyles = {
@@ -29,38 +27,28 @@ const modalStyles = {
   }
 };
 
-const styles = {
-  main: {
-    
-  },
-  close: {
-    position: 'absolute',
-    
-  }
-};
-
 export class ConfirmModal extends Component {
   propTypes: {
     confirmFn: PropTypes.func.isRequired
   }
-  
+
   constructor() {
     super();
     this.state = {
       toggle: false
     };
   }
-  
+
   init() {
-    
+
   }
 
   componentDidMount() {
-    
+
   }
 
   componentDidUpdate() {
-    
+
   }
 
   cancel() {
@@ -80,7 +68,7 @@ export class ConfirmModal extends Component {
   open() {
     this.setState({toggle: true})
   }
-  
+
   render() {
     return (
       <Modal styles={modalStyles} toggle={this.state.toggle}>

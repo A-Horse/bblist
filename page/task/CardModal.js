@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
-import R from 'fw-ramda';
+import R from 'ramda';
 import moment from 'moment';
 
 import { deleteTaskCard, updateTaskCard, unactiveCardModal, getCardDetail } from 'actions/task/task-card';

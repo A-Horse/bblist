@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {browserHistory} from 'react-router';
-import R from 'fw-ramda';
+
 import {SettingIcon, StarBorderIcon} from 'services/svg-icons';
 import {updateTitle} from 'services/title';
 import {Link} from 'react-router';
@@ -21,7 +21,7 @@ class Board extends Component {
   componentWillMount() {
     const {id} = this.props.params;
     this.getTasks(id).then(() => {
-      
+
     }).catch(error => {
       // TODO 404
     });
@@ -34,7 +34,7 @@ class Board extends Component {
   getTasks(id) {
     return this.props.getBoardData(id);
   }
-  
+
   renderSetttingArea() {
     return (
       <div className='taskboard-header-setting' onClick={() => browserHistory.push(`/task-wall/${this.props.params.id}/setting/infomation`)}>
