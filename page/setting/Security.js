@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 import { PageContainer } from 'components/widget/PageContainer';
 import { makeGravatarUrl } from 'services/gravatar';
-import Loading from 'components/widget/loading';
 import Input from 'components/widget/Input';
 import {Button} from 'components/widget/Button';
 import { ErrorMsg } from 'components/ErrorMsg';
