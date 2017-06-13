@@ -1,4 +1,4 @@
-import {browserHistory} from 'react-router';
+import { Storage } from '../services/storage';
 import {
   LOGOUT_REQUEST, LOGOUT_SUCCESS, LOGOUT_FAILURE
 } from 'actions/logout';
@@ -14,7 +14,7 @@ function logout(state = {
     });
     break;
   case LOGOUT_SUCCESS:
-    destoryAuthData();
+    Storage.clear();
     return Object.assign({}, state, {
       isFetching: false
     });

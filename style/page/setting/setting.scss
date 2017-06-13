@@ -9,6 +9,28 @@ $setting-side-bar-width: 200px;
   padding-top: 30px;
   align-items: flex-start;
 
+  .heading {
+    color: $text-primary;
+    margin-bottom: 10px;
+  }
+
+  .input {
+    padding: 8px;
+    box-sizing: border-box;
+    border-radius: $radius-middle;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    width: 300px;
+    margin-bottom: 20px;
+
+  }
+
+  .section-heading {
+    color: $text-primary;
+    font-size: 22px;
+    margin-bottom: 10px;
+    font-weight: bolder;
+  }
+
   .setting-side-bar {
     width: $setting-side-bar-width;
     min-width: $setting-side-bar-width;

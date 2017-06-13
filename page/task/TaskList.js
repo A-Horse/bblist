@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {browserHistory} from 'react-router';
-
+import R from 'ramda';
 
 import TaskCard from './TaskCard';
 import TaskCardCreater from './TaskCardCreater';

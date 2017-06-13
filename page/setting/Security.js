@@ -25,7 +25,8 @@ export default class Security extends Component {
 
     const data = {
       oldPassword: oldPassword.value,
-      newPassword: newPassword.value
+      newPassword: newPassword.value,
+      confirmPassword: newPassword.value
     };
     const errorMessages = validateFormValue(data, {
       confirmPassword: [`eqTo@${data.newPassword}#password don't match`]
@@ -34,7 +35,7 @@ export default class Security extends Component {
     if (Object.keys(errorMessages).length) {
       return;
     }
-    this.props.action.updatePassword(signUpData);
+    this.props.actions.updatePassword(data);
   }
 
   render() {

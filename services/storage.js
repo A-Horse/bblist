@@ -4,6 +4,9 @@ export const Storage = {
   get(key) {
     return window.localStorage.getItem(key);
   },
+  clear() {
+    return window.localStorage.clear();
+  },
   set(key, value) {
     return window.localStorage.setItem(key, value);
   },

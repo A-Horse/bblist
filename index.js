@@ -29,7 +29,7 @@ import Profile from 'containers/Profile';
 
 import Setting from 'containers/setting/Setting';
 import SettingSecurity from 'containers/setting/Security';
-import SettingProfile from 'page/setting/Profile';
+import SettingProfile from 'containers/setting/Profile';
 
 import Body from 'components/Body';
 

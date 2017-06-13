@@ -1,13 +1,11 @@
 import { connect } from 'react-redux';
-import Security from 'page/setting/Security';
+import Profile from 'page/setting/Profile';
 import { bindActionCreators } from 'redux';
 
 import { updatePassword } from 'actions/user';
 
 const actions = {
-  updatePassword(data) {
-    return dispatch => dispatch(updatePassword(data));
-  }
+
 };
 
 const mapDispatchToProps = (dispatch) => {
@@ -18,13 +16,13 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state) => {
   return {
-
+    user: state.auth.loginedUser
   };
 };
 
-const SecurityContainer = connect(
+const ProfileContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(Security);
+)(Profile);
 
-export default SecurityContainer;
+export default ProfileContainer;

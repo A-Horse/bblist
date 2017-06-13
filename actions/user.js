@@ -1,5 +1,5 @@
 import fetch from 'isomorphic-fetch';
-import { createConfig } from '../utils/header';
+import { createConfigWithAuth } from '../utils/header';
 import { makeApiUrl } from 'utils/api';
 import {handleResponse, handleResponseWithoutJson} from 'utils/http-handle';
 
@@ -27,9 +27,9 @@ function updatePasswordFail(message) {
 }
 
 export function updatePassword(data) {
-  const config = createConfig('POST', data);
+  const config = createConfigWithAuth('POST', data);
   return dispatch =>
-    fetch(makeApiUrl('/update-password'), config)
+    fetch(makeApiUrl('/user/update-password'), config)
     .then(handleResponseWithoutJson)
     .then(() => dispatch(updatePasswordSuccess()))
     .catch(updatePasswordFail());

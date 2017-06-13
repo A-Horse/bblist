@@ -1,11 +1,10 @@
-
 import React, { Component, PropTypes } from 'react';
 import fetch from 'isomorphic-fetch';
 import {connect } from 'react-redux';
 import {updateTitle} from 'services/title';
 import {Link, browserHistory} from 'react-router';
 
-import 'style/setting/setting.scss';
+import 'style/page/setting/setting.scss';
 
 export default class Setting extends Component {
   componentDidMount() {
