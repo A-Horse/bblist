@@ -34,3 +34,37 @@ export function updatePassword(data) {
     .then(() => dispatch(updatePasswordSuccess()))
     .catch(updatePasswordFail());
 }
+
+export const UPDATE_USERINFO_REQUEST = 'UPDATE_USERINFO_REQUEST';
+export const UPDATE_USERINFO_SUCCESS = 'UPDATE_USERINFO_SUCCESS';
+export const UPDATE_USERINFO_FAILURE = 'UPDATE_USERINFO_FAILURE';
+
+
+function requestUserInfoPassword() {
+  return  {
+    type: UPDATE_PASSWORD_REQUEST
+  };
+}
+
+function updateUserInfoSuccess(user) {
+  return {
+    type: UPDATE_PASSWORD_SUCCESS,
+    playload: user
+  };
+}
+
+function updateUserInfoFail(message) {
+  return {
+    type: UPDATE_PASSWORD_FAILURE,
+    playload: message
+  };
+}
+
+export function updateUserInfo(userId, data) {
+  const config = createConfigWithAuth('PATCH', data);
+  return dispatch =>
+    fetch(makeApiUrl(`/user/${userId}`), config)
+    .then(handleResponse)
+    .then((user) => dispatch(updateUserInfoSuccess(user)))
+    .catch(updateUserInfoFail());
+}

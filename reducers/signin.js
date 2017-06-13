@@ -3,7 +3,12 @@ import {
 } from 'actions/login';
 import { Storage } from 'services/storage';
 import { JWT_STORAGE_KEY, CACHED_USERNAME, CACHED_USERID, CACHED_USEREMAIL } from '../constants';
-import { saveAuthData } from 'utils/auth';
+import {
+  UPDATE_USERINFO_REQUEST, UPDATE_USERINFO_SUCCESS, UPDATE_USERINFO_FAILURE
+} from 'actions/user';
+import { saveJWT } from 'utils/auth';
+
+// TODO combine
 
 function signin(state = {
   isAuthenticated: Storage.get(JWT_STORAGE_KEY) ? true : false,
@@ -17,11 +22,7 @@ function signin(state = {
     });
     break;
   case LOGIN_SUCCESS:
-    const cachedData = {};
-    cachedData[CACHED_USEREMAIL] = action.user.email;
-    cachedData[CACHED_USERID] = action.user.id;
-    cachedData[CACHED_USERNAME] = action.user.username;
-    saveAuthData(action.jwt, cachedData);
+    saveJWT(action.jwt);
     return Object.assign({}, state, {
       isFetching: false,
       isAuthenticated: true
@@ -34,6 +35,8 @@ function signin(state = {
       errorMessage: action.message
     });
     break;
+
+
   default:
     return state;
   }

@@ -8,9 +8,9 @@ export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 
-export const LOGIN_AUTH_FAILURE = 'LOGIN_AUTH_FAILURE';
-export const LOGIN_AUTH_REQUEST = 'LOGIN_AUTH_REQUEST';
-export const LOGIN_AUTH_SUCCESS = 'LOGIN_AUTH_SUCCESS';
+export const AUTH_FAILURE = 'AUTH_FAILURE';
+export const AUTH_REQUEST = 'AUTH_REQUEST';
+export const AUTH_SUCCESS = 'AUTH_SUCCESS';
 
 function requestLogin(creds) {
   return {
@@ -40,26 +40,26 @@ function loginFail(message) {
 
 function canNotLoginAuth() {
   return {
-    type: LOGIN_AUTH_FAILURE
+    type: AUTH_FAILURE
   };
 }
 
 function requestAuthLogin() {
   return {
-    type: LOGIN_AUTH_REQUEST
+    type: AUTH_REQUEST
   };
 }
 
 function authLoginError(playload) {
   return {
-    type: LOGIN_AUTH_FAILURE,
+    type: AUTH_FAILURE,
     playload
   };
 }
 
 function authLoginSuccess(user) {
   return {
-    type: LOGIN_AUTH_SUCCESS,
+    type: AUTH_SUCCESS,
     user: user
   };
 }

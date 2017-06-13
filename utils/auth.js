@@ -27,10 +27,6 @@ export function destoryCachedData() {
   return Storage.remove(AUTH_DATA);
 }
 
-export function saveAuthData(jwt, data) {
-  saveJWT(jwt);
-  saveCachedData(data);
-}
 
 export function getAuthData(key) {
   const authData = JSON.parse(Storage.get(AUTH_DATA)) || {};

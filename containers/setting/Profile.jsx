@@ -5,7 +5,9 @@ import { bindActionCreators } from 'redux';
 import { updatePassword } from 'actions/user';
 
 const actions = {
+  updateUserInfo(data) {
 
+  }
 };
 
 const mapDispatchToProps = (dispatch) => {
