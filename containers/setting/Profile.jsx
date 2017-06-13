@@ -2,11 +2,11 @@ import { connect } from 'react-redux';
 import Profile from 'page/setting/Profile';
 import { bindActionCreators } from 'redux';
 
-import { updatePassword } from 'actions/user';
+import { updateUserInfo } from 'actions/user';
 
 const actions = {
-  updateUserInfo(data) {
-
+  updateUserInfo(userId, data) {
+    return dispatch => dispatch(updateUserInfo(userId, data));
   }
 };
 
