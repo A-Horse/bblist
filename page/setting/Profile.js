@@ -14,8 +14,11 @@ export default class Profile extends Component {
     this.state = {username: this.props.user.username};
   }
 
-  updateUsername() {
-
+  updateUsername(event) {
+    const username = this.refs.username;
+    this.props.actions.updateUserInfo(this.props.user.id, {
+      username: username.value.trim()
+    });
   }
 
   render() {
@@ -25,7 +28,7 @@ export default class Profile extends Component {
         <section className='setting-profile-username'>
           <div className="heading">Username:</div>
           <div>
-            <Input value={this.state.username} type="text" ref="username" name="profile-username" className='input'/>
+            <Input defaultValue={this.state.username} type="text" ref="username" name="profile-username" className='input'/>
             <Button className='update-button'
               styleType='primary'
               onClick={::this.updateUsername}
