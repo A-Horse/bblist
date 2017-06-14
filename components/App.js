@@ -6,7 +6,7 @@ import { browserHistory } from 'react-router';
 export default class App extends Component {
   componentWillMount() {
     // TODO props.actions
-    this.props.authUser();
+    this.props.actions.authUser();
   }
 
   componentWillReceiveProps(newProps) {

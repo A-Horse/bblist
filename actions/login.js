@@ -86,7 +86,7 @@ export function authUser() {
   return dispatch => {
     if (!token) return dispatch(canNotLoginAuth());
     dispatch(requestAuthLogin());
-    return fetch(makeApiUrl(`/signin?t=${new Date().getTime()}`), config)
+    return fetch(makeApiUrl(`/user/identify`), config)
       .then(handleResponse)
       .then(response => dispatch(authLoginSuccess(response)))
       .catch(err => dispatch(authLoginError(err.message)));

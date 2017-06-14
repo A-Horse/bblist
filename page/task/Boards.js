@@ -13,7 +13,7 @@ import 'style/page/task/taskboard-card.scss';
 
 class Boards extends Component {
   componentWillMount() {
-    return this.props.getAllTaskBoard();
+    return this.props.actions.getAllTaskBoard();
   }
 
   renderWalls() {
@@ -52,7 +52,7 @@ class Boards extends Component {
   render() {
     return (
       <PageContainer>
-        <TaskBoardCreater getAllTaskBoard={this.props.getAllTaskBoard} createTaskBoard={this.props.createTaskBoard}/>
+        <TaskBoardCreater getAllTaskBoard={this.props.getAllTaskBoard} createTaskBoard={this.props.actions.createTaskBoard}/>
         {this.renderContent()}
       </PageContainer>
     );

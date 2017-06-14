@@ -21,7 +21,7 @@ export default class Profile extends Component {
 
         <div className='profile-infomation'>
           <div>{user.email}</div>
-          <div>{user.name}</div>
+          <div>{user.username}</div>
           <img ref='avator' className='profile-avatar' crossOrigin='Anonymous'
             src={makeGravatarUrl(user.email, 200)}/>
           <p>

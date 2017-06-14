@@ -77,50 +77,49 @@ const history = syncHistoryWithStore(browserHistory, store);
 
 ReactDOM.render(
   <Provider store={store}>
-    <Body>
-      <Router history={history}>
-        <Route path='/'>
-          <IndexRoute path='' component={IndexPage}/>
 
-          <Route path='signin' component={SignIn}/>
-          <Route path='signup' component={SignUp}/>
+    <Router history={history}>
+      <Route path='/'>
+        <IndexRoute path='' component={IndexPage}/>
+
+        <Route path='signin' component={SignIn}/>
+        <Route path='signup' component={SignUp}/>
+      </Route>
+
+      <Route path='/' component={App} >
+
+        <Route path='home' component={DashBoard} onEnter={checkLogin}/>
+
+        <Route path="idea" component={Ideas}/>
+        <Route path='task-wall' component={Boards} onEnter={checkLogin}/>
+
+        <Route path='task-wall/' component={Board} onEnter={checkLogin}>
+          <Route path='/task-wall/:id' component={BoardContent}>
+            <Route path='/task-wall/:id/:cardId' component={TaskCardModal} />
+          </Route>
+          <Route path='/task-wall/:id/setting' component={BoardSetting}>
+            <Route path='infomation' component={TaskSettingInfomation}/>
+            <Route path='operation' component={TaskSettingOperation}/>
+            <Route path='preference' component={TaskSettingPreference}/>
+            <IndexRedirect to='infomation'/>
+          </Route>
         </Route>
 
-        <Route path='/' component={App} >
-
-          <Route path='home' component={DashBoard} onEnter={checkLogin}/>
-
-          <Route path="idea" component={Ideas}/>
-          <Route path='task-wall' component={Boards} onEnter={checkLogin}/>
-
-          <Route path='task-wall/' component={Board} onEnter={checkLogin}>
-            <Route path='/task-wall/:id' component={BoardContent}>
-              <Route path='/task-wall/:id/:cardId' component={TaskCardModal} />
-            </Route>
-            <Route path='/task-wall/:id/setting' component={BoardSetting}>
-              <Route path='infomation' component={TaskSettingInfomation}/>
-              <Route path='operation' component={TaskSettingOperation}/>
-              <Route path='preference' component={TaskSettingPreference}/>
-              <IndexRedirect to='infomation'/>
-            </Route>
-          </Route>
-
-          <Route path='setting' component={Setting} onEnter={checkLogin}>
-            <Route path='profile' component={SettingProfile}/>
-            <Route path='security' component={SettingSecurity}/>
-            <IndexRedirect to='profile'/>
-          </Route>
-
-          <Route path='todo' component={TodoPage}/>
-          <Route path='profile' component={Profile}/>
-
-          <Route path='404' component={NotFound} />
+        <Route path='setting' component={Setting} onEnter={checkLogin}>
+          <Route path='profile' component={SettingProfile}/>
+          <Route path='security' component={SettingSecurity}/>
+          <IndexRedirect to='profile'/>
         </Route>
 
+        <Route path='todo' component={TodoPage}/>
+        <Route path='profile' component={Profile}/>
 
-      </Router>
-      {/*<DevTools />*/}
-    </Body>
+        <Route path='404' component={NotFound} />
+      </Route>
+
+
+    </Router>
+    {/*<DevTools />*/}
   </Provider>,
   document.getElementById('root')
 );

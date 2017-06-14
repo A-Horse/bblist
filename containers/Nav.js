@@ -7,15 +7,14 @@ import {logout} from 'actions/logout';
 import {browserHistory} from 'react-router';
 
 const actions = {
-  authUser
+
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    // TODO logout staus error
     logout() {
       return dispatch(logout()).then(() => {
-        browserHistory.push('/');
+        browserHistory.push('/signin');
       });
     }
   };
