@@ -13,7 +13,6 @@ const actions = {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    user:
   };
 };
 
