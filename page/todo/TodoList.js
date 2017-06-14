@@ -1,31 +1,21 @@
-import React, {Component} from 'react';
-import {PageContainer} from 'components/widget/PageContainer';
-import {connect} from 'react-redux';
-import {browserHistory} from 'react-router';
-
-import {makeGravatarUrl} from 'services/gravatar';
+import React, { Component } from 'react';
+import { PageContainer } from 'components/widget/PageContainer';
+import { connect } from 'react-redux';
 import TodoCreater from './TodoCreater';
-import DatePicker from 'components/date-picker/DatePicker';
 import Todo from './Todo';
 
-import {createTodo, getTodoList} from 'actions/todo/todos';
+import { createTodo, getTodoList } from 'actions/todo/todos';
 
 import 'style/page/todo/todo-list.scss';
 
 class TodoList extends Component {
   componentWillMount() {
-    this.state = {
-      
-    };
-  }
-
-  componentWillMount() {
     const {dispatch} = this.props;
     dispatch(getTodoList());
   }
-  
+
   componentDidUpdate() {
-    
+
   }
 
   renderList() {

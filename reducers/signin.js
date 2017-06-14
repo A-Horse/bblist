@@ -21,11 +21,10 @@ function signin(state = {
     break;
   case LOGIN_SUCCESS:
     // TODO 优化
-    const cachedData = {};
-    cachedData[CACHED_USEREMAIL] = action.user.email;
-    cachedData[CACHED_USERID] = action.user.id;
-    cachedData[CACHED_USERNAME] = action.user.username;
+
     saveAuthData(action.jwt, cachedData);
+
+    saveAuthData(action.playload);
 
     return Object.assign({}, state, {
       isFetching: false,

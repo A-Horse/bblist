@@ -1,9 +1,9 @@
 import fetch from 'isomorphic-fetch';
-import {createConfigWithAuth} from 'utils/header';
-import {handleResponse, handleResponseWithoutJson} from 'utils/http-handle';
-import {getAuthData} from 'utils/auth';
-import {CACHED_USERID} from '../../constants';
-import {makeApiUrl} from 'utils/api';
+import { createConfigWithAuth } from 'utils/header';
+import { handleResponse, handleResponseWithoutJson } from 'utils/http-handle';
+import { getCachedUserId } from 'utils/auth';
+import { CACHED_USERID } from '../../constants';
+import { makeApiUrl } from 'utils/api';
 
 export const TODOLIST_GET_REQUEST = 'TODOLIST_GET_REQUEST';
 export const TODOLIST_GET_SUCCESS = 'TODOLIST_GET_SUCCESS';
@@ -118,7 +118,7 @@ export function destroyTodo(id) {
 
 export function getTodoList() {
   const config = createConfigWithAuth('GET');
-  const userId = getAuthData(CACHED_USERID);
+  const userId = getCachedUserId();
   return dispatch => {
     dispatch(requestTodoList());
     return fetch(makeApiUrl(`/user/${userId}/todo`), config)

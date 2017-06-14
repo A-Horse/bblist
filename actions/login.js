@@ -21,11 +21,10 @@ function requestLogin(creds) {
   };
 }
 
-function receiveLogin(token, user) {
+function receiveLogin(jwt, user) {
   return {
     type: LOGIN_SUCCESS,
-    jwt: token,
-    user
+    playload: {jwt, user}
   };
 }
 

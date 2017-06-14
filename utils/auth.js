@@ -18,14 +18,23 @@ export function saveJWT(jwt) {
   return Storage.set(AUTH_DATA, JSON.stringify(authData));
 }
 
+export function getCachedUserId() {
+  return getAuthData(CACHED_USERID);
+}
+
 export function saveCachedData(data) {
   const authData = getAuthData();
   return Storage.set(AUTH_DATA, JSON.stringify(Object.assign({}, authData, data)));
 }
 
-export function saveAuthData(jwt, data) {
-  saveJWT(jwt);
-  saveCachedData(data);
+export function saveAuthData(playload) {
+  const cachedData = {};
+  cachedData[CACHED_USEREMAIL] = playload.user.email;
+  cachedData[CACHED_USERID] = playload.user.id;
+  cachedData[CACHED_USERNAME] = playload.user.username;
+
+  saveJWT(playload.jwt);
+  saveCachedData(cachedData);
 }
 
 export function getAuthData(key) {
