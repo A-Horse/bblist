@@ -13,6 +13,7 @@ const actions = {
 const mapDispatchToProps = (dispatch) => {
   return {
     logout() {
+      console.log('lout');
       return dispatch(logout()).then(() => {
         browserHistory.push('/signin');
       });

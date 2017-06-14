@@ -68,7 +68,7 @@ class Nav extends Component {
                   setting
                 </Link>
               </li>
-              <li onClick={this.props.logout}>logout</li>
+              <li onClick={this.props.actions.logout}>logout</li>
             </section>
           </ul>
         </DropList>

@@ -14,22 +14,19 @@ function signin(state = {
 }, action) {
   switch (action.type) {
   case LOGIN_REQUEST:
-    return Object.assign({}, state, {
+    return {
+      ...state,
       isFetching: true,
       user: action.creds
-    });
+    };
     break;
   case LOGIN_SUCCESS:
-    // TODO 优化
-
-    saveAuthData(action.jwt, cachedData);
-
     saveAuthData(action.playload);
-
-    return Object.assign({}, state, {
+    return {
+      ...state,
       isFetching: false,
       isAuthenticated: true
-    });
+    };
     break;
   case LOGIN_FAILURE:
     return Object.assign({}, state, {
