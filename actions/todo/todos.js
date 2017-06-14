@@ -140,7 +140,7 @@ export function updateTodo(id, data) {
 
 export function createTodo(data) {
   const config = createConfigWithAuth('POST', data);
-  const userId = getAuthData(CACHED_USERID);
+  const userId = getCachedUserId();
   return dispatch => {
     dispatch(requestCreateTodo());
     return fetch(makeApiUrl(`/user/${userId}/todo`), config)
