@@ -1,5 +1,5 @@
 import {
-  AUTH_REQUEST, AUTH_SUCCESS, AUTH_FAILURE,
+  IDENTIFY_REQUEST, IDENTIFY_SUCCESS, IDENTIFY_FAILURE,
 } from '../actions/login';
 import {
   UPDATE_USERINFO_REQUEST, UPDATE_USERINFO_SUCCESS, UPDATE_USERINFO_FAILURE
@@ -12,20 +12,20 @@ function auth(state = {
   isFetching: true
 }, action) {
   switch (action.type) {
-  case AUTH_REQUEST:
+  case IDENTIFY_REQUEST:
     return Object.assign({}, state, {
       isFetching: true,
       isAuthenticated: false
     });
     break;
-  case AUTH_SUCCESS:
+  case IDENTIFY_SUCCESS:
     return Object.assign({}, state, {
       isFetching: false,
       isAuthenticated: true,
       loginedUser: action.user
     });
     break;
-  case AUTH_FAILURE:
+  case IDENTIFY_FAILURE:
     // TODO remove data when jwt expries
     return Object.assign({}, state, {
       isFetching: false,

@@ -8,6 +8,7 @@ import { ErrorMsg } from 'components/ErrorMsg';
 import { PageContainer } from '../components/widget/PageContainer';
 import { Link } from 'react-router';
 import { updateTitle } from 'services/title';
+import { browserHistory } from 'react-router';
 import R from 'ramda';
 
 import 'style/page/signin.scss';
@@ -20,6 +21,12 @@ class SignIn extends Component {
 
   componentDidMount() {
     updateTitle('Sign In');
+  }
+
+  componentWillReceiveProps(newProps) {
+    if (newProps.isAuthenticated) {
+      browserHistory.push('/home');
+    }
   }
 
   render() {
@@ -70,7 +77,8 @@ class SignIn extends Component {
     if (Object.keys(errorMessages).length) {
       return;
     }
-    this.props.login(loginInfo);
+    this.props.actions.signin(loginInfo);
+
   }
 }
 

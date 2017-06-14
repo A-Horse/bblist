@@ -1,13 +1,13 @@
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import App from 'components/App';
-import {authUser} from 'actions/login';
-import {removeCachedData} from 'utils/auth';
-import {wrapDispathToAction} from 'utils/wrap-props';
-import {logout} from 'actions/logout';
-import {browserHistory} from 'react-router';
+import { indentifyUser } from 'actions/login';
+import { removeCachedData } from 'utils/auth';
+import { wrapDispathToAction } from 'utils/wrap-props';
+import { logout } from 'actions/logout';
+import { browserHistory } from 'react-router';
 
 const actions = {
-  authUser,
+  indentifyUser,
   removeCachedData
 };
 

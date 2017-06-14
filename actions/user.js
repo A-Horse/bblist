@@ -1,7 +1,8 @@
 import fetch from 'isomorphic-fetch';
 import { createConfigWithAuth } from '../utils/header';
 import { makeApiUrl } from 'utils/api';
-import {handleResponse, handleResponseWithoutJson} from 'utils/http-handle';
+import { handleResponse, handleResponseWithoutJson } from 'utils/http-handle';
+import { authUser } from './login';
 
 export const UPDATE_PASSWORD_REQUEST = 'UPDATE_PASSWORD_REQUEST';
 export const UPDATE_PASSWORD_SUCCESS = 'UPDATE_PASSWORD_SUCCESS';
@@ -39,7 +40,6 @@ export const UPDATE_USERINFO_REQUEST = 'UPDATE_USERINFO_REQUEST';
 export const UPDATE_USERINFO_SUCCESS = 'UPDATE_USERINFO_SUCCESS';
 export const UPDATE_USERINFO_FAILURE = 'UPDATE_USERINFO_FAILURE';
 
-
 function requestUserInfoPassword() {
   return  {
     type: UPDATE_PASSWORD_REQUEST
@@ -65,6 +65,11 @@ export function updateUserInfo(userId, data) {
   return dispatch =>
     fetch(makeApiUrl(`/user/${userId}`), config)
     .then(handleResponse)
-    .then((user) => dispatch(updateUserInfoSuccess(user)))
+    .then((user) => {
+      return Promise.all([
+        dispatch(updateUserInfoSuccess(user)),
+        dispatch(authUser(userId))
+      ]);
+    })
     .catch(updateUserInfoFail());
 }

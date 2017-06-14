@@ -1,27 +1,22 @@
 import { connect } from 'react-redux';
 import { signin } from 'actions/login';
 import SignIn from 'page/SignIn';
-import { browserHistory } from 'react-router';
+import { wrapDispathToAction } from 'utils/wrap-props';
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    login(authData) {
-      return dispatch(signin(authData)).then(() => {
-        browserHistory.push('/home');
-      });
-    }
-  };
+const actions = {
+  signin
 };
 
 const mapStateToProps = (state) => {
   return {
-    loginErrorMessages: state.signin.errorMessage ? [state.signin.errorMessage] : []
+    loginErrorMessages: state.signin.errorMessage ? [state.signin.errorMessage] : [],
+    isAuthenticated: state.signin.isAuthenticated
   };
 };
 
 const SignInContainer = connect(
   mapStateToProps,
-  mapDispatchToProps
+  wrapDispathToAction(actions)
 )(SignIn);
 
 export default SignInContainer;

@@ -2,10 +2,8 @@ import {
   LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE,
 } from 'actions/login';
 import { Storage } from 'services/storage';
-import { JWT_STORAGE_KEY, CACHED_USERNAME, CACHED_USERID, CACHED_USEREMAIL } from '../constants';
-import {
-  UPDATE_USERINFO_REQUEST, UPDATE_USERINFO_SUCCESS, UPDATE_USERINFO_FAILURE
-} from 'actions/user';
+import { JWT_STORAGE_KEY } from '../constants';
+import { AUTH_SUCCESS } from 'actions/login';
 import { saveJWT } from 'utils/auth';
 
 // TODO combine
@@ -34,6 +32,13 @@ function signin(state = {
       isAuthenticated: false,
       errorMessage: action.message
     });
+    break;
+
+  case AUTH_SUCCESS:
+    saveJWT(action.jwt);
+    return {
+      ...state
+    };
     break;
 
 
