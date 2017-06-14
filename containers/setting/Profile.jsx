@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 
 import { updateUserInfo } from 'actions/user';
 
+// TODO:
 const actions = {
   updateUserInfo(userId, data) {
     return dispatch => dispatch(updateUserInfo(userId, data));

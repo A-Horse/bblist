@@ -1,5 +1,5 @@
-import {AUTH_DATA, JWT_STORAGE_KEY, CACHED_USERNAME, CACHED_USERID, CACHED_USEREMAIL} from '../constants';
-import {Storage} from '../services/storage';
+import { AUTH_DATA, JWT_STORAGE_KEY, CACHED_USERNAME, CACHED_USERID, CACHED_USEREMAIL } from '../constants';
+import { Storage} from '../services/storage';
 
 export function checkLogin(state, replace) {
   if(!Storage.get(AUTH_DATA)) {
@@ -23,17 +23,13 @@ export function saveCachedData(data) {
   return Storage.set(AUTH_DATA, JSON.stringify(Object.assign({}, authData, data)));
 }
 
-export function destoryCachedData() {
-  return Storage.remove(AUTH_DATA);
+export function saveAuthData(jwt, data) {
+  saveJWT(jwt);
+  saveCachedData(data);
 }
-
 
 export function getAuthData(key) {
   const authData = JSON.parse(Storage.get(AUTH_DATA)) || {};
   if (key) return authData[key];
   return authData;
-}
-
-export function destoryAuthData() {
-  Storage.remove(AUTH_DATA);
 }

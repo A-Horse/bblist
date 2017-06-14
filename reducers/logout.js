@@ -2,7 +2,6 @@ import { Storage } from '../services/storage';
 import {
   LOGOUT_REQUEST, LOGOUT_SUCCESS, LOGOUT_FAILURE
 } from 'actions/logout';
-import {destoryAuthData} from 'utils/auth';
 
 function logout(state = {
   isFetching: false

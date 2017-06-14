@@ -1,10 +1,10 @@
 import {
   LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE,
 } from 'actions/login';
+import {AUTH_DATA, JWT_STORAGE_KEY, CACHED_USERNAME, CACHED_USERID, CACHED_USEREMAIL} from '../constants';
 import { Storage } from 'services/storage';
-import { JWT_STORAGE_KEY } from '../constants';
 import { AUTH_SUCCESS } from 'actions/login';
-import { saveJWT } from 'utils/auth';
+import { saveAuthData, saveJWT } from 'utils/auth';
 
 // TODO combine
 
@@ -20,7 +20,13 @@ function signin(state = {
     });
     break;
   case LOGIN_SUCCESS:
-    saveJWT(action.jwt);
+    // TODO 优化
+    const cachedData = {};
+    cachedData[CACHED_USEREMAIL] = action.user.email;
+    cachedData[CACHED_USERID] = action.user.id;
+    cachedData[CACHED_USERNAME] = action.user.username;
+    saveAuthData(action.jwt, cachedData);
+
     return Object.assign({}, state, {
       isFetching: false,
       isAuthenticated: true
@@ -35,7 +41,7 @@ function signin(state = {
     break;
 
   case AUTH_SUCCESS:
-    saveJWT(action.jwt);
+    saveJWT(action.playload.jwt);
     return {
       ...state
     };
