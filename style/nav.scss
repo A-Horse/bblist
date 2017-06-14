@@ -65,18 +65,20 @@ nav.nav {
   .drop-list {
     width: 180px;
     border-radius: $radius-middle;
-     section {
-       border-bottom: 1px solid $color-divider;
-       &:last-child {
-         border-bottom: none;
-       }
-     }
-
+    box-shadow: 0 0 3px #eee;
      li {
        padding: 0 10px;
        font-size: $font-size-sm;
        color: $text-primary;
        cursor: pointer;
+       border-bottom: 1px solid $color-divider;
+       text-overflow: ellipsis;
+       overflow: hidden;
+       white-space: nowrap;
+
+       &:last-child {
+         border-bottom: none;
+       }
        a {
          color: inherit;
          display: inline-block;

@@ -54,22 +54,14 @@ class Nav extends Component {
         {this.renderAvatar()}
         <DropList toggle={this.state.dropDownToggle}>
           <ul>
-            <section>
-              <li>Signed in as <strong>{userName}</strong></li>
-            </section>
-            <section>
-              <li>
-                <Link to='/profile'>Profile</Link>
-              </li>
-            </section>
-            <section>
-              <li>
-                <Link to='/setting'>
-                  setting
-                </Link>
-              </li>
-              <li onClick={this.props.actions.logout}>logout</li>
-            </section>
+            <li>Signed in as <strong>{userName}</strong></li>
+            <li><Link to='/profile'>Profile</Link></li>
+            <li>
+              <Link to='/setting'>
+                setting
+              </Link>
+            </li>
+            <li onClick={this.props.actions.logout}>logout</li>
           </ul>
         </DropList>
       </ClickOutSide>

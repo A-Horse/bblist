@@ -1,7 +1,7 @@
 import {
   LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE,
 } from 'actions/login';
-import {AUTH_DATA, JWT_STORAGE_KEY, CACHED_USERNAME, CACHED_USERID, CACHED_USEREMAIL} from '../constants';
+import { JWT_STORAGE_KEY } from '../constants';
 import { Storage } from 'services/storage';
 import { AUTH_SUCCESS } from 'actions/login';
 import { saveAuthData, saveJWT } from 'utils/auth';
