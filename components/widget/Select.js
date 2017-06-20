@@ -7,7 +7,7 @@ export class Select extends Component {
     items: PropTypes.array.isRequired,
     value: PropTypes.isRequired
   }
-  
+
   constructor() {
     super();
     this.state = {
@@ -18,7 +18,7 @@ export class Select extends Component {
   }
 
   componentDidMount() {
-    this.props.defaultItem && this.setState(this.props.defaultItem);  
+    this.props.defaultItem && this.setState(this.props.defaultItem);
   }
 
   componentDidUpdate() {}
@@ -26,7 +26,7 @@ export class Select extends Component {
   componentWillReceiveProps(newProps) {
     newProps.defaultItem && this.setState(newProps.defaultItem);
   }
-  
+
   openSelect() {
     this.setState({toggle: !this.state.toggle});
   }
@@ -43,7 +43,7 @@ export class Select extends Component {
     this.setState({value: item.value, name: item.name, toggle: false});
     this.props.onSelect && this.props.onSelect(item);
   }
-  
+
   render() {
     return (
       <div className='select'>
@@ -52,7 +52,7 @@ export class Select extends Component {
           <ArrowDown/>
         </div>
         <ul className='select--container' style={{display: this.state.toggle ? 'block' : 'none'}}>
-          {this.renderItems()}
+        {this.renderItems()}
         </ul>
       </div>
     );

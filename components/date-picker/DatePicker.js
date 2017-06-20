@@ -46,7 +46,7 @@ class DatePicker extends Component {
   close() {
     this.setState({toggle: false});
   }
-  
+
   nextMonth() {
     this.state.month === 12 ? this.setState({month: 1, year: this.state.year + 1}) :
     this.setState({month: this.state.month + 1});
@@ -72,6 +72,7 @@ class DatePicker extends Component {
       month: date.getMonth() + 1,
       day: date.getDate()
     });
+    this.props.onSelected && this.props.onSelected(date);
     this.close();
   }
 

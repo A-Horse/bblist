@@ -1,16 +1,16 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
+import React, { Component } from 'react';
 import { CheckBox } from 'components/widget/CheckBox';
 import { StarCheckBox } from 'components/widget/StarCheckBox';
 import DatePicker from 'components/date-picker/DatePicker';
-import {getTodoList, updateTodo, destroyTodo} from 'actions/todo/todos';
-import {MoreIcon, StarBorderIcon, DeleteIcon} from 'services/svg-icons';
+import { getTodoList, updateTodo, destroyTodo } from 'actions/todo/todos';
+import { MoreIcon, StarBorderIcon, DeleteIcon } from 'services/svg-icons';
 import { IconDelete } from 'services/image-icon';
 import Textarea from 'react-textarea-autosize';
-import {Button} from 'components/widget/Button';
-import {DropList} from 'components/widget/DropList';
+import { Button } from 'components/widget/Button';
+import { DropList } from 'components/widget/DropList';
 import ClickOutSide from 'components/utils/ClickOutSide';
-import {timeout} from 'utils/timeout';
+import { timeout } from 'utils/timeout';
+import moment from 'moment';
 
 import 'style/page/todo/todo.scss';
 
@@ -27,11 +27,6 @@ class Todo extends Component {
       operationToggle: false
     };
   }
-
-  finishTodo() {
-
-  }
-
 
   onClick() {
 
@@ -96,8 +91,16 @@ class Todo extends Component {
     }
   }
 
+  buildRepeatSelectItems() {
+    return [
+      { name: 'Every Day', value: 1 },
+      { name: 'Two Day', value: 2 },
+      { name: 'Week', value: 7 },
+    ]
+  }
+
   render() {
-    const {todo} = this.props;
+    const { todo } = this.props;
     return (
       <ClickOutSide onClickOutside={::this.onClickOutside} >
         <div className='todo' ref='main' onClick={this.onClick.bind(this)}>
@@ -106,18 +109,27 @@ class Todo extends Component {
             <p style={{display: !this.state.editToggle ? 'block' : 'none'}} className='todo--content' onClick={this.onContentClick.bind(this)}>{todo.content}</p>
             <Textarea ref='content' onKeyDown={this.onContendChanged.bind(this)} className='todo--content__input' style={{display: this.state.editToggle ? 'block' : 'none'}} defaultValue={todo.content}></Textarea>
 
+            <div className="todo-deadline-label">
+              <span>{new moment(todo.deadline).format('MM-DD HH:MM:SS')}</span>
+            </div>
+
             <div className='todo-hover-operation'>
               <IconDelete onClick={::this.destroyTodo}/>
             </div>
 
-            <StarCheckBox defaultChecked={todo.isStar} onChange={(checked) => {}}/>
+            <StarCheckBox defaultChecked={todo.isStar} onChange={(checked) => {this.updateTodo({isStar: checked})}}/>
           </div>
 
           <div className='todo-editing--meta' style={{display: this.state.editToggle ? 'block' : 'none'}}>
-
             <div className='todo-editing--deadline'>
               <label>Deadline:</label>
-              <DatePicker ref='date-picker' defaultValue={todo.deadline}/>
+              <DatePicker ref='date-picker' defaultValue={todo.deadline} onSelected={(date) => this.updateTodo({deadline: date.getTime()})}/>
+            </div>
+
+            <div className="todo-editing--repeat">
+              <label>Repeat:</label>
+              <Select items={this.buildRepeatSelectItems()}
+                onSelect={(repeat) => this.updateTodo({repeat: repeat.value})}/>
             </div>
           </div>
         </div>
@@ -126,9 +138,4 @@ class Todo extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-  };
-};
-
-export default connect(mapStateToProps)(Todo);
+export default Todo;

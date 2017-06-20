@@ -21,7 +21,7 @@ export default class App extends Component {
     } else if (!this.props.isFetching && !this.props.isAuthenticated) {
       return null;
     } else {
-      return (<div><Nav/>{this.props.children}</div>)
+      return <div><Nav/>{this.props.children}</div>;
     }
   }
 }

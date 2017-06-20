@@ -52,7 +52,8 @@ class Boards extends Component {
   render() {
     return (
       <PageContainer>
-        <TaskBoardCreater getAllTaskBoard={this.props.getAllTaskBoard} createTaskBoard={this.props.actions.createTaskBoard}/>
+        <TaskBoardCreater getAllTaskBoard={this.props.actions.getAllTaskBoard}
+          createTaskBoard={this.props.actions.createTaskBoard}/>
         {this.renderContent()}
       </PageContainer>
     );
