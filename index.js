@@ -71,7 +71,7 @@ const store = createStore(
   reducer,
   // DevTools.instrument(),
   applyMiddleware(
-    thunkMiddleware, // 允许我们 dispatch() 函数
+    thunkMiddleware,
     epicMiddleware
   )
 );
@@ -84,41 +84,41 @@ ReactDOM.render(
 
     <Router history={history}>
       <Route path='/'>
-        <IndexRoute path='' component={IndexPage}/>
+        <IndexRoute path='' component={ IndexPage }/>
 
-        <Route path='signin' component={SignIn}/>
-        <Route path='signup' component={SignUp}/>
+        <Route path='signin' component={ SignIn }/>
+        <Route path='signup' component={ SignUp }/>
       </Route>
 
-      <Route path='/' component={App} >
+      <Route path='/' component={ App } >
 
-        <Route path='home' component={DashBoard} onEnter={checkLogin}/>
+        <Route path='home' component={ DashBoard } onEnter={ checkLogin }/>
 
-        <Route path="idea" component={Ideas}/>
-        <Route path='task-wall' component={Boards} onEnter={checkLogin}/>
+        <Route path="idea" component={ Ideas }/>
+        <Route path='task-wall' component={ Boards } onEnter={ checkLogin }/>
 
-        <Route path='task-wall/' component={Board} onEnter={checkLogin}>
-          <Route path='/task-wall/:id' component={BoardContent}>
-            <Route path='/task-wall/:id/:cardId' component={TaskCardModal} />
+        <Route path='task-wall/' component={ Board } onEnter={ checkLogin }>
+          <Route path='/task-wall/:id' component={ BoardContent }>
+            <Route path='/task-wall/:id/:cardId' component={ TaskCardModal } />
           </Route>
-          <Route path='/task-wall/:id/setting' component={BoardSetting}>
-            <Route path='infomation' component={TaskSettingInfomation}/>
-            <Route path='operation' component={TaskSettingOperation}/>
-            <Route path='preference' component={TaskSettingPreference}/>
+          <Route path='/task-wall/:id/setting' component={ BoardSetting }>
+            <Route path='infomation' component={ TaskSettingInfomation }/>
+            <Route path='operation' component={ TaskSettingOperation }/>
+            <Route path='preference' component={ TaskSettingPreference }/>
             <IndexRedirect to='infomation'/>
           </Route>
         </Route>
 
-        <Route path='setting' component={Setting} onEnter={checkLogin}>
-          <Route path='profile' component={SettingProfile}/>
-          <Route path='security' component={SettingSecurity}/>
+        <Route path='setting' component={ Setting } onEnter={ checkLogin }>
+          <Route path='profile' component={ SettingProfile }/>
+          <Route path='security' component={ SettingSecurity }/>
           <IndexRedirect to='profile'/>
         </Route>
 
-        <Route path='todo' component={TodoPage}/>
-        <Route path='profile' component={Profile}/>
+        <Route path='todo' component={ TodoPage }/>
+        <Route path='profile' component={ Profile }/>
 
-        <Route path='404' component={NotFound} />
+        <Route path='404' component={ NotFound } />
       </Route>
 
 

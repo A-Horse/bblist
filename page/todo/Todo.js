@@ -11,6 +11,7 @@ import { DropList } from 'components/widget/DropList';
 import ClickOutSide from 'components/utils/ClickOutSide';
 import { timeout } from 'utils/timeout';
 import moment from 'moment';
+import R from 'ramda';
 import { Select } from 'components/widget/Select';
 
 import 'style/page/todo/todo.scss';
@@ -110,9 +111,9 @@ class Todo extends Component {
             <p style={{display: !this.state.editToggle ? 'block' : 'none'}} className='todo--content' onClick={this.onContentClick.bind(this)}>{todo.content}</p>
             <Textarea ref='content' onKeyDown={this.onContendChanged.bind(this)} className='todo--content__input' style={{display: this.state.editToggle ? 'block' : 'none'}} defaultValue={todo.content}></Textarea>
 
-            { todo.dealline &&
+            { todo.deadline &&
               <div className="todo-deadline-label">
-                <span>{new moment(todo.deadline).format('MM-DD HH:MM:SS')}</span>
+                <span>{new moment(todo.deadline).format('MM-DD')}</span>
               </div>
             }
 
@@ -131,7 +132,8 @@ class Todo extends Component {
 
             <div className="todo-editing--repeat">
               <label>Repeat:</label>
-              <Select items={this.buildRepeatSelectItems()}
+              <Select defaultItem={R.find(R.propEq('value', parseInt(todo.repeat, 10)))(this.buildRepeatSelectItems())}
+                items={this.buildRepeatSelectItems()}
                 onSelect={(repeat) => this.updateTodo({repeat: repeat.value})}/>
             </div>
           </div>

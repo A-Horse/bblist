@@ -1,11 +1,12 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {PageContainer} from 'components/widget/PageContainer';
-import {SeaWaves} from 'effect/SeaWaves';
-import {Button} from '../components/widget/Button';
-import {Link, browserHistory} from 'react-router';
-import {isLogin} from 'services/login';
-import {LogoBan} from 'components/commons/LogoBan';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { PageContainer } from 'components/widget/PageContainer';
+import { SeaWaves } from 'effect/SeaWaves';
+import { Button } from '../components/widget/Button';
+import { Link, browserHistory } from 'react-router';
+import { isLogin } from 'services/login';
+import { LogoBan } from 'components/commons/LogoBan';
+import { isEnterKey } from 'utils/keyboard';
 
 import 'style/page/index.scss';
 
@@ -15,19 +16,21 @@ class IndexPage extends Component {
   }
 
   componentWillMount() {
-
+    document.addEventListener('keydown', this.handlePageKeyPress);
   }
 
   componentDidMount() {
-    /* setTimeout(() => {
-     *   const windWidth = window.innerWidth;
-     *   const windHeight = window.innerHeight;
-     *   var s = Snap(".svg-main");
-     *   var bigCircle = s.circle(150, 150, 50);
-     *   bigCircle.attr({
-     *     fill: "#7fd5f3"
-     *   });
-     * }, 1000);*/
+
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.handlePageKeyPress);
+  }
+
+  handlePageKeyPress(event) {
+    if ( isLogin() && isEnterKey(event) ) {
+      browserHistory.push('/home');
+    }
   }
 
   startSeaWaves() {
@@ -59,34 +62,11 @@ class IndexPage extends Component {
     );
   }
 
-  renderCanvas() {
-    return (
-      <canvas ref='seaWavesCanvas' className="sea-waves">
-        Your browser doesn't support canvas
-      </canvas>
-    );
-  }
 
   renderLinkBar() {
     return isLogin() ? this.renderEnterBar() : this.renderSignBar();
   }
 
-  renderIndex() {
-    return (
-      <div className='index-main'>
-
-        <div className='logo-container'>
-          <LogoBan/>
-        </div>
-
-        <div className='octopus'>
-          <img className='octopus--svg' src='/static/octopus.svg'/>
-        </div>
-
-        {this.renderLinkBar()}
-      </div>
-    );
-  }
 
   render() {
     return (
@@ -97,9 +77,6 @@ class IndexPage extends Component {
         <div className="image-container">
           <div className="octopus"></div>
         </div>
-
-        {/*         <div className="svg-container" dangerouslySetInnerHTML={ {__html: require('../html/wave.html')} } /> */}
-
 
         {this.renderLinkBar()}
 
