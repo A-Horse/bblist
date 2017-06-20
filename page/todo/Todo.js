@@ -65,10 +65,7 @@ class Todo extends Component {
 
   updateTodo(newTodo) {
     const {dispatch, todo} = this.props;
-    dispatch(updateTodo(todo.id, newTodo)).then(function() {
-      // TODO 先 set
-      dispatch(getTodoList());
-    });
+    return dispatch(updateTodo(todo.id, newTodo));
   }
 
   onContendChanged(event) {
@@ -113,7 +110,7 @@ class Todo extends Component {
               <IconDelete onClick={::this.destroyTodo}/>
             </div>
 
-            <StarCheckBox/>
+            <StarCheckBox defaultChecked={todo.isStar} onChange={(checked) => {}}/>
           </div>
 
           <div className='todo-editing--meta' style={{display: this.state.editToggle ? 'block' : 'none'}}>
@@ -122,7 +119,6 @@ class Todo extends Component {
               <label>Deadline:</label>
               <DatePicker ref='date-picker' defaultValue={todo.deadline}/>
             </div>
-
           </div>
         </div>
       </ClickOutSide>

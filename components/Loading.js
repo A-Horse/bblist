@@ -6,7 +6,7 @@ export class Loading extends Component {
 
   render() {
     return (
-      <div className="octopus-loading">
+      <div className="octopus-loading app-loading">
         <div className="octopus-loading--wave"></div>
         <div className="octopus-loading--wave-b"></div>
         <div className="eye">
