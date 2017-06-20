@@ -11,6 +11,7 @@ import { DropList } from 'components/widget/DropList';
 import ClickOutSide from 'components/utils/ClickOutSide';
 import { timeout } from 'utils/timeout';
 import moment from 'moment';
+import { Select } from 'components/widget/Select';
 
 import 'style/page/todo/todo.scss';
 
@@ -109,15 +110,17 @@ class Todo extends Component {
             <p style={{display: !this.state.editToggle ? 'block' : 'none'}} className='todo--content' onClick={this.onContentClick.bind(this)}>{todo.content}</p>
             <Textarea ref='content' onKeyDown={this.onContendChanged.bind(this)} className='todo--content__input' style={{display: this.state.editToggle ? 'block' : 'none'}} defaultValue={todo.content}></Textarea>
 
-            <div className="todo-deadline-label">
-              <span>{new moment(todo.deadline).format('MM-DD HH:MM:SS')}</span>
-            </div>
+            { todo.dealline &&
+              <div className="todo-deadline-label">
+                <span>{new moment(todo.deadline).format('MM-DD HH:MM:SS')}</span>
+              </div>
+            }
 
-            <div className='todo-hover-operation'>
-              <IconDelete onClick={::this.destroyTodo}/>
-            </div>
+        <div className='todo-hover-operation'>
+          <IconDelete onClick={::this.destroyTodo}/>
+        </div>
 
-            <StarCheckBox defaultChecked={todo.isStar} onChange={(checked) => {this.updateTodo({isStar: checked})}}/>
+        <StarCheckBox defaultChecked={todo.isStar} onChange={(checked) => {this.updateTodo({isStar: checked})}}/>
           </div>
 
           <div className='todo-editing--meta' style={{display: this.state.editToggle ? 'block' : 'none'}}>

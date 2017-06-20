@@ -10,9 +10,11 @@ import {createDevTools} from 'redux-devtools';
 // import LogMonitor from 'redux-devtools-log-monitor';
 // import DockMonitor from 'redux-devtools-dock-monitor';
 
-// TODO split it
-import {NotFound, DashBoard,
-        IndexPage, Ideas, TodoPage} from 'page';
+import NotFound from 'page/NotFound';
+import DashBoard from 'page/DashBoard';
+import IndexPage from 'page/IndexPage';
+import TodoPage from 'page/todo/Todopage';
+
 import App from 'containers/App';
 import SignUp from 'containers/SignUp';
 import SignIn from 'containers/SignIn';
@@ -30,6 +32,8 @@ import Profile from 'containers/Profile';
 import Setting from 'containers/setting/Setting';
 import SettingSecurity from 'containers/setting/Security';
 import SettingProfile from 'containers/setting/Profile';
+
+import Ideas from 'containers/idea/Ideas';
 
 import Body from 'components/Body';
 

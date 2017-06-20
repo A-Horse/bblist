@@ -7,6 +7,8 @@ import Building from 'page/Building';
 
 class Ideas extends Component {
 
+
+
   getWalls() {
 
   }
@@ -24,10 +26,4 @@ class Ideas extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-
-  };
-};
-
-export default connect(mapStateToProps)(Ideas);
+export default Ideas;

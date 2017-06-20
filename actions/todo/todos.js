@@ -84,7 +84,7 @@ export const TODO_DELETE_REQUEST = 'TODO_DELETE_REQUEST';
 export const TODO_DELETE_SUCCESS = 'TODO_DELETE_SUCCESS';
 export const TODO_DELETE_FAILURE = 'TODO_DELETE_FAILURE';
 
-function requestDestroyGoal(id) {
+function requestDestroyTodo(id) {
   return {
     type: TODO_DELETE_REQUEST,
     playload: id
@@ -108,7 +108,7 @@ function destroyTodoError(error) {
 export function destroyTodo(id) {
   const config = createConfigWithAuth('DELETE');
   return dispatch => {
-    dispatch(requestDestroyGoal());
+    dispatch(requestDestroyTodo());
     return fetch(makeApiUrl(`/todo/${id}`), config)
       .then(handleResponseWithoutJson)
       .then(() => dispatch(destroyTodoSuccess()))
