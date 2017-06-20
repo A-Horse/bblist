@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
 import { deleteTaskWall, getTaskAllCards } from 'actions/task/task-wall';
-import { updateTaskCard, insertVirtualCard, activeCardModal } from 'actions/task/task-card';
+import { updateTaskCard, insertVirtualCard } from 'actions/task/task-card';
 import { createTaskList, deleteTaskList } from 'actions/task/task-list';
 import { openTaskCardModal } from 'actions/event/task-wall';
 import { DropList } from 'components/widget/DropList';
@@ -91,10 +91,7 @@ class TaskCard extends Component {
     this.width = this.refs.main.offsetWidth;
   }
 
-  onClick(event) {
-    /* const {dispatch} = this.props;
-     * return dispatch(activeCardModal(this.props.cardId));*/
-
+  onClick() {
     browserHistory.push(`/task-wall/${this.props.boardId}/${this.props.cardId}`);
   }
 

@@ -54,24 +54,9 @@ function taskCard(state = {
     });
     break;
 
-    // TODO delete
-  case ACTIVE_CARD_MODAL:
-    return Object.assign({}, state, {
-      active: true,
-      card: action.card
-    });
-    break;
-
   case ALL_TASKCARD_GET_SUCCESS:
     return Object.assign({}, state, {
       entities: action.playload.entities.cards
-    });
-    break;
-
-  case UNACTIVE_CARD_MODAL:
-    return Object.assign({}, state, {
-      active: false,
-      card: null
     });
     break;
 

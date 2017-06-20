@@ -18,6 +18,7 @@ import { Hr } from 'components/widget/Hr';
 import { Select } from 'components/widget/Select';
 import { Button } from 'components/widget/Button';
 import { isEnterKey } from 'utils/keyboard';
+import { wrapDispathToAction } from 'utils/wrap-props';
 
 import 'style/page/task/taskcard-modal.scss';
 
@@ -25,6 +26,7 @@ class CardModal extends Component {
 
   componentWillMount() {
     this.state = {};
+    this.props.actions.getCardDetail(this.props.params.cardId);
   }
 
   close() {
@@ -75,6 +77,7 @@ class CardModal extends Component {
     return null;
   }
 
+  // NOT USE NOW
   renderPomodoro() {
     return;
     return (
@@ -192,8 +195,6 @@ class CardModal extends Component {
 
 const mapStateToProps = (state, props) => {
   return {
-    // card: state.task.card.card,
-    // toggleTaskCardModal: state.task.card.active,
     card: state.task.card.entities[props.params.cardId],
     normalizedCards: state.task.card,
     taskLists: state.task.list.lists,
@@ -201,4 +202,8 @@ const mapStateToProps = (state, props) => {
   };
 };
 
-export default connect(mapStateToProps)(CardModal);
+const actions = {
+  getCardDetail
+};
+
+export default connect(mapStateToProps, wrapDispathToAction(actions))(CardModal);
