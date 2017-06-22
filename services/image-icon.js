@@ -24,3 +24,10 @@ export class IconChart extends Icon {
     return <img src="/assets/icons/add.png" {...this.props} className={this.buildClassName()}/>;
   }
 }
+
+
+export class IconRemove extends Icon {
+  render() {
+    return <img src="/assets/icons/remove.png" {...this.props} className={this.buildClassName()}/>;
+  }
+}

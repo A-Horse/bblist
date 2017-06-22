@@ -55,34 +55,10 @@ function createTodoError(error) {
   };
 }
 
-export const TODO_PATCH_REQUEST = 'TODO_PATCH_REQUEST';
-export const TODO_PATCH_SUCCESS = 'TODO_PATCH_SUCCESS';
-export const TODO_PATCH_FAILURE = 'TODO_PATCH_FAILURE';
-
-function requestUpdateTodo(data) {
-  return {
-    type: TODO_PATCH_REQUEST,
-    playload: data
-  };
-}
-
-function updateTodoSuccess() {
-  return {
-    type: TODO_PATCH_SUCCESS
-  };
-}
-
-function updateTodoError(error) {
-  return {
-    type: TODO_PATCH_FAILURE,
-    error: true,
-    playload: error
-  };
-}
-
 export const TODO_DELETE_REQUEST = 'TODO_DELETE_REQUEST';
 export const TODO_DELETE_SUCCESS = 'TODO_DELETE_SUCCESS';
 export const TODO_DELETE_FAILURE = 'TODO_DELETE_FAILURE';
+
 
 function requestDestroyTodo(id) {
   return {
@@ -128,6 +104,32 @@ export function getTodoList() {
   };
 }
 
+
+export const TODO_PATCH_REQUEST = 'TODO_PATCH_REQUEST';
+export const TODO_PATCH_SUCCESS = 'TODO_PATCH_SUCCESS';
+export const TODO_PATCH_FAILURE = 'TODO_PATCH_FAILURE';
+
+function requestUpdateTodo(data) {
+  return {
+    type: TODO_PATCH_REQUEST,
+    playload: data
+  };
+}
+
+function updateTodoSuccess() {
+  return {
+    type: TODO_PATCH_SUCCESS
+  };
+}
+
+function updateTodoError(error) {
+  return {
+    type: TODO_PATCH_FAILURE,
+    error: true,
+    playload: error
+  };
+}
+
 export function updateTodo(id, data) {
   const config = createConfigWithAuth('PATCH', data);
   return dispatch => {
@@ -144,6 +146,59 @@ export function createTodo(data) {
   return dispatch => {
     dispatch(requestCreateTodo());
     return fetch(makeApiUrl(`/user/${userId}/todo`), config)
+      .then(handleResponse)
+      .then(() => dispatch(createTodoSucceess()))
+      .catch(() => dispatch(createTodoError()));
+  };
+}
+
+export const ACTIVE_TD_REPEAT_HISTORY = 'ACTIVE_TD_REPEAT_HISTORY';
+export const UNACTIVE_TD_REPEAT_HISTORY = 'UNACTIVE_TD_REPEAT_HISTORY';
+
+export function activeTdRepeatHistory(todoId) {
+  return {
+    type: ACTIVE_TD_REPEAT_HISTORY,
+    playload: todoId
+  };
+}
+
+
+export function unactiveTdRepeatHistory() {
+  return {
+    type: UNACTIVE_TD_REPEAT_HISTORY
+  };
+}
+
+export const TD_REPEAT_HISTORY_REQUEST = 'TD_REPEAT_HISTORY_REQUEST';
+export const TD_REPEAT_HISTORY_SUCCESS = 'TD_REPEAT_HISTORY_SUCCESS';
+export const TD_REPEAT_HISTORY_FAILURE = 'TD_REPEAT_HISTORY_FAILURE';
+
+export function tdRepeatHistoryRequest() {
+  return {
+    type: TD_REPEAT_HISTORY_REQUEST
+  };
+}
+
+export function tdRepeatHistorySuccess(resp) {
+  return {
+    type: TD_REPEAT_HISTORY_SUCCESS,
+    playload: resp
+  };
+}
+
+export function tdRepeatHistoryFailure(message) {
+  return {
+    type: TD_REPEAT_HISTORY_FAILURE,
+    playload: message,
+    error: true
+  };
+}
+
+export function getTodoRepeatHistory(todoId) {
+  const config = createConfigWithAuth('GET');
+  return dispatch => {
+    dispatch(tdRepeatHistoryRequest());
+    return fetch(makeApiUrl(`/todo/${todoId}`), config)
       .then(handleResponse)
       .then(() => dispatch(createTodoSucceess()))
       .catch(() => dispatch(createTodoError()));
