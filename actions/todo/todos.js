@@ -41,10 +41,11 @@ function requestTodoList() {
   };
 }
 
-function receiveTodoList(todos) {
+function receiveTodoList(playload, meta) {
   return {
     type: TODOLIST_GET_SUCCESS,
-    playload: todos
+    playload,
+    meta
   };
 }
 
@@ -117,14 +118,14 @@ export function destroyTodo(id) {
   };
 }
 
-export function getTodoList() {
+export function getTodoList(meta) {
   const config = createConfigWithAuth('GET');
   const userId = getCachedUserId();
   return dispatch => {
-    dispatch(requestTodoList());
+    dispatch(requestTodoList(meta));
     return fetch(makeApiUrl(`/user/${userId}/todo`), config)
       .then(handleResponse)
-      .then(response => dispatch(receiveTodoList(response)))
+      .then(response => dispatch(receiveTodoList(response, meta)))
       .catch(error => dispatch(receiveTodoListError(error.message)));
   };
 }

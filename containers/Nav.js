@@ -1,10 +1,10 @@
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import Nav from 'components/Nav';
-import {authUser} from 'actions/login';
-import {removeCachedData} from 'utils/auth';
-import {wrapDispathToAction} from 'utils/wrap-props';
-import {logout} from 'actions/logout';
-import {browserHistory} from 'react-router';
+import { authUser } from 'actions/login';
+import { removeCachedData } from 'utils/auth';
+import { wrapDispathToAction } from 'utils/wrap-props';
+import { logout } from 'actions/logout';
+import { browserHistory } from 'react-router';
 
 const actions = {
 

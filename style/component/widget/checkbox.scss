@@ -12,7 +12,6 @@
       display: block;
     }
   }
-
 }
 
 .checkbox--mock {
@@ -24,7 +23,8 @@
   height: 18px;
   width: 18px;
   border: 1px solid $gray-light-litte-depth;
-  border-radius: 5px;
+  border-radius: 6px;
+  cursor: pointer;
 
   &:before {
     content: '';
@@ -42,5 +42,6 @@
       repeat: no-repeat;
       size: cover;
     };
+    cursor: pointer;
   }
 }
