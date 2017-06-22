@@ -67,10 +67,10 @@ function requestCreateTodo() {
   };
 }
 
-function createTodoSucceess(todo) {
+function createTodoSucceess(playload) {
   return {
     type: TODO_POST_SUCCESS,
-    playload: todo
+    playload
   };
 }
 
@@ -81,6 +81,19 @@ function createTodoError(error) {
     error: true
   };
 }
+
+export function createTodo(data) {
+  const config = createConfigWithAuth('POST', data);
+  const userId = getCachedUserId();
+  return dispatch => {
+    dispatch(requestCreateTodo());
+    return fetch(makeApiUrl(`/user/${userId}/todo`), config)
+      .then(handleResponse)
+      .then(resp => dispatch(createTodoSucceess(resp)))
+      .catch(error => dispatch(createTodoError(error)));
+  };
+}
+
 
 export const TODO_DESTORY_REQUEST = 'TODO_DESTORY_REQUEST';
 export const TODO_DESTORY_SUCCESS = 'TODO_DESTORY_SUCCESS';
@@ -163,17 +176,5 @@ export function updateTodo(id, data) {
       .then(handleResponseWithoutJson)
       .then(() => dispatch(updateTodoSuccess()))
       .catch(error => dispatch(updateTodoError(error)));
-  };
-}
-
-export function createTodo(data) {
-  const config = createConfigWithAuth('POST', data);
-  const userId = getCachedUserId();
-  return dispatch => {
-    dispatch(requestCreateTodo());
-    return fetch(makeApiUrl(`/user/${userId}/todo`), config)
-      .then(handleResponse)
-      .then(() => dispatch(createTodoSucceess()))
-      .catch(() => dispatch(createTodoError()));
   };
 }
