@@ -1,19 +1,22 @@
-import {normalize, Schema, arrayOf} from 'normalizr';
+import { schema } from 'normalizr';
 
-export const track = new Schema('track');
-export const card = new Schema('cards');
-export const user = new Schema('user');
-export const board = new Schema('board');
+// TODO rename
+export const track = new schema.Entity('track');
+export const card = new schema.Entity('cards');
+export const user = new schema.Entity('user');
+export const board = new schema.Entity('board');
+export const TD = new schema.Entity('todo');
+export const TDS = new schema.Array(TD);
+export const TDBox = new schema.Entity('TodoBox');
+
+TDBox.define({
+  todos: TDS
+});
 
 track.define({
-  cards: arrayOf(card)
+  cards: schema.Array(card)
 });
 
 board.define({
-  tracks: arrayOf(track)
+  tracks: schema.Array(track)
 });
-
-// card.define({
-//   creater: user,
-//   owner: user
-// });

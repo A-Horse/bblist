@@ -3,7 +3,7 @@ import { CheckBox } from 'components/widget/CheckBox';
 import { StarCheckBox } from 'components/widget/StarCheckBox';
 import DatePicker from 'components/date-picker/DatePicker';
 import { getTodoList, updateTodo, destroyTodo } from 'actions/todo/todos';
-import { MoreIcon, StarBorderIcon, DeleteIcon } from 'services/svg-icons';
+import { IconChart } from 'services/image-icon';
 import { IconDelete } from 'services/image-icon';
 import Textarea from 'react-textarea-autosize';
 import { Button } from 'components/widget/Button';
@@ -12,6 +12,7 @@ import ClickOutSide from 'components/utils/ClickOutSide';
 import { timeout } from 'utils/timeout';
 import moment from 'moment';
 import R from 'ramda';
+import { activeTdRepeatHistory } from 'actions/todo/todo-statistics';
 import { Select } from 'components/widget/Select';
 
 import 'style/page/todo/todo.scss';
@@ -93,12 +94,16 @@ class Todo extends Component {
     }
   }
 
+  onRepeatHistoryModal() {
+    this.props.dispatch(activeTdRepeatHistory(this.props.todo.id));
+  }
+
   buildRepeatSelectItems() {
     return [
       { name: 'Every Day', value: 1 },
       { name: 'Two Day', value: 2 },
       { name: 'Week', value: 7 },
-    ]
+    ];
   }
 
   render() {
@@ -118,6 +123,8 @@ class Todo extends Component {
             }
 
         <div className='todo-hover-operation'>
+          <IconChart onClick={::this.onRepeatHistoryModal}/>
+
           <IconDelete onClick={::this.destroyTodo}/>
         </div>
 

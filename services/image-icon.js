@@ -25,7 +25,6 @@ export class IconChart extends Icon {
   }
 }
 
-
 export class IconRemove extends Icon {
   render() {
     return <img src="/assets/icons/remove.png" {...this.props} className={this.buildClassName()}/>;

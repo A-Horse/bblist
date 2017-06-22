@@ -1,10 +1,11 @@
 import { connect } from 'react-redux';
 import TodoRepeatHistoryModal from 'page/task/CardModal';
 import { wrapDispathToAction } from 'utils/wrap-props';
-import { getCardDetail } from 'actions/task/task-card';
+import { getTodoRepeatHistory, activeTdRepeatHistory } from 'actions/todo/todo-statistics';
 
 const actions = {
-
+  getTodoRepeatHistory,
+  activeTdRepeatHistory
 };
 
 const mapStateToProps = (state, props) => {
