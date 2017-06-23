@@ -43,11 +43,10 @@ function todos(state = {
     };
 
   case TODO_DESTORY_SUCCESS:
-    const newState = R.clone(state, true);
-    const newTodosResult = R.without([action.playload.todoId], newState.entities.TodoBox[state.todoBoxId].todos);
-    newState.entities.TodoBox[state.todoBoxId].todos = newTodosResult;
-    // TODO R.assocPath
-    return newState;
+    const tdDeteledState = R.clone(state, true);
+    const newTodosResult = R.without([action.playload.todoId], tdDeteledState.entities.TodoBox[state.todoBoxId].todos);
+    tdDeteledState.entities.TodoBox[state.todoBoxId].todos = newTodosResult;
+    return tdDeteledState;
 
   default:
     return state;
