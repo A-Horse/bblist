@@ -106,9 +106,10 @@ function requestDestroyTodo(id) {
   };
 }
 
-function destroyTodoSuccess() {
+function destroyTodoSuccess(playload) {
   return {
-    type: TODO_DESTORY_SUCCESS
+    type: TODO_DESTORY_SUCCESS,
+    playload
   };
 }
 
@@ -120,13 +121,13 @@ function destroyTodoError(error) {
   };
 }
 
-export function destroyTodo(id) {
+export function destroyTodo(todoId) {
   const config = createConfigWithAuth('DELETE');
   return dispatch => {
     dispatch(requestDestroyTodo());
-    return fetch(makeApiUrl(`/todo/${id}`), config)
+    return fetch(makeApiUrl(`/todo/${todoId}`), config)
       .then(handleResponseWithoutJson)
-      .then(() => dispatch(destroyTodoSuccess()))
+      .then(() => dispatch(destroyTodoSuccess({todoId})))
       .catch(error => dispatch(destroyTodoError(error)));
   };
 }

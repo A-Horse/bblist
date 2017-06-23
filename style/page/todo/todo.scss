@@ -23,6 +23,16 @@
   .checkbox {
     top: 2px;
   }
+
+  .todo-deadline-label {
+    color: $white;
+    background-color: $red;
+    vertical-align: middle;
+
+    span {
+      vertical-align: middle;
+    }
+  }
 }
 
 .todo--content {

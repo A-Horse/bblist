@@ -14,37 +14,40 @@ function todos(state = {
   entities: {}
 }, action) {
   switch (action.type) {
-  case TODOLIST_GET_REQUEST:
-    return Object.assign({}, state, {
-      isFetching: true
-    });
 
   case TODOLIST_GET_SUCCESS:
     const mockedTodoBoxs = {id: action.meta.todoBoxId, todos: action.playload};
-    return Object.assign({}, state, {
-      isFetching: false,
-      list: action.playload,
-      entities: normalize(mockedTodoBoxs, TDBox).entities
-    });
-
-  case TODOLIST_GET_FAILURE:
-    return Object.assign({}, state, {
-      isFetching: false,
-      message: action.playload.message
-    });
-
-  case TODO_POST_SUCCESS:
-    const normalizedTodo = normalize(action.playload, TD);
     return {
       ...state,
-      entities: R.mergeDeepLeft({}, state.entities, normalizedTodo.entities)
+      entities: normalize(mockedTodoBoxs, TDBox).entities
+    };
+
+  case TODO_POST_SUCCESS:
+    return {
+      ...state,
+      entities: {
+        ...state.entities,
+        ...R.mergeDeepWith(
+          R.concat,
+          R.assocPath(
+            ['TodoBox', JSON.stringify(state.todoBoxId), 'todos'],
+            [].concat(state.entities.TodoBox[state.todoBoxId].todos, [action.playload.id]),
+            {}
+          ),
+          R.assocPath(
+            ['Todo'],
+            R.assoc(action.playload.id, action.playload, state.entities.Todo),
+            {}
+          ))
+      }
     };
 
   case TODO_DESTORY_SUCCESS:
-    console.log();
-    return {
-      ...state,
-    };
+    const newState = R.clone(state, true);
+    const newTodosResult = R.without([action.playload.todoId], newState.entities.TodoBox[state.todoBoxId].todos);
+    newState.entities.TodoBox[state.todoBoxId].todos = newTodosResult;
+    // TODO R.assocPath
+    return newState;
 
   default:
     return state;
