@@ -12,7 +12,7 @@ import ClickOutSide from 'components/utils/ClickOutSide';
 import { timeout } from 'utils/timeout';
 import moment from 'moment';
 import R from 'ramda';
-import { activeTdRepeatHistory } from 'actions/todo/todo-statistics';
+import { activeTdRepeatHistory, getTodoRepeatHistory } from 'actions/todo/todo-statistics';
 import { Select } from 'components/widget/Select';
 
 import 'style/page/todo/todo.scss';
@@ -93,6 +93,7 @@ class Todo extends Component {
 
   onRepeatHistoryModal() {
     this.props.dispatch(activeTdRepeatHistory(this.props.todo.id));
+    this.props.dispatch(getTodoRepeatHistory(this.props.tdId));
   }
 
   buildRepeatSelectItems() {

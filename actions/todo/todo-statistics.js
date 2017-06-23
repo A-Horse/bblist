@@ -5,14 +5,13 @@ import { getCachedUserId } from 'utils/auth';
 import { CACHED_USERID } from '../../constants';
 import { makeApiUrl } from 'utils/api';
 
-
 export const ACTIVE_TD_REPEAT_HISTORY = 'ACTIVE_TD_REPEAT_HISTORY';
 export const UNACTIVE_TD_REPEAT_HISTORY = 'UNACTIVE_TD_REPEAT_HISTORY';
 
-export function activeTdRepeatHistory(todoId) {
+export function activeTdRepeatHistory(tdId) {
   return {
     type: ACTIVE_TD_REPEAT_HISTORY,
-    playload: todoId
+    playload: {tdId}
   };
 }
 

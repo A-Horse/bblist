@@ -4,5 +4,6 @@ export auth from './auth';
 export signup from './signup';
 export task from './task/task';
 export todos from './todo/todos';
+export todoStatistics from './todo/todo-statistics';
 export event from './event/event';
 export user from './user';

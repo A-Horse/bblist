@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import TodoRepeatHistoryModal from 'page/task/CardModal';
+import TodoRepeatHistoryModal from 'page/todo/TodoRepeatChart';
 import { wrapDispathToAction } from 'utils/wrap-props';
 import { getTodoRepeatHistory, activeTdRepeatHistory } from 'actions/todo/todo-statistics';
 
@@ -10,7 +10,8 @@ const actions = {
 
 const mapStateToProps = (state, props) => {
   return {
-
+    repeatHistory: state.todoStatistics.repeatHistory,
+    tdId: state.todoStatistics.activedTdId
   };
 };
 

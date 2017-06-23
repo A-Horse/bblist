@@ -23,12 +23,14 @@ import { IconRemove } from 'services/image-icon';
 
 import 'style/page/todo/todo-repeat-chart-modal.scss';
 
-export default class CardModal extends Component {
+export default class CardRepeatHistoryModal extends Component {
 
   componentWillMount() {
     this.state = {};
-
+    // this.props.actions.getTodoRepeatHistory(this.props.tdId)
   }
+
+  //props
 
   close() {
 

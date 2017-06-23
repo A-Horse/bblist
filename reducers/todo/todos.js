@@ -14,7 +14,6 @@ function todos(state = {
   entities: {}
 }, action) {
   switch (action.type) {
-
   case TODOLIST_GET_SUCCESS:
     const mockedTodoBoxs = {id: action.meta.todoBoxId, todos: action.playload};
     return {

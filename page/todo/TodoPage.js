@@ -9,21 +9,17 @@ import PomodoraDial from './PomodoraDial';
 import {createTodo, getTodoList} from 'actions/todo/todos';
 import {updateTitle} from 'services/title';
 import TodoBoxs from './TodoBoxs';
+import TodoRepeatHistoryModal from 'containers/todo/TodoRepeatHistoryModal';
 
 import 'style/page/todo/todo-page.scss';
 
-
 class TodoPage extends Component {
-  componentWillMount() {
-    this.state = {
-      
-    };
-  }
-  
+  state = {};
+
   componentDidUpdate() {
     updateTitle('Todo');
   }
-  
+
   render() {
     return (
       <PageContainer className='todo-page cover'>
@@ -32,7 +28,8 @@ class TodoPage extends Component {
         </div>
         <div className='todo-list-container'>
           <TodoList/>
-        </div>        
+        </div>
+        <TodoRepeatHistoryModal />
       </PageContainer>
     );
   }
@@ -40,7 +37,7 @@ class TodoPage extends Component {
 
 const mapStateToProps = (state) => {
   return {
-
+    repeatHistoryModalToggle: !!state.todoStatistics.activedTdId
   };
 };
 
