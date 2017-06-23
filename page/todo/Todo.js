@@ -93,7 +93,7 @@ class Todo extends Component {
 
   onRepeatHistoryModal() {
     this.props.dispatch(activeTdRepeatHistory(this.props.todo.id));
-    this.props.dispatch(getTodoRepeatHistory(this.props.tdId));
+    this.props.dispatch(getTodoRepeatHistory(this.props.todo.id));
   }
 
   buildRepeatSelectItems() {

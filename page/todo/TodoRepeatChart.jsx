@@ -30,19 +30,18 @@ export default class CardRepeatHistoryModal extends Component {
     // this.props.actions.getTodoRepeatHistory(this.props.tdId)
   }
 
-  //props
-
   close() {
-
+    console.log('close');
+    this.props.actions.unactiveTdRepeatHistory();
   }
 
   render() {
 
     return (
-      <Modal className='todo-repeat-chart-modal' toggle={true} close={this.close.bind(this)}>
+      <Modal className='todo-repeat-chart-modal' toggle={this.props.repeatHistoryModalToggle} close={this.close.bind(this)}>
         <div className="modal-header">
           <div>Todo History Chart</div>
-          <button className='close-button'>
+          <button className='close-button' onClick={::this.close}>
             <IconRemove />
           </button>
         </div>

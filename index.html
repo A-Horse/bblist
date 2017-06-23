@@ -130,6 +130,12 @@
     </div>
 
     <script>
+      if (navigator.userAgent.match(/iPad/i)) {
+        window.document.documentElement.className += 'ipad';
+      }
+    </script>
+
+    <script>
       window.onload = function() {
         document.body.querySelector('#dash-loading').remove();
         document.body.querySelector('#root').style.opacity = 1;

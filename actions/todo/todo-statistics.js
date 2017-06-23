@@ -15,7 +15,6 @@ export function activeTdRepeatHistory(tdId) {
   };
 }
 
-
 export function unactiveTdRepeatHistory() {
   return {
     type: UNACTIVE_TD_REPEAT_HISTORY

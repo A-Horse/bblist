@@ -37,7 +37,7 @@ class TodoPage extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    repeatHistoryModalToggle: !!state.todoStatistics.activedTdId
+
   };
 };
 
