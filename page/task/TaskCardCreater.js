@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect} from 'react-redux';
 import { createTaskCard } from 'actions/task/task-card';
 import { getTaskAllCards } from 'actions/task/task-wall';
-import { spawnMixinRender } from 'style/theme-render';
 import { addBodyEventListenerOnce } from 'actions/event/body';
 import { Button} from 'components/widget/Button';
 import { Hr} from 'components/widget/Hr';

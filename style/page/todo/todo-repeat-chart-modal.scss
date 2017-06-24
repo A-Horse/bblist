@@ -1,6 +1,8 @@
 @import 'style/variable';
+@import 'style/mixin.scss';
 
 .todo-repeat-chart-modal {
+  @include clearfix();
   width: 400px;
 
   .modal-header {

@@ -13,7 +13,6 @@ import {Input} from 'components/widget/Input';
 import {DropList} from 'components/widget/DropList';
 import {ConfirmModal} from 'components/widget/ConfirmModal';
 import {AddIcon, MoreIcon, EditIcon, ArrowDownIcon, SettingIcon, MIDDLE_SIZE, SMALL_SIZE} from 'services/svg-icons';
-import {spawnMixinRender} from 'style/theme-render';
 import GlobalClick from 'services/global-click';
 import Textarea from 'react-textarea-autosize';
 import {getOffsetHeight} from 'utils/dom';

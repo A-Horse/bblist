@@ -7,7 +7,6 @@ import moment from 'moment';
 import { deleteTaskCard, updateTaskCard, unactiveCardModal, getCardDetail } from 'actions/task/task-card';
 import { getTaskAllCards } from 'actions/task/task-wall';
 import { createTaskCardComment } from 'actions/task/task-card-comment';
-import { spawnMixinRender } from 'style/theme-render';
 import { CloseIcon, CommentIcon } from 'services/svg-icons';
 import UserAvatar from 'components/UserAvatar';
 import { Modal } from 'components/widget/Modal';

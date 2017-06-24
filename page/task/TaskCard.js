@@ -10,7 +10,7 @@ import { ConfirmModal } from 'components/widget/ConfirmModal';
 import { PageContainer } from 'components/widget/PageContainer';
 import { Hr } from 'components/widget/Hr';
 import { getAssets } from 'services/assets-manager';
-import { spawnMixinRender } from 'style/theme-render';
+
 import { AddIcon, EditIcon, ArrowDownIcon, SettingIcon } from 'services/svg-icons';
 import { navHeight } from 'components/Nav';
 import UserAvatar from 'components/UserAvatar';
