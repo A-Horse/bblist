@@ -3,21 +3,22 @@ import React, {Component} from 'react';
 import 'style/component/widget/star-checkbox.scss';
 
 export class StarCheckBox extends Component {
+  state = { checked: this.props.defaultChecked }
+
   componentDidMount() {
     this.instance = this.refs.instance;
   }
 
   onChange() {
-    this.checked = this.refs.instance.checked;
-    this.props.onChange && this.props.onChange(this.checked);
+    this.setState({checked: this.refs.instance.checked})
+    this.props.onChange && this.props.onChange(this.refs.instance.checked);
   }
 
   render() {
     return (
-      <div className='star-checkbox' onClick={this.props.onClick}>
+      <div className={`star-checkbox${this.state.checked ? ' checked' : ''}`} onClick={this.props.onClick}>
         <input id={this._reactInternalInstance._rootNodeID}
           type='checkbox'
-          checked={this.props.checked}
           defaultChecked={this.props.defaultChecked}
           ref='instance'
           onChange={this.onChange.bind(this)}/>

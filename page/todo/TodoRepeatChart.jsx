@@ -38,7 +38,7 @@ export default class CardRepeatHistoryModal extends Component {
     return (
       <Modal className='todo-repeat-chart-modal' toggle={this.props.repeatHistoryModalToggle} close={this.close.bind(this)}>
         <div className="modal-header">
-          <div>Todo History Chart</div>
+          <div className="modal-header--heading">Todo History Chart</div>
           <button className='close-button' onClick={::this.close}>
             <IconRemove />
           </button>
@@ -48,9 +48,9 @@ export default class CardRepeatHistoryModal extends Component {
           this.props.repeatHistory.length ? (
             <Empty />
           ) : (
-            <div>
+            <div className="todo-repeat-chart-modal--empty">
               <Empty />
-              <div>There have not repeat history now.</div>
+              <div className="empty--text">There have not repeat history now.</div>
             </div>
           )
         }

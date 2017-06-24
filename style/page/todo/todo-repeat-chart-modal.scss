@@ -2,14 +2,28 @@
 @import 'style/mixin.scss';
 
 .todo-repeat-chart-modal {
-  @include clearfix();
+  margin-top: 50px;
   width: 400px;
+  padding: 15px;
 
   .modal-header {
-    display: flex;
+    @include clearfix();
+    border-bottom: 1px solid $color-divider;
+    margin-bottom: 10px;
+    .modal-header--heading {
+      display: inline-block;
+      color: $text-primary;
+    }
 
     .close-button {
       float: right;
+    }
+  }
+
+  .todo-repeat-chart-modal--empty {
+    text-align: center;
+    .empty--text {
+      color: $text-secondary;
     }
   }
 }

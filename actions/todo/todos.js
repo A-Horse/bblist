@@ -156,9 +156,10 @@ function requestUpdateTodo(data) {
   };
 }
 
-function updateTodoSuccess() {
+function updateTodoSuccess(playload) {
   return {
-    type: TODO_PATCH_SUCCESS
+    type: TODO_PATCH_SUCCESS,
+    playload
   };
 }
 
@@ -174,8 +175,8 @@ export function updateTodo(id, data) {
   const config = createConfigWithAuth('PATCH', data);
   return dispatch => {
     return fetch(makeApiUrl(`/todo/${id}`), config)
-      .then(handleResponseWithoutJson)
-      .then(() => dispatch(updateTodoSuccess()))
+      .then(handleResponse)
+      .then(resp => dispatch(updateTodoSuccess(resp)))
       .catch(error => dispatch(updateTodoError(error)));
   };
 }

@@ -1,11 +1,13 @@
 @import 'style/variable';
-
+@import 'style/mixin';
 .todo-page {
   position: relative;
   display: flex;
   width: 100%;
   padding-left: 5%;
   padding-right: 5%;
+  height: 100%;
+  overflow: hidden;
 
   .todo-box-container {
     height: 100%;
@@ -14,6 +16,8 @@
   }
 
   .todo-list-container {
-    width: 100%;
+    position: relative;
+    width: calc(100% - 250px);
+    flex: 1;
   }
 }

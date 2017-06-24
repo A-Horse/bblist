@@ -7,6 +7,7 @@ import 'style/component/date-picker/date-picker.scss';
 import {addBodyEventListenerOnce} from 'actions/event/body';
 import Popup from 'components/Popup';
 import moment from 'moment';
+import { IconRemove } from 'services/image-icon';
 
 import 'style/component/date-picker/date-picker.scss';
 
@@ -14,9 +15,7 @@ class DatePicker extends Component {
 
   constructor() {
     super();
-    this.state = {toggle: false};
-    // TODO 状态不同步
-    this.value = null;
+    this.state = {toggle: false, value: null};
   }
 
   componentDidMount() {
@@ -31,16 +30,23 @@ class DatePicker extends Component {
       day: activeDay.getDate()
     });
     if (this.props.defaultValue) {
-      this.value = this.props.defaultValue;
+      this.setState({value: this.props.defaultValue});
     }
   }
 
   getDate() {
-    return this.value;
+    return this.state.value;
   }
 
   onClick() {
     this.setState({toggle: !this.state.toggle});
+  }
+
+  clear () {
+    // TODO CHECK will bugs? (not set year m d?)
+    this.setState({value: null});
+    this.props.onSelected && this.props.onSelected(null);
+    this.state.toggle && this.close();
   }
 
   close() {
@@ -66,7 +72,7 @@ class DatePicker extends Component {
   }
 
   onSelected(date) {
-    this.value = date;
+    this.setState({value: date});
     this.setState({
       year: date.getFullYear(),
       month: date.getMonth() + 1,
@@ -85,18 +91,24 @@ class DatePicker extends Component {
   }
 
   render() {
-    const dateString = this.value ? moment(this.value).format('MMMM Do YYYY') : null;
+    const dateString = this.state.value ? moment(this.state.value).format('MMMM Do YYYY') : (
+      this.props.placeholder ? this.props.placeholder : ''
+    );
     return (
       <div className={this.buildClassName()} ref='main'>
-        <DateIcon className='date-picker--icon' onClick={this.onClick.bind(this)}/>
-        <span className='date-picker--text' onClick={this.onClick.bind(this)}>{dateString}</span>
+        { !this.props.hideIcon && <DateIcon className='date-picker--icon' onClick={this.onClick.bind(this)}/> }
+
+        <span className={`date-picker--text${!this.state.value && this.props.placeholder ? ' placeholder' : ''}`} onClick={this.onClick.bind(this)}>{dateString}</span>
+
+        { this.state.value && <IconRemove onClick={::this.clear}/> }
+
 
         <Popup className='date-picker-popup' parent={this.refs.main} toggle={this.state.toggle} onOverlayClick={this.close.bind(this)} close={this.close.bind(this)}>
           <Calendar year={this.state.year} month={this.state.month} day={this.state.day}
-                    selectYear={this.selectYear.bind(this)}
-                    selectMonth={this.selectMonth.bind(this)}
-                    lastMonth={this.lastMonth.bind(this)} nextMonth={this.nextMonth.bind(this)}
-                    onSelected={this.onSelected.bind(this)}/>
+            selectYear={this.selectYear.bind(this)}
+            selectMonth={this.selectMonth.bind(this)}
+            lastMonth={this.lastMonth.bind(this)} nextMonth={this.nextMonth.bind(this)}
+            onSelected={this.onSelected.bind(this)}/>
         </Popup>
       </div>
     );

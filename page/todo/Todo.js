@@ -26,8 +26,7 @@ class Todo extends Component {
 
   componentWillMount() {
     this.state = {
-      editToggle: false,
-      operationToggle: false
+      editToggle: false
     };
   }
 
@@ -71,7 +70,7 @@ class Todo extends Component {
       return;
     }
     event.preventDefault();
-    this.updateTodo();
+    this.updateTodo({content: this.refs.content.value.trim()});
   }
 
   destroyTodo() {
@@ -98,6 +97,7 @@ class Todo extends Component {
 
   buildRepeatSelectItems() {
     return [
+      { name: 'None', value: NaN },
       { name: 'Every Day', value: 1 },
       { name: 'Two Day', value: 2 },
       { name: 'Week', value: 7 },
@@ -108,23 +108,26 @@ class Todo extends Component {
     const { todo } = this.props;
     return (
       <ClickOutSide onClickOutside={::this.onClickOutside} >
-        <div className='todo' ref='main' onClick={this.onClick.bind(this)}>
+        <div className={`todo${this.state.editToggle ? ' open' : ''}`} ref='main' onClick={this.onClick.bind(this)}>
           <div className='todo--main'>
             <CheckBox ref='checkbox' defaultChecked={todo.isDone} onChange={this.updateDone.bind(this)}/>
             <p style={{display: !this.state.editToggle ? 'block' : 'none'}} className='todo--content' onClick={this.onContentClick.bind(this)}>{todo.content}</p>
             <Textarea ref='content' onKeyDown={this.onContendChanged.bind(this)} className='todo--content__input' style={{display: this.state.editToggle ? 'block' : 'none'}} defaultValue={todo.content}></Textarea>
 
-            { todo.deadline &&
+            { todo.deadline && !this.state.editToggle &&
               <div className="todo-deadline-label">
                 <span>{new moment(todo.deadline).format('MM-DD')}</span>
               </div>
             }
 
         <div className='todo-hover-operation'>
-          <IconChart onClick={::this.onRepeatHistoryModal}/>
+          {
+            !!todo.repeat && <IconChart onClick={::this.onRepeatHistoryModal}/>
+          }
 
           <IconDelete onClick={::this.destroyTodo}/>
         </div>
+
 
         <StarCheckBox defaultChecked={todo.isStar} onChange={(checked) => {this.updateTodo({isStar: checked})}}/>
           </div>
@@ -132,7 +135,7 @@ class Todo extends Component {
           <div className='todo-editing--meta' style={{display: this.state.editToggle ? 'block' : 'none'}}>
             <div className='todo-editing--deadline'>
               <label>Deadline:</label>
-              <DatePicker ref='date-picker' defaultValue={todo.deadline} onSelected={(date) => this.updateTodo({deadline: date.getTime()})}/>
+              <DatePicker ref='date-picker' placeholder="YYYY-MM-DD" hideIcon={true} defaultValue={todo.deadline} onSelected={(date) => this.updateTodo({deadline: date ? date.getTime() : null})}/>
             </div>
 
             <div className="todo-editing--repeat">
@@ -141,6 +144,7 @@ class Todo extends Component {
                 items={this.buildRepeatSelectItems()}
                 onSelect={(repeat) => this.updateTodo({repeat: repeat.value})}/>
             </div>
+
           </div>
         </div>
       </ClickOutSide>

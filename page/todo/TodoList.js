@@ -45,7 +45,7 @@ const getAllTodos = (state, props) => {
     ], entities) || [];
   return todoResults.map(id => entities.Todo[id]);
 };
-const getTodos = createSelector([getAllTodos], R.sort(R.prop('isDone')));
+const getTodos = createSelector([getAllTodos], R.compose(R.sort(R.prop('isDone')), R.reverse));
 
 const mapStateToProps = (state, props) => {
   return {
