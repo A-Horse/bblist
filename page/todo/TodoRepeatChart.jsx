@@ -19,7 +19,7 @@ import { Select } from 'components/widget/Select';
 import { Button } from 'components/widget/Button';
 import { isEnterKey } from 'utils/keyboard';
 import { IconRemove } from 'services/image-icon';
-
+import Empty from 'components/Empty';
 
 import 'style/page/todo/todo-repeat-chart-modal.scss';
 
@@ -31,7 +31,6 @@ export default class CardRepeatHistoryModal extends Component {
   }
 
   close() {
-    console.log('close');
     this.props.actions.unactiveTdRepeatHistory();
   }
 
@@ -45,6 +44,21 @@ export default class CardRepeatHistoryModal extends Component {
             <IconRemove />
           </button>
         </div>
+
+        {
+          this.props.repeatHistory.length ? (
+            <Empty />
+          ) : (
+            <div>
+              <Empty />
+              <div>There have not repeat history now.</div>
+            </div>
+          )
+        }
+        <div>
+
+        </div>
+
       </Modal>
     );
   }

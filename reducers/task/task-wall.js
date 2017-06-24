@@ -5,10 +5,10 @@ import {
   TASKBOARD_PATCH_SUCCESS
 } from 'actions/task/task-wall';
 
-import {normalize, arrayOf} from 'normalizr';
-import {CLEAR_BOARD} from 'actions/task/task';
+import { normalize } from 'normalizr';
+import { CLEAR_BOARD } from 'actions/task/task';
 
-import {track, card, user, board} from 'schema';
+import {Boards} from 'schema';
 
 function taskWall(state = {
   entities: [],
@@ -22,12 +22,15 @@ function taskWall(state = {
     break;
 
   case TASKWALL_GET_SUCCESS:
-    return Object.assign({}, state, {isTaskBoardsFetching: false}, normalize(action.playload, arrayOf(board)));
-    break;
+    return {
+      ...state,
+      isTaskBoardsFetching: false,
+      ...normalize(action.playload, Boards)
+    };
 
   case TASKWALL_DELETE_SUCCESS:
     return Object.assign({}, state, {
-      isFetching: true
+
     });
     break;
 
@@ -38,7 +41,6 @@ function taskWall(state = {
       // TODO merge not cover
       entities: action.playload.entities.board
     });
-    break;
 
 
   case CLEAR_BOARD:
@@ -49,9 +51,9 @@ function taskWall(state = {
     break;
 
   case TASKBOARD_PATCH_SUCCESS:
-    
-    return Object.assign({}, state, normalize(action.playload, arrayOf(board)));
-    
+
+    return Object.assign({}, state, normalize(action.playload, Boards));
+
   default:
     return state;
   }

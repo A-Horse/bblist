@@ -20,8 +20,6 @@ const mapStateToProps = (state, props) => {
   };
 };
 
-
-
 const BoardsContainer = connect(
   mapStateToProps,
   wrapDispathToAction(actions)

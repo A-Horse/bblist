@@ -47,6 +47,18 @@ function receiveTaskWallsFail(error) {
   };
 }
 
+export function getAllTaskBoard() {
+  const config = createConfigWithAuth('GET');
+  return dispatch => {
+    dispatch(requestTaskWalls());
+    return fetch(makeApiUrl('/task-wall'), config)
+      .then(handleResponse)
+      .then(response => dispatch(receiveTaskWalls(response)))
+      .catch(error => dispatch(receiveTaskWallsFail(error)));
+  };
+}
+
+
 function requestTaskWallCards() {
   return {
     type: ALL_TASKCARD_GET_REQUEST
@@ -148,16 +160,6 @@ export function getTaskAllCards(wallId) {
   };
 }
 
-export function getAllTaskBoard() {
-  const config = createConfigWithAuth('GET');
-  return dispatch => {
-    dispatch(requestTaskWalls());
-    return fetch(makeApiUrl('/task-wall'), config)
-      .then(handleResponse)
-      .then(response => dispatch(receiveTaskWalls(response)))
-      .catch(error => dispatch(receiveTaskWallsFail(error)));
-  };
-}
 
 export function createTaskBoard(CreateWallInfo) {
   const config = createConfigWithAuth('POST', CreateWallInfo);

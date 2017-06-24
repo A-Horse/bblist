@@ -9,6 +9,7 @@ export const user = new schema.Entity('user');
 export const board = new schema.Entity('board', {
   tracks: [track]
 });
+export const Boards = new schema.Array(board);
 export const TD = new schema.Entity('Todo');
 export const TDS = new schema.Array(TD);
 export const TDBox = new schema.Entity('TodoBox', {

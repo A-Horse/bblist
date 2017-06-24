@@ -2,4 +2,12 @@
 
 .todo-repeat-chart-modal {
   width: 400px;
+
+  .modal-header {
+    display: flex;
+
+    .close-button {
+      float: right;
+    }
+  }
 }
