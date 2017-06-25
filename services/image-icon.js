@@ -13,6 +13,13 @@ export class IconAdd extends Icon {
   }
 }
 
+
+export class IconRight extends Icon {
+  render() {
+    return <img src="/assets/icons/right.png" {...this.props} className={this.buildClassName()}/>;
+  }
+}
+
 export class IconDelete extends Icon {
   render() {
     return <img src="/assets/icons/remove-red.png" {...this.props} className={this.buildClassName('icon-delete')}/>;
@@ -28,5 +35,17 @@ export class IconChart extends Icon {
 export class IconRemove extends Icon {
   render() {
     return <img src="/assets/icons/remove.png" {...this.props} className={this.buildClassName('icon-remove')}/>;
+  }
+}
+
+export class IconDate extends Icon {
+  render() {
+    return <img src="/assets/icons/date.png" {...this.props} className={this.buildClassName('icon-date')}/>;
+  }
+}
+
+export class IconRepeat extends Icon {
+  render() {
+    return <img src="/assets/icons/repeat.png" {...this.props} className={this.buildClassName('icon-repeat')}/>;
   }
 }

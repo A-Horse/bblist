@@ -59,13 +59,12 @@
 
   .todo-deadline-label {
     color: $white;
-    vertical-align: middle;
     min-width: 60px;
+    display: inline-block;
+    margin-left: 10px;
+
     span {
-      position: relative;
-      top: 3px;
       background-color: $red;
-      vertical-align: middle;
       border-radius: 5px;
       padding-left: 4px;
       padding-right: 4px;
@@ -107,6 +106,13 @@
 
 .todo-editing--meta {
   margin-top: 10px;
+
+  .image-icon {
+    vertical-align: middle;
+    width: 16px;
+    margin-right: 7px;
+
+  }
 
   .todo-editing--repeat {
     .select {

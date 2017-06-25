@@ -4,7 +4,7 @@ import { StarCheckBox } from 'components/widget/StarCheckBox';
 import DatePicker from 'components/date-picker/DatePicker';
 import { getTodoList, updateTodo, destroyTodo } from 'actions/todo/todos';
 import { IconChart } from 'services/image-icon';
-import { IconDelete } from 'services/image-icon';
+import { IconDelete, IconRepeat, IconDate } from 'services/image-icon';
 import Textarea from 'react-textarea-autosize';
 import { Button } from 'components/widget/Button';
 import { DropList } from 'components/widget/DropList';
@@ -111,34 +111,39 @@ class Todo extends Component {
         <div className={`todo${this.state.editToggle ? ' open' : ''}`} ref='main' onClick={this.onClick.bind(this)}>
           <div className='todo--main'>
             <CheckBox ref='checkbox' defaultChecked={todo.isDone} onChange={this.updateDone.bind(this)}/>
-            <p style={{display: !this.state.editToggle ? 'block' : 'none'}} className='todo--content' onClick={this.onContentClick.bind(this)}>{todo.content}</p>
+            <div style={{display: !this.state.editToggle ? 'block' : 'none'}} className='todo--content' onClick={this.onContentClick.bind(this)}>
+              {todo.content}
+              { todo.deadline && !this.state.editToggle &&
+                <div className="todo-deadline-label">
+                  <span>{new moment(todo.deadline).format('MM-DD')}</span>
+                </div>
+              }
+            </div>
             <Textarea ref='content' onKeyDown={this.onContendChanged.bind(this)} className='todo--content__input' style={{display: this.state.editToggle ? 'block' : 'none'}} defaultValue={todo.content}></Textarea>
 
-            { todo.deadline && !this.state.editToggle &&
-              <div className="todo-deadline-label">
-                <span>{new moment(todo.deadline).format('MM-DD')}</span>
-              </div>
-            }
-
-        <div className='todo-hover-operation'>
-          {
-            !!todo.repeat && <IconChart onClick={::this.onRepeatHistoryModal}/>
-          }
-
-          <IconDelete onClick={::this.destroyTodo}/>
-        </div>
 
 
-        <StarCheckBox defaultChecked={todo.isStar} onChange={(checked) => {this.updateTodo({isStar: checked})}}/>
+            <div className='todo-hover-operation'>
+              {
+                !!todo.repeat && <IconChart onClick={::this.onRepeatHistoryModal}/>
+              }
+
+              <IconDelete onClick={::this.destroyTodo}/>
+            </div>
+
+
+            <StarCheckBox defaultChecked={todo.isStar} onChange={(checked) => {this.updateTodo({isStar: checked})}}/>
           </div>
 
           <div className='todo-editing--meta' style={{display: this.state.editToggle ? 'block' : 'none'}}>
             <div className='todo-editing--deadline'>
+              <IconRepeat/>
               <label>Deadline:</label>
               <DatePicker ref='date-picker' placeholder="YYYY-MM-DD" hideIcon={true} defaultValue={todo.deadline} onSelected={(date) => this.updateTodo({deadline: date ? date.getTime() : null})}/>
             </div>
 
             <div className="todo-editing--repeat">
+              <IconDate/>
               <label>Repeat:</label>
               <Select defaultItem={R.find(R.propEq('value', parseInt(todo.repeat, 10)))(this.buildRepeatSelectItems())}
                 items={this.buildRepeatSelectItems()}
