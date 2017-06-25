@@ -13,7 +13,7 @@ import {createDevTools} from 'redux-devtools';
 import NotFound from 'page/NotFound';
 import DashBoard from 'page/DashBoard';
 import IndexPage from 'page/IndexPage';
-import TodoPage from 'page/todo/Todopage';
+import TodoPage from 'page/todo/TodoPage';
 
 import App from 'containers/App';
 import SignUp from 'containers/SignUp';
