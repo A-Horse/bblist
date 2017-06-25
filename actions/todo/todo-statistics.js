@@ -50,7 +50,7 @@ export function getTodoRepeatHistory(todoId) {
   const config = createConfigWithAuth('GET');
   return dispatch => {
     dispatch(tdRepeatHistoryRequest());
-    return fetch(makeApiUrl(`/todo/${todoId}/history?limit=7`), config)
+    return fetch(makeApiUrl(`/ts/todo/${todoId}/history?limit=7`), config)
       .then(handleResponse)
       .then((resp) => dispatch(tdRepeatHistorySuccess(resp)))
       .catch((error) => dispatch(tdRepeatHistoryFailure(error)));

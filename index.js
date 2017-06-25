@@ -39,7 +39,7 @@ import Body from 'components/Body';
 
 import Building from 'page/Building';
 
-import {combineEpics, createEpicMiddleware} from 'redux-observable';
+import { combineEpics, createEpicMiddleware } from 'redux-observable';
 
 import {checkLogin} from 'utils/auth';
 import * as reducers from 'reducers';

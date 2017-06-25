@@ -1,7 +1,7 @@
 import { schema } from 'normalizr';
 
 // TODO rename
-export const card = new schema.Entity('cards');
+export const card = new schema.Entity('cards'); // WRONG NAME
 export const track = new schema.Entity('track', {
   cards: [card]
 });
