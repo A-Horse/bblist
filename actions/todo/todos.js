@@ -68,6 +68,18 @@ function receiveTodoListError(error) {
   };
 }
 
+export function getTodoList(meta) {
+  const config = createConfigWithAuth('GET');
+  const userId = getCachedUserId();
+  return dispatch => {
+    dispatch(requestTodoList(meta));
+    return fetch(makeApiUrl(`/user/${userId}/todo`), config)
+      .then(handleResponse)
+      .then(response => dispatch(receiveTodoList(response, meta)))
+      .catch(error => dispatch(receiveTodoListError(error.message)));
+  };
+}
+
 export const TODO_POST_REQUEST = 'TODO_POST_REQUEST';
 export const TODO_POST_SUCCESS = 'TODO_POST_SUCCESS';
 export const TODO_POST_FAILURE = 'TODO_POST_FAILURE';

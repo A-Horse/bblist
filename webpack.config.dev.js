@@ -15,11 +15,11 @@ module.exports = {
   devtool: 'source-map',
   devServer: {
     port: 9000,
-    proxy: {
+    proxy: { // NOTITE: // order is important
+      '/api/t': 'http://localhost:5502',
+      '/api/ts': 'http://localhost:5501',
       '/api': 'http://localhost:5500',
-      '/api/ts': 'http://localhost:8888',
       '/storage': 'http://localhost:5500'
-
     }
   },
   entry: [
