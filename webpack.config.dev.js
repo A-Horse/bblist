@@ -16,9 +16,9 @@ module.exports = {
   devServer: {
     port: 9000,
     proxy: {
-      '/api/todo/*/history': 'http://localhost:8888',
       '/api': 'http://localhost:5500',
-      '/storage': 'http://localhost:5500',
+      '/api/ts': 'http://localhost:8888',
+      '/storage': 'http://localhost:5500'
 
     }
   },

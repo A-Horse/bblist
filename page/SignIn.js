@@ -25,7 +25,7 @@ class SignIn extends Component {
 
   componentWillReceiveProps(newProps) {
     if (newProps.isAuthenticated) {
-      browserHistory.push('/home');
+      // browserHistory.push('/home');
     }
   }
 
