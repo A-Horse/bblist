@@ -15,21 +15,32 @@ function requestTodoBox() {
   };
 }
 
-function receivetodoBoxSuccess(todos) {
+function receivetodoBoxSuccess(playload) {
   return {
     type: TODOBOX_GET_SUCCESS,
-    playload: todos
+    playload
   };
 }
 
 function receiveTodoBoxFailure(error) {
   return {
     type: TODOBOX_GET_FAILURE,
-    error: true,
-    playload: error
+    playload: error,
+    error: true
   };
 }
 
+export function getTodoBoxs() {
+  const config = createConfigWithAuth('GET');
+  const userId = getCachedUserId();
+  return dispatch => {
+    dispatch(requestTodoBox());
+    return fetch(makeApiUrl(`/t/user/${userId}/todo-box`), config)
+      .then(handleResponse)
+      .then(response => dispatch(receivetodoBoxSuccess(response)))
+      .catch(error => dispatch(receiveTodoBoxFailure(error)));
+  };
+}
 
 export const TODOLIST_GET_REQUEST = 'TODOLIST_GET_REQUEST';
 export const TODOLIST_GET_SUCCESS = 'TODOLIST_GET_SUCCESS';
@@ -131,19 +142,6 @@ export function destroyTodo(todoId) {
       .catch(error => dispatch(destroyTodoError(error)));
   };
 }
-
-export function getTodoList(meta) {
-  const config = createConfigWithAuth('GET');
-  const userId = getCachedUserId();
-  return dispatch => {
-    dispatch(requestTodoList(meta));
-    return fetch(makeApiUrl(`/user/${userId}/todo`), config)
-      .then(handleResponse)
-      .then(response => dispatch(receiveTodoList(response, meta)))
-      .catch(error => dispatch(receiveTodoListError(error.message)));
-  };
-}
-
 
 export const TODO_PATCH_REQUEST = 'TODO_PATCH_REQUEST';
 export const TODO_PATCH_SUCCESS = 'TODO_PATCH_SUCCESS';
