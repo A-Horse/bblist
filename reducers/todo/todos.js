@@ -1,10 +1,12 @@
 import {
   TODOLIST_GET_REQUEST, TODOLIST_GET_SUCCESS, TODOLIST_GET_FAILURE,
+  TODOBOX_GET_SUCCESS,
+  TODOBOX_CREATE_SUCCESS,
   TODO_POST_SUCCESS,
   TODO_PATCH_SUCCESS,
   TODO_DESTORY_SUCCESS
 } from 'actions/todo/todos';
-import { TDBox, TD } from '../../schema';
+import { TDBox, TD, TDS } from '../../schema';
 import { normalize } from 'normalizr';
 import R from 'ramda';
 
@@ -15,10 +17,24 @@ function todos(state = {
   entities: {}
 }, action) {
   switch (action.type) {
+  case TODOBOX_GET_SUCCESS:
+    const myTodoBox = {name: 'My Todo', id: null, type: 'only'};
+    return {
+      ...state,
+      TodoBoxs: normalize([].concat(action.playload, myTodoBox), TDS).entities.TodoBox
+    };
+
+  case TODOBOX_CREATE_SUCCESS:
+    normalize(action.playload, TD);
+    return {
+      ...state
+    };
+
   case TODOLIST_GET_SUCCESS:
     const mockedTodoBoxs = {id: action.meta.todoBoxId, todos: action.playload};
     return {
       ...state,
+      // TODO bug
       entities: normalize(mockedTodoBoxs, TDBox).entities
     };
 

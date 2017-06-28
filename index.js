@@ -13,7 +13,8 @@ import {createDevTools} from 'redux-devtools';
 import NotFound from 'page/NotFound';
 import DashBoard from 'page/DashBoard';
 import IndexPage from 'page/IndexPage';
-import TodoPage from 'page/todo/TodoPage';
+
+import TodoPage from 'containers/todo/TodoPage';
 
 import App from 'containers/App';
 import SignUp from 'containers/SignUp';
@@ -52,9 +53,7 @@ import rootEpic from './epic';
 import 'style/normalize.css';
 import 'style/app.scss';
 
-
 const epicMiddleware = createEpicMiddleware(rootEpic);
-
 
 const reducer = combineReducers({
   ...reducers,
@@ -85,7 +84,6 @@ ReactDOM.render(
     <Router history={history}>
       <Route path='/'>
         <IndexRoute path='' component={ IndexPage }/>
-
         <Route path='signin' component={ SignIn }/>
         <Route path='signup' component={ SignUp }/>
       </Route>
@@ -115,10 +113,11 @@ ReactDOM.render(
           <IndexRedirect to='profile'/>
         </Route>
 
+        <Route path='todo/:boxId' component={ TodoPage }/>
         <Route path='todo' component={ TodoPage }/>
         <Route path='profile' component={ Profile }/>
 
-        <Route path='404' component={ NotFound } />
+        <Route path='*' component={ NotFound } />
       </Route>
 
 

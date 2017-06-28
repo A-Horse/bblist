@@ -16,8 +16,8 @@ module.exports = {
   devServer: {
     port: 9000,
     proxy: { // NOTITE: // order is important
-      '/api/t': 'http://localhost:5502',
-      '/api/ts': 'http://localhost:5501',
+      '/api/t/': 'http://localhost:5502',
+      '/api/ts/': 'http://localhost:5501',
       '/api': 'http://localhost:5500',
       '/storage': 'http://localhost:5500'
     }

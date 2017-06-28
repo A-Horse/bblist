@@ -1,13 +1,13 @@
-import React, {Component} from 'react';
-import {PageContainer} from 'components/widget/PageContainer';
-import {connect} from 'react-redux';
-import {browserHistory} from 'react-router';
+import React, { Component } from 'react';
+import { PageContainer } from 'components/widget/PageContainer';
+import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
 
-import {makeGravatarUrl} from 'services/gravatar';
+import { makeGravatarUrl } from 'services/gravatar';
 import TodoList from './TodoList';
 import PomodoraDial from './PomodoraDial';
-import {createTodo, getTodoList} from 'actions/todo/todos';
-import {updateTitle} from 'services/title';
+import { createTodo, getTodoList } from 'actions/todo/todos';
+import { updateTitle } from 'services/title';
 import TodoBoxs from './TodoBoxs';
 import TodoRepeatHistoryModal from 'containers/todo/TodoRepeatHistoryModal';
 
@@ -24,21 +24,15 @@ class TodoPage extends Component {
     return (
       <PageContainer className='todo-page cover'>
         <div className='todo-box-container'>
-          <TodoBoxs/>
+          <TodoBoxs actions={this.props.actions}/>
         </div>
         <div className='todo-list-container'>
-          <TodoList/>
+          <TodoList boxId={this.props.params.id}/>
         </div>
         <TodoRepeatHistoryModal />
-      </PageContainer>
+     </PageContainer>
     );
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-
-  };
-};
-
-export default connect(mapStateToProps)(TodoPage);
+export default TodoPage;

@@ -1,7 +1,20 @@
 @import 'style/variable';
 
 .todo-list {
+
   position: relative;
-  padding: 9px 13px;
+  padding: 5px 0;
   width: 100%;
+  height: 100%;
+
+  .todos {
+    /* TODO bug ovefflow无法显示 */
+    overflow-y: scroll;
+    overflow-x: visible;
+    height: 100%;
+    padding: 4px 13px;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
 }

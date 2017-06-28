@@ -30,7 +30,10 @@ class TodoList extends Component {
     return (
       <div className='todo-list'>
         <TodoCreater />
+        <div className="todos">
         { this.renderList() }
+        </div>
+
       </div>
     );
   }
