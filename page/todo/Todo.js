@@ -108,7 +108,7 @@ class Todo extends Component {
     const { todo } = this.props;
     return (
       <ClickOutSide onClickOutside={::this.onClickOutside} >
-        <div className={`todo${this.state.editToggle ? ' open' : ''}`} ref='main' onClick={this.onClick.bind(this)}>
+        <div className={`todo${this.state.editToggle ? ' open' : ''}${todo.isDone ? ' done' : ''}`} ref='main' onClick={this.onClick.bind(this)}>
           <div className='todo--main'>
             <CheckBox ref='checkbox' defaultChecked={todo.isDone} onChange={this.updateDone.bind(this)}/>
             <div style={{display: !this.state.editToggle ? 'block' : 'none'}} className='todo--content' onClick={this.onContentClick.bind(this)}>
