@@ -1,16 +1,28 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 
 import 'style/component/widget/button.scss';
 
 export class Button extends Component {
   static propTypes = {
     size: React.PropTypes.oneOf(['small', 'middle', 'large']),
-    styleType: React.PropTypes.oneOf(['default', 'primary', 'disable', 'dangerous'])
+    styleType: React.PropTypes.oneOf([
+      'default',
+      'primary',
+      'disable',
+      'dangerous'
+    ])
   };
 
   buildClassName() {
-    const {size = 'middle', styleType = 'default', borderType = 'default'} = this.props;
-    return `button ${size} ${styleType} border-${borderType} ${this.props.className ? ' ' + this.props.className : ''}`;
+    const {
+      size = 'middle',
+      styleType = 'default',
+      borderType = 'default'
+    } = this.props;
+    return `button ${size} ${styleType} border-${borderType} ${this.props
+      .className
+      ? ' ' + this.props.className
+      : ''}`;
   }
 
   click() {
@@ -19,8 +31,13 @@ export class Button extends Component {
 
   render() {
     return (
-      <button ref='main' className={this.buildClassName()} onClick={this.props.onClick} type={this.props.type}>
-          {this.props.children}
+      <button
+        ref="main"
+        className={this.buildClassName()}
+        onClick={this.props.onClick}
+        type={this.props.type}
+      >
+        {this.props.children}
       </button>
     );
   }

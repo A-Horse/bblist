@@ -56,3 +56,33 @@ export function getTodoRepeatHistory(todoId) {
       .catch((error) => dispatch(tdRepeatHistoryFailure(error)));
   };
 }
+
+
+
+export const TD_REPEAT_HISTORY_YESTORY_UPDATE_SUCCESS = 'TD_REPEAT_HISTORY_YESTORY_UPDATE_SUCCESS';
+export const TD_REPEAT_HISTORY_YESTORY_UPDATE_FAILURE = 'TD_REPEAT_HISTORY_YESTORY_UPDATE_FAILURE';
+
+export function tdRepeatHistoryYestoryUpdateSuccess(resp) {
+  return {
+    type: TD_REPEAT_HISTORY_YESTORY_UPDATE_SUCCESS,
+    playload: resp
+  };
+}
+
+export function tdRepeatHistoryYestoryUpdateFailure(error) {
+  return {
+    type: TD_REPEAT_HISTORY_YESTORY_UPDATE_FAILURE,
+    playload: error,
+    error: true
+  };
+}
+
+export function tdRepeatHistoryYestoryUpdate(todoId, data) {
+  const config = createConfigWithAuth('POST');
+  return dispatch => {
+    return fetch(makeApiUrl(`/ts/todo/${todoId}/history`), data, config)
+      .then(handleResponseWithoutJson)
+      .then((resp) => dispatch(tdRepeatHistorySuccess(resp)))
+      .catch((error) => dispatch(tdRepeatHistoryFailure(error)));
+  };
+}
