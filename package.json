@@ -89,7 +89,7 @@
     "sass-variable-loader": "0.0.4",
     "style-loader": "^0.12.4",
     "uglifyjs-webpack-plugin": "^0.4.3",
-    "webpack": "^2.6.1",
+    "webpack": "3.0.0",
     "webpack-dev-middleware": "^1.10.2",
     "webpack-dev-server": "^2.4.5",
     "webpack-hot-middleware": "^2.18.0"

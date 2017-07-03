@@ -7,25 +7,20 @@ var BellOnBundlerErrorPlugin = require('bell-on-bundler-error-plugin');
 module.exports = {
   resolve: {
     extensions: ['.js', '.jsx', '.scss', '.css'],
-    modules: [
-      path.resolve('.'),
-      'node_modules'
-    ]
+    modules: [path.resolve('.'), 'node_modules']
   },
   devtool: 'source-map',
   devServer: {
     port: 9000,
-    proxy: { // NOTITE: // order is important
+    proxy: {
+      // NOTITE: // order is important
       '/api/t/': 'http://localhost:5502',
       '/api/ts/': 'http://localhost:5501',
       '/api': 'http://localhost:5500',
       '/storage': 'http://localhost:5500'
     }
   },
-  entry: [
-    'babel-polyfill',
-    './index'
-  ],
+  entry: ['babel-polyfill', './index'],
   output: {
     path: path.join(__dirname, 'dist/assets'),
     filename: 'bundle.js',
@@ -35,7 +30,7 @@ module.exports = {
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.BannerPlugin(fs.readFileSync('./.banner').toString()),
     new webpack.optimize.AggressiveMergingPlugin(),
-    new BellOnBundlerErrorPlugin()
+    new webpack.optimize.ModuleConcatenationPlugin()
   ],
   module: {
     rules: [
@@ -53,16 +48,16 @@ module.exports = {
         test: /\.scss$/,
         use: [
           {
-            loader: "style-loader"
+            loader: 'style-loader'
           },
           {
-            loader: "css-loader"
+            loader: 'css-loader'
           },
           {
-            loader: "sass-loader"
+            loader: 'sass-loader'
           },
           {
-            loader: "autoprefixer-loader"
+            loader: 'autoprefixer-loader'
           }
         ],
         include: [path.resolve(__dirname, './style')]
@@ -71,18 +66,20 @@ module.exports = {
         test: /\.css$/,
         use: [
           {
-            loader: "style-loader"
+            loader: 'style-loader'
           },
           {
-            loader: "css-loader"
+            loader: 'css-loader'
           }
         ]
       },
       {
         test: /\.html$/,
-        use: [ {
-          loader: 'html-loader'
-        }]
+        use: [
+          {
+            loader: 'html-loader'
+          }
+        ]
       }
     ]
   }
