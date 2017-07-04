@@ -1,16 +1,12 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import 'style/component/widget/button.scss';
 
 export class Button extends Component {
   static propTypes = {
-    size: React.PropTypes.oneOf(['small', 'middle', 'large']),
-    styleType: React.PropTypes.oneOf([
-      'default',
-      'primary',
-      'disable',
-      'dangerous'
-    ])
+    size: PropTypes.oneOf(['small', 'middle', 'large']),
+    styleType: PropTypes.oneOf(['default', 'primary', 'disable', 'dangerous'])
   };
 
   buildClassName() {
