@@ -1,11 +1,11 @@
-import React, {Component} from 'react';
-import {Link} from 'react-router';
-import {makeGravatarUrl} from 'services/gravatar';
-import {Storage, storageImage} from 'services/storage';
-import {DropList} from './widget/DropList';
+import React, { Component } from 'react';
+import { Link } from 'react-router';
+import { makeGravatarUrl } from 'services/gravatar';
+import { Storage, storageImage } from 'services/storage';
+import { DropList } from './widget/DropList';
 import ClickOutSide from 'components/utils/ClickOutSide';
 
-import {LogoBan} from 'components/commons/LogoBan';
+import { LogoBan } from 'components/commons/LogoBan';
 
 export const navHeight = 42;
 
@@ -14,8 +14,7 @@ import 'style/nav.scss';
 class Nav extends Component {
   constructor() {
     super();
-    this.state = {dropDownToggle: false};
-    //isAuthenticated
+    this.state = { dropDownToggle: false };
   }
 
   componentDidUpdate() {
@@ -28,14 +27,25 @@ class Nav extends Component {
 
   render() {
     return (
-      <nav className='nav'>
-        <LogoBan white={true}/>
+      <nav className="nav">
+        <LogoBan white={true} />
 
-        <div className='nav-link-area'>
-          <Link to='/home' activeClassName='nav-link__active'>Dash</Link>
-          <Link to='/task-wall' activeClassName='nav-link__active'>Task</Link>
-          <Link to='/todo' activeClassName='nav-link__active'>Todo</Link>
-          <Link to='/idea' activeClassName='nav-link__active'>Idea</Link>
+        <div className="nav-link-area">
+          <Link to="/home" activeClassName="nav-link__active">
+            Dash
+          </Link>
+          <Link to="/task-wall" activeClassName="nav-link__active">
+            Task
+          </Link>
+          <Link to="/todo" activeClassName="nav-link__active">
+            Todo
+          </Link>
+          <Link to="/wiki" activeClassName="nav-link__active">
+            Wiki
+          </Link>
+          <Link to="/mind" activeClassName="nav-link__active">
+            Mind
+          </Link>
         </div>
         {this.renderNavUser()}
       </nav>
@@ -50,16 +60,23 @@ class Nav extends Component {
 
     const userName = this.props.user.username;
     return (
-      <ClickOutSide className='avatar-area' onClickOutside={() => {this.state.dropDownToggle && this.setState({dropDownToggle: false})}}>
+      <ClickOutSide
+        className="avatar-area"
+        onClickOutside={() => {
+          this.state.dropDownToggle && this.setState({ dropDownToggle: false });
+        }}
+      >
         {this.renderAvatar()}
         <DropList toggle={this.state.dropDownToggle}>
           <ul>
-            <li>Signed in as <strong>{userName}</strong></li>
-            <li><Link to='/profile'>Profile</Link></li>
             <li>
-              <Link to='/setting'>
-                setting
-              </Link>
+              Signed in as <strong>{userName}</strong>
+            </li>
+            <li>
+              <Link to="/profile">Profile</Link>
+            </li>
+            <li>
+              <Link to="/setting">setting</Link>
             </li>
             <li onClick={this.props.actions.logout}>logout</li>
           </ul>
@@ -69,17 +86,24 @@ class Nav extends Component {
   }
 
   renderAvatar() {
-    const {user} = this.props;
+    const { user } = this.props;
     const avatarData = Storage.get('avator');
-    return !!avatarData ? (
-      <img ref='avator' className='nav-avatar'
-           src={`data:image/png;base64,${avatarData}`}
-           onClick={() => this.setState({dropDownToggle: !this.state.dropDownToggle})}/>
-    ) : (
-      <img ref='avator' className='nav-avatar' crossOrigin='Anonymous'
-           src={makeGravatarUrl(user.email)}
-           onClick={() => this.setState({dropDownToggle: !this.state.dropDownToggle})}/>
-    );
+    return !!avatarData
+      ? <img
+          ref="avator"
+          className="nav-avatar"
+          src={`data:image/png;base64,${avatarData}`}
+          onClick={() =>
+            this.setState({ dropDownToggle: !this.state.dropDownToggle })}
+        />
+      : <img
+          ref="avator"
+          className="nav-avatar"
+          crossOrigin="Anonymous"
+          src={makeGravatarUrl(user.email)}
+          onClick={() =>
+            this.setState({ dropDownToggle: !this.state.dropDownToggle })}
+        />;
   }
 }
 
