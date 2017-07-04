@@ -5,6 +5,7 @@ import {handleResponse, handleResponseWithoutJson} from '../../utils/http-handle
 import {getAuthData} from '../../utils/auth';
 import {CACHED_USERID} from '../../constants';
 import {makeApiUrl} from '../../utils/api';
+import { getCachedUserId } from 'utils/auth';
 
 export const TASKWALL_GET_REQUEST = 'TASKWALL_GET_REQUEST';
 export const TASKWALL_GET_SUCCESS = 'TASKWALL_GET_SUCCESS';
@@ -49,9 +50,10 @@ function receiveTaskWallsFail(error) {
 
 export function getAllTaskBoard() {
   const config = createConfigWithAuth('GET');
+  const userId = getCachedUserId();
   return dispatch => {
     dispatch(requestTaskWalls());
-    return fetch(makeApiUrl('/task-wall'), config)
+    return fetch(makeApiUrl(`/tk/user/${userId}/task-board`), config)
       .then(handleResponse)
       .then(response => dispatch(receiveTaskWalls(response)))
       .catch(error => dispatch(receiveTaskWallsFail(error)));

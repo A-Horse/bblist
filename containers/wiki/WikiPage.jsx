@@ -1,20 +1,19 @@
 import { connect } from 'react-redux';
-import TodoPage from 'page/todo/TodoPage';
+import WikiPage from 'page/wiki/WikiPage';
 import { wrapDispathToAction } from 'utils/wrap-props';
-import { getTodoBoxs } from 'actions/todo/todos';
 import R from 'ramda';
 
 const actions = {
-  getTodoBoxs
+
 };
 
 const mapStateToProps = (state, props) => {
   return {};
 };
 
-const TodoPageContainer = connect(
+const WikiPageContainer = connect(
   mapStateToProps,
   wrapDispathToAction(actions)
-)(TodoPage);
+)(WikiPage);
 
-export default TodoPageContainer;
+export default WikiPageContainer;

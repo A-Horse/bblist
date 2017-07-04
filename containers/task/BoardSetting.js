@@ -1,32 +1,31 @@
-import {connect} from 'react-redux';
-import {uploadFile} from 'actions/common/file';
-import {deleteTaskBoard} from 'actions/task/task-wall';
+import { connect } from 'react-redux';
+import { uploadFile } from 'actions/common/file';
+import { deleteTaskBoard } from 'actions/task/task-wall';
 import BoardSetting from 'page/task/BoardSetting';
-import {browserHistory, hashHistory} from 'react-router';
-import {createSelector} from 'reselect';
+import { browserHistory, hashHistory } from 'react-router';
+import { createSelector } from 'reselect';
 
-
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
     uploadCover(id, data) {
       return dispatch(uploadFile(`/task-board/${id}/cover`, data));
     },
     deleteBoard(id) {
-      return dispatch(deleteTaskBoard(id))
-        .then(() => browserHistory.push('/task-wall'));
+      return dispatch(deleteTaskBoard(id)).then(() =>
+        browserHistory.push('/task-wall')
+      );
     }
   };
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     normalizedBoard: state.task.board
   };
 };
 
-const BoardSettingContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(BoardSetting);
+const BoardSettingContainer = connect(mapStateToProps, mapDispatchToProps)(
+  BoardSetting
+);
 
 export default BoardSettingContainer;

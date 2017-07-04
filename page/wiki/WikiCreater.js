@@ -8,9 +8,9 @@ import { ErrorMsg } from 'components/ErrorMsg';
 import { validateFormValue } from 'services/validate-strategy';
 import R from 'ramda';
 
-import 'style/page/task/taskboard-creater.scss';
+import 'style/page/wiki/wiki-creater.scss';
 
-class TaskBoardCreater extends Component {
+export default class TaskBoardCreater extends Component {
   constructor() {
     super();
     this.state = { modalOpen: false, createErrorMessages: [] };
@@ -18,18 +18,17 @@ class TaskBoardCreater extends Component {
 
   onCreateClick(event) {
     event.preventDefault();
-    const name = this.refs.name.instance;
-    const data = { name: name.value.trim() };
+    const title = this.refs.title.instance;
+    const data = { title: title.value.trim() };
 
     const createErrorMessages = validateFormValue(data, {
-      name: ['required@Please fill the name.']
+      title: ['required@Please fill the title.']
     });
     this.setState({ createErrorMessages: createErrorMessages });
     if (Object.keys(createErrorMessages).length) {
       return;
     }
-    this.props.createTaskBoard({ name: name.value.trim() }).then(() => {
-      this.props.getAllTaskBoard();
+    this.props.createTaskBoard({ title: name.value.trim() }).then(() => {
       this.closeModal();
     });
   }
@@ -43,7 +42,7 @@ class TaskBoardCreater extends Component {
   renderModal() {
     return (
       <Modal
-        className="taskboard-creater-modal"
+        className="wiki-creater-modal"
         toggle={this.state.modalOpen}
         close={this.closeModal.bind(this)}
       >
@@ -55,11 +54,7 @@ class TaskBoardCreater extends Component {
             />
           </button>
 
-          <div className="taskboard-creater--name">Create Wall:</div>
-
-          <p className="taskboard-creater--quota">
-            Establish their own Board for different transactions.
-          </p>
+          <div className="wiki-creater--name">Create Wall:</div>
 
           <img
             className="taskboard-creater--illustration"
@@ -90,15 +85,13 @@ class TaskBoardCreater extends Component {
   render() {
     return (
       <div
-        className="taskboard-creater"
+        className="wiki-creater"
         onClick={() => this.setState({ modalOpen: true })}
       >
         <IconAdd className="icon-add" />
-        <span className="taskboard-creater-title">New Task Wall</span>
+        <span className="wiki-creater-title">New Wiki</span>
         {this.renderModal()}
       </div>
     );
   }
 }
-
-export default TaskBoardCreater;

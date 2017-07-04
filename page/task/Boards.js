@@ -19,12 +19,20 @@ class Boards extends Component {
   renderWalls() {
     return this.props.boards.map(board => {
       return (
-        <div className="taskboard-card"
-             style={{backgroundImage: board.cover ? `url(${makeRemoteUrl(board.cover)})` : `url(${DEFAULT_BOARD_COVER_SRC})`}}
-             key={board.id}
-             onClick={() => browserHistory.push(`/task-wall/${board.id}`)}>
+        <div
+          className="taskboard-card"
+          style={{
+            backgroundImage: board.cover
+              ? `url(${makeRemoteUrl(board.cover)})`
+              : `url(${DEFAULT_BOARD_COVER_SRC})`
+          }}
+          key={board.id}
+          onClick={() => browserHistory.push(`/task-wall/${board.id}`)}
+        >
           <div className="taskboard-card-info">
-            <div className="taskboard-card-info--name">{board.name}</div>
+            <div className="taskboard-card-info--name">
+              {board.name}
+            </div>
           </div>
         </div>
       );
@@ -33,15 +41,15 @@ class Boards extends Component {
 
   renderContent() {
     if (this.props.isFetching) {
-      return <Loading/>;
+      return <Loading />;
     }
     if (!this.props.boards.length) {
       return <Nothing />;
     }
     return (
-      <div className='taskboard-boards'>
-        <div className='board-group'>
-          <div className='board-card-container'>
+      <div className="taskboard-boards">
+        <div className="board-group">
+          <div className="board-card-container">
             {this.renderWalls()}
           </div>
         </div>
@@ -52,8 +60,10 @@ class Boards extends Component {
   render() {
     return (
       <PageContainer>
-        <TaskBoardCreater getAllTaskBoard={this.props.actions.getAllTaskBoard}
-          createTaskBoard={this.props.actions.createTaskBoard}/>
+        <TaskBoardCreater
+          getAllTaskBoard={this.props.actions.getAllTaskBoard}
+          createTaskBoard={this.props.actions.createTaskBoard}
+        />
         {this.renderContent()}
       </PageContainer>
     );

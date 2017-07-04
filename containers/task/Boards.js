@@ -1,12 +1,9 @@
-import {connect} from 'react-redux';
-import {uploadFile} from 'actions/common/file';
-import {deleteTaskBoard} from 'actions/task/task-wall';
+import { connect } from 'react-redux';
 import Boards from 'page/task/Boards';
-import {browserHistory, hashHistory} from 'react-router';
 import R from 'ramda';
-import {wrapDispathToAction} from 'utils/wrap-props';
-import {createTaskBoard, getAllTaskBoard} from 'actions/task/task-wall';
-import {createSelector} from 'reselect';
+import { wrapDispathToAction } from 'utils/wrap-props';
+import { createTaskBoard, getAllTaskBoard } from 'actions/task/task-wall';
+import { createSelector } from 'reselect';
 
 const actions = {
   getAllTaskBoard,
@@ -15,14 +12,16 @@ const actions = {
 
 const mapStateToProps = (state, props) => {
   return {
-    boards: createSelector([state => R.values(state.task.board.entities.board)], R.identity)(state, props),
+    boards: createSelector(
+      [state => R.values(state.task.board.entities.board)],
+      R.identity
+    )(state, props),
     isFetching: state.task.board.isTaskBoardsFetching
   };
 };
 
-const BoardsContainer = connect(
-  mapStateToProps,
-  wrapDispathToAction(actions)
-)(Boards);
+const BoardsContainer = connect(mapStateToProps, wrapDispathToAction(actions))(
+  Boards
+);
 
 export default BoardsContainer;
