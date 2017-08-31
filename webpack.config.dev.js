@@ -1,7 +1,6 @@
 var fs = require('fs');
 var path = require('path');
 var webpack = require('webpack');
-
 var BellOnBundlerErrorPlugin = require('bell-on-bundler-error-plugin');
 
 module.exports = {

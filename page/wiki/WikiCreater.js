@@ -56,16 +56,13 @@ export default class TaskBoardCreater extends Component {
 
           <div className="wiki-creater--name">Create Wall:</div>
 
-          <img
-            className="taskboard-creater--illustration"
-            src="/assets/images/work.png"
-          />
+
 
           <Input
-            className="taskboard-creater--name-input"
+            className="wiki-creater--name-input"
             type="text"
             ref="name"
-            placeholder="Board Name"
+            placeholder="Wiki Title"
             onKeyPress={event =>
               event.key === 'Enter' && this.onCreateClick.bind(this)(event)}
           />
@@ -73,9 +70,9 @@ export default class TaskBoardCreater extends Component {
           <Button
             styleType="primary"
             className="taskboard-creater--create-button"
-            onClick={this.onCreateClick.bind(this)}
+            onClick={::this.onCreateClick}
           >
-            Complete And Create
+            Create Wiki
           </Button>
         </div>
       </Modal>

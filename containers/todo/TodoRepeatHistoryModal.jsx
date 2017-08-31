@@ -1,7 +1,12 @@
 import { connect } from 'react-redux';
 import TodoRepeatHistoryModal from 'page/todo/TodoRepeatChart';
 import { wrapDispathToAction } from 'utils/wrap-props';
-import { getTodoRepeatHistory, activeTdRepeatHistory, unactiveTdRepeatHistory, tdRepeatHistoryYestoryUpdate } from 'actions/todo/todo-statistics';
+import {
+  getTodoRepeatHistory,
+  activeTdRepeatHistory,
+  unactiveTdRepeatHistory,
+  tdRepeatHistoryYestoryUpdate
+} from 'actions/todo/todo-statistics';
 import R from 'ramda';
 
 const actions = {
@@ -19,9 +24,8 @@ const mapStateToProps = (state, props) => {
   };
 };
 
-const TodoRepeatHistoryModalContainer = connect(
-  mapStateToProps,
-  wrapDispathToAction(actions)
-)(TodoRepeatHistoryModal);
+const TodoRepeatHistoryModalContainer = connect(mapStateToProps, wrapDispathToAction(actions))(
+  TodoRepeatHistoryModal
+);
 
 export default TodoRepeatHistoryModalContainer;
