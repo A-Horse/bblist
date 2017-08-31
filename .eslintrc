@@ -18,7 +18,8 @@
     "no-undef": ["error"],
     "no-unused-vars": ["error"],
     "prettier/prettier": ["error", {
-      "singleQuote": true
+      "singleQuote": true,
+      "printWidth": 100
     }]
   }
 }
