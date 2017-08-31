@@ -1,7 +1,4 @@
 * Octopus
 
-this is a task card project
-
-* misc
-** storage
-- LOCAL_BACKUP_URL
+** scripts:
+   - dev: npm run start
