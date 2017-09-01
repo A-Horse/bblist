@@ -22,6 +22,9 @@ const todoMetaHeight = 24;
 class Todo extends Component {
   constructor() {
     super();
+    this.onClickOutside = this.onClickOutside.bind(this);
+    this.onRepeatHistoryModal = this.onRepeatHistoryModal.bind(this);
+    this.destroyTodo = this.destroyTodo.bind(this);
   }
 
   componentWillMount() {
@@ -30,9 +33,7 @@ class Todo extends Component {
     };
   }
 
-  onClick() {
-
-  }
+  onClick() {}
 
   async closeEditable() {
     const currentTodoHeight = this.refs.main.offsetHeight;
@@ -50,18 +51,18 @@ class Todo extends Component {
     await timeout();
     this.refs.main.style.height = currentTodoHeight + todoMetaHeight + 'px';
     await timeout(300);
-    this.setState({editToggle: true});
+    this.setState({ editToggle: true });
     this.refs.main.style.height = 'auto';
   }
 
   updateEditingTodo() {
-    const newTodo = {content: this.refs.content.value.trim()};
-    this.setState({editToggle: false});
+    const newTodo = { content: this.refs.content.value.trim() };
+    this.setState({ editToggle: false });
     this.updateTodo(newTodo);
   }
 
   updateTodo(newTodo) {
-    const {dispatch, todo} = this.props;
+    const { dispatch, todo } = this.props;
     return dispatch(updateTodo(todo.id, newTodo));
   }
 
@@ -70,17 +71,17 @@ class Todo extends Component {
       return;
     }
     event.preventDefault();
-    this.updateTodo({content: this.refs.content.value.trim()});
+    this.updateTodo({ content: this.refs.content.value.trim() });
   }
 
   destroyTodo() {
-    const {todo, dispatch} = this.props;
+    const { todo, dispatch } = this.props;
     dispatch(destroyTodo(todo.id));
   }
 
   updateDone() {
-    const {dispatch, todo} = this.props;
-    const newTodo = {isDone: this.refs.checkbox.checked};
+    const { dispatch, todo } = this.props;
+    const newTodo = { isDone: this.refs.checkbox.checked };
     this.updateTodo(newTodo);
   }
 
@@ -100,56 +101,88 @@ class Todo extends Component {
       { name: 'None', value: NaN },
       { name: 'Every Day', value: 1 },
       { name: 'Two Day', value: 2 },
-      { name: 'Week', value: 7 },
+      { name: 'Week', value: 7 }
     ];
   }
 
   render() {
     const { todo } = this.props;
     return (
-      <ClickOutSide onClickOutside={::this.onClickOutside} >
-        <div className={`todo${this.state.editToggle ? ' open' : ''}${todo.isDone ? ' done' : ''}`} ref='main' onClick={this.onClick.bind(this)}>
-          <div className='todo--main'>
-            <CheckBox ref='checkbox' defaultChecked={todo.isDone} onChange={this.updateDone.bind(this)}/>
-            <div style={{display: !this.state.editToggle ? 'block' : 'none'}} className='todo--content' onClick={this.onContentClick.bind(this)}>
+      <ClickOutSide onClickOutside={this.onClickOutside}>
+        <div
+          className={`todo${this.state.editToggle ? ' open' : ''}${todo.isDone ? ' done' : ''}`}
+          ref="main"
+          onClick={this.onClick.bind(this)}
+        >
+          <div className="todo--main">
+            <CheckBox
+              ref="checkbox"
+              defaultChecked={todo.isDone}
+              onChange={this.updateDone.bind(this)}
+            />
+            <div
+              style={{ display: !this.state.editToggle ? 'block' : 'none' }}
+              className="todo--content"
+              onClick={this.onContentClick.bind(this)}
+            >
               {todo.content}
-              { todo.deadline && !this.state.editToggle &&
+              {todo.deadline &&
+                !this.state.editToggle &&
                 <div className="todo-deadline-label">
-                  <span>{new moment(todo.deadline).format('MM-DD')}</span>
-                </div>
-              }
+                  <span>
+                    {new moment(todo.deadline).format('MM-DD')}
+                  </span>
+                </div>}
             </div>
-            <Textarea ref='content' onKeyDown={this.onContendChanged.bind(this)} className='todo--content__input' style={{display: this.state.editToggle ? 'block' : 'none'}} defaultValue={todo.content}></Textarea>
+            <Textarea
+              ref="content"
+              onKeyDown={this.onContendChanged.bind(this)}
+              className="todo--content__input"
+              style={{ display: this.state.editToggle ? 'block' : 'none' }}
+              defaultValue={todo.content}
+            />
 
+            <div className="todo-hover-operation">
+              {!!todo.repeat && <IconChart onClick={this.onRepeatHistoryModal} />}
 
-
-            <div className='todo-hover-operation'>
-              {
-                !!todo.repeat && <IconChart onClick={::this.onRepeatHistoryModal}/>
-              }
-
-              <IconDelete onClick={::this.destroyTodo}/>
+              <IconDelete onClick={this.destroyTodo} />
             </div>
 
-
-            <StarCheckBox defaultChecked={todo.isStar} onChange={(checked) => {this.updateTodo({isStar: checked})}}/>
+            <StarCheckBox
+              defaultChecked={todo.isStar}
+              onChange={checked => {
+                this.updateTodo({ isStar: checked });
+              }}
+            />
           </div>
 
-          <div className='todo-editing--meta' style={{display: this.state.editToggle ? 'block' : 'none'}}>
-            <div className='todo-editing--deadline'>
-              <IconRepeat/>
+          <div
+            className="todo-editing--meta"
+            style={{ display: this.state.editToggle ? 'block' : 'none' }}
+          >
+            <div className="todo-editing--deadline">
+              <IconRepeat />
               <label>Deadline:</label>
-              <DatePicker ref='date-picker' placeholder="YYYY-MM-DD" hideIcon={true} defaultValue={todo.deadline} onSelected={(date) => this.updateTodo({deadline: date ? date.getTime() : null})}/>
+              <DatePicker
+                ref="date-picker"
+                placeholder="YYYY-MM-DD"
+                hideIcon={true}
+                defaultValue={todo.deadline}
+                onSelected={date => this.updateTodo({ deadline: date ? date.getTime() : null })}
+              />
             </div>
 
             <div className="todo-editing--repeat">
-              <IconDate/>
+              <IconDate />
               <label>Repeat:</label>
-              <Select defaultItem={R.find(R.propEq('value', parseInt(todo.repeat, 10)))(this.buildRepeatSelectItems())}
+              <Select
+                defaultItem={R.find(R.propEq('value', parseInt(todo.repeat, 10)))(
+                  this.buildRepeatSelectItems()
+                )}
                 items={this.buildRepeatSelectItems()}
-                onSelect={(repeat) => this.updateTodo({repeat: repeat.value})}/>
+                onSelect={repeat => this.updateTodo({ repeat: repeat.value })}
+              />
             </div>
-
           </div>
         </div>
       </ClickOutSide>

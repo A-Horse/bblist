@@ -14,6 +14,7 @@ export default class TaskBoardCreater extends Component {
   constructor() {
     super();
     this.state = { modalOpen: false, createErrorMessages: [] };
+    this.onCreateClick = this.onCreateClick.bind(this);
   }
 
   onCreateClick(event) {
@@ -48,29 +49,23 @@ export default class TaskBoardCreater extends Component {
       >
         <div>
           <button className="close-button">
-            <CloseIcon
-              className="clear-icon"
-              onClick={this.closeModal.bind(this)}
-            />
+            <CloseIcon className="clear-icon" onClick={this.closeModal.bind(this)} />
           </button>
 
           <div className="wiki-creater--name">Create Wall:</div>
-
-
 
           <Input
             className="wiki-creater--name-input"
             type="text"
             ref="name"
             placeholder="Wiki Title"
-            onKeyPress={event =>
-              event.key === 'Enter' && this.onCreateClick.bind(this)(event)}
+            onKeyPress={event => event.key === 'Enter' && this.onCreateClick.bind(this)(event)}
           />
           <ErrorMsg messages={R.values(this.state.createErrorMessages)} />
           <Button
             styleType="primary"
             className="taskboard-creater--create-button"
-            onClick={::this.onCreateClick}
+            onClick={this.onCreateClick}
           >
             Create Wiki
           </Button>
@@ -81,10 +76,7 @@ export default class TaskBoardCreater extends Component {
 
   render() {
     return (
-      <div
-        className="wiki-creater"
-        onClick={() => this.setState({ modalOpen: true })}
-      >
+      <div className="wiki-creater" onClick={() => this.setState({ modalOpen: true })}>
         <IconAdd className="icon-add" />
         <span className="wiki-creater-title">New Wiki</span>
         {this.renderModal()}

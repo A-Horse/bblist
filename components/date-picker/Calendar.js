@@ -14,6 +14,7 @@ export default class Calendar extends Component {
 
   constructor() {
     super();
+    this.onHeaderClick = this.onHeaderClick.bind(this);
   }
 
   componentWillMount() {
@@ -52,19 +53,19 @@ export default class Calendar extends Component {
   }
 
   onHeaderClick() {
-    
+
   }
 
   renderHeader() {
     return (
       <div className='calendar-header'>
         <KeyBoardArrowLeftIcon onClick={this.props.lastMonth}/>
-        <span className='calendar-header--year-month' onClick={::this.onHeaderClick}>{`${this.props.year} ${monthNames[this.props.month - 1]}`}</span>
+        <span className='calendar-header--year-month' onClick={this.onHeaderClick}>{`${this.props.year} ${monthNames[this.props.month - 1]}`}</span>
         <KeyBoardArrowRightIcon onClick={this.props.nextMonth}/>
       </div>
     );
   }
-  
+
   render() {
     return (
       <div className='calendar'>

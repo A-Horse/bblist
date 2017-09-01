@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import { createTodo, getTodoList } from 'actions/todo/todos';
 import { IconAdd } from 'services/image-icon';
-import {Button} from 'components/widget/Button';
+import { Button } from 'components/widget/Button';
 import DatePicker from 'components/date-picker/DatePicker';
 import { Select } from 'components/widget/Select';
 import Textarea from 'react-textarea-autosize';
@@ -13,9 +13,17 @@ import ClickOutSide from 'components/utils/ClickOutSide';
 
 import 'style/page/todo/todo-creater.scss';
 
-import {repeatItems} from './constants';
+import { repeatItems } from './constants';
 
 class TodoCreater extends Component {
+  constructor() {
+    super();
+    this.toggle = this.toggle.bind(this);
+    this.close = this.close.bind(this);
+    this.onInputKeyDown = this.onInputKeyDown.bind(this);
+    this.createTodo = this.createTodo.bind(this);
+  }
+
   componentWillMount() {
     this.state = {
       toggle: false
@@ -23,7 +31,7 @@ class TodoCreater extends Component {
   }
 
   createTodo() {
-    const {dispatch} = this.props;
+    const { dispatch } = this.props;
     const data = {
       content: this.refs.content.value.trim(),
       deadline: this.refs.datePicker.value ? this.refs.datePicker.value.getTime() : null
@@ -36,11 +44,11 @@ class TodoCreater extends Component {
   }
 
   toggle() {
-    this.setState({toggle: true});
+    this.setState({ toggle: true });
   }
 
   close() {
-    this.setState({toggle: false});
+    this.setState({ toggle: false });
   }
 
   onInputKeyDown(event) {
@@ -57,39 +65,48 @@ class TodoCreater extends Component {
 
   renderToggle() {
     return (
-      <div className='todo-creater--toggle' onClick={::this.toggle}>
-        <IconAdd className='add-icon'/>
-        <span className='toggle-text'>Add Todo</span>
+      <div className="todo-creater--toggle" onClick={this.toggle}>
+        <IconAdd className="add-icon" />
+        <span className="toggle-text">Add Todo</span>
       </div>
     );
   }
 
   renderCreater() {
     return (
-      <ClickOutSide onClickOutside={::this.close}>
-        <div className='todo-creater-body'>
-
-          <div className='todo-creater--input'>
-            <Textarea onKeyDown={::this.onInputKeyDown} placeholder='write your todo' className='todo-creater--content' type='text' ref='content'></Textarea>
+      <ClickOutSide onClickOutside={this.close}>
+        <div className="todo-creater-body">
+          <div className="todo-creater--input">
+            <Textarea
+              onKeyDown={this.onInputKeyDown}
+              placeholder="write your todo"
+              className="todo-creater--content"
+              type="text"
+              ref="content"
+            />
           </div>
 
-          <div className='todo-creater-deadline'>
+          <div className="todo-creater-deadline">
             <label>Deadline:</label>
-            <DatePicker ref='datePicker' arrow='auto'/>
+            <DatePicker ref="datePicker" arrow="auto" />
           </div>
 
-          <div className='repeat-input hidden'>
+          <div className="repeat-input hidden">
             <label>Repeat:</label>
-            <Select items={repeatItems}/>
+            <Select items={repeatItems} />
           </div>
 
-          <div className='todo-creater--label hidden'>
-            <Textarea type='text' placeholder='Label' ref='label'></Textarea>
+          <div className="todo-creater--label hidden">
+            <Textarea type="text" placeholder="Label" ref="label" />
           </div>
 
-          <div className='todo-creater-operation'>
-            <Button styleType='primary' onClick={::this.createTodo}>Create Todo</Button>
-            <Button className='cancel-button' styleType='default' onClick={::this.close}>Cancel</Button>
+          <div className="todo-creater-operation">
+            <Button styleType="primary" onClick={this.createTodo}>
+              Create Todo
+            </Button>
+            <Button className="cancel-button" styleType="default" onClick={this.close}>
+              Cancel
+            </Button>
           </div>
         </div>
       </ClickOutSide>
@@ -97,10 +114,8 @@ class TodoCreater extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-
-  };
+const mapStateToProps = state => {
+  return {};
 };
 
 export default connect(mapStateToProps)(TodoCreater);

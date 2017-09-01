@@ -12,11 +12,14 @@ import R from 'ramda';
 import 'style/page/setting/security.scss';
 
 export default class Security extends Component {
-  state = {updatePwderrorMessages: {}};
+  state = { updatePwderrorMessages: {} };
 
-  componentWillMount() {
-
+  constructor() {
+    super();
+    this.updatePassword = this.updatePassword.bind(this);
   }
+
+  componentWillMount() {}
 
   updatePassword(event) {
     const oldPassword = this.refs.oldPassword.instance;
@@ -31,7 +34,7 @@ export default class Security extends Component {
     const errorMessages = validateFormValue(data, {
       confirmPassword: [`eqTo@${data.newPassword}#password don't match`]
     });
-    this.setState({updatePwderrorMessages: errorMessages});
+    this.setState({ updatePwderrorMessages: errorMessages });
     if (Object.keys(errorMessages).length) {
       return;
     }
@@ -40,35 +43,40 @@ export default class Security extends Component {
 
   render() {
     return (
-      <section className='setting-security'>
-
-        <section className='setting-security-password'>
+      <section className="setting-security">
+        <section className="setting-security-password">
           <div className="section-heading">Password</div>
           <div className="heading">Old password</div>
           <div>
-            <Input type="password" ref="oldPassword" name="update-password-old" className='input'/>
+            <Input type="password" ref="oldPassword" name="update-password-old" className="input" />
           </div>
 
           <div className="heading">New password</div>
           <div>
-            <Input type="password" ref="newPassword" className='input' name="update-password-new"/>
+            <Input type="password" ref="newPassword" className="input" name="update-password-new" />
           </div>
 
           <div className="heading">Confirm new password</div>
           <div>
-            <Input type="password" ref="confirmPassword" className='input' name="update-password-confirm"/>
+            <Input
+              type="password"
+              ref="confirmPassword"
+              className="input"
+              name="update-password-confirm"
+            />
           </div>
 
-          <ErrorMsg messages={R.values(this.state.updatePwderrorMessages)}/>
+          <ErrorMsg messages={R.values(this.state.updatePwderrorMessages)} />
 
-          <Button className='signin-button'
-            styleType='primary'
-            onClick={::this.updatePassword}
-            size='middle'>
+          <Button
+            className="signin-button"
+            styleType="primary"
+            onClick={this.updatePassword}
+            size="middle"
+          >
             Update Passoword
           </Button>
         </section>
-
       </section>
     );
   }

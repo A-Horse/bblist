@@ -12,6 +12,11 @@ import Loading from 'components/Loading';
 import 'style/page/task/setting/infomation.scss';
 
 class Infomation extends Component {
+  constructor() {
+    super();
+    this.uploadCover = this.uploadCover.bind(this);
+    this.onBoardNameChange = this.onBoardNameChange.bind(this);
+  }
 
   uploadCover(imageDataUrl) {
     // TODO extract commons
@@ -27,38 +32,43 @@ class Infomation extends Component {
   render() {
     const board = this.props.board;
     if (!board) {
-      return <Loading/>;
+      return <Loading />;
     }
 
     // TODO default cover
     return (
-      <div className='board-setting-infomation'>
+      <div className="board-setting-infomation">
         <h3>Infomation</h3>
 
-        <div className='board-cover'>
-          <div className='board-cover--heading'>Board Cover:</div>
-          <div className='board-cover--wrapper'>
-            <img className='cover-image' src={makeRemoteUrl(board.cover)}/>
+        <div className="board-cover">
+          <div className="board-cover--heading">Board Cover:</div>
+          <div className="board-cover--wrapper">
+            <img className="cover-image" src={makeRemoteUrl(board.cover)} />
           </div>
-          <div className='board-cover--uploader'>
-            <ImageUploader ref='board-cover-uploader' uploadFn={::this.uploadCover}>Upload new Cover</ImageUploader>
+          <div className="board-cover--uploader">
+            <ImageUploader ref="board-cover-uploader" uploadFn={this.uploadCover}>
+              Upload new Cover
+            </ImageUploader>
           </div>
         </div>
 
-        <div className='board-name'>
-          <div className='board-name--heading'>Board Name:</div>
+        <div className="board-name">
+          <div className="board-name--heading">Board Name:</div>
           <div>
-            <Input className='board-name--input' defaultValue={board.name} onChange={::this.onBoardNameChange}/>
+            <Input
+              className="board-name--input"
+              defaultValue={board.name}
+              onChange={this.onBoardNameChange}
+            />
           </div>
         </div>
 
-        <div className='board-description'>
-          <div className='board-description--heading'>Board Description:</div>
+        <div className="board-description">
+          <div className="board-description--heading">Board Description:</div>
           <div>
-            <textarea className='board-description--input'/>
+            <textarea className="board-description--input" />
           </div>
         </div>
-
       </div>
     );
   }
