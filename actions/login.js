@@ -1,7 +1,7 @@
 import fetch from 'isomorphic-fetch';
 import { createConfigWithAuth, createConfig } from 'utils/header';
 import { handleResponse, handleResponseWithoutJson } from 'utils/http-handle';
-import { getJWT} from 'utils/auth';
+import { getJWT } from 'utils/auth';
 import { makeApiUrl } from 'utils/api';
 
 export const LOGIN_REQUEST = 'LOGIN_REQUEST';
@@ -24,7 +24,7 @@ function requestLogin(creds) {
 function receiveLogin(jwt, user) {
   return {
     type: LOGIN_SUCCESS,
-    playload: {jwt, user}
+    playload: { jwt, user }
   };
 }
 
@@ -79,9 +79,8 @@ function authLoginSuccess(user) {
   };
 }
 
-
 export function indentifyUser() {
-  const token = getJWT();
+  // const token = getJWT();
   const config = createConfigWithAuth('GET');
   return dispatch => {
     if (!token) return dispatch(canNotLoginAuth());
@@ -89,7 +88,7 @@ export function indentifyUser() {
     return fetch(makeApiUrl(`/user/identify`), config)
       .then(handleResponse)
       .then(response => dispatch(authLoginSuccess(response)))
-      .catch(err => dispatch(authLoginError(err.message)));
+      .catch(err => dispatch(authLoginError(err)));
   };
 }
 
@@ -100,13 +99,13 @@ export const AUTH_SUCCESS = 'AUTH_SUCCESS';
 function authRequest() {
   return {
     type: AUTH_REQUEST
-   };
- }
+  };
+}
 
- function authSuccess(resp) {
-   return {
-     type: AUTH_SUCCESS,
-     playload: resp
+function authSuccess(resp) {
+  return {
+    type: AUTH_SUCCESS,
+    playload: resp
   };
 }
 
@@ -116,7 +115,6 @@ function authFailure(message) {
     playload: message
   };
 }
-
 
 export function authUser(userId) {
   const config = createConfigWithAuth('GET');

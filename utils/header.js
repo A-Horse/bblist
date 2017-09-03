@@ -1,11 +1,11 @@
-import {JWT_STORAGE_KEY} from '../constants';
-import {getJWT} from './auth';
+import { JWT_STORAGE_KEY } from '../constants';
+import { getJWT } from './auth';
 
-export function createConfig(method, body, headers){
+export function createConfig(method, body, headers) {
   return {
     method: method,
     headers: {
-      'content-type':'application/json',
+      'content-type': 'application/json',
       ...headers
     },
     body: JSON.stringify(body)

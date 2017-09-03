@@ -2,11 +2,13 @@
   "parser": "babel-eslint",
   "plugins": [
     "react",
-    "prettier"
+    "prettier",
+    "jest"
   ],
   "env": {
     "browser": true,
-    "node": true
+    "node": true,
+    "jest/globals": true
   },
   "rules": {
     "react/jsx-uses-react": 1,

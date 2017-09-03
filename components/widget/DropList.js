@@ -1,19 +1,15 @@
-import React, {Component, PropTypes} from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import DOM from 'react-dom-factories';
 
 import 'style/component/widget/drop-list.scss';
 
 export class DropList extends Component {
-  componentDidMount() {
-    
-  }
+  componentDidMount() {}
 
-  componentDidUpdate() {
-    
-  }
+  componentDidUpdate() {}
 
-  openSelect() {
-    
-  }
+  openSelect() {}
 
   buildClassName() {
     let className = 'drop-list';
@@ -22,14 +18,16 @@ export class DropList extends Component {
     }
     return className;
   }
-  
+
   render() {
     if (this.props.toggle) {
-      return <ul className={this.buildClassName()}>
-        {this.props.children}
-      </ul>;
+      return (
+        <ul className={this.buildClassName()}>
+          {this.props.children}
+        </ul>
+      );
     } else {
-      return React.DOM.noscript();
+      return DOM.noscript();
     }
   }
 }

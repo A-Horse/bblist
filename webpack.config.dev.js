@@ -25,12 +25,7 @@ module.exports = {
     filename: 'bundle.js',
     publicPath: '/assets/'
   },
-  plugins: [
-    new webpack.optimize.OccurrenceOrderPlugin(),
-    new webpack.BannerPlugin(fs.readFileSync('./.banner').toString()),
-    new webpack.optimize.AggressiveMergingPlugin(),
-    new webpack.optimize.ModuleConcatenationPlugin()
-  ],
+  plugins: [],
   module: {
     rules: [
       {
@@ -54,12 +49,9 @@ module.exports = {
           },
           {
             loader: 'sass-loader'
-          },
-          {
-            loader: 'autoprefixer-loader'
           }
-        ],
-        include: [path.resolve(__dirname, './style')]
+        ]
+        // include: [path.resolve(__dirname, './style')]
       },
       {
         test: /\.css$/,

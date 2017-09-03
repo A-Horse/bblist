@@ -1,13 +1,12 @@
-import React, {Component} from 'react';
-import {browserHistory} from 'react-router';
+import React, { Component } from 'react';
+import { browserHistory } from 'react-router';
 
-import {SettingIcon, StarBorderIcon} from 'services/svg-icons';
-import {updateTitle} from 'services/title';
-import {Link} from 'react-router';
+import { SettingIcon, StarBorderIcon } from 'services/svg-icons';
+import { updateTitle } from 'services/title';
+import { Link } from 'react-router-dom';
 
 import 'style/page/task/taskboard-header.scss';
 import 'style/page/task/board.scss';
-
 
 class Board extends Component {
   constructor() {
@@ -19,10 +18,8 @@ class Board extends Component {
   }
 
   componentWillMount() {
-    const {id} = this.props.params;
-    this.getTasks(id).then(() => {
-
-    }).catch(error => {
+    const { id } = this.props.params;
+    this.getTasks(id).then(() => {}).catch(error => {
       // TODO 404
     });
   }
@@ -37,22 +34,27 @@ class Board extends Component {
 
   renderSetttingArea() {
     return (
-      <div className='taskboard-header-setting' onClick={() => browserHistory.push(`/task-wall/${this.props.params.id}/setting/infomation`)}>
-        <SettingIcon className='setting-icon'/>
+      <div
+        className="taskboard-header-setting"
+        onClick={() => browserHistory.push(`/task-wall/${this.props.params.id}/setting/infomation`)}
+      >
+        <SettingIcon className="setting-icon" />
         <span>setting</span>
       </div>
     );
   }
 
   renderTopBar() {
-    const {id} = this.props.params;
-    const {normalizedBoard} = this.props;
+    const { id } = this.props.params;
+    const { normalizedBoard } = this.props;
     const board = normalizedBoard.entities[id];
     return (
-      <div className='taskboard-header'>
-        <div className='taskboard-name'>
-          <StarBorderIcon className='taskboard-name--star'/>
-          <Link className='taskboard-name--text' to={`/task-wall/${id}`}>{board && board.name}</Link>
+      <div className="taskboard-header">
+        <div className="taskboard-name">
+          <StarBorderIcon className="taskboard-name--star" />
+          <Link className="taskboard-name--text" to={`/task-wall/${id}`}>
+            {board && board.name}
+          </Link>
         </div>
         {this.renderSetttingArea()}
       </div>
@@ -61,7 +63,7 @@ class Board extends Component {
 
   render() {
     return (
-      <div className='board-container'>
+      <div className="board-container">
         {this.renderTopBar()}
         {this.props.children}
       </div>

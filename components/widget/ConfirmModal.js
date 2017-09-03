@@ -1,6 +1,7 @@
-import React, { Component, PropTypes } from 'react';
-import {Modal} from './Modal';
-import {getAssets} from '../../services/assets-manager';
+import React, { Component } from 'react';
+import { Modal } from './Modal';
+import PropTypes from 'prop-types';
+import { getAssets } from '../../services/assets-manager';
 
 const modalStyles = {
   overlay: {
@@ -30,7 +31,7 @@ const modalStyles = {
 export class ConfirmModal extends Component {
   propTypes: {
     confirmFn: PropTypes.func.isRequired
-  }
+  };
 
   constructor() {
     super();
@@ -39,17 +40,11 @@ export class ConfirmModal extends Component {
     };
   }
 
-  init() {
+  init() {}
 
-  }
+  componentDidMount() {}
 
-  componentDidMount() {
-
-  }
-
-  componentDidUpdate() {
-
-  }
+  componentDidUpdate() {}
 
   cancel() {
     this.props.cancelFn && this.props.cancelFn();
@@ -62,22 +57,38 @@ export class ConfirmModal extends Component {
   }
 
   close() {
-    this.setState({toggle: false})
+    this.setState({ toggle: false });
   }
 
   open() {
-    this.setState({toggle: true})
+    this.setState({ toggle: true });
   }
 
   render() {
     return (
       <Modal styles={modalStyles} toggle={this.state.toggle}>
-        <div onClick={() => {this.close()}}>
+        <div
+          onClick={() => {
+            this.close();
+          }}
+        >
           <img src={getAssets('svg', 'clear')} />
         </div>
         <div>
-          <button onClick={() => {this.confirm()}}>Confirm</button>
-          <button onClick={() => {this.cancel()}}>Cancel</button>
+          <button
+            onClick={() => {
+              this.confirm();
+            }}
+          >
+            Confirm
+          </button>
+          <button
+            onClick={() => {
+              this.cancel();
+            }}
+          >
+            Cancel
+          </button>
         </div>
       </Modal>
     );

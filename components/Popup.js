@@ -1,14 +1,15 @@
-import React, {Component} from 'react';
-import {Modal} from 'components/widget/Modal';
-import {DateIcon, CloseIcon} from 'services/svg-icons';
-import {getWindowScrollPosition} from 'services/scroll';
+import React, { Component } from 'react';
+import { Modal } from 'components/widget/Modal';
+import { DateIcon, CloseIcon } from 'services/svg-icons';
+import { getWindowScrollPosition } from 'services/scroll';
 import ClickOutSide from 'components/utils/ClickOutSide';
+import DOM from 'react-dom-factories';
 import 'style/component/popup.scss';
 
 class Popup extends Component {
   constructor() {
     super();
-    this.state = {toggle: false};
+    this.state = { toggle: false };
   }
 
   // getParentOffset() {
@@ -20,12 +21,16 @@ class Popup extends Component {
   checkUpDown() {
     const rect = this.props.parent.getBoundingClientRect();
     const body = document.body,
-          html = document.documentElement;
-    const docHeight = Math.max( body.scrollHeight, body.offsetHeight,
-                                window.screen.height,
-                                html.clientHeight, html.scrollHeight, html.offsetHeight);
+      html = document.documentElement;
+    const docHeight = Math.max(
+      body.scrollHeight,
+      body.offsetHeight,
+      window.screen.height,
+      html.clientHeight,
+      html.scrollHeight,
+      html.offsetHeight
+    );
     return rect.top + (rect.top - rect.bottom) / 2 > docHeight / 2 ? 'top' : 'bottom';
-    
   }
 
   buildClassName() {
@@ -35,7 +40,7 @@ class Popup extends Component {
     }
     return className;
   }
-  
+
   buildModalStyle() {
     if (!this.x || !this.y) {
       return null;
@@ -46,17 +51,17 @@ class Popup extends Component {
     };
   }
 
-  render() {    
+  render() {
     if (this.props.toggle) {
       return (
         <ClickOutSide onClickOutside={this.props.close ? this.props.close : null}>
-          <div ref='main' className={this.buildClassName()}>
+          <div ref="main" className={this.buildClassName()}>
             {this.props.children}
           </div>
         </ClickOutSide>
       );
     }
-    return React.DOM.noscript();
+    return DOM.noscript();
   }
 }
 

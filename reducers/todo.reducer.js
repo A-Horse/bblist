@@ -8,17 +8,17 @@ import {
   TODO_PATCH_SUCCESS,
   TODO_DESTORY_SUCCESS
 } from 'actions/todo/todos';
-import { TDBox, TD, TDS } from '../../schema';
+import { TDBox, TD, TDS } from '../schema';
 import { normalize } from 'normalizr';
+import { Map, List, fromJS } from 'immutable';
 import R from 'ramda';
 
 function todos(
-  state = {
-    isFetching: false,
+  state = Map({
     todoBoxId: null,
-    list: [],
-    entities: {}
-  },
+    todoIds: []
+    // todoEntities: {}
+  }),
   action
 ) {
   switch (action.type) {
@@ -26,26 +26,42 @@ function todos(
       const myTodoBox = { name: 'My Todo', id: null, type: 'only' };
       return {
         ...state,
-        TodoBoxs: normalize([].concat(action.playload, myTodoBox), TDS).entities
-          .TodoBox
+        TodoBoxs: normalize([].concat(action.playload, myTodoBox), TDS).entities.TodoBox
       };
+      break;
 
     case TODOBOX_CREATE_SUCCESS:
       normalize(action.playload, TD);
       return {
         ...state
       };
+      break;
 
     case TODOLIST_GET_SUCCESS:
-      const mockedTodoBoxs = {
-        id: action.meta.todoBoxId,
-        todos: action.playload
-      };
-      return {
-        ...state,
-        // TODO bug
-        entities: normalize(mockedTodoBoxs, TDBox).entities
-      };
+      /* const mockedTodoBoxs = {
+       *   id: action.meta.todoBoxId,
+       *   todos: action.playload
+       * };*/
+
+      // console.log();
+      const normalizedTodos = normalize(action.playload, TDS);
+      console.log(normalizedTodos);
+
+      /* console.log(normalizedTodos);
+       * console.log(List(normalizedTodos.result));
+       * console.log('------------!');*/
+
+      return state
+        .set('todoIds', List(normalizedTodos.result))
+        .set('todoEntities', fromJS(normalizedTodos.entities.Todo));
+
+      /* return state;*/
+      /* return {
+       *   ...state,
+       *   // TODO bug
+       *   entities: normalize(mockedTodoBoxs, TDS).entities
+       * };*/
+      break;
 
     case TODO_POST_SUCCESS:
       return {
@@ -56,9 +72,7 @@ function todos(
             R.concat,
             R.assocPath(
               ['TodoBox', JSON.stringify(state.todoBoxId), 'todos'],
-              [].concat(state.entities.TodoBox[state.todoBoxId].todos, [
-                action.playload.id
-              ]),
+              [].concat(state.entities.TodoBox[state.todoBoxId].todos, [action.playload.id]),
               {}
             ),
             R.assocPath(
@@ -80,9 +94,14 @@ function todos(
       return tdDeteledState;
 
     case TODO_PATCH_SUCCESS:
-      const updatedTodoState = R.clone(state, true);
-      updatedTodoState.entities.Todo[action.playload.id] = action.playload;
-      return updatedTodoState;
+      return state.updateIn(['todoEntities', String(action.playload.id)], () =>
+        fromJS(action.playload)
+      );
+      /* const updatedTodoState = R.clone(state, true);
+       * state.entities.Todo[action.playload.id] = action.playload;
+       * updatedTodoState.entities.Todo[action.playload.id] = action.playload;
+       * return updatedTodoState;*/
+      break;
 
     default:
       return state;

@@ -1,12 +1,13 @@
-import React, {Component, PropTypes} from 'react';
-import {ArrowDown} from 'services/svg-icons';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { ArrowDown } from 'services/svg-icons';
 import 'style/component/widget/select.scss';
 
 export class Select extends Component {
   defaultProps: {
     items: PropTypes.array.isRequired,
     value: PropTypes.isRequired
-  }
+  };
 
   constructor() {
     super();
@@ -28,7 +29,7 @@ export class Select extends Component {
   }
 
   openSelect() {
-    this.setState({toggle: !this.state.toggle});
+    this.setState({ toggle: !this.state.toggle });
   }
 
   buildBoxClassName() {
@@ -36,23 +37,29 @@ export class Select extends Component {
   }
 
   renderItems() {
-    return this.props.items.map(item => (<li key={item.value} className='select--item' onClick={() => this.clickItem(item)}>{item.name}</li>));
+    return this.props.items.map(item =>
+      <li key={item.value} className="select--item" onClick={() => this.clickItem(item)}>
+        {item.name}
+      </li>
+    );
   }
 
   clickItem(item) {
-    this.setState({value: item.value, name: item.name, toggle: false});
+    this.setState({ value: item.value, name: item.name, toggle: false });
     this.props.onSelect && this.props.onSelect(item);
   }
 
   render() {
     return (
-      <div className='select'>
+      <div className="select">
         <div className={this.buildBoxClassName()} onClick={this.openSelect.bind(this)}>
-        <p className='select-box--name'>{this.state.name}</p>
-          <ArrowDown/>
+          <p className="select-box--name">
+            {this.state.name}
+          </p>
+          <ArrowDown />
         </div>
-        <ul className='select--container' style={{display: this.state.toggle ? 'block' : 'none'}}>
-        {this.renderItems()}
+        <ul className="select--container" style={{ display: this.state.toggle ? 'block' : 'none' }}>
+          {this.renderItems()}
         </ul>
       </div>
     );

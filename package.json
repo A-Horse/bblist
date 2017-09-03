@@ -16,18 +16,18 @@
     "url": "https://github.com/A-Horse/bblist/issues"
   },
   "jest": {
+    "verbose": true,
     "moduleFileExtensions": [
       "js",
       "jsx"
     ],
     "moduleDirectories": [
       "node_modules",
-      "components",
-      "page",
-      "containers"
+      "<rootDir>"
     ],
     "moduleNameMapper": {
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "^babel-loader": "<rootDir>/__mocks__/fileMock.js",
       "\\.(css|scss)$": "<rootDir>/__mocks__/styleMock.js"
     },
     "transform": {
@@ -46,22 +46,28 @@
     "blueimp-md5": "^2.3.0",
     "css-loader": "^0.23.1",
     "element-class": "^0.2.2",
+    "eslint-plugin-prettier": "^2.2.0",
+    "eslint-plugin-react": "^7.3.0",
     "extract-text-webpack-plugin": "^2.1.0",
     "fw-ramda": "^0.1.4",
     "gulp-inject": "^4.2.0",
+    "immutable": "v4.0.0-rc.2",
     "isomorphic-fetch": "^2.2.1",
     "lodash": "^4.14.1",
     "moment": "^2.17.0",
     "normalizr": "^3.2.3",
+    "prettier": "^1.6.1",
     "prop-types": "^15.5.10",
     "ramda": "^0.24.0",
     "react": "v15.6.1",
     "react-addons-test-utils": "^15.6.0",
     "react-dom": "^15.6.1",
+    "react-dom-factories": "^1.0.1",
     "react-image-crop": "^2.0.5",
     "react-redux": "^4.1.2",
-    "react-router": "^2.5.2",
-    "react-router-redux": "^4.0.5",
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2",
+    "react-router-redux": "next",
     "react-textarea-autosize": "^4.0.5",
     "redux": "^3.1.2",
     "redux-devtools": "^3.3.1",
@@ -100,6 +106,7 @@
     "cross-env": "^1.0.7",
     "enzyme": "^2.9.1",
     "eslint": "^3.6.0",
+    "eslint-plugin-jest": "^20.0.3",
     "expect": "^1.8.0",
     "express": "^4.13.3",
     "gulp": "^3.9.1",
@@ -110,7 +117,7 @@
     "node-libs-browser": "^0.5.2",
     "node-sass": "^3.13.1",
     "offline-plugin": "^3.4.2",
-    "react-hot-loader": "^3.0.0-beta.5",
+    "react-hot-loader": "next",
     "react-test-renderer": "^15.6.1",
     "run-sequence": "^1.2.2",
     "sass-loader": "^3.0.0",

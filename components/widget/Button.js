@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
 import 'style/component/widget/button.scss';
 
 export class Button extends Component {
@@ -10,13 +9,8 @@ export class Button extends Component {
   };
 
   buildClassName() {
-    const {
-      size = 'middle',
-      styleType = 'default',
-      borderType = 'default'
-    } = this.props;
-    return `button ${size} ${styleType} border-${borderType} ${this.props
-      .className
+    const { size = 'middle', styleType = 'default', borderType = 'default' } = this.props;
+    return `button ${size} ${styleType} border-${borderType} ${this.props.className
       ? ' ' + this.props.className
       : ''}`;
   }

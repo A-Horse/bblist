@@ -22,15 +22,15 @@ class TodoPage extends Component {
 
   render() {
     return (
-      <PageContainer className='todo-page cover'>
-        <div className='todo-box-container'>
-          <TodoBoxs actions={this.props.actions}/>
+      <PageContainer className="todo-page cover">
+        <div className="todo-box-container">
+          <TodoBoxs actions={this.props.actions} />
         </div>
-        <div className='todo-list-container'>
-          <TodoList boxId={this.props.params.id}/>
+        <div className="todo-list-container">
+          <TodoList boxId={this.props.match.params.id} />
         </div>
         <TodoRepeatHistoryModal />
-     </PageContainer>
+      </PageContainer>
     );
   }
 }

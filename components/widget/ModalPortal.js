@@ -1,5 +1,7 @@
-import React, { Component, PropTypes } from 'react';
-var div = React.DOM.div;
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import DOM from 'react-dom-factories';
+var div = DOM.div;
 
 var CLASS_NAMES = {
   overlay: {
@@ -13,7 +15,6 @@ var CLASS_NAMES = {
     beforeClose: 'modal__content--before-close'
   }
 };
-
 
 export class ModalPortal extends Component {
   constructor(props) {
@@ -39,9 +40,7 @@ export class ModalPortal extends Component {
     }
   }
 
-  onOverlayClick() {
-    
-  }
+  onOverlayClick() {}
 
   requestClose() {
     this.props.close && this.props.close();
@@ -49,10 +48,8 @@ export class ModalPortal extends Component {
 
   buildClassName(which, additional) {
     var className = CLASS_NAMES[which].base;
-    if (this.state.afterOpen)
-      className += ' '+ CLASS_NAMES[which].afterOpen;
-    if (this.state.beforeClose)
-      className += ' '+ CLASS_NAMES[which].beforeClose;
+    if (this.state.afterOpen) className += ' ' + CLASS_NAMES[which].afterOpen;
+    if (this.state.beforeClose) className += ' ' + CLASS_NAMES[which].beforeClose;
     return additional ? className + ' ' + additional : className;
   }
 
@@ -66,15 +63,24 @@ export class ModalPortal extends Component {
 
     if (this.props.toggle) {
       return (
-        <div ref='overlay' className={this.buildClassName('overlay', this.props.overlayClassName)}
-             onClick={this.onOverlayClick.bind(this)} style={this.props.overlayStyle}>
-          <div ref='content' className={this.buildClassName('content', this.props.className)} tabIndex='-1'
-               style={this.props.modalStyle} onKeyDown={this.handleKeyDown.bind(this)}>
+        <div
+          ref="overlay"
+          className={this.buildClassName('overlay', this.props.overlayClassName)}
+          onClick={this.onOverlayClick.bind(this)}
+          style={this.props.overlayStyle}
+        >
+          <div
+            ref="content"
+            className={this.buildClassName('content', this.props.className)}
+            tabIndex="-1"
+            style={this.props.modalStyle}
+            onKeyDown={this.handleKeyDown.bind(this)}
+          >
             {this.props.children}
           </div>
         </div>
       );
     }
-    return React.DOM.noscript();
+    return DOM.noscript();
   }
 }

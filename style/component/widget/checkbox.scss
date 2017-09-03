@@ -12,36 +12,29 @@
       display: block;
     }
   }
+
+  .fa {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    &.fa-check-square-o {
+      color: #4caf50;
+    }
+
+    &.fa-square-o {
+      color: #999;
+    }
+  }
 }
 
 .checkbox--mock {
-  @include shadow-depth-light;
   display: block;
   position: absolute;
   left: 0;
   top: 2px;
   height: 18px;
   width: 18px;
-  border: 1px solid $gray-light-litte-depth;
-  border-radius: 6px;
-  cursor: pointer;
 
-  &:before {
-    content: '';
-    z-index: 1;
-    display: none;
-    position: absolute;
-    left: -3px;
-    top: -3px;
-    height: 23px;
-    width: 24px;
-    mask: url(/assets/icons/right.png);
-    mask-size: cover;
-    background: {
-      color: $green;
-      repeat: no-repeat;
-      size: cover;
-    };
-    cursor: pointer;
-  }
+  cursor: pointer;
 }

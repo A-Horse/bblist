@@ -1,0 +1,164 @@
+@import 'style/variable';
+@import 'style/mixin';
+@import 'style/page/todo/variable';
+
+.todo {
+  @include clearfix();
+  position: relative;
+  padding: $todo-item-padding;
+  background-color: $color-background-light;
+  border-radius: $radius-middle;
+  margin-bottom: 5px;
+  transition: height 300ms;
+  box-shadow: 0 0 5px #ccc;
+  width: 100%;
+  opacity: 0.8;
+
+
+  &.done {
+    .todo--content {
+      text-decoration: line-through;
+    }
+  }
+
+  &.open {
+    opacity: 1;
+    .todo-hover-operation {
+      visibility: visible;
+      float: right;
+    }
+    .todo--main {
+      .star-checkbox {
+        opacity: 1;
+      }
+    }
+
+  }
+  &:hover {
+    .todo-hover-operation {
+      visibility: visible;
+    }
+
+    .star-checkbox {
+      opacity: 0.6;
+    }
+  }
+}
+
+.todo--main {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  overflow: hidden;
+
+  .checkbox {
+    top: 2px;
+  }
+
+  .star-checkbox {
+    margin-right: 5px;
+    opacity: 0;
+
+    &.checked {
+      opacity: 1;
+    }
+  }
+
+  .todo-deadline-label {
+    color: $white;
+    min-width: 60px;
+    display: inline-block;
+    margin-left: 10px;
+
+    span {
+      background-color: $red;
+      border-radius: 5px;
+      padding-left: 4px;
+      padding-right: 4px;
+    }
+  }
+}
+
+.todo--content {
+  width: 100%;
+  margin-left: 15px;
+  margin-right: 10px;
+  line-height: 26px;
+  user-select: initial;
+  vertical-align: middle;
+  word-break: break-all;
+}
+
+.todo--content__input {
+  width: 100%;
+  border: none;
+  resize: none;
+  border-radius: $radius-middle;
+  background-color: $gray-light-depth;
+  margin: 0 14px;
+}
+
+.todo-editing--deadline {
+  display: flex;
+  align-items: center;
+
+  .date-picker {
+    margin-left: 14px;
+
+    input {
+      border: none;
+    }
+  }
+}
+
+.todo-editing--meta {
+  margin-top: 10px;
+
+  .image-icon {
+    vertical-align: middle;
+    width: 16px;
+    margin-right: 7px;
+
+  }
+
+  .todo-editing--repeat {
+    .select {
+      margin-left: 10px;
+      border-bottom: 1px solid $color-border;
+
+      .select--box {
+        border: none;
+      }
+    }
+  }
+
+  .date-picker {
+    .date-picker--text {
+      border-bottom: 1px solid $color-border;
+
+      &.placeholder {
+        color: $md-blue-grey-200;
+      }
+    }
+  }
+}
+
+.todo-hover-operation {
+  visibility: hidden;
+  margin-right: 12px;
+  white-space: nowrap;
+  .icon-delete {
+    position: relative;
+    top: 3px;
+    width: 22px;
+  }
+
+  .image-icon {
+    margin-left: 10px;
+    cursor: pointer;
+
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+}

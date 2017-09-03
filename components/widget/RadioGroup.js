@@ -1,10 +1,11 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import 'style/component/widget/radio-group.scss';
 
 export class RadioGroup extends Component {
   static propTypes = {
-    radioArray: React.PropTypes.array
+    radioArray: PropTypes.array
   };
 
   renderRadios() {
@@ -12,7 +13,12 @@ export class RadioGroup extends Component {
       return (
         <div key={radio.value}>
           <label>
-            <input onChange={this.onChange.bind(this)} type='radio' name={this.props.name} value={radio.value}/>
+            <input
+              onChange={this.onChange.bind(this)}
+              type="radio"
+              name={this.props.name}
+              value={radio.value}
+            />
             {radio.text}
           </label>
         </div>
@@ -22,7 +28,7 @@ export class RadioGroup extends Component {
 
   render() {
     return (
-      <div className='radio-group' ref='main'>
+      <div className="radio-group" ref="main">
         {this.renderRadios()}
       </div>
     );

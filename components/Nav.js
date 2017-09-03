@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import { makeGravatarUrl } from 'services/gravatar';
 import { Storage, storageImage } from 'services/storage';
 import { DropList } from './widget/DropList';
@@ -31,21 +31,11 @@ class Nav extends Component {
         <LogoBan white={true} />
 
         <div className="nav-link-area">
-          <Link to="/home" activeClassName="nav-link__active">
-            Dash
-          </Link>
-          <Link to="/task-wall" activeClassName="nav-link__active">
-            Task
-          </Link>
-          <Link to="/todo" activeClassName="nav-link__active">
-            Todo
-          </Link>
-          <Link to="/wiki" activeClassName="nav-link__active">
-            Wiki
-          </Link>
-          <Link to="/mind" activeClassName="nav-link__active">
-            Mind
-          </Link>
+          <Link to="/home">Dash</Link>
+          <Link to="/task-wall">Task</Link>
+          <Link to="/todo">Todo</Link>
+          <Link to="/wiki">Wiki</Link>
+          <Link to="/mind">Mind</Link>
         </div>
         {this.renderNavUser()}
       </nav>
@@ -54,9 +44,10 @@ class Nav extends Component {
 
   renderNavUser() {
     if (this.props.userIsFetching) {
-      // TODO: loading
+      // TODO: 移到下面去
       return null;
     }
+    console.log(this.props);
 
     const userName = this.props.user.username;
     return (
@@ -93,16 +84,14 @@ class Nav extends Component {
           ref="avator"
           className="nav-avatar"
           src={`data:image/png;base64,${avatarData}`}
-          onClick={() =>
-            this.setState({ dropDownToggle: !this.state.dropDownToggle })}
+          onClick={() => this.setState({ dropDownToggle: !this.state.dropDownToggle })}
         />
       : <img
           ref="avator"
           className="nav-avatar"
           crossOrigin="Anonymous"
           src={makeGravatarUrl(user.email)}
-          onClick={() =>
-            this.setState({ dropDownToggle: !this.state.dropDownToggle })}
+          onClick={() => this.setState({ dropDownToggle: !this.state.dropDownToggle })}
         />;
   }
 }

@@ -6,7 +6,7 @@ import { Input } from 'components/widget/Input';
 import { LogoBan } from 'components/commons/LogoBan';
 import { ErrorMsg } from 'components/ErrorMsg';
 import { PageContainer } from '../components/widget/PageContainer';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import { updateTitle } from 'services/title';
 import { browserHistory } from 'react-router';
 import R from 'ramda';
@@ -16,7 +16,8 @@ import 'style/page/signin.scss';
 // TODO 登出 ，登陆成功后清空缓存
 class SignIn extends Component {
   componentWillMount() {
-    this.state = {errorMessages: {}};
+    console.log('sign');
+    this.state = { errorMessages: {} };
   }
 
   componentDidMount() {
@@ -26,7 +27,7 @@ class SignIn extends Component {
   componentWillReceiveProps(newProps) {
     if (newProps.isAuthenticated) {
       setTimeout(() => {
-        browserHistory.push('/home');
+        this.props.history.push('/home');
       }, 100);
     }
   }
@@ -34,53 +35,61 @@ class SignIn extends Component {
   render() {
     // TODO experience button event.preventDefault 会阻止 html5 的校验
     return (
-      <PageContainer className='signin-page'>
-
-        <div className='signin-main'>
-          <LogoBan/>
-          <form className='signin-form' onSubmit={this.login.bind(this)}>
+      <PageContainer className="signin-page">
+        <div className="signin-main">
+          <LogoBan />
+          <form className="signin-form" onSubmit={this.login.bind(this)}>
             <div>
-              <Input type='text' ref='email' name='bblist-email' required placeholder="Email"/>
+              <Input type="text" ref="email" name="bblist-email" required placeholder="Email" />
             </div>
 
             <div>
-              <Input type='password' ref='password' name='bblist-password' required placeholder="Password"/>
+              <Input
+                type="password"
+                ref="password"
+                name="bblist-password"
+                required
+                placeholder="Password"
+              />
             </div>
 
-            <ErrorMsg messages={R.values(this.state.errorMessages)}/>
-            <ErrorMsg messages={this.props.loginErrorMessages}/>
-            <Button className='signin-button' size='large' type='submit' styleType='primary'>Login</Button>
-
+            <ErrorMsg messages={R.values(this.state.errorMessages)} />
+            <ErrorMsg messages={this.props.loginErrorMessages} />
+            <Button className="signin-button" size="large" type="submit" styleType="primary">
+              Login
+            </Button>
           </form>
 
-          <div className='signup-tip'>
+          <div className="signup-tip">
             Do not have an account yet?
-            <Link className='signup-link' to="/signup">Sign up</Link>
+            <Link className="signup-link" to="/signup">
+              Sign up
+            </Link>
           </div>
         </div>
-
       </PageContainer>
     );
   }
 
   login(event) {
     event.preventDefault();
-    const {dispatch} = this.props;
     const email = this.refs.email;
     const password = this.refs.password;
-    const loginInfo = {email: email.instance.value.trim(), password: password.instance.value.trim()};
+    const loginInfo = {
+      email: email.instance.value.trim(),
+      password: password.instance.value.trim()
+    };
 
     const errorMessages = validateFormValue(loginInfo, {
       email: ['email'],
       password: ['max@100#Password Up to 100 characters', 'min@6#min 6']
     });
 
-    this.setState({errorMessages: errorMessages});
+    this.setState({ errorMessages: errorMessages });
     if (Object.keys(errorMessages).length) {
       return;
     }
     this.props.actions.signin(loginInfo);
-
   }
 }
 

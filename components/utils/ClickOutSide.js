@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export default class ClickOutSide extends Component {
   static propTypes = {
@@ -7,7 +8,11 @@ export default class ClickOutSide extends Component {
 
   render() {
     const { children, onClickOutside, ...props } = this.props;
-    return <div {...props} ref={ref => this.container = ref}>{children}</div>;
+    return (
+      <div {...props} ref={ref => (this.container = ref)}>
+        {children}
+      </div>
+    );
   }
 
   componentDidMount() {

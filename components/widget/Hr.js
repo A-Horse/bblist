@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 const mainStyle = {
   height: '1px',
@@ -11,9 +12,7 @@ export class Hr extends Component {
     return this.props.className ? 'hr ' + this.props.className : 'hr';
   }
   render() {
-    const {style} = this.props;
-    return (
-        <div style={Object.assign(mainStyle, style)} className={this.buildClassName()}></div>
-    );
+    const { style } = this.props;
+    return <div style={Object.assign(mainStyle, style)} className={this.buildClassName()} />;
   }
 }

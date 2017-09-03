@@ -1,5 +1,6 @@
-import React, { Component, PropTypes } from 'react';
-import {Modal} from './Modal';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { Modal } from './Modal';
 
 export class Toast extends Component {
   constructor() {
@@ -15,7 +16,7 @@ export class Toast extends Component {
   }
 
   close() {
-    this.setState({toggle: false})
+    this.setState({ toggle: false });
   }
 
   render() {

@@ -1,8 +1,9 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-import {Modal} from './Modal';
+import { Modal } from './Modal';
 import R from 'ramda';
-import {getAssets} from '../../services/assets-manager';
+import { getAssets } from '../../services/assets-manager';
 
 const modalStyles = {
   overlay: {
@@ -30,38 +31,29 @@ const modalStyles = {
 };
 
 const styles = {
-  main: {
-
-  },
+  main: {},
   close: {
     position: 'absolute'
-
   }
 };
 
 export class WarningModal extends Component {
   propTypes: {
     confirmFn: PropTypes.func.isRequired
-  }
+  };
 
   constructor() {
     super();
     this.state = {
       toggle: false
-    }
+    };
   }
 
-  init() {
+  init() {}
 
-  }
+  componentDidMount() {}
 
-  componentDidMount() {
-
-  }
-
-  componentDidUpdate() {
-
-  }
+  componentDidUpdate() {}
 
   cancel() {
     this.props.cancelFn && this.props.cancelFn();
@@ -74,19 +66,31 @@ export class WarningModal extends Component {
   }
 
   close() {
-    this.setState({toggle: false})
+    this.setState({ toggle: false });
   }
 
   open() {
-    this.setState({toggle: true})
+    this.setState({ toggle: true });
   }
 
   render() {
     return (
       <Modal styles={modalStyles} toggle={this.state.toggle}>
         <div>
-          <button onClick={() => {this.confirm()}}>Confirm</button>
-          <button onClick={() => {this.cancel()}}>Cancel</button>
+          <button
+            onClick={() => {
+              this.confirm();
+            }}
+          >
+            Confirm
+          </button>
+          <button
+            onClick={() => {
+              this.cancel();
+            }}
+          >
+            Cancel
+          </button>
         </div>
       </Modal>
     );

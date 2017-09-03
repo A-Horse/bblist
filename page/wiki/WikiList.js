@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import 'style/page/wiki/wiki-page.scss';
 
 export default class WikiList extends Component {

@@ -15,7 +15,7 @@ import R from 'ramda';
 import { activeTdRepeatHistory, getTodoRepeatHistory } from 'actions/todo/todo-statistics';
 import { Select } from 'components/widget/Select';
 
-import 'style/page/todo/todo.scss';
+import './Todo.scss';
 
 const todoMetaHeight = 24;
 
@@ -25,6 +25,7 @@ class Todo extends Component {
     this.onClickOutside = this.onClickOutside.bind(this);
     this.onRepeatHistoryModal = this.onRepeatHistoryModal.bind(this);
     this.destroyTodo = this.destroyTodo.bind(this);
+    this.updateDone = this.updateDone.bind(this);
   }
 
   componentWillMount() {
@@ -32,8 +33,6 @@ class Todo extends Component {
       editToggle: false
     };
   }
-
-  onClick() {}
 
   async closeEditable() {
     const currentTodoHeight = this.refs.main.offsetHeight;
@@ -63,7 +62,7 @@ class Todo extends Component {
 
   updateTodo(newTodo) {
     const { dispatch, todo } = this.props;
-    return dispatch(updateTodo(todo.id, newTodo));
+    return dispatch(updateTodo(todo.get('id'), newTodo));
   }
 
   onContendChanged(event) {
@@ -79,10 +78,8 @@ class Todo extends Component {
     dispatch(destroyTodo(todo.id));
   }
 
-  updateDone() {
-    const { dispatch, todo } = this.props;
-    const newTodo = { isDone: this.refs.checkbox.checked };
-    this.updateTodo(newTodo);
+  updateDone(checked) {
+    this.updateTodo({ isDone: checked });
   }
 
   onClickOutside() {
@@ -105,32 +102,43 @@ class Todo extends Component {
     ];
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    if (this.props.todo !== nextProps.todo) {
+      return true;
+    }
+    if (this.state !== nextState) {
+      return true;
+    }
+    return false;
+  }
+
   render() {
     const { todo } = this.props;
+    console.log('render', todo.id);
+
     return (
       <ClickOutSide onClickOutside={this.onClickOutside}>
         <div
           className={`todo${this.state.editToggle ? ' open' : ''}${todo.isDone ? ' done' : ''}`}
           ref="main"
-          onClick={this.onClick.bind(this)}
         >
           <div className="todo--main">
             <CheckBox
               ref="checkbox"
-              defaultChecked={todo.isDone}
-              onChange={this.updateDone.bind(this)}
+              defaultChecked={todo.get('isDone')}
+              onChange={this.updateDone}
             />
             <div
               style={{ display: !this.state.editToggle ? 'block' : 'none' }}
               className="todo--content"
               onClick={this.onContentClick.bind(this)}
             >
-              {todo.content}
-              {todo.deadline &&
+              {todo.get('content')}
+              {todo.get('deadline') &&
                 !this.state.editToggle &&
                 <div className="todo-deadline-label">
                   <span>
-                    {new moment(todo.deadline).format('MM-DD')}
+                    {new moment(todo.get('deadline')).format('MM-DD')}
                   </span>
                 </div>}
             </div>
@@ -139,17 +147,17 @@ class Todo extends Component {
               onKeyDown={this.onContendChanged.bind(this)}
               className="todo--content__input"
               style={{ display: this.state.editToggle ? 'block' : 'none' }}
-              defaultValue={todo.content}
+              defaultValue={todo.get('content')}
             />
 
             <div className="todo-hover-operation">
-              {!!todo.repeat && <IconChart onClick={this.onRepeatHistoryModal} />}
+              {!!todo.get('repeat') && <IconChart onClick={this.onRepeatHistoryModal} />}
 
               <IconDelete onClick={this.destroyTodo} />
             </div>
 
             <StarCheckBox
-              defaultChecked={todo.isStar}
+              defaultChecked={todo.get('isStar')}
               onChange={checked => {
                 this.updateTodo({ isStar: checked });
               }}

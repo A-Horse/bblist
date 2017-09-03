@@ -1,10 +1,11 @@
-import React, {Component, PropTypes} from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import 'style/component/widget/page-container.scss';
 
 export class PageContainer extends Component {
   propTypes: {
     children: PropTypes.isRequired
-  }
+  };
 
   buildClassName() {
     let className = 'page-container';
@@ -13,7 +14,7 @@ export class PageContainer extends Component {
     }
     return className;
   }
-  
+
   render() {
     return (
       <div className={this.buildClassName()}>
@@ -22,4 +23,3 @@ export class PageContainer extends Component {
     );
   }
 }
-

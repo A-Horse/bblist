@@ -6,11 +6,9 @@ import { wrapDispathToAction } from 'utils/wrap-props';
 import { logout } from 'actions/logout';
 import { browserHistory } from 'react-router';
 
-const actions = {
+const actions = {};
 
-};
-
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
     logout() {
       return dispatch(logout()).then(() => {
@@ -20,17 +18,16 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     userIsFetching: state.auth.isFetching,
-    user: state.auth.loginedUser,
-    path: state.routing.locationBeforeTransitions.pathname
+    user: state.auth.loginedUser
+    // path: state.router.location.pathname
   };
 };
 
-const NavContainer = connect(
-  mapStateToProps,
-  wrapDispathToAction(actions, mapDispatchToProps)
-)(Nav);
+const NavContainer = connect(mapStateToProps, wrapDispathToAction(actions, mapDispatchToProps))(
+  Nav
+);
 
 export default NavContainer;
