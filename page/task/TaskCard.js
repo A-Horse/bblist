@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import { deleteTaskWall, getTaskAllCards } from 'actions/task/task-wall';
 import { updateTaskCard, insertVirtualCard } from 'actions/task/task-card';
@@ -12,7 +12,7 @@ import { Hr } from 'components/widget/Hr';
 import { getAssets } from 'services/assets-manager';
 
 import { AddIcon, EditIcon, ArrowDownIcon, SettingIcon } from 'services/svg-icons';
-import { navHeight } from 'components/Nav';
+import { navHeight } from '../Nav';
 import UserAvatar from 'components/UserAvatar';
 import { CheckBox } from 'components/widget/CheckBox';
 import BoardCradDragHelper from 'services/board-card-drag-helper';
@@ -28,9 +28,7 @@ class TaskCard extends Component {
     this.state = {};
   }
 
-  componentWillMount() {
-
-  }
+  componentWillMount() {}
 
   // onDragStart(event) {
   //   // TODO 移动的图标
@@ -72,17 +70,17 @@ class TaskCard extends Component {
   }
 
   openTaskCardModal() {
-    const {dispatch} = this.props;
+    const { dispatch } = this.props;
     return dispatch(openTaskCardModal(this.props.card));
   }
 
   updateDone() {
     const isDone = this.refs.checkbox.checked;
-    this.updateTaskCard({isDone});
+    this.updateTaskCard({ isDone });
   }
 
   updateTaskCard(data) {
-    const {dispatch} = this.props;
+    const { dispatch } = this.props;
     return dispatch(updateTaskCard(this.props.cardId, data));
   }
 
@@ -116,7 +114,8 @@ class TaskCard extends Component {
 
     const self = this;
     function onMouseMove(event) {
-      if (!self.mouseMoving) { // 防止点击的时候还是出现clone
+      if (!self.mouseMoving) {
+        // 防止点击的时候还是出现clone
         movingCard.style.height = thisCard.offsetHeight;
         movingCard.style.width = thisCard.offsetWidth;
         movingCard.style.position = 'absolute';
@@ -130,7 +129,8 @@ class TaskCard extends Component {
       const movingOffsetX = event.pageX + pageContainer.scrollLeft;
       movingCard.style.left = '0';
       movingCard.style.top = '0';
-      movingCard.style.transform = `translate(${movingOffsetX - mouseOffsetInCard.left}px, ${movingOffsetY - mouseOffsetInCard.top}px)`;
+      movingCard.style.transform = `translate(${movingOffsetX -
+        mouseOffsetInCard.left}px, ${movingOffsetY - mouseOffsetInCard.top}px)`;
     }
 
     function onMouseUp(event) {
@@ -145,21 +145,28 @@ class TaskCard extends Component {
   }
 
   render() {
-    const {normalizedCards, cardId} = this.props;
+    const { normalizedCards, cardId } = this.props;
     const card = normalizedCards.entities[cardId];
     const activeRole = card.creater;
     return (
-      <div className='task-card' ref='main'
+      <div
+        className="task-card"
+        ref="main"
         onMouseDown={this.onMouseDown.bind(this)}
         onClick={this.onClick.bind(this)}
-        onLoad={this.onLoad.bind(this)}>
-        <CheckBox ref='checkbox'
+        onLoad={this.onLoad.bind(this)}
+      >
+        <CheckBox
+          ref="checkbox"
           defaultChecked={card.isDone}
           checked={card.isDone}
           onChange={this.updateDone.bind(this)}
-          onClick={this.checkBoxOnClick.bind(this)}/>
-        <p className='task-card--title'>{card.title}</p>
-        <UserAvatar user={activeRole}/>
+          onClick={this.checkBoxOnClick.bind(this)}
+        />
+        <p className="task-card--title">
+          {card.title}
+        </p>
+        <UserAvatar user={activeRole} />
       </div>
     );
   }
@@ -177,4 +184,4 @@ const mapStateToProps = (state, props) => {
   };
 };
 
-export default connect(mapStateToProps, null, null, {withRef: true})(TaskCard);
+export default connect(mapStateToProps, null, null, { withRef: true })(TaskCard);

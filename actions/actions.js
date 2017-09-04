@@ -1,4 +1,4 @@
-const actionNames = ['TEST_ONLY', 'IDENTIFY'];
+const actionNames = ['TEST_ONLY', 'IDENTIFY', 'LOGIN', 'LOGIN_FINISH'];
 
 const ACTIONS = actionNames.reduce((result, actionName) => {
   const REQUEST_SYMBOL = actionName + '_REQUEST';

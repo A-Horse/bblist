@@ -8,7 +8,8 @@ import { ErrorMsg } from 'components/ErrorMsg';
 import { PageContainer } from '../components/widget/PageContainer';
 import { Link } from 'react-router-dom';
 import { updateTitle } from 'services/title';
-import { browserHistory } from 'react-router';
+import { Redirect } from 'react-router';
+
 import R from 'ramda';
 
 import 'style/page/signin.scss';
@@ -25,15 +26,16 @@ class SignIn extends Component {
   }
 
   componentWillReceiveProps(newProps) {
-    if (newProps.isAuthenticated) {
-      setTimeout(() => {
-        this.props.history.push('/home');
-      }, 100);
+    if (newProps.signInAuthenticated) {
+      this.props.actions.LOGIN_FINISH_FN();
+      this.props.history.push('/home');
     }
   }
 
   render() {
     // TODO experience button event.preventDefault 会阻止 html5 的校验
+    // console.log(this.props);
+
     return (
       <PageContainer className="signin-page">
         <div className="signin-main">
@@ -54,7 +56,9 @@ class SignIn extends Component {
             </div>
 
             <ErrorMsg messages={R.values(this.state.errorMessages)} />
-            <ErrorMsg messages={this.props.loginErrorMessages} />
+            <ErrorMsg
+              messages={this.props.signInErrorMessages ? [this.props.signInErrorMessages] : []}
+            />
             <Button className="signin-button" size="large" type="submit" styleType="primary">
               Login
             </Button>
@@ -89,7 +93,7 @@ class SignIn extends Component {
     if (Object.keys(errorMessages).length) {
       return;
     }
-    this.props.actions.signin(loginInfo);
+    this.props.actions.LOGIN_FN(loginInfo);
   }
 }
 

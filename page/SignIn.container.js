@@ -3,22 +3,23 @@ import { signin } from 'actions/login';
 import SignIn from 'page/SignIn';
 import { wrapDispathToAction } from 'utils/wrap-props';
 import { withRouter } from 'react-router-dom';
+import { bindActionCreators } from 'redux';
 import Actions, { makeActionRequestCollection } from 'actions/actions';
 
-const actions = {
-  signin
-};
+/* const actions = {
+ *   signin
+ * };*/
 
 const mapDispatchToProps = dispatch => {
   return {
-    actions: bindActionCreators(makeActionRequestCollection(['LOGIN']), dispatch)
+    actions: bindActionCreators(makeActionRequestCollection(['LOGIN', 'LOGIN_FINISH']), dispatch)
   };
 };
 
 const mapStateToProps = state => {
   return {
-    loginErrorMessages: state.signin.errorMessage ? [state.signin.errorMessage] : [],
-    isAuthenticated: state.signin.isAuthenticated
+    signInErrorMessages: state.auth.get('signInErrorMessage'),
+    signInAuthenticated: state.auth.get('signInAuthenticated')
   };
 };
 

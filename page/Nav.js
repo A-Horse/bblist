@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { makeGravatarUrl } from 'services/gravatar';
 import { Storage, storageImage } from 'services/storage';
-import { DropList } from './widget/DropList';
+import { DropList } from 'components/widget/DropList';
 import ClickOutSide from 'components/utils/ClickOutSide';
 
 import { LogoBan } from 'components/commons/LogoBan';

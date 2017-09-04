@@ -23,7 +23,10 @@ export function createFormDataConfig(method, body, headers) {
 }
 
 export function createConfigWithAuth(method, body, headers = {}) {
-  headers[JWT_STORAGE_KEY] = getJWT();
+  const jwt = getJWT();
+  if (jwt) {
+    headers[JWT_STORAGE_KEY] = jwt;
+  }
   return createConfig(method, body, headers);
 }
 

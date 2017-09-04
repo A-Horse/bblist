@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Nav from 'containers/Nav';
+
+import Nav from './Nav';
 import Loading from 'components/Loading';
 
 import { Router, Route, Switch, Redirect } from 'react-router';
@@ -26,8 +27,6 @@ import SettingProfile from 'containers/setting/Profile';
 
 import Ideas from 'containers/idea/Ideas';
 
-import Body from 'components/Body';
-
 import Building from 'page/Building';
 import { checkLogin } from 'utils/auth';
 
@@ -44,17 +43,14 @@ export default class App extends Component {
    *   }*/
 
   render() {
-    console.log(this.props);
-
-    if (this.props.isFetching) {
+    if (this.props.identifyFetching) {
       return <Loading />;
-    } else if (!this.props.isFetching && !this.props.isAuthenticated) {
-      // return this.props.history.push('/signin');
-      return null;
+    } else if (!this.props.identifyFetching && !this.props.isAuthenticated) {
+      return <Redirect to="/signin" push={true} />;
     } else {
       return (
         <div>
-          <Nav />
+          <Nav user={this.props.user} identifyFetching={this.props.identifyFetching} />
           <Switch>
             <Route path="/home" component={DashBoard} onEnter={checkLogin} />
 

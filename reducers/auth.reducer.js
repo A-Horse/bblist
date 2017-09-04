@@ -4,38 +4,64 @@ import {
   UPDATE_USERINFO_SUCCESS,
   UPDATE_USERINFO_FAILURE
 } from '../actions/login';
+import R from 'ramda';
 import { Storage } from 'services/storage';
 import { JWT_STORAGE_KEY } from '../constants';
 import Actions from 'actions/actions';
+import { Map, List, fromJS } from 'immutable';
 
 function auth(
-  state = {
-    isAuthenticated: Storage.get(JWT_STORAGE_KEY) ? true : false,
-    isFetching: true
-  },
+  state = Map({
+    isAuthenticated: Storage.get(JWT_STORAGE_KEY) ? true : false
+    // isFetching: true,
+    // signInErrorMessage: null
+  }),
   action
 ) {
   switch (action.type) {
     case Actions.IDENTIFY.REQUEST:
-      return Object.assign({}, state, {
-        isFetching: true,
-        isAuthenticated: false
-      });
+      return state.update('identifyFetching', R.T).update('isAuthenticated', R.F);
       break;
     case Actions.IDENTIFY.SUCCESS:
-      return Object.assign({}, state, {
-        isFetching: false,
-        isAuthenticated: true,
-        loginedUser: action.playload
-      });
+      return state
+        .update('identifyFetching', R.F)
+        .update('identifyAuthenticated', R.T)
+        .update('loginedUser', () => fromJS(action.playload));
+      /* return Object.assign({}, state, {
+       *   isFetching: false,
+       *   isAuthenticated: true,
+       *   loginedUser: action.playload
+       * });*/
       break;
     case Actions.IDENTIFY.FAILURE:
       // TODO remove data when jwt expries
-      return Object.assign({}, state, {
-        isFetching: false,
-        isAuthenticated: false,
-        message: action.message
-      });
+      /* return Object.assign({}, state, {
+       *   isFetching: false,
+       *   isAuthenticated: false,
+       *   message: action.message
+       * });*/
+      return state.update('identifyFetching', R.F).update('identifyAuthenticated', R.F);
+      break;
+
+    case Actions.LOGIN.REQUEST:
+      return state.delete('signInErrorMessage');
+      break;
+
+    case Actions.LOGIN.SUCCESS:
+      /* return {
+       *   isAuthenticated: true
+       * };*/
+      return state.update('signInAuthenticated', R.T);
+      break;
+
+    case Actions.LOGIN.FAILURE:
+      return state
+        .update('signInAuthenticated', R.F)
+        .update('signInErrorMessage', () => action.playload);
+      break;
+
+    case Actions.LOGIN_FINISH.REQUEST:
+      return state.delete('signInAuthenticated').delete('signInErrorMessage');
       break;
 
     case UPDATE_USERINFO_REQUEST:

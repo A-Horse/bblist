@@ -53,44 +53,44 @@ export function signin(creds) {
   };
 }
 
-function canNotLoginAuth() {
-  return {
-    type: IDENTIFY_FAILURE
-  };
-}
-
-function requestAuthLogin() {
-  return {
-    type: IDENTIFY_REQUEST
-  };
-}
-
-function authLoginError(playload) {
-  return {
-    type: IDENTIFY_FAILURE,
-    playload
-  };
-}
-
-function authLoginSuccess(user) {
-  return {
-    type: IDENTIFY_SUCCESS,
-    user: user
-  };
-}
-
-export function indentifyUser() {
-  // const token = getJWT();
-  const config = createConfigWithAuth('GET');
-  return dispatch => {
-    if (!token) return dispatch(canNotLoginAuth());
-    dispatch(requestAuthLogin());
-    return fetch(makeApiUrl(`/user/identify`), config)
-      .then(handleResponse)
-      .then(response => dispatch(authLoginSuccess(response)))
-      .catch(err => dispatch(authLoginError(err)));
-  };
-}
+/* function canNotLoginAuth() {
+ *   return {
+ *     type: IDENTIFY_FAILURE
+ *   };
+ * }
+ *
+ * function requestAuthLogin() {
+ *   return {
+ *     type: IDENTIFY_REQUEST
+ *   };
+ * }
+ *
+ * function authLoginError(playload) {
+ *   return {
+ *     type: IDENTIFY_FAILURE,
+ *     playload
+ *   };
+ * }
+ *
+ * function authLoginSuccess(user) {
+ *   return {
+ *     type: IDENTIFY_SUCCESS,
+ *     user: user
+ *   };
+ * }
+ * */
+/* export function indentifyUser() {
+ *   // const token = getJWT();
+ *   const config = createConfigWithAuth('GET');
+ *   return dispatch => {
+ *     if (!token) return dispatch(canNotLoginAuth());
+ *     dispatch(requestAuthLogin());
+ *     return fetch(makeApiUrl(`/user/identify`), config)
+ *       .then(handleResponse)
+ *       .then(response => dispatch(authLoginSuccess(response)))
+ *       .catch(err => dispatch(authLoginError(err)));
+ *   };
+ * }*/
 
 export const AUTH_FAILURE = 'AUTH_FAILURE';
 export const AUTH_REQUEST = 'AUTH_REQUEST';

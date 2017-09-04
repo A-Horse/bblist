@@ -14,9 +14,9 @@ import { createDevTools } from 'redux-devtools';
 // import LogMonitor from 'redux-devtools-log-monitor';
 // import DockMonitor from 'redux-devtools-dock-monitor';
 
-import App from 'containers/App';
+import App from 'page/App.container';
 import SignUp from 'containers/SignUp';
-import SignIn from 'containers/SignIn';
+import SignIn from 'page/SignIn.container';
 
 import { combineEpics, createEpicMiddleware } from 'redux-observable';
 

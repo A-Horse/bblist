@@ -1,19 +1,45 @@
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/of';
 import Actions from '../actions/actions';
 import { ajax } from 'rxjs/observable/dom/ajax';
 import fetch from 'isomorphic-fetch';
 import { makeApiUrl } from '../utils/api';
-import { http } from './helper';
+import { http } from '../services/http';
 import { handleResponse, handleResponseWithoutJson } from 'utils/http-handle';
+import { getJWT } from '../utils/auth';
+import { saveAuthData, saveJWT } from 'utils/auth';
 
-export const IDENTIFY_REQUEST = action$ => {
-  return action$.ofType(Actions.IDENTIFY.REQUEST).mergeMap(action => {
+console.log(Observable);
+
+export const IDENTIFY_REQUEST = action$ =>
+  action$.ofType(Actions.IDENTIFY.REQUEST).mergeMap(action => {
+    if (!getJWT()) {
+      return Observable.of(Actions.IDENTIFY.failure(new Error('Not auth data.')));
+    }
+
     return http
       .get(makeApiUrl('/user/identify'))
       .then(handleResponse)
       .then(Actions.IDENTIFY.success)
       .catch(Actions.IDENTIFY.failure);
+  });
+
+export const LOGIN_REQUEST = action$ => {
+  return action$.ofType(Actions.LOGIN.REQUEST).mergeMap(action => {
+    return http
+      .post(makeApiUrl('/signin'), null, action.playload)
+      .then(response => {
+        saveAuthData(response);
+        return Actions.LOGIN.success(response);
+      })
+      .catch(error => {
+        if (error.name === 'NotAuthError') {
+          return Actions.LOGIN.failure('Email or password not match!');
+        }
+        return Actions.LOGIN.failure(error.message);
+      });
   });
 };
