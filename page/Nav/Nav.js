@@ -32,12 +32,18 @@ class Nav extends Component {
 
         <div className="nav-link-area">
           <Link to="/home">Dash</Link>
-          <Link to="/task-wall">Task</Link>
+          <Link to="/task-wall" className={activeClassWhenMatchPrefix('/task-wall')}>
+            Task
+          </Link>
           <Link to="/todo" className={activeClassWhenMatchPrefix('/todo')}>
             Todo
           </Link>
-          <Link to="/wiki">Wiki</Link>
-          <Link to="/mind">Mind</Link>
+          <Link to="/wiki" className={activeClassWhenMatchPrefix('/wiki')}>
+            Wiki
+          </Link>
+          <Link to="/mind" className={activeClassWhenMatchPrefix('/mind')}>
+            Mind
+          </Link>
         </div>
         {this.renderNavUser()}
       </nav>

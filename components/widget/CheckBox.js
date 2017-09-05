@@ -2,19 +2,18 @@ import React, { Component } from 'react';
 import 'style/component/widget/checkbox.scss';
 
 export class CheckBox extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    this.checked = props.defaultChecked;
+    this.state = { checked: props.defaultChecked };
     this.onChange = this.onChange.bind(this);
   }
 
-  componentWillMount() {
-    this.checked = this.props.defaultChecked;
-    this.state = { checked: this.props.defaultChecked };
-  }
+  componentWillMount() {}
 
-  componentDidMount() {
-    // this.instance = this.refs.instance;
-  }
+  // componentDidMount() {
+  //   this.instance = this.refs.instance;
+  // }
 
   onChange() {
     const checked = this.refs.instance.checked;

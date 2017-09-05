@@ -1,7 +1,6 @@
 @import 'style/variable';
 
 .todo-list {
-
   position: relative;
   padding: 5px 0;
   width: 100%;
@@ -14,9 +13,13 @@
     overflow-y: scroll;
     overflow-x: visible;
     height: 100%;
-    padding: 4px 13px;
+
     &::-webkit-scrollbar {
       display: none;
     }
+  }
+
+  .todos, .creater-container {
+    padding: 4px 13px;
   }
 }

@@ -51,12 +51,12 @@ export default class App extends Component {
           actions={this.props.actions}
         />
         <Switch>
-          <Route path="/home" component={DashBoard} onEnter={checkLogin} />
+          <Route path="/home" component={DashBoard} />
 
           <Route path="/idea" component={Ideas} />
-          <Route path="task-wall" component={Boards} onEnter={checkLogin} />
+          <Route path="task-wall" component={Boards} />
 
-          <Route path="/task-wall/" component={Board} onEnter={checkLogin}>
+          <Route path="/task-wall/" component={Board}>
             <Route path="/task-wall/:id" component={BoardContent}>
               <Route path="/task-wall/:id/:cardId" component={TaskCardModal} />
             </Route>
@@ -69,7 +69,7 @@ export default class App extends Component {
             </Route>
           </Route>
 
-          <Route path="setting" component={Setting} onEnter={checkLogin}>
+          <Route path="setting" component={Setting}>
             <Route exact path="/" render={() => <Redirect to="/profile" />} />
             <Route path="profile" component={SettingProfile} />
             <Route path="security" component={SettingSecurity} />

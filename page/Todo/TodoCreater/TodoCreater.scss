@@ -2,26 +2,34 @@
 @import 'style/page/todo/variable';
 
 .todo-creater--toggle {
-  padding: 10px 22px;
-  margin: 0 0 10px;
+  padding: 8px 12px;
+  margin: 0 0 6px;
   cursor: pointer;
   display: flex;
   align-items: center;
   background-color: $color-background-light;
   border-radius: $radius-middle;
-  transition: background 1s ease-out;
-  .add-icon {
-    margin-right: 10px;
-    fill: $gray-super-deep;
+  transition: background 0.1s ease-out;
+  letter-spacing: 1px;;
+
+  .fa {
+    color: $md-light-blue-600;
+    vertical-align: middle;
   }
 
   .toggle-text {
     font-weight: bolder;
+    margin-left: 8px;
+    vertical-align: middle;
   }
 
   &:hover {
-    background-color: $primary-bg-secondary;
-    box-shadow: 0 0 5px $primary-bg-secondary;
+    background-color: $primary-bg;
+    color: $white;
+
+    .fa {
+      color: $white;
+    }
   }
 }
 
@@ -29,7 +37,7 @@
   border-radius: $radius-middle;
   padding: $todo-item-padding;
   margin-top: 14px;
-  background-color: $primary-bg-secondary;
+  background-color: $primary-bg;
   margin-bottom: 5px;
 
   .todo-creater--input {

@@ -3,13 +3,12 @@ import { PageContainer } from 'components/widget/PageContainer';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 import { makeGravatarUrl } from 'services/gravatar';
-import TodoList from './TodoList';
-import PomodoraDial from './PomodoraDial';
+import TodoList from './TodoList/TodoList';
 import { createTodo, getTodoList } from 'actions/todo/todos';
 import { updateTitle } from 'services/title';
 import { Link } from 'react-router-dom';
 import { ReorderIcon, FormatListIcon, UnarchinveIcon } from 'services/svg-icons';
-import TodoBoxCreater from './TodoBoxCreater';
+import TodoBoxCreater from './TodoBoxCreater/TodoBoxCreater';
 
 import 'style/page/todo/todo-boxs.scss';
 

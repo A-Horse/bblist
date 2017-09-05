@@ -12,7 +12,7 @@ import Textarea from 'react-textarea-autosize';
 import { Modal } from 'components/widget/Modal';
 import Input from 'components/widget/Input';
 
-import 'style/page/todo/todo-box-creater.scss';
+import './TodoBoxCreater.scss';
 
 class TodoBoxCreater extends Component {
   constructor() {

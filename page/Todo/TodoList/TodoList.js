@@ -5,9 +5,11 @@ import { createSelector } from 'reselect';
 import R from 'ramda';
 import { withRouter } from 'react-router-dom';
 import { getTodoList } from 'actions/todo/todos';
-import 'style/page/todo/todo-list.scss';
-import TodoCreater from './TodoCreater';
-import Todo from './Todo/Todo';
+
+import TodoCreater from '../TodoCreater/TodoCreater';
+import Todo from '../Todo/Todo';
+
+import './TodoList.scss';
 
 class TodoList extends Component {
   componentWillMount() {
@@ -27,7 +29,10 @@ class TodoList extends Component {
   render() {
     return (
       <div className="todo-list">
-        <TodoCreater />
+        <div className="creater-container">
+          <TodoCreater />
+        </div>
+
         <div className="todos">
           {this.renderList()}
         </div>

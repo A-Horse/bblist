@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 
 import { makeGravatarUrl } from 'services/gravatar';
-import TodoList from './TodoList';
+import TodoList from './TodoList/TodoList';
 import PomodoraDial from './PomodoraDial';
 import { createTodo, getTodoList } from 'actions/todo/todos';
 import { updateTitle } from 'services/title';

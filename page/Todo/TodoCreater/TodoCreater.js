@@ -11,9 +11,9 @@ import { isEnterKey } from 'utils/keyboard';
 
 import ClickOutSide from 'components/utils/ClickOutSide';
 
-import 'style/page/todo/todo-creater.scss';
+import './TodoCreater.scss';
 
-import { repeatItems } from './constants';
+import { repeatItems } from '../constants';
 
 class TodoCreater extends Component {
   constructor() {
@@ -66,7 +66,7 @@ class TodoCreater extends Component {
   renderToggle() {
     return (
       <div className="todo-creater--toggle" onClick={this.toggle}>
-        <IconAdd className="add-icon" />
+        <i className="fa fa-plus" aria-hidden="true" />
         <span className="toggle-text">Add Todo</span>
       </div>
     );
@@ -91,13 +91,9 @@ class TodoCreater extends Component {
             <DatePicker ref="datePicker" arrow="auto" />
           </div>
 
-          <div className="repeat-input hidden">
+          <div className="repeat-input">
             <label>Repeat:</label>
             <Select items={repeatItems} />
-          </div>
-
-          <div className="todo-creater--label hidden">
-            <Textarea type="text" placeholder="Label" ref="label" />
           </div>
 
           <div className="todo-creater-operation">
