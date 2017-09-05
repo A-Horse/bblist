@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { CheckBox } from 'components/widget/CheckBox';
 import { StarCheckBox } from 'components/widget/StarCheckBox';
-import DatePicker from 'components/date-picker/DatePicker';
+import DatePicker from 'components/DatePicker/DatePicker';
 import { getTodoList, updateTodo, destroyTodo } from 'actions/todo/todos';
 import { IconChart } from 'services/image-icon';
 import { IconDelete, IconRepeat, IconDate } from 'services/image-icon';

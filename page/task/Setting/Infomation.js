@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Modal } from 'components/widget/Modal';
+import { Modal } from 'components/widget/Modal/Modal';
 import ReactCrop from 'react-image-crop';
 import { ImageUploader } from 'components/ImageUploader';
 import { makeRemoteUrl } from 'services/remote-storage';

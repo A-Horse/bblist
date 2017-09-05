@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { IconAdd } from 'services/image-icon';
 import { CloseIcon } from 'services/svg-icons';
-import { Modal } from 'components/widget/Modal';
+import { Modal } from 'components/widget/Modal/Modal';
 import { Button } from 'components/widget/Button';
 import { Input } from 'components/widget/Input';
 import { ErrorMsg } from 'components/ErrorMsg';

@@ -27,6 +27,7 @@ export class ModalPortal extends Component {
         content: {}
       }
     };
+    this.onOverlayClick = this.onOverlayClick.bind(this);
   }
 
   focusContent() {
@@ -40,9 +41,17 @@ export class ModalPortal extends Component {
     }
   }
 
-  onOverlayClick() {}
+  onOverlayClick(event) {
+    console.log('xxxxxxxxx');
+
+    console.log(event);
+    event.preventDefault();
+    this.requestClose();
+  }
 
   requestClose() {
+    console.log('request close');
+
     this.props.close && this.props.close();
   }
 
@@ -66,7 +75,7 @@ export class ModalPortal extends Component {
         <div
           ref="overlay"
           className={this.buildClassName('overlay', this.props.overlayClassName)}
-          onClick={this.onOverlayClick.bind(this)}
+          onClick={this.onOverlayClick}
           style={this.props.overlayStyle}
         >
           <div

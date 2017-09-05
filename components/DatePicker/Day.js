@@ -1,17 +1,12 @@
-import React, {Component} from 'react';
-
-import 'style/component/date-picker/day.scss';
+import React, { Component } from 'react';
+import './Day.scss';
 
 class Day extends Component {
-
   constructor() {
     super();
-    
   }
 
-  onClick() {
-    
-  }
+  onClick() {}
 
   onSelected() {
     const date = new Date(this.props.year, this.props.month, this.props.dday.number);
@@ -19,7 +14,7 @@ class Day extends Component {
   }
 
   buildClassName() {
-    const {dday} = this.props;
+    const { dday } = this.props;
     let className = 'date-picker--day';
     if (dday.isOutRange) {
       className += ' out-range';
@@ -32,9 +27,9 @@ class Day extends Component {
     }
     return className;
   }
-  
+
   render() {
-    const {dday} = this.props;
+    const { dday } = this.props;
     return (
       <td onClick={this.onSelected.bind(this)} className={this.buildClassName()}>
         {dday.number}

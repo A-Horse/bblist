@@ -5,11 +5,11 @@ import { addBodyEventListenerOnce } from 'actions/event/body';
 import { createTodo, getTodoList } from 'actions/todo/todos';
 import { AddIcon, AlarmIcon, CloseIcon } from 'services/svg-icons';
 import { Button } from 'components/widget/Button';
-import DatePicker from 'components/date-picker/DatePicker';
+import DatePicker from 'components/DatePicker/DatePicker';
 import Popup from 'components/Popup';
 import { Select } from 'components/widget/Select';
 import Textarea from 'react-textarea-autosize';
-import { Modal } from 'components/widget/Modal';
+import { Modal } from 'components/widget/Modal/Modal';
 import Input from 'components/widget/Input';
 
 import './TodoBoxCreater.scss';

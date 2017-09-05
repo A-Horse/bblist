@@ -19,16 +19,28 @@ body.modal__body--open {
   right: 0;
   bottom: 0;
   background-color: rgba(255, 255, 255, 0.75);
+  animation-duration: 200ms;
+  animation-name: modal-fadeout;
 }
 
 .modal__content {
   position: absolute;
-  border: 1px solid #ccc;
   background: #fff;
   border-radius: 4px;
   outline: none;
   padding: 20px;
   left: 50%;
   transform: translate(-50%, 0);
+  box-shadow: 1px 1px 20px #bbb;
   --webkit-overflow-scrolling: touch;
+}
+
+@keyframes modal-fadeout {
+  from {
+    opacity: 0.1;
+  }
+
+  to {
+    opacity: 1;
+  }
 }

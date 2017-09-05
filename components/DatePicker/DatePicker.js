@@ -1,21 +1,17 @@
 import React, { Component } from 'react';
-import { Modal } from 'components/widget/Modal';
-import { DateIcon, CloseIcon } from 'services/svg-icons';
-import { connect } from 'react-redux';
+import { Modal } from 'components/widget/Modal/Modal';
 import Calendar from './Calendar';
-import 'style/component/date-picker/date-picker.scss';
-import { addBodyEventListenerOnce } from 'actions/event/body';
-import Popup from 'components/Popup';
 import moment from 'moment';
 import { IconRemove } from 'services/image-icon';
 
-import 'style/component/date-picker/date-picker.scss';
+import './DatePicker.scss';
 
 class DatePicker extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = { toggle: false, value: null };
     this.clear = this.clear.bind(this);
+    this.close = this.close.bind(this);
   }
 
   componentDidMount() {
@@ -50,6 +46,8 @@ class DatePicker extends Component {
   }
 
   close() {
+    console.log('close');
+
     this.setState({ toggle: false });
   }
 
@@ -99,7 +97,11 @@ class DatePicker extends Component {
     return (
       <div className={this.buildClassName()} ref="main">
         {!this.props.hideIcon &&
-          <DateIcon className="date-picker--icon" onClick={this.onClick.bind(this)} />}
+          <i
+            className="fa fa-calendar-check-o date-picker--icon"
+            aria-hidden="true"
+            onClick={this.onClick.bind(this)}
+          />}
 
         <span
           className={`date-picker--text${!this.state.value && this.props.placeholder
@@ -112,13 +114,7 @@ class DatePicker extends Component {
 
         {this.state.value && <IconRemove onClick={this.clear} />}
 
-        <Popup
-          className="date-picker-popup"
-          parent={this.refs.main}
-          toggle={this.state.toggle}
-          onOverlayClick={this.close.bind(this)}
-          close={this.close.bind(this)}
-        >
+        <Modal className="date-picker-modal" toggle={this.state.toggle} close={this.close}>
           <Calendar
             year={this.state.year}
             month={this.state.month}
@@ -129,7 +125,7 @@ class DatePicker extends Component {
             nextMonth={this.nextMonth.bind(this)}
             onSelected={this.onSelected.bind(this)}
           />
-        </Popup>
+        </Modal>
       </div>
     );
   }

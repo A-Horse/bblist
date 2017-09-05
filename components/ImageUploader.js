@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Button } from 'components/widget/Button';
-import { Modal } from 'components/widget/Modal';
+import { Modal } from 'components/widget/Modal/Modal';
 import ReactCrop from 'react-image-crop';
 import { imageCrop } from 'services/image-crop';
 import { ImageIcon } from 'services/svg-icons';

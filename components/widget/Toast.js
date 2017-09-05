@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Modal } from './Modal';
+import { Modal } from './Modal/Modal';
 
 export class Toast extends Component {
   constructor() {

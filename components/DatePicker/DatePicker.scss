@@ -31,22 +31,8 @@
   }
 }
 
-.date-picker-popup {
+.date-picker-modal {
   padding: 20px;
-  transform: translate(-50%, 0);
-  left: 12px;
-
-  &.top {
-    bottom: calc(100% + 10px);
-  }
-
-  &.bottom {
-    top: calc(100% + 10px);
-  }
-
-  .close-icon {
-    position: absolute;
-    right: 8px;
-    top: 8px;
-  }
+  transform: translate(-50%, -50%);
+  top: 40%;
 }

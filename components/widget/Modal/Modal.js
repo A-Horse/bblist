@@ -5,7 +5,7 @@ import elementClass from 'element-class';
 import ReactDOM from 'react-dom';
 
 import { ModalPortal } from './ModalPortal';
-import 'style/component/widget/modal.scss';
+import './Modal.scss';
 
 export class Modal extends Component {
   // https://github.com/reactjs/react-modal/blob/master/lib/components/Modal.js
@@ -32,7 +32,7 @@ export class Modal extends Component {
   }
 
   componentWillUnmount() {
-    DOM.unmountComponentAtNode(this.node);
+    ReactDOM.unmountComponentAtNode(this.node);
     if (this.hasAppendToBody) {
       document.body.removeChild(this.node);
     }

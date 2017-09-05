@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Modal } from 'components/widget/Modal';
+import { Modal } from 'components/widget/Modal/Modal';
 import { DateIcon, CloseIcon } from 'services/svg-icons';
 import { getWindowScrollPosition } from 'services/scroll';
 import ClickOutSide from 'components/utils/ClickOutSide';

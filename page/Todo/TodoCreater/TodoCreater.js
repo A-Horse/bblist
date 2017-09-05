@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { createTodo, getTodoList } from 'actions/todo/todos';
 import { IconAdd } from 'services/image-icon';
 import { Button } from 'components/widget/Button';
-import DatePicker from 'components/date-picker/DatePicker';
+import DatePicker from 'components/DatePicker/DatePicker';
 import { Select } from 'components/widget/Select';
 import Textarea from 'react-textarea-autosize';
 import { isEnterKey } from 'utils/keyboard';
@@ -26,7 +26,7 @@ class TodoCreater extends Component {
 
   componentWillMount() {
     this.state = {
-      toggle: false
+      toggle: true
     };
   }
 
@@ -44,10 +44,16 @@ class TodoCreater extends Component {
   }
 
   toggle() {
+    console.log('ssssssssss');
+
     this.setState({ toggle: true });
   }
 
   close() {
+    if (this.refs.datePicker.state.toggle) {
+      return;
+    }
+
     this.setState({ toggle: false });
   }
 
@@ -86,12 +92,12 @@ class TodoCreater extends Component {
             />
           </div>
 
-          <div className="todo-creater-deadline">
+          <div className="todo-creater-props todo-creater-deadline">
             <label>Deadline:</label>
             <DatePicker ref="datePicker" arrow="auto" />
           </div>
 
-          <div className="repeat-input">
+          <div className="todo-creater-props todo-creater-repeat">
             <label>Repeat:</label>
             <Select items={repeatItems} />
           </div>
