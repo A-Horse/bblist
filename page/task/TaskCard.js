@@ -10,9 +10,7 @@ import { ConfirmModal } from 'components/widget/ConfirmModal';
 import { PageContainer } from 'components/widget/PageContainer';
 import { Hr } from 'components/widget/Hr';
 import { getAssets } from 'services/assets-manager';
-
-import { AddIcon, EditIcon, ArrowDownIcon, SettingIcon } from 'services/svg-icons';
-import { navHeight } from '../Nav';
+import { navHeight } from '../Nav/Nav';
 import UserAvatar from 'components/UserAvatar';
 import { CheckBox } from 'components/widget/CheckBox';
 import BoardCradDragHelper from 'services/board-card-drag-helper';

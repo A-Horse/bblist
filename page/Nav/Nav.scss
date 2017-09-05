@@ -1,6 +1,5 @@
 @import 'style/variable';
 
-
 nav.nav {
   position: relative;
   width: 100%;
@@ -39,12 +38,12 @@ nav.nav {
       margin-left: 10px;
       color: #fff;
       letter-spacing: 0.3px;
-    }
-  }
 
-  .nav-link__active {
-    font-weight: 900;
-    text-shadow: 0 0 1px #fff;
+      &.active {
+        font-weight: 900;
+        text-shadow: 0 0 1px #fff;
+      }
+    }
   }
 
   .avatar-area {

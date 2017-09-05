@@ -4,12 +4,12 @@ import { makeGravatarUrl } from 'services/gravatar';
 import { Storage, storageImage } from 'services/storage';
 import { DropList } from 'components/widget/DropList';
 import ClickOutSide from 'components/utils/ClickOutSide';
-
 import { LogoBan } from 'components/commons/LogoBan';
+import { activeClassWhenMatchPrefix } from '../../utils/route';
 
 export const navHeight = 42;
 
-import 'style/nav.scss';
+import './Nav.scss';
 
 class Nav extends Component {
   constructor() {
@@ -33,7 +33,9 @@ class Nav extends Component {
         <div className="nav-link-area">
           <Link to="/home">Dash</Link>
           <Link to="/task-wall">Task</Link>
-          <Link to="/todo">Todo</Link>
+          <Link to="/todo" className={activeClassWhenMatchPrefix('/todo')}>
+            Todo
+          </Link>
           <Link to="/wiki">Wiki</Link>
           <Link to="/mind">Mind</Link>
         </div>
@@ -43,13 +45,10 @@ class Nav extends Component {
   }
 
   renderNavUser() {
-    if (this.props.userIsFetching) {
-      // TODO: 移到下面去
+    if (this.props.identifyFetching) {
       return null;
     }
-    console.log(this.props);
-
-    const userName = this.props.user.username;
+    const userName = this.props.user.get('username');
     return (
       <ClickOutSide
         className="avatar-area"
@@ -57,6 +56,9 @@ class Nav extends Component {
           this.state.dropDownToggle && this.setState({ dropDownToggle: false });
         }}
       >
+        <span>
+          {userName}
+        </span>
         {this.renderAvatar()}
         <DropList toggle={this.state.dropDownToggle}>
           <ul>
@@ -69,7 +71,9 @@ class Nav extends Component {
             <li>
               <Link to="/setting">setting</Link>
             </li>
-            <li onClick={this.props.actions.logout}>logout</li>
+            <li className="logout-button" onClick={this.props.actions.LOGOUT_FN}>
+              logout
+            </li>
           </ul>
         </DropList>
       </ClickOutSide>
@@ -90,7 +94,7 @@ class Nav extends Component {
           ref="avator"
           className="nav-avatar"
           crossOrigin="Anonymous"
-          src={makeGravatarUrl(user.email)}
+          src={makeGravatarUrl(user.get('email'))}
           onClick={() => this.setState({ dropDownToggle: !this.state.dropDownToggle })}
         />;
   }

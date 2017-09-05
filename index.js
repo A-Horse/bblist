@@ -2,15 +2,17 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { combineEpics, createEpicMiddleware } from 'redux-observable';
 import { Provider } from 'react-redux';
-import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux';
-import { BrowserRouter } from 'react-router-dom';
-
-import { Router, Route, Switch, Redirect } from 'react-router';
-import createHistory from 'history/createBrowserHistory';
-
+import { ConnectedRouter, routerReducer, routerMiddleware } from 'react-router-redux';
+import { Route, Switch, Redirect } from 'react-router';
 import thunkMiddleware from 'redux-thunk';
 import { createDevTools } from 'redux-devtools';
+import history from './services/history';
+
+import 'style/normalize.css';
+import 'style/app.scss';
+
 // import LogMonitor from 'redux-devtools-log-monitor';
 // import DockMonitor from 'redux-devtools-dock-monitor';
 
@@ -18,25 +20,11 @@ import App from 'page/App.container';
 import SignUp from 'containers/SignUp';
 import SignIn from 'page/SignIn.container';
 
-import { combineEpics, createEpicMiddleware } from 'redux-observable';
-
-import { checkLogin } from 'utils/auth';
 import * as reducers from 'reducers';
-
 import rootEpic from './epic';
 
-// TODO 不应该全部引入
-// import 'rxjs'; // https://redux-observable.js.org/docs/Troubleshooting.html RxJS operators are missing!
-
-import 'style/normalize.css';
-import 'style/app.scss';
-
+const routeMiddleware = routerMiddleware(history);
 const epicMiddleware = createEpicMiddleware(rootEpic);
-
-const reducer = combineReducers({
-  ...reducers,
-  routing: routerReducer
-});
 
 // const DevTools = createDevTools(
 //   <DockMonitor toggleVisibilityKey="ctrl-h" changePositionKey="ctrl-q">
@@ -44,16 +32,13 @@ const reducer = combineReducers({
 //   </DockMonitor>
 // );
 
-const history = createHistory();
-const middleware = routerMiddleware(history);
-
 const store = createStore(
   combineReducers({
     ...reducers,
     router: routerReducer
   }),
   // DevTools.instrument(),
-  applyMiddleware(thunkMiddleware, epicMiddleware)
+  applyMiddleware(thunkMiddleware, routeMiddleware, epicMiddleware)
 );
 
 ReactDOM.render(

@@ -1,10 +1,11 @@
-const actionNames = ['TEST_ONLY', 'IDENTIFY', 'LOGIN', 'LOGIN_FINISH'];
+const actionNames = ['TEST_ONLY', 'IDENTIFY', 'LOGIN', 'LOGIN_FINISH', 'LOGOUT'];
 
 const ACTIONS = actionNames.reduce((result, actionName) => {
   const REQUEST_SYMBOL = actionName + '_REQUEST';
   const SUCCESS_SYMBOL = actionName + '_SUCCESS';
   const FAILURE_SYMBOL = actionName + '_FAILURE';
   result[actionName] = {
+    name: actionName,
     REQUEST: REQUEST_SYMBOL,
     SUCCESS: SUCCESS_SYMBOL,
     FAILURE: FAILURE_SYMBOL,
@@ -16,7 +17,6 @@ const ACTIONS = actionNames.reduce((result, actionName) => {
       };
     },
     success: (playload, meta) => {
-      console.log(playload);
       return {
         type: SUCCESS_SYMBOL,
         playload,
@@ -33,9 +33,9 @@ const ACTIONS = actionNames.reduce((result, actionName) => {
   return result;
 }, {});
 
-export function makeActionRequestCollection(actionNames) {
-  return actionNames.reduce((result, actionName) => {
-    result[actionName + '_FN'] = ACTIONS[actionName].request;
+export function makeActionRequestCollection(actionFactors) {
+  return actionFactors.reduce((result, actionFactor) => {
+    result[actionFactor.name + '_FN'] = actionFactor.request;
     return result;
   }, {});
 }

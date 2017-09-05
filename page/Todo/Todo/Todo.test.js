@@ -1,5 +1,4 @@
 import React from 'react';
-// import Link from '../Link.react';
 import Todo from './Todo';
 import renderer from 'react-test-renderer';
 // import ShallowRenderer from 'react-test-renderer/shallow';

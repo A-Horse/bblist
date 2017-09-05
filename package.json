@@ -17,6 +17,9 @@
   },
   "jest": {
     "verbose": true,
+    "setupFiles": [
+      "<rootDir>/test/setup/localStorage.js"
+    ],
     "moduleFileExtensions": [
       "js",
       "jsx"

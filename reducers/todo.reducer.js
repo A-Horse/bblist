@@ -38,29 +38,10 @@ function todos(
       break;
 
     case TODOLIST_GET_SUCCESS:
-      /* const mockedTodoBoxs = {
-       *   id: action.meta.todoBoxId,
-       *   todos: action.playload
-       * };*/
-
-      // console.log();
       const normalizedTodos = normalize(action.playload, TDS);
-      console.log(normalizedTodos);
-
-      /* console.log(normalizedTodos);
-       * console.log(List(normalizedTodos.result));
-       * console.log('------------!');*/
-
       return state
         .set('todoIds', List(normalizedTodos.result))
         .set('todoEntities', fromJS(normalizedTodos.entities.Todo));
-
-      /* return state;*/
-      /* return {
-       *   ...state,
-       *   // TODO bug
-       *   entities: normalize(mockedTodoBoxs, TDS).entities
-       * };*/
       break;
 
     case TODO_POST_SUCCESS:

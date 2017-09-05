@@ -10,36 +10,18 @@ import { JWT_STORAGE_KEY } from '../constants';
 import Actions from 'actions/actions';
 import { Map, List, fromJS } from 'immutable';
 
-function auth(
-  state = Map({
-    isAuthenticated: Storage.get(JWT_STORAGE_KEY) ? true : false
-    // isFetching: true,
-    // signInErrorMessage: null
-  }),
-  action
-) {
+function auth(state = Map({}), action) {
   switch (action.type) {
     case Actions.IDENTIFY.REQUEST:
-      return state.update('identifyFetching', R.T).update('isAuthenticated', R.F);
+      return state.update('identifyFetching', R.T).update('identifyAuthenticated', R.F);
       break;
     case Actions.IDENTIFY.SUCCESS:
       return state
         .update('identifyFetching', R.F)
         .update('identifyAuthenticated', R.T)
         .update('loginedUser', () => fromJS(action.playload));
-      /* return Object.assign({}, state, {
-       *   isFetching: false,
-       *   isAuthenticated: true,
-       *   loginedUser: action.playload
-       * });*/
       break;
     case Actions.IDENTIFY.FAILURE:
-      // TODO remove data when jwt expries
-      /* return Object.assign({}, state, {
-       *   isFetching: false,
-       *   isAuthenticated: false,
-       *   message: action.message
-       * });*/
       return state.update('identifyFetching', R.F).update('identifyAuthenticated', R.F);
       break;
 
@@ -48,9 +30,6 @@ function auth(
       break;
 
     case Actions.LOGIN.SUCCESS:
-      /* return {
-       *   isAuthenticated: true
-       * };*/
       return state.update('signInAuthenticated', R.T);
       break;
 
@@ -62,6 +41,10 @@ function auth(
 
     case Actions.LOGIN_FINISH.REQUEST:
       return state.delete('signInAuthenticated').delete('signInErrorMessage');
+      break;
+
+    case Actions.LOGOUT.REQUEST:
+      return state;
       break;
 
     case UPDATE_USERINFO_REQUEST:

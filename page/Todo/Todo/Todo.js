@@ -114,8 +114,6 @@ class Todo extends Component {
 
   render() {
     const { todo } = this.props;
-    console.log('render', todo.id);
-
     return (
       <ClickOutSide onClickOutside={this.onClickOutside}>
         <div

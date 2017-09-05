@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Website Nav 1`] = `
+<nav
+  className="nav"
+>
+  <div
+    className="logoban"
+    onClick={[Function]}
+  >
+    <img
+      className="logo"
+      src="/static/logo.png"
+    />
+    <img
+      className="text-logo"
+      src="/static/text-logo-white.svg"
+    />
+  </div>
+  <div
+    className="nav-link-area"
+  >
+    <a
+      href="/home"
+      onClick={[Function]}
+    >
+      Dash
+    </a>
+    <a
+      href="/task-wall"
+      onClick={[Function]}
+    >
+      Task
+    </a>
+    <a
+      className=""
+      href="/todo"
+      onClick={[Function]}
+    >
+      Todo
+    </a>
+    <a
+      href="/wiki"
+      onClick={[Function]}
+    >
+      Wiki
+    </a>
+    <a
+      href="/mind"
+      onClick={[Function]}
+    >
+      Mind
+    </a>
+  </div>
+  <div
+    className="avatar-area"
+  >
+    <span>
+      jest
+    </span>
+    <img
+      className="nav-avatar"
+      crossOrigin="Anonymous"
+      onClick={[Function]}
+      src="https://www.gravatar.com/avatar/50fe9076fe9e2143e68bd431c75ba1da"
+    />
+    <noscript />
+  </div>
+</nav>
+`;

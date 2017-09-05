@@ -10,7 +10,6 @@ import Operation from './Setting/Operation';
 import Preference from './Setting/Preference';
 import 'style/page/task/board-setting.scss';
 import { Link } from 'react-router-dom';
-import { SITE_MAP } from 'services/site-map';
 
 // TODO remove container because do not need
 export class BoardSetting extends Component {
