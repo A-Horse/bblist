@@ -32,6 +32,7 @@ export class Modal extends Component {
   }
 
   componentWillUnmount() {
+    elementClass(this.node).add('request-close');
     ReactDOM.unmountComponentAtNode(this.node);
     if (this.hasAppendToBody) {
       document.body.removeChild(this.node);

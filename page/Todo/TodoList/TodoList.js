@@ -8,7 +8,6 @@ import { getTodoList } from 'actions/todo/todos';
 
 import TodoCreater from '../TodoCreater/TodoCreater';
 import Todo from '../Todo/Todo';
-import DatePicker from 'components/DatePicker/DatePicker';
 
 import './TodoList.scss';
 
@@ -30,7 +29,6 @@ class TodoList extends Component {
   render() {
     return (
       <div className="todo-list">
-        <DatePicker ref="datePicker" />
         <div className="creater-container">
           <TodoCreater />
         </div>

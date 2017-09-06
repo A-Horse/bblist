@@ -1,33 +1,39 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { timeout } from 'utils/timeout';
 import DOM from 'react-dom-factories';
 var div = DOM.div;
 
 var CLASS_NAMES = {
   overlay: {
-    base: 'modal__overlay',
-    afterOpen: 'modal__overlay--after-open',
-    beforeClose: 'modal__overlay--before-close'
+    base: 'modal__overlay'
   },
   content: {
-    base: 'modal__content',
-    afterOpen: 'modal__content--after-open',
-    beforeClose: 'modal__content--before-close'
+    base: 'modal__content'
   }
 };
 
 export class ModalPortal extends Component {
+  state = {
+    beforeOpen: false,
+    beforeClose: false,
+    style: {
+      overlay: {},
+      content: {}
+    }
+  };
+
   constructor(props) {
     super(props);
-    this.state = {
-      afterOpen: false,
-      beforeClose: false,
-      style: {
-        overlay: {},
-        content: {}
-      }
-    };
     this.onOverlayClick = this.onOverlayClick.bind(this);
+  }
+
+  async componentWillReceiveProps(newProps) {
+    if (newProps.toggle === true && newProps.toggle !== this.props.toggle) {
+      await timeout(200);
+      this.setState({ beforeOpen: true });
+      this.focusContent();
+    }
   }
 
   focusContent() {
@@ -42,35 +48,36 @@ export class ModalPortal extends Component {
   }
 
   onOverlayClick(event) {
-    console.log('xxxxxxxxx');
-
-    console.log(event);
     event.preventDefault();
     this.requestClose();
   }
 
-  requestClose() {
-    console.log('request close');
-
+  async requestClose() {
+    this.setState({ beforeClose: true });
+    await timeout(200);
     this.props.close && this.props.close();
+    this.setState({ beforeClose: false });
   }
 
   buildClassName(which, additional) {
-    var className = CLASS_NAMES[which].base;
-    if (this.state.afterOpen) className += ' ' + CLASS_NAMES[which].afterOpen;
-    if (this.state.beforeClose) className += ' ' + CLASS_NAMES[which].beforeClose;
+    let className = CLASS_NAMES[which].base;
+    // TODO 放在上面
+    if (this.state.beforeClose) {
+      className += ' before-close';
+    }
+    if (this.state.beforeOpen) {
+      className += ' before-open';
+    }
     return additional ? className + ' ' + additional : className;
   }
 
   render() {
     // TODO fix settimeout
-    if (this.props.toggle) {
-      setTimeout(() => {
-        this.focusContent();
-      });
-    }
+    console.log('render');
 
     if (this.props.toggle) {
+      console.log('toggle');
+
       return (
         <div
           ref="overlay"
