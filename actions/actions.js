@@ -1,4 +1,15 @@
-const actionNames = ['TEST_ONLY', 'IDENTIFY', 'LOGIN', 'LOGIN_FINISH', 'LOGOUT'];
+const actionNames = [
+  'TEST_ONLY',
+
+  'IDENTIFY',
+
+  'LOGIN',
+  'LOGIN_FINISH',
+  'LOGOUT',
+
+  'ADD_TODO',
+  'GET_TODOLIST'
+];
 
 const ACTIONS = actionNames.reduce((result, actionName) => {
   const REQUEST_SYMBOL = actionName + '_REQUEST';

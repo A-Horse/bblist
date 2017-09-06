@@ -6,21 +6,21 @@ var div = DOM.div;
 
 var CLASS_NAMES = {
   overlay: {
-    base: 'modal__overlay'
+    base: 'modal__overlay',
+    afterOpen: ' after-open',
+    beforeClose: ' before-close'
   },
   content: {
-    base: 'modal__content'
+    base: 'modal__content',
+    afterOpen: ' after-open',
+    beforeClose: ' before-close'
   }
 };
 
 export class ModalPortal extends Component {
   state = {
-    beforeOpen: false,
-    beforeClose: false,
-    style: {
-      overlay: {},
-      content: {}
-    }
+    afterOpen: false,
+    beforeClose: false
   };
 
   constructor(props) {
@@ -30,9 +30,12 @@ export class ModalPortal extends Component {
 
   async componentWillReceiveProps(newProps) {
     if (newProps.toggle === true && newProps.toggle !== this.props.toggle) {
-      await timeout(200);
-      this.setState({ beforeOpen: true });
+      await timeout();
+      this.setState({ afterOpen: true });
       this.focusContent();
+    }
+    if (newProps.toggle === false && newProps.toggle !== this.props.toggle) {
+      this.setState({ afterOpen: false });
     }
   }
 
@@ -61,35 +64,27 @@ export class ModalPortal extends Component {
 
   buildClassName(which, additional) {
     let className = CLASS_NAMES[which].base;
-    // TODO 放在上面
     if (this.state.beforeClose) {
-      className += ' before-close';
+      className += CLASS_NAMES[which].beforeClose;
     }
-    if (this.state.beforeOpen) {
-      className += ' before-open';
+    if (this.state.afterOpen) {
+      className += CLASS_NAMES[which].afterOpen;
     }
     return additional ? className + ' ' + additional : className;
   }
 
   render() {
-    // TODO fix settimeout
-    console.log('render');
-
     if (this.props.toggle) {
-      console.log('toggle');
-
       return (
         <div
           ref="overlay"
           className={this.buildClassName('overlay', this.props.overlayClassName)}
           onClick={this.onOverlayClick}
-          style={this.props.overlayStyle}
         >
           <div
             ref="content"
             className={this.buildClassName('content', this.props.className)}
             tabIndex="-1"
-            style={this.props.modalStyle}
             onKeyDown={this.handleKeyDown.bind(this)}
           >
             {this.props.children}

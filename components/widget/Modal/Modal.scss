@@ -22,13 +22,12 @@ body.modal__body--open {
   opacity: 0.1;
   transition: opacity 200ms ease-in-out;
 
-  &.before-open {
+  &.after-open {
     opacity: 1;
   }
 
   &.before-close {
     opacity: 0.1;
-
   }
 }
 

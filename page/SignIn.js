@@ -33,7 +33,6 @@ class SignIn extends Component {
 
   render() {
     // TODO experience button event.preventDefault 会阻止 html5 的校验
-    // console.log(this.props);
 
     return (
       <PageContainer className="signin-page">

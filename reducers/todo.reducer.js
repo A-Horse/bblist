@@ -12,16 +12,51 @@ import { TDBox, TD, TDS } from '../schema';
 import { normalize } from 'normalizr';
 import { Map, List, fromJS } from 'immutable';
 import R from 'ramda';
+import Actions from 'actions/actions';
 
 function todos(
   state = Map({
     todoBoxId: null,
     todoIds: []
-    // todoEntities: {}
   }),
   action
 ) {
   switch (action.type) {
+    case Actions.ADD_TODO.SUCCESS:
+      /* return {
+       *   ...state,
+       *   entities: {
+       *     ...state.entities,
+       *     ...R.mergeDeepWith(
+       *       R.concat,
+       *       R.assocPath(
+       *         ['TodoBox', JSON.stringify(state.todoBoxId), 'todos'],
+       *         [].concat(state.entities.TodoBox[state.todoBoxId].todos, [action.playload.id]),
+       *         {}
+       *       ),
+       *       R.assocPath(
+       *         ['Todo'],
+       *         R.assoc(action.playload.id, action.playload, state.entities.Todo),
+       *         {}
+       *       )
+       *     )
+       *   }
+       * };*/
+      const addedTodo = action.playload;
+      return state
+        .update('todoEntities', todoEntities =>
+          todoEntities.set(String(addedTodo.id), fromJS(addedTodo))
+        )
+        .update('todoIds', todoIds => todoIds.push(String(addedTodo.id)));
+      break;
+
+    case Actions.GET_TODOLIST.SUCCESS:
+      const normalizedTodos = normalize(action.playload, TDS);
+      return state
+        .update('todoIds', () => List(normalizedTodos.result))
+        .update('todoEntities', () => fromJS(normalizedTodos.entities.Todo));
+      break;
+
     case TODOBOX_GET_SUCCESS:
       const myTodoBox = { name: 'My Todo', id: null, type: 'only' };
       return {
@@ -37,34 +72,7 @@ function todos(
       };
       break;
 
-    case TODOLIST_GET_SUCCESS:
-      const normalizedTodos = normalize(action.playload, TDS);
-      return state
-        .set('todoIds', List(normalizedTodos.result))
-        .set('todoEntities', fromJS(normalizedTodos.entities.Todo));
-      break;
-
-    case TODO_POST_SUCCESS:
-      return {
-        ...state,
-        entities: {
-          ...state.entities,
-          ...R.mergeDeepWith(
-            R.concat,
-            R.assocPath(
-              ['TodoBox', JSON.stringify(state.todoBoxId), 'todos'],
-              [].concat(state.entities.TodoBox[state.todoBoxId].todos, [action.playload.id]),
-              {}
-            ),
-            R.assocPath(
-              ['Todo'],
-              R.assoc(action.playload.id, action.playload, state.entities.Todo),
-              {}
-            )
-          )
-        }
-      };
-
+    // case TODO_POST_SUCCESS:
     case TODO_DESTORY_SUCCESS:
       const tdDeteledState = R.clone(state, true);
       const newTodosResult = R.without(
@@ -78,10 +86,6 @@ function todos(
       return state.updateIn(['todoEntities', String(action.playload.id)], () =>
         fromJS(action.playload)
       );
-      /* const updatedTodoState = R.clone(state, true);
-       * state.entities.Todo[action.playload.id] = action.playload;
-       * updatedTodoState.entities.Todo[action.playload.id] = action.playload;
-       * return updatedTodoState;*/
       break;
 
     default:

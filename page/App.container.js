@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
-import { makeActionRequestCollection } from '../actions/actions';
-import Actions from '../actions/actions';
+
+import Actions, { makeActionRequestCollection } from '../actions/actions';
 import App from './App';
 
 const mapDispatchToProps = dispatch => {

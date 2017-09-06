@@ -19,6 +19,8 @@ import './Todo.scss';
 
 const todoMetaHeight = 24;
 
+import { repeatItems } from '../constants';
+
 class Todo extends Component {
   constructor() {
     super();
@@ -93,15 +95,6 @@ class Todo extends Component {
     this.props.dispatch(getTodoRepeatHistory(this.props.todo.id));
   }
 
-  buildRepeatSelectItems() {
-    return [
-      { name: 'None', value: NaN },
-      { name: 'Every Day', value: 1 },
-      { name: 'Two Day', value: 2 },
-      { name: 'Week', value: 7 }
-    ];
-  }
-
   shouldComponentUpdate(nextProps, nextState) {
     if (this.props.todo !== nextProps.todo) {
       return true;
@@ -162,34 +155,35 @@ class Todo extends Component {
             />
           </div>
 
-          <div
-            className="todo-editing--meta"
-            style={{ display: this.state.editToggle ? 'block' : 'none' }}
-          >
-            <div className="todo-editing--deadline">
-              <IconRepeat />
-              <label>Deadline:</label>
-              <DatePicker
-                ref="date-picker"
-                placeholder="YYYY-MM-DD"
-                hideIcon={true}
-                defaultValue={todo.deadline}
-                onSelected={date => this.updateTodo({ deadline: date ? date.getTime() : null })}
-              />
-            </div>
+          {this.state.editToggle &&
+            <div
+              className="todo-editing--meta"
+              style={{ display: this.state.editToggle ? 'block' : 'none' }}
+            >
+              <div className="todo-editing--deadline">
+                <IconRepeat />
+                <label>Deadline:</label>
+                <DatePicker
+                  ref="date-picker"
+                  placeholder="YYYY-MM-DD"
+                  hideIcon={true}
+                  defaultValue={todo.deadline}
+                  onSelected={date => this.updateTodo({ deadline: date ? date.getTime() : null })}
+                />
+              </div>
 
-            <div className="todo-editing--repeat">
-              <IconDate />
-              <label>Repeat:</label>
-              <Select
-                defaultItem={R.find(R.propEq('value', parseInt(todo.repeat, 10)))(
-                  this.buildRepeatSelectItems()
-                )}
-                items={this.buildRepeatSelectItems()}
-                onSelect={repeat => this.updateTodo({ repeat: repeat.value })}
-              />
-            </div>
-          </div>
+              <div className="todo-editing--repeat">
+                <IconDate />
+                <label>Repeat:</label>
+                <Select
+                  defaultItem={R.find(R.propEq('value', parseInt(todo.repeat, 10)))(
+                    this.buildRepeatSelectItems()
+                  )}
+                  items={this.repeatItems}
+                  onSelect={repeat => this.updateTodo({ repeat: repeat.value })}
+                />
+              </div>
+            </div>}
         </div>
       </ClickOutSide>
     );

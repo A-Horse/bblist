@@ -20,7 +20,6 @@ export const IDENTIFY_REQUEST = action$ =>
     }
     return http
       .get(makeApiUrl('/user/identify'))
-      .then(handleResponse)
       .then(Actions.IDENTIFY.success)
       .catch(Actions.IDENTIFY.failure);
   });

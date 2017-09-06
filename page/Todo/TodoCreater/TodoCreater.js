@@ -1,23 +1,17 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-
-import { createTodo, getTodoList } from 'actions/todo/todos';
-import { IconAdd } from 'services/image-icon';
+import Textarea from 'react-textarea-autosize';
+import { isEnterKey } from 'utils/keyboard';
+import ClickOutSide from 'components/utils/ClickOutSide';
 import { Button } from 'components/widget/Button';
 import DatePicker from 'components/DatePicker/DatePicker';
 import { Select } from 'components/widget/Select';
-import Textarea from 'react-textarea-autosize';
-import { isEnterKey } from 'utils/keyboard';
-
-import ClickOutSide from 'components/utils/ClickOutSide';
 
 import './TodoCreater.scss';
-
 import { repeatItems } from '../constants';
 
 class TodoCreater extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.toggle = this.toggle.bind(this);
     this.close = this.close.bind(this);
     this.onInputKeyDown = this.onInputKeyDown.bind(this);
@@ -31,21 +25,15 @@ class TodoCreater extends Component {
   }
 
   createTodo() {
-    const { dispatch } = this.props;
     const data = {
       content: this.refs.content.value.trim(),
       deadline: this.refs.datePicker.value ? this.refs.datePicker.value.getTime() : null
-      //label: this.refs.label.trim().split(';')
     };
-    return dispatch(createTodo(data)).then(() => {
-      this.close();
-      return dispatch(getTodoList(this.props.wallId));
-    });
+    this.props.actions.ADD_TODO_FN(data);
+    this.close();
   }
 
   toggle() {
-    console.log('ssssssssss');
-
     this.setState({ toggle: true });
   }
 
@@ -65,20 +53,14 @@ class TodoCreater extends Component {
   }
 
   render() {
-    if (this.state.toggle) return this.renderCreater();
-    return this.renderToggle();
-  }
-
-  renderToggle() {
-    return (
-      <div className="todo-creater--toggle" onClick={this.toggle}>
-        <i className="fa fa-plus" aria-hidden="true" />
-        <span className="toggle-text">Add Todo</span>
-      </div>
-    );
-  }
-
-  renderCreater() {
+    if (!this.state.toggle) {
+      return (
+        <div className="todo-creater--toggle" onClick={this.toggle}>
+          <i className="fa fa-plus" aria-hidden="true" />
+          <span className="toggle-text">Add Todo</span>
+        </div>
+      );
+    }
     return (
       <ClickOutSide onClickOutside={this.close}>
         <div className="todo-creater-body">
@@ -99,7 +81,10 @@ class TodoCreater extends Component {
 
           <div className="todo-creater-props todo-creater-repeat">
             <label>Repeat:</label>
-            <Select items={repeatItems} />
+            <Select
+              items={repeatItems}
+              onSelect={repeat => this.updateTodo({ repeat: repeat.value })}
+            />
           </div>
 
           <div className="todo-creater-operation">
@@ -116,8 +101,4 @@ class TodoCreater extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {};
-};
-
-export default connect(mapStateToProps)(TodoCreater);
+export default TodoCreater;

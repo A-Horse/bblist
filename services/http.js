@@ -4,7 +4,7 @@ import { createConfigWithAuth } from '../utils/header';
 
 export const http = {
   get(url, query) {
-    return fetch(url, createConfigWithAuth('GET'));
+    return fetch(url, createConfigWithAuth('GET')).then(handleResponse);
   },
   post(url, query, body) {
     return fetch(url, createConfigWithAuth('POST', body)).then(handleResponse);
