@@ -1,0 +1,40 @@
+@import 'style/variable';
+@import 'style/mixin';
+
+.checkbox {
+  position: relative;
+  display: inline-block;
+
+  input {
+    visibility: hidden;
+    width: 22px;
+    &:checked + .checkbox--mock:before {
+      display: block;
+    }
+  }
+
+  .fa {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    &.fa-check-square-o {
+      color: #4caf50;
+    }
+
+    &.fa-square-o {
+      color: #999;
+    }
+  }
+}
+
+.checkbox--mock {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 2px;
+  height: 18px;
+  width: 18px;
+
+  cursor: pointer;
+}
