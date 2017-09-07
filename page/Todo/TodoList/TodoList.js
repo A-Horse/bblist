@@ -15,7 +15,7 @@ export default class TodoList extends Component {
   renderList() {
     const { todos } = this.props;
     return todos.map(todo =>
-      <Todo key={todo.get('id')} todo={todo} dispatch={this.props.dispatch} />
+      <Todo key={todo.get('id')} todo={todo} actions={this.props.actions} />
     );
   }
 

@@ -8,6 +8,7 @@ const actionNames = [
   'LOGOUT',
 
   'ADD_TODO',
+  'UPDATE_TODO',
   'GET_TODOLIST'
 ];
 

@@ -30,3 +30,6 @@ export const GET_TODOLIST = action$ =>
       .then(Actions.GET_TODOLIST.success)
       .catch(Actions.GET_TODOLIST.failure);
   });
+
+export const UPDATE_TODO = action$ =>
+  action$.ofType(Actions.UPDATE_TODO.REQUEST).mergeMap(action => {});

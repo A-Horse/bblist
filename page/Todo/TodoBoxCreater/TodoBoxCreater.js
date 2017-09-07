@@ -14,10 +14,11 @@ import Input from 'components/widget/Input';
 import './TodoBoxCreater.scss';
 
 class TodoBoxCreater extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.close = this.close.bind(this);
   }
+
   componentWillMount() {
     this.state = { toggle: false };
   }

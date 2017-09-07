@@ -28,6 +28,7 @@ class Todo extends Component {
     this.onRepeatHistoryModal = this.onRepeatHistoryModal.bind(this);
     this.destroyTodo = this.destroyTodo.bind(this);
     this.updateDone = this.updateDone.bind(this);
+    this.updateTodo = this.updateTodo.bind(this);
   }
 
   componentWillMount() {
