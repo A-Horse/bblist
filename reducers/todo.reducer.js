@@ -58,9 +58,9 @@ function todos(
       break;
 
     case Actions.UPDATE_TODO.SUCCESS:
-      return state.updateIn(['todoEntities', String(action.playload.id)], () => {
-        fromJS(action.playload);
-      });
+      return state.updateIn(['todoEntities', String(action.playload.id)], () =>
+        fromJS(action.playload)
+      );
       break;
 
     case TODOBOX_GET_SUCCESS:

@@ -69,7 +69,7 @@ class Todo extends Component {
       id: todo.get('id'),
       ...toPatchData
     };
-    this.actions.UPDATE_TODO_FN(data);
+    this.props.actions.UPDATE_TODO_FN(data);
   }
 
   onContendChanged(event) {
@@ -148,16 +148,14 @@ class Todo extends Component {
 
             <div className="todo-hover-operation">
               {!!todo.get('repeat') && <IconChart onClick={this.onRepeatHistoryModal} />}
-
-              <IconDelete onClick={this.destroyTodo} />
+              <i className="fa fa-trash" aria-hidden="true" onClick={this.destroyTodo} />
+              <StarCheckBox
+                defaultChecked={todo.get('isStar')}
+                onChange={checked => {
+                  this.updateTodo({ isStar: checked });
+                }}
+              />
             </div>
-
-            <StarCheckBox
-              defaultChecked={todo.get('isStar')}
-              onChange={checked => {
-                this.updateTodo({ isStar: checked });
-              }}
-            />
           </div>
 
           {this.state.editToggle &&

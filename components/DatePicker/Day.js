@@ -9,7 +9,7 @@ class Day extends Component {
   onClick() {}
 
   onSelected() {
-    const date = new Date(this.props.year, this.props.month, this.props.dday.number);
+    const date = new Date(this.props.year, this.props.month - 1, this.props.dday.number);
     this.props.onSelected(date);
   }
 

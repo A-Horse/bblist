@@ -110,6 +110,8 @@ class DatePicker extends Component {
   }
 
   render() {
+    console.log('render dp');
+
     const dateString = this.state.value
       ? moment(this.state.value).format('MMMM Do YYYY')
       : this.props.placeholder ? this.props.placeholder : '';

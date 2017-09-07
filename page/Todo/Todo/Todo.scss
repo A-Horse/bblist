@@ -22,7 +22,10 @@
   }
 
   &.open {
+    background-color: $primary-bg;
     opacity: 1;
+    color: white;
+
     .todo-hover-operation {
       visibility: visible;
       float: right;
@@ -101,14 +104,6 @@
 .todo-editing--deadline {
   display: flex;
   align-items: center;
-
-  .date-picker {
-    margin-left: 14px;
-
-    input {
-      border: none;
-    }
-  }
 }
 
 .todo-editing--meta {

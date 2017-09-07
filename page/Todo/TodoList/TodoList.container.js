@@ -10,6 +10,7 @@ import TodoList from './TodoList';
 const getAllTodos = (state, props) => {
   const todoEntities = state.todos.get('todoEntities');
   const todoIds = state.todos.get('todoIds');
+  console.log(todoEntities);
 
   return todoIds.map(id => todoEntities.get(String(id)));
 };
@@ -26,7 +27,7 @@ const mapStateToProps = (state, props) => {
 const mapDispatchToProps = dispatch => {
   return {
     actions: bindActionCreators(
-      makeActionRequestCollection([Actions.ADD_TODO, Actions.GET_TODOLIST]),
+      makeActionRequestCollection([Actions.ADD_TODO, Actions.GET_TODOLIST, Actions.UPDATE_TODO]),
       dispatch
     )
   };
