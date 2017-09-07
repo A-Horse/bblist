@@ -190,39 +190,39 @@ export function destroyTodo(todoId) {
       .catch(error => dispatch(destroyTodoError(error)));
   };
 }
-
-export const TODO_PATCH_REQUEST = 'TODO_PATCH_REQUEST';
-export const TODO_PATCH_SUCCESS = 'TODO_PATCH_SUCCESS';
-export const TODO_PATCH_FAILURE = 'TODO_PATCH_FAILURE';
-
-function requestUpdateTodo(data) {
-  return {
-    type: TODO_PATCH_REQUEST,
-    playload: data
-  };
-}
-
-function updateTodoSuccess(playload) {
-  return {
-    type: TODO_PATCH_SUCCESS,
-    playload
-  };
-}
-
-function updateTodoError(error) {
-  return {
-    type: TODO_PATCH_FAILURE,
-    error: true,
-    playload: error
-  };
-}
-
-export function updateTodo(id, data) {
-  const config = createConfigWithAuth('PATCH', data);
-  return dispatch => {
-    return fetch(makeApiUrl(`/todo/${id}`), config)
-      .then(handleResponse)
-      .then(resp => dispatch(updateTodoSuccess(resp)))
-      .catch(error => dispatch(updateTodoError(error)));
-  };
-}
+/*
+ * export const TODO_PATCH_REQUEST = 'TODO_PATCH_REQUEST';
+ * export const TODO_PATCH_SUCCESS = 'TODO_PATCH_SUCCESS';
+ * export const TODO_PATCH_FAILURE = 'TODO_PATCH_FAILURE';
+ *
+ * function requestUpdateTodo(data) {
+ *   return {
+ *     type: TODO_PATCH_REQUEST,
+ *     playload: data
+ *   };
+ * }
+ *
+ * function updateTodoSuccess(playload) {
+ *   return {
+ *     type: TODO_PATCH_SUCCESS,
+ *     playload
+ *   };
+ * }
+ *
+ * function updateTodoError(error) {
+ *   return {
+ *     type: TODO_PATCH_FAILURE,
+ *     error: true,
+ *     playload: error
+ *   };
+ * }
+ * */
+/* export function updateTodo(id, data) {
+ *   const config = createConfigWithAuth('PATCH', data);
+ *   return dispatch => {
+ *     return fetch(makeApiUrl(`/todo/${id}`), config)
+ *       .then(handleResponse)
+ *       .then(resp => dispatch(updateTodoSuccess(resp)))
+ *       .catch(error => dispatch(updateTodoError(error)));
+ *   };
+ * }*/

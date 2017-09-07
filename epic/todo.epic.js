@@ -32,4 +32,10 @@ export const GET_TODOLIST = action$ =>
   });
 
 export const UPDATE_TODO = action$ =>
-  action$.ofType(Actions.UPDATE_TODO.REQUEST).mergeMap(action => {});
+  action$.ofType(Actions.UPDATE_TODO.REQUEST).mergeMap(action => {
+    const { id } = action.playload;
+    return http
+      .patch(makeApiUrl(`/todo/${id}`), null, action.playload)
+      .then(Actions.UPDATE_TODO.success)
+      .catch(Actions.UPDATE_TODO.failure);
+  });

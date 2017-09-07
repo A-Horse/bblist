@@ -57,6 +57,12 @@ function todos(
         .update('todoEntities', () => fromJS(normalizedTodos.entities.Todo));
       break;
 
+    case Actions.UPDATE_TODO.SUCCESS:
+      return state.updateIn(['todoEntities', String(action.playload.id)], () => {
+        fromJS(action.playload);
+      });
+      break;
+
     case TODOBOX_GET_SUCCESS:
       const myTodoBox = { name: 'My Todo', id: null, type: 'only' };
       return {
@@ -81,12 +87,6 @@ function todos(
       );
       tdDeteledState.entities.TodoBox[state.todoBoxId].todos = newTodosResult;
       return tdDeteledState;
-
-    case TODO_PATCH_SUCCESS:
-      return state.updateIn(['todoEntities', String(action.playload.id)], () =>
-        fromJS(action.playload)
-      );
-      break;
 
     default:
       return state;

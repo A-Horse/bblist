@@ -63,9 +63,13 @@ class Todo extends Component {
     this.updateTodo(newTodo);
   }
 
-  updateTodo(newTodo) {
-    const { dispatch, todo } = this.props;
-    return dispatch(updateTodo(todo.get('id'), newTodo));
+  updateTodo(toPatchData) {
+    const { todo } = this.props;
+    const data = {
+      id: todo.get('id'),
+      ...toPatchData
+    };
+    this.actions.UPDATE_TODO_FN(data);
   }
 
   onContendChanged(event) {
