@@ -4,7 +4,7 @@ import { Modal } from 'components/widget/Modal/Modal';
 import ReactCrop from 'react-image-crop';
 import { ImageUploader } from 'components/ImageUploader';
 import { makeRemoteUrl } from 'services/remote-storage';
-import Button from 'components/widget/Button';
+import Button from 'components/widget/Button/Button';
 
 import 'style/page/task/setting/operation.scss';
 

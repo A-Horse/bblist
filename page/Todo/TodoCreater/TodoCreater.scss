@@ -2,7 +2,7 @@
 @import 'style/page/todo/variable';
 
 .todo-creater--toggle {
-  padding: 8px 10px;
+  padding: 5px 10px;
   margin: 0 0 6px;
   cursor: pointer;
   display: flex;
@@ -46,16 +46,57 @@
 
     label {
       color: $white;
+      vertical-align: middle;
     }
 
-    .date-picker {
-      margin-left: 13px;
+    .fa {
+      vertical-align: middle;
+      display: inline-block;
+      margin-top: -3px;
+      margin-right: 10px;
+      color: $white;
+      font-weight: 500;
+    }
 
-      input {
+    .icon-remove {
+      margin-top: -1.5px;
+    }
+
+    .select {
+      margin-left: 10px;
+
+      svg {
+        fill: $white;
+        margin-top: -2px;
+        margin-left: -5px;
+      }
+
+      .select-box--name {
+        color: $white;
+      }
+      .select--box {
         border: none;
-        margin-left: 13px;
       }
     }
+  }
+
+  .date-picker {
+    margin-left: 10px;
+    vertical-align: middle;
+
+    &--icon {
+
+    }
+
+    &--text {
+      color: $white;
+    }
+  }
+
+
+
+  .select {
+
   }
 
   .todo-creater-deadline {

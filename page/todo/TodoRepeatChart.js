@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import R from 'ramda';
 import moment from 'moment';
 import { Modal } from 'components/widget/Modal/Modal';
-import { Button } from 'components/widget/Button';
+import { Button } from 'components/widget/Button/Button';
 import { IconRemove, IconDelete, IconRight } from 'services/image-icon';
 import Empty from 'components/Empty';
 

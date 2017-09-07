@@ -3,19 +3,47 @@
 .date-picker--day {
   cursor: pointer;
   text-align: center;
-  color: $text-primary;
+  color: $md-light-blue-500;
+  font-weight: 500;
+  border-radius: 50%;
 
   &:hover {
-    background-color: $gray-light-depth;
-    border-radius: $radius-small;
+    background-color: $md-red-400;
+    color: $white;
   }
 
   &.out-range {
     opacity: 0.5;
     color: $text-disable;
+
+    &:hover {
+      background-color: $md-red-400;
+      color: $white;
+    }
   }
 
   &.today {
-    background-color: #999;
+    position: relative;
+    border: 1px solid $md-red-300;
+
+    &:before {
+      transform: translate(-50%, 0) scale(0.8);
+      content: 'Today';
+      color: $md-red-300;
+      display: block;
+      position: absolute;
+      z-index: 10;
+      bottom: -10px;
+      left: 50%;
+    }
+
+    &:hover:before {
+      color: $white;
+    }
+  }
+
+  &.selected {
+    background-color: $md-red-500;
+    color: $white;
   }
 }

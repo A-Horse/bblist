@@ -25,6 +25,9 @@ class Day extends Component {
     if (dday.isToday) {
       className += ' today';
     }
+    if (dday.selected) {
+      className += ' selected';
+    }
     return className;
   }
 

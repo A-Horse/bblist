@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import { CheckBox } from 'components/widget/CheckBox';
-import { StarCheckBox } from 'components/widget/StarCheckBox';
+import { CheckBox } from 'components/widget/CheckBox/CheckBox';
+import { StarCheckBox } from 'components/widget/StarCheckBox/StarCheckBox';
 import DatePicker from 'components/DatePicker/DatePicker';
 import { getTodoList, updateTodo, destroyTodo } from 'actions/todo/todos';
 import { IconChart } from 'services/image-icon';
 import { IconDelete, IconRepeat, IconDate } from 'services/image-icon';
 import Textarea from 'react-textarea-autosize';
-import { Button } from 'components/widget/Button';
-import { DropList } from 'components/widget/DropList';
+import { Button } from 'components/widget/Button/Button';
+import { DropList } from 'components/widget/DropList/DropList';
 import ClickOutSide from 'components/utils/ClickOutSide';
 import { timeout } from 'utils/timeout';
 import moment from 'moment';
@@ -176,10 +176,8 @@ class Todo extends Component {
                 <IconDate />
                 <label>Repeat:</label>
                 <Select
-                  defaultItem={R.find(R.propEq('value', parseInt(todo.repeat, 10)))(
-                    this.buildRepeatSelectItems()
-                  )}
-                  items={this.repeatItems}
+                  defaultItem={R.find(R.propEq('value', parseInt(todo.repeat, 10)))(repeatItems)}
+                  items={repeatItems}
                   onSelect={repeat => this.updateTodo({ repeat: repeat.value })}
                 />
               </div>

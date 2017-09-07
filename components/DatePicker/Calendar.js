@@ -5,7 +5,7 @@ import { weekFirstDay, weekDayName, monthNames } from './constant';
 import { daysInMonth, firstDayInMonthOffset } from './util';
 import Week from './Week';
 import { Select } from 'components/widget/Select';
-import { Button } from 'components/widget/Button';
+import { Button } from 'components/widget/Button/Button';
 import Month from './Month';
 
 import './Calendar.scss';
@@ -17,7 +17,6 @@ export default class Calendar extends Component {
   }
 
   componentWillMount() {
-    // this.selectYearItems = this.buildYears();
     this.selectMonthItems = this.buildMonths();
   }
 
@@ -38,14 +37,6 @@ export default class Calendar extends Component {
   //   }
   //   return years.map(year => ({value: year, name: year}));
   // }
-
-  buildDefaultYear() {
-    return { value: this.props.year, name: this.props.year };
-  }
-
-  buildDefaultMonth() {
-    return { value: this.props.month, name: monthNames[this.props.month - 1] };
-  }
 
   buildMonths() {
     return monthNames.map((monthName, i) => ({ value: ++i, name: monthName }));

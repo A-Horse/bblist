@@ -8,9 +8,15 @@
     justify-content: space-between;
 
     svg {
+      display: inline-block;
+      vertical-align: middle;
+      margin-top: 3px;
+
       &:hover {
-        background-color: $color-background-light-alternative;
+        background-color: $primary-bg;
         border-radius: $radius-small;
+        cursor: pointer;
+        fill: $white;
       }
     }
 
@@ -18,9 +24,14 @@
       flex-grow: 2;
       text-align: center;
       border-radius: $radius-small;
+      cursor: pointer;
+      display: inline-block;
+      vertical-align: middle;
+
 
       &:hover {
-        background-color: $color-background-light-alternative;
+        background-color: $primary-bg;
+        color: $white;
       }
     }
   }
@@ -40,8 +51,9 @@
     }
 
     .week-text {
-      color: $text-secondary;
+      color: $primary-bg;
       font-weight: bolder;
+      cursor: pointer;
     }
   }
 }

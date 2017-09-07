@@ -1,6 +1,7 @@
 @import 'style/variable';
 
 .date-picker {
+  overflow: hidden;
   position: relative;
   display: flex;
   align-items: center;
@@ -8,15 +9,14 @@
 
   &--icon {
     fill: $md-light-blue-500;
-    margin-right: 10px;
   }
 
-  .date-picker--text {
+  &--text {
     color: $text-primary;
-    padding-bottom: 2px;
   }
 
   .icon-remove {
+    display: inline-block;
     width: 18px;
     margin-left: 5px;
     opacity: 0.8;
@@ -24,7 +24,6 @@
 }
 
 .modal__content.date-picker {
-
   .close-icon {
     position: absolute;
     right: 8px;

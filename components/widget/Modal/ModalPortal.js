@@ -26,6 +26,7 @@ export class ModalPortal extends Component {
   constructor(props) {
     super(props);
     this.onOverlayClick = this.onOverlayClick.bind(this);
+    this.onContengClick = this.onContengClick.bind(this);
   }
 
   async componentWillReceiveProps(newProps) {
@@ -53,6 +54,11 @@ export class ModalPortal extends Component {
   onOverlayClick(event) {
     event.preventDefault();
     this.requestClose();
+  }
+
+  onContengClick(event) {
+    event.preventDefault();
+    event.stopPropagation();
   }
 
   async requestClose() {
@@ -85,6 +91,7 @@ export class ModalPortal extends Component {
             ref="content"
             className={this.buildClassName('content', this.props.className)}
             tabIndex="-1"
+            onClick={this.onContengClick}
             onKeyDown={this.handleKeyDown.bind(this)}
           >
             {this.props.children}

@@ -25,8 +25,8 @@ export class StarCheckBox extends Component {
 
   render() {
     return (
-      <div className="checkbox" onClick={this.props.onClick}>
-        <label className="checkbox--mock">
+      <div className="star-checkbox" onClick={this.props.onClick}>
+        <label className="star-checkbox--mock">
           <input
             type="checkbox"
             checked={this.state.checked}

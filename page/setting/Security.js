@@ -4,7 +4,7 @@ import { browserHistory } from 'react-router';
 import { PageContainer } from 'components/widget/PageContainer';
 import { makeGravatarUrl } from 'services/gravatar';
 import Input from 'components/widget/Input';
-import { Button } from 'components/widget/Button';
+import { Button } from 'components/widget/Button/Button';
 import { ErrorMsg } from 'components/ErrorMsg';
 import { validateFormValue } from 'services/validate-strategy';
 import R from 'ramda';

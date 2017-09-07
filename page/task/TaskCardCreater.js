@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { createTaskCard } from 'actions/task/task-card';
 import { getTaskAllCards } from 'actions/task/task-wall';
 import { addBodyEventListenerOnce } from 'actions/event/body';
-import { Button } from 'components/widget/Button';
+import { Button } from 'components/widget/Button/Button';
 import { Hr } from 'components/widget/Hr';
 import UserAvatar from 'components/UserAvatar';
 import { MoreIcon, AddIcon } from 'services/svg-icons';

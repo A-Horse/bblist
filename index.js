@@ -18,7 +18,7 @@ import 'style/app.scss';
 
 import App from 'page/App.container';
 import SignUp from 'containers/SignUp';
-import SignIn from 'page/SignIn.container';
+import SignIn from './page/SignIn/SignIn.container';
 
 import * as reducers from 'reducers';
 import rootEpic from './epic';

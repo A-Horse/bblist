@@ -1,26 +1,20 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import Day from './Day';
 
 class Week extends Component {
-
-  constructor() {
-    super();
-    
+  constructor(props) {
+    super(props);
   }
 
-  onClick() {
-    
-  }
+  onClick() {}
 
-  onClose() {
-
-  }
+  onClose() {}
 
   renderDays() {
-    const {days} = this.props;
-    return days.map((day, i) => <Day dday={day} key={i} {...this.props}/>);
+    const { days } = this.props;
+    return days.map((day, i) => <Day dday={day} key={i} {...this.props} />);
   }
-  
+
   render() {
     return (
       <tr>

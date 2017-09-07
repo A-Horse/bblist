@@ -67,106 +67,19 @@ exports[`Todo Component render 1`] = `
         className="star-checkbox"
         onClick={undefined}
       >
-        <input
-          defaultChecked={0}
-          id={0}
-          onChange={[Function]}
-          type="checkbox"
-        />
         <label
           className="star-checkbox--mock"
-          htmlFor={0}
-        />
-      </div>
-    </div>
-    <div
-      className="todo-editing--meta"
-      style={
-        Object {
-          "display": "none",
-        }
-      }
-    >
-      <div
-        className="todo-editing--deadline"
-      >
-        <img
-          className="image-icon icon-repeat"
-          src="/assets/icons/repeat.png"
-        />
-        <label>
-          Deadline:
-        </label>
-        <div
-          className="date-picker"
         >
-          <span
-            className="date-picker--text placeholder"
-            onClick={[Function]}
-          >
-            YYYY-MM-DD
-          </span>
-          <noscript />
-        </div>
-      </div>
-      <div
-        className="todo-editing--repeat"
-      >
-        <img
-          className="image-icon icon-date"
-          src="/assets/icons/date.png"
-        />
-        <label>
-          Repeat:
+          <input
+            checked={0}
+            onChange={[Function]}
+            type="checkbox"
+          />
+          <i
+            aria-hidden="true"
+            className="fa fa-square-o"
+          />
         </label>
-        <div
-          className="select"
-        >
-          <div
-            className="select--box select-box__closed"
-            onClick={[Function]}
-          >
-            <p
-              className="select-box--name"
-            >
-              None
-            </p>
-            <test-file-stub />
-          </div>
-          <ul
-            className="select--container"
-            style={
-              Object {
-                "display": "none",
-              }
-            }
-          >
-            <li
-              className="select--item"
-              onClick={[Function]}
-            >
-              None
-            </li>
-            <li
-              className="select--item"
-              onClick={[Function]}
-            >
-              Every Day
-            </li>
-            <li
-              className="select--item"
-              onClick={[Function]}
-            >
-              Two Day
-            </li>
-            <li
-              className="select--item"
-              onClick={[Function]}
-            >
-              Week
-            </li>
-          </ul>
-        </div>
       </div>
     </div>
   </div>

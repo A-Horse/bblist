@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {Button} from 'components/widget/Button';
+import React, { Component } from 'react';
+import { Button } from 'components/widget/Button/Button';
 import CountDownTimer from 'components/CountDownTimer';
 
 export class Pomodoro extends Component {
@@ -7,24 +7,17 @@ export class Pomodoro extends Component {
     super();
   }
 
-  componentWillMount() {
-    
-  }
-  
-  componentDidMount() {
-    
-  }
+  componentWillMount() {}
 
-  componentDidUpdate() {
+  componentDidMount() {}
 
-  }
+  componentDidUpdate() {}
 
   buildEndTime() {
     const now = new Date();
   }
 
   startCountDown() {
-    
     this.refs.countDownTimer.start();
   }
 
@@ -32,9 +25,8 @@ export class Pomodoro extends Component {
     return (
       <div>
         <Button onClick={this.startCountDown.bind(this)}>Start Pomodoro</Button>
-        <CountDownTimer ref='countDownTimer'/>
+        <CountDownTimer ref="countDownTimer" />
       </div>
     );
   }
 }
-

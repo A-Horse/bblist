@@ -27,6 +27,7 @@ exports[`Website Nav 1`] = `
       Dash
     </a>
     <a
+      className=""
       href="/task-wall"
       onClick={[Function]}
     >
@@ -40,12 +41,14 @@ exports[`Website Nav 1`] = `
       Todo
     </a>
     <a
+      className=""
       href="/wiki"
       onClick={[Function]}
     >
       Wiki
     </a>
     <a
+      className=""
       href="/mind"
       onClick={[Function]}
     >

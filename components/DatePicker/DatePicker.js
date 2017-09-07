@@ -12,6 +12,11 @@ class DatePicker extends Component {
     this.state = { toggle: false, value: null };
     this.clear = this.clear.bind(this);
     this.close = this.close.bind(this);
+    this.selectYear = this.selectYear.bind(this);
+    this.selectMonth = this.selectMonth.bind(this);
+    this.nextMonth = this.nextMonth.bind(this);
+    this.lastMonth = this.lastMonth.bind(this);
+    this.toggle = this.toggle.bind(this);
   }
 
   componentDidMount() {
@@ -20,11 +25,21 @@ class DatePicker extends Component {
 
   init() {
     const activeDay = this.props.defaultValue ? new Date(this.props.defaultValue) : new Date();
+    console.log('activeDay.getMonth()', activeDay.getMonth());
+
     this.setState({
       year: activeDay.getFullYear(),
       month: activeDay.getMonth() + 1,
       day: activeDay.getDate()
     });
+    !!this.props.defaultValue &&
+      this.setState({
+        selectedDate: {
+          year: activeDay.getFullYear(),
+          month: activeDay.getMonth() + 1,
+          day: activeDay.getDate()
+        }
+      });
     if (this.props.defaultValue) {
       this.setState({ value: this.props.defaultValue });
     }
@@ -34,12 +49,12 @@ class DatePicker extends Component {
     return this.state.value;
   }
 
-  onClick() {
+  toggle() {
     this.setState({ toggle: !this.state.toggle });
   }
 
-  clear() {
-    // TODO CHECK will bugs? (not set year m d?)
+  clear(event) {
+    event.stopPropagation();
     this.setState({ value: null });
     this.props.onSelected && this.props.onSelected(null);
     this.state.toggle && this.close();
@@ -55,7 +70,7 @@ class DatePicker extends Component {
       : this.setState({ month: this.state.month + 1 });
   }
 
-  lastMonth() {
+  lastMonth(event) {
     this.state.month === 1
       ? this.setState({ month: 12, year: this.state.year - 1 })
       : this.setState({ month: this.state.month - 1 });
@@ -74,8 +89,14 @@ class DatePicker extends Component {
     this.setState({
       year: date.getFullYear(),
       month: date.getMonth(),
-      day: date.getDate()
+      day: date.getDate(),
+      selectedDate: {
+        year: date.getFullYear(),
+        month: date.getMonth(),
+        day: date.getDate()
+      }
     });
+
     this.props.onSelected && this.props.onSelected(date);
     this.close();
   }
@@ -98,29 +119,31 @@ class DatePicker extends Component {
           <i
             className="fa fa-calendar-check-o date-picker--icon"
             aria-hidden="true"
-            onClick={this.onClick.bind(this)}
+            onClick={this.toggle}
           />}
 
         <span
           className={`date-picker--text${!this.state.value && this.props.placeholder
             ? ' placeholder'
             : ''}`}
-          onClick={this.onClick.bind(this)}
+          onClick={this.toggle}
         >
           {dateString}
         </span>
 
-        {this.state.value && <IconRemove onClick={this.clear} />}
+        {this.state.value &&
+          <i className="fa fa-times-circle icon-remove" onClick={this.clear} aria-hidden="true" />}
 
         <Modal className="date-picker-modal" toggle={this.state.toggle} close={this.close}>
           <Calendar
             year={this.state.year}
             month={this.state.month}
             day={this.state.day}
-            selectYear={this.selectYear.bind(this)}
-            selectMonth={this.selectMonth.bind(this)}
-            lastMonth={this.lastMonth.bind(this)}
-            nextMonth={this.nextMonth.bind(this)}
+            selectedDate={this.state.selectedDate}
+            selectYear={this.selectYear}
+            selectMonth={this.selectMonth}
+            lastMonth={this.lastMonth}
+            nextMonth={this.nextMonth}
             onSelected={this.onSelected.bind(this)}
           />
         </Modal>

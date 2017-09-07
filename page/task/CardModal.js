@@ -15,12 +15,12 @@ import { createTaskCardComment } from 'actions/task/task-card-comment';
 import { CloseIcon, CommentIcon } from 'services/svg-icons';
 import UserAvatar from 'components/UserAvatar';
 import { Modal } from 'components/widget/Modal/Modal';
-import { CheckBox } from 'components/widget/CheckBox';
+import { CheckBox } from 'components/widget/CheckBox/CheckBox';
 import { Pomodoro } from 'components/Pomodoro';
 import Textarea from 'react-textarea-autosize';
 import { Hr } from 'components/widget/Hr';
 import { Select } from 'components/widget/Select';
-import { Button } from 'components/widget/Button';
+import { Button } from 'components/widget/Button/Button';
 import { isEnterKey } from 'utils/keyboard';
 import { wrapDispathToAction } from 'utils/wrap-props';
 

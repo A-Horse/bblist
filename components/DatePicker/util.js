@@ -5,5 +5,3 @@ export function daysInMonth(month, year) {
 export function firstDayInMonthOffset(month, year) {
   return new Date(`${year}-${month}-1`).getDay();
 }
-
-
