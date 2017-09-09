@@ -7,7 +7,9 @@
 
   input {
     visibility: hidden;
-    width: 22px;
+    position: relative;
+    height: 100%;
+    width: 100%;
     &:checked + .checkbox--mock:before {
       display: block;
     }
@@ -32,9 +34,8 @@
   display: block;
   position: absolute;
   left: 0;
-  top: 2px;
-  height: 18px;
-  width: 18px;
-
+  top: 0;
+  height: 100%;
+  width: 100%;
   cursor: pointer;
 }

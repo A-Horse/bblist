@@ -21,6 +21,14 @@
     }
   }
 
+  .star-checkbox {
+    .fa-star-o {
+
+    }
+  }
+
+
+
   &.open {
     background-color: $primary-bg;
     opacity: 1;
@@ -36,14 +44,20 @@
       }
     }
 
+    .checkbox {
+      .fa-square-o {
+        color: #fff;
+      }
+      .fa-check-square-o {
+        color: #89e478;
+      }
+    }
+
   }
+
   &:hover {
     .todo-hover-operation {
       visibility: visible;
-    }
-
-    .star-checkbox {
-      opacity: 0.6;
     }
   }
 }
@@ -52,15 +66,19 @@
   position: relative;
   display: flex;
   justify-content: space-between;
-  overflow: hidden;
 
   .checkbox {
     top: 2px;
+    flex-shrink: 0;
+    height: 25px;
+    width: 25px;
+    font-size: 20px;
   }
 
   .star-checkbox {
     margin-right: 5px;
     opacity: 0;
+
 
     &.checked {
       opacity: 1;
@@ -86,10 +104,11 @@
   width: 100%;
   margin-left: 15px;
   margin-right: 10px;
-  line-height: 26px;
+  line-height: 22px;
   user-select: initial;
   vertical-align: middle;
   word-break: break-all;
+  font-size: 14px;
 }
 
 .todo--content__input {
@@ -98,7 +117,9 @@
   resize: none;
   border-radius: $radius-middle;
   background-color: $gray-light-depth;
-  margin: 0 14px;
+  margin: -3px 13px;
+  font-size: 14px;
+  height: 22px;
 }
 
 .todo-editing--deadline {
@@ -142,6 +163,7 @@
   visibility: hidden;
   margin-right: 12px;
   white-space: nowrap;
+  width: 50px;
   .icon-delete {
     position: relative;
     top: 3px;

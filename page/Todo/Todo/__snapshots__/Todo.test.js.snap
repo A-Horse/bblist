@@ -3,7 +3,7 @@
 exports[`Todo Component render 1`] = `
 <div>
   <div
-    className="todo"
+    className="todo open"
   >
     <div
       className="todo--main"
@@ -31,7 +31,7 @@ exports[`Todo Component render 1`] = `
         onClick={[Function]}
         style={
           Object {
-            "display": "block",
+            "display": "none",
           }
         }
       >
@@ -44,7 +44,7 @@ exports[`Todo Component render 1`] = `
         onKeyDown={[Function]}
         style={
           Object {
-            "display": "none",
+            "display": "block",
             "height": 0,
           }
         }
@@ -57,29 +57,119 @@ exports[`Todo Component render 1`] = `
           onClick={[Function]}
           src="/assets/icons/chart.png"
         />
-        <img
-          className="image-icon icon-delete"
+        <i
+          aria-hidden="true"
+          className="fa fa-trash"
           onClick={[Function]}
-          src="/assets/icons/remove-red.png"
         />
+        <div
+          className="star-checkbox"
+          onClick={undefined}
+        >
+          <label
+            className="star-checkbox--mock"
+          >
+            <input
+              checked={0}
+              onChange={[Function]}
+              type="checkbox"
+            />
+            <i
+              aria-hidden="true"
+              className="fa fa-star"
+            />
+          </label>
+        </div>
+      </div>
+    </div>
+    <div
+      className="todo-editing--meta"
+      style={
+        Object {
+          "display": "block",
+        }
+      }
+    >
+      <div
+        className="todo-editing--deadline"
+      >
+        <i
+          aria-hidden="true"
+          className="fa fa-calendar-check-o"
+        />
+        <label>
+          Deadline:
+        </label>
+        <div
+          className="date-picker"
+        >
+          <span
+            className="date-picker--text placeholder"
+            onClick={[Function]}
+          >
+            YYYY-MM-DD
+          </span>
+          <noscript />
+        </div>
       </div>
       <div
-        className="star-checkbox"
-        onClick={undefined}
+        className="todo-editing--repeat"
       >
-        <label
-          className="star-checkbox--mock"
-        >
-          <input
-            checked={0}
-            onChange={[Function]}
-            type="checkbox"
-          />
-          <i
-            aria-hidden="true"
-            className="fa fa-square-o"
-          />
+        <i
+          aria-hidden="true"
+          className="fa fa-repeat"
+        />
+        <label>
+          Repeat:
         </label>
+        <div
+          className="select"
+        >
+          <div
+            className="select--box select-box__closed"
+            onClick={[Function]}
+          >
+            <p
+              className="select-box--name"
+            >
+              None
+            </p>
+            <test-file-stub />
+          </div>
+          <ul
+            className="select--container"
+            style={
+              Object {
+                "display": "none",
+              }
+            }
+          >
+            <li
+              className="select--item"
+              onClick={[Function]}
+            >
+              None
+            </li>
+            <li
+              className="select--item"
+              onClick={[Function]}
+            >
+              Every Day
+            </li>
+            <li
+              className="select--item"
+              onClick={[Function]}
+            >
+              Two Day
+            </li>
+            <li
+              className="select--item"
+              onClick={[Function]}
+            >
+              Week
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>

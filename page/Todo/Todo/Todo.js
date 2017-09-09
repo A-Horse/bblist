@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import { CheckBox } from 'components/widget/CheckBox/CheckBox';
 import { StarCheckBox } from 'components/widget/StarCheckBox/StarCheckBox';
 import DatePicker from 'components/DatePicker/DatePicker';
-import { getTodoList, updateTodo, destroyTodo } from 'actions/todo/todos';
+import { destroyTodo } from 'actions/todo/todos';
 import { IconChart } from 'services/image-icon';
-import { IconDelete, IconRepeat, IconDate } from 'services/image-icon';
 import Textarea from 'react-textarea-autosize';
 import { Button } from 'components/widget/Button/Button';
 import { DropList } from 'components/widget/DropList/DropList';
@@ -33,7 +32,7 @@ class Todo extends Component {
 
   componentWillMount() {
     this.state = {
-      editToggle: false
+      editToggle: true
     };
   }
 
@@ -164,7 +163,7 @@ class Todo extends Component {
               style={{ display: this.state.editToggle ? 'block' : 'none' }}
             >
               <div className="todo-editing--deadline">
-                <IconRepeat />
+                <i className="fa fa-calendar-check-o" aria-hidden="true" />
                 <label>Deadline:</label>
                 <DatePicker
                   ref="date-picker"
@@ -176,7 +175,7 @@ class Todo extends Component {
               </div>
 
               <div className="todo-editing--repeat">
-                <IconDate />
+                <i className="fa fa-repeat" aria-hidden="true" />
                 <label>Repeat:</label>
                 <Select
                   defaultItem={R.find(R.propEq('value', parseInt(todo.repeat, 10)))(repeatItems)}
