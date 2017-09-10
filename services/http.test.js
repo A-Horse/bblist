@@ -6,7 +6,7 @@ test('http get', () => {
   return expect(http.get('http://ocotpus.xyz/api/test')).resolves.toEqual({ foo: 'bar' });
 });
 
-test('http get jwt', () => {
+test('http get with jwt', () => {
   nock('http://ocotpus.xyz', {
     reqheaders: {
       'jwts-token':

@@ -9,7 +9,8 @@ const actionNames = [
 
   'ADD_TODO',
   'UPDATE_TODO',
-  'GET_TODOLIST'
+  'GET_TODOLIST',
+  'DESTORY_TODO'
 ];
 
 const ACTIONS = actionNames.reduce((result, actionName) => {

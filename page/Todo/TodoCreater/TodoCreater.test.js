@@ -5,6 +5,8 @@ import renderer from 'react-test-renderer';
 
 test('TodoCreater Component render', () => {
   const actions = {};
-  const tree = renderer.create(<TodoCreater actions={actions} />);
+  const tree = renderer.create(<TodoCreater actions={actions} />, {
+    createNodeMock: () => document.createElement('textarea')
+  });
   expect(tree).toMatchSnapshot();
 });

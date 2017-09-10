@@ -51,10 +51,10 @@ exports[`Todo Component render 1`] = `
       <div
         className="todo-hover-operation"
       >
-        <img
-          className="image-icon"
+        <i
+          aria-hidden="true"
+          className="fa fa-bar-chart"
           onClick={[Function]}
-          src="/assets/icons/chart.png"
         />
         <i
           aria-hidden="true"

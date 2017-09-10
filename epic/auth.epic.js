@@ -9,9 +9,7 @@ import { ajax } from 'rxjs/observable/dom/ajax';
 import fetch from 'isomorphic-fetch';
 import { makeApiUrl } from '../utils/api';
 import { http } from '../services/http';
-import { handleResponse, handleResponseWithoutJson } from 'utils/http-handle';
-import { getJWT } from '../utils/auth';
-import { saveAuthData, saveJWT } from 'utils/auth';
+import { saveAuthData, getJWT } from 'utils/auth';
 
 export const IDENTIFY_REQUEST = action$ =>
   action$.ofType(Actions.IDENTIFY.REQUEST).mergeMap(action => {

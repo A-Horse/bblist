@@ -1,8 +1,14 @@
-import { AUTH_DATA, JWT_STORAGE_KEY, CACHED_USERNAME, CACHED_USERID, CACHED_USEREMAIL } from '../constants';
-import { Storage} from '../services/storage';
+import {
+  AUTH_DATA,
+  JWT_STORAGE_KEY,
+  CACHED_USERNAME,
+  CACHED_USERID,
+  CACHED_USEREMAIL
+} from '../constants';
+import { Storage } from '../services/storage';
 
 export function checkLogin(state, replace) {
-  if(!Storage.get(AUTH_DATA)) {
+  if (!Storage.get(AUTH_DATA)) {
     replace('/signin');
   }
 }
@@ -13,6 +19,7 @@ export function getJWT() {
 }
 
 export function saveJWT(jwt) {
+  // TODO 这里非常不纯 refactor
   const authData = getAuthData();
   authData[JWT_STORAGE_KEY] = jwt;
   return Storage.set(AUTH_DATA, JSON.stringify(authData));

@@ -11,7 +11,8 @@ import { repeatItems } from '../constants';
 
 class TodoCreater extends Component {
   state = {
-    toggle: true
+    toggle: true,
+    content: ''
   };
 
   constructor(props) {
@@ -23,8 +24,12 @@ class TodoCreater extends Component {
   }
 
   addTodo() {
+    if (!this.state.content) {
+      // TODO tip
+      return;
+    }
     const data = {
-      content: this.refs.content.value.trim(),
+      content: this.state.content,
       deadline: this.refs.datePicker.value ? this.refs.datePicker.value.getTime() : null
     };
     this.props.actions.ADD_TODO_FN(data);
@@ -67,7 +72,8 @@ class TodoCreater extends Component {
               placeholder="write a todo"
               className="todo-creater--content"
               type="text"
-              ref="content"
+              value={this.state.content}
+              onChange={event => this.setState({ content: event.target.value.trim() })}
             />
           </div>
 

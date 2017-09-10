@@ -2,11 +2,8 @@ import React, { Component } from 'react';
 import { CheckBox } from 'components/widget/CheckBox/CheckBox';
 import { StarCheckBox } from 'components/widget/StarCheckBox/StarCheckBox';
 import DatePicker from 'components/DatePicker/DatePicker';
-import { destroyTodo } from 'actions/todo/todos';
-import { IconChart } from 'services/image-icon';
 import Textarea from 'react-textarea-autosize';
 import { Button } from 'components/widget/Button/Button';
-import { DropList } from 'components/widget/DropList/DropList';
 import ClickOutSide from 'components/utils/ClickOutSide';
 import { timeout } from 'utils/timeout';
 import moment from 'moment';
@@ -148,7 +145,12 @@ class Todo extends Component {
             />
 
             <div className="todo-hover-operation">
-              {!!todo.get('repeat') && <IconChart onClick={this.onRepeatHistoryModal} />}
+              {!!todo.get('repeat') &&
+                <i
+                  className="fa fa-bar-chart"
+                  onClick={this.onRepeatHistoryModal}
+                  aria-hidden="true"
+                />}
               <i className="fa fa-trash" aria-hidden="true" onClick={this.removeTodo} />
               <StarCheckBox
                 defaultChecked={todo.get('isStar')}

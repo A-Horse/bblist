@@ -1,19 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Button 1`] = `
-<div
-  className="date-picker"
->
-  <span
-    className="date-picker--text placeholder"
-    onClick={[Function]}
-  >
-    i am placeholder
-  </span>
-  <noscript />
-</div>
-`;
-
 exports[`DatePicker 1`] = `
 <div
   className="date-picker"

@@ -19,6 +19,7 @@ exports[`TodoCreater Component render 1`] = `
           }
         }
         type="text"
+        value=""
       />
     </div>
     <div

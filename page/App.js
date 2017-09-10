@@ -41,6 +41,7 @@ export default class App extends Component {
       return <Loading />;
     }
     if (!this.props.identifyFetching && !this.props.identifyAuthenticated) {
+      console.log('hihihi');
       return <Redirect to="/signin" push={true} />;
     }
     return (

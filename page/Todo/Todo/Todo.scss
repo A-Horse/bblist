@@ -24,7 +24,7 @@
 
   .star-checkbox {
     .fa-star-o {
-
+      color: #999;
     }
   }
 
@@ -39,18 +39,23 @@
       visibility: visible;
       float: right;
     }
-    .todo--main {
-      .star-checkbox {
-        opacity: 1;
-      }
+
+    .fa-trash {
+      color: $white;
     }
 
     .checkbox {
       .fa-square-o {
-        color: #fff;
+        color: $white;
       }
       .fa-check-square-o {
         color: #9ef092;
+      }
+    }
+
+    .star-checkbox {
+      .fa-star-o {
+        color: $white;
       }
     }
 
@@ -58,7 +63,9 @@
 
   &:hover {
     .todo-hover-operation {
-      visibility: visible;
+      .fa-trash {
+        visibility: visible;
+      }
     }
   }
 }
@@ -74,16 +81,6 @@
     height: 25px;
     width: 25px;
     font-size: 20px;
-  }
-
-  .star-checkbox {
-    margin-right: 5px;
-    opacity: 0;
-
-
-    &.checked {
-      opacity: 1;
-    }
   }
 
   .todo-deadline-label {
@@ -129,6 +126,7 @@
   .todo-editing-field {
     & > .fa {
       margin-right: 10px;
+      width: 20px;
     }
   }
 
@@ -178,22 +176,20 @@
 }
 
 .todo-hover-operation {
-  visibility: hidden;
   margin-right: 12px;
   white-space: nowrap;
-  width: 50px;
-  .icon-delete {
+  flex-shrink: 0;
+
+  .fa {
     position: relative;
     top: 3px;
-    width: 22px;
+    font-size: 19px;
+    margin-left: 10px;
+    color: #555;
   }
 
-  .image-icon {
-    margin-left: 10px;
+  .fa-trash {
     cursor: pointer;
-
-    &:first-child {
-      margin-left: 0;
-    }
+    visibility: hidden;
   }
 }

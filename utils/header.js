@@ -8,7 +8,7 @@ export function createConfig(method, body, headers) {
       'content-type': 'application/json',
       ...headers
     },
-    body: JSON.stringify(body)
+    body: body ? JSON.stringify(body) : undefined
   };
 }
 
