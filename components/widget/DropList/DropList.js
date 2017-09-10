@@ -31,3 +31,5 @@ export class DropList extends Component {
     }
   }
 }
+
+export default DropList;

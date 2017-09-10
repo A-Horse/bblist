@@ -10,7 +10,6 @@ import TodoList from './TodoList';
 const getAllTodos = (state, props) => {
   const todoEntities = state.todos.get('todoEntities');
   const todoIds = state.todos.get('todoIds');
-  console.log(todoEntities);
 
   return todoIds.map(id => todoEntities.get(String(id)));
 };

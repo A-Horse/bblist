@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button 1`] = `<noscript />`;
+
+exports[`DropList 1`] = `<noscript />`;

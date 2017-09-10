@@ -25,7 +25,6 @@ class DatePicker extends Component {
 
   init() {
     const activeDay = this.props.defaultValue ? new Date(this.props.defaultValue) : new Date();
-    console.log('activeDay.getMonth()', activeDay.getMonth());
 
     this.setState({
       year: activeDay.getFullYear(),
@@ -110,8 +109,6 @@ class DatePicker extends Component {
   }
 
   render() {
-    console.log('render dp');
-
     const dateString = this.state.value
       ? moment(this.state.value).format('MMMM Do YYYY')
       : this.props.placeholder ? this.props.placeholder : '';
