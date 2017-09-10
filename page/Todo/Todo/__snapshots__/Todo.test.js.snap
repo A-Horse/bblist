@@ -41,7 +41,6 @@ exports[`Todo Component render 1`] = `
         className="todo--content__input"
         defaultValue="I'am a Todo."
         onChange={[Function]}
-        onKeyDown={[Function]}
         style={
           Object {
             "display": "block",
@@ -91,7 +90,7 @@ exports[`Todo Component render 1`] = `
       }
     >
       <div
-        className="todo-editing--deadline"
+        className="todo-editing-field todo-editing--deadline"
       >
         <i
           aria-hidden="true"
@@ -113,7 +112,7 @@ exports[`Todo Component render 1`] = `
         </div>
       </div>
       <div
-        className="todo-editing--repeat"
+        className="todo-editing-field todo-editing--repeat"
       >
         <i
           aria-hidden="true"
