@@ -16,3 +16,4 @@ tags
 dist
 package-lock.json
 /yarn.lock
+coverage/
