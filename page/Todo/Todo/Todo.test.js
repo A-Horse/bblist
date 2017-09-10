@@ -24,7 +24,9 @@ test('Todo Component render', () => {
   });
 
   const mockDispatch = jest.fn();
-  const tree = renderer.create(<Todo todo={todo} dispatch={mockDispatch} />);
+  const tree = renderer.create(<Todo todo={todo} dispatch={mockDispatch} />, {
+    createNodeMock: () => document.createElement('textarea')
+  });
   expect(tree).toMatchSnapshot();
 
   // manually trigger the callback

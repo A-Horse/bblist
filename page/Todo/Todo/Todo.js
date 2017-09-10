@@ -25,9 +25,10 @@ class Todo extends Component {
     super();
     this.onClickOutside = this.onClickOutside.bind(this);
     this.onRepeatHistoryModal = this.onRepeatHistoryModal.bind(this);
-    this.destroyTodo = this.destroyTodo.bind(this);
+    this.removeTodo = this.removeTodo.bind(this);
     this.updateDone = this.updateDone.bind(this);
     this.updateTodo = this.updateTodo.bind(this);
+    this.onContendChanged = this.onContendChanged.bind(this);
   }
 
   componentWillMount() {
@@ -72,16 +73,15 @@ class Todo extends Component {
   }
 
   onContendChanged(event) {
-    if (event.keyCode !== 13) {
-      return;
-    }
     event.preventDefault();
-    this.updateTodo({ content: this.refs.content.value.trim() });
+    this.updateTodo({ content: event.target.value.trim() });
   }
 
-  destroyTodo() {
-    const { todo, dispatch } = this.props;
-    dispatch(destroyTodo(todo.id));
+  removeTodo() {
+    const { todo } = this.props;
+    this.props.actions.DESTORY_TODO({
+      id: todo.get('id')
+    });
   }
 
   updateDone(checked) {
@@ -111,6 +111,8 @@ class Todo extends Component {
 
   render() {
     const { todo } = this.props;
+    console.log('render', todo.get('content'));
+
     return (
       <ClickOutSide onClickOutside={this.onClickOutside}>
         <div
@@ -139,15 +141,15 @@ class Todo extends Component {
             </div>
             <Textarea
               ref="content"
-              onKeyDown={this.onContendChanged.bind(this)}
               className="todo--content__input"
               style={{ display: this.state.editToggle ? 'block' : 'none' }}
               defaultValue={todo.get('content')}
+              onChange={this.onContendChanged}
             />
 
             <div className="todo-hover-operation">
               {!!todo.get('repeat') && <IconChart onClick={this.onRepeatHistoryModal} />}
-              <i className="fa fa-trash" aria-hidden="true" onClick={this.destroyTodo} />
+              <i className="fa fa-trash" aria-hidden="true" onClick={this.removeTodo} />
               <StarCheckBox
                 defaultChecked={todo.get('isStar')}
                 onChange={checked => {
@@ -162,7 +164,7 @@ class Todo extends Component {
               className="todo-editing--meta"
               style={{ display: this.state.editToggle ? 'block' : 'none' }}
             >
-              <div className="todo-editing--deadline">
+              <div className="todo-editing-field todo-editing--deadline">
                 <i className="fa fa-calendar-check-o" aria-hidden="true" />
                 <label>Deadline:</label>
                 <DatePicker
@@ -174,7 +176,7 @@ class Todo extends Component {
                 />
               </div>
 
-              <div className="todo-editing--repeat">
+              <div className="todo-editing-field todo-editing--repeat">
                 <i className="fa fa-repeat" aria-hidden="true" />
                 <label>Repeat:</label>
                 <Select
