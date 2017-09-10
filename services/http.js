@@ -9,16 +9,17 @@ function generateUri(url, query) {
     : url + '?' + R.compose(R.join('&'), R.map(k => `${k}=${query[k]}`), R.keys)(query);
 }
 
+function f(method) {
+  return (url, query, body = null) => {
+    return fetch(generateUri(url, query), createConfigWithAuth(method, body)).then(handleResponse);
+  };
+}
+
 export const http = {
-  get(url, query) {
-    return fetch(generateUri(url, query), createConfigWithAuth('GET')).then(handleResponse);
-  },
-  post(url, query, body) {
-    return fetch(generateUri(url, query), createConfigWithAuth('POST', body)).then(handleResponse);
-  },
-  patch(url, query, body) {
-    return fetch(generateUri(url, query), createConfigWithAuth('PATCH', body)).then(handleResponse);
-  }
+  get: f('GET'),
+  post: f('POST'),
+  patch: f('PATCH'),
+  delete: f('DELETE')
 };
 
 export default http;
