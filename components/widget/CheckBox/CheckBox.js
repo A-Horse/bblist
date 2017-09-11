@@ -11,10 +11,6 @@ export class CheckBox extends Component {
 
   componentWillMount() {}
 
-  // componentDidMount() {
-  //   this.instance = this.refs.instance;
-  // }
-
   onChange() {
     const checked = this.refs.instance.checked;
     this.checked = checked;
@@ -28,7 +24,7 @@ export class CheckBox extends Component {
         <label className="checkbox--mock">
           <input
             type="checkbox"
-            checked={this.state.checked}
+            defaultChecked={this.props.defaultChecked}
             ref="instance"
             onChange={this.onChange}
           />

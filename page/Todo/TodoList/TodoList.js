@@ -12,8 +12,7 @@ export default class TodoList extends Component {
     this.props.actions.GET_TODOLIST_FN({ todoBoxId });
   }
 
-  renderList() {
-    const { todos } = this.props;
+  renderList(todos) {
     return todos.map(todo =>
       <Todo key={todo.get('id')} todo={todo} actions={this.props.actions} />
     );
@@ -27,7 +26,12 @@ export default class TodoList extends Component {
         </div>
 
         <div className="todos">
-          {this.renderList()}
+          <div className="undone">
+            {this.renderList(this.props.unDoneTodos)}
+          </div>
+          <div className="done">
+            {this.renderList(this.props.doneTodos)}
+          </div>
         </div>
       </div>
     );

@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { PageContainer } from 'components/widget/PageContainer';
 import { updateTitle } from 'services/title';
-import TodoBoxs from './TodoBoxs';
+import TodoBoxs from './TodoBoxs/TodoBoxs';
 import TodoRepeatHistoryModal from 'containers/todo/TodoRepeatHistoryModal';
 import TodoList from './TodoList/TodoList.container';
 
-import 'style/page/todo/todo-page.scss';
+import './TodoPage.scss';
 
 class TodoPage extends Component {
   state = {};
@@ -16,7 +16,7 @@ class TodoPage extends Component {
 
   render() {
     return (
-      <PageContainer className="todo-page cover">
+      <PageContainer className="todo-page">
         <div className="todo-box-container">
           <TodoBoxs actions={this.props.actions} />
         </div>
