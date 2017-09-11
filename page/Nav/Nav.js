@@ -25,41 +25,46 @@ class Nav extends Component {
     }
   }
 
+  renderLinks() {
+    return (
+      <ul>
+        <li>
+          <Link to="/home">Dash</Link>
+        </li>
+
+        <li>
+          <Link to="/task-wall" className={activeClassWhenMatchPrefix('/task-wall')}>
+            Task
+          </Link>
+        </li>
+
+        <li>
+          <Link to="/todo" className={activeClassWhenMatchPrefix('/todo')}>
+            Todo
+          </Link>
+        </li>
+
+        <li>
+          <Link to="/wiki" className={activeClassWhenMatchPrefix('/wiki')}>
+            Wiki
+          </Link>
+        </li>
+
+        <li>
+          <Link to="/mind" className={activeClassWhenMatchPrefix('/mind')}>
+            Mind
+          </Link>
+        </li>
+      </ul>
+    );
+  }
+
   render() {
     return (
       <nav className="nav">
         <LogoBan white={true} />
-
         <div className="nav-link-area">
-          <ul>
-            <li>
-              <Link to="/home">Dash</Link>
-            </li>
-
-            <li>
-              <Link to="/task-wall" className={activeClassWhenMatchPrefix('/task-wall')}>
-                Task
-              </Link>
-            </li>
-
-            <li>
-              <Link to="/todo" className={activeClassWhenMatchPrefix('/todo')}>
-                Todo
-              </Link>
-            </li>
-
-            <li>
-              <Link to="/wiki" className={activeClassWhenMatchPrefix('/wiki')}>
-                Wiki
-              </Link>
-            </li>
-
-            <li>
-              <Link to="/mind" className={activeClassWhenMatchPrefix('/mind')}>
-                Mind
-              </Link>
-            </li>
-          </ul>
+          {this.renderLinks()}
         </div>
         {this.renderNavUser()}
       </nav>
