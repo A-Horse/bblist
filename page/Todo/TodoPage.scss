@@ -3,23 +3,40 @@
 
 .todo-page {
   position: relative;
-  display: flex;
   width: 100%;
   padding-left: 5%;
   padding-right: 5%;
+  padding-bottom: 50px;
   height: 100%;
   overflow: hidden;
 
   .todo-box-container {
+    display: inline-block;
     height: 100%;
     width: 250px;
     min-width: 250px;
   }
 
   .todo-list-container {
+    display: inline-block;
     position: relative;
     width: calc(100% - 250px);
     flex: 1;
     height: 100%;
+  }
+
+  @media screen and (max-width: 600px) {
+
+    .todo-box-container {
+      display: block;
+      width: auto;
+      min-width: auto;
+    }
+
+    .todo-list-container {
+      display: block;
+      width: auto;
+    }
+
   }
 }

@@ -31,19 +31,35 @@ class Nav extends Component {
         <LogoBan white={true} />
 
         <div className="nav-link-area">
-          <Link to="/home">Dash</Link>
-          <Link to="/task-wall" className={activeClassWhenMatchPrefix('/task-wall')}>
-            Task
-          </Link>
-          <Link to="/todo" className={activeClassWhenMatchPrefix('/todo')}>
-            Todo
-          </Link>
-          <Link to="/wiki" className={activeClassWhenMatchPrefix('/wiki')}>
-            Wiki
-          </Link>
-          <Link to="/mind" className={activeClassWhenMatchPrefix('/mind')}>
-            Mind
-          </Link>
+          <ul>
+            <li>
+              <Link to="/home">Dash</Link>
+            </li>
+
+            <li>
+              <Link to="/task-wall" className={activeClassWhenMatchPrefix('/task-wall')}>
+                Task
+              </Link>
+            </li>
+
+            <li>
+              <Link to="/todo" className={activeClassWhenMatchPrefix('/todo')}>
+                Todo
+              </Link>
+            </li>
+
+            <li>
+              <Link to="/wiki" className={activeClassWhenMatchPrefix('/wiki')}>
+                Wiki
+              </Link>
+            </li>
+
+            <li>
+              <Link to="/mind" className={activeClassWhenMatchPrefix('/mind')}>
+                Mind
+              </Link>
+            </li>
+          </ul>
         </div>
         {this.renderNavUser()}
       </nav>

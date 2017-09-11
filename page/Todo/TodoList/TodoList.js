@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 
-import { getTodoList } from 'actions/todo/todos';
 import TodoCreater from '../TodoCreater/TodoCreater';
 import Todo from '../Todo/Todo';
 
 import './TodoList.scss';
 
 export default class TodoList extends Component {
+  state = { toggleAll: false };
+
   componentWillMount() {
     const { todoBoxId } = this.props;
     this.props.actions.GET_TODOLIST_FN({ todoBoxId });
@@ -29,9 +30,15 @@ export default class TodoList extends Component {
           <div className="undone">
             {this.renderList(this.props.unDoneTodos)}
           </div>
-          <div className="done">
-            {this.renderList(this.props.doneTodos)}
+          <div>
+            <span onClick={() => this.setState({ toggleAll: !this.state.toggleAll })}>
+              {!this.state.toggleAll ? 'show all' : 'hide done'}
+            </span>
           </div>
+          {this.state.toggleAll &&
+            <div className="done">
+              {this.renderList(this.props.doneTodos)}
+            </div>}
         </div>
       </div>
     );
