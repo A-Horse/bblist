@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ConfirmModalButton 1`] = `
+<div
+  className="confrim-modal-button  confirm-modal-button"
+  onClick={[Function]}
+>
+  ConfirmModalButton
+  <noscript />
+</div>
+`;

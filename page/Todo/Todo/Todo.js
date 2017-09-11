@@ -179,7 +179,7 @@ class Todo extends Component {
                   ref="datePicker"
                   placeholder="YYYY-MM-DD"
                   hideIcon={true}
-                  defaultValue={todo.deadline}
+                  defaultValue={todo.get('deadline')}
                   onSelected={date => this.updateTodo({ deadline: date ? date.getTime() : null })}
                 />
               </div>
@@ -188,7 +188,9 @@ class Todo extends Component {
                 <i className="fa fa-repeat" aria-hidden="true" />
                 <label>Repeat:</label>
                 <Select
-                  defaultItem={R.find(R.propEq('value', parseInt(todo.repeat, 10)))(repeatItems)}
+                  defaultItem={R.find(R.propEq('value', parseInt(todo.get('repeat'), 10)))(
+                    repeatItems
+                  )}
                   items={repeatItems}
                   onSelect={repeat => this.updateTodo({ repeat: repeat.value })}
                 />
