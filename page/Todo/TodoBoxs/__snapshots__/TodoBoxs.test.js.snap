@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TodoBoxs 1`] = `
+<ul
+  className="todo-boxs"
+>
+  <div
+    className="todo-box-creater-container"
+  >
+    <div
+      className="todo-box-creater--toggle"
+      onClick={[Function]}
+    >
+      <test-file-stub
+        className="add-icon"
+      />
+      <span
+        className="toggle-text"
+      >
+        Create Todo Box
+      </span>
+    </div>
+  </div>
+  <div
+    className="todo-box-group-list"
+  >
+    <div
+      className="box-group"
+    >
+      <div
+        className="box-group--name all-todo-filter"
+      >
+        <a
+          href="/todo/"
+          onClick={[Function]}
+        >
+          <span>
+            All
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>
+</ul>
+`;

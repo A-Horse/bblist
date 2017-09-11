@@ -9,7 +9,7 @@ import NotFound from 'page/NotFound';
 import DashBoard from 'page/DashBoard';
 import IndexPage from 'page/IndexPage';
 
-import TodoPage from 'containers/Todo/TodoPage';
+import TodoPage from 'page/Todo/TodoPage.container';
 import Boards from 'containers/task/Boards';
 import Board from 'containers/task/Board';
 import BoardSetting from 'containers/task/BoardSetting';

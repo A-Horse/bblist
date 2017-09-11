@@ -16,7 +16,7 @@ exports[`Todo Component render 1`] = `
           className="checkbox--mock"
         >
           <input
-            checked={1}
+            defaultChecked={1}
             onChange={[Function]}
             type="checkbox"
           />

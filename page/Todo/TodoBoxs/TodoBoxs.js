@@ -8,7 +8,7 @@ import 'style/page/todo/todo-boxs.scss';
 class TodoBoxs extends Component {
   componentWillMount() {
     this.state = {};
-    this.props.actions.getTodoBoxs();
+    //     this.props.actions.getTodoBoxs();
   }
 
   renderProjectBoxs() {}
