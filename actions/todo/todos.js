@@ -153,43 +153,44 @@ export function createTodoBox(data) {
  *   };
  * }
  * */
-
-export const TODO_DESTORY_REQUEST = 'TODO_DESTORY_REQUEST';
-export const TODO_DESTORY_SUCCESS = 'TODO_DESTORY_SUCCESS';
-export const TODO_DESTORY_FAILURE = 'TODO_DESTORY_FAILURE';
-
-function requestDestroyTodo(id) {
-  return {
-    type: TODO_DESTORY_REQUEST,
-    playload: id
-  };
-}
-
-function destroyTodoSuccess(playload) {
-  return {
-    type: TODO_DESTORY_SUCCESS,
-    playload
-  };
-}
-
-function destroyTodoError(error) {
-  return {
-    type: TODO_DESTORY_FAILURE,
-    playload: error,
-    error: true
-  };
-}
-
-export function destroyTodo(todoId) {
-  const config = createConfigWithAuth('DELETE');
-  return dispatch => {
-    dispatch(requestDestroyTodo());
-    return fetch(makeApiUrl(`/todo/${todoId}`), config)
-      .then(handleResponseWithoutJson)
-      .then(() => dispatch(destroyTodoSuccess({ todoId })))
-      .catch(error => dispatch(destroyTodoError(error)));
-  };
-}
+/*
+ * export const TODO_DESTORY_REQUEST = 'TODO_DESTORY_REQUEST';
+ * export const TODO_DESTORY_SUCCESS = 'TODO_DESTORY_SUCCESS';
+ * export const TODO_DESTORY_FAILURE = 'TODO_DESTORY_FAILURE';
+ *
+ * function requestDestroyTodo(id) {
+ *   return {
+ *     type: TODO_DESTORY_REQUEST,
+ *     playload: id
+ *   };
+ * }
+ *
+ * function destroyTodoSuccess(playload) {
+ *   return {
+ *     type: TODO_DESTORY_SUCCESS,
+ *     playload
+ *   };
+ * }
+ *
+ * function destroyTodoError(error) {
+ *   return {
+ *     type: TODO_DESTORY_FAILURE,
+ *     playload: error,
+ *     error: true
+ *   };
+ * }
+ *
+ * export function destroyTodo(todoId) {
+ *   const config = createConfigWithAuth('DELETE');
+ *   return dispatch => {
+ *     dispatch(requestDestroyTodo());
+ *     return fetch(makeApiUrl(`/todo/${todoId}`), config)
+ *       .then(handleResponseWithoutJson)
+ *       .then(() => dispatch(destroyTodoSuccess({ todoId })))
+ *       .catch(error => dispatch(destroyTodoError(error)));
+ *   };
+ * }
+ * */
 /*
  * export const TODO_PATCH_REQUEST = 'TODO_PATCH_REQUEST';
  * export const TODO_PATCH_SUCCESS = 'TODO_PATCH_SUCCESS';

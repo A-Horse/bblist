@@ -18,6 +18,8 @@
   .icon-remove {
     display: inline-block;
     width: 18px;
+    position: relative;
+    top: -1px;
     margin-left: 5px;
     opacity: 0.8;
   }
@@ -27,7 +29,7 @@
   .close-icon {
     position: absolute;
     right: 8px;
-    top: 8px;
+    top: 9px;
   }
 }
 

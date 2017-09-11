@@ -11,7 +11,7 @@ import { repeatItems } from '../constants';
 
 class TodoCreater extends Component {
   state = {
-    toggle: true,
+    toggle: false,
     content: ''
   };
 
@@ -33,6 +33,7 @@ class TodoCreater extends Component {
       deadline: this.refs.datePicker.value ? this.refs.datePicker.value.getTime() : null
     };
     this.props.actions.ADD_TODO_FN(data);
+    this.setState({ content: '' });
     this.close();
   }
 

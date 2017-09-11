@@ -8,6 +8,7 @@ import ClickOutSide from 'components/utils/ClickOutSide';
 import { timeout } from 'utils/timeout';
 import moment from 'moment';
 import R from 'ramda';
+import ConfirmModalButton from '../../../components/ConfrimModalButton/ConfirmModalButton';
 import { activeTdRepeatHistory, getTodoRepeatHistory } from 'actions/todo/todo-statistics';
 import { Select } from 'components/widget/Select';
 
@@ -30,7 +31,7 @@ class Todo extends Component {
 
   componentWillMount() {
     this.state = {
-      editToggle: true
+      editToggle: false
     };
   }
 
@@ -76,7 +77,7 @@ class Todo extends Component {
 
   removeTodo() {
     const { todo } = this.props;
-    this.props.actions.DESTORY_TODO({
+    this.props.actions.DESTORY_TODO_FN({
       id: todo.get('id')
     });
   }
@@ -87,6 +88,9 @@ class Todo extends Component {
 
   onClickOutside() {
     if (this.state.editToggle) {
+      if (this.refs.datePicker.state.toggle) {
+        return;
+      }
       this.closeEditable();
     }
   }
@@ -145,13 +149,15 @@ class Todo extends Component {
             />
 
             <div className="todo-hover-operation">
+              <ConfirmModalButton onConfirm={this.removeTodo}>
+                <i className="fa fa-trash" aria-hidden="true" />
+              </ConfirmModalButton>
               {!!todo.get('repeat') &&
                 <i
                   className="fa fa-bar-chart"
                   onClick={this.onRepeatHistoryModal}
                   aria-hidden="true"
                 />}
-              <i className="fa fa-trash" aria-hidden="true" onClick={this.removeTodo} />
               <StarCheckBox
                 defaultChecked={todo.get('isStar')}
                 onChange={checked => {
@@ -170,7 +176,7 @@ class Todo extends Component {
                 <i className="fa fa-calendar-check-o" aria-hidden="true" />
                 <label>Deadline:</label>
                 <DatePicker
-                  ref="date-picker"
+                  ref="datePicker"
                   placeholder="YYYY-MM-DD"
                   hideIcon={true}
                   defaultValue={todo.deadline}

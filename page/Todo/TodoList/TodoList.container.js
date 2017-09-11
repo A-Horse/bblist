@@ -26,7 +26,12 @@ const mapStateToProps = (state, props) => {
 const mapDispatchToProps = dispatch => {
   return {
     actions: bindActionCreators(
-      makeActionRequestCollection([Actions.ADD_TODO, Actions.GET_TODOLIST, Actions.UPDATE_TODO]),
+      makeActionRequestCollection([
+        Actions.ADD_TODO,
+        Actions.GET_TODOLIST,
+        Actions.UPDATE_TODO,
+        Actions.DESTORY_TODO
+      ]),
       dispatch
     )
   };

@@ -15,33 +15,15 @@ import R from 'ramda';
 import Actions from 'actions/actions';
 
 function todos(
-  state = Map({
+  state = fromJS({
     todoBoxId: null,
-    todoIds: []
+    todoIds: [],
+    todoEntities: {}
   }),
   action
 ) {
   switch (action.type) {
     case Actions.ADD_TODO.SUCCESS:
-      /* return {
-       *   ...state,
-       *   entities: {
-       *     ...state.entities,
-       *     ...R.mergeDeepWith(
-       *       R.concat,
-       *       R.assocPath(
-       *         ['TodoBox', JSON.stringify(state.todoBoxId), 'todos'],
-       *         [].concat(state.entities.TodoBox[state.todoBoxId].todos, [action.playload.id]),
-       *         {}
-       *       ),
-       *       R.assocPath(
-       *         ['Todo'],
-       *         R.assoc(action.playload.id, action.playload, state.entities.Todo),
-       *         {}
-       *       )
-       *     )
-       *   }
-       * };*/
       const addedTodo = action.playload;
       return state
         .update('todoEntities', todoEntities =>
@@ -52,15 +34,21 @@ function todos(
 
     case Actions.GET_TODOLIST.SUCCESS:
       const normalizedTodos = normalize(action.playload, TDS);
+
       return state
         .update('todoIds', () => List(normalizedTodos.result))
-        .update('todoEntities', () => fromJS(normalizedTodos.entities.Todo));
+        .update('todoEntities', () => fromJS(normalizedTodos.entities.Todo || {}));
       break;
 
     case Actions.UPDATE_TODO.SUCCESS:
       return state.updateIn(['todoEntities', String(action.playload.id)], () =>
         fromJS(action.playload)
       );
+      break;
+
+    case Actions.DESTORY_TODO.SUCCESS:
+      const toDeletedIndex = state.get('todoIds').indexOf(action.meta.id);
+      return state.update('todoIds', ids => ids.delete(toDeletedIndex));
       break;
 
     case TODOBOX_GET_SUCCESS:
@@ -77,16 +65,6 @@ function todos(
         ...state
       };
       break;
-
-    // case TODO_POST_SUCCESS:
-    case TODO_DESTORY_SUCCESS:
-      const tdDeteledState = R.clone(state, true);
-      const newTodosResult = R.without(
-        [action.playload.todoId],
-        tdDeteledState.entities.TodoBox[state.todoBoxId].todos
-      );
-      tdDeteledState.entities.TodoBox[state.todoBoxId].todos = newTodosResult;
-      return tdDeteledState;
 
     default:
       return state;

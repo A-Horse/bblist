@@ -4,7 +4,7 @@ import './Checkbox.scss';
 export class CheckBox extends Component {
   constructor(props) {
     super(props);
-    this.checked = props.defaultChecked;
+    this.checked = props.defaultChecked || false;
     this.state = { checked: props.defaultChecked };
     this.onChange = this.onChange.bind(this);
   }

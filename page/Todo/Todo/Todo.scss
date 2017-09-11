@@ -9,11 +9,10 @@
   background-color: $color-background-light;
   border-radius: $radius-middle;
   margin-bottom: 5px;
-  transition: height 300ms;
   box-shadow: 0 0 5px #ccc;
   width: 100%;
   opacity: 0.8;
-  transition: all 200ms ease-in-out;
+  transition: all 300ms ease-in-out;
 
 
   &.done {
@@ -142,9 +141,10 @@
     .date-picker {
       margin-left: 10px;
       .date-picker--text {
+        color: $white;
 
         &.placeholder {
-          color: $white;
+
         }
       }
     }
@@ -178,6 +178,7 @@
 .todo-hover-operation {
   margin-right: 12px;
   white-space: nowrap;
+  display: flex;
   flex-shrink: 0;
 
   .fa {
@@ -188,7 +189,23 @@
     color: #555;
   }
 
+  .star-checkbox {
+    position: relative;
+    .fa {
+      top: 0;
+      left: 0;
+      position: absolute;
+    }
+  }
+
+  .fa-bar-chart {
+    top: 2px;
+    color: #8b6956;
+    font-size: 17px;
+  }
+
   .fa-trash {
+    top: -1px;
     cursor: pointer;
     visibility: hidden;
   }

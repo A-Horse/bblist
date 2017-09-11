@@ -1,0 +1,16 @@
+@import 'style/variable';
+
+.confirm-button-modal {
+  border-radius: 5px;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  .confrim-modal-button--operation {
+    margin: auto;
+    margin-top: 20px;
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+  }
+}

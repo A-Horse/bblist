@@ -44,7 +44,9 @@ export const DESTORY_TODO = action$ =>
   action$.ofType(Actions.DESTORY_TODO.REQUEST).mergeMap(action => {
     const { id } = action.playload;
     return http
-      .delete(makeApiUrl(`/todo/${id}`), null, action.playload)
-      .then(Actions.UPDATE_TODO.success)
-      .catch(Actions.UPDATE_TODO.failure);
+      .delete(makeApiUrl(`/todo/${id}`))
+      .then(() => {
+        return Actions.DESTORY_TODO.success(null, { id: action.playload.ideas });
+      })
+      .catch(Actions.DESTORY_TODO.failure);
   });

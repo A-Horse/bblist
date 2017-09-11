@@ -35,7 +35,6 @@
 .todo-creater-body {
   border-radius: $radius-middle;
   padding: $todo-item-padding;
-  margin-top: 14px;
   background-color: $primary-bg;
   margin-bottom: 5px;
 
@@ -59,7 +58,7 @@
     }
 
     .icon-remove {
-      margin-top: -1.5px;
+      color: $white;
     }
 
     .select {

@@ -36,12 +36,14 @@ const ACTIONS = actionNames.reduce((result, actionName) => {
         meta
       };
     },
-    failure: (playload, meta) => ({
-      type: FAILURE_SYMBOL,
-      error: true,
-      playload,
-      meta
-    })
+    failure: (playload, meta) => {
+      return {
+        type: FAILURE_SYMBOL,
+        error: true,
+        playload,
+        meta
+      };
+    }
   };
   return result;
 }, {});

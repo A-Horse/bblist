@@ -29,13 +29,13 @@ export class StarCheckBox extends Component {
         <label className="star-checkbox--mock">
           <input
             type="checkbox"
-            checked={this.state.checked}
+            defaultChecked={this.props.defaultChecked}
             ref="instance"
             onChange={this.onChange}
           />
           {this.state.checked
-            ? <i className="fa fa-star-o" aria-hidden="true" />
-            : <i className="fa fa-star" aria-hidden="true" />}
+            ? <i className="fa fa-star" aria-hidden="true" />
+            : <i className="fa fa-star-o" aria-hidden="true" />}
         </label>
       </div>
     );

@@ -1,127 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`TodoCreater Component render 1`] = `
-<div>
-  <div
-    className="todo-creater-body"
+<div
+  className="todo-creater--toggle"
+  onClick={[Function]}
+>
+  <i
+    aria-hidden="true"
+    className="fa fa-plus"
+  />
+  <span
+    className="toggle-text"
   >
-    <div
-      className="todo-creater--input"
-    >
-      <textarea
-        className="todo-creater--content"
-        onChange={[Function]}
-        onKeyDown={[Function]}
-        placeholder="write a todo"
-        style={
-          Object {
-            "height": 0,
-          }
-        }
-        type="text"
-        value=""
-      />
-    </div>
-    <div
-      className="todo-creater-props todo-creater-deadline"
-      onClick={[Function]}
-    >
-      <i
-        aria-hidden="true"
-        className="fa fa-calendar-check-o date-picker--icon"
-      />
-      <label>
-        Deadline:
-      </label>
-      <div
-        className="date-picker"
-      >
-        <span
-          className="date-picker--text placeholder"
-          onClick={[Function]}
-        >
-          YYYY-MM-DD
-        </span>
-        <noscript />
-      </div>
-    </div>
-    <div
-      className="todo-creater-props todo-creater-repeat"
-    >
-      <i
-        aria-hidden="true"
-        className="fa fa-repeat"
-      />
-      <label>
-        Repeat:
-      </label>
-      <div
-        className="select"
-      >
-        <div
-          className="select--box select-box__closed"
-          onClick={[Function]}
-        >
-          <p
-            className="select-box--name"
-          >
-            please select
-          </p>
-          <test-file-stub />
-        </div>
-        <ul
-          className="select--container"
-          style={
-            Object {
-              "display": "none",
-            }
-          }
-        >
-          <li
-            className="select--item"
-            onClick={[Function]}
-          >
-            None
-          </li>
-          <li
-            className="select--item"
-            onClick={[Function]}
-          >
-            Every Day
-          </li>
-          <li
-            className="select--item"
-            onClick={[Function]}
-          >
-            Two Day
-          </li>
-          <li
-            className="select--item"
-            onClick={[Function]}
-          >
-            Week
-          </li>
-        </ul>
-      </div>
-    </div>
-    <div
-      className="todo-creater-operation"
-    >
-      <button
-        className="button middle primary border-default "
-        onClick={[Function]}
-        type={undefined}
-      >
-        Create Todo
-      </button>
-      <button
-        className="button middle default border-default  cancel-button"
-        onClick={[Function]}
-        type={undefined}
-      >
-        Cancel
-      </button>
-    </div>
-  </div>
+    Add Todo
+  </span>
 </div>
 `;
