@@ -344,6 +344,10 @@ export class Track extends Component {
     return updateTaskCard(card.id, { listId: thisListId });
   }
 
+  addTaskCard(data) {
+    return this.props.addTaskCard({ trackId: +this.props.track.get('id'), ...data });
+  }
+
   render() {
     const { listId, cardIds } = this.props;
     return (

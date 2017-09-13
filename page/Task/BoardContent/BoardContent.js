@@ -45,20 +45,21 @@ class BoardContent extends Component {
     this.props.actions.updateTaskTrackIndex(this.props.match.id, trackIndexs);
   }
 
-  renderTrack(list, index) {
+  renderTrack(track, index) {
     return (
       <TaskTrack
-        key={list.get('id')}
-        ref={track => {
-          this.trackInstanceMap[list.get('id')] = track;
+        key={track.get('id')}
+        ref={trackInstance => {
+          this.trackInstanceMap[track.get('id')] = trackInstance;
         }}
         actions={this.props.actions}
         dataIndex={index}
+        track={track}
         addTaskCard={data =>
           this.actions.ADD_TASK_CARD_REQUEST({ boardId: +this.props.board.get('id'), ...data })}
-        listId={list.get('id')}
-        cardIds={list.get('cards')}
-        listName={list.get('name')}
+        listId={track.get('id')}
+        cardIds={track.get('cards')}
+        listName={track.get('name')}
         history={this.props.history}
         updateTaskTrackIndexs={this.updateTaskTrackIndexs}
         loginedUser={this.props.loginedUser}
