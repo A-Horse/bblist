@@ -67,7 +67,7 @@ class Board extends Component {
             render={() =>
               <BoardContent
                 history={this.props.history}
-                actions={this.props.history}
+                actions={this.props.actions}
                 board={this.props.board}
                 trackMap={this.props.trackMap}
                 loginedUser={this.props.loginedUser}

@@ -56,7 +56,10 @@ class BoardContent extends Component {
         dataIndex={index}
         track={track}
         addTaskCard={data =>
-          this.actions.ADD_TASK_CARD_REQUEST({ boardId: +this.props.board.get('id'), ...data })}
+          this.props.actions.ADD_TASK_CARD_REQUEST({
+            boardId: +this.props.board.get('id'),
+            ...data
+          })}
         listId={track.get('id')}
         cardIds={track.get('cards')}
         listName={track.get('name')}

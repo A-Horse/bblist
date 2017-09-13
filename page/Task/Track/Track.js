@@ -21,9 +21,10 @@ import styleVariables from '!!sass-variable-loader!style/page/task/_task-variabl
 let relativeOffsetBody = 137;
 
 export class Track extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.resetDragMeta();
+    this.addTaskCard = this.addTaskCard.bind(this);
   }
 
   componentWillMount() {
@@ -364,11 +365,7 @@ export class Track extends Component {
 
         <div className="task-list--body" ref="taskListBody">
           {this.renderCards(cardIds)}
-          <TaskCardCreater
-            wallId={this.props.wallId}
-            listId={listId}
-            loginedUser={this.props.loginedUser}
-          />
+          <TaskCardCreater loginedUser={this.props.loginedUser} addTaskCard={this.addTaskCard} />
         </div>
       </div>
     );

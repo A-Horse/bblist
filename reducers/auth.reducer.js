@@ -11,6 +11,8 @@ import Actions from 'actions/actions';
 import { Map, List, fromJS } from 'immutable';
 
 function auth(state = Map({}), action) {
+  console.log(action);
+
   switch (action.type) {
     case Actions.IDENTIFY.REQUEST:
       return state.update('identifyFetching', R.T).update('identifyAuthenticated', R.F);

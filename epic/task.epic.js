@@ -23,7 +23,7 @@ export const GET_TASK_BOARD = action$ =>
   });
 
 export const ADD_TASK_CARD = action$ =>
-  action$.ofType(Actions.ADD_TASK_CARD).mergeMap(action => {
+  action$.ofType(Actions.ADD_TASK_CARD.REQUEST).mergeMap(action => {
     return http
       .post(makeApiUrl('/task-card'), null, action.playload)
       .then(Actions.ADD_TASK_CARD.success)

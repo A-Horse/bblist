@@ -30,15 +30,13 @@ class CardCreater extends Component {
   }
 
   createCard() {
-    const data = {
-      taskBoardId: +this.props.wallId,
-      taskListId: +this.props.listId,
+    this.props.addTaskCard({
       title: this.refs.taskCardTitle.value.trim()
-    };
-    return dispatch(createTaskCard(data)).then(() => {
-      this.clearInput();
-      dispatch(getTaskAllCards(this.props.wallId)).then(this.close.bind(this));
     });
+    /* return dispatch(createTaskCard(data)).then(() => {
+     *   this.clearInput();
+     *   dispatch(getTaskAllCards(this.props.wallId)).then(this.close.bind(this));
+     * });*/
   }
 
   close() {
