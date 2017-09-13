@@ -9,7 +9,7 @@ import DatePicker from 'components/DatePicker/DatePicker';
 import { Select } from 'components/widget/Select';
 import Textarea from 'react-textarea-autosize';
 import { Modal } from 'components/widget/Modal/Modal';
-import Input from 'components/widget/Input';
+import Input from 'components/widget/Input/Input';
 
 import './TodoBoxCreater.scss';
 

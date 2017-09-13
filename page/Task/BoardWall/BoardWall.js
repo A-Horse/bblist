@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
 import { browserHistory } from 'react-router';
 import { PageContainer } from 'components/widget/PageContainer';
-import TaskBoardCreater from './TaskBoardCreater';
+
+import TaskBoardCreater from '../TaskBoardCreater';
 import { makeRemoteUrl } from 'services/remote-storage';
-import { DEFAULT_BOARD_COVER_SRC } from '../../constants';
+import { DEFAULT_BOARD_COVER_SRC } from '../../../constants';
 import Loading from 'components/Loading';
 import Nothing from 'components/Nothing';
+import { Link } from 'react-router-dom';
 
-import 'style/page/task/boards.scss';
+import './BoardWall.scss';
 import 'style/page/task/taskboard-creater-modal.scss';
 import 'style/page/task/taskboard-card.scss';
 
-class Boards extends Component {
+class BoardWall extends Component {
   componentWillMount() {
     return this.props.actions.getAllTaskBoard();
   }
@@ -19,7 +21,7 @@ class Boards extends Component {
   renderWalls() {
     return this.props.boards.map(board => {
       return (
-        <div
+        <Link
           className="taskboard-card"
           style={{
             backgroundImage: board.cover
@@ -27,14 +29,14 @@ class Boards extends Component {
               : `url(${DEFAULT_BOARD_COVER_SRC})`
           }}
           key={board.id}
-          onClick={() => browserHistory.push(`/task-wall/${board.id}`)}
+          to={`/task-board/${board.id}`}
         >
           <div className="taskboard-card-info">
             <div className="taskboard-card-info--name">
               {board.name}
             </div>
           </div>
-        </div>
+        </Link>
       );
     });
   }
@@ -70,4 +72,4 @@ class Boards extends Component {
   }
 }
 
-export default Boards;
+export default BoardWall;

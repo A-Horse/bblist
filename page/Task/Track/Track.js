@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import R from 'ramda';
-
-import TaskCard from './TaskCard';
-import TaskCardCreater from './TaskCardCreater';
+import Input from '../../../components/widget/Input/Input';
+import { MoreIcon, AddIcon } from 'services/svg-icons';
+import TaskCard from '../TaskCard';
+import TaskCardCreater from '../CardCreater/CardCreater';
 import { deleteTaskList } from 'actions/task/task-list';
+import { DropList } from 'components/widget/DropList/DropList';
 
 import GlobalClick from 'services/global-click';
 import BoardCradDragHelper from 'services/board-card-drag-helper';
 
-import 'style/page/task/task-list.scss';
+// import 'style/page/task/task-list.scss';
+import './Track.scss';
 
 import styleVariables from '!!sass-variable-loader!style/page/task/_task-variable.scss';
 
@@ -17,7 +20,7 @@ import styleVariables from '!!sass-variable-loader!style/page/task/_task-variabl
 // TODO auto get it
 let relativeOffsetBody = 137;
 
-class TaskList extends Component {
+export class Track extends Component {
   constructor() {
     super();
     this.resetDragMeta();
@@ -125,8 +128,6 @@ class TaskList extends Component {
             <li onClick={() => this.refs.listDeleteConfirm.open()}>Delete</li>
           </ul>
         </DropList>
-
-        <ConfirmModal confirmFn={() => deleteTaskList(listId)} ref="listDeleteConfirm" />
       </div>
     );
   }
@@ -372,4 +373,5 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, null, null, { withRef: true })(TaskList);
+// export default connect(mapStateToProps, null, null, { withRef: true })(TaskList);
+export default Track;

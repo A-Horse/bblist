@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { validateFormValue } from '../services/validate-strategy';
 import { browserHistory } from 'react-router';
 import { PageContainer } from 'components/widget/PageContainer';
-import { Input } from '../components/widget/Input';
+import { Input } from '../components/widget/Input/Input';
 import { updateTitle } from 'services/title';
 import { Button } from '../components/widget/Button/Button';
 import { LogoBan } from 'components/commons/LogoBan';

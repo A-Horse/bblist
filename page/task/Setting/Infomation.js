@@ -4,7 +4,7 @@ import { Modal } from 'components/widget/Modal/Modal';
 import ReactCrop from 'react-image-crop';
 import { ImageUploader } from 'components/ImageUploader';
 import { makeRemoteUrl } from 'services/remote-storage';
-import Input from 'components/widget/Input';
+import Input from 'components/widget/Input/Input';
 import Button from 'components/widget/Button/Button';
 import Textarea from 'react-textarea-autosize';
 import Loading from 'components/Loading';

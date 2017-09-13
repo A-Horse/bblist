@@ -10,7 +10,9 @@ const actionNames = [
   'ADD_TODO',
   'UPDATE_TODO',
   'GET_TODOLIST',
-  'DESTORY_TODO'
+  'DESTORY_TODO',
+
+  'GET_TASK_BOARD'
 ];
 
 const ACTIONS = actionNames.reduce((result, actionName) => {
@@ -30,6 +32,8 @@ const ACTIONS = actionNames.reduce((result, actionName) => {
       };
     },
     success: (playload, meta) => {
+      console.log('playload', playload);
+
       return {
         type: SUCCESS_SYMBOL,
         playload,
@@ -50,7 +54,7 @@ const ACTIONS = actionNames.reduce((result, actionName) => {
 
 export function makeActionRequestCollection(actionFactors) {
   return actionFactors.reduce((result, actionFactor) => {
-    result[actionFactor.name + '_FN'] = actionFactor.request;
+    result[actionFactor.name + '_REQUEST'] = actionFactor.request;
     return result;
   }, {});
 }

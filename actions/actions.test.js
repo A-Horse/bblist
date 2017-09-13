@@ -25,6 +25,6 @@ test('Actions generated behavior', () => {
 test('make action request collection', () => {
   const collection = makeActionRequestCollection([Actions.TEST_ONLY]);
   expect(collection).toEqual({
-    TEST_ONLY_FN: Actions.TEST_ONLY.request
+    TEST_ONLY_REQUEST: Actions.TEST_ONLY.request
   });
 });

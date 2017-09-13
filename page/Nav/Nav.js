@@ -33,7 +33,7 @@ class Nav extends Component {
         </li>
 
         <li>
-          <Link to="/task-wall" className={activeClassWhenMatchPrefix('/task-wall')}>
+          <Link to="/task-board" className={activeClassWhenMatchPrefix('/task-board')}>
             Task
           </Link>
         </li>
@@ -98,7 +98,7 @@ class Nav extends Component {
             <li>
               <Link to="/setting">setting</Link>
             </li>
-            <li className="logout-button" onClick={this.props.actions.LOGOUT_FN}>
+            <li className="logout-button" onClick={this.props.actions.LOGOUT_REQUEST}>
               logout
             </li>
           </ul>

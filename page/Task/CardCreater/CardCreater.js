@@ -9,11 +9,12 @@ import UserAvatar from 'components/UserAvatar';
 import { MoreIcon, AddIcon } from 'services/svg-icons';
 import { IconAdd } from 'services/image-icon';
 
-import 'style/page/task/taskcard-creater.scss';
+// import 'style/page/task/taskcard-creater.scss';
+import './CardCreater.scss';
 
 class TaskCardCreater extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.close = this.close.bind(this);
   }
 
@@ -116,10 +117,11 @@ class TaskCardCreater extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    user: state.auth.loginedUser
-  };
-};
-
-export default connect(mapStateToProps)(TaskCardCreater);
+export default CardCreater;
+/* const mapStateToProps = state => {
+ *   return {
+ *     user: state.auth.loginedUser
+ *   };
+ * };
+ *
+ * export default connect(mapStateToProps)(TaskCardCreater);*/

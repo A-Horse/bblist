@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 import { PageContainer } from '../../components/widget/PageContainer';
 import { makeGravatarUrl } from '../../services/gravatar';
-import Input from 'components/widget/Input';
+import Input from 'components/widget/Input/Input';
 import { Button } from 'components/widget/Button/Button';
 
 import 'style/page/setting/profile.scss';

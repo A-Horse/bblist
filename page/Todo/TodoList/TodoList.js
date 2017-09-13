@@ -10,7 +10,7 @@ export default class TodoList extends Component {
 
   componentWillMount() {
     const { todoBoxId } = this.props;
-    this.props.actions.GET_TODOLIST_FN({ todoBoxId });
+    this.props.actions.GET_TODOLIST_REQUEST({ todoBoxId });
   }
 
   renderList(todos) {

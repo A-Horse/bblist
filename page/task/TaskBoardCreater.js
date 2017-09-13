@@ -3,7 +3,7 @@ import { IconAdd } from 'services/image-icon';
 import { CloseIcon } from 'services/svg-icons';
 import { Modal } from 'components/widget/Modal/Modal';
 import { Button } from 'components/widget/Button/Button';
-import { Input } from 'components/widget/Input';
+import { Input } from 'components/widget/Input/Input';
 import { ErrorMsg } from 'components/ErrorMsg';
 import { validateFormValue } from 'services/validate-strategy';
 import R from 'ramda';

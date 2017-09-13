@@ -67,7 +67,7 @@ class Todo extends Component {
       id: todo.get('id'),
       ...toPatchData
     };
-    this.props.actions.UPDATE_TODO_FN(data);
+    this.props.actions.UPDATE_TODO_REQUEST(data);
   }
 
   onContendChanged(event) {
@@ -77,7 +77,7 @@ class Todo extends Component {
 
   removeTodo() {
     const { todo } = this.props;
-    this.props.actions.DESTORY_TODO_FN({
+    this.props.actions.DESTORY_TODO_REQUEST({
       id: todo.get('id')
     });
   }

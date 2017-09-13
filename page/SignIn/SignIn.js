@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { validateFormValue } from 'services/validate-strategy';
 import { Button } from 'components/widget/Button/Button';
-import { Input } from 'components/widget/Input';
+import { Input } from 'components/widget/Input/Input';
 import { LogoBan } from 'components/commons/LogoBan';
 import { ErrorMsg } from 'components/ErrorMsg';
 import { PageContainer } from '../../components/widget/PageContainer';
@@ -26,7 +26,7 @@ class SignIn extends Component {
 
   componentWillReceiveProps(newProps) {
     if (newProps.signInAuthenticated) {
-      this.props.actions.LOGIN_FINISH_FN();
+      this.props.actions.LOGIN_FINISH_REQUEST();
       this.props.history.push('/home');
     }
   }
@@ -91,7 +91,7 @@ class SignIn extends Component {
     if (Object.keys(errorMessages).length) {
       return;
     }
-    this.props.actions.LOGIN_FN(loginInfo);
+    this.props.actions.LOGIN_REQUEST(loginInfo);
   }
 }
 

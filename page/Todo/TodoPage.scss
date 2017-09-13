@@ -18,6 +18,7 @@
   }
 
   .todo-list-container {
+    min-width: 300px;
     display: inline-block;
     position: relative;
     width: calc(100% - 250px);

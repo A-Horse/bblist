@@ -1,15 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { deleteTaskWall, getTaskAllCards } from 'actions/task/task-wall';
 import { updateTaskCard, insertVirtualCard } from 'actions/task/task-card';
-import { createTaskList, deleteTaskList } from 'actions/task/task-list';
 import { openTaskCardModal } from 'actions/event/task-wall';
-import { DropList } from 'components/widget/DropList/DropList';
-import { PageContainer } from 'components/widget/PageContainer';
-import { Hr } from 'components/widget/Hr';
-import { getAssets } from 'services/assets-manager';
-import { navHeight } from '../Nav/Nav';
 import UserAvatar from 'components/UserAvatar';
 import { CheckBox } from 'components/widget/CheckBox/CheckBox';
 import BoardCradDragHelper from 'services/board-card-drag-helper';

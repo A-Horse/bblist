@@ -1,10 +1,8 @@
 import fetch from 'isomorphic-fetch';
-import {handleHttpError} from '../../services/handle-error';
-import {createConfigWithAuth} from '../../utils/header';
-import {handleResponse, handleResponseWithoutJson} from '../../utils/http-handle';
-import {getAuthData} from '../../utils/auth';
-import {CACHED_USERID} from '../../constants';
-import {makeApiUrl} from '../../utils/api';
+import { handleHttpError } from '../../services/handle-error';
+import { createConfigWithAuth } from '../../utils/header';
+import { handleResponse, handleResponseWithoutJson } from '../../utils/http-handle';
+import { makeApiUrl } from '../../utils/api';
 import { getCachedUserId } from 'utils/auth';
 
 export const TASKWALL_GET_REQUEST = 'TASKWALL_GET_REQUEST';
@@ -23,9 +21,9 @@ export const ALL_TASKCARD_GET_REQUEST = 'TASKCARD_GET_REQUEST';
 export const ALL_TASKCARD_GET_SUCCESS = 'TASKCARD_GET_SUCCESS';
 export const ALL_TASKCARD_GET_FAILURE = 'TASKCARD_GET_FAILURE';
 
-import {normalize, arrayOf} from 'normalizr';
+import { normalize, arrayOf } from 'normalizr';
 
-import {track, card, user, board} from 'schema';
+import { track, card, user, board } from 'schema';
 
 function requestTaskWalls() {
   return {
@@ -59,28 +57,27 @@ export function getAllTaskBoard() {
       .catch(error => dispatch(receiveTaskWallsFail(error)));
   };
 }
-
-
-function requestTaskWallCards() {
-  return {
-    type: ALL_TASKCARD_GET_REQUEST
-  };
-}
-
-function receiveTaskWallCards(response) {
-  return {
-    type: ALL_TASKCARD_GET_SUCCESS,
-    playload: normalize(response, board)
-  };
-}
-
-function receiveTaskWallCardsFail(status) {
-  return {
-    type: ALL_TASKCARD_GET_FAILURE,
-    status: status
-  };
-}
-
+/*
+ * function requestTaskWallCards() {
+ *   return {
+ *     type: ALL_TASKCARD_GET_REQUEST
+ *   };
+ * }
+ *
+ * function receiveTaskWallCards(response) {
+ *   return {
+ *     type: ALL_TASKCARD_GET_SUCCESS,
+ *     playload: normalize(response, board)
+ *   };
+ * }
+ *
+ * function receiveTaskWallCardsFail(status) {
+ *   return {
+ *     type: ALL_TASKCARD_GET_FAILURE,
+ *     status: status
+ *   };
+ * }
+ * */
 function requestCreateTaskWall() {
   return {
     type: TASKWALL_POST_REQUEST
@@ -150,18 +147,17 @@ export function updateTaskBoardSuccess(board) {
   };
 }
 
-export function getTaskAllCards(wallId) {
-  const config = createConfigWithAuth('GET');
-  const userId = getAuthData(CACHED_USERID);
-  return dispatch => {
-    dispatch(requestTaskWallCards());
-    return fetch(makeApiUrl(`/user/${userId}/task-wall/${wallId}/all`), config)
-      .then(handleResponse)
-      .then(response => dispatch(receiveTaskWallCards(response)))
-      .catch(error => dispatch(receiveTaskWallCardsFail(error)));
-  };
-}
-
+/* export function getTaskAllCards(wallId) {
+ *   const config = createConfigWithAuth('GET');
+ *   const userId = getAuthData(CACHED_USERID);
+ *   return dispatch => {
+ *     dispatch(requestTaskWallCards());
+ *     return fetch(makeApiUrl(`/user/${userId}/task-wall/${wallId}/all`), config)
+ *       .then(handleResponse)
+ *       .then(response => dispatch(receiveTaskWallCards(response)))
+ *       .catch(error => dispatch(receiveTaskWallCardsFail(error)));
+ *   };
+ * }*/
 
 export function createTaskBoard(CreateWallInfo) {
   const config = createConfigWithAuth('POST', CreateWallInfo);

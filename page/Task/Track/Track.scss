@@ -1,5 +1,5 @@
 @import 'style/variable';
-@import './_task-variable';
+@import '../_task-variable';
 
 .task-list {
   border-radius: $list-radius;
@@ -15,7 +15,7 @@
   transform: translate(0, 0);
   transition: transform 200ms ease-in-out;
 
-  
+
   &.has-draging-card {
     .task-card, .taskcard-creater--toggle {
       pointer-events: none;

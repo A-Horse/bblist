@@ -32,7 +32,7 @@ class TodoCreater extends Component {
       content: this.state.content,
       deadline: this.refs.datePicker.value ? this.refs.datePicker.value.getTime() : null
     };
-    this.props.actions.ADD_TODO_FN(data);
+    this.props.actions.ADD_TODO_REQUEST(data);
     this.setState({ content: '' });
     this.close();
   }
