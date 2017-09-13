@@ -59,7 +59,7 @@ export default class App extends Component {
           <Route path="/idea" component={Ideas} />
 
           <Route exact path="/task-board" component={TaskBoardWall} />
-          <Route path="/task-board/:id" component={TaskBoard} />
+          <Route path="/task-board/:boardId" component={TaskBoard} />
           {/* <Route path="/task-wall/" component={Board}>
               <Route path="/task-wall/:id" component={BoardContent}>
               <Route path="/task-wall/:id/:cardId" component={TaskCardModal} />

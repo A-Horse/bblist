@@ -16,11 +16,7 @@ class Board extends Component {
   }
 
   componentWillMount() {
-    const { id } = this.props.match.params;
-    this.props.actions.GET_TASK_BOARD_REQUEST({ id });
-    /* this.getTasks(id).then(() => {}).catch(error => {
-     *   // TODO 404
-     * });*/
+    this.props.actions.GET_TASK_BOARD_REQUEST({ id: this.props.match.params.boardId });
   }
 
   componentDidMount() {
@@ -36,7 +32,7 @@ class Board extends Component {
       <div
         className="taskboard-header-setting"
         onClick={() =>
-          this.props.history.push(`/task-wall/${this.props.params.id}/setting/infomation`)}
+          this.props.history.push(`/task-wall/${this.props.params.boardId}/setting/infomation`)}
       >
         <SettingIcon className="setting-icon" />
         <span>setting</span>

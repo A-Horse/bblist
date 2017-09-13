@@ -16,18 +16,6 @@ const styles = {
   settingContainer: {
     display: 'block'
   },
-  settingDropList: {
-    display: 'block',
-    position: 'absolute',
-    top: '30px',
-    left: '0',
-    padding: '0',
-    listStyle: 'none'
-  },
-  topBarTitle: {
-    color: 'white'
-  },
-  dimensions: {},
   listContainer: {
     position: 'relative',
     justifyContent: 'center',
@@ -66,6 +54,8 @@ class BoardContent extends Component {
         }}
         actions={this.props.actions}
         dataIndex={index}
+        addTaskCard={data =>
+          this.actions.ADD_TASK_CARD_REQUEST({ boardId: +this.props.board.get('id'), ...data })}
         listId={list.get('id')}
         cardIds={list.get('cards')}
         listName={list.get('name')}
@@ -79,7 +69,7 @@ class BoardContent extends Component {
 
   renderTrackArray() {
     const { trackMap } = this.props;
-    return trackMap.toArray().map(this.renderList);
+    return trackMap.toArray().map(this.renderTrack);
   }
 
   renderSetttingMenu() {
