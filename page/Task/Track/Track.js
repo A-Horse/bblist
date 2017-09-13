@@ -234,28 +234,6 @@ export class Track extends Component {
     // TODO body onblur
   }
 
-  render() {
-    const { listId, cardIds } = this.props;
-    return (
-      <div
-        ref="main"
-        data-index={this.props.dataIndex}
-        className="task-list"
-        onDragEnter={this.onDragEnter.bind(this)}
-        onDrop={this.onDrop.bind(this)}
-        onDragLeave={this.onDragLeave.bind(this)}
-        onDragOver={this.onDragOver.bind(this)}
-      >
-        {this.renderTopBar()}
-
-        <div className="task-list--body" ref="taskListBody">
-          {this.renderCards(cardIds)}
-          <TaskCardCreater wallId={this.props.wallId} listId={listId} />
-        </div>
-      </div>
-    );
-  }
-
   caluMovingPosition(mousePosition, dragInfo) {
     // 滚动情况
     const { cardIds } = this.props;
@@ -365,13 +343,39 @@ export class Track extends Component {
     const thisListId = this.props.listId;
     return updateTaskCard(card.id, { listId: thisListId });
   }
+
+  render() {
+    const { listId, cardIds } = this.props;
+    return (
+      <div
+        ref="main"
+        data-index={this.props.dataIndex}
+        className="task-list"
+        onDragEnter={this.onDragEnter.bind(this)}
+        onDrop={this.onDrop.bind(this)}
+        onDragLeave={this.onDragLeave.bind(this)}
+        onDragOver={this.onDragOver.bind(this)}
+      >
+        {this.renderTopBar()}
+
+        <div className="task-list--body" ref="taskListBody">
+          {this.renderCards(cardIds)}
+          <TaskCardCreater
+            wallId={this.props.wallId}
+            listId={listId}
+            loginedUser={this.props.loginedUser}
+          />
+        </div>
+      </div>
+    );
+  }
 }
 
-const mapStateToProps = state => {
-  return {
-    normalizedTrack: state.task.list
-  };
-};
+/* const mapStateToProps = state => {
+ *   return {
+ *     normalizedTrack: state.task.list
+ *   };
+ * };*/
 
 // export default connect(mapStateToProps, null, null, { withRef: true })(TaskList);
 export default Track;

@@ -21,3 +21,11 @@ export const GET_TASK_BOARD = action$ =>
       .then(Actions.GET_TASK_BOARD.success)
       .catch(Actions.GET_TASK_BOARD.failure);
   });
+
+export const ADD_TASK_CARD = action$ =>
+  action$.ofType(Actions.ADD_TASK_CARD).mergeMap(action => {
+    return http
+      .post(makeApiUrl('/task-card'), null, action.playload)
+      .then(Actions.ADD_TASK_CARD.success)
+      .catch(Actions.ADD_TASK_CARD.failure);
+  });

@@ -12,7 +12,8 @@ const actionNames = [
   'GET_TODOLIST',
   'DESTORY_TODO',
 
-  'GET_TASK_BOARD'
+  'GET_TASK_BOARD',
+  'ADD_TASK_CARD'
 ];
 
 const ACTIONS = actionNames.reduce((result, actionName) => {
@@ -32,8 +33,6 @@ const ACTIONS = actionNames.reduce((result, actionName) => {
       };
     },
     success: (playload, meta) => {
-      console.log('playload', playload);
-
       return {
         type: SUCCESS_SYMBOL,
         playload,

@@ -74,6 +74,7 @@ class Board extends Component {
                 actions={this.props.history}
                 board={this.props.board}
                 trackMap={this.props.trackMap}
+                loginedUser={this.props.loginedUser}
               />}
           />
         </div>

@@ -46,8 +46,8 @@ class BoardContent extends Component {
 
     this.trackInstanceMap = {};
     this.updateTaskTrackIndexs = this.updateTaskTrackIndexs.bind(this);
-    this.renderLists = this.renderLists.bind(this);
-    this.renderList = this.renderList.bind(this);
+    this.renderTrackArray = this.renderTrackArray.bind(this);
+    this.renderTrack = this.renderTrack.bind(this);
   }
 
   updateTaskTrackIndexs() {
@@ -57,24 +57,27 @@ class BoardContent extends Component {
     this.props.actions.updateTaskTrackIndex(this.props.match.id, trackIndexs);
   }
 
-  renderList(list, index) {
+  renderTrack(list, index) {
     return (
       <TaskTrack
         key={list.get('id')}
         ref={track => {
           this.trackInstanceMap[list.get('id')] = track;
         }}
+        actions={this.props.actions}
         dataIndex={index}
         listId={list.get('id')}
         cardIds={list.get('cards')}
         listName={list.get('name')}
+        history={this.props.history}
         updateTaskTrackIndexs={this.updateTaskTrackIndexs}
+        loginedUser={this.props.loginedUser}
         wallId={this.props.history.id}
       />
     );
   }
 
-  renderLists() {
+  renderTrackArray() {
     const { trackMap } = this.props;
     return trackMap.toArray().map(this.renderList);
   }
@@ -94,7 +97,7 @@ class BoardContent extends Component {
     return (
       <PageContainer className="board-page-container">
         <div className="board-track-container" style={styles.listContainer}>
-          {this.renderLists()}
+          {this.renderTrackArray()}
           {/* <TaskTrackCreater boardId={this.props.params.id} /> */}
         </div>
         {/* {this.props.children} */}

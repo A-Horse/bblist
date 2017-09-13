@@ -8,7 +8,11 @@ import Actions, { makeActionRequestCollection } from '../../../actions/actions';
 
 const mapDispatchToProps = dispatch => {
   return {
-    actions: bindActionCreators(makeActionRequestCollection([Actions.GET_TASK_BOARD]), dispatch),
+    actions: bindActionCreators(
+      makeActionRequestCollection([Actions.GET_TASK_BOARD, Actions.ADD_TASK_CARD]),
+      dispatch
+    ),
+
     clearBoard() {
       return dispatch(clearBoard());
     }
@@ -25,7 +29,9 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = state => {
   return {
     board: state.task2.get('board'),
-    trackMap: state.task2.get('trackMap')
+    trackMap: state.task2.get('trackMap'),
+    loginedUser: state.auth.get('loginedUser')
+    // user: state.w
   };
 };
 

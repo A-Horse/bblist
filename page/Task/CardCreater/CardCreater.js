@@ -1,21 +1,22 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { createTaskCard } from 'actions/task/task-card';
 import { getTaskAllCards } from 'actions/task/task-wall';
 import { addBodyEventListenerOnce } from 'actions/event/body';
 import { Button } from 'components/widget/Button/Button';
 import { Hr } from 'components/widget/Hr';
 import UserAvatar from 'components/UserAvatar';
-import { MoreIcon, AddIcon } from 'services/svg-icons';
+import { MoreIcon } from 'services/svg-icons';
 import { IconAdd } from 'services/image-icon';
 
 // import 'style/page/task/taskcard-creater.scss';
 import './CardCreater.scss';
 
-class TaskCardCreater extends Component {
+class CardCreater extends Component {
   constructor(props) {
     super(props);
     this.close = this.close.bind(this);
+    this.toggle = this.toggle.bind(this);
+    this.createCard = this.createCard.bind(this);
   }
 
   componentWillMount() {
@@ -29,7 +30,6 @@ class TaskCardCreater extends Component {
   }
 
   createCard() {
-    const { dispatch } = this.props;
     const data = {
       taskBoardId: +this.props.wallId,
       taskListId: +this.props.listId,
@@ -46,15 +46,7 @@ class TaskCardCreater extends Component {
   }
 
   toggle(event) {
-    const { dispatch } = this.props;
     this.setState({ toggle: true });
-    // TODO use to clickoutside
-    dispatch(
-      addBodyEventListenerOnce(() => {
-        this.setState({ toggle: false });
-      })
-    );
-    event.stopPropagation();
   }
 
   render() {
@@ -64,7 +56,7 @@ class TaskCardCreater extends Component {
 
   renderToggle() {
     return (
-      <div onClick={this.toggle.bind(this)} className="taskcard-creater--toggle">
+      <div onClick={this.toggle} className="taskcard-creater--toggle">
         <IconAdd className="icon-add" />
         <span>Add a card...</span>
       </div>
@@ -85,16 +77,16 @@ class TaskCardCreater extends Component {
           />
         </div>
         <div className="taskcard-creater--user">
-          <UserAvatar user={this.props.user} />
+          <UserAvatar user={this.props.loginedUser.toJS()} />
           <span>
-            {this.props.user.username}
+            {this.props.loginedUser.get('username')}
           </span>
         </div>
         <Hr />
         <div className="taskcard-creater--participants">
           <div>Participants</div>
           <div>
-            <UserAvatar user={this.props.user} />
+            <UserAvatar user={this.props.loginedUser.toJS()} />
           </div>
         </div>
         <Hr />
@@ -107,7 +99,7 @@ class TaskCardCreater extends Component {
             <Button className="btn-cancel" styleType="default" onClick={this.close}>
               Cancel
             </Button>
-            <Button styleType="primary" onClick={this.createCard.bind(this)}>
+            <Button styleType="primary" onClick={this.createCard}>
               OK
             </Button>
           </div>
