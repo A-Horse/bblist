@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { updateTaskCard, insertVirtualCard } from 'actions/task/task-card';
+import { updateTaskCard } from 'actions/task/task-card';
 import { openTaskCardModal } from 'actions/event/task-wall';
 import UserAvatar from 'components/UserAvatar';
 import { CheckBox } from 'components/widget/CheckBox/CheckBox';
@@ -80,7 +80,7 @@ class Card extends Component {
   }
 
   onClick() {
-    browserHistory.push(`/task-wall/${this.props.boardId}/${this.props.cardId}`);
+    browserHistory.push(`/task-board/${this.props.boardId}/${this.props.cardId}`);
   }
 
   checkBoxOnClick(event) {
