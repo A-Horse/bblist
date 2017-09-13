@@ -30,6 +30,7 @@ const mapStateToProps = state => {
   return {
     board: state.task2.get('board'),
     trackMap: state.task2.get('trackMap'),
+    cardMap: state.task2.get('cardMap'),
     loginedUser: state.auth.get('loginedUser')
     // user: state.w
   };

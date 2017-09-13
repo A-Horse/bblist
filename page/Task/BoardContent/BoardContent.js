@@ -61,6 +61,7 @@ class BoardContent extends Component {
             ...data
           })}
         listId={track.get('id')}
+        cardMap={this.props.cardMap}
         cardIds={track.get('cards')}
         listName={track.get('name')}
         history={this.props.history}
@@ -94,7 +95,6 @@ class BoardContent extends Component {
           {this.renderTrackArray()}
           {/* <TaskTrackCreater boardId={this.props.params.id} /> */}
         </div>
-        {/* {this.props.children} */}
         {/*         <CardModal key='card-modal'/> */}
       </PageContainer>
     );

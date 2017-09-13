@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import R from 'ramda';
 import Input from '../../../components/widget/Input/Input';
 import { MoreIcon, AddIcon } from 'services/svg-icons';
-import TaskCard from '../TaskCard';
+import TaskCard from '../TaskCard/TaskCard';
 import TaskCardCreater from '../CardCreater/CardCreater';
 import { deleteTaskList } from 'actions/task/task-list';
 import { DropList } from 'components/widget/DropList/DropList';
@@ -86,19 +86,6 @@ export class Track extends Component {
     if (!cardConnectedInstance) {
       this.cardInstanceMap = R.omit([id], this.cardInstanceMap);
     }
-  }
-
-  renderCards(cardIds) {
-    return cardIds.map(cardId => {
-      return (
-        <TaskCard
-          ref={cardConnectedInstance => this.pickCardInstance(cardConnectedInstance, cardId)}
-          key={cardId}
-          boardId={this.props.wallId}
-          cardId={cardId}
-        />
-      );
-    });
   }
 
   renderTrackName() {
@@ -351,6 +338,8 @@ export class Track extends Component {
 
   render() {
     const { listId, cardIds } = this.props;
+    console.log('this.props.track', this.props.track);
+    const { track, cardMap } = this.props;
     return (
       <div
         ref="main"
@@ -364,7 +353,19 @@ export class Track extends Component {
         {this.renderTopBar()}
 
         <div className="task-list--body" ref="taskListBody">
-          {this.renderCards(cardIds)}
+          {track.get('cards').map(cardId => {
+            console.log(cardId, cardMap);
+
+            const card = cardMap.get(String(cardId));
+            return (
+              <TaskCard
+                ref={cardConnectedInstance => this.pickCardInstance(cardConnectedInstance, cardId)}
+                key={card.get('id')}
+                boardId={this.props.wallId}
+                card={card}
+              />
+            );
+          })}
           <TaskCardCreater loginedUser={this.props.loginedUser} addTaskCard={this.addTaskCard} />
         </div>
       </div>

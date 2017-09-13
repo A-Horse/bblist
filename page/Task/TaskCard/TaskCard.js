@@ -12,9 +12,9 @@ import R from 'ramda';
 
 import 'style/page/task/card.scss';
 
-class TaskCard extends Component {
-  constructor() {
-    super();
+class Card extends Component {
+  constructor(props) {
+    super(props);
     this.state = {};
   }
 
@@ -135,9 +135,7 @@ class TaskCard extends Component {
   }
 
   render() {
-    const { normalizedCards, cardId } = this.props;
-    const card = normalizedCards.entities[cardId];
-    const activeRole = card.creater;
+    const { card } = this.props;
     return (
       <div
         className="task-card"
@@ -148,30 +146,16 @@ class TaskCard extends Component {
       >
         <CheckBox
           ref="checkbox"
-          defaultChecked={card.isDone}
-          checked={card.isDone}
+          defaultChecked={card.get('isDone')}
           onChange={this.updateDone.bind(this)}
-          onClick={this.checkBoxOnClick.bind(this)}
         />
         <p className="task-card--title">
-          {card.title}
+          {card.get('title')}
         </p>
-        <UserAvatar user={activeRole} />
+        <UserAvatar user={card.get('creater').toJS()} />
       </div>
     );
   }
-
-  shouldComponentUpdate(nextProps) {
-    return !R.equals(nextProps.card, this.props.card);
-  }
 }
 
-const mapStateToProps = (state, props) => {
-  return {
-    card: state.task.card.entities[props.cardId],
-    normalizedCards: state.task.card,
-    normalizedTrack: state.task.list
-  };
-};
-
-export default connect(mapStateToProps, null, null, { withRef: true })(TaskCard);
+export default Card;

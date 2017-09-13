@@ -69,6 +69,7 @@ class Board extends Component {
                 history={this.props.history}
                 actions={this.props.actions}
                 board={this.props.board}
+                cardMap={this.props.cardMap}
                 trackMap={this.props.trackMap}
                 loginedUser={this.props.loginedUser}
               />}
