@@ -1,28 +1,22 @@
 import { connect } from 'react-redux';
 import BoardWall from './BoardWall';
 import R from 'ramda';
-import { wrapDispathToAction } from 'utils/wrap-props';
-import { createTaskBoard, getAllTaskBoard } from 'actions/task/task-wall';
-import { createSelector } from 'reselect';
+import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
-
-const actions = {
-  getAllTaskBoard,
-  createTaskBoard
-};
+import Actions, { makeActionRequestCollection } from '../../../actions/actions';
 
 const mapStateToProps = (state, props) => {
   return {
-    boards: createSelector([state => R.values(state.task.board.entities.board)], R.identity)(
-      state,
-      props
-    ),
-    isFetching: state.task.board.isTaskBoardsFetching
+    boardMap: state.task2.get('boardMap')
   };
 };
 
-const BoardsContainer = withRouter(
-  connect(mapStateToProps, wrapDispathToAction(actions))(BoardWall)
-);
+const mapDispatchToProps = dispatch => {
+  return {
+    actions: bindActionCreators(makeActionRequestCollection([Actions.GET_TASK_ALL_BOARD]), dispatch)
+  };
+};
+
+const BoardsContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(BoardWall));
 
 export default BoardsContainer;

@@ -6,7 +6,7 @@ export const TaskCard = new schema.Entity('TaskCard');
 export const TaskTrack = new schema.Entity('TaskTrack', { cards: [TaskCard] });
 
 export const TaskBoard = new schema.Entity('TaskBoard', { tracks: [TaskTrack] });
-export const TaskBoards = new schema.Array(TaskBoards);
+export const TaskBoards = new schema.Array(TaskBoard);
 
 export const TD = new schema.Entity('Todo');
 export const TDS = new schema.Array(TD);

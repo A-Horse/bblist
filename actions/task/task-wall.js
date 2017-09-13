@@ -25,38 +25,38 @@ import { normalize, arrayOf } from 'normalizr';
 
 import { track, card, user, board } from 'schema';
 
-function requestTaskWalls() {
-  return {
-    type: TASKWALL_GET_REQUEST
-  };
-}
-
-function receiveTaskWalls(response) {
-  return {
-    type: TASKWALL_GET_SUCCESS,
-    playload: response
-  };
-}
-
-function receiveTaskWallsFail(error) {
-  return {
-    type: TASKWALL_GET_FAILURE,
-    playload: error,
-    error: true
-  };
-}
-
-export function getAllTaskBoard() {
-  const config = createConfigWithAuth('GET');
-  const userId = getCachedUserId();
-  return dispatch => {
-    dispatch(requestTaskWalls());
-    return fetch(makeApiUrl(`/tk/user/${userId}/task-board`), config)
-      .then(handleResponse)
-      .then(response => dispatch(receiveTaskWalls(response)))
-      .catch(error => dispatch(receiveTaskWallsFail(error)));
-  };
-}
+/* function requestTaskWalls() {
+ *   return {
+ *     type: TASKWALL_GET_REQUEST
+ *   };
+ * }
+ *
+ * function receiveTaskWalls(response) {
+ *   return {
+ *     type: TASKWALL_GET_SUCCESS,
+ *     playload: response
+ *   };
+ * }
+ *
+ * function receiveTaskWallsFail(error) {
+ *   return {
+ *     type: TASKWALL_GET_FAILURE,
+ *     playload: error,
+ *     error: true
+ *   };
+ * }*/
+/*
+ * export function getAllTaskBoard() {
+ *   const config = createConfigWithAuth('GET');
+ *   const userId = getCachedUserId();
+ *   return dispatch => {
+ *     dispatch(requestTaskWalls());
+ *     return fetch(makeApiUrl(`/tk/user/${userId}/task-board`), config)
+ *       .then(handleResponse)
+ *       .then(response => dispatch(receiveTaskWalls(response)))
+ *       .catch(error => dispatch(receiveTaskWallsFail(error)));
+ *   };
+ * }*/
 /*
  * function requestTaskWallCards() {
  *   return {

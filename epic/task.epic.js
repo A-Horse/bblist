@@ -1,17 +1,10 @@
-import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/of';
-import { Storage } from '../services/storage';
 import Actions from '../actions/actions';
-import { ajax } from 'rxjs/observable/dom/ajax';
-import fetch from 'isomorphic-fetch';
 import { makeApiUrl } from '../utils/api';
 import { http } from '../services/http';
-import { handleResponse, handleResponseWithoutJson } from 'utils/http-handle';
-import { getJWT } from '../utils/auth';
-import { saveAuthData, saveJWT } from 'utils/auth';
 import { getCachedUserId } from 'utils/auth';
 
 export const GET_TASK_BOARD = action$ =>
@@ -28,4 +21,13 @@ export const ADD_TASK_CARD = action$ =>
       .post(makeApiUrl('/task-card'), null, action.playload)
       .then(Actions.ADD_TASK_CARD.success)
       .catch(Actions.ADD_TASK_CARD.failure);
+  });
+
+export const GET_TASK_ALL_BOARD = action$ =>
+  action$.ofType(Actions.GET_TASK_ALL_BOARD.REQUEST).mergeMap(action => {
+    const userId = getCachedUserId();
+    return http
+      .get(makeApiUrl(`/tk/user/${userId}/task-board`))
+      .then(Actions.GET_TASK_ALL_BOARD.success)
+      .catch(Actions.GET_TASK_ALL_BOARD.failure);
   });

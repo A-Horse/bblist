@@ -372,12 +372,4 @@ export class Track extends Component {
     );
   }
 }
-
-/* const mapStateToProps = state => {
- *   return {
- *     normalizedTrack: state.task.list
- *   };
- * };*/
-
-// export default connect(mapStateToProps, null, null, { withRef: true })(TaskList);
 export default Track;

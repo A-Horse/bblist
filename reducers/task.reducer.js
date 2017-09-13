@@ -7,6 +7,7 @@ import { TaskBoards, TaskBoard } from 'schema';
 export function task2(
   state = fromJS({
     board: null,
+    boardMap: {},
     trackMap: {},
     cardMap: {}
   }),
@@ -19,8 +20,6 @@ export function task2(
 
     case Actions.GET_TASK_BOARD.SUCCESS:
       const normalizedBoard = normalize(action.playload, TaskBoard);
-      console.log('normalizedBoard', normalizedBoard);
-
       return state
         .update('board', () => fromJS(normalizedBoard.entities.TaskBoard[normalizedBoard.result]))
         .update('trackMap', () =>
@@ -29,6 +28,13 @@ export function task2(
           })
         )
         .update('cardMap', () => fromJS(normalizedBoard.entities.TaskCard));
+      break;
+
+    case Actions.GET_TASK_ALL_BOARD.SUCCESS:
+      const normalizedAllBoard = normalize(action.playload, TaskBoards);
+      console.log(fromJS(normalizedAllBoard.entities.TaskBoard));
+
+      return state.update('boardMap', () => fromJS(normalizedAllBoard.entities.TaskBoard));
       break;
 
     default:
