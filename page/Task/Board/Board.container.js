@@ -15,18 +15,7 @@ const mapDispatchToProps = dispatch => {
         Actions.UPDATE_TASK_CARD
       ]),
       dispatch
-    ),
-
-    clearBoard() {
-      return dispatch(clearBoard());
-    }
-    /* getBoardData(id) {
-     *   // TODO rename get wall all info
-     *   return dispatch(getTaskAllCards(id));
-     * },
-     * clearBoard() {
-     *   return dispatch(clearBoard());
-     * }*/
+    )
   };
 };
 

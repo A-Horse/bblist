@@ -4,7 +4,7 @@ import TaskTrack from '../Track/Track';
 import CardModal from '../CardModal';
 import { PageContainer } from 'components/widget/PageContainer';
 import { SettingIcon } from 'services/svg-icons';
-import TaskTrackCreater from '../TaskTrackCreater';
+import TrackCreater from '../TrackCreater/TrackCreater';
 
 import './BoardContent.scss';
 
@@ -79,7 +79,13 @@ class BoardContent extends Component {
       <PageContainer className="board-page-container">
         <div className="board-track-container" style={styles.listContainer}>
           {this.renderTrackArray()}
-          {/* <TaskTrackCreater boardId={this.props.params.id} /> */}
+          <TrackCreater
+            addTrack={data =>
+              this.props.actions.ADD_TASK_TRACK_REQUEST({
+                boardId: this.props.board.get('id'),
+                ...data
+              })}
+          />
         </div>
         {/*         <CardModal key='card-modal'/> */}
       </PageContainer>

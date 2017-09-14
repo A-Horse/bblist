@@ -45,7 +45,7 @@ export function task2(
         .updateIn(['trackMap', String(action.playload.taskListId)], trackMap =>
           trackMap.update(
             'cards',
-            cards => cards.push(action.playload.id) // TODO 考虑卡片排序的问题，理应是push到最后一个的，但是以后可能会优先级的情况会弹到第一个，所以暂时考虑以后在后端返回index
+            cards => cards.push(action.playload.id) // TODO 考虑卡片排序的问题，理应是 push 到最后一个的，但是以后可能会优先级的情况会弹到第一个，所以暂时考虑以后在后端返回index
           )
         );
       break;
