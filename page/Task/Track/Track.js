@@ -338,7 +338,6 @@ export class Track extends Component {
 
   render() {
     const { listId, cardIds } = this.props;
-    console.log('this.props.track', this.props.track);
     const { track, cardMap } = this.props;
     return (
       <div
@@ -354,12 +353,11 @@ export class Track extends Component {
 
         <div className="task-list--body" ref="taskListBody">
           {track.get('cards').map(cardId => {
-            console.log(cardId, cardMap);
-
             const card = cardMap.get(String(cardId));
             return (
               <TaskCard
                 ref={cardConnectedInstance => this.pickCardInstance(cardConnectedInstance, cardId)}
+                actions={this.props.actions}
                 key={card.get('id')}
                 boardId={this.props.wallId}
                 card={card}

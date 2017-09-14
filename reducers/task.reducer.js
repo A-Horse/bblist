@@ -2,7 +2,7 @@ import { normalize } from 'normalizr';
 import { Map, List, fromJS } from 'immutable';
 import R from 'ramda';
 import Actions from 'actions/actions';
-import { TaskBoards, TaskBoard } from 'schema';
+import { TaskBoards, TaskBoard, TaskCard } from 'schema';
 
 export function task2(
   state = fromJS({
@@ -32,9 +32,11 @@ export function task2(
 
     case Actions.GET_TASK_ALL_BOARD.SUCCESS:
       const normalizedAllBoard = normalize(action.playload, TaskBoards);
-      console.log(fromJS(normalizedAllBoard.entities.TaskBoard));
-
       return state.update('boardMap', () => fromJS(normalizedAllBoard.entities.TaskBoard));
+      break;
+
+    case Actions.UPDATE_TASK_CARD.SUCCESS:
+      return state.updateIn(['cardMap', String(action.playload.id)], () => fromJS(action.playload));
       break;
 
     default:

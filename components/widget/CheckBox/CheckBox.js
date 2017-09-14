@@ -11,7 +11,9 @@ export class CheckBox extends Component {
 
   componentWillMount() {}
 
-  onChange() {
+  onChange(event) {
+    event.stopPropagation();
+    event.preventDefault();
     const checked = this.refs.instance.checked;
     this.checked = checked;
     this.setState({ checked: checked });

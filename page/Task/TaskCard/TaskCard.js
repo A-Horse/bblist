@@ -16,6 +16,8 @@ class Card extends Component {
   constructor(props) {
     super(props);
     this.state = {};
+    this.updateCard = this.updateCard.bind(this);
+    this.onLoad = this.onLoad.bind(this);
   }
 
   componentWillMount() {}
@@ -64,14 +66,18 @@ class Card extends Component {
     return dispatch(openTaskCardModal(this.props.card));
   }
 
-  updateDone() {
-    const isDone = this.refs.checkbox.checked;
-    this.updateTaskCard({ isDone });
-  }
+  /* updateDone() {
+   *   const isDone = this.refs.checkbox.checked;
+   *   this.updateTaskCard({ isDone });
+   * }*/
 
-  updateTaskCard(data) {
-    const { dispatch } = this.props;
-    return dispatch(updateTaskCard(this.props.cardId, data));
+  updateCard(toPatchData) {
+    /* const { dispatch } = this.props;
+     * return dispatch(updateTaskCard(this.props.cardId, data));*/
+    this.props.actions.UPDATE_TASK_CARD_REQUEST({
+      id: this.props.card.get('id'),
+      ...toPatchData
+    });
   }
 
   onLoad() {
@@ -79,7 +85,7 @@ class Card extends Component {
     this.width = this.refs.main.offsetWidth;
   }
 
-  onClick() {
+  onClick(event) {
     browserHistory.push(`/task-board/${this.props.boardId}/${this.props.cardId}`);
   }
 
@@ -105,7 +111,7 @@ class Card extends Component {
     const self = this;
     function onMouseMove(event) {
       if (!self.mouseMoving) {
-        // 防止点击的时候还是出现clone
+        // 防止点击的时候还是出现 clone
         movingCard.style.height = thisCard.offsetHeight;
         movingCard.style.width = thisCard.offsetWidth;
         movingCard.style.position = 'absolute';
@@ -141,13 +147,12 @@ class Card extends Component {
         className="task-card"
         ref="main"
         onMouseDown={this.onMouseDown.bind(this)}
-        onClick={this.onClick.bind(this)}
-        onLoad={this.onLoad.bind(this)}
+        onLoad={this.onLoad}
       >
         <CheckBox
           ref="checkbox"
           defaultChecked={card.get('isDone')}
-          onChange={this.updateDone.bind(this)}
+          onChange={checked => this.updateCard({ isDone: checked })}
         />
         <p className="task-card--title">
           {card.get('title')}

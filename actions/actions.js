@@ -14,7 +14,8 @@ const actionNames = [
 
   'GET_TASK_BOARD',
   'GET_TASK_ALL_BOARD',
-  'ADD_TASK_CARD'
+  'ADD_TASK_CARD',
+  'UPDATE_TASK_CARD'
 ];
 
 const ACTIONS = actionNames.reduce((result, actionName) => {

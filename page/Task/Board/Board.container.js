@@ -9,7 +9,11 @@ import Actions, { makeActionRequestCollection } from '../../../actions/actions';
 const mapDispatchToProps = dispatch => {
   return {
     actions: bindActionCreators(
-      makeActionRequestCollection([Actions.GET_TASK_BOARD, Actions.ADD_TASK_CARD]),
+      makeActionRequestCollection([
+        Actions.GET_TASK_BOARD,
+        Actions.ADD_TASK_CARD,
+        Actions.UPDATE_TASK_CARD
+      ]),
       dispatch
     ),
 

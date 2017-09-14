@@ -4,7 +4,6 @@ import { createConfigWithAuth } from '../../utils/header';
 import { handleResponse, handleResponseWithoutJson } from '../../utils/http-handle';
 import { makeApiUrl } from '../../utils/api';
 
-
 export const TASKCARD_POST_REQUEST = 'TASKCARD_POST_REQUEST';
 export const TASKCARD_POST_SUCCESS = 'TASKCARD_POST_SUCCESS';
 export const TASKCARD_POST_FAILURE = 'TASKCARD_POST_FAILURE';
@@ -30,30 +29,30 @@ function createTaskCardError(error) {
   };
 }
 
-export const TASKCARD_PATCH_REQUEST = 'TASKCARD_PATCH_REQUEST';
-export const TASKCARD_PATCH_SUCCESS = 'TASKCARD_PATCH_SUCCESS';
-export const TASKCARD_PATCH_FAILURE = 'TASKCARD_PATCH_FAILURE';
-
-function requestUpdateTaskCard(data) {
-  return {
-    type: TASKCARD_PATCH_REQUEST,
-    ...data
-  };
-}
-
-function updateTaskCardSuccess(card) {
-  return {
-    type: TASKCARD_PATCH_SUCCESS,
-    playload: card
-  };
-}
-
-function updateTaskCardError(error) {
-  return {
-    type: TASKCARD_PATCH_FAILURE,
-    message: error.message
-  };
-}
+/* export const TASKCARD_PATCH_REQUEST = 'TASKCARD_PATCH_REQUEST';
+ * export const TASKCARD_PATCH_SUCCESS = 'TASKCARD_PATCH_SUCCESS';
+ * export const TASKCARD_PATCH_FAILURE = 'TASKCARD_PATCH_FAILURE';
+ *
+ * function requestUpdateTaskCard(data) {
+ *   return {
+ *     type: TASKCARD_PATCH_REQUEST,
+ *     ...data
+ *   };
+ * }
+ *
+ * function updateTaskCardSuccess(card) {
+ *   return {
+ *     type: TASKCARD_PATCH_SUCCESS,
+ *     playload: card
+ *   };
+ * }
+ *
+ * function updateTaskCardError(error) {
+ *   return {
+ *     type: TASKCARD_PATCH_FAILURE,
+ *     message: error.message
+ *   };
+ * }*/
 
 export const TASKCARD_DELETE_REQUEST = 'TASKCARD_DELETE_REQUEST';
 export const TASKCARD_DELETE_SUCCESS = 'TASKCARD_DELETE_SUCCESS';
@@ -129,16 +128,16 @@ export function deleteTaskCard(cardId) {
   };
 }
 
-export function updateTaskCard(cardId, data) {
-
-  const config = createConfigWithAuth('PATCH', data);
-  return dispatch => {
-    return fetch(makeApiUrl(`/task-card/${cardId}`), config)
-      .then(handleResponse)
-      .then(card => dispatch(updateTaskCardSuccess(card)))
-      .catch(error => dispatch(updateTaskCardError(error)));
-  };
-}
+/* export function updateTaskCard(cardId, data) {
+ *
+ *   const config = createConfigWithAuth('PATCH', data);
+ *   return dispatch => {
+ *     return fetch(makeApiUrl(`/task-card/${cardId}`), config)
+ *       .then(handleResponse)
+ *       .then(card => dispatch(updateTaskCardSuccess(card)))
+ *       .catch(error => dispatch(updateTaskCardError(error)));
+ *   };
+ * }*/
 
 export function createTaskCard(card) {
   const config = createConfigWithAuth('POST', card);

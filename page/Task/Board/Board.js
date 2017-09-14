@@ -60,21 +60,19 @@ class Board extends Component {
     return (
       <div className="board-container">
         {this.renderTopBar()}
-        <div>
-          <Route
-            exact
-            path=""
-            render={() =>
-              <BoardContent
-                history={this.props.history}
-                actions={this.props.actions}
-                board={this.props.board}
-                cardMap={this.props.cardMap}
-                trackMap={this.props.trackMap}
-                loginedUser={this.props.loginedUser}
-              />}
-          />
-        </div>
+        <Route
+          exact
+          path=""
+          render={() =>
+            <BoardContent
+              history={this.props.history}
+              actions={this.props.actions}
+              board={this.props.board}
+              cardMap={this.props.cardMap}
+              trackMap={this.props.trackMap}
+              loginedUser={this.props.loginedUser}
+            />}
+        />
       </div>
     );
   }

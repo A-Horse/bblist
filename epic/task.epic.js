@@ -31,3 +31,11 @@ export const GET_TASK_ALL_BOARD = action$ =>
       .then(Actions.GET_TASK_ALL_BOARD.success)
       .catch(Actions.GET_TASK_ALL_BOARD.failure);
   });
+
+export const UPDATE_TASK_CARD = action$ =>
+  action$.ofType(Actions.UPDATE_TASK_CARD.REQUEST).mergeMap(action => {
+    return http
+      .patch(makeApiUrl(`/task-card/${action.playload.id}`), null, action.playload)
+      .then(Actions.UPDATE_TASK_CARD.success)
+      .catch(Actions.UPDATE_TASK_CARD.failure);
+  });
