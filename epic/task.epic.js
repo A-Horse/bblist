@@ -39,3 +39,11 @@ export const UPDATE_TASK_CARD = action$ =>
       .then(Actions.UPDATE_TASK_CARD.success)
       .catch(Actions.UPDATE_TASK_CARD.failure);
   });
+
+export const ADD_TASK_TRACK = action$ =>
+  action$.ofType(Actions.ADD_TASK_TRACK.REQUEST).mergeMap(action => {
+    return http
+      .post(makeApiUrl(`/task-board/${action.playload.boardId}/track`), null, action.playload)
+      .then(Actions.ADD_TASK_TRACK.success)
+      .catch(Actions.ADD_TASK_TRACK.failure);
+  });

@@ -1,8 +1,8 @@
 import fetch from 'isomorphic-fetch';
-import {handleHttpError} from '../../services/handle-error';
-import {createConfigWithAuth} from '../../utils/header';
-import {makeApiUrl} from '../../utils/api';
-import {handleResponse, handleResponseWithoutJson} from '../../utils/http-handle';
+import { handleHttpError } from '../../services/handle-error';
+import { createConfigWithAuth } from '../../utils/header';
+import { makeApiUrl } from '../../utils/api';
+import { handleResponse, handleResponseWithoutJson } from '../../utils/http-handle';
 
 export const TASKLIST_POST_REQUEST = 'TASKLIST_POST_REQUEST';
 export const TASKLIST_POST_SUCCESS = 'TASKLIST_POST_SUCCESS';
@@ -94,22 +94,22 @@ export function deleteTaskList(wallId, listId) {
   };
 }
 
-export function createTaskList(wallId, info) {
-  const config = createConfigWithAuth('POST', info);
-  return dispatch => {
-    dispatch(receiveCreateTaskList());
-    return fetch(makeApiUrl(`/task-wall/${wallId}/list`), config)
-      .then(handleResponseWithoutJson)
-      .then(() => dispatch(receiveCreateTaskList()));
-  };
-}
+/* export function createTaskList(wallId, info) {
+ *   const config = createConfigWithAuth('POST', info);
+ *   return dispatch => {
+ *     dispatch(receiveCreateTaskList());
+ *     return fetch(makeApiUrl(`/task-wall/${wallId}/list`), config)
+ *       .then(handleResponseWithoutJson)
+ *       .then(() => dispatch(receiveCreateTaskList()));
+ *   };
+ * }*/
 
 export function updateTaskTrackIndex(boardId, trackIndexs) {
-  const config = createConfigWithAuth('PATCH', {trackIndexs});
+  const config = createConfigWithAuth('PATCH', { trackIndexs });
   return dispatch => {
     return fetch(makeApiUrl(`/task-board/${boardId}/track/index`), config)
       .then(handleResponse)
-      .then((response) => dispatch(updateTaskTrackIndexSuccess));
+      .then(response => dispatch(updateTaskTrackIndexSuccess));
   };
 }
 

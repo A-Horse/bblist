@@ -2,7 +2,7 @@ import { normalize } from 'normalizr';
 import { Map, List, fromJS } from 'immutable';
 import R from 'ramda';
 import Actions from 'actions/actions';
-import { TaskBoards, TaskBoard, TaskCard } from 'schema';
+import { TaskBoards, TaskBoard, TaskCard, TaskTrack } from 'schema';
 
 export function task2(
   state = fromJS({
@@ -13,6 +13,7 @@ export function task2(
   }),
   action
 ) {
+  console.log(action);
   switch (action.type) {
     case Actions.GET_TASK_BOARD.REQUEST:
       return state.update('board', () => null);
@@ -52,6 +53,15 @@ export function task2(
 
     case Actions.UPDATE_TASK_CARD.SUCCESS:
       return state.updateIn(['cardMap', String(action.playload.id)], () => fromJS(action.playload));
+      break;
+
+    case Actions.ADD_TASK_TRACK.SUCCESS:
+      const normalizedAddedTrack = normalize(action.playload, TaskTrack);
+      console.log(normalizedAddedTrack);
+
+      return state.update('trackMap', trackMap =>
+        trackMap.merge(fromJS(normalizedAddedTrack.entities.TaskTrack))
+      );
       break;
 
     default:

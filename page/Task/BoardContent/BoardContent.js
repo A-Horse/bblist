@@ -34,7 +34,6 @@ class BoardContent extends Component {
 
     this.trackInstanceMap = {};
     this.updateTaskTrackIndexs = this.updateTaskTrackIndexs.bind(this);
-    this.renderTrackArray = this.renderTrackArray.bind(this);
   }
 
   updateTaskTrackIndexs() {
@@ -44,41 +43,37 @@ class BoardContent extends Component {
     this.props.actions.updateTaskTrackIndex(this.props.match.id, trackIndexs);
   }
 
-  renderTrackArray() {
-    const { trackMap } = this.props;
-    return trackMap.toArray().map((track, index) => {
-      return (
-        <TaskTrack
-          key={track.get('id')}
-          ref={trackInstance => {
-            this.trackInstanceMap[track.get('id')] = trackInstance;
-          }}
-          actions={this.props.actions}
-          dataIndex={index}
-          track={track}
-          addTaskCard={data =>
-            this.props.actions.ADD_TASK_CARD_REQUEST({
-              boardId: +this.props.board.get('id'),
-              ...data
-            })}
-          listId={track.get('id')}
-          cardMap={this.props.cardMap}
-          cardIds={track.get('cards')}
-          listName={track.get('name')}
-          history={this.props.history}
-          updateTaskTrackIndexs={this.updateTaskTrackIndexs}
-          loginedUser={this.props.loginedUser}
-          wallId={this.props.history.id}
-        />
-      );
-    });
-  }
-
   render() {
+    const { trackMap } = this.props;
     return (
       <PageContainer className="board-page-container">
         <div className="board-track-container" style={styles.listContainer}>
-          {this.renderTrackArray()}
+          {trackMap.toArray().map((track, index) => {
+            return (
+              <TaskTrack
+                key={track.get('id')}
+                ref={trackInstance => {
+                  this.trackInstanceMap[track.get('id')] = trackInstance;
+                }}
+                actions={this.props.actions}
+                dataIndex={index}
+                track={track}
+                addTaskCard={data =>
+                  this.props.actions.ADD_TASK_CARD_REQUEST({
+                    boardId: +this.props.board.get('id'),
+                    ...data
+                  })}
+                listId={track.get('id')}
+                cardMap={this.props.cardMap}
+                cardIds={track.get('cards')}
+                listName={track.get('name')}
+                history={this.props.history}
+                updateTaskTrackIndexs={this.updateTaskTrackIndexs}
+                loginedUser={this.props.loginedUser}
+                wallId={this.props.history.id}
+              />
+            );
+          })}
           <TrackCreater
             addTrack={data =>
               this.props.actions.ADD_TASK_TRACK_REQUEST({

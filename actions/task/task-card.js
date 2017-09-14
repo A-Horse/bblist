@@ -8,26 +8,26 @@ export const TASKCARD_POST_REQUEST = 'TASKCARD_POST_REQUEST';
 export const TASKCARD_POST_SUCCESS = 'TASKCARD_POST_SUCCESS';
 export const TASKCARD_POST_FAILURE = 'TASKCARD_POST_FAILURE';
 
-function requestPostTaskCard(card) {
-  return {
-    type: TASKCARD_POST_REQUEST,
-    card
-  };
-}
-
-function createTaskCardSuccess(card) {
-  return {
-    type: TASKCARD_POST_SUCCESS,
-    card: card
-  };
-}
-
-function createTaskCardError(error) {
-  return {
-    type: TASKCARD_POST_FAILURE,
-    message: error.message
-  };
-}
+/* function requestPostTaskCard(card) {
+ *   return {
+ *     type: TASKCARD_POST_REQUEST,
+ *     card
+ *   };
+ * }
+ *
+ * function createTaskCardSuccess(card) {
+ *   return {
+ *     type: TASKCARD_POST_SUCCESS,
+ *     card: card
+ *   };
+ * }
+ *
+ * function createTaskCardError(error) {
+ *   return {
+ *     type: TASKCARD_POST_FAILURE,
+ *     message: error.message
+ *   };
+ * }*/
 
 /* export const TASKCARD_PATCH_REQUEST = 'TASKCARD_PATCH_REQUEST';
  * export const TASKCARD_PATCH_SUCCESS = 'TASKCARD_PATCH_SUCCESS';
@@ -139,13 +139,13 @@ export function deleteTaskCard(cardId) {
  *   };
  * }*/
 
-export function createTaskCard(card) {
-  const config = createConfigWithAuth('POST', card);
-  return dispatch => {
-    dispatch(requestPostTaskCard(card));
-    return fetch(makeApiUrl('/task-card'), config)
-      .then(handleResponse)
-      .then(response => dispatch(createTaskCardSuccess(response)))
-      .catch(error => dispatch(updateTaskCardError(error)));
-  };
-}
+/* export function createTaskCard(card) {
+ *   const config = createConfigWithAuth('POST', card);
+ *   return dispatch => {
+ *     dispatch(requestPostTaskCard(card));
+ *     return fetch(makeApiUrl('/task-card'), config)
+ *       .then(handleResponse)
+ *       .then(response => dispatch(createTaskCardSuccess(response)))
+ *       .catch(error => dispatch(updateTaskCardError(error)));
+ *   };
+ * }*/

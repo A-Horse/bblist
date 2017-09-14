@@ -12,21 +12,19 @@ import { isEnterKey } from 'utils/keyboard';
 import ClickOutSide from 'components/utils/ClickOutSide';
 import { IconAdd } from 'services/image-icon';
 
-import 'style/page/task/tasklist-creater.scss';
+import './TrackCreater.scss';
 
 class TrackCreater extends Component {
+  state = {
+    toggle: false
+  };
+
   constructor(props) {
     super(props);
     this.onKeyDown = this.onKeyDown.bind(this);
     this.addTrack = this.addTrack.bind(this);
     this.close = this.close.bind(this);
     this.toggle = this.toggle.bind(this);
-  }
-
-  componentWillMount() {
-    this.state = {
-      toggle: false
-    };
   }
 
   addTrack() {
@@ -73,11 +71,5 @@ class TrackCreater extends Component {
     );
   }
 }
-
-/* const mapStateToProps = state => {
- *   return {};
- * };*/
-
-// export default connect(mapStateToProps)(TaskTrackCreater);
 
 export default TrackCreater;
