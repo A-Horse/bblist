@@ -35,6 +35,21 @@ export function task2(
       return state.update('boardMap', () => fromJS(normalizedAllBoard.entities.TaskBoard));
       break;
 
+    case Actions.ADD_TASK_CARD.SUCCESS:
+      const normalizedAddedCard = normalize(action.playload, TaskCard);
+      return state
+        .update('cardMap', cardMap => {
+          return cardMap.merge(fromJS(normalizedAddedCard.entities.TaskCard));
+          // TODO rename taskListId
+        })
+        .updateIn(['trackMap', String(action.playload.taskListId)], trackMap =>
+          trackMap.update(
+            'cards',
+            cards => cards.push(action.playload.id) // TODO 考虑卡片排序的问题，理应是push到最后一个的，但是以后可能会优先级的情况会弹到第一个，所以暂时考虑以后在后端返回index
+          )
+        );
+      break;
+
     case Actions.UPDATE_TASK_CARD.SUCCESS:
       return state.updateIn(['cardMap', String(action.playload.id)], () => fromJS(action.playload));
       break;

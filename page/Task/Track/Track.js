@@ -337,8 +337,9 @@ export class Track extends Component {
   }
 
   render() {
-    const { listId, cardIds } = this.props;
     const { track, cardMap } = this.props;
+    console.log(cardMap, track);
+
     return (
       <div
         ref="main"

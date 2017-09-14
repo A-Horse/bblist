@@ -31,6 +31,8 @@ const mapDispatchToProps = dispatch => {
 };
 
 const mapStateToProps = state => {
+  console.log(state);
+
   return {
     board: state.task2.get('board'),
     trackMap: state.task2.get('trackMap'),
