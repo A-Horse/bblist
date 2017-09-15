@@ -57,7 +57,6 @@ export function task2(
 
     case Actions.ADD_TASK_TRACK.SUCCESS:
       const normalizedAddedTrack = normalize(action.playload, TaskTrack);
-
       return state.update('trackMap', trackMap =>
         trackMap.merge(fromJS(normalizedAddedTrack.entities.TaskTrack))
       );
@@ -65,6 +64,12 @@ export function task2(
 
     case Actions.DESTORY_TASK_TRACK.SUCCESS:
       return state.deleteIn(['trackMap', String(action.meta.trackId)]);
+      break;
+
+    case Actions.UPDATE_TASK_TRACK.SUCCESS:
+      return state.updateIn(['trackMap', String(action.playload.id)], track =>
+        track.merge(fromJS(action.playload))
+      );
       break;
 
     default:

@@ -282,10 +282,14 @@ export class Track extends Component {
     return this.props.addTaskCard({ trackId: +this.props.track.get('id'), ...data });
   }
 
+  shouldComponentUpdate(newProps) {
+    return !this.props.cards.equals(newProps.cards) || !this.props.track.equals(newProps.track);
+  }
+
   render() {
     const { track, cards } = this.props;
     const { listName } = this.props;
-    console.log(track, track.get('name'));
+    console.log(track);
 
     return (
       <div

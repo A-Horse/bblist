@@ -4,7 +4,6 @@
 .checkbox {
   position: relative;
   display: inline-block;
-  cursor: pointer;
 
   .checkbox--mock {
     display: block;
@@ -26,6 +25,7 @@
 
   .fa {
     position: relative;
+    cursor: pointer;
     top: 0;
     left: 0;
 

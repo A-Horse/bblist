@@ -36,12 +36,16 @@ export const GET_TASK_ALL_BOARD = action$ =>
   });
 
 export const UPDATE_TASK_CARD = action$ =>
-  action$.ofType(Actions.UPDATE_TASK_CARD.REQUEST).mergeMap(action => {
-    return http
-      .patch(makeApiUrl(`/task-card/${action.playload.id}`), null, action.playload)
-      .then(Actions.UPDATE_TASK_CARD.success)
-      .catch(Actions.UPDATE_TASK_CARD.failure);
-  });
+  action$
+    .ofType(Actions.UPDATE_TASK_CARD.REQUEST)
+    .distinctUntilChanged()
+    .debounceTime(250)
+    .mergeMap(action => {
+      return http
+        .patch(makeApiUrl(`/task-card/${action.playload.id}`), null, action.playload)
+        .then(Actions.UPDATE_TASK_CARD.success)
+        .catch(Actions.UPDATE_TASK_CARD.failure);
+    });
 
 export const ADD_TASK_TRACK = action$ =>
   action$.ofType(Actions.ADD_TASK_TRACK.REQUEST).mergeMap(action => {
