@@ -4,19 +4,28 @@
 .checkbox {
   position: relative;
   display: inline-block;
+  cursor: pointer;
+
+  .checkbox--mock {
+    display: block;
+    position: relative;
+    left: 0;
+    top: 0;
+  }
+
 
   input {
     visibility: hidden;
     position: relative;
-    height: 100%;
-    width: 100%;
+    height: 0;
+    width: 0;
     &:checked + .checkbox--mock:before {
       display: block;
     }
   }
 
   .fa {
-    position: absolute;
+    position: relative;
     top: 0;
     left: 0;
 
@@ -28,14 +37,5 @@
       color: #999;
     }
   }
-}
 
-.checkbox--mock {
-  display: block;
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 100%;
-  cursor: pointer;
 }

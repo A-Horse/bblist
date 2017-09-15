@@ -24,6 +24,10 @@ $card-padding: 12px;
   .useravatar {
     width: 39px;
   }
+
+  &:first-child {
+    margin-top: 0px;
+  }
 }
 
 .task-card:-khtml-drag {}

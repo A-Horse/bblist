@@ -1,10 +1,13 @@
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/of';
+import 'rxjs/add/operator/distinctUntilChanged';
 import Actions from '../actions/actions';
 import { makeApiUrl } from '../utils/api';
 import { http } from '../services/http';
+import R from 'ramda';
 import { getCachedUserId } from 'utils/auth';
 
 export const GET_TASK_BOARD = action$ =>
@@ -55,3 +58,19 @@ export const DESTORY_TASK_TRACK = action$ =>
       .then(() => Actions.DESTORY_TASK_TRACK.success(null, { ...action.playload }))
       .catch(Actions.DESTORY_TASK_TRACK.failure);
   });
+
+export const UPDATE_TASK_TRACK = action$ =>
+  action$
+    .ofType(Actions.UPDATE_TASK_TRACK.REQUEST)
+    .distinctUntilChanged()
+    .debounceTime(250)
+    .mergeMap(action => {
+      return http
+        .patch(
+          makeApiUrl(`/task-board/${action.playload.boardId}/track/${action.playload.trackId}`),
+          null,
+          R.omit(['boardId', 'trackId'], action.playload)
+        )
+        .then(Actions.UPDATE_TASK_TRACK.success)
+        .catch(Actions.UPDATE_TASK_TRACK.failure);
+    });

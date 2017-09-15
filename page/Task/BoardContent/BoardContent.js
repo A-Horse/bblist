@@ -5,6 +5,7 @@ import CardModal from '../CardModal';
 import { PageContainer } from 'components/widget/PageContainer';
 import { SettingIcon } from 'services/svg-icons';
 import TrackCreater from '../TrackCreater/TrackCreater';
+import DOM from 'react-dom-factories';
 
 import './BoardContent.scss';
 
@@ -44,7 +45,11 @@ class BoardContent extends Component {
   }
 
   render() {
-    const { trackMap } = this.props;
+    const { trackMap, cardMap } = this.props;
+    if (!this.props.board) {
+      return DOM.noscript();
+    }
+
     return (
       <PageContainer className="board-page-container">
         <div className="board-track-container" style={styles.listContainer}>
@@ -58,8 +63,14 @@ class BoardContent extends Component {
                 actions={this.props.actions}
                 dataIndex={index}
                 track={track}
+                cards={track.get('cards').map(cardId => cardMap.get(String(cardId)))}
                 addTaskCard={data =>
                   this.props.actions.ADD_TASK_CARD_REQUEST({
+                    boardId: +this.props.board.get('id'),
+                    ...data
+                  })}
+                updateTrack={data =>
+                  this.props.actions.UPDATE_TASK_TRACK_REQUEST({
                     boardId: +this.props.board.get('id'),
                     ...data
                   })}
@@ -69,13 +80,12 @@ class BoardContent extends Component {
                     ...data
                   })}
                 listId={track.get('id')}
-                cardMap={this.props.cardMap}
                 cardIds={track.get('cards')}
                 listName={track.get('name')}
                 history={this.props.history}
                 updateTaskTrackIndexs={this.updateTaskTrackIndexs}
                 loginedUser={this.props.loginedUser}
-                wallId={this.props.history.id}
+                wallId={this.props.board.get('id')}
               />
             );
           })}

@@ -83,7 +83,7 @@ function updateTaskTrackIndexSuccess(playload) {
  *     message: message
  *   };
  * }
- *
+*
  * export function deleteTaskList(wallId, listId) {
  *   const config = createConfigWithAuth('DELETE');
  *   return dispatch => {
@@ -113,12 +113,12 @@ export function updateTaskTrackIndex(boardId, trackIndexs) {
   };
 }
 
-export function updateTaskList(boardId, trackId, data) {
-  const config = createConfigWithAuth('PATCH', data);
-  return dispatch => {
-    dispatch(requestPatchTaskList);
-    return fetch(makeApiUrl(`/task-wall/${boardId}/list/${trackId}`), config)
-      .then(handleResponse)
-      .then(response => dispatch(receivePatchTaskList(response)));
-  };
-}
+/* export function updateTaskList(boardId, trackId, data) {
+ *   const config = createConfigWithAuth('PATCH', data);
+ *   return dispatch => {
+ *     dispatch(requestPatchTaskList);
+ *     return fetch(makeApiUrl(`/task-wall/${boardId}/list/${trackId}`), config)
+ *       .then(handleResponse)
+ *       .then(response => dispatch(receivePatchTaskList(response)));
+ *   };
+ * }*/

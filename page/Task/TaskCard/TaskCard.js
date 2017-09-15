@@ -143,12 +143,7 @@ class Card extends Component {
   render() {
     const { card } = this.props;
     return (
-      <div
-        className="task-card"
-        ref="main"
-        onMouseDown={this.onMouseDown.bind(this)}
-        onLoad={this.onLoad}
-      >
+      <div className="task-card" ref="main">
         <CheckBox
           ref="checkbox"
           defaultChecked={card.get('isDone')}
