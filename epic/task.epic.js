@@ -50,7 +50,8 @@ export const ADD_TASK_TRACK = action$ =>
 
 export const DESTORY_TASK_TRACK = action$ =>
   action$.ofType(Actions.DESTORY_TASK_TRACK.REQUEST).mergeMap(action => {
-    return http.delete(
-      makeApiUrl(`/task-board/${action.playload.boardId}/track/${action.playload.trackId}`)
-    );
+    return http
+      .delete(makeApiUrl(`/task-board/${action.playload.boardId}/track/${action.playload.trackId}`))
+      .then(() => Actions.DESTORY_TASK_TRACK.success(null, { ...action.playload }))
+      .catch(Actions.DESTORY_TASK_TRACK.failure);
   });
