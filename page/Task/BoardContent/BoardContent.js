@@ -63,6 +63,11 @@ class BoardContent extends Component {
                     boardId: +this.props.board.get('id'),
                     ...data
                   })}
+                destroyTrack={data =>
+                  this.props.actions.DESTORY_TASK_TRACK_REQUEST({
+                    boardId: +this.props.board.get('id'),
+                    ...data
+                  })}
                 listId={track.get('id')}
                 cardMap={this.props.cardMap}
                 cardIds={track.get('cards')}

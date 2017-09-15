@@ -337,7 +337,7 @@ export class Track extends Component {
           >
             <li
               className="task-track-operation--remove"
-              onClick={() => this.refs.listDeleteConfirm.open()}
+              onClick={() => this.props.destroyTrack({ trackId: this.props.track.get('id') })}
             >
               <i className="fa fa-trash" aria-hidden="true" />
               <span>Delete</span>
