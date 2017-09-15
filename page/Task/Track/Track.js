@@ -21,17 +21,19 @@ import styleVariables from '!!sass-variable-loader!style/page/task/_task-variabl
 let relativeOffsetBody = 137;
 
 export class Track extends Component {
+  state = {
+    operationToggle: false
+  };
+
   constructor(props) {
     super(props);
     this.resetDragMeta();
     this.addTaskCard = this.addTaskCard.bind(this);
+    this.onTrackNameKeyDown = this.onTrackNameKeyDown.bind(this);
+    this.onTrackNameChanged = this.onTrackNameChanged.bind(this);
   }
 
   componentWillMount() {
-    // TODO rename
-    this.state = {
-      listSetting: {}
-    };
     this.cardInstanceMap = {};
   }
 
@@ -54,19 +56,8 @@ export class Track extends Component {
     };
   }
 
-  onClickSetting(listId) {
-    const obj = {};
-    obj[listId] = !this.state.listSetting[listId];
-    // TODO rename
-    this.setState({ listSetting: obj });
-    // FIXME 诡异的实现
-    GlobalClick.addGlobalClickHandleOnce(() => {
-      const obj = {};
-      obj[listId] = false;
-      this.setState({
-        listSetting: obj
-      });
-    });
+  onClickSetting() {
+    this.setState({ operationToggle: !this.state.operationToggle });
   }
 
   onTrackNameChanged() {
@@ -86,38 +77,6 @@ export class Track extends Component {
     if (!cardConnectedInstance) {
       this.cardInstanceMap = R.omit([id], this.cardInstanceMap);
     }
-  }
-
-  renderTrackName() {
-    const { listName } = this.props;
-    return (
-      <div className="task-list--name">
-        <Input
-          className="task-list--input"
-          ref="trackName"
-          onMouseDown={event => event.stopPropagation()}
-          onKeyDown={this.onTrackNameKeyDown.bind(this)}
-          onChange={this.onTrackNameChanged.bind(this)}
-          defaultValue={listName}
-        />
-      </div>
-    );
-  }
-
-  renderTopBar() {
-    const { listId } = this.props;
-    return (
-      <div className="task-list--top-bar" onMouseDown={this.onTopBarMouseDown.bind(this)}>
-        {this.renderTrackName()}
-
-        <MoreIcon className="more-icon icon" onClick={() => this.onClickSetting(listId)} />
-        <DropList toggle={this.state.listSetting[listId]}>
-          <ul>
-            <li onClick={() => this.refs.listDeleteConfirm.open()}>Delete</li>
-          </ul>
-        </DropList>
-      </div>
-    );
   }
 
   onTopBarMouseDown(event) {
@@ -338,8 +297,9 @@ export class Track extends Component {
 
   render() {
     const { track, cardMap } = this.props;
+    const { listId } = this.props;
+    const { listName } = this.props;
     console.log(cardMap, track);
-
     return (
       <div
         ref="main"
@@ -350,21 +310,57 @@ export class Track extends Component {
         onDragLeave={this.onDragLeave.bind(this)}
         onDragOver={this.onDragOver.bind(this)}
       >
-        {this.renderTopBar()}
+        <div className="task-list--top-bar" onMouseDown={this.onTopBarMouseDown.bind(this)}>
+          <div className="task-list--name">
+            <Input
+              className="task-list--input"
+              ref="trackName"
+              onMouseDown={event => event.stopPropagation()}
+              onKeyDown={this.onTrackNameKeyDown}
+              onChange={this.onTrackNameChanged}
+              defaultValue={listName}
+            />
+          </div>
+
+          <i
+            className="fa fa-ellipsis-h"
+            aria-hidden="true"
+            onMouseDown={event => event.stopPropagation()}
+            onClick={() => {
+              this.onClickSetting(listId);
+            }}
+          />
+          <DropList
+            className="task-track-operation"
+            toggle={this.state.operationToggle}
+            onMouseDown={event => event.stopPropagation()}
+          >
+            <li
+              className="task-track-operation--remove"
+              onClick={() => this.refs.listDeleteConfirm.open()}
+            >
+              <i className="fa fa-trash" aria-hidden="true" />
+              <span>Delete</span>
+            </li>
+          </DropList>
+        </div>
 
         <div className="task-list--body" ref="taskListBody">
-          {track.get('cards').map(cardId => {
-            const card = cardMap.get(String(cardId));
-            return (
-              <TaskCard
-                ref={cardConnectedInstance => this.pickCardInstance(cardConnectedInstance, cardId)}
-                actions={this.props.actions}
-                key={card.get('id')}
-                boardId={this.props.wallId}
-                card={card}
-              />
-            );
-          })}
+          <div>
+            {track.get('cards').map(cardId => {
+              const card = cardMap.get(String(cardId));
+              return (
+                <TaskCard
+                  ref={cardConnectedInstance =>
+                    this.pickCardInstance(cardConnectedInstance, cardId)}
+                  actions={this.props.actions}
+                  key={card.get('id')}
+                  boardId={this.props.wallId}
+                  card={card}
+                />
+              );
+            })}
+          </div>
           <TaskCardCreater loginedUser={this.props.loginedUser} addTaskCard={this.addTaskCard} />
         </div>
       </div>

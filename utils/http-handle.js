@@ -35,7 +35,6 @@ function handleError(response) {
 export function handleResponse(response) {
   handleError(response);
   let resp;
-
   if (response.status === 202 || response.status === 204) {
     return null;
   }

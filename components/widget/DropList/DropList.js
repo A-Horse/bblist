@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import DOM from 'react-dom-factories';
+import R from 'ramda';
 
 import './DropList.scss';
 
@@ -22,7 +23,7 @@ export class DropList extends Component {
   render() {
     if (this.props.toggle) {
       return (
-        <ul className={this.buildClassName()}>
+        <ul className={this.buildClassName()} {...R.omit(['toggle', 'className'], this.props)}>
           {this.props.children}
         </ul>
       );

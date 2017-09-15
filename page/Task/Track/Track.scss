@@ -43,6 +43,8 @@
     transition: none;
     box-shadow: 1px 1px 10px #999;
   }
+
+
 }
 
 .task-list--body {
@@ -63,6 +65,7 @@
 }
 
 .task-list--top-bar {
+  position: relative;
   flex: 1 0 auto;
   height: $top-bar-height;
   max-height: $top-bar-height;
@@ -73,9 +76,31 @@
   margin: 0;
   padding: 0 8px;
 
-  .more-icon {
+  .fa-ellipsis-h {
+    padding: 5px;
     cursor: pointer;
-    borderRadius: 50%;
-    backgroundColor: white;
+  }
+
+  .task-track-operation {
+    padding: 3px 10px 1px;
+    position: absolute;
+    z-index: 99;
+    top: 30px;
+    right: 0;
+    border-radius: 3px;
+
+    &--remove {
+      color: $primary-bg;
+    }
+
+    li {
+      & > .fa {
+        margin-right: 8px;
+      }
+
+      & > span {
+        font-weight: bold;
+      }
+    }
   }
 }
