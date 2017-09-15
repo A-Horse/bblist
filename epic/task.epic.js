@@ -47,3 +47,10 @@ export const ADD_TASK_TRACK = action$ =>
       .then(Actions.ADD_TASK_TRACK.success)
       .catch(Actions.ADD_TASK_TRACK.failure);
   });
+
+export const DESTORY_TASK_TRACK = action$ =>
+  action$.ofType(Actions.DESTORY_TASK_TRACK.REQUEST).mergeMap(action => {
+    return http.delete(
+      makeApiUrl(`/task-board/${action.playload.boardId}/track/${action.playload.trackId}`)
+    );
+  });
