@@ -45,6 +45,8 @@
     "babel-polyfill": "^6.22.0",
     "babel-preset-es2016": "^6.24.1",
     "babel-preset-es2017": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
     "babel-runtime": "^6.22.0",
     "bluebird": "^3.4.1",
     "blueimp-md5": "^2.3.0",
@@ -92,6 +94,7 @@
     "uglify-es-webpack-plugin": "0.0.2",
     "uglify-js": "^2.8.28",
     "webpack-livereload-plugin": "^0.8.1",
+    "webpack-merge": "^4.1.0",
     "webpack-stream": "^3.2.0"
   },
   "devDependencies": {
@@ -107,7 +110,7 @@
     "babel-preset-jest": "^20.0.3",
     "babel-preset-react": "^6.24.1",
     "babel-preset-react-hmre": "^1.1.1",
-    "babel-preset-stage-1": "^6.22.0",
+    "babel-preset-stage-1": "^6.24.1",
     "babel-register": "^6.22.0",
     "bell-on-bundler-error-plugin": "^1.0.8",
     "cross-env": "^1.0.7",
