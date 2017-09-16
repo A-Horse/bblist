@@ -1,13 +1,9 @@
-var fs = require('fs');
-var path = require('path');
-var webpack = require('webpack');
-
+const path = require('path');
+const webpack = require('webpack');
 const Merge = require('webpack-merge');
-
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const CommonConfig = require('./webpack.common.js');
 
@@ -16,6 +12,11 @@ module.exports = Merge(CommonConfig, {
     hints: 'error'
   },
   plugins: [
+    new CopyWebpackPlugin([
+      { from: 'favicon.ico', to: 'favicon.ico' },
+      { from: 'assets', to: 'assets' },
+      { from: 'static', to: 'static' }
+    ]),
     new CleanWebpackPlugin([path.join(__dirname, '../dist')], {
       root: path.join(__dirname, '..'),
       verbose: true
