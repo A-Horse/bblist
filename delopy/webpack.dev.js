@@ -13,18 +13,18 @@ module.exports = Merge(CommonConfig, {
     proxy: require('./proxy-options')
   },
   module: {
-    /* rules: [
-     *   {
-     *     enforce: 'pre',
-     *     test: /\.jsx?$/,
-     *     exclude: /node_modules/,
-     *     loader: 'eslint-loader',
-     *     options: {
-     *       fix: true,
-     *       cache: true,
-     *       quiet: true
-     *     }
-     *   }
-     * ]*/
+    rules: [
+      {
+        enforce: 'pre',
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        loader: 'eslint-loader',
+        options: {
+          fix: true,
+          cache: true,
+          quiet: true
+        }
+      }
+    ]
   }
 });
