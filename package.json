@@ -4,7 +4,7 @@
   "description": "octopus",
   "scripts": {
     "build": "NODE_ENV=production gulp build",
-    "start": "NODE_ENV=development webpack-dev-server --config ./delopy/webpack.dev.js --history-api-fallback --watch --hot --host 0.0.0.0",
+    "start": "NODE_ENV=development webpack-dev-server --config ./delopy/webpack.dev.js --history-api-fallback --progress --watch --hot --host 0.0.0.0",
     "analyze": "webpack --config ./webpack.config.dev.js --json | webpack-bundle-size-analyzer"
   },
   "repository": {

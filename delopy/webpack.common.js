@@ -11,18 +11,6 @@ module.exports = {
     modules: [path.resolve('.'), 'node_modules']
   },
   devtool: 'source-map',
-  devServer: {
-    // lazy: true,
-    port: 9000,
-    publicPath: '/',
-    proxy: {
-      // order is important
-      '/api/t/': 'http://localhost:5502',
-      '/api/ts/': 'http://localhost:5501',
-      '/api': 'http://localhost:5500',
-      '/storage': 'http://localhost:5500'
-    }
-  },
   entry: {
     app: ['babel-polyfill', './index']
   },

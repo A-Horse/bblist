@@ -25,7 +25,9 @@ describe('auth epic test', () => {
   });
 
   test('IDENTIFY_REQUEST', async () => {
-    nock('http://ocotpuese.xyz').get('/api/user/identify').reply(200, { jwt: 'jwt' });
+    nock('http://ocotpuese.xyz')
+      .get('/api/user/identify')
+      .reply(200, { jwt: 'jwt' });
     store.dispatch({ type: 'IDENTIFY_REQUEST' });
     await timeout(10);
     nock.isDone();

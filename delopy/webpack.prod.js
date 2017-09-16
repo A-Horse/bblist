@@ -12,6 +12,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CommonConfig = require('./webpack.common.js');
 
 module.exports = Merge(CommonConfig, {
+  performance: {
+    hints: 'error'
+  },
   plugins: [
     new CleanWebpackPlugin([path.join(__dirname, '../dist')], {
       root: path.join(__dirname, '..'),

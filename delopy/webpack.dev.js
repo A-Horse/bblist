@@ -1,11 +1,24 @@
-var fs = require('fs');
-var path = require('path');
-var webpack = require('webpack');
+const webpack = require('webpack');
 const Merge = require('webpack-merge');
 const CommonConfig = require('./webpack.common.js');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
 
 module.exports = Merge(CommonConfig, {
+  bail: true,
+  cache: true,
+  recordsPath: path.join(__dirname, 'records.json'),
+  devServer: {
+    clientLogLevel: 'none',
+    port: 9000,
+    publicPath: '/',
+    proxy: {
+      // order is important
+      '/api/t/': 'http://localhost:5502',
+      '/api/ts/': 'http://localhost:5501',
+      '/api': 'http://localhost:5500',
+      '/storage': 'http://localhost:5500'
+    }
+  },
   module: {
     rules: [
       {
@@ -15,5 +28,6 @@ module.exports = Merge(CommonConfig, {
         loader: 'eslint-loader'
       }
     ]
-  }
+  },
+  plugins: [new webpack.HotModuleReplacementPlugin({})]
 });
