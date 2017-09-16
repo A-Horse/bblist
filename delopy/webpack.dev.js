@@ -28,7 +28,8 @@ module.exports = Merge(CommonConfig, {
         loader: 'eslint-loader',
         options: {
           fix: true,
-          cache: true
+          cache: true,
+          quiet: true
         }
       }
     ]
