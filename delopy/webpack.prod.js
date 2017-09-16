@@ -13,51 +13,17 @@ const CommonConfig = require('./webpack.common.js');
 
 module.exports = Merge(CommonConfig, {
   plugins: [
-    new CleanWebpackPlugin(['dist']),
+    new CleanWebpackPlugin([path.join(__dirname, '../dist')], {
+      root: path.join(__dirname, '..'),
+      verbose: true
+    }),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.optimize.AggressiveMergingPlugin(),
     new webpack.optimize.ModuleConcatenationPlugin(),
-    new ExtractTextPlugin('styles.css'),
     new UglifyJSPlugin({ exclude: /\.css$/ }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production')
-    }),
-    new HtmlWebpackPlugin({
-      title: 'Output Management',
-      filename: 'index.html',
-      template: 'scripts/index.template.ejs'
     })
   ],
-  module: {
-    rules: [
-      {
-        test: /\.scss$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [
-            {
-              loader: 'css-loader'
-            },
-            {
-              loader: 'sass-loader'
-            },
-            {
-              loader: 'autoprefixer-loader'
-            }
-          ]
-        })
-      },
-      {
-        test: /\.css$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [
-            {
-              loader: 'css-loader'
-            }
-          ]
-        })
-      }
-    ]
-  }
+  module: {}
 });
