@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import { Modal } from './Modal/Modal';
-import R from 'ramda';
-import { getAssets } from '../../services/assets-manager';
 
 const modalStyles = {
   overlay: {
@@ -38,12 +36,12 @@ const styles = {
 };
 
 export class WarningModal extends Component {
-  propTypes: {
+  static propTypes = {
     confirmFn: PropTypes.func.isRequired
   };
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       toggle: false
     };

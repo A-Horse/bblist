@@ -106,7 +106,7 @@ class Nav extends Component {
   renderAvatar() {
     const { user } = this.props;
     const avatarData = Storage.get('avator');
-    return !!avatarData ? (
+    return avatarData ? (
       <img
         ref="avator"
         className="nav-avatar"

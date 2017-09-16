@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { Modal } from './Modal/Modal';
 
 export class Toast extends Component {
@@ -21,7 +20,7 @@ export class Toast extends Component {
 
   render() {
     return (
-      <Modal className="toast" styles={modalStyles} toggle={this.state.toggle}>
+      <Modal className="toast" toggle={this.state.toggle}>
         <div>{this.children}</div>
       </Modal>
     );
