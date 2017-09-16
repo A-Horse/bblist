@@ -30,14 +30,6 @@ class CountDownTimer extends Component {
     var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
     var days = Math.floor(t / (1000 * 60 * 60 * 24));
 
-    const residual = {
-      toal: t,
-      days: days,
-      hours: hours,
-      minutes: minutes,
-      seconds: seconds
-    };
-
     return this.setState({ residualTimeString: t });
   }
 
