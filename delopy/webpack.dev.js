@@ -5,4 +5,15 @@ const Merge = require('webpack-merge');
 const CommonConfig = require('./webpack.common.js');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-module.exports = Merge(CommonConfig, {});
+module.exports = Merge(CommonConfig, {
+  module: {
+    rules: [
+      {
+        enforce: 'pre',
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        loader: 'eslint-loader'
+      }
+    ]
+  }
+});
