@@ -1,3 +1,4 @@
+const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -9,14 +10,30 @@ module.exports = {
   },
   devtool: 'source-map',
   entry: {
-    app: ['babel-polyfill', 'react-hot-loader/patch', './index']
+    app: ['babel-polyfill', 'react-hot-loader/patch', './index'],
+    vendor: [
+      'react',
+      'react-dom',
+      'react-redux',
+      'react-router',
+      'react-router-dom',
+      'react-router-redux',
+      'redux-observable',
+      'rxjs',
+      'redux',
+      'isomorphic-fetch',
+      'moment',
+      'normalizr',
+      'ramda'
+    ]
   },
   output: {
-    filename: '[name].[hash].bundle.js',
+    filename: '[name].bundle.js',
     path: path.resolve(__dirname, '..', 'dist'),
     publicPath: '/'
   },
   plugins: [
+    new webpack.optimize.AggressiveMergingPlugin(),
     new HtmlWebpackPlugin({
       title: 'Octopuse',
       filename: 'index.html',
@@ -25,12 +42,17 @@ module.exports = {
         removeComments: true,
         collapseWhitespace: true,
         removeAttributeQuotes: true
-      },
-      chunksSortMode: 'dependency'
+      }
     }),
     new ExtractTextPlugin({
       filename: '[name].[contenthash].css',
       disable: process.env.NODE_ENV !== 'production'
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      names: ['vendor', 'manifest']
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'runtime'
     })
   ],
   module: {
@@ -42,8 +64,7 @@ module.exports = {
             loader: 'babel-loader'
           }
         ],
-        exclude: /node_modules/,
-        include: path.join(__dirname, '..')
+        exclude: /node_modules/
       },
       {
         test: /\.scss$/,

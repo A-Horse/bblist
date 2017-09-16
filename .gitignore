@@ -17,3 +17,4 @@ dist
 package-lock.json
 /yarn.lock
 coverage/
+delopy/records.json

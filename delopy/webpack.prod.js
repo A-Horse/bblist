@@ -4,6 +4,7 @@ const Merge = require('webpack-merge');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const MinifyPlugin = require('babel-minify-webpack-plugin');
 
 const CommonConfig = require('./webpack.common.js');
 
@@ -11,7 +12,11 @@ module.exports = Merge(CommonConfig, {
   performance: {
     hints: 'error'
   },
+  output: {
+    filename: '[name].[chunkhash].bundle.js'
+  },
   plugins: [
+    new webpack.HashedModuleIdsPlugin(),
     new CopyWebpackPlugin([
       { from: 'favicon.ico', to: 'favicon.ico' },
       { from: 'assets', to: 'assets' },
@@ -22,8 +27,8 @@ module.exports = Merge(CommonConfig, {
       verbose: true
     }),
     new webpack.optimize.OccurrenceOrderPlugin(),
-    new webpack.optimize.AggressiveMergingPlugin(),
     new webpack.optimize.ModuleConcatenationPlugin(),
+    new MinifyPlugin(),
     new UglifyJSPlugin({
       exclude: /\.css$/,
       compress: {
