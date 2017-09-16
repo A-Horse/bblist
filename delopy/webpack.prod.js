@@ -23,7 +23,16 @@ module.exports = Merge(CommonConfig, {
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.optimize.AggressiveMergingPlugin(),
     new webpack.optimize.ModuleConcatenationPlugin(),
-    new UglifyJSPlugin({ exclude: /\.css$/ }),
+    new UglifyJSPlugin({
+      exclude: /\.css$/,
+      compress: {
+        warnings: false
+      },
+      output: {
+        comments: false
+      },
+      sourceMap: false
+    }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production')
     })

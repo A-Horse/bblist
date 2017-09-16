@@ -8,7 +8,7 @@ module.exports = Merge(CommonConfig, {
   cache: true,
   recordsPath: path.join(__dirname, 'records.json'),
   devServer: {
-    clientLogLevel: 'none',
+    // clientLogLevel: 'none',
     port: 9000,
     publicPath: '/',
     proxy: {
@@ -25,9 +25,12 @@ module.exports = Merge(CommonConfig, {
         enforce: 'pre',
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        loader: 'eslint-loader'
+        loader: 'eslint-loader',
+        options: {
+          fix: true,
+          cache: true
+        }
       }
     ]
-  },
-  plugins: [new webpack.HotModuleReplacementPlugin({})]
+  }
 });

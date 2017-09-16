@@ -11,21 +11,18 @@ const actions = {
   }
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
     actions: bindActionCreators(actions, dispatch)
   };
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     user: state.auth.loginedUser
   };
 };
 
-const ProfileContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Profile);
+const ProfileContainer = connect(mapStateToProps, mapDispatchToProps)(Profile);
 
 export default ProfileContainer;

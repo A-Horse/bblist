@@ -12,7 +12,7 @@ module.exports = {
   },
   devtool: 'source-map',
   entry: {
-    app: ['babel-polyfill', './index']
+    app: ['babel-polyfill', 'react-hot-loader/patch', './index']
   },
   output: {
     filename: '[name].[hash].bundle.js',
@@ -23,7 +23,13 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'Octopuse',
       filename: 'index.html',
-      template: 'template/index.template.ejs'
+      template: 'template/index.template.ejs',
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true,
+        removeAttributeQuotes: true
+      },
+      chunksSortMode: 'dependency'
     }),
     new ExtractTextPlugin({
       filename: '[name].[contenthash].css',
