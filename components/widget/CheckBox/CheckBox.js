@@ -28,9 +28,11 @@ export class CheckBox extends Component {
             ref="instance"
             onChange={this.onChange}
           />
-          {this.state.checked
-            ? <i className="fa fa-check-square-o" aria-hidden="true" />
-            : <i className="fa fa-square-o" aria-hidden="true" />}
+          {this.state.checked ? (
+            <i className="fa fa-check-square-o" aria-hidden="true" />
+          ) : (
+            <i className="fa fa-square-o" aria-hidden="true" />
+          )}
         </label>
       </div>
     );

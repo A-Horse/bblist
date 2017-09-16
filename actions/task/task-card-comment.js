@@ -1,9 +1,9 @@
 import fetch from 'isomorphic-fetch';
-import {getAuthData} from 'utils/auth';
-import {handleHttpError} from '../../services/handle-error';
-import {createConfigWithAuth} from '../../utils/header';
-import {handleResponse, handleResponseWithoutJson} from '../../utils/http-handle';
-import {makeApiUrl} from '../../utils/api';
+import { getAuthData } from 'utils/auth';
+import { handleHttpError } from '../../services/handle-error';
+import { createConfigWithAuth } from '../../utils/header';
+import { handleResponse, handleResponseWithoutJson } from '../../utils/http-handle';
+import { makeApiUrl } from '../../utils/api';
 
 export const TASKCARDCOMMENT_POST_REQUEST = 'TASKCARDCOMMENT_POST_REQUEST';
 export const TASKCARDCOMMENT_POST_SUCCESS = 'TASKCARDCOMMENT_POST_SUCCESS';

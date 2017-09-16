@@ -1,6 +1,4 @@
-export const CoreConst = {
-  
-};
+export const CoreConst = {};
 
 export const ThemeConst = {
   // color
@@ -50,4 +48,3 @@ export const ThemeConst = {
   lightText: 'white',
   primaryText: '#383838'
 };
-

@@ -50,23 +50,25 @@ class TrackCreater extends Component {
   render() {
     return (
       <div className="tasklist-creater">
-        {this.state.toggle
-          ? <div className="task-list-input">
-              <input
-                type="text"
-                ref="name"
-                placeholder="write track name"
-                onKeyDown={this.onKeyDown}
-              />
-              <Button className="creater-button" styleType="primary" onClick={this.addTrack}>
-                OK
-              </Button>
-              <Button onClick={this.close}>Cancel</Button>
-            </div>
-          : <div onClick={this.toggle} className="task-list--toggle">
-              <IconAdd className="icon-add" />
-              <span>Add a Track...</span>
-            </div>}
+        {this.state.toggle ? (
+          <div className="task-list-input">
+            <input
+              type="text"
+              ref="name"
+              placeholder="write track name"
+              onKeyDown={this.onKeyDown}
+            />
+            <Button className="creater-button" styleType="primary" onClick={this.addTrack}>
+              OK
+            </Button>
+            <Button onClick={this.close}>Cancel</Button>
+          </div>
+        ) : (
+          <div onClick={this.toggle} className="task-list--toggle">
+            <IconAdd className="icon-add" />
+            <span>Add a Track...</span>
+          </div>
+        )}
       </div>
     );
   }

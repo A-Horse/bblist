@@ -1,22 +1,16 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 
 class CountDownTimer extends Component {
   constructor() {
     super();
-    this.state = {residualTimeString: null};
+    this.state = { residualTimeString: null };
   }
 
-  componentWillMount() {
-    
-  }
-  
-  componentDidMount() {
-    
-  }
+  componentWillMount() {}
 
-  componentDidUpdate() {
+  componentDidMount() {}
 
-  }
+  componentDidUpdate() {}
 
   start(endtime) {
     this.endtime = endtime;
@@ -25,20 +19,16 @@ class CountDownTimer extends Component {
     }, 1000);
   }
 
-  pause() {
-    
-  }
+  pause() {}
 
-  resume() {
+  resume() {}
 
-  }
-
-  getTimeRemaining(endtime){
+  getTimeRemaining(endtime) {
     var t = Date.parse(endtime) - Date.parse(new Date());
-    var seconds = Math.floor( (t/1000) % 60 );
-    var minutes = Math.floor( (t/1000/60) % 60 );
-    var hours = Math.floor( (t/(1000*60*60)) % 24 );
-    var days = Math.floor( t/(1000*60*60*24) );
+    var seconds = Math.floor((t / 1000) % 60);
+    var minutes = Math.floor((t / 1000 / 60) % 60);
+    var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
+    var days = Math.floor(t / (1000 * 60 * 60 * 24));
 
     const residual = {
       toal: t,
@@ -48,17 +38,12 @@ class CountDownTimer extends Component {
       seconds: seconds
     };
 
-    return this.setState({residualTimeString: t});
+    return this.setState({ residualTimeString: t });
   }
 
   render() {
-    return (
-      <div>
-        {this.state.residualTimeString}
-      </div>
-    );
+    return <div>{this.state.residualTimeString}</div>;
   }
 }
 
 export default CountDownTimer;
-

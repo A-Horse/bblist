@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 class NotFound extends Component {
   constructor() {
-    super()
+    super();
   }
 
   render() {
@@ -11,14 +11,12 @@ class NotFound extends Component {
       <div>
         <h2>404</h2>
       </div>
-    )
+    );
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-
-  };
+const mapStateToProps = state => {
+  return {};
 };
 
 export default connect(mapStateToProps)(NotFound);

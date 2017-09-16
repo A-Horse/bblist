@@ -6,10 +6,14 @@ class GlobalClick {
       this.bubbleHandles.forEach(handles => handles(event));
       // event.stopPropagation();
     });
-    window.document.body.addEventListener('click', event => {
-      this.captureHandles.forEach(handles => handles(event));
-      // event.stopPropagation();
-    }, true);
+    window.document.body.addEventListener(
+      'click',
+      event => {
+        this.captureHandles.forEach(handles => handles(event));
+        // event.stopPropagation();
+      },
+      true
+    );
   }
 
   addGlobalClickHandle(fn, useCapture = false) {
@@ -18,7 +22,7 @@ class GlobalClick {
     return function() {
       const i = self.handles.indexOf(fn);
       handles.splice(i, 1);
-    }
+    };
   }
 
   addGlobalClickHandleOnce(fn, useCapture = false) {

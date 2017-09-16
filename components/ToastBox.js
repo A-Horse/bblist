@@ -1,23 +1,15 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 class ToastBox extends Component {
+  renderToasts() {}
 
-  renderToasts() {
-    
-  }
-  
   render() {
-    return (
-      <div>
-        
-      </div>
-    );
+    return <div />;
   }
 }
 
-
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     error: state.error.list
   };

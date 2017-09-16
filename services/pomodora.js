@@ -5,21 +5,13 @@ export class Pomodora {
     this.queue = [];
   }
 
-  newTimer(name) {
-    
-  }
-  
-  startTimer() {
-    
-  }
+  newTimer(name) {}
 
-  suspendTimer() {
-    
-  }
+  startTimer() {}
 
-  cancelTimer() {
-    
-  }
+  suspendTimer() {}
+
+  cancelTimer() {}
 }
 
 export default new Pomodora();

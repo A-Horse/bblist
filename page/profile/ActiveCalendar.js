@@ -48,11 +48,7 @@ export class ActiveCalendar extends Component {
       );
       domResult.push(text);
     }
-    return (
-      <div>
-        {domResult}
-      </div>
-    );
+    return <div>{domResult}</div>;
   }
 
   renderWeek(data, wi) {
@@ -61,7 +57,12 @@ export class ActiveCalendar extends Component {
         {data.map((n, di) => {
           const distance = 7 * (52 - wi) - ++di;
           const title =
-            moment().subtract(distance, 'days').format('YYYY-MM-DD') + '  ' + n + ' events';
+            moment()
+              .subtract(distance, 'days')
+              .format('YYYY-MM-DD') +
+            '  ' +
+            n +
+            ' events';
           return <div key={di} className={`ac-day ac-day-${n}`} title={title} />;
         })}
       </div>
@@ -93,9 +94,7 @@ export class ActiveCalendar extends Component {
     return (
       <div className="active-calendar">
         {this.renderMonText()}
-        <div className="ac-year">
-          {weekColumns.map(this.renderWeek)}
-        </div>
+        <div className="ac-year">{weekColumns.map(this.renderWeek)}</div>
         {this.renderLongestStreak(data)}
         {this.renderCurrentStreak(data)}
       </div>

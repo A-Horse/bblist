@@ -37,11 +37,11 @@ export class Select extends Component {
   }
 
   renderItems() {
-    return this.props.items.map(item =>
+    return this.props.items.map(item => (
       <li key={item.value} className="select--item" onClick={() => this.clickItem(item)}>
         {item.name}
       </li>
-    );
+    ));
   }
 
   clickItem(item) {
@@ -53,9 +53,7 @@ export class Select extends Component {
     return (
       <div className="select">
         <div className={this.buildBoxClassName()} onClick={this.openSelect.bind(this)}>
-          <p className="select-box--name">
-            {this.state.name}
-          </p>
+          <p className="select-box--name">{this.state.name}</p>
           <ArrowDown />
         </div>
         <ul className="select--container" style={{ display: this.state.toggle ? 'block' : 'none' }}>

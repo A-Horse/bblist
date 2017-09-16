@@ -8,11 +8,12 @@ export function wrapDispathToAction(actions, mapDispatchToProps) {
       };
       return mapStateToProps;
     }, {});
-    return !!mapDispatchToProps ?
-      {
-        actions: R.merge(mapDispatchToProps(dispatch), wrapedActions)
-      }: {
-        actions: wrapedActions
-      };
+    return !!mapDispatchToProps
+      ? {
+          actions: R.merge(mapDispatchToProps(dispatch), wrapedActions)
+        }
+      : {
+          actions: wrapedActions
+        };
   };
 }

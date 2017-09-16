@@ -14,9 +14,9 @@ export default class TodoList extends Component {
   }
 
   renderList(todos) {
-    return todos.map(todo =>
+    return todos.map(todo => (
       <Todo key={todo.get('id')} todo={todo} actions={this.props.actions} />
-    );
+    ));
   }
 
   render() {
@@ -27,18 +27,15 @@ export default class TodoList extends Component {
         </div>
 
         <div className="todos">
-          <div className="undone">
-            {this.renderList(this.props.unDoneTodos)}
-          </div>
+          <div className="undone">{this.renderList(this.props.unDoneTodos)}</div>
           <div>
             <span onClick={() => this.setState({ toggleAll: !this.state.toggleAll })}>
               {!this.state.toggleAll ? 'show all' : 'hide done'}
             </span>
           </div>
-          {this.state.toggleAll &&
-            <div className="done">
-              {this.renderList(this.props.doneTodos)}
-            </div>}
+          {this.state.toggleAll && (
+            <div className="done">{this.renderList(this.props.doneTodos)}</div>
+          )}
         </div>
       </div>
     );

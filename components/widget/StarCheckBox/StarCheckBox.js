@@ -33,9 +33,11 @@ export class StarCheckBox extends Component {
             ref="instance"
             onChange={this.onChange}
           />
-          {this.state.checked
-            ? <i className="fa fa-star" aria-hidden="true" />
-            : <i className="fa fa-star-o" aria-hidden="true" />}
+          {this.state.checked ? (
+            <i className="fa fa-star" aria-hidden="true" />
+          ) : (
+            <i className="fa fa-star-o" aria-hidden="true" />
+          )}
         </label>
       </div>
     );

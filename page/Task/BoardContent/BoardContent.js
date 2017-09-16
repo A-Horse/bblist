@@ -53,7 +53,7 @@ class BoardContent extends Component {
     return (
       <PageContainer className="board-page-container">
         <div className="board-track-container" style={styles.listContainer}>
-          {trackMap.toArray().map((track, index) =>
+          {trackMap.toArray().map((track, index) => (
             <TaskTrack
               key={track.get('id')}
               ref={trackInstance => {
@@ -86,7 +86,7 @@ class BoardContent extends Component {
               loginedUser={this.props.loginedUser}
               wallId={this.props.board.get('id')}
             />
-          )}
+          ))}
           <TrackCreater
             addTrack={data =>
               this.props.actions.ADD_TASK_TRACK_REQUEST({

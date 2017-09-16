@@ -22,9 +22,7 @@ export class Toast extends Component {
   render() {
     return (
       <Modal className="toast" styles={modalStyles} toggle={this.state.toggle}>
-        <div>
-          {this.children}
-        </div>
+        <div>{this.children}</div>
       </Modal>
     );
   }

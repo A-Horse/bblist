@@ -1,24 +1,19 @@
-import {connect} from 'react-redux';
-import {signUp} from '../actions/signup';
+import { connect } from 'react-redux';
+import { signUp } from '../actions/signup';
 import SignUp from 'page/SignUp';
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
-    signup: (signUpData) => {
+    signup: signUpData => {
       return dispatch(signUp(signUpData));
     }
   };
 };
 
-const mapStateToProps = (state) => {
-  return {
-
-  };
+const mapStateToProps = state => {
+  return {};
 };
 
-const SignUpContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(SignUp);
+const SignUpContainer = connect(mapStateToProps, mapDispatchToProps)(SignUp);
 
 export default SignUpContainer;

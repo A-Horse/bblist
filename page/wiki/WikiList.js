@@ -12,9 +12,7 @@ export default class WikiList extends Component {
       <div>
         {this.props.wikis.map(wiki => {
           <div>
-            <Link to={`/wiki/${wiki.id}`}>
-              {wiki.title}
-            </Link>
+            <Link to={`/wiki/${wiki.id}`}>{wiki.title}</Link>
           </div>;
         })}
       </div>

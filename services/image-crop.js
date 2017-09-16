@@ -25,8 +25,18 @@ function getImagePortion(imgObj, newWidth, newHeight, startX, startY, ratio) {
   bufferCanvas.width = imgObj.width;
   bufferCanvas.height = imgObj.height;
   bufferContext.drawImage(imgObj, 0, 0);
-  
+
   /* now we use the drawImage method to take the pixels from our bufferCanvas and draw them into our thumbnail canvas */
-  tnCanvasContext.drawImage(bufferCanvas, startX,startY,newWidth * ratio, newHeight * ratio,0,0,newWidth,newHeight);
+  tnCanvasContext.drawImage(
+    bufferCanvas,
+    startX,
+    startY,
+    newWidth * ratio,
+    newHeight * ratio,
+    0,
+    0,
+    newWidth,
+    newHeight
+  );
   return tnCanvas.toDataURL();
 }

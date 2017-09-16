@@ -15,20 +15,20 @@ class Month extends Component {
   onSelect() {}
 
   renderWeekText() {
-    const { firstDayOfweekOffset = 0 } = this.props;
+    // const { firstDayOfweekOffset = 0 } = this.props;
     return (
       <tr className="week-text">
-        {weekDayName.map(name =>
+        {weekDayName.map(name => (
           <td className="week-day-name" key={name}>
             {name}
           </td>
-        )}
+        ))}
       </tr>
     );
   }
 
   renderWeeks() {
-    const { year, month, day } = this.props;
+    const { year, month /* day*/ } = this.props;
     const { selectedDate } = this.props;
     const monthDays = daysInMonth(month, year);
     const lastMonthDays = daysInMonth(month - 1, year);

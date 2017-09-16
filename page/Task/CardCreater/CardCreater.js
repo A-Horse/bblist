@@ -56,9 +56,7 @@ class CardCreater extends Component {
           </div>
           <div className="taskcard-creater--user">
             <UserAvatar user={this.props.loginedUser.toJS()} />
-            <span>
-              {this.props.loginedUser.get('username')}
-            </span>
+            <span>{this.props.loginedUser.get('username')}</span>
           </div>
           <Hr />
           <div className="taskcard-creater--participants">

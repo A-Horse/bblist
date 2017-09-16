@@ -1,9 +1,8 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 
 import 'style/component/nothing.scss';
 
 export class Nothing extends Component {
-
   render() {
     return (
       <div className="nothing">

@@ -5,9 +5,7 @@ const SVG = {
   black: 'ic_settings_black_24px.svg'
 };
 
-const IMAGE = {
-  
-};
+const IMAGE = {};
 
 const ASSETS = {
   svg: SVG,
@@ -19,9 +17,7 @@ const ASSETS_DIR_MAP = {
 };
 
 export function getAssets(type, name) {
-  return BASE_STATIC_PATH + ASSETS_DIR_MAP[type]+ ASSETS[type][name];
+  return BASE_STATIC_PATH + ASSETS_DIR_MAP[type] + ASSETS[type][name];
 }
 
-export function getAssetsPath(type) {
-  
-}
+export function getAssetsPath(type) {}

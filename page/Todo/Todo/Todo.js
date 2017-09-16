@@ -133,12 +133,11 @@ class Todo extends Component {
             >
               {todo.get('content')}
               {todo.get('deadline') &&
-                !this.state.editToggle &&
-                <div className="todo-deadline-label">
-                  <span>
-                    {new moment(todo.get('deadline')).format('MM-DD')}
-                  </span>
-                </div>}
+                !this.state.editToggle && (
+                  <div className="todo-deadline-label">
+                    <span>{new moment(todo.get('deadline')).format('MM-DD')}</span>
+                  </div>
+                )}
             </div>
             <Textarea
               ref="content"
@@ -152,12 +151,13 @@ class Todo extends Component {
               <ConfirmModalButton onConfirm={this.removeTodo}>
                 <i className="fa fa-trash" aria-hidden="true" />
               </ConfirmModalButton>
-              {!!todo.get('repeat') &&
+              {!!todo.get('repeat') && (
                 <i
                   className="fa fa-bar-chart"
                   onClick={this.onRepeatHistoryModal}
                   aria-hidden="true"
-                />}
+                />
+              )}
               <StarCheckBox
                 defaultChecked={todo.get('isStar')}
                 onChange={checked => {
@@ -167,7 +167,7 @@ class Todo extends Component {
             </div>
           </div>
 
-          {this.state.editToggle &&
+          {this.state.editToggle && (
             <div
               className="todo-editing--meta"
               style={{ display: this.state.editToggle ? 'block' : 'none' }}
@@ -195,7 +195,8 @@ class Todo extends Component {
                   onSelect={repeat => this.updateTodo({ repeat: repeat.value })}
                 />
               </div>
-            </div>}
+            </div>
+          )}
         </div>
       </ClickOutSide>
     );

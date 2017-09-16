@@ -11,9 +11,7 @@ const mapDispatchToProps = dispatch => {
       return dispatch(uploadFile(`/task-board/${id}/cover`, data));
     },
     deleteBoard(id) {
-      return dispatch(deleteTaskBoard(id)).then(() =>
-        browserHistory.push('/task-wall')
-      );
+      return dispatch(deleteTaskBoard(id)).then(() => browserHistory.push('/task-wall'));
     }
   };
 };
@@ -24,8 +22,6 @@ const mapStateToProps = state => {
   };
 };
 
-const BoardSettingContainer = connect(mapStateToProps, mapDispatchToProps)(
-  BoardSetting
-);
+const BoardSettingContainer = connect(mapStateToProps, mapDispatchToProps)(BoardSetting);
 
 export default BoardSettingContainer;

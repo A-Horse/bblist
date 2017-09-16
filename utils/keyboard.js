@@ -1,4 +1,3 @@
-
 const KEYBOARD_ENTER_CODE = 13;
 
 export function isEnterKey(event) {

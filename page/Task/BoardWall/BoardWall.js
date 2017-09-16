@@ -41,9 +41,7 @@ class BoardWall extends Component {
                       to={`/task-board/${board.get('id')}`}
                     >
                       <div className="taskboard-card-info">
-                        <div className="taskboard-card-info--name">
-                          {board.get('name')}
-                        </div>
+                        <div className="taskboard-card-info--name">{board.get('name')}</div>
                       </div>
                     </Link>
                   );

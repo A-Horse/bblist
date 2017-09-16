@@ -63,7 +63,7 @@ class Board extends Component {
         <Route
           exact
           path=""
-          render={() =>
+          render={() => (
             <BoardContent
               history={this.props.history}
               actions={this.props.actions}
@@ -71,7 +71,8 @@ class Board extends Component {
               cardMap={this.props.cardMap}
               trackMap={this.props.trackMap}
               loginedUser={this.props.loginedUser}
-            />}
+            />
+          )}
         />
       </div>
     );

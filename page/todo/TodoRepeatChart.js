@@ -34,19 +34,19 @@ export default class CardRepeatHistoryModal extends Component {
           <tbody>
             <tr>
               <th key="text">Status</th>
-              {this.props.repeatHistory.map(history =>
-                <th key={history.id}>
-                  {history.isDone ? <IconRight /> : <IconDelete />}
-                </th>
-              )}
+              {this.props.repeatHistory.map(history => (
+                <th key={history.id}>{history.isDone ? <IconRight /> : <IconDelete />}</th>
+              ))}
             </tr>
             <tr>
               <th key="text">Dealine</th>
-              {this.props.repeatHistory.map(history =>
+              {this.props.repeatHistory.map(history => (
                 <th key={history.id}>
-                  {moment(history.created_at).subtract(1, 'days').format('MM-DD')}
+                  {moment(history.created_at)
+                    .subtract(1, 'days')
+                    .format('MM-DD')}
                 </th>
-              )}
+              ))}
             </tr>
           </tbody>
         </table>
@@ -69,12 +69,14 @@ export default class CardRepeatHistoryModal extends Component {
           </button>
         </div>
 
-        {this.props.repeatHistory.length
-          ? this.renderHistoryTable()
-          : <div className="todo-repeat-chart-modal--empty">
-              <Empty />
-              <div className="empty--text">There have not repeat history now.</div>
-            </div>}
+        {this.props.repeatHistory.length ? (
+          this.renderHistoryTable()
+        ) : (
+          <div className="todo-repeat-chart-modal--empty">
+            <Empty />
+            <div className="empty--text">There have not repeat history now.</div>
+          </div>
+        )}
         <div />
       </Modal>
     );

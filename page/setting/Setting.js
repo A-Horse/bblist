@@ -32,13 +32,9 @@ export default class Setting extends Component {
   render() {
     return (
       <section className="setting-page">
-        <div className="setting-side-bar">
-          {this.renderSideBar()}
-        </div>
+        <div className="setting-side-bar">{this.renderSideBar()}</div>
 
-        <div className="setting-panel">
-          {this.props.children}
-        </div>
+        <div className="setting-panel">{this.props.children}</div>
       </section>
     );
   }

@@ -10,21 +10,16 @@ const actions = {
   }
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
     actions: bindActionCreators(actions, dispatch)
   };
 };
 
-const mapStateToProps = (state) => {
-  return {
-
-  };
+const mapStateToProps = state => {
+  return {};
 };
 
-const SecurityContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Security);
+const SecurityContainer = connect(mapStateToProps, mapDispatchToProps)(Security);
 
 export default SecurityContainer;

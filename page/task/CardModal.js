@@ -64,9 +64,7 @@ class CardModal extends Component {
         return (
           <li key={comment.id} className="comment-item">
             <UserAvatar user={comment.creater} />
-            <span className="comment-item--content">
-              {comment.content}
-            </span>
+            <span className="comment-item--content">{comment.content}</span>
             <span className="comment-item--date">
               {moment(comment.updated_at ? comment.updated_at : comment.created_at).format(
                 'MMMM Do YYYY, h:mm:ss a'
@@ -77,9 +75,7 @@ class CardModal extends Component {
       });
       return (
         <div className="taskcard-modal--comments">
-          <ul>
-            {comments}
-          </ul>
+          <ul>{comments}</ul>
         </div>
       );
     }

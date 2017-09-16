@@ -1,3 +1,1 @@
-export function startSetup() {
-  
-}
+export function startSetup() {}

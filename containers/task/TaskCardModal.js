@@ -16,9 +16,8 @@ const mapStateToProps = (state, props) => {
   };
 };
 
-const TaskCardModalContainer = connect(
-  mapStateToProps,
-  wrapDispathToAction(actions)
-)(TaskCardModal);
+const TaskCardModalContainer = connect(mapStateToProps, wrapDispathToAction(actions))(
+  TaskCardModal
+);
 
 export default TaskCardModalContainer;

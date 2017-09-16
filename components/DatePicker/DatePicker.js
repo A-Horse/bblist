@@ -114,12 +114,13 @@ class DatePicker extends Component {
       : this.props.placeholder ? this.props.placeholder : '';
     return (
       <div className={this.buildClassName()} ref="main">
-        {!this.props.hideIcon &&
+        {!this.props.hideIcon && (
           <i
             className="fa fa-calendar-check-o date-picker--icon"
             aria-hidden="true"
             onClick={this.toggle}
-          />}
+          />
+        )}
 
         <span
           className={`date-picker--text${!this.state.value && this.props.placeholder
@@ -130,8 +131,9 @@ class DatePicker extends Component {
           {dateString}
         </span>
 
-        {this.state.value &&
-          <i className="fa fa-times-circle icon-remove" onClick={this.clear} aria-hidden="true" />}
+        {this.state.value && (
+          <i className="fa fa-times-circle icon-remove" onClick={this.clear} aria-hidden="true" />
+        )}
 
         <Modal className="date-picker-modal" toggle={this.state.toggle} close={this.close}>
           <Calendar

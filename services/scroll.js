@@ -1,5 +1,3 @@
-
-
 export function getWindowScrollPosition() {
-  return {x: window.scrollX, y: window.scrollY};
+  return { x: window.scrollX, y: window.scrollY };
 }

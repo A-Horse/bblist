@@ -30,7 +30,7 @@ function signUpError(message) {
   };
 }
 
-export function signUp(userInfo){
+export function signUp(userInfo) {
   const config = createConfig('POST', userInfo);
   return dispatch => {
     dispatch(requestSignUp(userInfo));
@@ -38,6 +38,7 @@ export function signUp(userInfo){
       .then(response => {
         localStorage.setItem('jwts-token', response.headers.get('jwts-token'));
         return receiveSignUp(response.json());
-      }).catch(handleHttpError);
+      })
+      .catch(handleHttpError);
   };
 }

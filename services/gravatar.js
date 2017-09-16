@@ -1,5 +1,5 @@
 import md5 from 'blueimp-md5';
-import {Storage} from './storage';
+import { Storage } from './storage';
 
 const gravatarUrlBase = 'https://www.gravatar.com/avatar/';
 

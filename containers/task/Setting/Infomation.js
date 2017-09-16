@@ -1,11 +1,10 @@
-import {connect} from 'react-redux';
-import {uploadFile} from 'actions/common/file';
-import {deleteTaskBoard, requestRenameTaskBoard} from 'actions/task/task-wall';
+import { connect } from 'react-redux';
+import { uploadFile } from 'actions/common/file';
+import { deleteTaskBoard, requestRenameTaskBoard } from 'actions/task/task-wall';
 import Infomation from 'page/task/Setting/Infomation';
-import {browserHistory, hashHistory} from 'react-router';
-import {createSelector} from 'reselect';
+import { browserHistory, hashHistory } from 'react-router';
+import { createSelector } from 'reselect';
 import R from 'ramda';
-
 
 const mapDispatchToProps = (dispatch, props) => {
   // TODO props
@@ -21,13 +20,13 @@ const mapDispatchToProps = (dispatch, props) => {
 
 const mapStateToProps = (state, props) => {
   return {
-    board: createSelector([(state, props) => state.task.board.entities[props.params.id]], R.identity)(state, props)
+    board: createSelector(
+      [(state, props) => state.task.board.entities[props.params.id]],
+      R.identity
+    )(state, props)
   };
 };
 
-const InfomationContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Infomation);
+const InfomationContainer = connect(mapStateToProps, mapDispatchToProps)(Infomation);
 
 export default InfomationContainer;

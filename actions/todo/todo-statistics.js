@@ -11,7 +11,7 @@ export const UNACTIVE_TD_REPEAT_HISTORY = 'UNACTIVE_TD_REPEAT_HISTORY';
 export function activeTdRepeatHistory(tdId) {
   return {
     type: ACTIVE_TD_REPEAT_HISTORY,
-    playload: {tdId}
+    playload: { tdId }
   };
 }
 
@@ -52,12 +52,10 @@ export function getTodoRepeatHistory(todoId) {
     dispatch(tdRepeatHistoryRequest());
     return fetch(makeApiUrl(`/ts/todo/${todoId}/history?limit=7`), config)
       .then(handleResponse)
-      .then((resp) => dispatch(tdRepeatHistorySuccess(resp)))
-      .catch((error) => dispatch(tdRepeatHistoryFailure(error)));
+      .then(resp => dispatch(tdRepeatHistorySuccess(resp)))
+      .catch(error => dispatch(tdRepeatHistoryFailure(error)));
   };
 }
-
-
 
 export const TD_REPEAT_HISTORY_YESTORY_UPDATE_SUCCESS = 'TD_REPEAT_HISTORY_YESTORY_UPDATE_SUCCESS';
 export const TD_REPEAT_HISTORY_YESTORY_UPDATE_FAILURE = 'TD_REPEAT_HISTORY_YESTORY_UPDATE_FAILURE';
@@ -82,7 +80,7 @@ export function tdRepeatHistoryYestoryUpdate(todoId, data) {
   return dispatch => {
     return fetch(makeApiUrl(`/ts/todo/${todoId}/history`), data, config)
       .then(handleResponseWithoutJson)
-      .then((resp) => dispatch(tdRepeatHistorySuccess(resp)))
-      .catch((error) => dispatch(tdRepeatHistoryFailure(error)));
+      .then(resp => dispatch(tdRepeatHistorySuccess(resp)))
+      .catch(error => dispatch(tdRepeatHistoryFailure(error)));
   };
 }

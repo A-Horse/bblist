@@ -1,10 +1,10 @@
 import fetch from 'isomorphic-fetch';
-import {handleHttpError} from 'services/handle-error';
-import {createConfigWithAuth, createConfig, createFormDataConfigWithAuth} from 'utils/header';
-import {handleResponse, handleResponseWithoutJson} from 'utils/http-handle';
-import {Storage} from 'services/storage';
-import {getJWT} from 'utils/auth';
-import {makeApiUrl} from 'utils/api';
+import { handleHttpError } from 'services/handle-error';
+import { createConfigWithAuth, createConfig, createFormDataConfigWithAuth } from 'utils/header';
+import { handleResponse, handleResponseWithoutJson } from 'utils/http-handle';
+import { Storage } from 'services/storage';
+import { getJWT } from 'utils/auth';
+import { makeApiUrl } from 'utils/api';
 
 export const UPLOAD_FILE_REQUEST = 'UPLOAD_FILE_REQUEST';
 export const UPLOAD_FILE_SUCCESS = 'UPLOAD_FILE_SUCCESS';

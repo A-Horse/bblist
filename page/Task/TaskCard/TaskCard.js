@@ -149,9 +149,7 @@ class Card extends Component {
           defaultChecked={card.get('isDone')}
           onChange={checked => this.updateCard({ isDone: checked })}
         />
-        <p className="task-card--title">
-          {card.get('title')}
-        </p>
+        <p className="task-card--title">{card.get('title')}</p>
         <UserAvatar user={card.get('creater').toJS()} />
       </div>
     );

@@ -16,11 +16,7 @@ class Week extends Component {
   }
 
   render() {
-    return (
-      <tr>
-        {this.renderDays()}
-      </tr>
-    );
+    return <tr>{this.renderDays()}</tr>;
   }
 }
 

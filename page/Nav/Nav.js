@@ -63,9 +63,7 @@ class Nav extends Component {
     return (
       <nav className="nav">
         <LogoBan white={true} />
-        <div className="nav-link-area">
-          {this.renderLinks()}
-        </div>
+        <div className="nav-link-area">{this.renderLinks()}</div>
         {this.renderNavUser()}
       </nav>
     );
@@ -83,9 +81,7 @@ class Nav extends Component {
           this.state.dropDownToggle && this.setState({ dropDownToggle: false });
         }}
       >
-        <span>
-          {userName}
-        </span>
+        <span>{userName}</span>
         {this.renderAvatar()}
         <DropList toggle={this.state.dropDownToggle}>
           <ul>
@@ -110,20 +106,22 @@ class Nav extends Component {
   renderAvatar() {
     const { user } = this.props;
     const avatarData = Storage.get('avator');
-    return !!avatarData
-      ? <img
-          ref="avator"
-          className="nav-avatar"
-          src={`data:image/png;base64,${avatarData}`}
-          onClick={() => this.setState({ dropDownToggle: !this.state.dropDownToggle })}
-        />
-      : <img
-          ref="avator"
-          className="nav-avatar"
-          crossOrigin="Anonymous"
-          src={makeGravatarUrl(user.get('email'))}
-          onClick={() => this.setState({ dropDownToggle: !this.state.dropDownToggle })}
-        />;
+    return !!avatarData ? (
+      <img
+        ref="avator"
+        className="nav-avatar"
+        src={`data:image/png;base64,${avatarData}`}
+        onClick={() => this.setState({ dropDownToggle: !this.state.dropDownToggle })}
+      />
+    ) : (
+      <img
+        ref="avator"
+        className="nav-avatar"
+        crossOrigin="Anonymous"
+        src={makeGravatarUrl(user.get('email'))}
+        onClick={() => this.setState({ dropDownToggle: !this.state.dropDownToggle })}
+      />
+    );
   }
 }
 

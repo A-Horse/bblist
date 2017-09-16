@@ -1,6 +1,5 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import 'style/page/todo/pomodora-dial.scss';
 
@@ -10,28 +9,18 @@ class PomodoraDial extends Component {
   }
 
   componentWillMount() {
-    this.state = {
-
-    };
+    this.state = {};
   }
 
-  onClick() {
-
-  }
+  onClick() {}
 
   render() {
-    return (
-      <div className='pomodora-dial'>
-
-      </div>
-    );
+    return <div className="pomodora-dial" />;
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-
-  };
+const mapStateToProps = state => {
+  return {};
 };
 
 export default connect(mapStateToProps)(PomodoraDial);

@@ -59,13 +59,9 @@ export class BoardSetting extends Component {
   render() {
     return (
       <section className="board-setting-page">
-        <div className="board-setting-side-bar">
-          {this.renderSideBarItems()}
-        </div>
+        <div className="board-setting-side-bar">{this.renderSideBarItems()}</div>
 
-        <div className="board-setting-panel">
-          {this.props.children}
-        </div>
+        <div className="board-setting-panel">{this.props.children}</div>
       </section>
     );
   }
