@@ -6,9 +6,15 @@ import history from './services/history';
 import 'style/normalize.css';
 import 'style/app.scss';
 
+import Bundle from 'components/Bundle';
 import App from 'page/App.container';
 import SignUp from 'containers/SignUp';
-import SignIn from './page/SignIn/SignIn.container';
+
+const SignIn = props => (
+  <Bundle load={require('bundle-loader?lazy&name=todo-page!./page/SignIn/SignIn.container')}>
+    {B => <B {...props} />}
+  </Bundle>
+);
 
 export const Application = () => (
   <ConnectedRouter history={history}>

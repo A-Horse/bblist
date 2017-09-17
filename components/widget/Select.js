@@ -4,19 +4,16 @@ import { ArrowDown } from 'services/svg-icons';
 import 'style/component/widget/select.scss';
 
 export class Select extends Component {
-  defaultProps: {
+  static defaultProps = {
     items: PropTypes.array.isRequired,
     value: PropTypes.isRequired
   };
 
-  constructor() {
-    super();
-    this.state = {
-      toggle: false,
-      value: null,
-      name: 'please select'
-    };
-  }
+  state = {
+    toggle: false,
+    value: null,
+    name: 'please select'
+  };
 
   componentDidMount() {
     this.props.defaultItem && this.setState(this.props.defaultItem);

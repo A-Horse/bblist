@@ -1,10 +1,6 @@
 node_modules/
 .tern-port
 .DS_Store
-GPATH
-GRTAGS
-GSYMS
-GTAGS
 tags
 dist
 /yarn.lock

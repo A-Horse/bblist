@@ -2,8 +2,9 @@
 .*/node_modules/*.
 
 [include]
-.*/page/.*
-.*/components/.*
+.*/page/**/*.js
+.*/components/**/*.js
+.*/services/**/*.js
 
 [libs]
 

@@ -9,11 +9,11 @@ import './Modal.scss';
 
 export class Modal extends Component {
   // https://github.com/reactjs/react-modal/blob/master/lib/components/Modal.js
-  static propTypes: {
+  static propTypes = {
     toggle: PropTypes.bool.isRequired
   };
 
-  static defaultProps: {
+  static defaultProps = {
     toggle: false,
     ariaHideApp: true,
     closeTimeoutMS: 0,

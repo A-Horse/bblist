@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 import { validateFormValue } from 'services/validate-strategy';
 import { Button } from 'components/widget/Button/Button';
 import { Input } from 'components/widget/Input/Input';
@@ -8,7 +7,6 @@ import { ErrorMsg } from 'components/ErrorMsg';
 import { PageContainer } from '../../components/widget/PageContainer';
 import { Link } from 'react-router-dom';
 import { updateTitle } from 'services/title';
-import { Redirect } from 'react-router';
 
 import R from 'ramda';
 

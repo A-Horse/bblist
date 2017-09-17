@@ -1,4 +1,5 @@
-export function updateTitle(title) {
+// @flow
+export function updateTitle(title: string) {
   window.document.title = `Octopus - ${title}`;
 }
 

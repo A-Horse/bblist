@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import 'style/component/widget/page-container.scss';
 
 export class PageContainer extends Component {
-  propTypes: {
-    children: PropTypes.isRequired
+  static propTypes = {
+    children: PropTypes.any.isRequired
   };
 
   buildClassName() {

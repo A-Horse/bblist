@@ -3,7 +3,8 @@
   "plugins": [
     "react",
     "prettier",
-    "jest"
+    "jest",
+    "flowtype"
   ],
   "parserOptions": {
     "ecmaVersion": 6,
@@ -13,6 +14,7 @@
     // "eslint:recommended",
     // "plugin:react/recommended",
     "plugin:jest/recommended"
+    // "plugin:flowtype/recommended"
   ],
   "env": {
     "es6": true,
