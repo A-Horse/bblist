@@ -29,7 +29,11 @@ export default class TodoList extends Component {
         <div className="todos">
           <div className="undone">{this.renderList(this.props.unDoneTodos)}</div>
           <div>
-            <span onClick={() => this.setState({ toggleAll: !this.state.toggleAll })}>
+            <span
+              className="remain-todo-toggle"
+              onClick={() => this.setState({ toggleAll: !this.state.toggleAll })}
+            >
+              <i className="fa fa-check-circle" aria-hidden="true" />
               {!this.state.toggleAll ? 'show all' : 'hide done'}
             </span>
           </div>

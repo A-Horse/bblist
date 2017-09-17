@@ -14,9 +14,7 @@ import 'style/page/signin.scss';
 
 // TODO 登出 ，登陆成功后清空缓存
 class SignIn extends Component {
-  componentWillMount() {
-    this.state = { errorMessages: {} };
-  }
+  state = { errorMessages: {} };
 
   componentDidMount() {
     updateTitle('Sign In');
@@ -30,8 +28,6 @@ class SignIn extends Component {
   }
 
   render() {
-    // TODO experience button event.preventDefault 会阻止 html5 的校验
-
     return (
       <PageContainer className="signin-page">
         <div className="signin-main">
