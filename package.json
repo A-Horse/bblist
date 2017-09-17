@@ -6,7 +6,8 @@
   "scripts": {
     "build": "NODE_ENV=production webpack --config ./delopy/webpack.prod.js --progress --profile",
     "start": "NODE_ENV=development webpack-dev-server --config ./delopy/webpack.dev.js --history-api-fallback --progress --profile --watch --hot --host 0.0.0.0",
-    "analyze": "webpack --config ./delopy/webpack.prod.js --json | webpack-bundle-size-analyzer"
+    "analyze": "webpack --config ./delopy/webpack.prod.js --json | webpack-bundle-size-analyzer",
+    "proxy-built": "node delopy/proxy.js"
   },
   "repository": {
     "type": "git",
@@ -52,6 +53,7 @@
     "babel-preset-stage-2": "^6.24.1",
     "babel-runtime": "^6.22.0",
     "blueimp-md5": "^2.3.0",
+    "bundle-loader": "^0.5.5",
     "clean-webpack-plugin": "^0.1.16",
     "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.23.1",

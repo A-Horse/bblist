@@ -13,7 +13,8 @@ module.exports = Merge(CommonConfig, {
     hints: 'warning'
   },
   output: {
-    filename: '[name].[chunkhash].bundle.js'
+    filename: '[name].[chunkhash].bundle.js',
+    chunkFilename: '[name]-[id].[chunkhash].js'
   },
   plugins: [
     new webpack.HashedModuleIdsPlugin(),

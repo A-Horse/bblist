@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
-
 import Nav from './Nav/Nav';
 import Loading from 'components/Loading';
+import Bundle from 'components/Bundle';
 
 import { Route, Switch, Redirect } from 'react-router';
 
 import NotFound from 'page/NotFound';
 import DashBoard from 'page/DashBoard';
-import IndexPage from 'page/IndexPage';
-
-import TodoPage from 'page/Todo/TodoPage.container';
 
 import TaskBoardWall from './Task/BoardWall/BoardWall.container';
 import TaskBoard from 'page/Task/Board/Board.container';
@@ -31,7 +28,12 @@ import SettingProfile from 'containers/setting/Profile';
 import Ideas from 'containers/idea/Ideas';
 
 import Building from 'page/Building';
-import { checkLogin } from 'utils/auth';
+
+const TodoPage = props => (
+  <Bundle load={require('bundle-loader?lazy&name=todo-page!./Todo/TodoPage.container')}>
+    {B => <B {...props} />}
+  </Bundle>
+);
 
 export default class App extends Component {
   constructor(props) {
@@ -61,9 +63,9 @@ export default class App extends Component {
           <Route exact path="/task-board" component={TaskBoardWall} />
           <Route path="/task-board/:boardId" component={TaskBoard} />
           {/* <Route path="/task-wall/" component={Board}>
-              <Route path="/task-wall/:id" component={BoardContent}>
-              <Route path="/task-wall/:id/:cardId" component={TaskCardModal} />
-              </Route>
+               <Route path="/task-wall/:id" component={BoardContent}>
+               <Route path="/task-wall/:id/:cardId" component={TaskCardModal} />
+               </Route>
 
               <Route path="/task-wall/:id/setting" component={BoardSetting}>
               <Route exact path="/" render={() => <Redirect to="/infomation" />} />
