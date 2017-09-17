@@ -41,7 +41,6 @@ export class ConfrimModalButton extends Component {
   }
 
   onKeyDown(event) {
-    console.log(event);
     if (isEnterKey(event)) {
       this.onConfirm();
     }

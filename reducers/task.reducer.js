@@ -13,7 +13,6 @@ export function task2(
   }),
   action
 ) {
-  console.log(action);
   switch (action.type) {
     case Actions.GET_TASK_BOARD.REQUEST:
       return state.update('board', () => null);

@@ -1,6 +1,4 @@
 export function getImageBase64(img) {
-  console.log(img);
-
   const canvas = document.createElement('canvas');
   canvas.width = img.width;
   canvas.height = img.height;

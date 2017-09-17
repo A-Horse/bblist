@@ -3,7 +3,6 @@ import { CheckBox } from 'components/widget/CheckBox/CheckBox';
 import { StarCheckBox } from 'components/widget/StarCheckBox/StarCheckBox';
 import DatePicker from 'components/DatePicker/DatePicker';
 import Textarea from 'react-textarea-autosize';
-import { Button } from 'components/widget/Button/Button';
 import ClickOutSide from 'components/utils/ClickOutSide';
 import { timeout } from 'utils/timeout';
 import moment from 'moment';

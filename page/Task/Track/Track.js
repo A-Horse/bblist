@@ -2,16 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import R from 'ramda';
 import Input from '../../../components/widget/Input/Input';
-import { MoreIcon, AddIcon } from 'services/svg-icons';
 import TaskCard from '../TaskCard/TaskCard';
 import TaskCardCreater from '../CardCreater/CardCreater';
-import { deleteTaskList } from 'actions/task/task-list';
 import { DropList } from 'components/widget/DropList/DropList';
 import ClickOutSide from 'components/utils/ClickOutSide';
 
 import { isEnterKey } from 'utils/keyboard';
-
-import GlobalClick from 'services/global-click';
 import BoardCradDragHelper from 'services/board-card-drag-helper';
 
 // import 'style/page/task/task-list.scss';
@@ -43,13 +39,9 @@ export class Track extends Component {
   componentDidMount() {
     if (!relativeOffsetBody) {
       relativeOffsetBody = true;
-      relativeOffsetBody =
-        getOffsetHeight(this.refs.main, 'body') + +styleVariables.topBarHeight.replace('px', '');
+      /* relativeOffsetBody =
+       *   getOffsetHeight(this.refs.main, 'body') + +styleVariables.topBarHeight.replace('px', '');*/
     }
-  }
-
-  componentDidUpdate() {
-    const { cardIds } = this.props;
   }
 
   getTrackIdIndex() {
@@ -273,9 +265,9 @@ export class Track extends Component {
     }
   }
 
-  requestMoveCardToThisList(card) {
-    const thisListId = this.props.listId;
-    return updateTaskCard(card.id, { listId: thisListId });
+  requestMoveCardToThisList(/* card*/) {
+    // const thisListId = this.props.listId;
+    // return updateTaskCard(card.id, { listId: thisListId });
   }
 
   addTaskCard(data) {
@@ -289,7 +281,6 @@ export class Track extends Component {
   render() {
     const { track, cards } = this.props;
     const { listName } = this.props;
-    console.log(track);
 
     return (
       <div

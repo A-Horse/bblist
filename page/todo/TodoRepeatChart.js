@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import R from 'ramda';
 import moment from 'moment';
 import { Modal } from 'components/widget/Modal/Modal';
 import { Button } from 'components/widget/Button/Button';

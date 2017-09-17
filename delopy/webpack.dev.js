@@ -6,6 +6,7 @@ module.exports = Merge(CommonConfig, {
   bail: true,
   cache: true,
   recordsPath: path.join(__dirname, 'records.json'),
+  devtool: 'source-map',
   devServer: {
     // clientLogLevel: 'none',
     port: 9000,

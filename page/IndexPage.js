@@ -4,7 +4,6 @@ import { PageContainer } from 'components/widget/PageContainer';
 import { SeaWaves } from 'effect/SeaWaves';
 import { Button } from '../components/widget/Button/Button';
 import { Link } from 'react-router-dom';
-import { BrowserRouter } from 'react-router-dom';
 import { isLogin } from 'services/login';
 import { LogoBan } from 'components/commons/LogoBan';
 import { isEnterKey } from 'utils/keyboard';
@@ -45,27 +44,13 @@ class IndexPage extends Component {
     return (
       <div className="sign-bar">
         <Link to="/signin">
-          <Button
-            className="signin-button"
-            styleType="primary"
-            size="middle"
-            onClick={() => {
-              browserHistory.push('/signin');
-            }}
-          >
+          <Button className="signin-button" styleType="primary" size="middle">
             Sign In
           </Button>
         </Link>
 
         <Link to="/signup">
-          <Button
-            className="signup-button"
-            styleType="default"
-            size="middle"
-            onClick={() => {
-              browserHistory.push('/signup');
-            }}
-          >
+          <Button className="signup-button" styleType="default" size="middle">
             Sign Up
           </Button>
         </Link>
@@ -109,7 +94,7 @@ class IndexPage extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = () => {
   return {};
 };
 

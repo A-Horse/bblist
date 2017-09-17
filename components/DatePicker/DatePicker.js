@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Modal } from 'components/widget/Modal/Modal';
 import Calendar from './Calendar';
 import moment from 'moment';
-import { IconRemove } from 'services/image-icon';
 
 import './DatePicker.scss';
 

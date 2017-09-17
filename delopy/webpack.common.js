@@ -8,24 +8,20 @@ module.exports = {
     extensions: ['.js', '.jsx', '.scss', '.css'],
     modules: [path.resolve('.'), 'node_modules']
   },
-  devtool: 'source-map',
   entry: {
-    app: ['babel-polyfill', 'react-hot-loader/patch', './index'],
-    vendor: [
+    main: ['babel-polyfill', 'react-hot-loader/patch', './index'],
+    react: [
       'react',
       'react-dom',
-      'react-redux',
       'react-router',
       'react-router-dom',
+      'react-dom-factories',
+      'react-redux',
       'react-router-redux',
       'redux-observable',
-      'rxjs',
-      'redux',
-      'isomorphic-fetch',
-      'moment',
-      'normalizr',
-      'ramda'
-    ]
+      'redux'
+    ],
+    miscellaneous: ['isomorphic-fetch', 'moment', 'normalizr', 'ramda', 'immutable']
   },
   output: {
     filename: '[name].bundle.js',
@@ -49,10 +45,7 @@ module.exports = {
       disable: process.env.NODE_ENV !== 'production'
     }),
     new webpack.optimize.CommonsChunkPlugin({
-      names: ['vendor', 'manifest']
-    }),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'runtime'
+      names: ['react', 'miscellaneous']
     })
   ],
   module: {
@@ -75,7 +68,10 @@ module.exports = {
               loader: 'css-loader'
             },
             {
-              loader: 'sass-loader'
+              loader: 'sass-loader',
+              options: {
+                workerParallelJobs: 2
+              }
             },
             {
               loader: 'autoprefixer-loader'

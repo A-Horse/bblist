@@ -4,15 +4,9 @@ import { browserHistory } from 'react-router';
 import R from 'ramda';
 import moment from 'moment';
 
-import {
-  deleteTaskCard,
-  updateTaskCard,
-  unactiveCardModal,
-  getCardDetail
-} from 'actions/task/task-card';
-import { getTaskAllCards } from 'actions/task/task-wall';
+import { deleteTaskCard, updateTaskCard, getCardDetail } from 'actions/task/task-card';
 import { createTaskCardComment } from 'actions/task/task-card-comment';
-import { CloseIcon, CommentIcon } from 'services/svg-icons';
+import { CloseIcon } from 'services/svg-icons';
 import UserAvatar from 'components/UserAvatar';
 import { Modal } from 'components/widget/Modal/Modal';
 import { CheckBox } from 'components/widget/CheckBox/CheckBox';
@@ -20,7 +14,6 @@ import { Pomodoro } from 'components/Pomodoro';
 import Textarea from 'react-textarea-autosize';
 import { Hr } from 'components/widget/Hr';
 import { Select } from 'components/widget/Select';
-import { Button } from 'components/widget/Button/Button';
 import { isEnterKey } from 'utils/keyboard';
 import { wrapDispathToAction } from 'utils/wrap-props';
 

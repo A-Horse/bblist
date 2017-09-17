@@ -4,13 +4,13 @@ const Merge = require('webpack-merge');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const MinifyPlugin = require('babel-minify-webpack-plugin');
+const VisualizerPlugin = require('webpack-visualizer-plugin');
 
 const CommonConfig = require('./webpack.common.js');
 
 module.exports = Merge(CommonConfig, {
   performance: {
-    hints: 'error'
+    hints: 'warning'
   },
   output: {
     filename: '[name].[chunkhash].bundle.js'
@@ -28,9 +28,8 @@ module.exports = Merge(CommonConfig, {
     }),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.optimize.ModuleConcatenationPlugin(),
-    new MinifyPlugin(),
     new UglifyJSPlugin({
-      exclude: /\.css$/,
+      exclude: [/\.css$/, /\.scss$/],
       compress: {
         warnings: false
       },
@@ -41,6 +40,9 @@ module.exports = Merge(CommonConfig, {
     }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production')
+    }),
+    new VisualizerPlugin({
+      filename: path.join('./statistics.html')
     })
   ],
   module: {}
