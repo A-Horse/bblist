@@ -1,18 +1,13 @@
 import React, { Component } from 'react';
-import { Modal } from 'components/widget/Modal/Modal';
 import { KeyBoardArrowLeftIcon, KeyBoardArrowRightIcon } from 'services/svg-icons';
-import { weekFirstDay, weekDayName, monthNames } from './constant';
-import { daysInMonth, firstDayInMonthOffset } from './util';
-import Week from './Week';
-import { Select } from 'components/widget/Select';
-import { Button } from 'components/widget/Button/Button';
+import { monthNames } from './constant';
 import Month from './Month';
 
 import './Calendar.scss';
 
 export default class Calendar extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.onHeaderClick = this.onHeaderClick.bind(this);
   }
 
@@ -27,16 +22,6 @@ export default class Calendar extends Component {
   onMonthSelect(item) {
     this.props.selectMonth(item.value);
   }
-
-  // buildYears() {
-  //   const currentYear = new Date().getFullYear();
-  //   let years = [];
-  //   // TODO 可配置化
-  //   for (let i = currentYear - 10; i < currentYear + 10; i++) {
-  //     years.push(i);
-  //   }
-  //   return years.map(year => ({value: year, name: year}));
-  // }
 
   buildMonths() {
     return monthNames.map((monthName, i) => ({ value: ++i, name: monthName }));
