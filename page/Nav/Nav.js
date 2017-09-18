@@ -25,6 +25,13 @@ class Nav extends Component {
 
   state = { avatarDropDownToggle: false, smallDeviceNavLinkToggle: false };
 
+  links = [
+    { name: 'Dash', url: '/home' },
+    { name: 'Task', url: '/task-board' },
+    { name: 'Wiki', url: '/wiki' },
+    { name: 'Mind', url: '/mind' }
+  ];
+
   componentDidUpdate() {
     if (this.props.user && !Storage.get('avator')) {
       this.refs.avator.onload = () => {
@@ -68,59 +75,36 @@ class Nav extends Component {
         <MediaQuery className="nav-links__small-device" maxDeviceWidth={600}>
           <div
             className="nav-active-link__small-device"
-            onClick={() =>
+            onClick={event => {
+              event.stopPropagation();
               this.setState({
                 smallDeviceNavLinkToggle: !this.state.smallDeviceNavLinkToggle
-              })}
+              });
+            }}
           >
             {this.renderLinkList()}
+            <i className="fa fa-angle-down" aria-hidden="true" />
           </div>
-          <DropList toggle={this.state.smallDeviceNavLinkToggle}>{this.renderLinkList()}</DropList>
+
+          <DropList toggle={this.state.smallDeviceNavLinkToggle}>
+            <ClickOutSide
+              onClickOutside={event => {
+                event.stopPropagation();
+                this.setState({ smallDeviceNavLinkToggle: false });
+              }}
+            >
+              {this.renderLinkList()}
+            </ClickOutSide>
+          </DropList>
         </MediaQuery>
       </div>
-    );
-  }
-
-  renderNavUser() {
-    if (this.props.identifyFetching) {
-      return null;
-    }
-    const userName = this.props.user.get('username');
-    return (
-      <ClickOutSide
-        className="avatar-area"
-        onClickOutside={() => {
-          this.state.avatarDropDownToggle && this.setState({ avatarDropDownToggle: false });
-        }}
-      >
-        <MediaQuery minDeviceWidth={600}>
-          <span className="nav-username">{userName}</span>
-        </MediaQuery>
-
-        {this.renderAvatar()}
-        <DropList toggle={this.state.avatarDropDownToggle}>
-          <ul>
-            <li>
-              Signed in as <strong>{userName}</strong>
-            </li>
-            <li>
-              <Link to="/profile">Profile</Link>
-            </li>
-            <li>
-              <Link to="/setting">setting</Link>
-            </li>
-            <li className="logout-button" onClick={this.props.actions.LOGOUT_REQUEST}>
-              logout
-            </li>
-          </ul>
-        </DropList>
-      </ClickOutSide>
     );
   }
 
   renderAvatar() {
     const { user } = this.props;
     const avatarData = Storage.get('avator');
+
     return avatarData ? (
       <img
         ref="avator"
@@ -140,11 +124,41 @@ class Nav extends Component {
   }
 
   render() {
+    const userName = this.props.user.get('username');
     return (
       <nav className="nav">
         <LogoBan white={true} />
         <div className="nav-link-area">{this.renderLinks()}</div>
-        {this.renderNavUser()}
+        {this.props.identifyFetching ? (
+          <ClickOutSide
+            className="avatar-area"
+            onClickOutside={() => {
+              this.state.avatarDropDownToggle && this.setState({ avatarDropDownToggle: false });
+            }}
+          >
+            <MediaQuery minDeviceWidth={600}>
+              <span className="nav-username">{userName}</span>
+            </MediaQuery>
+
+            {this.renderAvatar()}
+            <DropList toggle={this.state.avatarDropDownToggle}>
+              <ul>
+                <li>
+                  Signed in as <strong>{userName}</strong>
+                </li>
+                <li>
+                  <Link to="/profile">Profile</Link>
+                </li>
+                <li>
+                  <Link to="/setting">setting</Link>
+                </li>
+                <li className="logout-button" onClick={this.props.actions.LOGOUT_REQUEST}>
+                  logout
+                </li>
+              </ul>
+            </DropList>
+          </ClickOutSide>
+        ) : null}
       </nav>
     );
   }

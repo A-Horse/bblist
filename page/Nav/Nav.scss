@@ -37,10 +37,12 @@ nav.nav {
 
   .nav-link-area {
     flex-grow: 2;
-    margin-top: 8px;
-    margin-left: 20px;
+    margin-top: 3px;
 
     .nav-links__large-device {
+      margin-top: 8px;
+      margin-left: 20px;
+
       ul {
         float: left;
 
@@ -67,11 +69,28 @@ nav.nav {
 
     .nav-active-link__small-device {
       text-align: center;
+      cursor: pointer;
+      user-select: none;
+      .fa {
+        margin-left: 8px;
+        vertical-align: middle;
+        color: $white;
+      }
+
+      ul {
+        display: inline-block;
+      }
+
       li {
         display: none;
 
         &.active {
           display: block;
+          font-weight: bold;
+
+          a {
+            color: $white;
+          }
         }
       }
     }
