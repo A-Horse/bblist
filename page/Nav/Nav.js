@@ -1,6 +1,6 @@
-// @flow
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import MediaQuery from 'react-responsive';
 import { makeGravatarUrl } from 'services/gravatar';
 import { Storage, storageImage } from 'services/storage';
@@ -13,8 +13,17 @@ export const navHeight = 42;
 
 import './Nav.scss';
 
+type State = {
+  avatarDropDownToggle: boolean
+};
+
 class Nav extends Component {
-  state = { dropDownToggle: false };
+  static propTypes = {
+    identifyFetching: PropTypes.bool,
+    user: PropTypes.object
+  };
+
+  state = { avatarDropDownToggle: false, smallDeviceNavLinkToggle: false };
 
   componentDidUpdate() {
     if (this.props.user && !Storage.get('avator')) {
@@ -31,28 +40,20 @@ class Nav extends Component {
           <Link to="/home">Dash</Link>
         </li>
 
-        <li>
-          <Link to="/task-board" className={activeClassWhenMatchPrefix('/task-board')}>
-            Task
-          </Link>
+        <li className={activeClassWhenMatchPrefix('/task-board')}>
+          <Link to="/task-board">Task</Link>
         </li>
 
-        <li>
-          <Link to="/todo" className={activeClassWhenMatchPrefix('/todo')}>
-            Todo
-          </Link>
+        <li className={activeClassWhenMatchPrefix('/todo')}>
+          <Link to="/todo">Todo</Link>
         </li>
 
-        <li>
-          <Link to="/wiki" className={activeClassWhenMatchPrefix('/wiki')}>
-            Wiki
-          </Link>
+        <li className={activeClassWhenMatchPrefix('/wiki')}>
+          <Link to="/wiki">Wiki</Link>
         </li>
 
-        <li>
-          <Link to="/mind" className={activeClassWhenMatchPrefix('/mind')}>
-            Mind
-          </Link>
+        <li className={activeClassWhenMatchPrefix('/mind')}>
+          <Link to="/mind">Mind</Link>
         </li>
       </ul>
     );
@@ -61,10 +62,20 @@ class Nav extends Component {
   renderLinks() {
     return (
       <div>
-        <MediaQuery minDeviceWidth={600}>{this.renderLinkList()}</MediaQuery>
-        <MediaQuery maxDeviceWidth={600}>
-          <div>{this.renderLinkList()}</div>
-          <DropList toggle={true}>{this.renderLinkList()}</DropList>
+        <MediaQuery className="nav-links__large-device" minDeviceWidth={600}>
+          {this.renderLinkList()}
+        </MediaQuery>
+        <MediaQuery className="nav-links__small-device" maxDeviceWidth={600}>
+          <div
+            className="nav-active-link__small-device"
+            onClick={() =>
+              this.setState({
+                smallDeviceNavLinkToggle: !this.state.smallDeviceNavLinkToggle
+              })}
+          >
+            {this.renderLinkList()}
+          </div>
+          <DropList toggle={this.state.smallDeviceNavLinkToggle}>{this.renderLinkList()}</DropList>
         </MediaQuery>
       </div>
     );
@@ -79,7 +90,7 @@ class Nav extends Component {
       <ClickOutSide
         className="avatar-area"
         onClickOutside={() => {
-          this.state.dropDownToggle && this.setState({ dropDownToggle: false });
+          this.state.avatarDropDownToggle && this.setState({ avatarDropDownToggle: false });
         }}
       >
         <MediaQuery minDeviceWidth={600}>
@@ -87,7 +98,7 @@ class Nav extends Component {
         </MediaQuery>
 
         {this.renderAvatar()}
-        <DropList toggle={this.state.dropDownToggle}>
+        <DropList toggle={this.state.avatarDropDownToggle}>
           <ul>
             <li>
               Signed in as <strong>{userName}</strong>
@@ -115,7 +126,7 @@ class Nav extends Component {
         ref="avator"
         className="nav-avatar"
         src={`data:image/png;base64,${avatarData}`}
-        onClick={() => this.setState({ dropDownToggle: !this.state.dropDownToggle })}
+        onClick={() => this.setState({ avatarDropDownToggle: !this.state.avatarDropDownToggle })}
       />
     ) : (
       <img
@@ -123,7 +134,7 @@ class Nav extends Component {
         className="nav-avatar"
         crossOrigin="Anonymous"
         src={makeGravatarUrl(user.get('email'))}
-        onClick={() => this.setState({ dropDownToggle: !this.state.dropDownToggle })}
+        onClick={() => this.setState({ avatarDropDownToggle: !this.state.avatarDropDownToggle })}
       />
     );
   }
