@@ -1,5 +1,7 @@
+// @flow
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import MediaQuery from 'react-responsive';
 import { makeGravatarUrl } from 'services/gravatar';
 import { Storage, storageImage } from 'services/storage';
 import { DropList } from 'components/widget/DropList/DropList';
@@ -14,10 +16,6 @@ import './Nav.scss';
 class Nav extends Component {
   state = { dropDownToggle: false };
 
-  constructor(props) {
-    super(props);
-  }
-
   componentDidUpdate() {
     if (this.props.user && !Storage.get('avator')) {
       this.refs.avator.onload = () => {
@@ -26,7 +24,7 @@ class Nav extends Component {
     }
   }
 
-  renderLinks() {
+  renderLinkList() {
     return (
       <ul>
         <li>
@@ -60,13 +58,15 @@ class Nav extends Component {
     );
   }
 
-  render() {
+  renderLinks() {
     return (
-      <nav className="nav">
-        <LogoBan white={true} />
-        <div className="nav-link-area">{this.renderLinks()}</div>
-        {this.renderNavUser()}
-      </nav>
+      <div>
+        <MediaQuery minDeviceWidth={600}>{this.renderLinkList()}</MediaQuery>
+        <MediaQuery maxDeviceWidth={600}>
+          <div>{this.renderLinkList()}</div>
+          <DropList toggle={true}>{this.renderLinkList()}</DropList>
+        </MediaQuery>
+      </div>
     );
   }
 
@@ -82,7 +82,10 @@ class Nav extends Component {
           this.state.dropDownToggle && this.setState({ dropDownToggle: false });
         }}
       >
-        <span>{userName}</span>
+        <MediaQuery minDeviceWidth={600}>
+          <span className="nav-username">{userName}</span>
+        </MediaQuery>
+
         {this.renderAvatar()}
         <DropList toggle={this.state.dropDownToggle}>
           <ul>
@@ -122,6 +125,16 @@ class Nav extends Component {
         src={makeGravatarUrl(user.get('email'))}
         onClick={() => this.setState({ dropDownToggle: !this.state.dropDownToggle })}
       />
+    );
+  }
+
+  render() {
+    return (
+      <nav className="nav">
+        <LogoBan white={true} />
+        <div className="nav-link-area">{this.renderLinks()}</div>
+        {this.renderNavUser()}
+      </nav>
     );
   }
 }
