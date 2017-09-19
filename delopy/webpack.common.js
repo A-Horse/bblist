@@ -39,7 +39,8 @@ module.exports = {
         removeComments: true,
         collapseWhitespace: true,
         removeAttributeQuotes: true
-      }
+      },
+      production: process.env.NODE_ENV === 'production'
     }),
     new ExtractTextPlugin({
       filename: '[name].[contenthash].css',
