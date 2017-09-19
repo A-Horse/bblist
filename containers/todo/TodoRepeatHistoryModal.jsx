@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import TodoRepeatHistoryModal from 'page/todo/TodoRepeatChart';
+import TodoRepeatHistoryModal from 'page/Todo/TodoRepeatChart';
 import { wrapDispathToAction } from 'utils/wrap-props';
 import {
   getTodoRepeatHistory,
