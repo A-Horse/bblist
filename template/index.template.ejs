@@ -156,5 +156,11 @@
         document.body.querySelector('#root').style.opacity = 1;
       }
     </script>
+    <% if (htmlWebpackPlugin.options.production) { %>
+      <script src="https://cdn.ravenjs.com/3.17.0/raven.min.js" crossorigin="anonymous"></script>
+      <script>
+        Raven.config('https://ce93ac520eed44e98348b3f45d72d5ec@sentry.io/219300').install()
+      </script>
+    <% } %>
   </body>
 </html>
