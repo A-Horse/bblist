@@ -17,17 +17,17 @@ module.exports = Merge(CommonConfig, {
   },
   module: {
     rules: [
-      {
-        enforce: 'pre',
-        test: /\.jsx?$/,
-        exclude: /node_modules/,
-        loader: 'eslint-loader',
-        options: {
-          fix: true,
-          cache: true,
-          quiet: true
-        }
-      }
+      /* {
+       *   enforce: 'pre',
+       *   test: /\.jsx?$/,
+       *   exclude: /node_modules/,
+       *   loader: 'eslint-loader',
+       *   options: {
+       *     fix: true,
+       *     cache: true,
+       *     quiet: true
+       *   }
+       * }*/
     ]
   }
 });

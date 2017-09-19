@@ -2,10 +2,18 @@ import React, { Component } from 'react';
 import { KeyBoardArrowLeftIcon, KeyBoardArrowRightIcon } from 'services/svg-icons';
 import { monthNames } from './constant';
 import Month from './Month';
+import PropTypes from 'prop-types';
 
 import './Calendar.scss';
 
 export default class Calendar extends Component {
+  static propTypes = {
+    selectYear: PropTypes.func.isRequired,
+    selectMonth: PropTypes.func.isRequired,
+    lastMonth: PropTypes.any,
+    nextMonth: PropTypes.any
+  };
+
   constructor(props) {
     super(props);
     this.onHeaderClick = this.onHeaderClick.bind(this);

@@ -24,6 +24,10 @@ html {
   position: absolute;
   width: 100%;
   height: 100%;
+
+  & > div {
+    min-height: 100%;
+  }
 }
 
 ::-webkit-scrollbar-track {
