@@ -93,12 +93,19 @@ exports[`Website Nav 1`] = `
   <div
     className="avatar-area"
   >
-    <img
-      className="nav-avatar"
-      crossOrigin="Anonymous"
+    <div
       onClick={[Function]}
-      src="https://www.gravatar.com/avatar/50fe9076fe9e2143e68bd431c75ba1da"
-    />
+    >
+      <img
+        className="nav-avatar"
+        crossOrigin="Anonymous"
+        src="https://www.gravatar.com/avatar/50fe9076fe9e2143e68bd431c75ba1da"
+      />
+      <i
+        aria-hidden="true"
+        className="fa fa-angle-down"
+      />
+    </div>
     <noscript />
   </div>
 </nav>

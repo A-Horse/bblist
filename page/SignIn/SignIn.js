@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { validateFormValue } from 'services/validate-strategy';
 import { Button } from 'components/widget/Button/Button';
 import { Input } from 'components/widget/Input/Input';
@@ -10,19 +11,26 @@ import { updateTitle } from 'services/title';
 
 import R from 'ramda';
 
-import 'style/page/signin.scss';
+import './SignIn.scss';
 
-// TODO 登出 ，登陆成功后清空缓存
 class SignIn extends Component {
-  state = { errorMessages: {} };
+  static propTypes = {
+    actions: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired,
+    signInErrorMessages: PropTypes.object
+  };
+
+  state = {
+    errorMessages: {}
+  };
 
   componentDidMount() {
-    updateTitle('Sign In');
+    updateTitle('Octopus - Sign In');
   }
 
   componentWillReceiveProps(newProps) {
     if (newProps.signInAuthenticated) {
-      this.props.actions.LOGIN_FINISH_REQUEST();
+      this.props.actions.LOGIN_FINISH();
       this.props.history.push('/home');
     }
   }

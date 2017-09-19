@@ -39,13 +39,14 @@ export const LOGIN_REQUEST = action$ =>
   );
 
 export const LOGOUT_REQUEST = action$ =>
-  action$.ofType(Actions.LOGOUT.REQUEST).mergeMap(action =>
-    http.post(
-      makeApiUrl('/logout')
-        .then(() => {
-          Storage.clear();
-          return Actions.LOGOUT.success();
-        })
-        .catch(Actions.LOGOUT.failure)
-    )
+  action$.ofType(Actions.LOGOUT.REQUEST).mergeMap(() =>
+    http
+      .post(makeApiUrl('/logout'))
+      .then(Actions.LOGOUT.success)
+      .catch(Actions.LOGOUT.failure)
   );
+
+export const LOGOUT_SUCCESS = action$ =>
+  action$.ofType(Actions.LOGOUT.SUCCESS).mergeMap(() => {
+    Storage.clear();
+  });

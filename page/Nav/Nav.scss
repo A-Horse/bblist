@@ -66,8 +66,10 @@ nav.nav {
         text-align: center;
         cursor: pointer;
         user-select: none;
+        padding-left: 32px;
         color: $white;
         font-weight: 500;
+        box-sizing: border-box;
         -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
 
         .fa {
@@ -93,7 +95,7 @@ nav.nav {
           color: $white;
           padding: 7px 0;
           text-align: center;
-          font-size: 1rem;
+          font-size: 0.9rem;
         }
       }
 
@@ -101,10 +103,13 @@ nav.nav {
   }
 
   .avatar-area {
-    position: relative;
     cursor: pointer;
     color: $white;
     user-select: none;
+
+    & > div {
+      user-select: none;
+    }
 
     .nav-username {
       margin-right: 8px;
@@ -130,8 +135,8 @@ nav.nav {
     box-shadow: 0 0 3px #eee;
 
      li {
-       padding: 0 10px;
-       font-size: $font-size-sm;
+       padding: 8px 10px;
+       font-size: 14px;
        color: $text-primary;
        cursor: pointer;
        border-bottom: 1px solid $color-divider;
@@ -142,12 +147,32 @@ nav.nav {
        &:last-child {
          border-bottom: none;
        }
+
        a {
          color: inherit;
          display: inline-block;
          height: 100%;
          width: 100%;
        }
-    }
+     }
+
+     @media screen and (max-width: 600px) {
+       width: 100%;
+       position: absolute;
+       box-shadow: none;
+       border-radius: 0;
+       border: 0;
+       background-color: $primary-bg;
+       ;
+       li {
+         text-align: center;
+         color: $white;
+         font-size: 0.9rem;
+
+         &:last-child {
+           border-bottom: 1px solid $color-divider;
+         }
+       }
+     }
   }
 }

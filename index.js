@@ -22,6 +22,19 @@ const store = createStore(
   applyMiddleware(thunkMiddleware, routeMiddleware, epicMiddleware)
 );
 
+if (module.hot) {
+  module.hot.accept('./reducers', () => {
+    const nextRootReducer = require('../reducers');
+    console.log('nextRootReducer', nextRootReducer);
+    store.replaceReducer(
+      combineReducers({
+        ...nextRootReducer,
+        router: routerReducer
+      })
+    );
+  });
+}
+
 ReactDOM.render(
   <AppContainer>
     <Provider store={store}>

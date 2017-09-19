@@ -39,7 +39,7 @@ function auth(state = Map({}), action) {
         .update('signInErrorMessage', () => action.playload);
       break;
 
-    case Actions.LOGIN_FINISH.REQUEST:
+    case Actions.LOGIN.FINISH:
       return state.delete('signInAuthenticated').delete('signInErrorMessage');
       break;
 

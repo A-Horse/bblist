@@ -99,6 +99,9 @@ class Nav extends Component {
                 event.stopPropagation();
                 this.setState({ smallDeviceNavLinkToggle: false });
               }}
+              onClick={() => {
+                this.setState({ smallDeviceNavLinkToggle: false });
+              }}
             >
               {this.renderLinkList()}
             </ClickOutSide>
@@ -149,20 +152,31 @@ class Nav extends Component {
             </div>
 
             <DropList className="nav-avatar-drop-down" toggle={this.state.avatarDropDownToggle}>
-              <ul>
-                <li>
-                  Signed in as <strong>{userName}</strong>
-                </li>
-                <li>
-                  <Link to="/profile">Profile</Link>
-                </li>
-                <li>
-                  <Link to="/setting">setting</Link>
-                </li>
-                <li className="logout-button" onClick={this.props.actions.LOGOUT_REQUEST}>
-                  logout
-                </li>
-              </ul>
+              <ClickOutSide
+                onClickOutside={() => {
+                  this.setState({ avatarDropDownToggle: false });
+                }}
+                onClick={() => {
+                  this.setState({ avatarDropDownToggle: false });
+                }}
+              >
+                <ul>
+                  <li>
+                    <Link to="/profile">
+                      Signed in as <strong>{userName}</strong>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/profile">Profile</Link>
+                  </li>
+                  <li>
+                    <Link to="/setting">setting</Link>
+                  </li>
+                  <li className="logout-button" onClick={this.props.actions.LOGOUT_REQUEST}>
+                    logout
+                  </li>
+                </ul>
+              </ClickOutSide>
             </DropList>
           </ClickOutSide>
         ) : null}
