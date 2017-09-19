@@ -11,10 +11,10 @@ import R from 'ramda';
 import 'style/page/task/taskboard-creater.scss';
 
 class TaskBoardCreater extends Component {
-  constructor() {
-    super();
-    this.state = { modalOpen: false, createErrorMessages: [] };
-  }
+  state = {
+    modalOpen: false,
+    createErrorMessages: []
+  };
 
   onCreateClick(event) {
     event.preventDefault();

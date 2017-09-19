@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-
-import { updateTaskCard } from 'actions/task/task-card';
 import { openTaskCardModal } from 'actions/event/task-wall';
 import UserAvatar from 'components/UserAvatar';
 import { CheckBox } from 'components/widget/CheckBox/CheckBox';
-import BoardCradDragHelper from 'services/board-card-drag-helper';
 import { getMouseElementInnerOffset } from 'utils/dom';
 import { browserHistory } from 'react-router';
 import R from 'ramda';
@@ -13,9 +9,10 @@ import R from 'ramda';
 import 'style/page/task/card.scss';
 
 class Card extends Component {
+  state = {};
+
   constructor(props) {
     super(props);
-    this.state = {};
     this.updateCard = this.updateCard.bind(this);
     this.onLoad = this.onLoad.bind(this);
   }
@@ -57,12 +54,11 @@ class Card extends Component {
   //   this.isDragging = true;
   // }
 
-  onDragEnd(event) {
+  onDragEnd() {
     document.body.removeChild(this.crt);
   }
 
   openTaskCardModal() {
-    const { dispatch } = this.props;
     return dispatch(openTaskCardModal(this.props.card));
   }
 

@@ -7,9 +7,25 @@
   height: 100%;
   width: 100%;
   padding-top: 14%;
+  box-sizing: border-box;
 
   .signin-main {
     width: 330px;
+
+    .signin-form {
+      margin-top: 25px;
+      input {
+        @include form-input;
+      }
+
+      .error-msg {
+        margin-bottom: 25px;
+      }
+
+      .signin-button {
+        width: 100%;
+      }
+    }
 
     .signup-tip {
       margin-top: 18px;
@@ -23,18 +39,12 @@
     }
   }
 
-  .signin-form {
-    margin-top: 25px;
-    input {
-      @include form-input;
-    }
+  @media screen and (max-width: 600px) {
+    padding-left: 15px;
+    padding-right: 15px;
 
-    .error-msg {
-      margin-bottom: 25px;
-    }
-
-    .signin-button {
-      width: 100%;
+    .text-logo {
+      height: 30px;
     }
   }
 }

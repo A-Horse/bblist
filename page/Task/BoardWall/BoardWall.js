@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { browserHistory } from 'react-router';
 import { PageContainer } from 'components/widget/PageContainer';
 import TaskBoardCreater from '../TaskBoardCreater';
 import { makeRemoteUrl } from 'services/remote-storage';
 import { DEFAULT_BOARD_COVER_SRC } from '../../../constants';
-import Loading from 'components/Loading';
-import Nothing from 'components/Nothing';
+import PropTypes from 'prop-types';
+/* import Loading from 'components/Loading';
+ * import Nothing from 'components/Nothing';*/
 import { Link } from 'react-router-dom';
 
 import './BoardWall.scss';
@@ -13,6 +13,11 @@ import 'style/page/task/taskboard-creater-modal.scss';
 import 'style/page/task/taskboard-card.scss';
 
 class BoardWall extends Component {
+  static propTypes = {
+    actions: PropTypes.object,
+    boardMap: PropTypes.object
+  };
+
   componentWillMount() {
     return this.props.actions.GET_TASK_ALL_BOARD_REQUEST();
   }

@@ -24,7 +24,7 @@ const store = createStore(
 
 if (module.hot) {
   module.hot.accept('./reducers', () => {
-    const nextRootReducer = require('../reducers');
+    const nextRootReducer = require('./reducers');
     console.log('nextRootReducer', nextRootReducer);
     store.replaceReducer(
       combineReducers({
