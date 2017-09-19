@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import R from 'ramda';
 import PropTypes from 'prop-types';
 import MediaQuery from 'react-responsive';
 import { makeGravatarUrl } from 'services/gravatar';
@@ -7,20 +8,17 @@ import { Storage, storageImage } from 'services/storage';
 import { DropList } from 'components/widget/DropList/DropList';
 import ClickOutSide from 'components/utils/ClickOutSide';
 import { LogoBan } from 'components/commons/LogoBan';
-import { activeClassWhenMatchPrefix } from '../../utils/route';
+import { activeClassWhenMatchPrefix, testLoactionMatchPrefix } from '../../utils/route';
 
 export const navHeight = 42;
 
 import './Nav.scss';
 
-type State = {
-  avatarDropDownToggle: boolean
-};
-
 class Nav extends Component {
   static propTypes = {
     identifyFetching: PropTypes.bool,
-    user: PropTypes.object
+    user: PropTypes.object,
+    actions: PropTypes.object.isRequired
   };
 
   state = { avatarDropDownToggle: false, smallDeviceNavLinkToggle: false };
@@ -66,13 +64,22 @@ class Nav extends Component {
     );
   }
 
+  renderLinks() {}
+
+  findActivedLinkName() {
+    const activedLink = R.find(R.compose(testLoactionMatchPrefix, R.prop('url')))(this.links);
+    console.log(activedLink);
+
+    return activedLink ? activedLink.name : 'Octopus';
+  }
+
   renderLinks() {
     return (
       <div>
-        <MediaQuery className="nav-links__large-device" minDeviceWidth={600}>
+        <MediaQuery className="nav-links__large-device" query="(min-width: 600px)">
           {this.renderLinkList()}
         </MediaQuery>
-        <MediaQuery className="nav-links__small-device" maxDeviceWidth={600}>
+        <MediaQuery className="nav-links__small-device" query="(max-width: 600px)">
           <div
             className="nav-active-link__small-device"
             onClick={event => {
@@ -82,7 +89,7 @@ class Nav extends Component {
               });
             }}
           >
-            {this.renderLinkList()}
+            {this.findActivedLinkName()}
             <i className="fa fa-angle-down" aria-hidden="true" />
           </div>
 
@@ -129,7 +136,7 @@ class Nav extends Component {
       <nav className="nav">
         <LogoBan white={true} />
         <div className="nav-link-area">{this.renderLinks()}</div>
-        {this.props.identifyFetching ? (
+        {!this.props.identifyFetching ? (
           <ClickOutSide
             className="avatar-area"
             onClickOutside={() => {
@@ -141,7 +148,7 @@ class Nav extends Component {
             </MediaQuery>
 
             {this.renderAvatar()}
-            <DropList toggle={this.state.avatarDropDownToggle}>
+            <DropList className="nav-avatar-drop-down" toggle={this.state.avatarDropDownToggle}>
               <ul>
                 <li>
                   Signed in as <strong>{userName}</strong>

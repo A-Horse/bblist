@@ -9,7 +9,7 @@ nav.nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 20px;
+  padding: 2.5px 20px 0;
   box-sizing: border-box;
 
   .logoban {
@@ -42,64 +42,61 @@ nav.nav {
     .nav-links__large-device {
       margin-top: 8px;
       margin-left: 20px;
+      float: left;
 
-      ul {
+      li {
         float: left;
 
-        li {
-          float: left;
-
-          &.active {
-            font-weight: 900;
-            text-shadow: 0 0 1px #fff;
-          }
+        &.active {
+          font-weight: 500;
+          text-shadow: 0 0 1px #fff;
         }
+      }
 
-        a {
-          margin-left: 10px;
-          color: #fff;
-          letter-spacing: 0.3px;
-        }
+      a {
+        margin-left: 10px;
+        color: #fff;
+        letter-spacing: 0.3px;
       }
     }
 
     .nav-links__small-device {
 
-    }
-
-    .nav-active-link__small-device {
-      text-align: center;
-      cursor: pointer;
-      user-select: none;
-      .fa {
-        margin-left: 8px;
-        vertical-align: middle;
+      .nav-active-link__small-device {
+        text-align: center;
+        cursor: pointer;
+        user-select: none;
         color: $white;
-      }
+        font-weight: 500;
+        -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
 
-      ul {
-        display: inline-block;
-      }
-
-      li {
-        display: none;
-
-        &.active {
-          display: block;
-          font-weight: bold;
-
-          a {
-            color: $white;
-          }
+        .fa {
+          margin-left: 8px;
+          vertical-align: middle;
+          color: $white;
         }
       }
+
+      .drop-list {
+        width: 100%;
+        border: none;
+        box-shadow: none;
+        background-color: $primary-bg;
+        border-radius: 0;
+
+        a {
+          color: $white;
+          padding: 5px 0;
+          text-align: center;
+          font-size: 1rem;
+        }
+      }
+
     }
   }
 
   .avatar-area {
     position: relative;
-    line-height: $nav-height;
-    height: 100%;
   }
 
   .nav-avatar {

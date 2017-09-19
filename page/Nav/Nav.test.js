@@ -22,6 +22,7 @@ test('Website Nav', () => {
   const actions = {
     LOGOUT_REQUEST: jest.fn()
   };
+
   const tree = renderer.create(
     <MemoryRouter>
       <Nav user={user} actions={actions} />
@@ -32,7 +33,6 @@ test('Website Nav', () => {
 
 test('Website Nav behavior', () => {
   history.location.pathname = '/todo';
-
   const actions = {
     LOGOUT_REQUEST: jest.fn()
   };
@@ -42,7 +42,7 @@ test('Website Nav behavior', () => {
     </MemoryRouter>
   );
 
-  expect(wrapper.find('.nav-link-area .active').text()).toEqual('Todo');
+  expect(wrapper.find('.nav-links__large-device .active a').text()).toEqual('Todo');
   wrapper.find('.nav-avatar').simulate('click');
   wrapper.find('.logout-button').simulate('click');
   expect(actions.LOGOUT_REQUEST.mock.calls.length).toBe(1);

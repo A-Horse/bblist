@@ -20,59 +20,11 @@ exports[`Website Nav 1`] = `
   <div
     className="nav-link-area"
   >
-    <ul>
-      <li>
-        <a
-          href="/home"
-          onClick={[Function]}
-        >
-          Dash
-        </a>
-      </li>
-      <li>
-        <a
-          className=""
-          href="/task-board"
-          onClick={[Function]}
-        >
-          Task
-        </a>
-      </li>
-      <li>
-        <a
-          className=""
-          href="/todo"
-          onClick={[Function]}
-        >
-          Todo
-        </a>
-      </li>
-      <li>
-        <a
-          className=""
-          href="/wiki"
-          onClick={[Function]}
-        >
-          Wiki
-        </a>
-      </li>
-      <li>
-        <a
-          className=""
-          href="/mind"
-          onClick={[Function]}
-        >
-          Mind
-        </a>
-      </li>
-    </ul>
+    <div />
   </div>
   <div
     className="avatar-area"
   >
-    <span>
-      jest
-    </span>
     <img
       className="nav-avatar"
       crossOrigin="Anonymous"
