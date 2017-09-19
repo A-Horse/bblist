@@ -97,6 +97,7 @@ nav.nav {
 
   .avatar-area {
     position: relative;
+    cursor: pointer;
   }
 
   .nav-avatar {
@@ -105,7 +106,6 @@ nav.nav {
     width: 27px;
     border-radius: 50%;
     vertical-align: middle;
-    cursor: pointer;
   }
 
   .drop-list {

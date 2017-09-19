@@ -108,30 +108,10 @@ class Nav extends Component {
     );
   }
 
-  renderAvatar() {
-    const { user } = this.props;
-    const avatarData = Storage.get('avator');
-
-    return avatarData ? (
-      <img
-        ref="avator"
-        className="nav-avatar"
-        src={`data:image/png;base64,${avatarData}`}
-        onClick={() => this.setState({ avatarDropDownToggle: !this.state.avatarDropDownToggle })}
-      />
-    ) : (
-      <img
-        ref="avator"
-        className="nav-avatar"
-        crossOrigin="Anonymous"
-        src={makeGravatarUrl(user.get('email'))}
-        onClick={() => this.setState({ avatarDropDownToggle: !this.state.avatarDropDownToggle })}
-      />
-    );
-  }
-
   render() {
     const userName = this.props.user.get('username');
+    const { user } = this.props;
+    const avatarData = Storage.get('avator');
     return (
       <nav className="nav">
         <LogoBan white={true} />
@@ -143,11 +123,30 @@ class Nav extends Component {
               this.state.avatarDropDownToggle && this.setState({ avatarDropDownToggle: false });
             }}
           >
-            <MediaQuery minDeviceWidth={600}>
-              <span className="nav-username">{userName}</span>
-            </MediaQuery>
+            <div
+              onClick={() =>
+                this.setState({ avatarDropDownToggle: !this.state.avatarDropDownToggle })}
+            >
+              <MediaQuery minDeviceWidth={600}>
+                <span className="nav-username">{userName}</span>
+              </MediaQuery>
 
-            {this.renderAvatar()}
+              {avatarData ? (
+                <img
+                  ref="avator"
+                  className="nav-avatar"
+                  src={`data:image/png;base64,${avatarData}`}
+                />
+              ) : (
+                <img
+                  ref="avator"
+                  className="nav-avatar"
+                  crossOrigin="Anonymous"
+                  src={makeGravatarUrl(user.get('email'))}
+                />
+              )}
+            </div>
+
             <DropList className="nav-avatar-drop-down" toggle={this.state.avatarDropDownToggle}>
               <ul>
                 <li>

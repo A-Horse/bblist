@@ -22,7 +22,8 @@
     "browser": true,
     "verbose": true,
     "setupFiles": [
-      "<rootDir>/test/setup/localStorage.js"
+      "<rootDir>/test/setup/localStorage.js",
+      "<rootDir>/test/setup/media.js"
     ],
     "moduleFileExtensions": [
       "js",

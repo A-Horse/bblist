@@ -20,7 +20,75 @@ exports[`Website Nav 1`] = `
   <div
     className="nav-link-area"
   >
-    <div />
+    <div>
+      <ul
+        className="nav-links__large-device"
+      >
+        <li>
+          <a
+            href="/home"
+            onClick={[Function]}
+          >
+            Dash
+          </a>
+        </li>
+        <li
+          className=""
+        >
+          <a
+            href="/task-board"
+            onClick={[Function]}
+          >
+            Task
+          </a>
+        </li>
+        <li
+          className=""
+        >
+          <a
+            href="/todo"
+            onClick={[Function]}
+          >
+            Todo
+          </a>
+        </li>
+        <li
+          className=""
+        >
+          <a
+            href="/wiki"
+            onClick={[Function]}
+          >
+            Wiki
+          </a>
+        </li>
+        <li
+          className=""
+        >
+          <a
+            href="/mind"
+            onClick={[Function]}
+          >
+            Mind
+          </a>
+        </li>
+      </ul>
+      <div
+        className="nav-links__small-device"
+      >
+        <div
+          className="nav-active-link__small-device"
+          onClick={[Function]}
+        >
+          Octopus
+          <i
+            aria-hidden="true"
+            className="fa fa-angle-down"
+          />
+        </div>
+        <noscript />
+      </div>
+    </div>
   </div>
   <div
     className="avatar-area"

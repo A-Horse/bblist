@@ -19,10 +19,7 @@ const user = fromJS({
 });
 
 test('Website Nav', () => {
-  const actions = {
-    LOGOUT_REQUEST: jest.fn()
-  };
-
+  const actions = {};
   const tree = renderer.create(
     <MemoryRouter>
       <Nav user={user} actions={actions} />
@@ -41,7 +38,6 @@ test('Website Nav behavior', () => {
       <Nav user={user} actions={actions} />
     </MemoryRouter>
   );
-
   expect(wrapper.find('.nav-links__large-device .active a').text()).toEqual('Todo');
   wrapper.find('.nav-avatar').simulate('click');
   wrapper.find('.logout-button').simulate('click');
