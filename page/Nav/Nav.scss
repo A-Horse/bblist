@@ -84,9 +84,14 @@ nav.nav {
         background-color: $primary-bg;
         border-radius: 0;
 
+        li {
+          border-top: 1px solid #f8f8f8;
+        }
+
         a {
+          display: block;
           color: $white;
-          padding: 5px 0;
+          padding: 7px 0;
           text-align: center;
           font-size: 1rem;
         }
@@ -98,20 +103,32 @@ nav.nav {
   .avatar-area {
     position: relative;
     cursor: pointer;
+    color: $white;
+    user-select: none;
+
+    .nav-username {
+      margin-right: 8px;
+    }
+
+    .nav-avatar {
+      margin-top: -1px;
+      height: 27px;
+      width: 27px;
+      border-radius: 50%;
+      vertical-align: middle;
+    }
+
+    .fa-angle-down {
+      margin-left: 5px;
+      vertical-align: middle;
+    }
   }
 
-  .nav-avatar {
-    margin-top: -1px;
-    height: 27px;
-    width: 27px;
-    border-radius: 50%;
-    vertical-align: middle;
-  }
-
-  .drop-list {
+  .nav-avatar-drop-down {
     width: 180px;
     border-radius: $radius-middle;
     box-shadow: 0 0 3px #eee;
+
      li {
        padding: 0 10px;
        font-size: $font-size-sm;

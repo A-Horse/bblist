@@ -145,6 +145,7 @@ class Nav extends Component {
                   src={makeGravatarUrl(user.get('email'))}
                 />
               )}
+              <i className="fa fa-angle-down" aria-hidden="true" />
             </div>
 
             <DropList className="nav-avatar-drop-down" toggle={this.state.avatarDropDownToggle}>
