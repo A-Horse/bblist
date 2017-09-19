@@ -30,14 +30,6 @@ class Nav extends Component {
     { name: 'Mind', url: '/mind' }
   ];
 
-  componentDidUpdate() {
-    if (this.props.user && !Storage.get('avator')) {
-      this.refs.avator.onload = () => {
-        storageImage('avator', this.refs.avator);
-      };
-    }
-  }
-
   renderLinkList() {
     return (
       <ul>
@@ -68,8 +60,6 @@ class Nav extends Component {
 
   findActivedLinkName() {
     const activedLink = R.find(R.compose(testLoactionMatchPrefix, R.prop('url')))(this.links);
-    console.log(activedLink);
-
     return activedLink ? activedLink.name : 'Octopus';
   }
 
@@ -136,15 +126,16 @@ class Nav extends Component {
 
               {avatarData ? (
                 <img
-                  ref="avator"
+                  ref={ref => (this.avator = ref)}
                   className="nav-avatar"
                   src={`data:image/png;base64,${avatarData}`}
                 />
               ) : (
                 <img
-                  ref="avator"
+                  ref={ref => (this.avator = ref)}
                   className="nav-avatar"
                   crossOrigin="Anonymous"
+                  onLoad={() => storageImage('avator', this.avator)}
                   src={makeGravatarUrl(user.get('email'))}
                 />
               )}
