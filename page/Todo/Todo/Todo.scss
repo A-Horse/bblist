@@ -34,6 +34,10 @@
     opacity: 1;
     color: white;
 
+    &:hover {
+      background-color: $primary-bg;
+    }
+
     .todo-hover-operation {
       visibility: visible;
       float: right;
@@ -61,6 +65,8 @@
   }
 
   &:hover {
+    background-color: #f8f8f8;
+
     .todo-hover-operation {
       .fa-trash {
         visibility: visible;

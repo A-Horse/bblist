@@ -25,7 +25,7 @@ class SignIn extends Component {
   };
 
   componentDidMount() {
-    updateTitle('Octopus - Sign In');
+    updateTitle('Sign In');
   }
 
   componentWillReceiveProps(newProps) {

@@ -3,12 +3,13 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import TodoBoxCreater from '../TodoBoxCreater/TodoBoxCreater';
 
-import 'style/page/todo/todo-boxs.scss';
+import './TodoBoxs.scss';
 
 class TodoBoxs extends Component {
+  state = {};
+
   componentWillMount() {
-    this.state = {};
-    //     this.props.actions.getTodoBoxs();
+    // this.props.actions.getTodoBoxs();
   }
 
   renderProjectBoxs() {}
