@@ -19,7 +19,6 @@
     "url": "https://github.com/A-Horse/bblist/issues"
   },
   "jest": {
-    "browser": true,
     "verbose": true,
     "setupFiles": [
       "<rootDir>/test/setup/localStorage.js",
