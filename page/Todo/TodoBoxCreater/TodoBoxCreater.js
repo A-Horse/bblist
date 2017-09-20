@@ -16,6 +16,7 @@ class TodoBoxCreater extends Component {
   constructor(props) {
     super(props);
     this.close = this.close.bind(this);
+    this.onAddClick = this.onAddClick.bind(this);
   }
 
   close() {
@@ -23,7 +24,7 @@ class TodoBoxCreater extends Component {
   }
 
   onAddClick() {
-    this.actions.ADD_TODOBOX_REQUEST({
+    this.props.actions.ADD_TODOBOX_REQUEST({
       name: this.nameInput.value.trim()
     });
   }

@@ -10,7 +10,10 @@ const mapStateToProps = (state, props) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    actions: bindActionCreators(makeActionRequestCollection([Actions.GET_TODOBOXS]), dispatch)
+    actions: bindActionCreators(
+      makeActionRequestCollection([Actions.GET_TODOBOXS, Actions.ADD_TODOBOX]),
+      dispatch
+    )
   };
 };
 

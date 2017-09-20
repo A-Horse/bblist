@@ -6,7 +6,7 @@ import { withRouter } from 'react-router-dom';
 import Actions, { makeActionRequestCollection } from '../../../actions/actions';
 import TodoList from './TodoList';
 
-const getAllTodos = (state, props) => {
+const getAllTodos = (state /* props*/) => {
   const todoEntities = state.todos.get('todoEntities');
   const todoIds = state.todos.get('todoIds');
   return todoIds.map(id => todoEntities.get(String(id)));
@@ -37,7 +37,6 @@ const mapDispatchToProps = dispatch => {
     actions: bindActionCreators(
       makeActionRequestCollection([
         Actions.ADD_TODO,
-        Actions.ADD_TODOBOX,
         Actions.GET_TODOLIST,
         Actions.UPDATE_TODO,
         Actions.DESTORY_TODO

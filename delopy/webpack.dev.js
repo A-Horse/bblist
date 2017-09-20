@@ -16,7 +16,13 @@ module.exports = Merge(CommonConfig, {
     publicPath: '/',
     proxy: require('./proxy-options')
   },
-  plugins: [new webpack.NamedModulesPlugin()]
+  plugins: [
+    new webpack.NamedModulesPlugin(),
+    new webpack.SourceMapDevToolPlugin({
+      filename: '[name].js.map',
+      exclude: ['vendor.js']
+    })
+  ]
   /* module: {
    *   rules: [
    *     {
