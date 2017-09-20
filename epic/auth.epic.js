@@ -49,4 +49,6 @@ export const LOGOUT_REQUEST = action$ =>
 export const LOGOUT_SUCCESS = action$ =>
   action$.ofType(Actions.LOGOUT.SUCCESS).mergeMap(() => {
     Storage.clear();
+    window.location.pathname = '/';
+    return Observable.of(Actions.LOGOUT.finish);
   });

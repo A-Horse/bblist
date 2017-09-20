@@ -1,4 +1,3 @@
-import R from 'ramda';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 import { bindActionCreators } from 'redux';
@@ -12,10 +11,6 @@ const getAllTodos = (state, props) => {
   const todoIds = state.todos.get('todoIds');
   return todoIds.map(id => todoEntities.get(String(id)));
 };
-
-function sort(a, b) {
-  return a.get('created_at') > b.get('created_at');
-}
 
 const getUnDoneTodos = createSelector([getAllTodos], todos =>
   todos.filter(todo => !todo.get('isDone')).sort((a, b) => {

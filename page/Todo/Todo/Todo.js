@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { CheckBox } from 'components/widget/CheckBox/CheckBox';
 import { StarCheckBox } from 'components/widget/StarCheckBox/StarCheckBox';
 import DatePicker from 'components/DatePicker/DatePicker';
@@ -18,20 +19,22 @@ const todoMetaHeight = 24;
 import { repeatItems } from '../constants';
 
 class Todo extends Component {
-  constructor() {
-    super();
+  static propTypes = {
+    actions: PropTypes.object.isRequired
+  };
+
+  state = {
+    editToggle: false
+  };
+
+  constructor(props) {
+    super(props);
     this.onClickOutside = this.onClickOutside.bind(this);
     this.onRepeatHistoryModal = this.onRepeatHistoryModal.bind(this);
     this.removeTodo = this.removeTodo.bind(this);
     this.updateDone = this.updateDone.bind(this);
     this.updateTodo = this.updateTodo.bind(this);
     this.onContendChanged = this.onContendChanged.bind(this);
-  }
-
-  componentWillMount() {
-    this.state = {
-      editToggle: false
-    };
   }
 
   async closeEditable() {

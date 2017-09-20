@@ -1,14 +1,11 @@
-import { IDENTIFY_REQUEST, IDENTIFY_SUCCESS, IDENTIFY_FAILURE } from '../actions/login';
 import {
   UPDATE_USERINFO_REQUEST,
   UPDATE_USERINFO_SUCCESS,
   UPDATE_USERINFO_FAILURE
 } from '../actions/login';
 import R from 'ramda';
-import { Storage } from 'services/storage';
-import { JWT_STORAGE_KEY } from '../constants';
 import Actions from 'actions/actions';
-import { Map, List, fromJS } from 'immutable';
+import { Map, fromJS } from 'immutable';
 
 function auth(state = Map({}), action) {
   switch (action.type) {
@@ -44,6 +41,10 @@ function auth(state = Map({}), action) {
       break;
 
     case Actions.LOGOUT.REQUEST:
+      return state;
+      break;
+
+    case Actions.LOGOUT.FINISH:
       return state;
       break;
 

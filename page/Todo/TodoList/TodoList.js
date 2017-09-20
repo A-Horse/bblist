@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
-
+import PropTypes from 'prop-types';
 import TodoCreater from '../TodoCreater/TodoCreater';
 import Todo from '../Todo/Todo';
 
 import './TodoList.scss';
 
 export default class TodoList extends Component {
+  static propTypes = {
+    todoBoxId: PropTypes.any,
+    actions: PropTypes.object.isRequired,
+    unDoneTodos: PropTypes.any.isRequired,
+    doneTodos: PropTypes.any.isRequired
+  };
+
   state = { toggleAll: false };
 
   componentWillMount() {

@@ -26,7 +26,10 @@ html {
   height: 100%;
 
   & > div {
-    min-height: 100%;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
   }
 }
 

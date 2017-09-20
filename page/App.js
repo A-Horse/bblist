@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Nav from './Nav/Nav';
-import Loading from 'components/Loading';
 import Bundle from 'components/Bundle';
 
 import { Route, Switch, Redirect } from 'react-router';
@@ -24,7 +24,7 @@ import SettingProfile from 'containers/setting/Profile';
 
 import Ideas from 'containers/idea/Ideas';
 
-import Building from 'page/Building';
+// import Building from 'page/Building';
 
 const TodoPage = props => (
   <Bundle load={require('bundle-loader?lazy&name=todo-page!./Todo/TodoPage.container')}>
@@ -47,6 +47,13 @@ const TaskBoardPage = props => (
 );
 
 export default class App extends Component {
+  static propTypes = {
+    actions: PropTypes.object.isRequired,
+    identifyFetching: PropTypes.bool,
+    identifyAuthenticated: PropTypes.bool,
+    user: PropTypes.object
+  };
+
   constructor(props) {
     super(props);
     props.actions.IDENTIFY_REQUEST();
@@ -54,7 +61,7 @@ export default class App extends Component {
 
   render() {
     if (this.props.identifyFetching === undefined || this.props.identifyFetching) {
-      return <Loading />;
+      return null;
     }
     if (!this.props.identifyFetching && !this.props.identifyAuthenticated) {
       return <Redirect to="/signin" push={true} />;
