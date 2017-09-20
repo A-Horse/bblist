@@ -1,17 +1,11 @@
-import { Observable } from 'rxjs/Observable';
+// import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/of';
-import { Storage } from '../services/storage';
 import Actions from '../actions/actions';
-import { ajax } from 'rxjs/observable/dom/ajax';
-import fetch from 'isomorphic-fetch';
 import { makeApiUrl } from '../utils/api';
 import { http } from '../services/http';
-import { handleResponse, handleResponseWithoutJson } from 'utils/http-handle';
-import { getJWT } from '../utils/auth';
-import { saveAuthData, saveJWT } from 'utils/auth';
 import { getCachedUserId } from 'utils/auth';
 
 export const ADD_TODO = action$ =>
@@ -23,7 +17,7 @@ export const ADD_TODO = action$ =>
   });
 
 export const GET_TODOLIST = action$ =>
-  action$.ofType(Actions.GET_TODOLIST.REQUEST).mergeMap(action => {
+  action$.ofType(Actions.GET_TODOLIST.REQUEST).mergeMap(() => {
     const userId = getCachedUserId();
     return http
       .get(makeApiUrl(`/user/${userId}/todo`))
@@ -49,4 +43,13 @@ export const DESTORY_TODO = action$ =>
         return Actions.DESTORY_TODO.success(null, { id: action.playload.ideas });
       })
       .catch(Actions.DESTORY_TODO.failure);
+  });
+
+export const GET_TODOBOXS_REQUEST = actions$ =>
+  actions$.ofType(Actions.GET_TODOBOXS.REQUEST).mergeMap(() => {
+    const userId = getCachedUserId();
+    return http
+      .get(makeApiUrl(`/t/user/${userId}/todo-box`))
+      .then(Actions.GET_TODOBOXS.success)
+      .then(Actions.GET_TODOBOXS.failure);
   });

@@ -18,7 +18,8 @@ const actionNames = [
   'ADD_TASK_TRACK',
   'UPDATE_TASK_CARD',
   'DESTORY_TASK_TRACK',
-  'UPDATE_TASK_TRACK'
+  'UPDATE_TASK_TRACK',
+  'GET_TODOBOXS'
 ];
 
 const ACTIONS = actionNames.reduce((result, actionName) => {

@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
-
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import TodoBoxCreater from '../TodoBoxCreater/TodoBoxCreater';
 
 import './TodoBoxs.scss';
 
 class TodoBoxs extends Component {
+  static propTypes = {
+    actions: PropTypes.object.isRequired
+  };
+
   state = {};
 
   componentWillMount() {
-    // this.props.actions.getTodoBoxs();
+    this.props.actions.GET_TODOBOXS_REQUEST();
   }
 
   renderProjectBoxs() {}
@@ -19,7 +23,7 @@ class TodoBoxs extends Component {
     return (
       <ul className="todo-boxs">
         <div className="todo-box-creater-container">
-          <TodoBoxCreater />
+          <TodoBoxCreater actions={this.props.actions} />
         </div>
 
         <div className="todo-box-group-list">

@@ -5,42 +5,43 @@ import { getCachedUserId } from 'utils/auth';
 import { CACHED_USERID } from '../../constants';
 import { makeApiUrl } from 'utils/api';
 
-export const TODOBOX_GET_REQUEST = 'TODOBOX_GET_REQUEST';
-export const TODOBOX_GET_SUCCESS = 'TODOBOX_GET_SUCCESS';
-export const TODOBOX_GET_FAILURE = 'TODOBOX_GET_FAILURE';
-
-function requestTodoBox() {
-  return {
-    type: TODOBOX_GET_REQUEST
-  };
-}
-
-function receiveTodoBoxSuccess(playload) {
-  return {
-    type: TODOBOX_GET_SUCCESS,
-    playload
-  };
-}
-
-function receiveTodoBoxFailure(error) {
-  return {
-    type: TODOBOX_GET_FAILURE,
-    playload: error,
-    error: true
-  };
-}
-
-export function getTodoBoxs() {
-  const config = createConfigWithAuth('GET');
-  const userId = getCachedUserId();
-  return dispatch => {
-    dispatch(requestTodoBox());
-    return fetch(makeApiUrl(`/t/user/${userId}/todo-box`), config)
-      .then(handleResponse)
-      .then(response => dispatch(receiveTodoBoxSuccess(response)))
-      .catch(error => dispatch(receiveTodoBoxFailure(error)));
-  };
-}
+/*
+ * export const TODOBOX_GET_REQUEST = 'TODOBOX_GET_REQUEST';
+ * export const TODOBOX_GET_SUCCESS = 'TODOBOX_GET_SUCCESS';
+ * export const TODOBOX_GET_FAILURE = 'TODOBOX_GET_FAILURE';
+ *
+ * function requestTodoBox() {
+ *   return {
+ *     type: TODOBOX_GET_REQUEST
+ *   };
+ * }
+ *
+ * function receiveTodoBoxSuccess(playload) {
+ *   return {
+ *     type: TODOBOX_GET_SUCCESS,
+ *     playload
+ *   };
+ * }
+ *
+ * function receiveTodoBoxFailure(error) {
+ *   return {
+ *     type: TODOBOX_GET_FAILURE,
+ *     playload: error,
+ *     error: true
+ *   };
+ * }
+ * */
+/* export function getTodoBoxs() {
+ *   const config = createConfigWithAuth('GET');
+ *   const userId = getCachedUserId();
+ *   return dispatch => {
+ *     dispatch(requestTodoBox());
+ *     return fetch(makeApiUrl(`/t/user/${userId}/todo-box`), config)
+ *       .then(handleResponse)
+ *       .then(response => dispatch(receiveTodoBoxSuccess(response)))
+ *       .catch(error => dispatch(receiveTodoBoxFailure(error)));
+ *   };
+ * }*/
 
 export const TODOBOX_CREATE_REQUEST = 'TODOBOX_CREATE_REQUEST';
 export const TODOBOX_CREATE_SUCCESS = 'TODOBOX_CREATE_SUCCESS';

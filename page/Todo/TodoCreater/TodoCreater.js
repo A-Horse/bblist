@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Textarea from 'react-textarea-autosize';
 import { isEnterKey } from 'utils/keyboard';
 import ClickOutSide from 'components/utils/ClickOutSide';
@@ -10,6 +11,10 @@ import './TodoCreater.scss';
 import { repeatItems } from '../constants';
 
 class TodoCreater extends Component {
+  static propTypes = {
+    actions: PropTypes.object.isRequired
+  };
+
   state = {
     toggle: false,
     content: ''
@@ -30,7 +35,7 @@ class TodoCreater extends Component {
     }
     const data = {
       content: this.state.content,
-      deadline: this.refs.datePicker.value ? this.refs.datePicker.value.getTime() : null
+      deadline: this.datePicker.value ? this.datePicker.value.getTime() : null
     };
     this.props.actions.ADD_TODO_REQUEST(data);
     this.setState({ content: '' });
@@ -42,7 +47,7 @@ class TodoCreater extends Component {
   }
 
   close() {
-    if (this.refs.datePicker.state.toggle) {
+    if (this.datePicker.state.toggle) {
       return;
     }
     this.setState({ toggle: false });
@@ -80,11 +85,15 @@ class TodoCreater extends Component {
 
           <div
             className="todo-creater-props todo-creater-deadline"
-            onClick={() => this.refs.datePicker.toggle()}
+            onClick={() => this.datePicker.toggle()}
           >
             <i className="fa fa-calendar-check-o date-picker--icon" aria-hidden="true" />
             <label>Deadline:</label>
-            <DatePicker ref="datePicker" hideIcon={true} placeholder="YYYY-MM-DD" />
+            <DatePicker
+              ref={ref => (this.datePicker = ref)}
+              hideIcon={true}
+              placeholder="YYYY-MM-DD"
+            />
           </div>
 
           <div className="todo-creater-props todo-creater-repeat">

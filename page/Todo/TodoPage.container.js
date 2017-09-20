@@ -1,17 +1,19 @@
 import { connect } from 'react-redux';
 import TodoPage from 'page/Todo/TodoPage';
-import { wrapDispathToAction } from 'utils/wrap-props';
-import { getTodoBoxs } from 'actions/todo/todos';
-import R from 'ramda';
-
-const actions = {
-  getTodoBoxs
-};
+import { bindActionCreators } from 'redux';
+import { withRouter } from 'react-router-dom';
+import Actions, { makeActionRequestCollection } from '../../../actions/actions';
 
 const mapStateToProps = (state, props) => {
   return {};
 };
 
-const TodoPageContainer = connect(mapStateToProps, wrapDispathToAction(actions))(TodoPage);
+const mapDispatchToProps = dispatch => {
+  return {
+    actions: bindActionCreators(makeActionRequestCollection([Actions.GET_TODOBOXS]), dispatch)
+  };
+};
+
+const TodoPageContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(TodoPage));
 
 export default TodoPageContainer;
