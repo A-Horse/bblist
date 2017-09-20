@@ -16,6 +16,14 @@ export const ADD_TODO = action$ =>
       .catch(Actions.ADD_TODO.failure);
   });
 
+export const ADD_TODOBOX_REQUEST = action$ =>
+  action$.ofType(Actions.ADD_TODOBOX.REQUEST).mergeMap(action => {
+    return http
+      .post(makeApiUrl('/t/todo-box'), null, action.playload)
+      .then(Actions.ADD_TODOBOX.success)
+      .catch(Actions.ADD_TODOBOX.failure);
+  });
+
 export const GET_TODOLIST = action$ =>
   action$.ofType(Actions.GET_TODOLIST.REQUEST).mergeMap(() => {
     const userId = getCachedUserId();

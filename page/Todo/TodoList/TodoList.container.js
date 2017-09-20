@@ -37,6 +37,7 @@ const mapDispatchToProps = dispatch => {
     actions: bindActionCreators(
       makeActionRequestCollection([
         Actions.ADD_TODO,
+        Actions.ADD_TODOBOX,
         Actions.GET_TODOLIST,
         Actions.UPDATE_TODO,
         Actions.DESTORY_TODO

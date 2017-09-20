@@ -39,7 +39,6 @@ ReactDOM.render(
   <AppContainer>
     <Provider store={store}>
       <Application />
-      {/*<DevTools />*/}
     </Provider>
   </AppContainer>,
   document.getElementById('root')
@@ -47,6 +46,8 @@ ReactDOM.render(
 
 // Hot Module Replacement API
 if (module.hot) {
+  console.log('hot');
+
   module.hot.accept('./Application', () => {
     const NextApplication = require('./Application').default;
     ReactDOM.render(

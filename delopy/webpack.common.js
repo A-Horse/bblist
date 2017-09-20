@@ -48,6 +48,9 @@ module.exports = {
     }),
     new webpack.optimize.CommonsChunkPlugin({
       names: ['react', 'miscellaneous']
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'runtime'
     })
   ],
   module: {

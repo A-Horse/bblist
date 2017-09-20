@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { AddIcon, AlarmIcon, CloseIcon } from 'services/svg-icons';
 import { Button } from 'components/widget/Button/Button';
-import Textarea from 'react-textarea-autosize';
 import { Modal } from 'components/widget/Modal/Modal';
 import Input from 'components/widget/Input/Input';
 
@@ -13,7 +11,7 @@ class TodoBoxCreater extends Component {
     actions: PropTypes.object.isRequired
   };
 
-  state = { toggle: false };
+  state = { toggle: false, name: '' };
 
   constructor(props) {
     super(props);
@@ -24,14 +22,22 @@ class TodoBoxCreater extends Component {
     this.setState({ toggle: false });
   }
 
+  onAddClick() {
+    this.actions.ADD_TODOBOX_REQUEST({
+      name: this.nameInput.value.trim()
+    });
+  }
+
   render() {
     return (
-      <div className="todo-box-creater--toggle" onClick={() => this.setState({ toggle: true })}>
-        <i className="fa fa-plus" aria-hidden="true" />
-        <span className="toggle-text">Create Todo Box</span>
+      <div>
+        <div className="todo-box-creater--toggle" onClick={() => this.setState({ toggle: true })}>
+          <i className="fa fa-plus" aria-hidden="true" />
+          <span className="toggle-text">Create Todo Box</span>
+        </div>
 
         <Modal className="todo-box-creater" toggle={this.state.toggle} close={this.close}>
-          <CloseIcon className="clear-icon" onClick={this.close} />
+          <i className="fa fa-times" aria-hidden="true" onClick={this.close} />
 
           <div className="todo-box-creater--heading">Create Todo Box:</div>
 
@@ -39,9 +45,15 @@ class TodoBoxCreater extends Component {
             className="todo-box-name--input"
             type="text"
             ref={ref => (this.nameInput = ref)}
+            onChange={value => this.setState({ name: value })}
             placeholder="Board Name"
           />
-          <Button styleType="primary" className="taskboard-creater--create-button">
+          <Button
+            styleType="primary"
+            disable={!this.state.name.length}
+            className="taskboard-creater--create-button"
+            onClick={this.onAddClick}
+          >
             OK
           </Button>
         </Modal>

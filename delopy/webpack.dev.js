@@ -1,4 +1,5 @@
 const Merge = require('webpack-merge');
+const webpack = require('webpack');
 
 const path = require('path');
 
@@ -15,19 +16,20 @@ module.exports = Merge(CommonConfig, {
     publicPath: '/',
     proxy: require('./proxy-options')
   },
-  module: {
-    rules: [
-      {
-        enforce: 'pre',
-        test: /\.jsx?$/,
-        exclude: /node_modules/,
-        loader: 'eslint-loader',
-        options: {
-          fix: true,
-          cache: true,
-          quiet: true
-        }
-      }
-    ]
-  }
+  plugins: [new webpack.NamedModulesPlugin()]
+  /* module: {
+   *   rules: [
+   *     {
+   *       enforce: 'pre',
+   *       test: /\.jsx?$/,
+   *       exclude: /node_modules/,
+   *       loader: 'eslint-loader',
+   *       options: {
+   *         fix: true,
+   *         cache: true,
+   *         quiet: true
+   *       }
+   *     }
+   *   ]
+   * }*/
 });

@@ -1,9 +1,9 @@
-import fetch from 'isomorphic-fetch';
-import { createConfigWithAuth } from 'utils/header';
-import { handleResponse, handleResponseWithoutJson } from 'utils/http-handle';
-import { getCachedUserId } from 'utils/auth';
-import { CACHED_USERID } from '../../constants';
-import { makeApiUrl } from 'utils/api';
+/* import fetch from 'isomorphic-fetch';
+ * import { createConfigWithAuth } from 'utils/header';
+ * import { handleResponse, handleResponseWithoutJson } from 'utils/http-handle';
+ * import { getCachedUserId } from 'utils/auth';
+ * import { CACHED_USERID } from '../../constants';
+ * import { makeApiUrl } from 'utils/api';*/
 
 /*
  * export const TODOBOX_GET_REQUEST = 'TODOBOX_GET_REQUEST';
@@ -42,42 +42,42 @@ import { makeApiUrl } from 'utils/api';
  *       .catch(error => dispatch(receiveTodoBoxFailure(error)));
  *   };
  * }*/
-
-export const TODOBOX_CREATE_REQUEST = 'TODOBOX_CREATE_REQUEST';
-export const TODOBOX_CREATE_SUCCESS = 'TODOBOX_CREATE_SUCCESS';
-export const TODOBOX_CREATE_FAILURE = 'TODOBOX_CREATE_FAILURE';
-
-function requestCreateTodoBox() {
-  return {
-    type: TODOBOX_CREATE_REQUEST
-  };
-}
-
-function createTodoBoxSuccess(playload) {
-  return {
-    type: TODOBOX_CREATE_SUCCESS,
-    playload
-  };
-}
-
-function createTodoBoxFailure(error) {
-  return {
-    type: TODOBOX_CREATE_FAILURE,
-    playload: error,
-    error: true
-  };
-}
-
-export function createTodoBox(data) {
-  const config = createConfigWithAuth('POST', data);
-  return dispatch => {
-    dispatch(requestCreateTodoBox());
-    return fetch(makeApiUrl(`/t/todo-box`), config)
-      .then(handleResponse)
-      .then(response => dispatch(createTodoBoxSuccess(response)))
-      .catch(error => dispatch(createTodoBoxFailure(error)));
-  };
-}
+/*
+ * export const TODOBOX_CREATE_REQUEST = 'TODOBOX_CREATE_REQUEST';
+ * export const TODOBOX_CREATE_SUCCESS = 'TODOBOX_CREATE_SUCCESS';
+ * export const TODOBOX_CREATE_FAILURE = 'TODOBOX_CREATE_FAILURE';
+ *
+ * function requestCreateTodoBox() {
+ *   return {
+ *     type: TODOBOX_CREATE_REQUEST
+ *   };
+ * }
+ *
+ * function createTodoBoxSuccess(playload) {
+ *   return {
+ *     type: TODOBOX_CREATE_SUCCESS,
+ *     playload
+ *   };
+ * }
+ *
+ * function createTodoBoxFailure(error) {
+ *   return {
+ *     type: TODOBOX_CREATE_FAILURE,
+ *     playload: error,
+ *     error: true
+ *   };
+ * }
+ *
+ * export function createTodoBox(data) {
+ *   const config = createConfigWithAuth('POST', data);
+ *   return dispatch => {
+ *     dispatch(requestCreateTodoBox());
+ *     return fetch(makeApiUrl(`/t/todo-box`), config)
+ *       .then(handleResponse)
+ *       .then(response => dispatch(createTodoBoxSuccess(response)))
+ *       .catch(error => dispatch(createTodoBoxFailure(error)));
+ *   };
+ * }*/
 /*
  * export const TODOLIST_GET_REQUEST = 'TODOLIST_GET_REQUEST';
  * export const TODOLIST_GET_SUCCESS = 'TODOLIST_GET_SUCCESS';

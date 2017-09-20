@@ -114,7 +114,6 @@ class Todo extends Component {
 
   render() {
     const { todo } = this.props;
-    console.log('render', todo.get('content'));
 
     return (
       <ClickOutSide onClickOutside={this.onClickOutside}>
@@ -168,7 +167,6 @@ class Todo extends Component {
               />
             </div>
           </div>
-
           {this.state.editToggle && (
             <div
               className="todo-editing--meta"

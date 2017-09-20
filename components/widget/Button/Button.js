@@ -5,7 +5,10 @@ import './Button.scss';
 export class Button extends Component {
   static propTypes = {
     size: PropTypes.oneOf(['small', 'middle', 'large']),
-    styleType: PropTypes.oneOf(['default', 'primary', 'disable', 'dangerous'])
+    styleType: PropTypes.oneOf(['default', 'primary', 'disable', 'dangerous']),
+    disable: PropTypes.bool,
+    borderType: PropTypes.string,
+    className: PropTypes.string
   };
 
   buildClassName() {
@@ -23,6 +26,7 @@ export class Button extends Component {
     return (
       <button
         ref="main"
+        disabled={this.props.disable}
         className={this.buildClassName()}
         onClick={this.props.onClick}
         type={this.props.type}
