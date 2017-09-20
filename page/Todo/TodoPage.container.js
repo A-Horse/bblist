@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import TodoPage from 'page/Todo/TodoPage';
 import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
-import Actions, { makeActionRequestCollection } from '../../../actions/actions';
+import Actions, { makeActionRequestCollection } from '../../actions/actions';
 
 const mapStateToProps = (state, props) => {
   return {};
