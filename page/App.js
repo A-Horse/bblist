@@ -18,9 +18,7 @@ import DashBoard from 'page/DashBoard';
 
 import Profile from 'containers/Profile';
 
-import Setting from 'containers/setting/Setting';
-import SettingSecurity from 'containers/setting/Security';
-import SettingProfile from 'containers/setting/Profile';
+// import Setting from 'page/Setting/SettingPage.container';
 
 import Ideas from 'containers/idea/Ideas';
 
@@ -28,6 +26,12 @@ import Ideas from 'containers/idea/Ideas';
 
 const TodoPage = props => (
   <Bundle load={require('bundle-loader?lazy&name=todo-page!./Todo/TodoPage.container')}>
+    {B => <B {...props} />}
+  </Bundle>
+);
+
+const SettingPage = props => (
+  <Bundle load={require('bundle-loader?lazy&name=setting-page!./Setting/SettingPage.container')}>
     {B => <B {...props} />}
   </Bundle>
 );
@@ -93,11 +97,7 @@ export default class App extends Component {
               </Route>
               </Route> */}
 
-          <Route path="setting" component={Setting}>
-            <Route exact path="/" render={() => <Redirect to="/profile" />} />
-            <Route path="profile" component={SettingProfile} />
-            <Route path="security" component={SettingSecurity} />
-          </Route>
+          <Route path="setting" component={SettingPage} />
 
           <Route path="/todo/:boxId" component={TodoPage} />
           <Route exact path="/todo" component={TodoPage} />
