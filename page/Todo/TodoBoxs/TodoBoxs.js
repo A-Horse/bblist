@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import md5 from 'blueimp-md5';
 import TodoBoxCreater from '../TodoBoxCreater/TodoBoxCreater';
 
 import './TodoBoxs.scss';
@@ -17,10 +18,7 @@ class TodoBoxs extends Component {
     this.props.actions.GET_TODOBOXS_REQUEST();
   }
 
-  renderProjectBoxs() {}
-
   render() {
-    // this.props.todoBoxs
     return (
       <ul className="todo-boxs">
         <div className="todo-box-creater-container">

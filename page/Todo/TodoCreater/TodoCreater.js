@@ -12,7 +12,8 @@ import { repeatItems } from '../constants';
 
 class TodoCreater extends Component {
   static propTypes = {
-    actions: PropTypes.object.isRequired
+    actions: PropTypes.object.isRequired,
+    todoBoxId: PropTypes.string
   };
 
   state = {
@@ -29,13 +30,10 @@ class TodoCreater extends Component {
   }
 
   addTodo() {
-    if (!this.state.content) {
-      // TODO tip
-      return;
-    }
     const data = {
       content: this.state.content,
-      deadline: this.datePicker.value ? this.datePicker.value.getTime() : null
+      deadline: this.datePicker.value ? this.datePicker.value.getTime() : null,
+      todoBoxId: this.props.todoBoxId
     };
     this.props.actions.ADD_TODO_REQUEST(data);
     this.setState({ content: '' });
@@ -103,7 +101,7 @@ class TodoCreater extends Component {
           </div>
 
           <div className="todo-creater-operation">
-            <Button styleType="primary" onClick={this.addTodo}>
+            <Button styleType="primary" onClick={this.addTodo} disable={!this.state.content.length}>
               Create Todo
             </Button>
             <Button className="cancel-button" styleType="default" onClick={this.close}>

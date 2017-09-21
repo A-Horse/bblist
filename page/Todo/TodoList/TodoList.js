@@ -40,7 +40,7 @@ export default class TodoList extends Component {
     return (
       <div className="todo-list">
         <div className="creater-container">
-          <TodoCreater actions={this.props.actions} />
+          <TodoCreater actions={this.props.actions} todoBoxId={this.props.todoBoxId} />
         </div>
 
         <div className="todos">

@@ -20,7 +20,8 @@ import { repeatItems } from '../constants';
 
 class Todo extends Component {
   static propTypes = {
-    actions: PropTypes.object.isRequired
+    actions: PropTypes.object.isRequired,
+    todo: PropTypes.object
   };
 
   state = {
