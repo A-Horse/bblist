@@ -4,18 +4,9 @@ import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
 import Actions, { makeActionRequestCollection } from '../../../actions/actions';
 
-import { updateUserInfo } from 'actions/user';
-
-// TODO:
-const actions = {
-  updateUserInfo(userId, data) {
-    return dispatch => dispatch(updateUserInfo(userId, data));
-  }
-};
-
 const mapDispatchToProps = dispatch => {
   return {
-    actions: bindActionCreators(actions, dispatch)
+    actions: bindActionCreators(makeActionRequestCollection([Actions.UPDATE_USER]), dispatch)
   };
 };
 

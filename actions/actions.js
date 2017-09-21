@@ -4,8 +4,9 @@ const actionNames = [
   'IDENTIFY',
 
   'LOGIN',
-  // 'LOGIN_FINISH',
   'LOGOUT',
+
+  'UPDATE_USER',
 
   'ADD_TODO',
   'UPDATE_TODO',

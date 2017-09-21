@@ -6,8 +6,7 @@ const path = require('path');
 const CommonConfig = require('./webpack.common.js');
 
 module.exports = Merge(CommonConfig, {
-  recordsPath: path.join(__dirname, 'records.json'),
-  devtool: 'source-map',
+  // devtool: 'source-map',
   devServer: {
     // clientLogLevel: 'none',
     port: 9000,
@@ -17,7 +16,7 @@ module.exports = Merge(CommonConfig, {
   plugins: [
     new webpack.NamedModulesPlugin(),
     new webpack.SourceMapDevToolPlugin({
-      filename: '[name]-[id].js.map',
+      filename: '[name]-[id].bundle.js.map',
       exclude: ['vendor.miscellaneous.js']
     })
   ]

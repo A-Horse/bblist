@@ -27,7 +27,7 @@ module.exports = {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, '..', 'dist'),
     publicPath: '/',
-    chunkFilename: '[name]-[id].js'
+    chunkFilename: '[name]-[id].bundle.js'
   },
   plugins: [
     new webpack.optimize.AggressiveMergingPlugin(),

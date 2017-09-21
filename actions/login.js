@@ -91,37 +91,37 @@ export function signin(creds) {
  *       .catch(err => dispatch(authLoginError(err)));
  *   };
  * }*/
-
-export const AUTH_FAILURE = 'AUTH_FAILURE';
-export const AUTH_REQUEST = 'AUTH_REQUEST';
-export const AUTH_SUCCESS = 'AUTH_SUCCESS';
-
-function authRequest() {
-  return {
-    type: AUTH_REQUEST
-  };
-}
-
-function authSuccess(resp) {
-  return {
-    type: AUTH_SUCCESS,
-    playload: resp
-  };
-}
-
-function authFailure(message) {
-  return {
-    type: AUTH_FAILURE,
-    playload: message
-  };
-}
-
-export function authUser(userId) {
-  const config = createConfigWithAuth('GET');
-  return dispatch => {
-    return fetch(makeApiUrl(`/user/${userId}`), config)
-      .then(handleResponse)
-      .then(response => dispatch(authSuccess(response)))
-      .catch(err => dispatch(authFailure(err.message)));
-  };
-}
+/*
+ * export const AUTH_FAILURE = 'AUTH_FAILURE';
+ * export const AUTH_REQUEST = 'AUTH_REQUEST';
+ * export const AUTH_SUCCESS = 'AUTH_SUCCESS';
+ *
+ * function authRequest() {
+ *   return {
+ *     type: AUTH_REQUEST
+ *   };
+ * }
+ *
+ * function authSuccess(resp) {
+ *   return {
+ *     type: AUTH_SUCCESS,
+ *     playload: resp
+ *   };
+ * }
+ *
+ * function authFailure(message) {
+ *   return {
+ *     type: AUTH_FAILURE,
+ *     playload: message
+ *   };
+ * }
+ *
+ * export function authUser(userId) {
+ *   const config = createConfigWithAuth('GET');
+ *   return dispatch => {
+ *     return fetch(makeApiUrl(`/user/${userId}`), config)
+ *       .then(handleResponse)
+ *       .then(response => dispatch(authSuccess(response)))
+ *       .catch(err => dispatch(authFailure(err.message)));
+ *   };
+ * }*/
