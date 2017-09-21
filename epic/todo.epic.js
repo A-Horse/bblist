@@ -8,7 +8,7 @@ import { makeApiUrl } from '../utils/api';
 import { http } from '../services/http';
 import { getCachedUserId } from 'utils/auth';
 
-export const ADD_TODO = action$ =>
+export const ADD_TODO_REQUEST = action$ =>
   action$.ofType(Actions.ADD_TODO.REQUEST).mergeMap(action => {
     return http
       .post(makeApiUrl('/todo'), null, action.playload)
@@ -59,5 +59,5 @@ export const GET_TODOBOXS_REQUEST = actions$ =>
     return http
       .get(makeApiUrl(`/t/user/${userId}/todo-box`))
       .then(Actions.GET_TODOBOXS.success)
-      .then(Actions.GET_TODOBOXS.failure);
+      .catch(Actions.GET_TODOBOXS.failure);
   });
