@@ -24,11 +24,15 @@ export const ADD_TODOBOX_REQUEST = action$ =>
       .catch(Actions.ADD_TODOBOX.failure);
   });
 
-export const GET_TODOLIST = action$ =>
-  action$.ofType(Actions.GET_TODOLIST.REQUEST).mergeMap(() => {
+export const GET_TODOLIST_REQUEST = action$ =>
+  action$.ofType(Actions.GET_TODOLIST.REQUEST).mergeMap(action => {
     const userId = getCachedUserId();
+    const url = action.playload.todoBoxId
+      ? `/t/todo-box/${action.playload.todoBoxId}`
+      : `/user/${userId}/todo`;
+
     return http
-      .get(makeApiUrl(`/user/${userId}/todo`))
+      .get(makeApiUrl(url))
       .then(Actions.GET_TODOLIST.success)
       .catch(Actions.GET_TODOLIST.failure);
   });
