@@ -1,24 +1,16 @@
-import {
-  TODOLIST_GET_REQUEST,
-  TODOLIST_GET_SUCCESS,
-  TODOLIST_GET_FAILURE,
-  TODOBOX_GET_SUCCESS,
-  TODOBOX_CREATE_SUCCESS,
-  TODO_POST_SUCCESS,
-  TODO_PATCH_SUCCESS,
-  TODO_DESTORY_SUCCESS
-} from 'actions/todo/todos';
-import { TDBox, TD, TDS } from '../schema';
+import { TODOBOX_CREATE_SUCCESS } from 'actions/todo/todos';
+import { TDBox, TD, TDS, TDBoxs } from '../schema';
 import { normalize } from 'normalizr';
 import { Map, List, fromJS } from 'immutable';
-import R from 'ramda';
 import Actions from 'actions/actions';
 
 function todos(
   state = fromJS({
     todoBoxId: null,
     todoIds: [],
-    todoEntities: {}
+    todoEntities: {},
+    todoBoxEntities: {},
+    todoBoxIds: []
   }),
   action
 ) {
@@ -32,9 +24,12 @@ function todos(
         .update('todoIds', todoIds => todoIds.push(String(addedTodo.id)));
       break;
 
+    case Actions.GET_TODOLIST.REQUEST:
+      return state.update('todoIds', () => fromJS([]));
+      break;
+
     case Actions.GET_TODOLIST.SUCCESS:
       const normalizedTodos = normalize(action.playload, TDS);
-
       return state
         .update('todoIds', () => List(normalizedTodos.result))
         .update('todoEntities', () => fromJS(normalizedTodos.entities.Todo || {}));
@@ -51,12 +46,11 @@ function todos(
       return state.update('todoIds', ids => ids.delete(toDeletedIndex));
       break;
 
-    case TODOBOX_GET_SUCCESS:
-      const myTodoBox = { name: 'My Todo', id: null, type: 'only' };
-      return {
-        ...state,
-        TodoBoxs: normalize([].concat(action.playload, myTodoBox), TDS).entities.TodoBox
-      };
+    case Actions.GET_TODOBOXS.SUCCESS:
+      const normalizeTodoBox = normalize(action.playload, TDBoxs);
+      return state
+        .update('todoBoxIds', () => List(normalizeTodoBox.result))
+        .update('todoBoxEntities', () => fromJS(normalizeTodoBox.entities.TodoBox || {}));
       break;
 
     case TODOBOX_CREATE_SUCCESS:
