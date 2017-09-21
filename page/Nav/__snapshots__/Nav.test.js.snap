@@ -99,6 +99,7 @@ exports[`Website Nav 1`] = `
       <img
         className="nav-avatar"
         crossOrigin="Anonymous"
+        onLoad={[Function]}
         src="https://www.gravatar.com/avatar/50fe9076fe9e2143e68bd431c75ba1da"
       />
       <i
