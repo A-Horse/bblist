@@ -11,7 +11,8 @@ import './TodoPage.scss';
 export class TodoPage extends Component {
   static propTypes = {
     actions: PropTypes.object.isRequired,
-    match: PropTypes.any
+    match: PropTypes.any,
+    todoBoxs: PropTypes.any
   };
 
   componentDidUpdate() {
@@ -22,10 +23,10 @@ export class TodoPage extends Component {
     return (
       <PageContainer className="todo-page">
         <div className="todo-box-container">
-          <TodoBoxs actions={this.props.actions} />
+          <TodoBoxs todoBoxs={this.props.todoBoxs} actions={this.props.actions} />
         </div>
         <div className="todo-list-container">
-          <TodoList boxId={this.props.match.params.id} />
+          <TodoList />
         </div>
         <TodoRepeatHistoryModal />
       </PageContainer>
