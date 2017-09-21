@@ -28,7 +28,7 @@ const mapStateToProps = (state, props) => {
   return {
     unDoneTodos: getUnDoneTodos(state, props),
     doneTodos: getDoneTodos(state, props),
-    todoBoxId: state.todos.get('todoBoxId')
+    todoBoxId: props.match.params.boxId
   };
 };
 
