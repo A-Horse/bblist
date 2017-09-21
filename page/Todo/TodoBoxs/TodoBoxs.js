@@ -7,7 +7,8 @@ import './TodoBoxs.scss';
 
 class TodoBoxs extends Component {
   static propTypes = {
-    actions: PropTypes.object.isRequired
+    actions: PropTypes.object.isRequired,
+    todoBoxs: PropTypes.any
   };
 
   state = {};
@@ -29,9 +30,21 @@ class TodoBoxs extends Component {
         <div className="todo-box-group-list">
           <div className="box-group">
             <div className="box-group--name all-todo-filter">
-              <Link to="/todo/">
-                <span>All</span>
-              </Link>
+              <div>
+                <Link to="/todo/">
+                  <span>All</span>
+                </Link>
+              </div>
+
+              {this.props.todoBoxs.map(todoBox => {
+                return (
+                  <div key={todoBox.get('id')}>
+                    <Link to={`/todo/${todoBox.get('id')}`}>
+                      <span>{todoBox.get('name')}</span>
+                    </Link>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
