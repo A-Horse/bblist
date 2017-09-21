@@ -16,8 +16,18 @@ export default class TodoList extends Component {
   state = { toggleAll: false };
 
   componentWillMount() {
-    const { todoBoxId } = this.props;
-    this.props.actions.GET_TODOLIST_REQUEST({ todoBoxId });
+    this.getTodoList(this.props);
+  }
+
+  componentWillReceiveProps(newProps) {
+    this.getTodoList(newProps);
+  }
+
+  getTodoList(props) {
+    const { todoBoxId } = props;
+    if (todoBoxId !== this.props.todoBoxId) {
+      this.props.actions.GET_TODOLIST_REQUEST({ todoBoxId });
+    }
   }
 
   renderList(todos) {
