@@ -3,6 +3,7 @@
 exports[`Button 1`] = `
 <button
   className="button large primary border-default  signin-button"
+  disabled={undefined}
   onClick={undefined}
   type="submit"
 />
