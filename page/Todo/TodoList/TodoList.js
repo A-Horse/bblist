@@ -16,16 +16,16 @@ export default class TodoList extends Component {
   state = { toggleAll: false };
 
   componentWillMount() {
-    this.getTodoList(this.props);
+    this.getTodoList(this.props, true);
   }
 
   componentWillReceiveProps(newProps) {
     this.getTodoList(newProps);
   }
 
-  getTodoList(props) {
+  getTodoList(props, force) {
     const { todoBoxId } = props;
-    if (todoBoxId !== this.props.todoBoxId) {
+    if (force || todoBoxId !== this.props.todoBoxId) {
       this.props.actions.GET_TODOLIST_REQUEST({ todoBoxId });
     }
   }
