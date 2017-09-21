@@ -10,8 +10,10 @@ function generateUri(url, query) {
 }
 
 function f(method) {
-  return (url, query, body = null) => {
-    return fetch(generateUri(url, query), createConfigWithAuth(method, body)).then(handleResponse);
+  return (url, query, body = null, withHeader = false) => {
+    return fetch(generateUri(url, query), createConfigWithAuth(method, body)).then(
+      R.partialRight(handleResponse, [withHeader])
+    );
   };
 }
 

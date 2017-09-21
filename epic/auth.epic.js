@@ -27,6 +27,7 @@ export const LOGIN_REQUEST = action$ =>
     http
       .post(makeApiUrl('/signin'), null, action.playload)
       .then(response => {
+        // TODO 从 header 拿
         saveAuthData(response);
         return Actions.LOGIN.success(response);
       })

@@ -32,11 +32,22 @@ function handleError(response) {
   }
 }
 
-export function handleResponse(response) {
+export function handleResponse(response, withHeader) {
+  console.log(response);
+
   handleError(response);
-  let resp;
   if (response.status === 202 || response.status === 204) {
-    return null;
+    return Promise.resolve(null);
+  }
+  if (withHeader) {
+    return new Promise(resolve => {
+      response.json().then(resolvedResponse => {
+        resolve({
+          header: response.headers,
+          body: resolvedResponse
+        });
+      });
+    });
   }
   return response.json();
 }
