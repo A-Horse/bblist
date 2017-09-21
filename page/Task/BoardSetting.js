@@ -29,28 +29,13 @@ export class BoardSetting extends Component {
     return (
       <ul>
         <li>
-          <Link
-            activeClassName="active"
-            to={`/task-wall/${this.props.params.id}/setting/infomation`}
-          >
-            Infomation
-          </Link>
+          <Link to={`/task-wall/${this.props.params.id}/setting/infomation`}>Infomation</Link>
         </li>
         <li>
-          <Link
-            activeClassName="active"
-            to={`/task-wall/${this.props.params.id}/setting/preference`}
-          >
-            Preference
-          </Link>
+          <Link to={`/task-wall/${this.props.params.id}/setting/preference`}>Preference</Link>
         </li>
         <li>
-          <Link
-            activeClassName="active"
-            to={`/task-wall/${this.props.params.id}/setting/operation`}
-          >
-            Operation
-          </Link>
+          <Link to={`/task-wall/${this.props.params.id}/setting/operation`}>Operation</Link>
         </li>
       </ul>
     );

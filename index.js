@@ -43,10 +43,7 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-// Hot Module Replacement API
 if (module.hot) {
-  console.log('hot');
-
   module.hot.accept('./Application', () => {
     const NextApplication = require('./Application').default;
     ReactDOM.render(

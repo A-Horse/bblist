@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import { Route, Switch, Redirect } from 'react-router';
 
 import Security from './Security/Security';
-import Profile from './Profile/Profile';
+import Profile from './Profile/Profile.container';
 
 import './SettingPage.scss';
 
@@ -22,23 +22,19 @@ export default class Setting extends Component {
         <div className="setting-side-bar">
           <ul>
             <li>
-              <Link activeClassName="active" to="/setting/profile">
-                Profile
-              </Link>
+              <Link to="/setting/profile">Profile</Link>
             </li>
             <li>
-              <Link activeClassName="active" to="/setting/security">
-                Security
-              </Link>
+              <Link to="/setting/security">Security</Link>
             </li>
           </ul>
         </div>
 
         <div className="setting-panel">
           <Switch>
-            <Route exact path="/" render={() => <Redirect to="profile" />} />
-            <Route path="profile" component={Profile} />
-            <Route path="security" component={Security} />
+            <Route exact path="/setting" render={() => <Redirect to="/setting/profile" />} />
+            <Route path="/setting/profile" component={Profile} />
+            <Route path="/setting/security" component={Security} />
           </Switch>
         </div>
       </section>

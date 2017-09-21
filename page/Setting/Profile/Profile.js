@@ -1,26 +1,20 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { browserHistory } from 'react-router';
-import { PageContainer } from '../../../components/widget/PageContainer';
-import { makeGravatarUrl } from '../../../services/gravatar';
 import Input from 'components/widget/Input/Input';
 import { Button } from 'components/widget/Button/Button';
 
 import 'style/page/setting/profile.scss';
 
 export default class Profile extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.updateUsername = this.updateUsername.bind(this);
   }
 
-  componentWillMount() {
-    this.state = { username: this.props.user.username };
-  }
+  componentWillMount() {}
 
   updateUsername(event) {
     const username = this.refs.username;
-    this.props.actions.updateUserInfo(this.props.user.id, {
+    this.props.actions.updateUserInfo(this.props.user.get('id'), {
       username: username.value.trim()
     });
   }
@@ -32,7 +26,7 @@ export default class Profile extends Component {
           <div className="heading">Username:</div>
           <div>
             <Input
-              defaultValue={this.state.username}
+              defaultValue={this.props.user.get('username')}
               type="text"
               ref="username"
               name="profile-username"

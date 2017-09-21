@@ -97,7 +97,7 @@ export default class App extends Component {
               </Route>
               </Route> */}
 
-          <Route path="setting" component={SettingPage} />
+          <Route path="/setting" component={SettingPage} />
 
           <Route path="/todo/:boxId" component={TodoPage} />
           <Route exact path="/todo" component={TodoPage} />

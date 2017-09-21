@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import SettingPage from 'page/setting/SettingPage';
+import SettingPage from 'page/Setting/SettingPage';
 import { withRouter } from 'react-router-dom';
 import Actions, { makeActionRequestCollection } from '../../actions/actions';
 
@@ -8,9 +8,7 @@ const mapDispatchToProps = dispatch => {
 };
 
 const mapStateToProps = state => {
-  return {
-    user: state.auth.get('loginedUser')
-  };
+  return {};
 };
 
 const SettingPageContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(SettingPage));
