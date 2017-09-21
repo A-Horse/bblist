@@ -48,9 +48,10 @@ class TodoBoxs extends Component {
 
         <div className="todo-box-group-list">
           <div className="box-group">
-            <div className="box-group--name all-todo-filter">
+            <div className="box-group--name">
               <div>
                 <Link to="/todo/">
+                  <i className="fa fa-user-circle-o" aria-hidden="true" />
                   <span>All</span>
                 </Link>
               </div>

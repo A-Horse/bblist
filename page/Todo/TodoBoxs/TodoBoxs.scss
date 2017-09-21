@@ -34,26 +34,6 @@
   }
 
   .box-group--name {
-    svg {
-      margin-right: 10px;
-    }
-    svg, span {
-      vertical-align: middle;
-    }
-  }
-
-  .board-group {
-    .box-group--name {
-      svg {
-        fill: $md-purple-600;
-      }
-    }
-  }
-
-  .default-todo-filter {
-    svg {
-      fill: $md-green-500;
-    }
   }
 
   .all-todo-filter {

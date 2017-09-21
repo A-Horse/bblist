@@ -39,6 +39,10 @@ exports[`TodoBoxs 1`] = `
             href="/todo/"
             onClick={[Function]}
           >
+            <i
+              aria-hidden="true"
+              className="fa fa-user-circle-o"
+            />
             <span>
               All
             </span>
@@ -49,6 +53,15 @@ exports[`TodoBoxs 1`] = `
             href="/todo/1"
             onClick={[Function]}
           >
+            <i
+              aria-hidden="true"
+              className="fa fa-archive"
+              style={
+                Object {
+                  "color": "#6c4e3e",
+                }
+              }
+            />
             <span>
               Work Todo
             </span>
@@ -59,6 +72,15 @@ exports[`TodoBoxs 1`] = `
             href="/todo/2"
             onClick={[Function]}
           >
+            <i
+              aria-hidden="true"
+              className="fa fa-archive"
+              style={
+                Object {
+                  "color": "#3f8ba4",
+                }
+              }
+            />
             <span>
               Home Todo
             </span>
