@@ -4,8 +4,6 @@ import TaskBoardCreater from '../TaskBoardCreater';
 import { makeRemoteUrl } from 'services/remote-storage';
 import { DEFAULT_BOARD_COVER_SRC } from '../../../constants';
 import PropTypes from 'prop-types';
-/* import Loading from 'components/Loading';
- * import Nothing from 'components/Nothing';*/
 import { Link } from 'react-router-dom';
 
 import './BoardWall.scss';
