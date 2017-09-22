@@ -1,0 +1,35 @@
+@import 'style/variable';
+
+.error-msg {
+  width: 100%;
+  padding: 8px 12px;
+  background-color: $pink-light;
+  color: $red-litte-light;
+  border-radius: $radius-small;
+
+  ul {
+    li {
+      position: relative;
+      padding-left: 18px;
+      line-height: 1.1;
+      font-weight: 300;
+
+      &:last-children {
+        margin-bottom: 0;
+      }
+
+      &:before {
+        position: absolute;
+        content: '';
+        display: block;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background-color: $red-litte-light;
+        left: 0;
+        top: 50%;
+        margin-top: -3px;
+      }
+    }
+  }
+}
