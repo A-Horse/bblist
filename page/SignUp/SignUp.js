@@ -1,28 +1,42 @@
 import React, { Component } from 'react';
-import { validateFormValue } from '../services/validate-strategy';
-import { browserHistory } from 'react-router';
+import PropTypes from 'prop-types';
+import { validateFormValue } from '../../services/validate-strategy';
 import { PageContainer } from 'components/widget/PageContainer';
-import { Input } from '../components/widget/Input/Input';
+import { Input } from '../../components/widget/Input/Input';
 import { updateTitle } from 'services/title';
-import { Button } from '../components/widget/Button/Button';
+import { Button } from '../../components/widget/Button/Button';
 import { LogoBan } from 'components/commons/LogoBan';
 import { ErrorMsg } from 'components/ErrorMsg/ErrorMsg';
 import { Link } from 'react-router-dom';
 import R from 'ramda';
 
-import { SIGNUP_REQUEST, SIGNUP_SUCCESS, SIGNUP_FAILURE } from '../actions/signup';
-
-import 'style/page/signup.scss';
+import './SignUp.scss';
 
 class SignUp extends Component {
-  componentDidMount() {
-    updateTitle('Sign Up');
+  static propTypes = {
+    actions: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired,
+    signupSuccess: PropTypes.bool
+  };
+
+  state = {
+    errorMessage: {}
+  };
+
+  constructor(props) {
+    super(props);
+    this.signup = this.signup.bind(this);
   }
 
   componentWillMount() {
-    this.state = {
-      errorMessage: {}
-    };
+    updateTitle('Sign Up');
+  }
+
+  componentWillReceiveProps(newProps) {
+    if (newProps.signUpSuccess) {
+      this.props.actions.SIGNUP_FINISH();
+      this.props.history.push('/signin');
+    }
   }
 
   render() {
@@ -32,19 +46,31 @@ class SignUp extends Component {
       <PageContainer className="signup-page">
         <div className="signup-main">
           <LogoBan />
-          <form ref="form" className="signup-form" onSubmit={this.signup.bind(this)}>
+          <form className="signup-form" onSubmit={this.signup}>
             <div>
-              <Input type="text" ref="email" name="bblist-email" required placeholder="Email" />
+              <Input
+                type="text"
+                ref={ref => (this.emailInput = ref)}
+                name="octopus-email"
+                required
+                placeholder="Email"
+              />
             </div>
 
             <div>
-              <Input type="text" ref="name" name="bblist-name" required placeholder="Name" />
+              <Input
+                type="text"
+                ref={ref => (this.userNameInput = ref)}
+                name="octopus-username"
+                required
+                placeholder="Name"
+              />
             </div>
 
             <div>
               <Input
                 type="password"
-                ref="password"
+                ref={ref => (this.passwordInput = ref)}
                 name="bblist-password"
                 required
                 placeholder="Password"
@@ -54,7 +80,7 @@ class SignUp extends Component {
             <div>
               <Input
                 type="password"
-                ref="confirmPassword"
+                ref={ref => (this.confirmPasswordInput = ref)}
                 name="bblist-confirmPassword"
                 required
                 placeholder="Password ConfirmPassword"
@@ -79,21 +105,17 @@ class SignUp extends Component {
     );
   }
 
-  getSignUpData() {
-    const name = this.refs.name.instance;
-    const password = this.refs.password.instance;
-    const confirmPassword = this.refs.confirmPassword.instance;
-    const email = this.refs.email.instance;
-    return {
-      name: name.value.trim(),
-      password: password.value.trim(),
-      email: email.value.trim(),
-      confirmPassword: confirmPassword.value.trim()
-    };
-  }
+  signup(event) {
+    event.preventDefault();
 
-  validateSignUpData(signUpData) {
-    return validateFormValue(signUpData, {
+    const signUpData = {
+      name: this.usernameInput.value.trim(),
+      password: this.passwordInput.value.trim(),
+      email: this.emailInput.value.trim(),
+      confirmPassword: this.confirmPasswordInput.value.trim()
+    };
+
+    const errorMessages = validateFormValue(signUpData, {
       name: [
         'max@100#Name Up to 100 characters ',
         'min@3#The name must be a minimum of three characters'
@@ -102,23 +124,13 @@ class SignUp extends Component {
       confirmPassword: [`eqTo@${signUpData.password}#password don't match`],
       email: ['email#email express wrong', 'max@150#max 150']
     });
-  }
 
-  signup(event) {
-    event.preventDefault();
-
-    const signUpData = this.getSignUpData();
-    const errorMessages = this.validateSignUpData(signUpData);
     this.setState({ errorMessages: errorMessages });
 
     if (Object.keys(errorMessages).length) {
       return;
     }
-    this.props.signup(signUpData).then(function(action) {
-      if (action.type === SIGNUP_SUCCESS) {
-        browserHistory.push('/');
-      }
-    });
+    this.props.actions.SIGNUP_REQUEST(signUpData);
   }
 }
 

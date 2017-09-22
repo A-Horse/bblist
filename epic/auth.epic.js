@@ -39,6 +39,14 @@ export const LOGIN_REQUEST = action$ =>
       })
   );
 
+export const SIGNUP_REQUEST = action$ =>
+  action$.ofType(Actions.SIGNUP.REQUEST).mergeMap(action =>
+    http
+      .post(makeApiUrl('/signup'), null, action.playload)
+      .then(Actions.SIGNUP.success)
+      .catch(Actions.SIGNUP.failure)
+  );
+
 export const LOGOUT_REQUEST = action$ =>
   action$.ofType(Actions.LOGOUT.REQUEST).mergeMap(() =>
     http

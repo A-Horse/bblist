@@ -40,6 +40,14 @@ function auth(state = Map({}), action) {
       return state.delete('signInAuthenticated').delete('signInErrorMessage');
       break;
 
+    case Actions.SIGNUP.SUCCESS:
+      return state.set('signUpSuccess', true);
+      break;
+
+    case Actions.SIGNUP.FINISH:
+      return state.delete('signUpSuccess');
+      break;
+
     case Actions.LOGOUT.REQUEST:
       return state;
       break;
@@ -48,18 +56,8 @@ function auth(state = Map({}), action) {
       return state;
       break;
 
-    case UPDATE_USERINFO_REQUEST:
-      return Object.assign({}, state, {
-        user: action.user
-      });
-      break;
-    case UPDATE_USERINFO_SUCCESS:
-      return Object.assign({}, state, {
-        user: action.user
-      });
-      break;
-    case UPDATE_USERINFO_FAILURE:
-      return Object.assign({}, state, {});
+    case Actions.UPDATE_USER.SUCCESS:
+      return state.update('loginedUser', loginedUser => loginedUser.merge(fromJS(action.playload)));
       break;
 
     default:

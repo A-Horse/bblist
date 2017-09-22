@@ -5,12 +5,15 @@ const actionNames = [
 
   'LOGIN',
   'LOGOUT',
+  'SIGNUP',
 
   'UPDATE_USER',
 
   'ADD_TODO',
   'UPDATE_TODO',
   'GET_TODOLIST',
+  'GET_TODOBOXS',
+  'ADD_TODOBOX',
   'DESTORY_TODO',
 
   'GET_TASK_BOARD',
@@ -19,9 +22,7 @@ const actionNames = [
   'ADD_TASK_TRACK',
   'UPDATE_TASK_CARD',
   'DESTORY_TASK_TRACK',
-  'UPDATE_TASK_TRACK',
-  'GET_TODOBOXS',
-  'ADD_TODOBOX'
+  'UPDATE_TASK_TRACK'
 ];
 
 const ACTIONS = actionNames.reduce((result, actionName) => {
