@@ -16,10 +16,6 @@ import DashBoard from 'page/DashBoard';
  * import TaskSettingOperation from 'containers/task/Setting/Operation';
  * import TaskSettingPreference from 'containers/task/Setting/Preference';*/
 
-import Profile from 'containers/Profile';
-
-// import Setting from 'page/Setting/SettingPage.container';
-
 import Ideas from 'containers/idea/Ideas';
 
 // import Building from 'page/Building';
@@ -46,6 +42,12 @@ const TaskBoardWallPage = props => (
 
 const TaskBoardPage = props => (
   <Bundle load={require('bundle-loader?lazy&name=task-board-page!page/Task/Board/Board.container')}>
+    {B => <B {...props} />}
+  </Bundle>
+);
+
+const ProfilePage = props => (
+  <Bundle load={require('bundle-loader?lazy&name=profile-page!page/Profile/ProfilePage.container')}>
     {B => <B {...props} />}
   </Bundle>
 );
@@ -97,11 +99,11 @@ export default class App extends Component {
               </Route>
               </Route> */}
 
-          <Route path="/setting" component={SettingPage} />
-
           <Route path="/todo/:boxId" component={TodoPage} />
           <Route exact path="/todo" component={TodoPage} />
-          <Route path="profile" component={Profile} />
+
+          <Route path="/setting" component={SettingPage} />
+          <Route path="/profile" component={ProfilePage} />
 
           <Route path="*" component={NotFound} />
         </Switch>

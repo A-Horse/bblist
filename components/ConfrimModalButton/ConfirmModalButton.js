@@ -8,7 +8,8 @@ import './ConfirmModalButton.scss';
 
 export class ConfrimModalButton extends Component {
   static propTypes = {
-    onConfirm: PropTypes.func.isRequired
+    onConfirm: PropTypes.func.isRequired,
+    className: PropTypes.string
   };
 
   state = {

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import R from 'ramda';
-import moment from 'moment';
+import moment from 'moment'; //TODO 干掉moment
+import { differenceInDays, startOfWeek, subDays, format } from 'date-fns';
 
-import 'style/component/active-calendar.scss';
+import './ActiveCalendar.scss';
 
 function getRandom() {
   var num = Math.random();
@@ -17,13 +18,14 @@ function getRandom() {
 }
 
 export class ActiveCalendar extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.renderWeek = this.renderWeek.bind(this);
   }
   generatorData() {
+    const totalDays = 53 * 7 + differenceInDays(new Date(), startOfWeek(new Date()));
     let result = '';
-    for (let i = 0; i < 364; i++) {
+    for (let i = 0; i < totalDays; i++) {
       result += getRandom();
     }
     return result;
@@ -56,13 +58,7 @@ export class ActiveCalendar extends Component {
       <div key={wi} className="ac-week">
         {data.map((n, di) => {
           const distance = 7 * (52 - wi) - ++di;
-          const title =
-            moment()
-              .subtract(distance, 'days')
-              .format('YYYY-MM-DD') +
-            '  ' +
-            n +
-            ' events';
+          const title = format(subDays(new Date(), distance), 'YYYY-MM-DD') + '  ' + n + ' events';
           return <div key={di} className={`ac-day ac-day-${n}`} title={title} />;
         })}
       </div>

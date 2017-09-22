@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { browserHistory } from 'react-router';
-import { PageContainer } from '../../components/widget/PageContainer';
-import { makeGravatarUrl } from '../../services/gravatar';
-import { ActiveCalendar } from './ActiveCalendar';
+import PropTypes from 'prop-types';
+import { makeGravatarUrl } from 'services/gravatar';
+import { ActiveCalendar } from './ActiveCalendar/ActiveCalendar';
 
-import 'style/page/profile/profile.scss';
+import './ProfilePage.scss';
 
-export default class Profile extends Component {
+export class Profile extends Component {
+  static propTypes = {
+    user: PropTypes.object
+  };
+
   componentWillMount() {}
 
   render() {
@@ -15,17 +17,16 @@ export default class Profile extends Component {
     return (
       <div className="profile-page">
         <div className="profile-infomation">
-          <div>{user.email}</div>
-          <div>{user.username}</div>
+          <div>{user.get('email')}</div>
+          <div>{user.get('username')}</div>
           <img
-            ref="avator"
             className="profile-avatar"
             crossOrigin="Anonymous"
-            src={makeGravatarUrl(user.email, 200)}
+            src={makeGravatarUrl(user.get('email'), 200)}
           />
           <p>
             We use{' '}
-            <a target="_blank" href="https://www.gravatar.com/">
+            <a rel="noopener noreferrer" target="_blank" href="https://www.gravatar.com/">
               Gravatar
             </a>{' '}
             to display you avatar. you can change avatar in gravatar by your email;
@@ -34,7 +35,7 @@ export default class Profile extends Component {
 
         <div className="profile-detail">
           <div>
-            Join Octous ready <span className="profile-detail-number">N</span> days.
+            Join Octopus ready <span className="profile-detail-number">N</span> days.
           </div>
 
           <div>
@@ -50,3 +51,5 @@ export default class Profile extends Component {
     );
   }
 }
+
+export default Profile;
