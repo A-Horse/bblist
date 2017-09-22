@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { SettingIcon, StarBorderIcon } from 'services/svg-icons';
-import { updateTitle } from 'services/title';
-import { Link } from 'react-router-dom';
-import BoardContent from '../BoardContent/BoardContent';
-import { Route, Switch } from 'react-router';
+import { StarBorderIcon } from 'services/svg-icons';
 
-import 'style/page/task/taskboard-header.scss';
+import { Link } from 'react-router-dom';
+import { Route, Switch } from 'react-router';
+import BoardContent from '../BoardContent/BoardContent';
+import { updateTitle } from 'services/title';
+
+// import 'style/page/task/taskboard-header.scss';
 
 import './Board.scss';
 
@@ -53,10 +54,10 @@ class Board extends Component {
             className="taskboard-header-setting"
             onClick={() =>
               this.props.history.push(
-                `/task-wall/${this.props.match.params.boardId}/setting/infomation`
+                `/task-board/${this.props.match.params.boardId}/setting/infomation`
               )}
           >
-            <SettingIcon className="setting-icon" />
+            <i className="fa fa-cog" aria-hidden="true" />
             <span>setting</span>
           </div>
         </div>

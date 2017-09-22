@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
-
+import PropTypes from 'prop-types';
 import './StarCheckbox.scss';
 
+// TODO 下次改的时候直接抽离
 export class StarCheckBox extends Component {
+  static propTypes = {
+    defaultChecked: PropTypes.bool,
+    defaultChecked: PropTypes.func
+  };
+
   constructor(props) {
     super(props);
     this.checked = props.defaultChecked;
@@ -11,10 +17,6 @@ export class StarCheckBox extends Component {
   }
 
   componentWillMount() {}
-
-  // componentDidMount() {
-  //   this.instance = this.refs.instance;
-  // }
 
   onChange() {
     const checked = this.refs.instance.checked;

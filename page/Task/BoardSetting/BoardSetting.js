@@ -34,13 +34,13 @@ export class BoardSetting extends Component {
         <div className="board-setting-side-bar">
           <ul>
             <li>
-              <Link to={`/task-wall/${this.props.params.id}/setting/infomation`}>Infomation</Link>
+              <Link to={`infomation`}>Infomation</Link>
             </li>
             <li>
-              <Link to={`/task-wall/${this.props.params.id}/setting/preference`}>Preference</Link>
+              <Link to={`preference`}>Preference</Link>
             </li>
             <li>
-              <Link to={`/task-wall/${this.props.params.id}/setting/operation`}>Operation</Link>
+              <Link to={`operation`}>Operation</Link>
             </li>
           </ul>
         </div>
