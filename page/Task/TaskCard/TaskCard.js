@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { openTaskCardModal } from 'actions/event/task-wall';
 import UserAvatar from 'components/UserAvatar';
 import { CheckBox } from 'components/widget/CheckBox/CheckBox';
@@ -8,7 +9,11 @@ import R from 'ramda';
 
 import 'style/page/task/card.scss';
 
-class Card extends Component {
+class TaskCard extends Component {
+  static propTypes = {
+    card: PropTypes.object.isRequired
+  };
+
   state = {};
 
   constructor(props) {
@@ -152,4 +157,4 @@ class Card extends Component {
   }
 }
 
-export default Card;
+export default TaskCard;
