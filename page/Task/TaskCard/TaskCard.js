@@ -5,9 +5,8 @@ import UserAvatar from 'components/UserAvatar';
 import { CheckBox } from 'components/widget/CheckBox/CheckBox';
 import { getMouseElementInnerOffset } from 'utils/dom';
 import { browserHistory } from 'react-router';
-import R from 'ramda';
 
-import 'style/page/task/card.scss';
+import './TaskCard.scss';
 
 class TaskCard extends Component {
   static propTypes = {

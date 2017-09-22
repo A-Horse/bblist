@@ -1,0 +1,152 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TaskBoard 1`] = `
+<div
+  className="board-container"
+>
+  <div
+    className="taskboard-header"
+  >
+    <div
+      className="taskboard-name"
+    >
+      <test-file-stub
+        className="taskboard-name--star"
+      />
+      <a
+        className="taskboard-name--text"
+        href="/task-board/undefined"
+        onClick={[Function]}
+      >
+        sdsd!
+      </a>
+    </div>
+    <div
+      className="taskboard-header-setting"
+      onClick={[Function]}
+    >
+      <test-file-stub
+        className="setting-icon"
+      />
+      <span>
+        setting
+      </span>
+    </div>
+  </div>
+  <div
+    className="page-container board-page-container"
+  >
+    <div
+      className="board-track-container"
+      style={
+        Object {
+          "height": "100%",
+          "justifyContent": "center",
+          "position": "relative",
+          "whiteSpace": "nowrap",
+        }
+      }
+    >
+      <div
+        className="task-list"
+        data-index={0}
+        onDragEnter={[Function]}
+        onDragLeave={[Function]}
+        onDragOver={[Function]}
+        onDrop={[Function]}
+      >
+        <div
+          className="task-list--top-bar"
+          onMouseDown={[Function]}
+        >
+          <div
+            className="task-list--name"
+          >
+            <input
+              className="task-list--input"
+              defaultValue="Track No.1"
+              onChange={[Function]}
+              onKeyDown={[Function]}
+              onMouseDown={[Function]}
+            />
+          </div>
+          <i
+            aria-hidden="true"
+            className="fa fa-ellipsis-h"
+            onClick={[Function]}
+            onMouseDown={[Function]}
+          />
+          <noscript />
+        </div>
+        <div
+          className="task-list--body"
+        >
+          <div>
+            <div
+              className="task-card"
+            >
+              <div
+                className="checkbox"
+                onClick={undefined}
+              >
+                <label
+                  className="checkbox--mock"
+                >
+                  <input
+                    defaultChecked={0}
+                    onChange={[Function]}
+                    type="checkbox"
+                  />
+                  <i
+                    aria-hidden="true"
+                    className="fa fa-square-o"
+                  />
+                </label>
+              </div>
+              <p
+                className="task-card--title"
+              >
+                I am card
+              </p>
+              <img
+                className="useravatar"
+                crossOrigin="Anonymous"
+                src="https://www.gravatar.com/avatar/ecc815217cd2b3781541db627d45b9f1"
+                style={undefined}
+              />
+            </div>
+          </div>
+          <div
+            className="taskcard-creater--toggle"
+            onClick={[Function]}
+          >
+            <img
+              className="image-icon icon-add"
+              src="/assets/icons/add.png"
+            />
+            <span>
+              Add a card...
+            </span>
+          </div>
+        </div>
+      </div>
+      <div
+        className="tasklist-creater"
+      >
+        <div
+          className="task-list--toggle"
+          onClick={[Function]}
+        >
+          <img
+            className="image-icon icon-add"
+            src="/assets/icons/add.png"
+          />
+          <span>
+            Add a Track...
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

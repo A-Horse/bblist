@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { createTaskCard } from 'actions/task/task-card';
 import { getTaskAllCards } from 'actions/task/task-wall';
 import { addBodyEventListenerOnce } from 'actions/event/body';
@@ -8,13 +9,15 @@ import UserAvatar from 'components/UserAvatar';
 import { MoreIcon } from 'services/svg-icons';
 import { IconAdd } from 'services/image-icon';
 
-// import 'style/page/task/taskcard-creater.scss';
 import './CardCreater.scss';
 
 class CardCreater extends Component {
+  static propTypes = {};
+
   state = {
     toggle: false
   };
+
   constructor(props) {
     super(props);
     this.close = this.close.bind(this);
@@ -36,7 +39,7 @@ class CardCreater extends Component {
     this.setState({ toggle: false });
   }
 
-  toggle(event) {
+  toggle() {
     this.setState({ toggle: true });
   }
 

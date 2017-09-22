@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import PropTypes from 'prop-types';
 import { SettingIcon, StarBorderIcon } from 'services/svg-icons';
 import { updateTitle } from 'services/title';
 import { Link } from 'react-router-dom';
@@ -11,6 +11,16 @@ import 'style/page/task/taskboard-header.scss';
 import './Board.scss';
 
 class Board extends Component {
+  static propTypes = {
+    actions: PropTypes.object.isRequired,
+    board: PropTypes.object,
+    loginedUser: PropTypes.object,
+    trackMap: PropTypes.object,
+    cardMap: PropTypes.object,
+    match: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired
+  };
+
   constructor(props) {
     super(props);
   }
@@ -23,16 +33,14 @@ class Board extends Component {
     updateTitle('Task Board');
   }
 
-  getTasks(id) {
-    return this.props.getBoardData(id);
-  }
-
   renderSetttingArea() {
     return (
       <div
         className="taskboard-header-setting"
         onClick={() =>
-          this.props.history.push(`/task-wall/${this.props.params.boardId}/setting/infomation`)}
+          this.props.history.push(
+            `/task-wall/${this.props.match.params.boardId}/setting/infomation`
+          )}
       >
         <SettingIcon className="setting-icon" />
         <span>setting</span>

@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Task CardCreater 1`] = `
+<div
+  className="taskcard-creater--toggle"
+  onClick={[Function]}
+>
+  <img
+    className="image-icon icon-add"
+    src="/assets/icons/add.png"
+  />
+  <span>
+    Add a card...
+  </span>
+</div>
+`;
