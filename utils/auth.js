@@ -14,34 +14,24 @@ export function checkLogin(state, replace) {
 }
 
 export function getJWT() {
-  const authData = getAuthData();
-  return authData[JWT_STORAGE_KEY];
+  return Storage.get(JWT_STORAGE_KEY);
 }
 
 export function saveJWT(jwt) {
-  // TODO 这里非常不纯 refactor
-  const authData = getAuthData();
-  authData[JWT_STORAGE_KEY] = jwt;
-  return Storage.set(AUTH_DATA, JSON.stringify(authData));
+  return Storage.set(JWT_STORAGE_KEY, jwt);
 }
 
 export function getCachedUserId() {
-  return getAuthData(CACHED_USERID);
+  return Storage.get(CACHED_USERID);
 }
 
-export function saveCachedData(data) {
-  const authData = getAuthData();
-  return Storage.set(AUTH_DATA, JSON.stringify(Object.assign({}, authData, data)));
-}
+export function saveAuthData(response) {
+  console.log(response);
 
-export function saveAuthData(playload) {
-  const cachedData = {};
-  cachedData[CACHED_USEREMAIL] = playload.user.email;
-  cachedData[CACHED_USERID] = playload.user.id;
-  cachedData[CACHED_USERNAME] = playload.user.username;
-
-  saveJWT(playload.jwt);
-  saveCachedData(cachedData);
+  Storage.set(CACHED_USERID, response.user.id);
+  Storage.set(CACHED_USERNAME, response.user.username);
+  Storage.set(CACHED_USEREMAIL, response.user.email);
+  saveJWT(response.jwt);
 }
 
 export function getAuthData(key) {

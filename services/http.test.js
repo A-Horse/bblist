@@ -12,7 +12,7 @@ test('http get with jwt', () => {
   nock('http://ocotpus.xyz', {
     reqheaders: {
       'jwts-token':
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjozNCwidXNlcm5hbWUiOm51bGwsImVtYWlsIjoiYWJ5Y2hhbkBvdXRsb29rLmNvbSIsInN0YXR1cyI6bnVsbCwidHlwZSI6bnVsbCwiZGVzYyI6bnVsbCwiY3JlYXRlZF9hdCI6bnVsbCwidXBkYXRlZF9hdCI6bnVsbH0sImlhdCI6MTUwNDUzOTc0NX0.4e4suPkq_qtLywoRhvw43tHbP48RigtB1HrYN7D4HiY'
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoyLCJ1c2VybmFtZSI6IumZs-aUvueCujJzZHNkITIyMjIyMjIyMjIyIiwiZW1haWwiOiJjaGVuZmFuZ3dlaUBvdXRsb29rLmNvbSIsInN0YXR1cyI6bnVsbCwidHlwZSI6bnVsbCwiZGVzYyI6bnVsbCwiY3JlYXRlZF9hdCI6bnVsbCwidXBkYXRlZF9hdCI6bnVsbH0sImlhdCI6MTUwNjAwOTIwNX0.aWTfMa9hnf51hBq9jzv7niE3N-qxsGlOPaMdrbKOcYI'
     }
   })
     .get('/api/test')

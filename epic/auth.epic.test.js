@@ -40,7 +40,7 @@ describe('auth epic test', () => {
   test('LOGIN_REQUEST', async () => {
     nock('http://ocotpuese.xyz')
       .post('/api/signin', { email: 'octopus@octopus.com', password: '1234567' })
-      .reply(200, { user: { username: 'octopus' }, jwt: 'jwt' });
+      .reply(200, { user: { username: 'octopus', email: 'test@ocotpus.com', id: 34 }, jwt: 'jwt' });
 
     store.dispatch({
       type: 'LOGIN_REQUEST',
@@ -53,7 +53,14 @@ describe('auth epic test', () => {
       { type: 'LOGIN_REQUEST', playload: { email: 'octopus@octopus.com', password: '1234567' } },
       {
         type: 'LOGIN_SUCCESS',
-        playload: { user: { username: 'octopus' }, jwt: 'jwt' }
+        playload: {
+          user: {
+            username: 'octopus',
+            email: 'test@ocotpus.com',
+            id: 34
+          },
+          jwt: 'jwt'
+        }
       }
     ]);
   });
