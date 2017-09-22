@@ -4,7 +4,7 @@ import { validateFormValue } from 'services/validate-strategy';
 import { Button } from 'components/widget/Button/Button';
 import { Input } from 'components/widget/Input/Input';
 import { LogoBan } from 'components/commons/LogoBan';
-import { ErrorMsg } from 'components/ErrorMsg';
+import { ErrorMsg } from 'components/ErrorMsg/ErrorMsg';
 import { PageContainer } from '../../components/widget/PageContainer';
 import { Link } from 'react-router-dom';
 import { updateTitle } from 'services/title';
@@ -17,11 +17,13 @@ class SignIn extends Component {
   static propTypes = {
     actions: PropTypes.object.isRequired,
     history: PropTypes.object.isRequired,
-    signInErrorMessages: PropTypes.object
+    signInErrorMessages: PropTypes.string
   };
 
   state = {
-    errorMessages: {}
+    errorMessages: {},
+    email: '',
+    password: ''
   };
 
   componentDidMount() {
@@ -42,22 +44,29 @@ class SignIn extends Component {
           <LogoBan />
           <form className="signin-form" onSubmit={this.login.bind(this)}>
             <div>
-              <Input type="text" ref="email" name="bblist-email" required placeholder="Email" />
+              <Input
+                type="text"
+                name="octopus-email"
+                required
+                placeholder="Email"
+                onChange={value => this.setState({ email: value })}
+              />
             </div>
 
             <div>
               <Input
                 type="password"
-                ref="password"
-                name="bblist-password"
+                name="octopus-password"
+                onChange={value => this.setState({ password: value })}
                 required
                 placeholder="Password"
               />
             </div>
 
-            <ErrorMsg messages={R.values(this.state.errorMessages)} />
             <ErrorMsg
-              messages={this.props.signInErrorMessages ? [this.props.signInErrorMessages] : []}
+              messages={R.compose(R.concat([this.props.signInErrorMessages]), R.values)(
+                this.state.errorMessages
+              )}
             />
             <Button className="signin-button" size="large" type="submit" styleType="primary">
               Login
@@ -77,11 +86,9 @@ class SignIn extends Component {
 
   login(event) {
     event.preventDefault();
-    const email = this.refs.email;
-    const password = this.refs.password;
     const loginInfo = {
-      email: email.instance.value.trim(),
-      password: password.instance.value.trim()
+      email: this.state.email.trim(),
+      password: this.state.password.trim()
     };
 
     const errorMessages = validateFormValue(loginInfo, {
