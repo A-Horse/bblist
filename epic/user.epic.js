@@ -16,7 +16,7 @@ export const UPDATE_USER_REQUEST = action$ =>
       .patch(makeApiUrl(`/user/${userId}`), null, action.playload, WITH_HEADER)
       .then(response => {
         saveJWT(response.header.get('jwts-token'));
-        return Actions.UPDATE_USER.success(response);
+        return Actions.UPDATE_USER.success(response.body);
       })
       .catch(Actions.UPDATE_USER.failure);
   });

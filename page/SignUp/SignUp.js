@@ -71,7 +71,7 @@ class SignUp extends Component {
               <Input
                 type="password"
                 ref={ref => (this.passwordInput = ref)}
-                name="bblist-password"
+                name="octopus-password"
                 required
                 placeholder="Password"
               />
@@ -81,7 +81,7 @@ class SignUp extends Component {
               <Input
                 type="password"
                 ref={ref => (this.confirmPasswordInput = ref)}
-                name="bblist-confirmPassword"
+                name="octopus-confirm-password"
                 required
                 placeholder="Password ConfirmPassword"
               />
@@ -109,7 +109,7 @@ class SignUp extends Component {
     event.preventDefault();
 
     const signUpData = {
-      name: this.usernameInput.value.trim(),
+      name: this.userNameInput.value.trim(),
       password: this.passwordInput.value.trim(),
       email: this.emailInput.value.trim(),
       confirmPassword: this.confirmPasswordInput.value.trim()
@@ -120,7 +120,7 @@ class SignUp extends Component {
         'max@100#Name Up to 100 characters ',
         'min@3#The name must be a minimum of three characters'
       ],
-      password: ['max@100#Password Up to 100 characters', 'min@6#min 6'],
+      password: ['max@100#Password Up to 100 characters', 'min@6#password min 6'],
       confirmPassword: [`eqTo@${signUpData.password}#password don't match`],
       email: ['email#email express wrong', 'max@150#max 150']
     });

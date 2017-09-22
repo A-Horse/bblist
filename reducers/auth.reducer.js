@@ -57,6 +57,8 @@ function auth(state = Map({}), action) {
       break;
 
     case Actions.UPDATE_USER.SUCCESS:
+      console.log(fromJS(action.playload));
+
       return state.update('loginedUser', loginedUser => loginedUser.merge(fromJS(action.playload)));
       break;
 
