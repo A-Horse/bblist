@@ -6,7 +6,7 @@ import { ImageUploader } from 'components/ImageUploader';
 import { makeRemoteUrl } from 'services/remote-storage';
 import Button from 'components/widget/Button/Button';
 
-import 'style/page/task/setting/operation.scss';
+import './Operation.scss';
 
 class Operation extends Component {
   render() {

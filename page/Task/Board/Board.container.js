@@ -23,6 +23,7 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = state => {
   return {
     board: state.task2.get('board'),
+    boardName: state.task2.get('board') ? state.task2.getIn(['board', 'name']) : '',
     trackMap: state.task2.get('trackMap'),
     cardMap: state.task2.get('cardMap'),
     loginedUser: state.auth.get('loginedUser')

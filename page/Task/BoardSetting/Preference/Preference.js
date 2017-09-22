@@ -1,13 +1,7 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Modal } from 'components/widget/Modal/Modal';
-import ReactCrop from 'react-image-crop';
-import { ImageUploader } from 'components/ImageUploader';
-import { makeRemoteUrl } from 'services/remote-storage';
 import RadioGroup from 'components/widget/RadioGroup';
-import Button from 'components/widget/Button/Button';
 
-import 'style/page/task/setting/preference.scss';
+import './Preference.scss';
 
 class Preference extends Component {
   render() {

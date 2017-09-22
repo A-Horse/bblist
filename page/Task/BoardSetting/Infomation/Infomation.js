@@ -9,7 +9,7 @@ import Button from 'components/widget/Button/Button';
 import Textarea from 'react-textarea-autosize';
 import Loading from 'components/Loading';
 
-import 'style/page/task/setting/infomation.scss';
+import './Infomation.scss';
 
 class Infomation extends Component {
   constructor() {
