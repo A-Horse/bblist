@@ -8,7 +8,6 @@ import { Link } from 'react-router-dom';
 
 import './BoardWall.scss';
 import 'style/page/task/taskboard-creater-modal.scss';
-import 'style/page/task/taskboard-card.scss';
 
 class BoardWall extends Component {
   static propTypes = {

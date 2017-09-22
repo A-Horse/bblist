@@ -29,3 +29,41 @@
     justify-content: flex-start;
   }
 }
+
+$board-card-width: 250px;
+$board-card-height: 125px;
+
+.taskboard-card {
+  flex: 1 0 auto;
+  margin-right: 20px;
+  margin-top: 8px;
+  width: $board-card-width;
+  max-width: $board-card-width;
+  height: $board-card-height;
+  cursor: pointer;
+  transition: box-shadow 218ms ease-in-out,transform 218ms ease-in-out,-webkit-transform 218ms ease-in-out;
+  box-shadow: 0 2px 3px 0 rgba(0, 0, 0, .0470588);
+  background-size: cover;
+  border-radius: $radius-middle;
+  cursor: pointer;
+
+  &:hover {
+    transform: translate3d(0, -5px, 0);
+    box-shadow: 0 7px 21px rgba(0, 0, 0, .15);
+  }
+
+  .taskboard-card-info {
+    background-image: linear-gradient(180deg,rgba(0,0,0,.3) 0, transparent);
+    border-radius: $radius-middle;
+    height: 50%;
+    color: $white;
+    overflow: hidden;
+
+    &--name {
+      margin: 10px;
+      font-weight: normal;
+      font-size: $font-size-large;
+      border-radius: $radius-middle;
+    }
+  }
+}
