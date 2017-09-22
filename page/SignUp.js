@@ -6,7 +6,7 @@ import { Input } from '../components/widget/Input/Input';
 import { updateTitle } from 'services/title';
 import { Button } from '../components/widget/Button/Button';
 import { LogoBan } from 'components/commons/LogoBan';
-import { ErrorMsg } from 'components/ErrorMsg';
+import { ErrorMsg } from 'components/ErrorMsg/ErrorMsg';
 import { Link } from 'react-router-dom';
 import R from 'ramda';
 
