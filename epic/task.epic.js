@@ -24,7 +24,7 @@ export const UPLOAD_TASK_BOARD_COVER_REQUEST = action$ =>
       .post(makeApiUrl(`/task-board/${action.playload.id}/cover`), null, action.playload.data, {
         formData: true
       })
-      .then(response => Actions.UPLOAD_TASK_BOARD_COVER.success(response, action.playload))
+      .then(Actions.UPLOAD_TASK_BOARD_COVER.success)
       .catch(Actions.UPLOAD_TASK_BOARD_COVER.failure);
   });
 
@@ -32,7 +32,7 @@ export const DESTORY_TASK_BOARD_REQUEST = action$ =>
   action$.ofType(Actions.DESTORY_TASK_BOARD.REQUEST).mergeMap(action => {
     return http
       .delete(makeApiUrl(`/task-board/${action.playload.id}`), null)
-      .then(Actions.DESTORY_TASK_BOARD.success)
+      .then(response => Actions.DESTORY_TASK_BOARD.success(response, action.playload))
       .catch(Actions.DESTORY_TASK_BOARD.failure);
   });
 
