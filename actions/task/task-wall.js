@@ -13,9 +13,9 @@ export const TASKWALL_POST_REQUEST = 'TASKWALL_POST_REQUEST';
 export const TASKWALL_POST_SUCCESS = 'TASKWALL_POST_SUCCESS';
 export const TASKWALL_POST_FAILURE = 'TASKWALL_POST_FAILURE';
 
-export const TASKWALL_DELETE_REQUEST = 'TASKWALL_DELETE_REQUEST';
-export const TASKWALL_DELETE_SUCCESS = 'TASKWALL_DELETE_SUCCESS';
-export const TASKWALL_DELETE_FAILURE = 'TASKWALL_DELETE_FAILURE';
+/* export const TASKWALL_DELETE_REQUEST = 'TASKWALL_DELETE_REQUEST';
+ * export const TASKWALL_DELETE_SUCCESS = 'TASKWALL_DELETE_SUCCESS';
+ * export const TASKWALL_DELETE_FAILURE = 'TASKWALL_DELETE_FAILURE';*/
 
 export const ALL_TASKCARD_GET_REQUEST = 'TASKCARD_GET_REQUEST';
 export const ALL_TASKCARD_GET_SUCCESS = 'TASKCARD_GET_SUCCESS';
@@ -95,24 +95,24 @@ function createTaskWallError() {
     type: TASKWALL_POST_FAILURE
   };
 }
-
-function requestDeleteTaskWall() {
-  return {
-    type: TASKWALL_DELETE_REQUEST
-  };
-}
-
-function deleteTaskWallSuccess() {
-  return {
-    type: TASKWALL_DELETE_SUCCESS
-  };
-}
-
-function deleteTaskWallError() {
-  return {
-    type: TASKWALL_DELETE_FAILURE
-  };
-}
+/*
+ * function requestDeleteTaskWall() {
+ *   return {
+ *     type: TASKWALL_DELETE_REQUEST
+ *   };
+ * }
+ *
+ * function deleteTaskWallSuccess() {
+ *   return {
+ *     type: TASKWALL_DELETE_SUCCESS
+ *   };
+ * }
+ *
+ * function deleteTaskWallError() {
+ *   return {
+ *     type: TASKWALL_DELETE_FAILURE
+ *   };
+ * }*/
 
 export const TASKBOARD_RENAME_REQUEST = 'TASKBOARD_RENAME_REQUEST';
 
@@ -170,12 +170,12 @@ export function createTaskBoard(CreateWallInfo) {
   };
 }
 
-export function deleteTaskBoard(boardId) {
-  const config = createConfigWithAuth('DELETE');
-  return dispatch => {
-    dispatch(requestDeleteTaskWall(boardId));
-    return fetch(makeApiUrl(`/task-wall/${boardId}`), config)
-      .then(handleResponseWithoutJson)
-      .then(response => dispatch(deleteTaskWallSuccess(response)));
-  };
-}
+/* export function deleteTaskBoard(boardId) {
+ *   const config = createConfigWithAuth('DELETE');
+ *   return dispatch => {
+ *     dispatch(requestDeleteTaskWall(boardId));
+ *     return fetch(makeApiUrl(`/task-wall/${boardId}`), config)
+ *       .then(handleResponseWithoutJson)
+ *       .then(response => dispatch(deleteTaskWallSuccess(response)));
+ *   };
+ * }*/

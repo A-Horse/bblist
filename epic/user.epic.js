@@ -1,4 +1,3 @@
-import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mapTo';
@@ -11,9 +10,10 @@ import { getCachedUserId, saveJWT } from 'utils/auth';
 export const UPDATE_USER_REQUEST = action$ =>
   action$.ofType(Actions.UPDATE_USER.REQUEST).mergeMap(action => {
     const userId = getCachedUserId();
-    const WITH_HEADER = true;
     return http
-      .patch(makeApiUrl(`/user/${userId}`), null, action.playload, WITH_HEADER)
+      .patch(makeApiUrl(`/user/${userId}`), null, action.playload, {
+        withHeader: true
+      })
       .then(response => {
         saveJWT(response.header.get('jwts-token'));
         return Actions.UPDATE_USER.success(response.body);

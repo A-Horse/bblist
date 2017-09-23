@@ -6,7 +6,7 @@ const path = require('path');
 const CommonConfig = require('./webpack.common.js');
 
 module.exports = Merge(CommonConfig, {
-  // devtool: 'source-map',
+  devtool: 'source-map',
   devServer: {
     // clientLogLevel: 'none',
     port: 9000,

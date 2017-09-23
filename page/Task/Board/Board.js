@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { StarBorderIcon } from 'services/svg-icons';
 import { Link } from 'react-router-dom';
-import { Route, Switch } from 'react-router';
+import { Route, Switch, Redirect } from 'react-router';
 import { updateTitle } from 'services/title';
 
 import BoardContent from '../BoardContent/BoardContent';
@@ -15,16 +15,13 @@ class Board extends Component {
     actions: PropTypes.object.isRequired,
     board: PropTypes.object,
     boardName: PropTypes.string,
+    boardFetching: PropTypes.bool,
     loginedUser: PropTypes.object,
     trackMap: PropTypes.object,
     cardMap: PropTypes.object,
     match: PropTypes.object.isRequired,
     history: PropTypes.object.isRequired
   };
-
-  constructor(props) {
-    super(props);
-  }
 
   componentWillMount() {
     updateTitle(`Task Board ${this.props.boardName}`);
@@ -39,7 +36,11 @@ class Board extends Component {
 
   render() {
     const { boardId } = this.props.match.params;
-    const { board } = this.props;
+    const { board, boardFetching } = this.props;
+    if (boardFetching === false && !board) {
+      return <Redirect to="/task-board" />;
+    }
+
     return (
       <div className="board-container">
         <div className="taskboard-header">

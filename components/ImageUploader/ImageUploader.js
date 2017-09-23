@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Button } from 'components/widget/Button/Button';
-import { Modal } from 'components/widget/Modal/Modal';
 import ReactCrop from 'react-image-crop';
 import { imageCrop } from 'services/image-crop';
-import { ImageIcon } from 'services/svg-icons';
+import { Button } from 'components/widget/Button/Button';
+import { Modal } from 'components/widget/Modal/Modal';
 
-import 'style/image-uploader.scss';
+import './ImageUploader.scss';
+
+const crop = { width: 30, aspect: 2 / 1 };
 
 export class ImageUploader extends Component {
   static propTypes = {
@@ -14,20 +15,24 @@ export class ImageUploader extends Component {
     children: PropTypes.any
   };
 
+  state = { imageDataURL: '', cropedimageDataUrl: '', crop };
+
   constructor(props) {
     super(props);
-    const crop = { width: 30, aspect: 2 / 1 };
-    this.state = { imageDataURL: '', cropedimageDataUrl: '', crop };
     this.closeModal = this.closeModal.bind(this);
+    this.upload = this.upload.bind(this);
+    this.openFilePicker = this.openFilePicker.bind(this);
+    this.onImageLoaded = this.onImageLoaded.bind(this);
+    this.onCropChange = this.onCropChange.bind(this);
+    this.onCropComplete = this.onCropComplete.bind(this);
   }
 
-  // FIXME
   upload() {
     this.props.uploadFn(this.state.cropedimageDataUrl);
+    this.closeModal();
   }
 
-  // TODO 太卡，采用DOM方法
-  async onCropChange(crop, pixelCrop) {
+  async cropImage(crop, pixelCrop) {
     const cropedimageDataUrl = await imageCrop(
       this.state.imageDataURL,
       pixelCrop.width,
@@ -39,24 +44,24 @@ export class ImageUploader extends Component {
     this.setState({ crop });
   }
 
-  async onCropComplete(crop, pixelCrop) {
-    const cropedimageDataUrl = await imageCrop(
-      this.state.imageDataURL,
-      pixelCrop.width,
-      pixelCrop.height,
-      pixelCrop.x,
-      pixelCrop.y
-    );
-    this.setState({ cropedimageDataUrl });
-    this.setState({ crop });
+  onCropChange(crop, pixelCrop) {
+    this.cropImage(crop, pixelCrop);
+  }
+
+  onCropComplete(crop, pixelCrop) {
+    this.cropImage(crop, pixelCrop);
+  }
+
+  onImageLoaded(crop, image, pixelCrop) {
+    this.cropImage(crop, pixelCrop);
   }
 
   openFilePicker() {
-    this.refs['input-file'].click();
+    this.fileInput.click();
   }
 
   closeModal() {
-    this.setState({ modalOpen: false });
+    this.setState({ modalToggle: false });
   }
 
   openModal() {
@@ -64,8 +69,8 @@ export class ImageUploader extends Component {
     reader.onload = e => {
       this.setState({ imageDataURL: e.target.result });
     };
-    reader.readAsDataURL(this.refs['input-file'].files[0]);
-    this.setState({ modalOpen: true });
+    reader.readAsDataURL(this.fileInput.files[0]);
+    this.setState({ modalToggle: true });
   }
 
   render() {
@@ -78,10 +83,15 @@ export class ImageUploader extends Component {
         >
           {this.props.children || 'Upload'}
         </Button>
-        <input ref="input-file" type="file" onChange={this.openModal.bind(this)} />
+        <input
+          ref={ref => (this.fileInput = ref)}
+          type="file"
+          accept="image/*"
+          onChange={this.openModal.bind(this)}
+        />
         <Modal
           className="image-uploader-modal"
-          toggle={this.state.modalOpen}
+          toggle={this.state.modalToggle}
           close={this.closeModal.bind(this)}
         >
           <div>
@@ -93,21 +103,22 @@ export class ImageUploader extends Component {
               <div className="crop-image-container">
                 <ReactCrop
                   crop={this.state.crop}
-                  onChange={this.onCropChange.bind(this)}
-                  onComplete={this.onCropComplete.bind(this)}
+                  onChange={this.onCropChange}
+                  onComplete={this.onCropComplete}
+                  onImageLoaded={this.onImageLoaded}
                   src={this.state.imageDataURL}
                 />
               </div>
 
-              <div className="upload-link" onClick={this.openFilePicker.bind(this)}>
-                <ImageIcon />
+              <div className="upload-link" onClick={this.openFilePicker}>
+                <i className="fa fa-picture-o" aria-hidden="true" />
                 <a>Choose Image:</a>
               </div>
             </div>
 
             <img className="upload--preview-image" src={this.state.cropedimageDataUrl} />
             <div>
-              <Button styleType="primary" onClick={this.upload.bind(this)}>
+              <Button styleType="primary" onClick={this.upload}>
                 Upload
               </Button>
             </div>

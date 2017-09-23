@@ -15,7 +15,8 @@ const mapDispatchToProps = dispatch => {
         Actions.DESTORY_TASK_TRACK,
         Actions.UPDATE_TASK_TRACK,
         Actions.UPDATE_TASK_BOARD,
-        Actions.UPLOAD_TASK_BOARD_COVER
+        Actions.UPLOAD_TASK_BOARD_COVER,
+        Actions.DESTORY_TASK_BOARD
       ]),
       dispatch
     )
@@ -25,6 +26,7 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = state => {
   return {
     board: state.task2.get('board'),
+    boardFetching: state.task2.get('boardFetching'),
     boardName: state.task2.get('board') ? state.task2.getIn(['board', 'name']) : '',
     trackMap: state.task2.get('trackMap'),
     cardMap: state.task2.get('cardMap'),

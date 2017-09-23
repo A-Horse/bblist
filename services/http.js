@@ -1,7 +1,7 @@
 import fetch from 'isomorphic-fetch';
 import R from 'ramda';
 import { handleResponse } from 'utils/http-handle';
-import { createConfigWithAuth } from '../utils/header';
+import { createConfigWithAuth, createFormDataConfigWithAuth } from '../utils/header';
 
 function generateUri(url, query) {
   return !query
@@ -10,9 +10,16 @@ function generateUri(url, query) {
 }
 
 function f(method) {
-  return (url, query, body = null, withHeader = false) => {
-    return fetch(generateUri(url, query), createConfigWithAuth(method, body)).then(
-      R.partialRight(handleResponse, [withHeader])
+  return (url, query, body = null, options = {}) => {
+    let createConfigFn;
+    if (options.formData) {
+      createConfigFn = createFormDataConfigWithAuth;
+    } else {
+      createConfigFn = createConfigWithAuth;
+    }
+
+    return fetch(generateUri(url, query), createConfigFn(method, body)).then(
+      R.partialRight(handleResponse, [options.withHeader])
     );
   };
 }

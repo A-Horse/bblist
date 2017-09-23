@@ -38,6 +38,7 @@ exports[`Infomation 1`] = `
           Upload new Cover
         </button>
         <input
+          accept="image/*"
           onChange={[Function]}
           type="file"
         />

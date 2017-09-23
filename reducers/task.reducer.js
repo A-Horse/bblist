@@ -15,12 +15,13 @@ export function task2(
 ) {
   switch (action.type) {
     case Actions.GET_TASK_BOARD.REQUEST:
-      return state.update('board', () => null);
+      return state.update('board', () => null).update('boardFetching', R.T);
       break;
 
     case Actions.GET_TASK_BOARD.SUCCESS:
       const normalizedBoard = normalize(action.playload, TaskBoard);
       return state
+        .update('boardFetching', R.F)
         .update('board', () => fromJS(normalizedBoard.entities.TaskBoard[normalizedBoard.result]))
         .update('trackMap', () =>
           fromJS(normalizedBoard.entities.TaskTrack || {}).sort((a, b) => {
@@ -28,6 +29,10 @@ export function task2(
           })
         )
         .update('cardMap', () => fromJS(normalizedBoard.entities.TaskCard));
+      break;
+
+    case Actions.GET_TASK_BOARD.FAILURE:
+      return state.update('board', () => null).update('boardFetching', R.F);
       break;
 
     case Actions.GET_TASK_ALL_BOARD.SUCCESS:
@@ -39,6 +44,14 @@ export function task2(
       return state.update('board', board => {
         return board.merge(fromJS(R.omit(['id'], action.playload)));
       });
+      break;
+
+    case Actions.UPLOAD_TASK_BOARD_COVER.SUCCESS:
+      return state.update('board', board => board.merge(fromJS(R.omit(['id'], action.playload))));
+      break;
+
+    case Actions.DESTORY_TASK_BOARD.SUCCESS:
+      return state.delete('board').deleteIn(['boardMap', String(action.meta.id)]);
       break;
 
     case Actions.ADD_TASK_CARD.SUCCESS:

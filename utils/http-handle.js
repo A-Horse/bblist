@@ -32,7 +32,7 @@ function handleError(response) {
   }
 }
 
-export function handleResponse(response, withHeader) {
+export function handleResponse(response, withHeader = false) {
   handleError(response);
   if (response.status === 202 || response.status === 204) {
     return Promise.resolve(null);

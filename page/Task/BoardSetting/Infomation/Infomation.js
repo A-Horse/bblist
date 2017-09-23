@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { ImageUploader } from 'components/ImageUploader';
+import { ImageUploader } from 'components/ImageUploader/ImageUploader';
 import { makeRemoteUrl } from 'services/remote-storage';
 import Input from 'components/widget/Input/Input';
 

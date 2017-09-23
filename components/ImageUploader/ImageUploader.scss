@@ -12,8 +12,11 @@
 }
 
 .image-uploader-modal {
+  top: 5%;
   max-width: 600px;
   min-width: 400px;
+  overflow: auto;
+  max-height: 90%;
 
   .upload-link {
     svg: {
@@ -26,7 +29,6 @@
   }
 
   .crop-image-container {
-    height: 250px;
     text-align: center;
     background-color: $black;
   }

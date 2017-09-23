@@ -40,8 +40,14 @@ export class BoardSetting extends Component {
               path="/task-board/:id/setting/infomation"
               render={() => <Infomation {...this.props} />}
             />
-            <Route path="/task-board/:id/setting/preference" component={Operation} />
-            <Route path="/task-board/:id/setting/operation" component={Preference} />
+            <Route
+              path="/task-board/:id/setting/preference"
+              render={() => <Preference {...this.props} />}
+            />
+            <Route
+              path="/task-board/:id/setting/operation"
+              render={() => <Operation {...this.props} />}
+            />
           </Switch>
         </div>
       </section>

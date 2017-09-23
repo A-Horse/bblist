@@ -5,8 +5,6 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/of';
 import { Storage } from '../services/storage';
 import Actions from '../actions/actions';
-import { ajax } from 'rxjs/observable/dom/ajax';
-import fetch from 'isomorphic-fetch';
 import { makeApiUrl } from '../utils/api';
 import { http } from '../services/http';
 import { saveAuthData, getJWT } from 'utils/auth';

@@ -24,7 +24,8 @@ const actionNames = [
   'DESTORY_TASK_TRACK',
   'UPDATE_TASK_TRACK',
   'UPLOAD_TASK_BOARD_COVER',
-  'UPDATE_TASK_BOARD'
+  'UPDATE_TASK_BOARD',
+  'DESTORY_TASK_BOARD'
 ];
 
 const ACTIONS = actionNames.reduce((result, actionName) => {

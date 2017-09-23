@@ -22,8 +22,6 @@ export default class Profile extends Component {
   componentWillMount() {}
 
   render() {
-    console.log('render');
-
     return (
       <section className="setting-profile">
         <section className="setting-profile-username">

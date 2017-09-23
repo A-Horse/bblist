@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Modal } from 'components/widget/Modal/Modal';
-import ReactCrop from 'react-image-crop';
-import { ImageUploader } from 'components/ImageUploader';
-import { makeRemoteUrl } from 'services/remote-storage';
+import PropTypes from 'prop-types';
 import Button from 'components/widget/Button/Button';
 
 import './Operation.scss';
 
 class Operation extends Component {
+  static propTypes = {
+    actions: PropTypes.object.isRequired,
+    board: PropTypes.object
+  };
+
   render() {
     return (
       <div className="board-setting-operation">
@@ -19,7 +20,8 @@ class Operation extends Component {
           <div>
             <Button
               styleType="dangerous"
-              onClick={() => this.props.deleteBoard(this.props.params.id)}
+              onClick={() =>
+                this.props.actions.DESTORY_TASK_BOARD_REQUEST({ id: this.props.board.get('id') })}
             >
               Delete
             </Button>
