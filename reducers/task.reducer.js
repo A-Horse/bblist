@@ -18,7 +18,7 @@ export function task2(
       return state.update('board', () => null).update('boardFetching', R.T);
       break;
 
-    case Actions.ADD_TASK_BOARD.REQUEST:
+    case Actions.ADD_TASK_BOARD.SUCCESS:
       const normalizedAddBoard = normalize(action.playload, TaskBoard);
       return state.update('boardMap', boardMap =>
         boardMap.merge(fromJS(normalizedAddBoard.entities.TaskBoard))
