@@ -25,14 +25,16 @@ exports[`TaskBoard 1`] = `
       className="taskboard-header-setting"
       onClick={[Function]}
     >
-      <test-file-stub
-        className="setting-icon"
+      <i
+        aria-hidden="true"
+        className="fa fa-cog"
       />
       <span>
         setting
       </span>
     </div>
   </div>
+  <div />
   <div
     className="page-container board-page-container"
   >
