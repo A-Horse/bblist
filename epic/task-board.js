@@ -37,14 +37,15 @@ export const updateTaskBoardDescription = action$ =>
     })
     .catch((err, caught) => caught);
 
-export const renameTaskBoard = action$ =>
-  action$
-    .ofType(TASKBOARD_RENAME_REQUEST)
-    .distinctUntilChanged()
-    .debounceTime(250)
-    .mergeMap(action => {
-      return patchTaskBoard(action.playload.boardId, { name: action.playload.name }).map(response =>
-        updateTaskBoardSuccess(response)
-      );
-    })
-    .catch((err, caught) => caught);
+/*
+ * export const renameTaskBoard = action$ =>
+ *   action$
+ *     .ofType(TASKBOARD_RENAME_REQUEST)
+ *     .distinctUntilChanged()
+ *     .debounceTime(250)
+ *     .mergeMap(action => {
+ *       return patchTaskBoard(action.playload.boardId, { name: action.playload.name }).map(response =>
+ *         updateTaskBoardSuccess(response)
+ *       );
+ *     })
+ *     .catch((err, caught) => caught);*/

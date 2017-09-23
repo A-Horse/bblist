@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { StarBorderIcon } from 'services/svg-icons';
-
 import { Link } from 'react-router-dom';
 import { Route, Switch } from 'react-router';
-import BoardContent from '../BoardContent/BoardContent';
 import { updateTitle } from 'services/title';
 
-// import 'style/page/task/taskboard-header.scss';
+import BoardContent from '../BoardContent/BoardContent';
+import BoardSetting from '../BoardSetting/BoardSetting';
 
 import './Board.scss';
 
@@ -39,14 +38,14 @@ class Board extends Component {
   }
 
   render() {
-    const { id } = this.props.match.params;
+    const { boardId } = this.props.match.params;
     const { board } = this.props;
     return (
       <div className="board-container">
         <div className="taskboard-header">
           <div className="taskboard-name">
             <StarBorderIcon className="taskboard-name--star" />
-            <Link className="taskboard-name--text" to={`/task-board/${id}`}>
+            <Link className="taskboard-name--text" to={`/task-board/${boardId}`}>
               {board && board.get('name')}
             </Link>
           </div>
@@ -67,7 +66,7 @@ class Board extends Component {
         <Switch>
           <Route
             exact
-            path=""
+            path="/task-board/:id"
             render={() => (
               <BoardContent
                 history={this.props.history}
@@ -80,15 +79,12 @@ class Board extends Component {
             )}
           />
           <Route
-            exact
-            path="setting"
+            path="/task-board/:id/setting"
             render={() => (
-              <BoardContent
+              <BoardSetting
                 history={this.props.history}
                 actions={this.props.actions}
                 board={this.props.board}
-                cardMap={this.props.cardMap}
-                trackMap={this.props.trackMap}
                 loginedUser={this.props.loginedUser}
               />
             )}

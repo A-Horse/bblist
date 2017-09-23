@@ -5,8 +5,8 @@ import './StarCheckbox.scss';
 // TODO 下次改的时候直接抽离
 export class StarCheckBox extends Component {
   static propTypes = {
-    defaultChecked: PropTypes.bool,
-    defaultChecked: PropTypes.func
+    defaultChecked: PropTypes.any,
+    onClick: PropTypes.func
   };
 
   constructor(props) {

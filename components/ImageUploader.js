@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Button } from 'components/widget/Button/Button';
 import { Modal } from 'components/widget/Modal/Modal';
 import ReactCrop from 'react-image-crop';
@@ -8,49 +9,16 @@ import { ImageIcon } from 'services/svg-icons';
 import 'style/image-uploader.scss';
 
 export class ImageUploader extends Component {
-  constructor() {
-    super();
+  static propTypes = {
+    uploadFn: PropTypes.func.isRequired,
+    children: PropTypes.any
+  };
+
+  constructor(props) {
+    super(props);
     const crop = { width: 30, aspect: 2 / 1 };
     this.state = { imageDataURL: '', cropedimageDataUrl: '', crop };
-  }
-
-  renderModal() {
-    return (
-      <Modal
-        className="image-uploader-modal"
-        toggle={this.state.modalOpen}
-        close={this.closeModal.bind(this)}
-      >
-        <div>
-          <div>
-            <h2>Upload Image</h2>
-          </div>
-
-          <div>
-            <div className="crop-image-container">
-              <ReactCrop
-                crop={this.state.crop}
-                onChange={this.onCropChange.bind(this)}
-                onComplete={this.onCropComplete.bind(this)}
-                src={this.state.imageDataURL}
-              />
-            </div>
-
-            <div className="upload-link" onClick={this.openFilePicker.bind(this)}>
-              <ImageIcon />
-              <a>Choose Image:</a>
-            </div>
-          </div>
-
-          <img className="upload--preview-image" src={this.state.cropedimageDataUrl} />
-          <div>
-            <Button styleType="primary" onClick={this.upload.bind(this)}>
-              Upload
-            </Button>
-          </div>
-        </div>
-      </Modal>
-    );
+    this.closeModal = this.closeModal.bind(this);
   }
 
   // FIXME
@@ -111,7 +79,40 @@ export class ImageUploader extends Component {
           {this.props.children || 'Upload'}
         </Button>
         <input ref="input-file" type="file" onChange={this.openModal.bind(this)} />
-        {this.renderModal()}
+        <Modal
+          className="image-uploader-modal"
+          toggle={this.state.modalOpen}
+          close={this.closeModal.bind(this)}
+        >
+          <div>
+            <div>
+              <h2>Upload Image</h2>
+            </div>
+
+            <div>
+              <div className="crop-image-container">
+                <ReactCrop
+                  crop={this.state.crop}
+                  onChange={this.onCropChange.bind(this)}
+                  onComplete={this.onCropComplete.bind(this)}
+                  src={this.state.imageDataURL}
+                />
+              </div>
+
+              <div className="upload-link" onClick={this.openFilePicker.bind(this)}>
+                <ImageIcon />
+                <a>Choose Image:</a>
+              </div>
+            </div>
+
+            <img className="upload--preview-image" src={this.state.cropedimageDataUrl} />
+            <div>
+              <Button styleType="primary" onClick={this.upload.bind(this)}>
+                Upload
+              </Button>
+            </div>
+          </div>
+        </Modal>
       </div>
     );
   }

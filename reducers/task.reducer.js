@@ -1,5 +1,5 @@
 import { normalize } from 'normalizr';
-import { Map, List, fromJS } from 'immutable';
+import { fromJS } from 'immutable';
 import R from 'ramda';
 import Actions from 'actions/actions';
 import { TaskBoards, TaskBoard, TaskCard, TaskTrack } from 'schema';
@@ -23,7 +23,7 @@ export function task2(
       return state
         .update('board', () => fromJS(normalizedBoard.entities.TaskBoard[normalizedBoard.result]))
         .update('trackMap', () =>
-          fromJS(normalizedBoard.entities.TaskTrack).sort((a, b) => {
+          fromJS(normalizedBoard.entities.TaskTrack || {}).sort((a, b) => {
             return a.get('index') < b.get('index') ? -1 : 1;
           })
         )
@@ -33,6 +33,12 @@ export function task2(
     case Actions.GET_TASK_ALL_BOARD.SUCCESS:
       const normalizedAllBoard = normalize(action.playload, TaskBoards);
       return state.update('boardMap', () => fromJS(normalizedAllBoard.entities.TaskBoard));
+      break;
+
+    case Actions.UPDATE_TASK_BOARD.SUCCESS:
+      return state.update('board', board => {
+        return board.merge(fromJS(R.omit(['id'], action.playload)));
+      });
       break;
 
     case Actions.ADD_TASK_CARD.SUCCESS:

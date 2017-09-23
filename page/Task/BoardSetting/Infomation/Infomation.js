@@ -1,41 +1,22 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Modal } from 'components/widget/Modal/Modal';
-import ReactCrop from 'react-image-crop';
+import PropTypes from 'prop-types';
 import { ImageUploader } from 'components/ImageUploader';
 import { makeRemoteUrl } from 'services/remote-storage';
 import Input from 'components/widget/Input/Input';
-import Button from 'components/widget/Button/Button';
-import Textarea from 'react-textarea-autosize';
-import Loading from 'components/Loading';
 
 import './Infomation.scss';
 
 class Infomation extends Component {
-  constructor() {
-    super();
-    this.uploadCover = this.uploadCover.bind(this);
-    this.onBoardNameChange = this.onBoardNameChange.bind(this);
-  }
-
-  uploadCover(imageDataUrl) {
-    // TODO extract commons
-    const data = new FormData();
-    data.append('playload', imageDataUrl);
-    this.props.uploadCover(this.props.params.id, data);
-  }
-
-  onBoardNameChange(value) {
-    this.props.modifyTaskBoardName(value);
-  }
+  static propTypes = {
+    actions: PropTypes.object.isRequired,
+    board: PropTypes.object
+  };
 
   render() {
     const board = this.props.board;
     if (!board) {
-      return <Loading />;
+      return null;
     }
-
-    // TODO default cover
     return (
       <div className="board-setting-infomation">
         <h3>Infomation</h3>
@@ -43,10 +24,19 @@ class Infomation extends Component {
         <div className="board-cover">
           <div className="board-cover--heading">Board Cover:</div>
           <div className="board-cover--wrapper">
-            <img className="cover-image" src={makeRemoteUrl(board.cover)} />
+            <img className="cover-image" src={makeRemoteUrl(board.get('cover'))} />
           </div>
           <div className="board-cover--uploader">
-            <ImageUploader ref="board-cover-uploader" uploadFn={this.uploadCover}>
+            <ImageUploader
+              uploadFn={imageDataUrl => {
+                const data = new FormData();
+                data.append('cover', imageDataUrl);
+                this.props.actions.UPLOAD_TASK_BOARD_COVER_REQUEST({
+                  id: this.props.board.get('id'),
+                  data: data
+                });
+              }}
+            >
               Upload new Cover
             </ImageUploader>
           </div>
@@ -57,8 +47,9 @@ class Infomation extends Component {
           <div>
             <Input
               className="board-name--input"
-              defaultValue={board.name}
-              onChange={this.onBoardNameChange}
+              defaultValue={board.get('name')}
+              onChange={value =>
+                this.props.actions.UPDATE_TASK_BOARD_REQUEST({ id: board.get('id'), name: value })}
             />
           </div>
         </div>

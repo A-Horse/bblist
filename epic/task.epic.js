@@ -18,6 +18,30 @@ export const GET_TASK_BOARD = action$ =>
       .catch(Actions.GET_TASK_BOARD.failure);
   });
 
+export const UPLOAD_TASK_BOARD_COVER_REQUEST = action$ =>
+  action$.ofType(Actions.UPLOAD_TASK_BOARD_COVER.REQUEST).mergeMap(action => {
+    return http
+      .post(makeApiUrl(`/task-board/${action.playload.id}/cover`), action.data)
+      .then(Actions.UPLOAD_TASK_BOARD_COVER.success)
+      .catch(Actions.UPLOAD_TASK_BOARD_COVER.failure);
+  });
+
+export const UPDATE_TASK_BOARD_REQUEST = action$ =>
+  action$
+    .ofType(Actions.UPDATE_TASK_BOARD.REQUEST)
+    .distinctUntilChanged()
+    .debounceTime(250)
+    .mergeMap(action => {
+      return http
+        .patch(
+          makeApiUrl(`/task-board/${action.playload.id}`),
+          null,
+          R.omit(['id'], action.playload)
+        )
+        .then(Actions.UPDATE_TASK_BOARD.success)
+        .catch(Actions.UPDATE_TASK_BOARD.failure);
+    });
+
 export const ADD_TASK_CARD = action$ =>
   action$.ofType(Actions.ADD_TASK_CARD.REQUEST).mergeMap(action => {
     return http
