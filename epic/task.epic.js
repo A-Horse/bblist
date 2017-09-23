@@ -18,6 +18,14 @@ export const GET_TASK_BOARD = action$ =>
       .catch(Actions.GET_TASK_BOARD.failure);
   });
 
+export const ADD_TASK_BOARD_REQUEST = action$ =>
+  action$.ofType(Actions.ADD_TASK_BOARD.REQUEST).mergeMap(action => {
+    return http
+      .get(makeApiUrl(`/task-board/`), null, action.playload)
+      .then(Actions.ADD_TASK_BOARD.success)
+      .catch(Actions.ADD_TASK_BOARD.failure);
+  });
+
 export const UPLOAD_TASK_BOARD_COVER_REQUEST = action$ =>
   action$.ofType(Actions.UPLOAD_TASK_BOARD_COVER.REQUEST).mergeMap(action => {
     return http

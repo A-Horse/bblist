@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { PageContainer } from 'components/widget/PageContainer';
-import TaskBoardCreater from '../TaskBoardCreater';
-import { makeRemoteUrl } from 'services/remote-storage';
-import { DEFAULT_BOARD_COVER_SRC } from '../../../constants';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { PageContainer } from 'components/widget/PageContainer';
+import TaskBoardCreater from '../TaskBoardCreater/TaskBoardCreater';
+import { makeRemoteUrl } from 'services/remote-storage';
+import { DEFAULT_BOARD_COVER_SRC } from '../../../constants';
 
 import './BoardWall.scss';
 import 'style/page/task/taskboard-creater-modal.scss';
@@ -22,10 +22,7 @@ class BoardWall extends Component {
   render() {
     return (
       <PageContainer>
-        <TaskBoardCreater
-          getAllTaskBoard={this.props.actions.getAllTaskBoard}
-          createTaskBoard={this.props.actions.createTaskBoard}
-        />
+        <TaskBoardCreater actions={this.props.actions} />
         <div className="taskboard-boards">
           <div className="board-group">
             <div className="board-card-container">

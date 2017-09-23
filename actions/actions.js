@@ -17,6 +17,7 @@ const actionNames = [
   'DESTORY_TODO',
 
   'GET_TASK_BOARD',
+  'ADD_TASK_BOARD',
   'GET_TASK_ALL_BOARD',
   'ADD_TASK_CARD',
   'ADD_TASK_TRACK',

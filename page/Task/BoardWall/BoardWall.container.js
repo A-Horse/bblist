@@ -13,7 +13,10 @@ const mapStateToProps = (state, props) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    actions: bindActionCreators(makeActionRequestCollection([Actions.GET_TASK_ALL_BOARD]), dispatch)
+    actions: bindActionCreators(
+      makeActionRequestCollection([Actions.GET_TASK_ALL_BOARD, Actions.ADD_TASK_BOARD]),
+      dispatch
+    )
   };
 };
 
