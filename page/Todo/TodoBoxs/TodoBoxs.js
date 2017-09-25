@@ -108,12 +108,15 @@ class TodoBoxs extends Component {
 
         <MediaQuery className="todo-box__small-device" query="(max-width: 600px)">
           <div
+            className="todo-box--current-name"
             onClick={() => {
               this.setState({ smallDeviceBoxToggle: !this.state.smallDeviceBoxToggle });
             }}
           >
             <i className="fa fa-envelope-open" aria-hidden="true" />
-            {this.findCurrentTodoBoxName()}
+            <span>{this.findCurrentTodoBoxName()}</span>
+
+            <i className="fa fa-chevron-down" aria-hidden="true" />
           </div>
 
           <DropList
@@ -141,6 +144,7 @@ class TodoBoxs extends Component {
         </MediaQuery>
       </ul>
     );
+    2;
   }
 }
 

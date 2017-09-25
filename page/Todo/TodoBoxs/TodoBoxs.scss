@@ -34,7 +34,34 @@
   }
 
   .todo-box__small-device {
+    position: relative;
+
+    .todo-box--current-name {
+      font-size: 1.2rem;
+      padding: 3px 12px 2px;
+      display: flex;
+
+      i {
+        vertical-align: middle;
+      }
+
+      .fa-envelope-open {
+        margin-right: 8px;
+        color: #fdab2a;
+      }
+
+      .fa-chevron-down {
+        font-weight: 100;
+      }
+
+      span {
+        flex-shrink: 0;
+        flex-grow: 10;
+      }
+    }
+
     .drop-list {
+      top: 0;
       width: 100%;
       z-index: 100;
       border: none;
@@ -50,7 +77,7 @@
       li {
         font-size: 1.2rem;
         border-top: 1px solid #f0f0f0;
-        padding: 3px 0px 2px 12px ;
+        padding: 3px 0px 2px 12px;
         color: white;
 
         i {
