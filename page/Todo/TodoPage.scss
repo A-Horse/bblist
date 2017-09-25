@@ -32,12 +32,14 @@
   }
 
   @media screen and (max-width: 600px) {
+    padding-right: 0;
 
     .todo-box-container {
       height: auto;
       display: block;
-      width: auto;
+      width: 100%;
       min-width: auto;
+      padding: 0;
     }
 
     .todo-list-container {

@@ -19,19 +19,58 @@
     background-color: $color-background-light;
     border-radius: $radius-middle;
     box-shadow: 0 0 5px #eee;
+
+    .box-group {
+      margin-bottom: 12px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    .fa-user-circle-o {
+      color: #0e88eb;
+    }
+  }
+
+  .todo-box__small-device {
+    .drop-list {
+      width: 100%;
+      z-index: 100;
+      border: none;
+      background-color: $primary-bg;
+    }
+
+    .todo-box-group-list {
+      padding: 0;
+      border-radius: 0;
+      box-shadow: none;
+      background-color: $primary-bg;
+
+      li {
+        font-size: 1.2rem;
+        border-top: 1px solid #f0f0f0;
+        padding: 3px 0px 2px 12px ;
+        color: white;
+
+        i {
+          margin-right: 8px;
+          color: white !important;
+        }
+
+        a {
+          color: white;
+          letter-spacing: 1px;
+        }
+      }
+    }
   }
 
   a {
     color: $text-primary;
   }
 
-  .box-group {
-    margin-bottom: 12px;
 
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
 
   .box-group--name {
   }

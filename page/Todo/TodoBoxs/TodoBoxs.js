@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import MediaQuery from 'react-responsive';
-import R from 'ramda';
+import ClickOutSide from 'components/utils/ClickOutSide';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { DropList } from 'components/widget/DropList/DropList';
@@ -23,7 +23,7 @@ class TodoBoxs extends Component {
     todoBoxs: PropTypes.any
   };
 
-  state = {};
+  state = { smallDeviceBoxToggle: false };
 
   constructor(props) {
     super(props);
@@ -106,13 +106,37 @@ class TodoBoxs extends Component {
           {this.renderTodoBoxList()}
         </MediaQuery>
 
-        <MediaQuery className="nav-links__small-device" query="(max-width: 600px)">
-          <div>{this.findCurrentTodoBoxName()}</div>
-          <DropList toggle={this.state.smallDeviceNavLinkToggle}>
-            <li>
-              <TodoBoxCreater actions={this.props.actions} />
-            </li>
-            {this.renderTodoBoxList()}
+        <MediaQuery className="todo-box__small-device" query="(max-width: 600px)">
+          <div
+            onClick={() => {
+              this.setState({ smallDeviceBoxToggle: !this.state.smallDeviceBoxToggle });
+            }}
+          >
+            <i className="fa fa-envelope-open" aria-hidden="true" />
+            {this.findCurrentTodoBoxName()}
+          </div>
+
+          <DropList
+            toggle={this.state.smallDeviceBoxToggle}
+            onClick={() => this.setState({ smallDeviceBoxToggle: false })}
+          >
+            <ClickOutSide
+              onClickOutside={event => {
+                event.stopPropagation();
+                if (this.smallDeviceTodoBoxCreater.state.toggle) {
+                  return;
+                }
+                this.setState({ smallDeviceBoxToggle: false });
+              }}
+            >
+              <li>
+                <TodoBoxCreater
+                  ref={ref => (this.smallDeviceTodoBoxCreater = ref)}
+                  actions={this.props.actions}
+                />
+              </li>
+              {this.renderTodoBoxList()}
+            </ClickOutSide>
           </DropList>
         </MediaQuery>
       </ul>

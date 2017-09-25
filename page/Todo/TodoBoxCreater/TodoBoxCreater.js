@@ -27,6 +27,7 @@ class TodoBoxCreater extends Component {
     this.props.actions.ADD_TODOBOX_REQUEST({
       name: this.nameInput.value.trim()
     });
+    this.close();
   }
 
   render() {
