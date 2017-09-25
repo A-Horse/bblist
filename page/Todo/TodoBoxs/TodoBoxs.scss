@@ -40,14 +40,16 @@
       font-size: 1.2rem;
       padding: 3px 12px 2px;
       display: flex;
+      align-items: center;
+      color: white;
+      background-color: $primary-bg;;
 
       i {
         vertical-align: middle;
       }
 
       .fa-envelope-open {
-        margin-right: 8px;
-        color: #fdab2a;
+        margin-right: 12px;
       }
 
       .fa-chevron-down {

@@ -33,7 +33,13 @@ class TodoBoxCreater extends Component {
   render() {
     return (
       <div>
-        <div className="todo-box-creater--toggle" onClick={() => this.setState({ toggle: true })}>
+        <div
+          className="todo-box-creater--toggle"
+          onClick={event => {
+            event.stopPropagation();
+            this.setState({ toggle: true });
+          }}
+        >
           <i className="fa fa-plus" aria-hidden="true" />
           <span className="toggle-text">Create Todo Box</span>
         </div>
