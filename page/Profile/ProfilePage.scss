@@ -6,6 +6,12 @@
   margin: 0 auto;
   padding-top: 20px;
 
+  @media screen and (max-width: 600px) {
+    .profile-detail {
+      display: none;
+    }
+  }
+
   .profile-infomation {
     width: 200px;
     .profile-avatar {

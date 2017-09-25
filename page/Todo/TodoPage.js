@@ -23,7 +23,11 @@ export class TodoPage extends Component {
     return (
       <PageContainer className="todo-page">
         <div className="todo-box-container">
-          <TodoBoxs todoBoxs={this.props.todoBoxs} actions={this.props.actions} />
+          <TodoBoxs
+            todoBoxs={this.props.todoBoxs}
+            actions={this.props.actions}
+            match={this.props.match}
+          />
         </div>
         <div className="todo-list-container">
           <TodoList />

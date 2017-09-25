@@ -16,8 +16,12 @@
 html {
   background-color: $page-background-gray;
   font-family: 'Mukta', sans-serif;
-  /* background-color: #4a4b50; */
   font-weight: 100 !important;
+}
+
+* {
+  -webkit-overflow-scrolling: touch;
+  -webkit-text-size-adjust: none
 }
 
 #root {
