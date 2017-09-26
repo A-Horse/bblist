@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { weekDayName } from './constant';
 import { daysInMonth /* firstDayInMonthOffset*/ } from './util';
-import { getDay } from 'date-fns';
+import { getDay, getDaysInMonth } from 'date-fns';
 
 import Week from './Week';
 
@@ -39,8 +39,8 @@ class Month extends Component {
   renderWeeks() {
     const { year, month /* day*/ } = this.props;
     const { selectedDate } = this.props;
-    const monthDays = daysInMonth(month, year);
-    const lastMonthDays = daysInMonth(month - 1, year);
+    const monthDays = getDaysInMonth(month - 1, year);
+    const lastMonthDays = getDaysInMonth(month - 1 - 1, year);
 
     const firstDayOffset = getDay(new Date(year, month - 1, 1));
 
