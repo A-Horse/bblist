@@ -1,38 +1,30 @@
 import React, { Component } from 'react';
-import R from 'ramda';
+import PropTypes from 'prop-types';
 import TaskTrack from '../Track/Track';
-import CardModal from '../CardModal';
 import { PageContainer } from 'components/widget/PageContainer';
-import { SettingIcon } from 'services/svg-icons';
 import TrackCreater from '../TrackCreater/TrackCreater';
 import DOM from 'react-dom-factories';
 
 import './BoardContent.scss';
 
-const styles = {
-  settingIcon: {
-    fill: 'white',
-    verticalAlign: 'middle'
-  },
-  settingContainer: {
-    display: 'block'
-  },
-  listContainer: {
-    position: 'relative',
-    justifyContent: 'center',
-    height: '100%',
-    whiteSpace: 'nowrap'
-  }
-};
-
 class BoardContent extends Component {
-  constructor() {
-    super();
-    this.state = {
-      typingNewList: false,
-      boardSettingToggle: false
-    };
+  static propTypes = {
+    actions: PropTypes.object.isRequired,
+    match: PropTypes.object,
+    history: PropTypes.object.isRequired,
+    trackMap: PropTypes.object,
+    cardMap: PropTypes.object,
+    board: PropTypes.object,
+    loginedUser: PropTypes.object
+  };
 
+  state = {
+    typingNewList: false,
+    boardSettingToggle: false
+  };
+
+  constructor(props) {
+    super(props);
     this.trackInstanceMap = {};
     this.updateTaskTrackIndexs = this.updateTaskTrackIndexs.bind(this);
   }
@@ -52,7 +44,7 @@ class BoardContent extends Component {
 
     return (
       <PageContainer className="board-page-container">
-        <div className="board-track-container" style={styles.listContainer}>
+        <div className="board-track-container">
           {trackMap.toArray().map((track, index) => (
             <TaskTrack
               key={track.get('id')}

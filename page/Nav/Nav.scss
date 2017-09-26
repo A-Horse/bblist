@@ -46,6 +46,7 @@ nav.nav {
 
       li {
         float: left;
+        user-select: none;
 
         &.active {
           font-weight: 500;

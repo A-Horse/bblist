@@ -56,13 +56,3 @@ $nav-height: 42px;
   right: 0;
   bottom: 0;
 }
-
-.page-container.board-page-container {
-  width: 100%;
-  overflow-x: auto;
-  height: calc(100% - 33px);
-}
-
-.board-track-container {
-  padding: 0 10px;
-}

@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { createTaskCard } from 'actions/task/task-card';
-import { getTaskAllCards } from 'actions/task/task-wall';
-import { addBodyEventListenerOnce } from 'actions/event/body';
 import { Button } from 'components/widget/Button/Button';
 import { Hr } from 'components/widget/Hr';
 import UserAvatar from 'components/UserAvatar';
@@ -12,9 +9,13 @@ import { IconAdd } from 'services/image-icon';
 import './CardCreater.scss';
 
 class CardCreater extends Component {
-  static propTypes = {};
+  static propTypes = {
+    loginedUser: PropTypes.object.isRequired,
+    addTaskCard: PropTypes.func.isRequired
+  };
 
   state = {
+    title: '',
     toggle: false
   };
 
@@ -26,11 +27,13 @@ class CardCreater extends Component {
   }
 
   clearInput() {
-    this.refs.taskCardTitle.value = '';
+    this.taskCardTitle.value = '';
   }
 
   addCard() {
-    this.props.addTaskCard({ title: this.refs.taskCardTitle.value.trim() });
+    console.log(this);
+
+    this.props.addTaskCard({ title: this.state.title.trim() });
     this.clearInput();
     this.close();
   }
@@ -50,8 +53,9 @@ class CardCreater extends Component {
           <div>
             <textarea
               type="text"
-              ref="taskCardTitle"
+              ref={ref => (this.taskCardTitle = ref)}
               placeholder="Task Content"
+              onChange={event => this.setState({ title: event.target.value })}
               onKeyPress={event => {
                 if (event.ctrlKey && event.key === 'Enter') this.addCard.bind(this)();
               }}
@@ -87,7 +91,7 @@ class CardCreater extends Component {
       );
     return (
       <div onClick={this.toggle} className="taskcard-creater--toggle">
-        <IconAdd className="icon-add" />
+        <i className="fa fa-plus" aria-hidden="true" />
         <span>Add a card...</span>
       </div>
     );
