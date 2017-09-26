@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Day from './Day';
 
 class Week extends Component {
+  static propTypes = {
+    days: PropTypes.array.isRequired
+  };
+
   constructor(props) {
     super(props);
   }

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Modal } from 'components/widget/Modal/Modal';
 import Calendar from './Calendar';
 import moment from 'moment';
@@ -6,9 +7,15 @@ import moment from 'moment';
 import './DatePicker.scss';
 
 class DatePicker extends Component {
+  static propTypes = {
+    defaultValue: PropTypes.any,
+    placeholder: PropTypes.string
+  };
+
+  state = { toggle: false, value: null };
+
   constructor(props) {
     super(props);
-    this.state = { toggle: false, value: null };
     this.clear = this.clear.bind(this);
     this.close = this.close.bind(this);
     this.selectYear = this.selectYear.bind(this);

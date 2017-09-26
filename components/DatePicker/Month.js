@@ -1,9 +1,18 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { weekDayName } from './constant';
-import { daysInMonth, firstDayInMonthOffset } from './util';
+import { daysInMonth /* firstDayInMonthOffset*/ } from './util';
+import { getDay } from 'date-fns';
+
 import Week from './Week';
 
 class Month extends Component {
+  static propTypes = {
+    year: PropTypes.any.isRequired,
+    month: PropTypes.any.isRequired,
+    selectedDate: PropTypes.any
+  };
+
   constructor(props) {
     super(props);
   }
@@ -32,7 +41,8 @@ class Month extends Component {
     const { selectedDate } = this.props;
     const monthDays = daysInMonth(month, year);
     const lastMonthDays = daysInMonth(month - 1, year);
-    const firstDayOffset = firstDayInMonthOffset(month, year); // TODO 需要加上配置的偏移
+
+    const firstDayOffset = getDay(new Date(year, month - 1, 1));
 
     const today = new Date();
     const cYear = today.getFullYear();

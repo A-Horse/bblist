@@ -8,6 +8,8 @@ import './Calendar.scss';
 
 export default class Calendar extends Component {
   static propTypes = {
+    year: PropTypes.any,
+    month: PropTypes.any,
     selectYear: PropTypes.func.isRequired,
     selectMonth: PropTypes.func.isRequired,
     lastMonth: PropTypes.any,

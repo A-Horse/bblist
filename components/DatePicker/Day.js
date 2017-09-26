@@ -1,9 +1,17 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './Day.scss';
 
 class Day extends Component {
-  constructor() {
-    super();
+  static propTypes = {
+    dday: PropTypes.any.isRequired,
+    year: PropTypes.any,
+    month: PropTypes.any,
+    onSelected: PropTypes.func
+  };
+
+  constructor(props) {
+    super(props);
   }
 
   onClick() {}
