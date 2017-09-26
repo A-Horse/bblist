@@ -58,6 +58,8 @@ export default class TodoList extends Component {
             <div className="done">{this.renderList(this.props.doneTodos)}</div>
           )}
         </div>
+
+        <div>sd</div>
       </div>
     );
   }

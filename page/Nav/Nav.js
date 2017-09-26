@@ -26,6 +26,7 @@ class Nav extends Component {
   links = [
     { name: 'Dash', url: '/home' },
     { name: 'Task', url: '/task-board' },
+    { name: 'Todo', url: '/todo' },
     { name: 'Wiki', url: '/wiki' },
     { name: 'Mind', url: '/mind' }
   ];
@@ -80,7 +81,10 @@ class Nav extends Component {
             }}
           >
             {this.findActivedLinkName()}
-            <i className="fa fa-angle-down" aria-hidden="true" />
+            <i
+              className={`fa fa-angle-down ${this.state.smallDeviceNavLinkToggle ? ' toggle' : ''}`}
+              aria-hidden="true"
+            />
           </div>
 
           <DropList toggle={this.state.smallDeviceNavLinkToggle}>
@@ -139,7 +143,10 @@ class Nav extends Component {
                   src={makeGravatarUrl(user.get('email'))}
                 />
               )}
-              <i className="fa fa-angle-down" aria-hidden="true" />
+              <i
+                className={`fa fa-angle-down ${this.state.avatarDropDownToggle ? ' toggle' : ''}`}
+                aria-hidden="true"
+              />
             </div>
 
             <DropList className="nav-avatar-drop-down" toggle={this.state.avatarDropDownToggle}>

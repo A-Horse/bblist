@@ -15,7 +15,7 @@
   }
 
   .todo-box-group-list {
-    padding: 10px 20px 20px;
+    padding: 10px 0 20px;
     background-color: $color-background-light;
     border-radius: $radius-middle;
     box-shadow: 0 0 5px #eee;
@@ -31,6 +31,31 @@
     .fa-user-circle-o {
       color: #0e88eb;
     }
+  }
+
+  .nav-links__large-device {
+    .todo-box-group-list{
+
+      li {
+        padding: 0 20px;
+        font-size: 1.2rem;
+        border-bottom: 1px solid #f8f8f8;
+
+        i {
+          margin-right: 10px;
+        }
+
+        &.active {
+          font-weight: 500;;
+          background-color: #f8f8f8;
+        }
+
+        .fa-chevron-left {
+          display: none;
+        }
+      }
+    }
+
   }
 
   .todo-box__small-device {
@@ -86,6 +111,8 @@
       border-radius: 0;
       box-shadow: none;
       background-color: $primary-bg;
+      max-height: 457px;
+      overflow: auto;
 
       li {
         font-size: 1.2rem;
@@ -113,6 +140,7 @@
           i {
             margin-right: 8px;
             color: white !important;
+            display: inline-block;
           }
 
         }
@@ -122,16 +150,5 @@
 
   a {
     color: $text-primary;
-  }
-
-
-
-  .box-group--name {
-  }
-
-  .all-todo-filter {
-    svg {
-      fill: $md-light-blue-400
-    }
   }
 }

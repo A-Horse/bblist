@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Button } from 'components/widget/Button/Button';
 import { Modal } from 'components/widget/Modal/Modal';
+import { isEnterKey } from 'utils/keyboard';
 import Input from 'components/widget/Input/Input';
 
 import './TodoBoxCreater.scss';
@@ -44,15 +45,18 @@ class TodoBoxCreater extends Component {
           <span className="toggle-text">Create Todo Box</span>
         </div>
 
-        <Modal className="todo-box-creater" toggle={this.state.toggle} close={this.close}>
-          <i className="fa fa-times" aria-hidden="true" onClick={this.close} />
-
+        <Modal className="todo-box-creater-modal" toggle={this.state.toggle} close={this.close}>
           <div className="todo-box-creater--heading">Create Todo Box:</div>
 
           <Input
             className="todo-box-name--input"
             type="text"
             ref={ref => (this.nameInput = ref)}
+            onKeyDown={event => {
+              if (isEnterKey(event) && this.state.name.length) {
+                this.onAddClick();
+              }
+            }}
             onChange={value => this.setState({ name: value })}
             placeholder="Board Name"
           />

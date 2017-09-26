@@ -63,6 +63,7 @@ nav.nav {
     .nav-links__small-device {
 
       .nav-active-link__small-device {
+        margin-top: -3px;
         text-align: center;
         cursor: pointer;
         user-select: none;
@@ -76,6 +77,10 @@ nav.nav {
           margin-left: 8px;
           vertical-align: middle;
           color: $white;
+
+          &.toggle {
+            transform: rotate(180deg);
+          }
         }
       }
 
@@ -130,6 +135,10 @@ nav.nav {
     .fa-angle-down {
       margin-left: 5px;
       vertical-align: middle;
+
+      &.toggle {
+        transform: rotate(180deg);
+      }
     }
   }
 

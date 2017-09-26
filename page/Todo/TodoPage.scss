@@ -12,6 +12,7 @@
   box-sizing: border-box;
   padding-top: 42px;
   overflow: hidden;
+  display: flex;
 
   .todo-box-container {
     background-color: #f8f8f8;
@@ -33,6 +34,7 @@
 
   @media screen and (max-width: 600px) {
     padding-right: 0;
+    display: block;
 
     .todo-box-container {
       height: auto;

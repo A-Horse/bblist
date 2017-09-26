@@ -46,6 +46,15 @@ function todos(
       return state.update('todoIds', ids => ids.delete(toDeletedIndex));
       break;
 
+    case Actions.ADD_TODOBOX.SUCCESS:
+      const normalizedAddedTodoBox = normalize(action.playload, TDBox);
+      return state
+        .update('todoBoxEntities', todoBoxEntities =>
+          todoBoxEntities.merge(normalizedAddedTodoBox.entities.TodoBox)
+        )
+        .update('todoBoxIds', todoBoxIds => todoBoxIds.push(normalizedAddedTodoBox.result));
+      break;
+
     case Actions.GET_TODOBOXS.SUCCESS:
       const normalizeTodoBox = normalize(action.playload, TDBoxs);
       return state

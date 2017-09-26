@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { weekDayName } from './constant';
-import { daysInMonth /* firstDayInMonthOffset*/ } from './util';
 import { getDay, getDaysInMonth } from 'date-fns';
 
 import Week from './Week';
@@ -13,18 +12,7 @@ class Month extends Component {
     selectedDate: PropTypes.any
   };
 
-  constructor(props) {
-    super(props);
-  }
-
-  onClick() {}
-
-  onClose() {}
-
-  onSelect() {}
-
   renderWeekText() {
-    // const { firstDayOfweekOffset = 0 } = this.props;
     return (
       <tr className="week-text">
         {weekDayName.map(name => (

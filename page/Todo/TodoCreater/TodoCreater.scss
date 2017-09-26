@@ -2,8 +2,8 @@
 @import 'style/page/todo/variable';
 
 .todo-creater--toggle {
-  padding: 10px 12px;
-  margin: 0 0 6px;
+  padding: 5px 12px;
+  margin: 0 0 0px;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -16,6 +16,7 @@
     margin: 0;
     border-radius: 0;
     box-shadow: 0 2px 5px #bbb;
+    padding: 10px 12px;
 
     .fa {
       margin-right: 10px;
