@@ -99,7 +99,7 @@ class TaskCard extends Component {
 
     event.preventDefault();
     event.stopPropagation();
-    const tracks = window.document.querySelectorAll('.task-list');
+    const tracks = window.document.querySelectorAll('.task-track');
 
     const thisCard = this.refs.main;
 

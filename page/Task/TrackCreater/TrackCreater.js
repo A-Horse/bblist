@@ -1,15 +1,6 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { createTaskCard } from 'actions/task/task-card';
-import { getTaskAllCards } from 'actions/task/task-wall';
-import { createTaskList } from 'actions/task/task-list';
-import { addBodyEventListenerOnce } from 'actions/event/body';
 import { Button } from 'components/widget/Button/Button';
-import { Hr } from 'components/widget/Hr';
-import UserAvatar from 'components/UserAvatar';
-import { MoreIcon, AddIcon } from 'services/svg-icons';
 import { isEnterKey } from 'utils/keyboard';
-import ClickOutSide from 'components/utils/ClickOutSide';
 import { IconAdd } from 'services/image-icon';
 
 import './TrackCreater.scss';
@@ -51,7 +42,7 @@ class TrackCreater extends Component {
     return (
       <div className="tasklist-creater">
         {this.state.toggle ? (
-          <div className="task-list-input">
+          <div className="task-track-input">
             <input
               type="text"
               ref="name"
@@ -64,7 +55,7 @@ class TrackCreater extends Component {
             <Button onClick={this.close}>Cancel</Button>
           </div>
         ) : (
-          <div onClick={this.toggle} className="task-list--toggle">
+          <div onClick={this.toggle} className="task-track--toggle">
             <IconAdd className="icon-add" />
             <span>Add a Track...</span>
           </div>

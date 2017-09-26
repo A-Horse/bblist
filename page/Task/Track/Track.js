@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import R from 'ramda';
 import Input from '../../../components/widget/Input/Input';
 import TaskCard from '../TaskCard/TaskCard';
@@ -8,18 +8,22 @@ import { DropList } from 'components/widget/DropList/DropList';
 import ClickOutSide from 'components/utils/ClickOutSide';
 
 import { isEnterKey } from 'utils/keyboard';
-import BoardCradDragHelper from 'services/board-card-drag-helper';
-
-// import 'style/page/task/task-list.scss';
+// import BoardCradDragHelper from 'services/board-card-drag-helper';
 import './Track.scss';
-
-import styleVariables from '!!sass-variable-loader!style/page/task/_task-variable.scss';
 
 //let relativeOffsetBody;
 // TODO auto get it
 let relativeOffsetBody = 137;
 
 export class Track extends Component {
+  static propTypes = {
+    cards: PropTypes.object.isRequired,
+    track: PropTypes.object.isRequired,
+    loginedUser: PropTypes.object.isRequired,
+    actions: PropTypes.object.isRequired,
+    updateTrack: PropTypes.func.isRequired
+  };
+
   state = {
     operationToggle: false
   };
@@ -28,8 +32,6 @@ export class Track extends Component {
     super(props);
     this.resetDragMeta();
     this.addTaskCard = this.addTaskCard.bind(this);
-    // this.onTrackNameKeyDown = this.onTrackNameKeyDown.bind(this);
-    // this.onTrackNameChanged = this.onTrackNameChanged.bind(this);
   }
 
   componentWillMount() {
@@ -40,14 +42,14 @@ export class Track extends Component {
     if (!relativeOffsetBody) {
       relativeOffsetBody = true;
       /* relativeOffsetBody =
-       *   getOffsetHeight(this.refs.main, 'body') + +styleVariables.topBarHeight.replace('px', '');*/
+       *   getOffsetHeight(this.domMain, 'body') + +styleVariables.topBarHeight.replace('px', '');*/
     }
   }
 
-  getTrackIdIndex() {
+  getTrackIdAndIndex() {
     return {
-      id: this.props.listId,
-      index: Number(this.refs.main.dataset.index)
+      id: this.props.track.get('id'),
+      index: Number(this.domMain.dataset.index)
     };
   }
 
@@ -59,21 +61,23 @@ export class Track extends Component {
   }
 
   onTopBarMouseDown(event) {
-    const tracks = window.document.querySelectorAll('.task-list');
-    const thisTrack = this.refs.main;
+    // TODO 只需要在content里query
+    const tracks = window.document.querySelectorAll('.task-track');
+    const thisTrack = this.domMain;
     const movingTrack = thisTrack.cloneNode(true);
 
-    const trackOffsetLeft = thisTrack.offsetLeft;
+    // const trackOffsetLeft = thisTrack.offsetLeft;
 
     const pageContainer = window.document.body.querySelector('.board-page-container');
+
     const trackHorMargin = 24;
     const trackVerMargin = 15;
 
     thisTrack.classList.add('shadowing');
 
     const thisTrackRect = thisTrack.getBoundingClientRect();
-    const thisTrackLeft = thisTrackRect.left,
-      thisTrackTop = thisTrackRect.top;
+    const thisTrackLeft = thisTrackRect.left;
+    const thisTrackTop = thisTrackRect.top;
     const trackOuterWidth = thisTrackRect.width + trackHorMargin * 2;
 
     // TODO getMouseElementInnerOffset
@@ -160,114 +164,8 @@ export class Track extends Component {
     // TODO body onblur
   }
 
-  caluMovingPosition(mousePosition, dragInfo) {
-    // 滚动情况
-    const { cardIds } = this.props;
-    const { y } = mousePosition;
-    const { normalizedCard } = this.props;
-    // TODO rename
-    let xheight = relativeOffsetBody,
-      i = 0;
-
-    if (y < xheight) {
-      return i;
-    }
-
-    let cardHeigths = [];
-    cardIds.forEach((cardId, index) => {
-      const cardInstance = this.cardInstanceMap[cardId].getWrappedInstance();
-      if (
-        this.cardDragMeta.hasPalceHolderCard &&
-        index === this.cardDragMeta.placeholderCardIndex
-      ) {
-        cardHeigths.push(dragInfo.height);
-      }
-      cardHeigths.push(cardInstance.height);
-    });
-
-    for (let max = cardHeigths.length; i < max; ++i) {
-      xheight += cardHeigths[i] + 6; // TODO const margin 6px
-      if (y < xheight) {
-        return i;
-      }
-    }
-    return --i;
-  }
-
-  removePlaceHolderCard() {
-    if (this.cardDragMeta.hasPalceHolderCard) {
-      this.refs.taskListBody.removeChild(this.cardDragMeta.placeholderCard);
-      this.cardDragMeta.hasPalceHolderCard = false;
-    }
-  }
-
-  addDragingClass() {
-    this.refs.main.className += ' has-draging-card';
-  }
-
-  removeDragingClass() {
-    this.refs.main.className = this.refs.main.className.replace(/\s?has-draging-card/, '');
-  }
-
   resetDragMeta() {
     this.cardDragMeta = { placeholderCardIndex: -1 };
-  }
-
-  createPlaceHolderCard(dragingCardInfo) {
-    const phcard = document.createElement('div');
-    phcard.className = 'task-card task-card-placeholder';
-    phcard.style.height = dragingCardInfo.height + 'px';
-    phcard.style.width = dragingCardInfo.width + 'px';
-    return phcard;
-  }
-
-  onDragLeave() {
-    this.removeDragingClass();
-    this.removePlaceHolderCard();
-  }
-
-  onDragEnter() {
-    this.addDragingClass();
-  }
-
-  onDrop() {
-    this.removePlaceHolderCard();
-    this.removeDragingClass();
-    this.resetDragMeta();
-  }
-
-  onDragOver(event) {
-    event.preventDefault();
-    const mousePosition = { x: event.nativeEvent.clientX, y: event.nativeEvent.clientY };
-    const dragingCardInfo = BoardCradDragHelper.getData('info');
-
-    const placeHolderCardIndex = this.caluMovingPosition(mousePosition, dragingCardInfo);
-    if (placeHolderCardIndex === this.cardDragMeta.placeholderCardIndex) {
-      return;
-    }
-    this.cardDragMeta.placeholderCardIndex = placeHolderCardIndex;
-    this.removePlaceHolderCard();
-
-    const div = this.createPlaceHolderCard(dragingCardInfo);
-    this.cardDragMeta.placeholderCard = div;
-    this.cardDragMeta.hasPalceHolderCard = true;
-
-    if (placeHolderCardIndex === this.props.cardIds.length) {
-      this.refs.taskListBody.insertBefore(
-        div,
-        this.refs.taskListBody.querySelectorAll('.task-card')[placeHolderCardIndex].nextSibling
-      );
-    } else {
-      this.refs.taskListBody.insertBefore(
-        div,
-        this.refs.taskListBody.querySelectorAll('.task-card')[placeHolderCardIndex]
-      );
-    }
-  }
-
-  requestMoveCardToThisList(/* card*/) {
-    // const thisListId = this.props.listId;
-    // return updateTaskCard(card.id, { listId: thisListId });
   }
 
   addTaskCard(data) {
@@ -279,23 +177,19 @@ export class Track extends Component {
   }
 
   render() {
-    const { track, cards } = this.props;
+    const { cards } = this.props;
     const { listName } = this.props;
 
     return (
       <div
-        ref="main"
+        ref={ref => (this.domMain = ref)}
         data-index={this.props.dataIndex}
-        className="task-list"
-        onDragEnter={this.onDragEnter.bind(this)}
-        onDrop={this.onDrop.bind(this)}
-        onDragLeave={this.onDragLeave.bind(this)}
-        onDragOver={this.onDragOver.bind(this)}
+        className="task-track"
       >
-        <div className="task-list--top-bar" onMouseDown={this.onTopBarMouseDown.bind(this)}>
-          <div className="task-list--name">
+        <div className="task-track--top-bar" onMouseDown={this.onTopBarMouseDown.bind(this)}>
+          <div className="task-track--name">
             <Input
-              className="task-list--input"
+              className="task-track--input"
               ref="trackName"
               onMouseDown={event => event.stopPropagation()}
               onKeyDown={event => {
@@ -342,7 +236,7 @@ export class Track extends Component {
           </DropList>
         </div>
 
-        <div className="task-list--body" ref="taskListBody">
+        <div className="task-track--body" ref="taskListBody">
           <div>
             {cards.map(card => {
               return (

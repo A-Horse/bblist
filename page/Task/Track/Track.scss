@@ -1,7 +1,7 @@
 @import 'style/variable';
 @import '../_task-variable';
 
-.task-list {
+.task-track {
   border-radius: $list-radius;
   position: relative;
   display: inline-flex;
@@ -47,15 +47,15 @@
 
 }
 
-.task-list--body {
+.task-track--body {
   overflow-y: auto;
   position: relative;
   display: inline-flex;
   flex-direction: column;
 }
 
-.task-list--name {
-  .task-list--input {
+.task-track--name {
+  .task-track--input {
     resize: none;
     border: none;
     padding: 5px 8px;
@@ -64,7 +64,7 @@
   }
 }
 
-.task-list--top-bar {
+.task-track--top-bar {
   position: relative;
   flex: 1 0 auto;
   height: $top-bar-height;

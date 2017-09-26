@@ -16,7 +16,8 @@ const mapDispatchToProps = dispatch => {
         Actions.UPDATE_TASK_TRACK,
         Actions.UPDATE_TASK_BOARD,
         Actions.UPLOAD_TASK_BOARD_COVER,
-        Actions.DESTORY_TASK_BOARD
+        Actions.DESTORY_TASK_BOARD,
+        Actions.UPDATE_TASK_TRACK_INDEX
       ]),
       dispatch
     )
