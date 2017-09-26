@@ -1,24 +1,8 @@
 @import 'style/variable';
-@import 'style/mixin';
 
-.star-checkbox {
-  position: relative;
-  display: inline-block;
-  height: 18px;
-  width: 18px;
-
-  input {
-    visibility: hidden;
-    position: absolute;
-    height: 100%;
-    width: 100%;
-  }
+.checkbox.star {
 
   .fa {
-    position: absolute;
-    top: 0;
-    left: 0;
-
     &.fa-star-o {
       color: $white;
     }
@@ -27,14 +11,4 @@
       color: #ffe446;
     }
   }
-}
-
-.star-checkbox--mock {
-  display: block;
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 100%;
-  cursor: pointer;
 }

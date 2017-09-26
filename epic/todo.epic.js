@@ -38,13 +38,17 @@ export const GET_TODOLIST_REQUEST = action$ =>
   });
 
 export const UPDATE_TODO = action$ =>
-  action$.ofType(Actions.UPDATE_TODO.REQUEST).mergeMap(action => {
-    const { id } = action.playload;
-    return http
-      .patch(makeApiUrl(`/todo/${id}`), null, action.playload)
-      .then(Actions.UPDATE_TODO.success)
-      .catch(Actions.UPDATE_TODO.failure);
-  });
+  action$
+    .ofType(Actions.UPDATE_TODO.REQUEST)
+    .distinctUntilChanged()
+    .debounceTime(750)
+    .mergeMap(action => {
+      const { id } = action.playload;
+      return http
+        .patch(makeApiUrl(`/todo/${id}`), null, action.playload)
+        .then(Actions.UPDATE_TODO.success)
+        .catch(Actions.UPDATE_TODO.failure);
+    });
 
 export const DESTORY_TODO = action$ =>
   action$.ofType(Actions.DESTORY_TODO.REQUEST).mergeMap(action => {

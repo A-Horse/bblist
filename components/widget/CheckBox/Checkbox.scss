@@ -7,24 +7,25 @@
 
   .checkbox--mock {
     display: block;
-    position: relative;
-    left: 0;
-    top: 0;
+    position: absolute;
+    height: 0;
+    width: 0;
+    height: 100%;
+    width: 100%;
   }
 
 
   input {
     visibility: hidden;
-    position: relative;
+    position: absolute;
     height: 0;
     width: 0;
-    &:checked + .checkbox--mock:before {
-      display: block;
-    }
+    height: 100%;
+    width: 100%;
   }
 
   .fa {
-    position: relative;
+    position: absolute;
     cursor: pointer;
     top: 0;
     left: 0;

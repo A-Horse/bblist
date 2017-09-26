@@ -38,11 +38,12 @@
 
     .todo-box--current-name {
       font-size: 1.2rem;
-      padding: 3px 12px 2px;
+      padding: 5px 12px 7px;
       display: flex;
       align-items: center;
       color: white;
       background-color: $primary-bg;;
+      z-index: 200;
 
       i {
         vertical-align: middle;
@@ -68,6 +69,16 @@
       z-index: 100;
       border: none;
       background-color: $primary-bg;
+      opacity: 0;
+      transition: all 100ms ease-in-out;
+
+      &.open-after {
+        opacity: 1;
+      }
+
+      &.close-before {
+        opacity: 0;
+      }
     }
 
     .todo-box-group-list {
@@ -79,17 +90,31 @@
       li {
         font-size: 1.2rem;
         border-top: 1px solid #f0f0f0;
-        padding: 3px 0px 2px 12px;
+
         color: white;
 
-        i {
-          margin-right: 8px;
-          color: white !important;
+        &.active {
+          font-weight: 500;
         }
 
         a {
+          display: flex;
+          align-items: center;
           color: white;
           letter-spacing: 1px;
+          padding: 3px 0px 2px 12px;
+
+          span {
+            flex-grow: 10;
+            flex-shrink: 0;
+            display: inline-block;
+          }
+
+          i {
+            margin-right: 8px;
+            color: white !important;
+          }
+
         }
       }
     }

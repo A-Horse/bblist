@@ -12,7 +12,18 @@
   box-shadow: 0 0 5px #ccc;
   width: 100%;
   opacity: 0.8;
-  transition: all 300ms ease-in-out;
+  transition: height 300ms ease-in-out, background-color 200ms ease-in-out;
+
+  @media screen and (max-width: 600px) {
+    box-shadow: none;
+    border-radius: 0;
+    border-bottom: 1px solid #e8e8e8;
+    margin: 0;
+
+    &.open {
+      border-bottom: none;
+    }
+  }
 
 
   &.done {
@@ -21,13 +32,11 @@
     }
   }
 
-  .star-checkbox {
-    .fa-star-o {
-      color: #999;
-    }
+  .checkbox {
+    top: 2px;
+    flex-shrink: 0;
+    font-size: 20px;
   }
-
-
 
   &.open {
     background-color: $primary-bg;
@@ -38,16 +47,11 @@
       background-color: $primary-bg;
     }
 
-    .todo-hover-operation {
-      visibility: visible;
-      float: right;
-    }
-
     .fa-trash {
       color: $white;
     }
 
-    .checkbox {
+    .todo-done-checkbox {
       .fa-square-o {
         color: $white;
       }
@@ -56,34 +60,37 @@
       }
     }
 
-    .star-checkbox {
-      .fa-star-o {
+    .todo-operation {
+      white-space: nowrap;
+      display: flex;
+      flex-shrink: 0;
+
+      .fa-bar-chart {
         color: $white;
       }
-    }
 
+      .checkbox.star {
+        .fa-star-o {
+          color: $white;
+        }
+      }
+    }
   }
 
   &:hover {
     background-color: #f8f8f8;
-
-    .todo-hover-operation {
-      .fa-trash {
-        visibility: visible;
-      }
-    }
   }
 }
 
 .todo--main {
   position: relative;
   display: flex;
-  justify-content: space-between;
+  align-items: flex-start;
 
-  .checkbox {
-    top: 2px;
-    flex-shrink: 0;
-    font-size: 20px;
+  .todo-done-checkbox {
+    font-size: 28px;
+    width: 25px;
+    height: 25px;
   }
 
   .todo-deadline-label {
@@ -103,13 +110,14 @@
 
 .todo--content {
   width: 100%;
-  margin-left: 15px;
+  margin-left: 12px;
   margin-right: 10px;
   line-height: 22px;
   user-select: initial;
   vertical-align: middle;
   word-break: break-all;
-  font-size: 14px;
+  font-size: 16px;
+  margin-top: 3px;
 }
 
 .todo--content__input {
@@ -118,8 +126,9 @@
   resize: none;
   border-radius: $radius-middle;
   background-color: $gray-light-depth;
-  margin: -3px 13px;
-  font-size: 14px;
+  margin: 0 6px;
+  padding: 0px 6px;
+  font-size: 16px;
   height: 22px;
 }
 
@@ -158,12 +167,6 @@
     .select {
       margin-left: 10px;
 
-      svg {
-        fill: $white;
-        margin-top: -2px;
-        margin-left: -5px;
-      }
-
       .select--box {
         border: none;
       }
@@ -179,38 +182,35 @@
   }
 }
 
-.todo-hover-operation {
-  margin-right: 12px;
+.todo-operation {
   white-space: nowrap;
   display: flex;
   flex-shrink: 0;
 
-  .fa {
-    position: relative;
-    top: 3px;
-    font-size: 19px;
-    margin-left: 10px;
-    color: #555;
-  }
-
-  .star-checkbox {
-    position: relative;
-    .fa {
-      top: 0;
-      left: 0;
-      position: absolute;
-    }
-  }
-
   .fa-bar-chart {
-    top: 2px;
-    color: #8b6956;
-    font-size: 17px;
+    position: relative;
+    color: #555;
+    font-size: 20px;
+    top: 5px;
+    margin-right: 3px;
   }
 
   .fa-trash {
-    top: -1px;
-    cursor: pointer;
-    visibility: hidden;
+    position: relative;
+    color: $white;
+    font-size: 22px;
+    top: 3px;
+    margin-right: 5px;
+  }
+
+  .checkbox.star {
+    width: 25px;
+    height: 25px;
+    .fa {
+      font-size: 25px;
+    }
+    .fa-star-o {
+      color: #555;
+    }
   }
 }

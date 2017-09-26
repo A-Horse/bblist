@@ -18,6 +18,11 @@ var CLASS_NAMES = {
 };
 
 export class ModalPortal extends Component {
+  static propTypes = {
+    toggle: PropTypes.bool.isRequired,
+    close: PropTypes.func
+  };
+
   state = {
     afterOpen: false,
     beforeClose: false

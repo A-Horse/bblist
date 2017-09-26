@@ -70,6 +70,7 @@ class TodoBoxs extends Component {
               <Link to="/todo/">
                 <i className="fa fa-user-circle-o" aria-hidden="true" />
                 <span>All</span>
+                {this.isCurrentTodoBox() && <i className="fa fa-chevron-left" aria-hidden="true" />}
               </Link>
             </li>
 
@@ -86,6 +87,10 @@ class TodoBoxs extends Component {
                       aria-hidden="true"
                     />
                     <span>{todoBox.get('name')}</span>
+
+                    {this.isCurrentTodoBox(todoBox) && (
+                      <i className="fa fa-chevron-left" aria-hidden="true" />
+                    )}
                   </Link>
                 </li>
               );
@@ -125,7 +130,6 @@ class TodoBoxs extends Component {
           >
             <ClickOutSide
               onClickOutside={event => {
-                event.stopPropagation();
                 if (this.smallDeviceTodoBoxCreater.state.toggle) {
                   return;
                 }

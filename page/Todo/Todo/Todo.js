@@ -124,7 +124,7 @@ class Todo extends Component {
         >
           <div className="todo--main">
             <CheckBox
-              ref="checkbox"
+              className="todo-done-checkbox"
               defaultChecked={todo.get('isDone')}
               onChange={this.updateDone}
             />
@@ -149,17 +149,19 @@ class Todo extends Component {
               onChange={this.onContendChanged}
             />
 
-            <div className="todo-hover-operation">
-              <ConfirmModalButton onConfirm={this.removeTodo}>
-                <i className="fa fa-trash" aria-hidden="true" />
-              </ConfirmModalButton>
-              {!!todo.get('repeat') && (
-                <i
-                  className="fa fa-bar-chart"
-                  onClick={this.onRepeatHistoryModal}
-                  aria-hidden="true"
-                />
+            <div className="todo-operation">
+              {this.state.editToggle && (
+                <ConfirmModalButton className="todo--delete-button" onConfirm={this.removeTodo}>
+                  <i className="fa fa-trash" aria-hidden="true" />
+                </ConfirmModalButton>
               )}
+
+              <i
+                className="fa fa-bar-chart"
+                onClick={this.onRepeatHistoryModal}
+                aria-hidden="true"
+              />
+
               <StarCheckBox
                 defaultChecked={todo.get('isStar')}
                 onChange={checked => {

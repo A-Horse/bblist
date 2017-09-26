@@ -2,7 +2,7 @@
 @import 'style/page/todo/variable';
 
 .todo-creater--toggle {
-  padding: 5px 10px;
+  padding: 10px 12px;
   margin: 0 0 6px;
   cursor: pointer;
   display: flex;
@@ -10,7 +10,17 @@
   background-color: $color-background-light;
   border-radius: $radius-middle;
   transition: background 0.1s ease-out;
-  letter-spacing: 1px;;
+  letter-spacing: 1px;
+
+  @media screen and (max-width: 600px) {
+    margin: 0;
+    border-radius: 0;
+    box-shadow: 0 2px 5px #bbb;
+
+    .fa {
+      margin-right: 10px;
+    }
+  }
 
   .fa {
     color: $md-light-blue-600;
@@ -37,6 +47,11 @@
   padding: $todo-item-padding;
   background-color: $primary-bg;
   margin-bottom: 5px;
+
+  @media screen and (max-width: 600px) {
+    margin: 0;
+    border-radius: 0;
+  }
 
   .todo-creater-props  {
     margin-top: 7px;
