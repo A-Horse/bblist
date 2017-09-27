@@ -6,20 +6,16 @@ import TaskCard from '../TaskCard/TaskCard';
 import TaskCardCreater from '../CardCreater/CardCreater';
 import { DropList } from 'components/widget/DropList/DropList';
 import ClickOutSide from 'components/utils/ClickOutSide';
+import { isEnterKey } from 'utils/keyboard';
 import { onTrackTopBarMouseDown } from './track-switch-helper';
 
-import { isEnterKey } from 'utils/keyboard';
-// import BoardCradDragHelper from 'services/board-card-drag-helper';
 import './Track.scss';
-
-//let relativeOffsetBody;
-// TODO auto get it
-let relativeOffsetBody = 137;
 
 export class Track extends Component {
   static propTypes = {
     cards: PropTypes.object.isRequired,
     track: PropTypes.object.isRequired,
+    boardId: PropTypes.number.isRequired,
     loginedUser: PropTypes.object.isRequired,
     actions: PropTypes.object.isRequired,
     updateTrack: PropTypes.func.isRequired,
@@ -40,13 +36,7 @@ export class Track extends Component {
     this.cardInstanceMap = {};
   }
 
-  componentDidMount() {
-    if (!relativeOffsetBody) {
-      relativeOffsetBody = true;
-      /* relativeOffsetBody =
-       *   getOffsetHeight(this.domMain, 'body') + +styleVariables.topBarHeight.replace('px', '');*/
-    }
-  }
+  componentDidMount() {}
 
   getTrackIdAndIndex() {
     return {
@@ -80,12 +70,11 @@ export class Track extends Component {
 
   render() {
     const { cards } = this.props;
-    const { listName } = this.props;
 
     return (
       <div
         ref={ref => (this.domMain = ref)}
-        data-index={this.props.dataIndex}
+        data-index={this.props.track.get('index')}
         className="task-track"
       >
         <div className="task-track--top-bar" onMouseDown={this.onTopBarMouseDown.bind(this)}>
@@ -101,7 +90,7 @@ export class Track extends Component {
                   trackId: this.props.track.get('id'),
                   name
                 })}
-              defaultValue={listName}
+              defaultValue={this.props.track.get('name')}
             />
           </div>
 
@@ -137,7 +126,7 @@ export class Track extends Component {
           </DropList>
         </div>
 
-        <div className="task-track--body" ref="taskListBody">
+        <div className="task-track--body">
           <div>
             {cards.map(card => {
               return (
@@ -146,7 +135,7 @@ export class Track extends Component {
                     this.pickCardInstance(cardConnectedInstance, card.get('id'))}
                   actions={this.props.actions}
                   key={card.get('id')}
-                  boardId={this.props.wallId}
+                  boardId={this.props.boardId}
                   card={card}
                 />
               );

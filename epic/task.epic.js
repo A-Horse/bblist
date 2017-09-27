@@ -127,9 +127,6 @@ export const UPDATE_TASK_TRACK_INDEX_REQUEST = action$ =>
     .distinctUntilChanged()
     .debounceTime(250)
     .mergeMap(action => {
-      console.log('------');
-      console.log(action);
-
       return http
         .patch(makeApiUrl(`/task-board/${action.meta.boardId}/track/index`), null, action.playload)
         .then(Actions.UPDATE_TASK_TRACK_INDEX.success)

@@ -49,14 +49,13 @@ class BoardContent extends Component {
         {trackMap
           .sort((a, b) => a.get('index') > b.get('index'))
           .toArray()
-          .map((track, index) => (
+          .map(track => (
             <TaskTrack
               key={track.get('id')}
-              ref={trackInstance => {
-                this.trackInstanceMap[track.get('id')] = trackInstance;
+              ref={ref => {
+                this.trackInstanceMap[track.get('id')] = ref;
               }}
               actions={this.props.actions}
-              dataIndex={index}
               track={track}
               cards={track.get('cards').map(cardId => cardMap.get(String(cardId)))}
               addTaskCard={data =>
@@ -76,11 +75,10 @@ class BoardContent extends Component {
                 })}
               listId={track.get('id')}
               cardIds={track.get('cards')}
-              listName={track.get('name')}
               history={this.props.history}
               updateTaskTrackIndexs={this.updateTaskTrackIndexs}
               loginedUser={this.props.loginedUser}
-              wallId={this.props.board.get('id')}
+              boardId={this.props.board.get('id')}
             />
           ))}
         <TrackCreater

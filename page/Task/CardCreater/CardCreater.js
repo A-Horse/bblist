@@ -31,8 +31,6 @@ class CardCreater extends Component {
   }
 
   addCard() {
-    console.log(this);
-
     this.props.addTaskCard({ title: this.state.title.trim() });
     this.clearInput();
     this.close();
