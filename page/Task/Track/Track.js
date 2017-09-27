@@ -30,6 +30,7 @@ export class Track extends Component {
     super(props);
     this.resetDragMeta();
     this.addTaskCard = this.addTaskCard.bind(this);
+    this.onTopBarMouseDown = this.onTopBarMouseDown.bind(this);
   }
 
   componentWillMount() {
@@ -64,13 +65,15 @@ export class Track extends Component {
     return this.props.addTaskCard({ trackId: +this.props.track.get('id'), ...data });
   }
 
-  shouldComponentUpdate(newProps) {
-    return !this.props.cards.equals(newProps.cards) || !this.props.track.equals(newProps.track);
+  shouldComponentUpdate(newProps, newState) {
+    return (
+      !this.props.cards.equals(newProps.cards) ||
+      !this.props.track.equals(newProps.track) ||
+      this.state !== newState
+    );
   }
 
   render() {
-    const { cards } = this.props;
-
     return (
       <div
         ref={ref => (this.domMain = ref)}
@@ -111,6 +114,8 @@ export class Track extends Component {
           >
             <ClickOutSide
               onClickOutside={event => {
+                console.log('clickoutside');
+
                 event.stopPropagation();
                 this.setState({ operationToggle: false });
               }}
@@ -128,7 +133,7 @@ export class Track extends Component {
 
         <div className="task-track--body">
           <div>
-            {cards.map(card => {
+            {this.props.cards.map(card => {
               return (
                 <TaskCard
                   ref={cardConnectedInstance =>
