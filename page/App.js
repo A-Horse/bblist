@@ -8,14 +8,6 @@ import { Route, Switch, Redirect } from 'react-router';
 import NotFound from 'page/NotFound';
 import DashBoard from 'page/DashBoard';
 
-/*
- * import BoardSetting from 'containers/task/BoardSetting';
- * import BoardContent from 'containers/task/BoardContent';
- * import TaskCardModal from 'page/task/CardModal';
- * import TaskSettingInfomation from 'containers/task/Setting/Infomation';
- * import TaskSettingOperation from 'containers/task/Setting/Operation';
- * import TaskSettingPreference from 'containers/task/Setting/Preference';*/
-
 import Ideas from 'containers/idea/Ideas';
 
 // import Building from 'page/Building';
@@ -86,18 +78,6 @@ export default class App extends Component {
 
           <Route exact path="/task-board" component={TaskBoardWallPage} />
           <Route path="/task-board/:boardId" component={TaskBoardPage} />
-          {/* <Route path="/task-wall/" component={Board}>
-              <Route path="/task-wall/:id" component={BoardContent}>
-              <Route path="/task-wall/:id/:cardId" component={TaskCardModal} />
-              </Route>
-
-              <Route path="/task-wall/:id/setting" component={BoardSetting}>
-              <Route exact path="/" render={() => <Redirect to="/infomation" />} />
-              <Route path="infomation" component={TaskSettingInfomation} />
-              <Route path="operation" component={TaskSettingOperation} />
-              <Route path="preference" component={TaskSettingPreference} />
-              </Route>
-              </Route> */}
 
           <Route path="/todo/:boxId" component={TodoPage} />
           <Route exact path="/todo" component={TodoPage} />

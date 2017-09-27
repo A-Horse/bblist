@@ -11,6 +11,7 @@
   border-radius: $radius-middle;
   transition: background 0.1s ease-out;
   letter-spacing: 1px;
+  box-shadow: 0 2px 5px #f8f8f8;
 
   @media screen and (max-width: 600px) {
     margin: 0;

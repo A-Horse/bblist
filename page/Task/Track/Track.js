@@ -68,9 +68,9 @@ export class Track extends Component {
 
     // const trackOffsetLeft = thisTrack.offsetLeft;
 
-    const pageContainer = window.document.body.querySelector('.board-page-container');
+    const pageContainer = window.document.body.querySelector('.board-container');
 
-    const trackHorMargin = 24;
+    const trackHorMargin = 14;
     const trackVerMargin = 15;
 
     thisTrack.classList.add('shadowing');

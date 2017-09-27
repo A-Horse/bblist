@@ -45,55 +45,53 @@ class BoardContent extends Component {
     }
 
     return (
-      <PageContainer className="board-page-container">
-        <div className="board-track-container">
-          {trackMap
-            .sort((a, b) => a.get('index') > b.get('index'))
-            .toArray()
-            .map((track, index) => (
-              <TaskTrack
-                key={track.get('id')}
-                ref={trackInstance => {
-                  this.trackInstanceMap[track.get('id')] = trackInstance;
-                }}
-                actions={this.props.actions}
-                dataIndex={index}
-                track={track}
-                cards={track.get('cards').map(cardId => cardMap.get(String(cardId)))}
-                addTaskCard={data =>
-                  this.props.actions.ADD_TASK_CARD_REQUEST({
-                    boardId: +this.props.board.get('id'),
-                    ...data
-                  })}
-                updateTrack={data =>
-                  this.props.actions.UPDATE_TASK_TRACK_REQUEST({
-                    boardId: +this.props.board.get('id'),
-                    ...data
-                  })}
-                destroyTrack={data =>
-                  this.props.actions.DESTORY_TASK_TRACK_REQUEST({
-                    boardId: +this.props.board.get('id'),
-                    ...data
-                  })}
-                listId={track.get('id')}
-                cardIds={track.get('cards')}
-                listName={track.get('name')}
-                history={this.props.history}
-                updateTaskTrackIndexs={this.updateTaskTrackIndexs}
-                loginedUser={this.props.loginedUser}
-                wallId={this.props.board.get('id')}
-              />
-            ))}
-          <TrackCreater
-            addTrack={data =>
-              this.props.actions.ADD_TASK_TRACK_REQUEST({
-                boardId: this.props.board.get('id'),
-                ...data
-              })}
-          />
-        </div>
-        {/*         <CardModal key='card-modal'/> */}
-      </PageContainer>
+      <div className="board-track-container">
+        {trackMap
+          .sort((a, b) => a.get('index') > b.get('index'))
+          .toArray()
+          .map((track, index) => (
+            <TaskTrack
+              key={track.get('id')}
+              ref={trackInstance => {
+                this.trackInstanceMap[track.get('id')] = trackInstance;
+              }}
+              actions={this.props.actions}
+              dataIndex={index}
+              track={track}
+              cards={track.get('cards').map(cardId => cardMap.get(String(cardId)))}
+              addTaskCard={data =>
+                this.props.actions.ADD_TASK_CARD_REQUEST({
+                  boardId: +this.props.board.get('id'),
+                  ...data
+                })}
+              updateTrack={data =>
+                this.props.actions.UPDATE_TASK_TRACK_REQUEST({
+                  boardId: +this.props.board.get('id'),
+                  ...data
+                })}
+              destroyTrack={data =>
+                this.props.actions.DESTORY_TASK_TRACK_REQUEST({
+                  boardId: +this.props.board.get('id'),
+                  ...data
+                })}
+              listId={track.get('id')}
+              cardIds={track.get('cards')}
+              listName={track.get('name')}
+              history={this.props.history}
+              updateTaskTrackIndexs={this.updateTaskTrackIndexs}
+              loginedUser={this.props.loginedUser}
+              wallId={this.props.board.get('id')}
+            />
+          ))}
+        <TrackCreater
+          addTrack={data =>
+            this.props.actions.ADD_TASK_TRACK_REQUEST({
+              boardId: this.props.board.get('id'),
+              ...data
+            })}
+        />
+        {/* <CardModal key='card-modal'/> */}
+      </div>
     );
   }
 }

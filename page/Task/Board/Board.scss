@@ -50,9 +50,7 @@ $nav-height: 42px;
 
 
 .board-container {
-  position: fixed;
-  top: $nav-height;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  height: calc(100% - 42px);
+  overflow: hidden;
+  position: relative;
 }
