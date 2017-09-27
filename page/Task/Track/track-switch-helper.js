@@ -6,7 +6,8 @@ export function onTrackTopBarMouseDown(event, component) {
 
   // const trackOffsetLeft = thisTrack.offsetLeft;
 
-  const pageContainer = window.document.body.querySelector('.board-container');
+  // const pageContainer = window.document.body.querySelector('.board-container');
+  const trackContainer = window.document.body.querySelector('.board-track-container');
 
   const trackHorMargin = 14;
   const trackVerMargin = 15;
@@ -32,11 +33,10 @@ export function onTrackTopBarMouseDown(event, component) {
   let currentTrackIndex = Number(thisTrack.dataset.index);
 
   function onMouseMove(event) {
-    const movingOffset =
-      event.pageX + pageContainer.scrollLeft - thisTrackMouseOffset.left - trackHorMargin;
+    const movingOffset = event.pageX - thisTrackMouseOffset.left - trackHorMargin;
     movingTrack.style.transform = `translate(${movingOffset}px, 0)`;
 
-    const mouseMovingOffset = event.pageX + pageContainer.scrollLeft;
+    const mouseMovingOffset = event.pageX + trackContainer.scrollLeft;
 
     const ii = Math.floor(mouseMovingOffset / trackOuterWidth);
 
@@ -93,9 +93,8 @@ export function onTrackTopBarMouseDown(event, component) {
 
   window.document.body.appendChild(movingTrack);
 
-  const movingOffset =
-    event.pageX + pageContainer.scrollLeft - thisTrackMouseOffset.left - trackHorMargin + 'px';
-  movingTrack.style.transform = `translate(${movingOffset}, 0)`;
+  const movingOffset = event.pageX - thisTrackMouseOffset.left - trackHorMargin;
+  movingTrack.style.transform = `translate(${movingOffset}px, 0)`;
 
   window.document.body.addEventListener('mousemove', onMouseMove);
   window.document.body.addEventListener('mouseup', onMouseUp);

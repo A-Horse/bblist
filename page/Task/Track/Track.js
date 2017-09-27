@@ -92,7 +92,6 @@ export class Track extends Component {
           <div className="task-track--name">
             <Input
               className="task-track--input"
-              ref="trackName"
               onMouseDown={event => event.stopPropagation()}
               onKeyDown={event => {
                 isEnterKey(event) && event.preventDefault();
