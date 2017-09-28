@@ -7,7 +7,7 @@ import moment from 'moment';
 import { deleteTaskCard, updateTaskCard, getCardDetail } from 'actions/task/task-card';
 import { createTaskCardComment } from 'actions/task/task-card-comment';
 import { CloseIcon } from 'services/svg-icons';
-import UserAvatar from 'components/UserAvatar';
+import UserAvatar from 'components/UserAvatar/UserAvatar';
 import { Modal } from 'components/widget/Modal/Modal';
 import { CheckBox } from 'components/widget/CheckBox/CheckBox';
 import { Pomodoro } from 'components/Pomodoro';

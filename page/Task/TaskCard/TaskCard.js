@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { openTaskCardModal } from 'actions/event/task-wall';
-import UserAvatar from 'components/UserAvatar';
+import UserAvatar from 'components/UserAvatar/UserAvatar';
 import { CheckBox } from 'components/widget/CheckBox/CheckBox';
 import { getMouseElementInnerOffset } from 'utils/dom';
 import { browserHistory } from 'react-router';

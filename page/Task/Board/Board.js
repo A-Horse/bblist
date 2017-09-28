@@ -62,8 +62,6 @@ class Board extends Component {
           </div>
         </div>
 
-        <div />
-
         <Switch>
           <Route
             exact

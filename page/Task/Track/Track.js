@@ -79,6 +79,7 @@ export class Track extends Component {
       <div
         ref={ref => (this.domMain = ref)}
         data-index={this.props.track.get('index')}
+        data-id={this.props.track.get('id')}
         className="task-track"
       >
         <div className="task-track--top-bar" onMouseDown={this.onTopBarMouseDown.bind(this)}>
@@ -147,7 +148,11 @@ export class Track extends Component {
               );
             })}
           </div>
-          <TaskCardCreater loginedUser={this.props.loginedUser} addTaskCard={this.addTaskCard} />
+          <TaskCardCreater
+            loginedUser={this.props.loginedUser}
+            addTaskCard={this.addTaskCard}
+            track={this.props.track}
+          />
         </div>
       </div>
     );

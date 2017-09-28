@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Button } from 'components/widget/Button/Button';
 import { isEnterKey } from 'utils/keyboard';
-import { IconAdd } from 'services/image-icon';
 
 import './TrackCreater.scss';
 
 class TrackCreater extends Component {
+  static propTypes = {
+    addTrack: PropTypes.func.isRequired
+  };
+
   state = {
+    name: null,
     toggle: false
   };
 
@@ -19,8 +24,9 @@ class TrackCreater extends Component {
   }
 
   addTrack() {
-    const name = this.refs.name.value.trim();
-    this.props.addTrack({ name });
+    console.log(this.state);
+
+    this.props.addTrack({ name: this.state.name.trim() });
   }
 
   toggle() {
@@ -45,8 +51,8 @@ class TrackCreater extends Component {
           <div className="task-track-input">
             <input
               type="text"
-              ref="name"
               placeholder="write track name"
+              onChange={event => this.setState({ name: event.target.value })}
               onKeyDown={this.onKeyDown}
             />
             <Button className="creater-button" styleType="primary" onClick={this.addTrack}>
@@ -56,7 +62,7 @@ class TrackCreater extends Component {
           </div>
         ) : (
           <div onClick={this.toggle} className="task-track--toggle">
-            <IconAdd className="icon-add" />
+            <i className="fa fa-plus" aria-hidden="true" />
             <span>Add a Track...</span>
           </div>
         )}
