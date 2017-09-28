@@ -19,7 +19,8 @@ export class Track extends Component {
     loginedUser: PropTypes.object.isRequired,
     actions: PropTypes.object.isRequired,
     updateTrack: PropTypes.func.isRequired,
-    addTaskCard: PropTypes.func.isRequired
+    addTaskCard: PropTypes.func.isRequired,
+    destroyTrack: PropTypes.func.isRequired
   };
 
   state = {
