@@ -32,7 +32,9 @@ class BoardContent extends Component {
   updateTaskTrackIndexs() {
     this.props.actions.UPDATE_TASK_TRACK_INDEX_REQUEST(
       {
-        trackIndexs: Object.values(this.trackInstanceMap).map(track => track.getTrackIdAndIndex())
+        trackIndexs: Object.values(this.trackInstanceMap).map(track => {
+          return track.getTrackIdAndIndex();
+        })
       },
       { boardId: this.props.board.get('id') }
     );
@@ -53,7 +55,11 @@ class BoardContent extends Component {
             <TaskTrack
               key={track.get('id')}
               ref={ref => {
-                this.trackInstanceMap[track.get('id')] = ref;
+                if (!ref) {
+                  delete this.trackInstanceMap[trackMap.get('id')];
+                } else {
+                  this.trackInstanceMap[track.get('id')] = ref;
+                }
               }}
               actions={this.props.actions}
               track={track}
