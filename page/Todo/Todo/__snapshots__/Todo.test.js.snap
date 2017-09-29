@@ -9,7 +9,7 @@ exports[`Todo Component render 1`] = `
       className="todo--main"
     >
       <div
-        className="checkbox"
+        className="checkbox todo-done-checkbox"
         onClick={undefined}
       >
         <label
@@ -49,29 +49,19 @@ exports[`Todo Component render 1`] = `
         }
       />
       <div
-        className="todo-hover-operation"
+        className="todo-operation"
       >
-        <div
-          className="confrim-modal-button "
-          onClick={[Function]}
-        >
-          <i
-            aria-hidden="true"
-            className="fa fa-trash"
-          />
-          <noscript />
-        </div>
         <i
           aria-hidden="true"
           className="fa fa-bar-chart"
           onClick={[Function]}
         />
         <div
-          className="star-checkbox"
+          className="checkbox star"
           onClick={undefined}
         >
           <label
-            className="star-checkbox--mock"
+            className="checkbox--mock"
           >
             <input
               defaultChecked={0}

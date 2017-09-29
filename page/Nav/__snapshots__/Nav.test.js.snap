@@ -83,7 +83,7 @@ exports[`Website Nav 1`] = `
           Octopus
           <i
             aria-hidden="true"
-            className="fa fa-angle-down"
+            className="fa fa-angle-down "
           />
         </div>
         <noscript />
@@ -104,7 +104,7 @@ exports[`Website Nav 1`] = `
       />
       <i
         aria-hidden="true"
-        className="fa fa-angle-down"
+        className="fa fa-angle-down "
       />
     </div>
     <noscript />

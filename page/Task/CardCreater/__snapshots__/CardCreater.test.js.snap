@@ -5,9 +5,9 @@ exports[`Task CardCreater 1`] = `
   className="taskcard-creater--toggle"
   onClick={[Function]}
 >
-  <img
-    className="image-icon icon-add"
-    src="/assets/icons/add.png"
+  <i
+    aria-hidden="true"
+    className="fa fa-plus"
   />
   <span>
     Add a card...

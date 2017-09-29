@@ -31,7 +31,6 @@ exports[`TaskCard 1`] = `
     className="useravatar"
     crossOrigin="Anonymous"
     src="https://www.gravatar.com/avatar/0f6dbc559e6c30c7a6294a7bcb62cebd"
-    style={undefined}
   />
 </div>
 `;
