@@ -13,6 +13,14 @@ $content-top: 80px;
     width: 100%;
     margin: 10px 0;
   }
+
+  .taskcard-modal--title {
+    .title--checkbox {
+      width: 20px;
+      height: 20px;
+      font-size: 25px;
+    }
+  }
 }
 
 .taskcard-modal--top-bar, .taskcard-modal--title,
@@ -25,10 +33,6 @@ $content-top: 80px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-  .close-icon {
-    fill: $gray;
-  }
 
   .top-bar-list-chooser {
     display: flex;

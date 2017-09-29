@@ -137,9 +137,13 @@ class CardDetail extends Component {
         <div className="taskcard-modal--title">
           <CheckBox
             className="title--checkbox"
-            ref="checkbox"
             defaultChecked={card.get('isDone')}
-            onChange={this.updateDone.bind(this)}
+            onChange={value => {
+              this.props.actions.UPDATE_TASK_CARD_REQUEST({
+                id: card.get('id'),
+                isDone: value
+              });
+            }}
           />
           <Textarea
             className="title--input"

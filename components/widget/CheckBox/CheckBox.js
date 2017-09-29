@@ -13,37 +13,30 @@ export class CheckBox extends Component {
   constructor(props) {
     super(props);
     this.checked = props.defaultChecked || false;
-    this.onChange = this.onChange.bind(this);
     this.state = { checked: props.defaultChecked };
 
     this.domChecked = <i className="fa fa-check-square-o" aria-hidden="true" />;
     this.domUnchecked = <i className="fa fa-square-o" aria-hidden="true" />;
 
     this.className = 'checkbox';
+
+    this.onClick = this.onClick.bind(this);
   }
 
   componentWillMount() {}
 
-  onChange() {
-    const checked = this.instance.checked;
-    this.checked = checked;
-    this.setState({ checked: checked });
-    this.props.onChange && this.props.onChange(checked);
+  onClick(event) {
+    this.checked = !this.state.checked;
+    this.setState({ checked: !this.state.checked });
+    this.props.onClick && this.props.onClick(event);
+    this.props.onChange && this.props.onChange(this.checked);
   }
 
   render() {
     const className = (this.className += this.props.className ? ` ${this.props.className}` : '');
     return (
-      <div className={className} onClick={this.props.onClick}>
-        <label className="checkbox--mock">
-          <input
-            type="checkbox"
-            defaultChecked={this.props.defaultChecked}
-            ref={ref => (this.instance = ref)}
-            onChange={this.onChange}
-          />
-          {this.state.checked ? this.domChecked : this.domUnchecked}
-        </label>
+      <div className={className} onClick={this.onClick}>
+        {this.state.checked ? this.domChecked : this.domUnchecked}
       </div>
     );
   }

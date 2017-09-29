@@ -3,6 +3,9 @@ module.exports = {
   '/api/t/': {
     target: 'http://localhost:5502'
   },
+  '/api/tk/': {
+    target: 'http://localhost:5503'
+  },
   '/api/ts/': {
     target: 'http://localhost:5501'
   },

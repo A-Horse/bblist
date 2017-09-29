@@ -69,7 +69,7 @@ class TodoBoxs extends Component {
             <li className={this.isCurrentTodoBox() ? 'active' : ''}>
               <Link to="/todo/">
                 <i className="fa fa-user-circle-o" aria-hidden="true" />
-                <span>All</span>
+                <span>My</span>
                 {this.isCurrentTodoBox() && <i className="fa fa-chevron-left" aria-hidden="true" />}
               </Link>
             </li>

@@ -14,7 +14,7 @@ import { Observable } from 'rxjs/Observable';
 export const GET_TASK_BOARD = action$ =>
   action$.ofType(Actions.GET_TASK_BOARD.REQUEST).mergeMap(action => {
     return http
-      .get(makeApiUrl(`/task-board/${action.playload.id}/verbose`), null)
+      .get(makeApiUrl(`/tk/task-board/${action.playload.id}/verbose`), null)
       .then(Actions.GET_TASK_BOARD.success)
       .catch(Actions.GET_TASK_BOARD.failure);
   });
@@ -22,7 +22,7 @@ export const GET_TASK_BOARD = action$ =>
 export const ADD_TASK_BOARD_REQUEST = action$ =>
   action$.ofType(Actions.ADD_TASK_BOARD.REQUEST).mergeMap(action => {
     return http
-      .post(makeApiUrl(`/task-board/`), null, action.playload)
+      .post(makeApiUrl(`/tk/task-board/`), null, action.playload)
       .then(Actions.ADD_TASK_BOARD.success)
       .catch(Actions.ADD_TASK_BOARD.failure);
   });
@@ -30,7 +30,7 @@ export const ADD_TASK_BOARD_REQUEST = action$ =>
 export const UPLOAD_TASK_BOARD_COVER_REQUEST = action$ =>
   action$.ofType(Actions.UPLOAD_TASK_BOARD_COVER.REQUEST).mergeMap(action => {
     return http
-      .post(makeApiUrl(`/task-board/${action.playload.id}/cover`), null, action.playload.data, {
+      .post(makeApiUrl(`/tk/task-board/${action.playload.id}/cover`), null, action.playload.data, {
         formData: true
       })
       .then(Actions.UPLOAD_TASK_BOARD_COVER.success)
@@ -40,7 +40,7 @@ export const UPLOAD_TASK_BOARD_COVER_REQUEST = action$ =>
 export const DESTORY_TASK_BOARD_REQUEST = action$ =>
   action$.ofType(Actions.DESTORY_TASK_BOARD.REQUEST).mergeMap(action => {
     return http
-      .delete(makeApiUrl(`/task-board/${action.playload.id}`), null)
+      .delete(makeApiUrl(`/tk/task-board/${action.playload.id}`), null)
       .then(response => Actions.DESTORY_TASK_BOARD.success(response, action.playload))
       .catch(Actions.DESTORY_TASK_BOARD.failure);
   });
@@ -53,7 +53,7 @@ export const UPDATE_TASK_BOARD_REQUEST = action$ =>
     .mergeMap(action => {
       return http
         .patch(
-          makeApiUrl(`/task-board/${action.playload.id}`),
+          makeApiUrl(`/tk/task-board/${action.playload.id}`),
           null,
           R.omit(['id'], action.playload)
         )
@@ -92,15 +92,15 @@ export const UPDATE_TASK_CARD_REQUEST = action$ =>
         .catch(Actions.UPDATE_TASK_CARD.failure);
     });
 
-export const UPDATE_TASK_CARD_SUCCESS = action$ =>
-  action$.ofType(Actions.UPDATE_TASK_CARD.SUCCESS).mergeMap(action => {
-    if (action.meta.taskListId) {
-      return Observable.of(
-        Actions.GET_TASK_BOARD.request({ id: action.playload.taskWallId }, { isRefresh: true })
-      );
-    }
-    return Observable.of(Actions.UPDATE_TASK_CARD.finish());
-  });
+/* export const UPDATE_TASK_CARD_SUCCESS = action$ =>
+ *   action$.ofType(Actions.UPDATE_TASK_CARD.SUCCESS).mergeMap(action => {
+ *     if (action.meta.taskListId) {
+ *       return Observable.of(
+ *         Actions.GET_TASK_BOARD.request({ id: action.playload.taskWallId }, { isRefresh: true })
+ *       );
+ *     }
+ *     return Observable.of(Actions.UPDATE_TASK_CARD.finish());
+ *   });*/
 
 export const ADD_TASK_TRACK = action$ =>
   action$.ofType(Actions.ADD_TASK_TRACK.REQUEST).mergeMap(action => {

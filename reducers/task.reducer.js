@@ -18,7 +18,6 @@ export function task2(
       if (action.meta && action.meta.isRefresh) {
         return state;
       }
-
       return state.update('board', () => null).update('boardFetching', R.T);
       break;
 
@@ -67,9 +66,13 @@ export function task2(
 
     case Actions.ADD_TASK_CARD.SUCCESS:
       const normalizedAddedCard = normalize(action.playload, TaskCard);
+      console.log(normalizedAddedCard);
+
       return state
         .update('cardMap', cardMap => {
-          return cardMap.merge(fromJS(normalizedAddedCard.entities.TaskCard));
+          return cardMap
+            ? cardMap.merge(fromJS(normalizedAddedCard.entities.TaskCard))
+            : fromJS(normalizedAddedCard.entities.TaskCard);
           // TODO rename taskListId
         })
         .updateIn(['trackMap', String(action.playload.taskListId)], trackMap =>
