@@ -15,6 +15,10 @@ export function task2(
 ) {
   switch (action.type) {
     case Actions.GET_TASK_BOARD.REQUEST:
+      if (action.meta && action.meta.isRefresh) {
+        return state;
+      }
+
       return state.update('board', () => null).update('boardFetching', R.T);
       break;
 
@@ -77,6 +81,7 @@ export function task2(
       break;
 
     case Actions.UPDATE_TASK_CARD.SUCCESS:
+      console.log(action.playload, 'playload');
       return state.updateIn(['cardMap', String(action.playload.id)], () => fromJS(action.playload));
       break;
 

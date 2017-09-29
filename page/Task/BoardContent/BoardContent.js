@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import TaskTrack from '../Track/Track';
 import DOM from 'react-dom-factories';
-import { Route, Switch, Redirect } from 'react-router';
+import { Route } from 'react-router';
 
+import TaskTrack from '../Track/Track';
 import CardDetail from '../CardDetail/CardDetail';
 import TrackCreater from '../TrackCreater/TrackCreater';
 
@@ -20,10 +20,7 @@ class BoardContent extends Component {
     loginedUser: PropTypes.object
   };
 
-  state = {
-    typingNewList: false,
-    boardSettingToggle: false
-  };
+  state = {};
 
   constructor(props) {
     super(props);
@@ -48,24 +45,19 @@ class BoardContent extends Component {
       return DOM.noscript();
     }
 
-    console.log('========', this.props.cardMap);
-
     return (
       <div className="board-track-container">
         <Route
           path="/task-board/:id/card/:cardId"
-          render={props => {
-            console.log('+', props);
-            return (
-              <CardDetail
-                {...props}
-                actions={this.props.actions}
-                board={this.props.board}
-                trackMap={this.props.trackMap}
-                card={this.props.cardMap.get(String(props.match.params.cardId))}
-              />
-            );
-          }}
+          render={props => (
+            <CardDetail
+              {...props}
+              actions={this.props.actions}
+              board={this.props.board}
+              trackMap={this.props.trackMap}
+              card={this.props.cardMap.get(String(props.match.params.cardId))}
+            />
+          )}
         />
 
         {trackMap
@@ -102,6 +94,7 @@ class BoardContent extends Component {
               listId={track.get('id')}
               cardIds={track.get('cards')}
               history={this.props.history}
+              match={this.props.match}
               updateTaskTrackIndexs={this.updateTaskTrackIndexs}
               loginedUser={this.props.loginedUser}
               boardId={this.props.board.get('id')}

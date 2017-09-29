@@ -24,8 +24,6 @@ class TrackCreater extends Component {
   }
 
   addTrack() {
-    console.log(this.state);
-
     this.props.addTrack({ name: this.state.name.trim() });
   }
 

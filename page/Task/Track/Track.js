@@ -116,8 +116,6 @@ export class Track extends Component {
           >
             <ClickOutSide
               onClickOutside={event => {
-                console.log('clickoutside');
-
                 event.stopPropagation();
                 this.setState({ operationToggle: false });
               }}
@@ -144,6 +142,8 @@ export class Track extends Component {
                   key={card.get('id')}
                   boardId={this.props.boardId}
                   card={card}
+                  history={this.props.history}
+                  match={this.props.match}
                 />
               );
             })}

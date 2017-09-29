@@ -7,6 +7,11 @@ $list-vertical-padding: 12px;
   box-shadow: 0 2px 4px $gray-light-litte-depth;
   margin-top: 4px;
   padding: $list-horiz-padding $list-vertical-padding;
+  transition: opacity 300ms ease-in-out;
+
+  &.before-close {
+    opacity: 0.1;
+  }
 
   textarea {
     width: 100%;

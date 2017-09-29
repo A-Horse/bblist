@@ -17,7 +17,8 @@ class CardCreater extends Component {
 
   state = {
     title: '',
-    toggle: false
+    toggle: false,
+    beforeClose: false
   };
 
   constructor(props) {
@@ -37,8 +38,10 @@ class CardCreater extends Component {
     this.close();
   }
 
-  close() {
-    this.setState({ toggle: false });
+  async close() {
+    this.setState({ beforeClose: true });
+    await timeout(200);
+    this.setState({ toggle: false, beforeClose: false });
   }
 
   async toggle() {
@@ -54,7 +57,10 @@ class CardCreater extends Component {
     if (this.state.toggle)
       return (
         <ClickOutSide onClickOutside={this.close}>
-          <div className="taskcard-creater--body" onClick={event => event.stopPropagation()}>
+          <div
+            className={`taskcard-creater--body${this.state.beforeClose ? ' before-close' : ''}`}
+            onClick={event => event.stopPropagation()}
+          >
             <div>
               <textarea
                 type="text"

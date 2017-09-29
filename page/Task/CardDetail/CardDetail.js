@@ -22,10 +22,18 @@ import './CardDetail.scss';
 
 class CardDetail extends Component {
   static propTypes = {
-    actions: PropTypes.object.isRequired
+    actions: PropTypes.object.isRequired,
+    trackMap: PropTypes.object,
+    match: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired
   };
 
   state = {};
+
+  constructor(props) {
+    super(props);
+    this.close = this.close.bind(this);
+  }
 
   componentWillMount() {
     this.props.actions.GET_CARD_DETAIL_REQUEST({ id: this.props.match.params.cardId });
@@ -45,15 +53,21 @@ class CardDetail extends Component {
   }
 
   buildListSelectItems() {
-    return R.compose(
-      R.map(list => ({ name: list.name, value: list.id })),
-      R.sortBy(R.prop('index')),
-      R.values
-    )(this.props.normalizedList.entities);
+    return this.props.trackMap
+      .map(track => {
+        return { value: track.get('id'), name: track.get('name') };
+      })
+      .toArray();
   }
 
-  buildListSelectDefaultItem(currentList) {
-    return { name: currentList.name, value: currentList.id };
+  buildListSelectDefaultItem() {
+    const currentTrack = this.props.trackMap.find(track => {
+      return track.get('cards').find(cardId => String(cardId) === this.props.match.params.cardId);
+    });
+    if (!currentTrack) {
+      return null;
+    }
+    return { value: currentTrack.get('id'), name: currentTrack.get('name') };
   }
 
   renderComments() {
@@ -87,7 +101,7 @@ class CardDetail extends Component {
   }
 
   render() {
-    const { card, tracks } = this.props;
+    const { card } = this.props;
     /* const cardId = this.props.params.cardId;
      * const card = normalizedCards.entities[cardId];*/
 
@@ -96,23 +110,28 @@ class CardDetail extends Component {
     if (!card) {
       return null;
     }
+    console.log('render card');
+
     // const currentList = this.getCurrentTrack();
     /* if (!tracks) {
      *   return null;
      * }*/
-    console.log('---', card);
     return (
       <Modal className="taskcard-modal" toggle={true} close={this.close.bind(this)}>
         <div className="taskcard-modal--top-bar">
-          {/* <div className="top-bar-list-chooser">
-              <span className="top-bar--list-label">Track:</span>
-              <Select
-              defaultItem={this.buildListSelectDefaultItem(tracks)}
+          <div className="top-bar-list-chooser">
+            <span className="top-bar--list-label">Track:</span>
+            <Select
+              defaultItem={this.buildListSelectDefaultItem()}
               items={this.buildListSelectItems()}
-              onSelect={this.onChangeTrack.bind(this)}
-              />
-              </div> */}
-          <CloseIcon className="close-icon" onClick={this.close.bind(this)} />
+              onSelect={selected =>
+                this.props.actions.UPDATE_TASK_CARD_REQUEST({
+                  id: card.get('id'),
+                  taskListId: selected.value
+                })}
+            />
+          </div>
+          <i className="fa fa-times" aria-hidden="true" onClick={this.close} />
         </div>
 
         <div className="taskcard-modal--title">

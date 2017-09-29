@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { openTaskCardModal } from 'actions/event/task-wall';
 import UserAvatar from 'components/UserAvatar/UserAvatar';
 import { CheckBox } from 'components/widget/CheckBox/CheckBox';
 import { getMouseElementInnerOffset } from 'utils/dom';
-import { browserHistory } from 'react-router';
 
 import './TaskCard.scss';
 
 class TaskCard extends Component {
   static propTypes = {
-    card: PropTypes.object.isRequired
+    card: PropTypes.object.isRequired,
+    actions: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired,
+    match: PropTypes.object.isRequired
   };
 
   state = {};
@@ -27,18 +28,7 @@ class TaskCard extends Component {
     document.body.removeChild(this.crt);
   }
 
-  openTaskCardModal() {
-    return dispatch(openTaskCardModal(this.props.card));
-  }
-
-  /* updateDone() {
-   *   const isDone = this.refs.checkbox.checked;
-   *   this.updateTaskCard({ isDone });
-   * }*/
-
   updateCard(toPatchData) {
-    /* const { dispatch } = this.props;
-     * return dispatch(updateTaskCard(this.props.cardId, data));*/
     this.props.actions.UPDATE_TASK_CARD_REQUEST({
       id: this.props.card.get('id'),
       ...toPatchData
@@ -48,10 +38,6 @@ class TaskCard extends Component {
   onLoad() {
     this.height = this.refs.main.offsetHeight;
     this.width = this.refs.main.offsetWidth;
-  }
-
-  onClick(event) {
-    browserHistory.push(`/task-board/${this.props.boardId}/${this.props.cardId}`);
   }
 
   checkBoxOnClick(event) {
@@ -114,7 +100,14 @@ class TaskCard extends Component {
           defaultChecked={card.get('isDone')}
           onChange={checked => this.updateCard({ isDone: checked })}
         />
-        <p className="task-card--title">{card.get('title')}</p>
+        <p
+          className="task-card--title"
+          onClick={() => {
+            this.props.history.push(this.props.match.url + `/card/${card.get('id')}`);
+          }}
+        >
+          {card.get('title')}
+        </p>
         <UserAvatar user={card.get('creater').toJS()} />
       </div>
     );

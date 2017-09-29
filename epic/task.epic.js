@@ -9,6 +9,7 @@ import { makeApiUrl } from '../utils/api';
 import { http } from '../services/http';
 import R from 'ramda';
 import { getCachedUserId } from 'utils/auth';
+import { Observable } from 'rxjs/Observable';
 
 export const GET_TASK_BOARD = action$ =>
   action$.ofType(Actions.GET_TASK_BOARD.REQUEST).mergeMap(action => {
@@ -77,7 +78,7 @@ export const GET_TASK_ALL_BOARD = action$ =>
       .catch(Actions.GET_TASK_ALL_BOARD.failure);
   });
 
-export const UPDATE_TASK_CARD = action$ =>
+export const UPDATE_TASK_CARD_REQUEST = action$ =>
   action$
     .ofType(Actions.UPDATE_TASK_CARD.REQUEST)
     .distinctUntilChanged()
@@ -85,9 +86,21 @@ export const UPDATE_TASK_CARD = action$ =>
     .mergeMap(action => {
       return http
         .patch(makeApiUrl(`/task-card/${action.playload.id}`), null, action.playload)
-        .then(Actions.UPDATE_TASK_CARD.success)
+        .then(response => {
+          return Actions.UPDATE_TASK_CARD.success(response, action.playload);
+        })
         .catch(Actions.UPDATE_TASK_CARD.failure);
     });
+
+export const UPDATE_TASK_CARD_SUCCESS = action$ =>
+  action$.ofType(Actions.UPDATE_TASK_CARD.SUCCESS).mergeMap(action => {
+    if (action.meta.taskListId) {
+      return Observable.of(
+        Actions.GET_TASK_BOARD.request({ id: action.playload.taskWallId }, { isRefresh: true })
+      );
+    }
+    return Observable.of(Actions.UPDATE_TASK_CARD.finish());
+  });
 
 export const ADD_TASK_TRACK = action$ =>
   action$.ofType(Actions.ADD_TASK_TRACK.REQUEST).mergeMap(action => {
