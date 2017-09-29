@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { browserHistory } from 'react-router';
+import PropTypes from 'prop-types';
+/* import { connect } from 'react-redux';
+ * import { browserHistory } from 'react-router';*/
 import R from 'ramda';
 import moment from 'moment';
 
@@ -15,18 +16,23 @@ import Textarea from 'react-textarea-autosize';
 import { Hr } from 'components/widget/Hr';
 import { Select } from 'components/widget/Select';
 import { isEnterKey } from 'utils/keyboard';
-import { wrapDispathToAction } from 'utils/wrap-props';
+// import { wrapDispathToAction } from 'utils/wrap-props';
 
-import 'style/page/task/taskcard-modal.scss';
+import './CardDetail.scss';
 
-class CardModal extends Component {
+class CardDetail extends Component {
+  static propTypes = {
+    actions: PropTypes.object.isRequired
+  };
+
+  state = {};
+
   componentWillMount() {
-    this.state = {};
-    this.props.actions.getCardDetail(this.props.params.cardId);
+    this.props.actions.GET_CARD_DETAIL_REQUEST({ id: this.props.match.params.cardId });
   }
 
   close() {
-    browserHistory.push(`/task-wall/${this.props.params.id}`);
+    this.props.history.push(`/task-board/${this.props.match.params.id}`);
   }
 
   onChangeTrack(track) {
@@ -75,45 +81,37 @@ class CardModal extends Component {
     return null;
   }
 
-  // NOT USE NOW
-  renderPomodoro() {
-    return;
-    return (
-      <div className="taskcard-modal--pomodoro">
-        <Pomodoro />
-      </div>
-    );
-  }
-
   getCurrentTrack() {
     const { card, normalizedList } = this.props;
     return normalizedList.entities[card.taskListId];
   }
 
   render() {
-    const { normalizedCards } = this.props;
-    const cardId = this.props.params.cardId;
-    const card = normalizedCards.entities[cardId];
+    const { card, tracks } = this.props;
+    /* const cardId = this.props.params.cardId;
+     * const card = normalizedCards.entities[cardId];*/
 
     // TODO duplicable check
+
     if (!card) {
       return null;
     }
-    const currentList = this.getCurrentTrack();
-    if (!currentList) {
-      return null;
-    }
+    // const currentList = this.getCurrentTrack();
+    /* if (!tracks) {
+     *   return null;
+     * }*/
+    console.log('---', card);
     return (
       <Modal className="taskcard-modal" toggle={true} close={this.close.bind(this)}>
         <div className="taskcard-modal--top-bar">
-          <div className="top-bar-list-chooser">
-            <span className="top-bar--list-label">Track:</span>
-            <Select
-              defaultItem={this.buildListSelectDefaultItem(currentList)}
+          {/* <div className="top-bar-list-chooser">
+              <span className="top-bar--list-label">Track:</span>
+              <Select
+              defaultItem={this.buildListSelectDefaultItem(tracks)}
               items={this.buildListSelectItems()}
               onSelect={this.onChangeTrack.bind(this)}
-            />
-          </div>
+              />
+              </div> */}
           <CloseIcon className="close-icon" onClick={this.close.bind(this)} />
         </div>
 
@@ -121,14 +119,14 @@ class CardModal extends Component {
           <CheckBox
             className="title--checkbox"
             ref="checkbox"
-            defaultChecked={card.isDone}
+            defaultChecked={card.get('isDone')}
             onChange={this.updateDone.bind(this)}
           />
           <Textarea
             className="title--input"
             ref="title"
             onKeyDown={this.onTitleKeyDown.bind(this)}
-            defaultValue={card.title}
+            defaultValue={card.get('title')}
             onBlur={this.updateTitle.bind(this)}
           />
         </div>
@@ -140,15 +138,15 @@ class CardModal extends Component {
             placeholder="Add Description"
             ref="content"
             onBlur={this.updateContent.bind(this)}
-            defaultValue={card.content}
+            defaultValue={card.get('content')}
           />
         </div>
 
         <div className="taskcard-modal--people">
-          <UserAvatar user={card.creater} />
+          <UserAvatar user={card.get('creater').toJS()} />
         </div>
 
-        {this.renderComments()}
+        {/* {this.renderComments()} */}
 
         <div className="taskcard-modal--comment-input">
           <Textarea
@@ -213,18 +211,18 @@ class CardModal extends Component {
     return dispatch(deleteTaskCard(this.props.card.id));
   }
 }
-
-const mapStateToProps = (state, props) => {
-  return {
-    card: state.task.card.entities[props.params.cardId],
-    normalizedCards: state.task.card,
-    taskLists: state.task.list.lists,
-    normalizedList: state.task.list
-  };
-};
-
-const actions = {
-  getCardDetail
-};
-
-export default connect(mapStateToProps, wrapDispathToAction(actions))(CardModal);
+/*
+ * const mapStateToProps = (state, props) => {
+ *   return {
+ *     card: state.task.card.entities[props.params.cardId],
+ *     normalizedCards: state.task.card,
+ *     taskLists: state.task.list.lists,
+ *     normalizedList: state.task.list
+ *   };
+ * };
+ *
+ * const actions = {
+ *   getCardDetail
+ * };
+ * */
+export default CardDetail;

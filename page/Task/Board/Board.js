@@ -64,26 +64,26 @@ class Board extends Component {
 
         <Switch>
           <Route
-            exact
-            path="/task-board/:id"
-            render={() => (
-              <BoardContent
-                history={this.props.history}
-                actions={this.props.actions}
-                board={this.props.board}
-                cardMap={this.props.cardMap}
-                trackMap={this.props.trackMap}
-                loginedUser={this.props.loginedUser}
-              />
-            )}
-          />
-          <Route
             path="/task-board/:id/setting"
             render={() => (
               <BoardSetting
                 history={this.props.history}
                 actions={this.props.actions}
                 board={this.props.board}
+                loginedUser={this.props.loginedUser}
+              />
+            )}
+          />
+          <Route
+            path="/task-board/:id"
+            render={() => (
+              <BoardContent
+                history={this.props.history}
+                match={this.props.match}
+                actions={this.props.actions}
+                board={this.props.board}
+                cardMap={this.props.cardMap}
+                trackMap={this.props.trackMap}
                 loginedUser={this.props.loginedUser}
               />
             )}

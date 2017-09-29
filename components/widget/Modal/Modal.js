@@ -20,8 +20,8 @@ export class Modal extends Component {
     shouldCloseOnOverlayClick: true
   };
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.hasAppendToBody = false;
   }
 

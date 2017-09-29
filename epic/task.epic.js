@@ -132,3 +132,11 @@ export const UPDATE_TASK_TRACK_INDEX_REQUEST = action$ =>
         .then(Actions.UPDATE_TASK_TRACK_INDEX.success)
         .catch(Actions.UPDATE_TASK_TRACK_INDEX.failure);
     });
+
+export const GET_CARD_DETAIL_REQUEST = action$ =>
+  action$.ofType(Actions.GET_CARD_DETAIL.REQUEST).mergeMap(action => {
+    return http
+      .get(makeApiUrl(`/task-card/${action.playload.id}`))
+      .then(Actions.GET_CARD_DETAIL.success)
+      .catch(Actions.GET_CARD_DETAIL.failure);
+  });

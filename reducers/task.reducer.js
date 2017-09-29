@@ -80,6 +80,13 @@ export function task2(
       return state.updateIn(['cardMap', String(action.playload.id)], () => fromJS(action.playload));
       break;
 
+    case Actions.GET_CARD_DETAIL.SUCCESS:
+      const normalizedCardDetail = normalize(action.playload, TaskCard);
+      return state.update('cardMap', cardMap => {
+        return cardMap.merge(fromJS(normalizedCardDetail.entities.TaskCard));
+      });
+      break;
+
     case Actions.ADD_TASK_TRACK.SUCCESS:
       const normalizedAddedTrack = normalize(action.playload, TaskTrack);
       return state.update('trackMap', trackMap =>

@@ -34,6 +34,14 @@ export class ModalPortal extends Component {
     this.onContengClick = this.onContengClick.bind(this);
   }
 
+  async componentDidMount() {
+    if (this.props.toggle) {
+      await timeout();
+      this.setState({ afterOpen: true });
+      this.focusContent();
+    }
+  }
+
   async componentWillReceiveProps(newProps) {
     if (newProps.toggle === true && newProps.toggle !== this.props.toggle) {
       await timeout();

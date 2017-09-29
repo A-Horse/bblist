@@ -106,16 +106,16 @@ function requestCardMetaFail(error) {
   };
 }
 
-export function getCardDetail(cardId) {
-  const config = createConfigWithAuth('GET');
-  return dispatch => {
-    dispatch(requestCardMeta(cardId));
-    return fetch(makeApiUrl(`/task-card/${cardId}`), config)
-      .then(handleResponse)
-      .then(data => dispatch(receiveCardMeta(data)))
-      .catch(error => requestCardMetaFail(error));
-  };
-}
+/* export function getCardDetail(cardId) {
+ *   const config = createConfigWithAuth('GET');
+ *   return dispatch => {
+ *     dispatch(requestCardMeta(cardId));
+ *     return fetch(makeApiUrl(`/task-card/${cardId}`), config)
+ *       .then(handleResponse)
+ *       .then(data => dispatch(receiveCardMeta(data)))
+ *       .catch(error => requestCardMetaFail(error));
+ *   };
+ * }*/
 
 export function deleteTaskCard(cardId) {
   const config = createConfigWithAuth('DELETE');

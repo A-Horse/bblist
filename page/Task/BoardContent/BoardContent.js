@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import TaskTrack from '../Track/Track';
-import { PageContainer } from 'components/widget/PageContainer';
-import TrackCreater from '../TrackCreater/TrackCreater';
 import DOM from 'react-dom-factories';
+import { Route, Switch, Redirect } from 'react-router';
+
+import CardDetail from '../CardDetail/CardDetail';
+import TrackCreater from '../TrackCreater/TrackCreater';
 
 import './BoardContent.scss';
 
@@ -46,8 +48,26 @@ class BoardContent extends Component {
       return DOM.noscript();
     }
 
+    console.log('========', this.props.cardMap);
+
     return (
       <div className="board-track-container">
+        <Route
+          path="/task-board/:id/card/:cardId"
+          render={props => {
+            console.log('+', props);
+            return (
+              <CardDetail
+                {...props}
+                actions={this.props.actions}
+                board={this.props.board}
+                trackMap={this.props.trackMap}
+                card={this.props.cardMap.get(String(props.match.params.cardId))}
+              />
+            );
+          }}
+        />
+
         {trackMap
           .sort((a, b) => a.get('index') > b.get('index'))
           .toArray()
@@ -94,7 +114,6 @@ class BoardContent extends Component {
               ...data
             })}
         />
-        {/* <CardModal key='card-modal'/> */}
       </div>
     );
   }
