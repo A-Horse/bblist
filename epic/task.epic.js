@@ -153,3 +153,11 @@ export const GET_CARD_DETAIL_REQUEST = action$ =>
       .then(Actions.GET_CARD_DETAIL.success)
       .catch(Actions.GET_CARD_DETAIL.failure);
   });
+
+export const GET_TASK_BOARD_PARTICIPANT_REQUEST = action$ =>
+  action$.ofType(Actions.GET_TASK_BOARD_PARTICIPANT.REQUEST).mergeMap(action => {
+    return http
+      .get(makeApiUrl(`/tk/task-board/${action.playload.id}/participant`))
+      .then(Actions.GET_TASK_BOARD_PARTICIPANT.success)
+      .catch(Actions.GET_TASK_BOARD_PARTICIPANT.failure);
+  });

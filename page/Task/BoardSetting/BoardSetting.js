@@ -5,6 +5,7 @@ import { Route, Switch } from 'react-router';
 import Infomation from './Infomation/Infomation';
 import Operation from './Operation/Operation';
 import Preference from './Preference/Preference';
+import Participant from './Participant/Participant';
 
 import { Link } from 'react-router-dom';
 
@@ -31,6 +32,9 @@ export class BoardSetting extends Component {
             <li>
               <Link to={`operation`}>Operation</Link>
             </li>
+            <li>
+              <Link to={`participant`}>Participant</Link>
+            </li>
           </ul>
         </div>
 
@@ -39,6 +43,10 @@ export class BoardSetting extends Component {
             <Route
               path="/task-board/:id/setting/infomation"
               render={() => <Infomation {...this.props} />}
+            />
+            <Route
+              path="/task-board/:boardId/setting/participant"
+              render={props => <Participant {...this.props} {...props} />}
             />
             <Route
               path="/task-board/:id/setting/preference"

@@ -112,6 +112,9 @@ export function task2(
       );
       break;
 
+    case Actions.GET_TASK_BOARD_PARTICIPANT.SUCCESS:
+      return state.break;
+
     default:
       return state;
   }

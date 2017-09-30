@@ -64,7 +64,7 @@ class Board extends Component {
 
         <Switch>
           <Route
-            path="/task-board/:id/setting"
+            path="/task-board/:boardId/setting"
             render={() => (
               <BoardSetting
                 history={this.props.history}

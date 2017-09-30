@@ -28,7 +28,8 @@ const actionNames = [
   'UPDATE_TASK_BOARD',
   'UPLOAD_TASK_BOARD_COVER',
   'DESTORY_TASK_BOARD',
-  'DESTORY_TASK_TRACK'
+  'DESTORY_TASK_TRACK',
+  'GET_TASK_BOARD_PARTICIPANT'
 ];
 
 const ACTIONS = actionNames.reduce((result, actionName) => {

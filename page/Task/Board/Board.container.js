@@ -18,7 +18,8 @@ const mapDispatchToProps = dispatch => {
         Actions.UPLOAD_TASK_BOARD_COVER,
         Actions.DESTORY_TASK_BOARD,
         Actions.UPDATE_TASK_TRACK_INDEX,
-        Actions.GET_CARD_DETAIL
+        Actions.GET_CARD_DETAIL,
+        Actions.GET_TASK_BOARD_PARTICIPANT
       ]),
       dispatch
     )
