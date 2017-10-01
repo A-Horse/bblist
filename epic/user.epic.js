@@ -22,9 +22,13 @@ export const UPDATE_USER_REQUEST = action$ =>
   });
 
 export const QUERY_USER_INFOMATION_WITH_EMAIL_REQUEST = action$ =>
-  action$.ofType(Actions.QUERY_USER_INFOMATION_WITH_EMAIL.REQUEST).mergeMap(action => {
-    return http
-      .patch(makeApiUrl(`/user/search`), action.playload)
-      .then(Actions.QUERY_USER_INFOMATION_WITH_EMAIL.success)
-      .catch(Actions.QUERY_USER_INFOMATION_WITH_EMAIL.failure);
-  });
+  action$
+    .ofType(Actions.QUERY_USER_INFOMATION_WITH_EMAIL.REQUEST)
+    .distinctUntilChanged()
+    .debounceTime(500)
+    .mergeMap(action => {
+      return http
+        .get(makeApiUrl(`/user/search`), action.playload)
+        .then(Actions.QUERY_USER_INFOMATION_WITH_EMAIL.success)
+        .catch(Actions.QUERY_USER_INFOMATION_WITH_EMAIL.failure);
+    });

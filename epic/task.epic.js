@@ -161,3 +161,11 @@ export const GET_TASK_BOARD_PARTICIPANT_REQUEST = action$ =>
       .then(Actions.GET_TASK_BOARD_PARTICIPANT.success)
       .catch(Actions.GET_TASK_BOARD_PARTICIPANT.failure);
   });
+
+export const INVITE_TASK_BOARD_PARTICIPANT_REQUEST = action$ =>
+  action$.ofType(Actions.INVITE_TASK_BOARD_PARTICIPANT.REQUEST).mergeMap(action => {
+    return http
+      .post(makeApiUrl(`/tk/task-board/${action.playload.id}/invite`), null, action.playload)
+      .then(Actions.INVITE_TASK_BOARD_PARTICIPANT.success)
+      .catch(Actions.INVITE_TASK_BOARD_PARTICIPANT.failure);
+  });

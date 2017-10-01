@@ -120,13 +120,6 @@ export function task2(
       return state.set('boardParticipants', fromJS(action.playload));
       break;
 
-    case Actions.GET_TASK_BOARD_PARTICIPANT.REQUEST:
-      return state.delete('inviteParticipant');
-      break;
-    case Actions.GET_TASK_BOARD_PARTICIPANT.SUCCESS:
-      return state.set('inviteParticipant', fromJS(action.playload));
-      break;
-
     default:
       return state;
   }

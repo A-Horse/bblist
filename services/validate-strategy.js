@@ -12,7 +12,7 @@ const RULES = {
 };
 
 export function testRegex(name, toTest) {
-  return RULES[name](toTest);
+  return RULES[name]()(toTest);
 }
 
 const defualtErrorMessage = {
