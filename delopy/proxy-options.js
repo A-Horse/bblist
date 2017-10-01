@@ -6,6 +6,9 @@ module.exports = {
   '/api/tk/': {
     target: 'http://localhost:5503'
   },
+  '/api/user/': {
+    target: 'http://localhost:5508'
+  },
   '/api/ts/': {
     target: 'http://localhost:5501'
   },

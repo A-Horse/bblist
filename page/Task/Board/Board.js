@@ -16,9 +16,6 @@ class Board extends Component {
     board: PropTypes.object,
     boardName: PropTypes.string,
     boardFetching: PropTypes.bool,
-    loginedUser: PropTypes.object,
-    trackMap: PropTypes.object,
-    cardMap: PropTypes.object,
     match: PropTypes.object.isRequired,
     history: PropTypes.object.isRequired
   };
@@ -65,28 +62,11 @@ class Board extends Component {
         <Switch>
           <Route
             path="/task-board/:boardId/setting"
-            render={() => (
-              <BoardSetting
-                history={this.props.history}
-                actions={this.props.actions}
-                board={this.props.board}
-                loginedUser={this.props.loginedUser}
-              />
-            )}
+            render={props => <BoardSetting {...this.props} {...props} />}
           />
           <Route
             path="/task-board/:id"
-            render={() => (
-              <BoardContent
-                history={this.props.history}
-                match={this.props.match}
-                actions={this.props.actions}
-                board={this.props.board}
-                cardMap={this.props.cardMap}
-                trackMap={this.props.trackMap}
-                loginedUser={this.props.loginedUser}
-              />
-            )}
+            render={props => <BoardContent {...this.props} {...props} />}
           />
         </Switch>
       </div>

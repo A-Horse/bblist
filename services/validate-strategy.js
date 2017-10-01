@@ -1,4 +1,4 @@
-const R = require('ramda');
+import R from 'ramda';
 
 const RULES = {
   email: () => value =>
@@ -10,6 +10,10 @@ const RULES = {
   min: m => value => (value + '').length >= m,
   eqTo: c => value => c === value
 };
+
+export function testRegex(name, toTest) {
+  return RULES[name](toTest);
+}
 
 const defualtErrorMessage = {
   email: 'Please fill in the correct email address',

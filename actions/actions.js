@@ -8,6 +8,7 @@ const actionNames = [
   'SIGNUP',
 
   'UPDATE_USER',
+  'QUERY_USER_INFOMATION_WITH_EMAIL',
 
   'ADD_TODO',
   'UPDATE_TODO',
@@ -29,7 +30,8 @@ const actionNames = [
   'UPLOAD_TASK_BOARD_COVER',
   'DESTORY_TASK_BOARD',
   'DESTORY_TASK_TRACK',
-  'GET_TASK_BOARD_PARTICIPANT'
+  'GET_TASK_BOARD_PARTICIPANT',
+  'INVITE_TASK_BOARD_PARTICIPANT'
 ];
 
 const ACTIONS = actionNames.reduce((result, actionName) => {

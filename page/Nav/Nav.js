@@ -128,6 +128,7 @@ class Nav extends Component {
                 <span className="nav-username">{userName}</span>
               </MediaQuery>
 
+              {/*用组件啊操 */}
               {avatarData ? (
                 <img
                   ref={ref => (this.avator = ref)}

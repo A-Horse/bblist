@@ -13,7 +13,6 @@ import './BoardSetting.scss';
 
 export class BoardSetting extends Component {
   static propTypes = {
-    history: PropTypes.object.isRequired,
     actions: PropTypes.object.isRequired,
     board: PropTypes.object,
     loginedUser: PropTypes.object

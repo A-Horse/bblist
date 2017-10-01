@@ -19,7 +19,8 @@ const mapDispatchToProps = dispatch => {
         Actions.DESTORY_TASK_BOARD,
         Actions.UPDATE_TASK_TRACK_INDEX,
         Actions.GET_CARD_DETAIL,
-        Actions.GET_TASK_BOARD_PARTICIPANT
+        Actions.GET_TASK_BOARD_PARTICIPANT,
+        Actions.QUERY_USER_INFOMATION_WITH_EMAIL
       ]),
       dispatch
     )
@@ -29,11 +30,13 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = state => {
   return {
     board: state.task2.get('board'),
+    boardParticipants: state.task2.get('boardParticipants'),
     boardFetching: state.task2.get('boardFetching'),
     boardName: state.task2.get('board') ? state.task2.getIn(['board', 'name']) : '',
     trackMap: state.task2.get('trackMap'),
     cardMap: state.task2.get('cardMap'),
-    loginedUser: state.auth.get('loginedUser')
+    loginedUser: state.auth.get('loginedUser'),
+    inviteParticipant: state.task2.get('inviteParticipant')
   };
 };
 

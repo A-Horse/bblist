@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import fetch from 'isomorphic-fetch';
-import { connect } from 'react-redux';
 import { updateTitle } from 'services/title';
 import { Link } from 'react-router-dom';
 import { Route, Switch, Redirect } from 'react-router';
