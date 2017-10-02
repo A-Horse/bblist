@@ -67,8 +67,6 @@ export default class App extends Component {
   }
 
   render() {
-    console.log(this.props);
-
     if (this.props.identifyFetching === undefined || this.props.identifyFetching) {
       return null;
     }
