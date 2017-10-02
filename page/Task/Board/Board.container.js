@@ -20,7 +20,8 @@ const mapDispatchToProps = dispatch => {
         Actions.UPDATE_TASK_TRACK_INDEX,
         Actions.GET_CARD_DETAIL,
         Actions.GET_TASK_BOARD_PARTICIPANT,
-        Actions.QUERY_USER_INFOMATION_WITH_EMAIL
+        Actions.QUERY_USER_INFOMATION_WITH_EMAIL,
+        Actions.INVITE_TASK_BOARD_PARTICIPANT
       ]),
       dispatch
     )
@@ -36,7 +37,7 @@ const mapStateToProps = state => {
     trackMap: state.task2.get('trackMap'),
     cardMap: state.task2.get('cardMap'),
     loginedUser: state.auth.get('loginedUser'),
-    inviteParticipant: state.task2.get('inviteParticipant')
+    inviteParticipant: state.user.get('inviteParticipant')
   };
 };
 

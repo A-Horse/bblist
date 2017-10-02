@@ -21,6 +21,9 @@ function auth(state = Map({}), action) {
     case Actions.IDENTIFY.FAILURE:
       return state.update('identifyFetching', R.F).update('identifyAuthenticated', R.F);
       break;
+    case Actions.IDENTIFY.FINISH:
+      return state.delete('identifyAuthenticated').delete('identifyFetching');
+      break;
 
     case Actions.LOGIN.REQUEST:
       return state.delete('signInErrorMessage');
