@@ -54,10 +54,21 @@ export default class App extends Component {
 
   constructor(props) {
     super(props);
-    props.actions.IDENTIFY_REQUEST();
+  }
+
+  componentDidMount() {
+    this.props.actions.IDENTIFY_REQUEST();
+  }
+
+  componentWillReceiveProps(newProps) {
+    if (!newProps.identifyFetching && !newProps.identifyAuthenticated) {
+      this.props.actions.IDENTIFY_FINISH();
+    }
   }
 
   render() {
+    console.log(this.props);
+
     if (this.props.identifyFetching === undefined || this.props.identifyFetching) {
       return null;
     }
