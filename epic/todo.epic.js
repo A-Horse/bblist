@@ -11,7 +11,7 @@ import { getCachedUserId } from 'utils/auth';
 export const ADD_TODO_REQUEST = action$ =>
   action$.ofType(Actions.ADD_TODO.REQUEST).mergeMap(action => {
     return http
-      .post(makeApiUrl('/todo'), null, action.playload)
+      .post(makeApiUrl('/t/todo'), null, action.playload)
       .then(Actions.ADD_TODO.success)
       .catch(Actions.ADD_TODO.failure);
   });
@@ -29,7 +29,7 @@ export const GET_TODOLIST_REQUEST = action$ =>
     const userId = getCachedUserId();
     const url = action.playload.todoBoxId
       ? `/t/todo-box/${action.playload.todoBoxId}`
-      : `/user/${userId}/todo`;
+      : `/t/user/${userId}/todo`;
 
     return http
       .get(makeApiUrl(url))
@@ -45,7 +45,7 @@ export const UPDATE_TODO = action$ =>
     .mergeMap(action => {
       const { id } = action.playload;
       return http
-        .patch(makeApiUrl(`/todo/${id}`), null, action.playload)
+        .patch(makeApiUrl(`/t/todo/${id}`), null, action.playload)
         .then(Actions.UPDATE_TODO.success)
         .catch(Actions.UPDATE_TODO.failure);
     });
@@ -54,7 +54,7 @@ export const DESTORY_TODO = action$ =>
   action$.ofType(Actions.DESTORY_TODO.REQUEST).mergeMap(action => {
     const { id } = action.playload;
     return http
-      .delete(makeApiUrl(`/todo/${id}`))
+      .delete(makeApiUrl(`/t/todo/${id}`))
       .then(() => {
         return Actions.DESTORY_TODO.success(null, { id: action.playload.ideas });
       })
