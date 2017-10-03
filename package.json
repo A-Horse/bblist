@@ -99,7 +99,6 @@
     "redux-observable": "^0.16.0",
     "redux-thunk": "^2.1.0",
     "reselect": "^2.5.4",
-    "svg-react-loader": "^0.3.7",
     "transform-loader": "^0.2.3",
     "uglify-es-webpack-plugin": "0.0.2",
     "uglify-js": "^2.8.28",
