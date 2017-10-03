@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { StarBorderIcon } from 'services/svg-icons';
 import { Link } from 'react-router-dom';
 import { Route, Switch, Redirect } from 'react-router';
 import { updateTitle } from 'services/title';
+import { StarCheckBox } from 'components/widget/StarCheckBox/StarCheckBox';
 
 import BoardContent from '../BoardContent/BoardContent';
 import BoardSetting from '../BoardSetting/BoardSetting';
@@ -37,12 +37,14 @@ class Board extends Component {
     if (boardFetching === false && !board) {
       return <Redirect to="/task-board" />;
     }
-
+    if (!board) {
+      return null;
+    }
     return (
       <div className="board-container">
         <div className="taskboard-header">
           <div className="taskboard-name">
-            <StarBorderIcon className="taskboard-name--star" />
+            <StarCheckBox defaultChecked={board.get('isStar')} />
             <Link className="taskboard-name--text" to={`/task-board/${boardId}`}>
               {board && board.get('name')}
             </Link>

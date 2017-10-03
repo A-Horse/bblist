@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { CloseIcon } from 'services/svg-icons';
+// import { CloseIcon } from 'services/svg-icons';
 import { Modal } from 'components/widget/Modal/Modal';
 import { Button } from 'components/widget/Button/Button';
 import { Input } from 'components/widget/Input/Input';
@@ -58,7 +58,7 @@ class TaskBoardCreater extends Component {
         >
           <div>
             <button className="close-button">
-              <CloseIcon className="clear-icon" onClick={this.closeModal.bind(this)} />
+              <i className="fa fa-times" aria-hidden="true" onClick={this.closeModal.bind(this)} />
             </button>
 
             <div className="taskboard-creater--name">Create Wall:</div>
