@@ -110,7 +110,6 @@ class CardDetail extends Component {
     if (!card) {
       return null;
     }
-    console.log('render card');
 
     // const currentList = this.getCurrentTrack();
     /* if (!tracks) {

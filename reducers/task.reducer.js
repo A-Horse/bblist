@@ -66,7 +66,6 @@ export function task2(
 
     case Actions.ADD_TASK_CARD.SUCCESS:
       const normalizedAddedCard = normalize(action.playload, TaskCard);
-      console.log(normalizedAddedCard);
 
       return state
         .update('cardMap', cardMap => {
@@ -84,7 +83,6 @@ export function task2(
       break;
 
     case Actions.UPDATE_TASK_CARD.SUCCESS:
-      console.log(action.playload, 'playload');
       return state.updateIn(['cardMap', String(action.playload.id)], () => fromJS(action.playload));
       break;
 
