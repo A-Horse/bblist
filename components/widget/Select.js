@@ -8,7 +8,6 @@ export class Select extends Component {
     items: PropTypes.array.isRequired,
     defaultItem: PropTypes.array,
     item: PropTypes.array,
-    value: PropTypes.isRequired,
     onSelect: PropTypes.func
   };
 

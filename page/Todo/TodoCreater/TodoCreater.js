@@ -31,7 +31,7 @@ class TodoCreater extends Component {
 
   addTodo() {
     const data = {
-      content: this.state.content,
+      content: this.state.content.trim(),
       deadline: this.datePicker.value ? this.datePicker.value.getTime() : null,
       todoBoxId: this.props.todoBoxId
     };
@@ -77,7 +77,7 @@ class TodoCreater extends Component {
               className="todo-creater--content"
               type="text"
               value={this.state.content}
-              onChange={event => this.setState({ content: event.target.value.trim() })}
+              onChange={event => this.setState({ content: event.target.value })}
             />
           </div>
 
