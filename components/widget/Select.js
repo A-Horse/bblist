@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { ArrowDown } from 'services/svg-icons';
+// import { ArrowDown } from 'services/svg-icons';
 import 'style/component/widget/select.scss';
 
 export class Select extends Component {
-  static defaultProps = {
+  static propTypes = {
     items: PropTypes.array.isRequired,
-    value: PropTypes.isRequired
+    defaultItem: PropTypes.array,
+    item: PropTypes.array,
+    value: PropTypes.isRequired,
+    onSelect: PropTypes.func
   };
 
   state = {
@@ -51,7 +54,6 @@ export class Select extends Component {
       <div className="select">
         <div className={this.buildBoxClassName()} onClick={this.openSelect.bind(this)}>
           <p className="select-box--name">{this.state.name}</p>
-          <ArrowDown />
         </div>
         <ul className="select--container" style={{ display: this.state.toggle ? 'block' : 'none' }}>
           {this.renderItems()}
@@ -60,3 +62,5 @@ export class Select extends Component {
     );
   }
 }
+
+export default Select;
