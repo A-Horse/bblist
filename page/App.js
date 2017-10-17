@@ -10,8 +10,6 @@ import DashBoard from 'page/DashBoard';
 
 import Ideas from 'containers/idea/Ideas';
 
-// import Building from 'page/Building';
-
 const TodoPage = props => (
   <Bundle load={require('bundle-loader?lazy&name=todo-page!./Todo/TodoPage.container')}>
     {B => <B {...props} />}
@@ -51,10 +49,6 @@ export default class App extends Component {
     identifyAuthenticated: PropTypes.bool,
     user: PropTypes.object
   };
-
-  constructor(props) {
-    super(props);
-  }
 
   componentDidMount() {
     this.props.actions.IDENTIFY_REQUEST();
