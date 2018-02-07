@@ -29,17 +29,6 @@ class TodoCreater extends Component {
     this.addTodo = this.addTodo.bind(this);
   }
 
-  addTodo() {
-    const data = {
-      content: this.state.content.trim(),
-      deadline: this.datePicker.value ? this.datePicker.value.getTime() : null,
-      todoBoxId: this.props.todoBoxId
-    };
-    this.props.actions.ADD_TODO_REQUEST(data);
-    this.setState({ content: '' });
-    this.close();
-  }
-
   toggle() {
     this.setState({ toggle: true });
   }
