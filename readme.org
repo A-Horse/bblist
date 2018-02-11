@@ -2,3 +2,4 @@
 
 ** scripts:
    - dev: npm run start
+   - test: jest
