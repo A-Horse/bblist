@@ -21,6 +21,7 @@ module.exports = {
       'redux-observable',
       'redux'
     ],
+    // TODO 参考 antd 把moment缩小
     miscellaneous: ['isomorphic-fetch', 'moment', 'normalizr', 'ramda', 'immutable']
   },
   output: {
