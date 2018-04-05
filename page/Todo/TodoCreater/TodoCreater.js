@@ -23,10 +23,10 @@ class TodoCreater extends Component {
 
   constructor(props) {
     super(props);
+
     this.toggle = this.toggle.bind(this);
     this.close = this.close.bind(this);
     this.onInputKeyDown = this.onInputKeyDown.bind(this);
-    this.addTodo = this.addTodo.bind(this);
   }
 
   toggle() {
