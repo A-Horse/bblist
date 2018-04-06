@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   resolve: {
@@ -54,9 +55,9 @@ module.exports = {
       },
       production: process.env.NODE_ENV === 'production'
     }),
-    new ExtractTextPlugin({
-      filename: '[name].[hash].css',
-      disable: process.env.NODE_ENV !== 'production'
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+      chunkFilename: '[id].css'
     })
   ],
   module: {
@@ -72,31 +73,27 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [
-            {
-              loader: 'css-loader'
-            },
-            {
-              loader: 'sass-loader',
-              options: {
-                workerParallelJobs: 2
-              }
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader'
+          },
+          {
+            loader: 'fast-sass-loader',
+            options: {
+              includePaths: ['.']
             }
-          ]
-        })
+          }
+        ]
       },
       {
         test: /\.css$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [
-            {
-              loader: 'css-loader'
-            }
-          ]
-        })
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader'
+          }
+        ]
       }
     ]
   }
