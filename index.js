@@ -9,9 +9,6 @@ import thunkMiddleware from 'redux-thunk';
 import { createEpicMiddleware } from 'redux-observable';
 import * as reducers from 'reducers';
 import rootEpic from './epic';
-console.log({
-  ...reducers
-});
 
 const routeMiddleware = routerMiddleware(history);
 const epicMiddleware = createEpicMiddleware(rootEpic);
@@ -25,7 +22,6 @@ const store = createStore(
   applyMiddleware(thunkMiddleware, routeMiddleware, epicMiddleware)
 );
 
-console.log(Application, Provider);
 ReactDOM.render(
   <Provider store={store}>
     <Application />
