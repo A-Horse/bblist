@@ -6,7 +6,8 @@ const path = require('path');
 const CommonConfig = require('./webpack.common.js');
 
 module.exports = Merge(CommonConfig, {
-  devtool: 'source-map',
+  mode: 'development',
+  devtool: 'cheap-module-eval-source-map',
   devServer: {
     // clientLogLevel: 'none',
     port: 9000,
@@ -14,25 +15,8 @@ module.exports = Merge(CommonConfig, {
     proxy: require('./proxy-options')
   },
   plugins: [
-    new webpack.NamedModulesPlugin(),
-    new webpack.SourceMapDevToolPlugin({
-      filename: '[name]-[id].bundle.js.map',
-      exclude: ['vendor.miscellaneous.js']
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('development')
     })
   ]
-  /* module: {
-   *   rules: [
-   *     {
-   *       enforce: 'pre',
-   *       test: /\.jsx?$/,
-   *       exclude: /node_modules/,
-   *       loader: 'eslint-loader',
-   *       options: {
-   *         fix: true,
-   *         cache: true,
-   *         quiet: true
-   *       }
-   *     }
-   *   ]
-   * }*/
 });

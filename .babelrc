@@ -1,3 +1,20 @@
 {
-  "presets": ["es2015", "es2016", "es2017", "react", "stage-1"]
+  "presets": ["env", "react"],
+  "plugins": [
+    ["import", [
+      {
+        "libraryName": "antd"
+      }
+    ]],
+    "ramda",
+    "transform-flow-strip-types",
+    "transform-object-rest-spread",
+    "syntax-class-properties",
+    "transform-class-properties"
+  ],
+  "env": {
+    "test": {
+      "plugins": ["transform-es2015-modules-commonjs"]
+    }
+  }
 }

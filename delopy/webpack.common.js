@@ -1,4 +1,3 @@
-const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -9,20 +8,7 @@ module.exports = {
     modules: [path.resolve('.'), 'node_modules']
   },
   entry: {
-    main: ['babel-polyfill', 'react-hot-loader/patch', './index'],
-    react: [
-      'react',
-      'react-dom',
-      'react-router',
-      'react-router-dom',
-      'react-dom-factories',
-      'react-redux',
-      'react-router-redux',
-      'redux-observable',
-      'redux'
-    ],
-    // TODO 参考 antd 把moment缩小
-    miscellaneous: ['isomorphic-fetch', 'moment', 'normalizr', 'ramda', 'immutable']
+    main: ['./index.js']
   },
   output: {
     filename: '[name].bundle.js',
@@ -30,8 +16,33 @@ module.exports = {
     publicPath: '/',
     chunkFilename: '[name]-[id].bundle.js'
   },
+  optimization: {
+    occurrenceOrder: true,
+    splitChunks: {
+      chunks: 'all',
+      minSize: 30000,
+      minChunks: 1,
+      maxAsyncRequests: 5,
+      maxInitialRequests: 3,
+      name: true,
+      cacheGroups: {
+        default: {
+          minChunks: 2,
+          priority: -20,
+          reuseExistingChunk: true
+        },
+        vendors: {
+          test: /[\\/]node_modules[\\/]/,
+          priority: -15
+        },
+        libs: {
+          test: /[\\/]node_modules[\\/](react|redux|antd|rc-\w+)/,
+          priority: -10
+        }
+      }
+    }
+  },
   plugins: [
-    new webpack.optimize.AggressiveMergingPlugin(),
     new HtmlWebpackPlugin({
       title: 'Octopuse',
       filename: 'index.html',
@@ -44,11 +55,8 @@ module.exports = {
       production: process.env.NODE_ENV === 'production'
     }),
     new ExtractTextPlugin({
-      filename: '[name].[contenthash].css',
+      filename: '[name].[hash].css',
       disable: process.env.NODE_ENV !== 'production'
-    }),
-    new webpack.optimize.CommonsChunkPlugin({
-      names: ['react', 'miscellaneous']
     })
   ],
   module: {
@@ -75,9 +83,6 @@ module.exports = {
               options: {
                 workerParallelJobs: 2
               }
-            },
-            {
-              loader: 'autoprefixer-loader'
             }
           ]
         })

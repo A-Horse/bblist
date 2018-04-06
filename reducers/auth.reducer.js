@@ -7,7 +7,7 @@ import R from 'ramda';
 import Actions from 'actions/actions';
 import { Map, fromJS } from 'immutable';
 
-function auth(state = Map({}), action) {
+export function auth(state = Map({}), action) {
   switch (action.type) {
     case Actions.IDENTIFY.REQUEST:
       return state.update('identifyFetching', R.T).update('identifyAuthenticated', R.F);
@@ -67,5 +67,3 @@ function auth(state = Map({}), action) {
       return state;
   }
 }
-
-export default auth;

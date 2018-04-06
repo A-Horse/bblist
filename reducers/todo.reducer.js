@@ -4,7 +4,7 @@ import { normalize } from 'normalizr';
 import { Map, List, fromJS } from 'immutable';
 import Actions from 'actions/actions';
 
-function todos(
+export function todos(
   state = fromJS({
     todoBoxId: null,
     todoIds: [],
@@ -73,5 +73,3 @@ function todos(
       return state;
   }
 }
-
-export default todos;

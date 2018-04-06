@@ -7,7 +7,7 @@ import { TDBox, TD } from '../../schema';
 import { normalize } from 'normalizr';
 import R from 'ramda';
 
-function todoStatistics(
+export function todoStatistics(
   state = {
     activedTdId: null,
     repeatHistory: []
@@ -34,5 +34,3 @@ function todoStatistics(
       return state;
   }
 }
-
-export default todoStatistics;

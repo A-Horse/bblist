@@ -15,5 +15,3 @@ export function user(state = fromJS({}), action) {
       return state;
   }
 }
-
-export default user;

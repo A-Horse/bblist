@@ -122,5 +122,3 @@ export function task2(
       return state;
   }
 }
-
-export default task2;

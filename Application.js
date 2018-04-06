@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { ConnectedRouter } from 'react-router-redux';
-import { Route, Switch /* Redirect*/ } from 'react-router';
+import { Router, Route, Switch /* Redirect*/ } from 'react-router';
 import history from './services/history';
-
 import Bundle from 'components/Bundle';
 import App from 'page/App.container';
+
+import 'style/normalize.css';
+import 'style/app.scss';
 
 const SignIn = props => (
   <Bundle load={require('bundle-loader?lazy&name=signin-page!./page/SignIn/SignIn.container')}>
@@ -18,18 +20,18 @@ const SignUp = props => (
   </Bundle>
 );
 
-import 'style/normalize.css';
-import 'style/app.scss';
+console.log(ConnectedRouter);
 
-export const Application = () => (
-  <ConnectedRouter history={history}>
-    {/* <Route exact path="" component={IndexPage} /> */}
-    <Switch>
-      <Route exact path="/signin" component={SignIn} />
-      <Route exact path="/signup" component={SignUp} />
-      <Route path="/" component={App} />
-    </Switch>
-  </ConnectedRouter>
-);
-
-export default Application;
+export class Application extends Component {
+  render() {
+    return (
+      <Router history={history}>
+        <Switch>
+          <Route exact path="/signin" component={SignIn} />
+          <Route exact path="/signup" component={SignUp} />
+          <Route path="/" component={App} />
+        </Switch>
+      </Router>
+    );
+  }
+}

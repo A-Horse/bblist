@@ -1,10 +1,9 @@
-export auth from './auth.reducer';
-export signup from './signup';
-export task from './task/task';
+export { auth } from './auth.reducer';
 
-export task2 from './task.reducer';
-export todos from './todo.reducer';
-export user from './user.reducer';
+export { task } from './task/task';
 
-export todoStatistics from './todo/todo-statistics';
-export event from './event/event';
+export { task2 } from './task.reducer';
+export { todos } from './todo.reducer';
+export { user } from './user.reducer';
+
+export { todoStatistics } from './todo/todo-statistics';

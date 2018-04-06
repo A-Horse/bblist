@@ -1,7 +1,7 @@
+import 'babel-polyfill';
 import React from 'react';
-import { AppContainer } from 'react-hot-loader';
 import ReactDOM from 'react-dom';
-import Application from './Application';
+import { Application } from './Application';
 import { Provider } from 'react-redux';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { routerReducer, routerMiddleware } from 'react-router-redux';
@@ -9,6 +9,9 @@ import thunkMiddleware from 'redux-thunk';
 import { createEpicMiddleware } from 'redux-observable';
 import * as reducers from 'reducers';
 import rootEpic from './epic';
+console.log({
+  ...reducers
+});
 
 const routeMiddleware = routerMiddleware(history);
 const epicMiddleware = createEpicMiddleware(rootEpic);
@@ -22,37 +25,10 @@ const store = createStore(
   applyMiddleware(thunkMiddleware, routeMiddleware, epicMiddleware)
 );
 
-if (module.hot) {
-  module.hot.accept('./reducers', () => {
-    const nextRootReducer = require('./reducers');
-    store.replaceReducer(
-      combineReducers({
-        ...nextRootReducer,
-        router: routerReducer
-      })
-    );
-  });
-}
-
+console.log(Application, Provider);
 ReactDOM.render(
-  <AppContainer>
-    <Provider store={store}>
-      <Application />
-    </Provider>
-  </AppContainer>,
+  <Provider store={store}>
+    <Application />
+  </Provider>,
   document.getElementById('root')
 );
-
-if (module.hot) {
-  module.hot.accept('./Application', () => {
-    const NextApplication = require('./Application').default;
-    ReactDOM.render(
-      <AppContainer>
-        <Provider store={store}>
-          <NextApplication />
-        </Provider>
-      </AppContainer>,
-      document.getElementById('root')
-    );
-  });
-}

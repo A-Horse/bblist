@@ -4,11 +4,9 @@ import list from './task-list';
 import card from './task-card';
 import comment from './task-card-comment';
 
-const task = combineReducers({
+export const task = combineReducers({
   board,
   list,
   card,
   comment
 });
-
-export default task;

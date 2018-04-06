@@ -83,7 +83,7 @@ class TodoBoxs extends Component {
                   <Link to={`/todo/${todoBox.get('id')}`}>
                     <i
                       className="fa fa-archive"
-                      style={{ color: this.buildIconColor(todoBox.get('name')) }}
+                      style={{ color: this.buildIconColor(todoBox.get('name') || '') }}
                       aria-hidden="true"
                     />
                     <span>{todoBox.get('name')}</span>
