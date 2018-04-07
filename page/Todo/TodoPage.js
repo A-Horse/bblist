@@ -6,6 +6,9 @@ import TodoRepeatHistoryModal from 'containers/todo/TodoRepeatHistoryModal';
 import TodoList from './TodoList/TodoList.container';
 import PropTypes from 'prop-types';
 
+import { Layout, Menu } from 'antd';
+const { Header, Footer, Sider, Content } = Layout;
+
 import './TodoPage.scss';
 
 export class TodoPage extends Component {
@@ -21,19 +24,18 @@ export class TodoPage extends Component {
 
   render() {
     return (
-      <PageContainer className="todo-page">
-        <div className="todo-box-container">
+      <Layout>
+        <Sider>
           <TodoBoxs
             todoBoxs={this.props.todoBoxs}
             actions={this.props.actions}
             match={this.props.match}
           />
-        </div>
-        <div className="todo-list-container">
+        </Sider>
+        <Content>
           <TodoList />
-        </div>
-        <TodoRepeatHistoryModal />
-      </PageContainer>
+        </Content>
+      </Layout>
     );
   }
 }

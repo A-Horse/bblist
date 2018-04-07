@@ -1,20 +1,29 @@
+// @flow
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import TodoCreater from '../TodoCreater/TodoCreater';
 import Todo from '../Todo/Todo';
+import { Map, List } from 'immutable';
+
+import { Layout, Menu, Icon, List as AntList } from 'antd';
+const { Header, Sider, Content } = Layout;
 
 import './TodoList.scss';
 
-export default class TodoList extends Component {
-  static propTypes = {
-    todoBoxId: PropTypes.any,
-    actions: PropTypes.object.isRequired,
-    unDoneTodos: PropTypes.any.isRequired,
-    doneTodos: PropTypes.any.isRequired
-  };
-
+export default class TodoList extends Component<
+  {
+    todoBoxId: string,
+    actions: any,
+    unDoneTodos: List<Todo[]>,
+    doneTodos: List<Todo[]>
+  },
+  {
+    toggleAll: boolean
+  }
+> {
   state = { toggleAll: false };
 
+  // TODO move logic outside
   componentWillMount() {
     this.getTodoList(this.props, true);
   }
@@ -45,6 +54,20 @@ export default class TodoList extends Component {
 
         <div className="todos">
           <div className="undone">{this.renderList(this.props.unDoneTodos)}</div>
+
+          {this.props.unDoneTodos && (
+            <AntList
+              className="demo-loadmore-list"
+              itemLayout="horizontal"
+              dataSource={this.props.unDoneTodos.toArray()}
+              renderItem={todo => (
+                <AntList.Item>
+                  <Todo key={todo.get('id')} todo={todo} actions={this.props.actions} />
+                </AntList.Item>
+              )}
+            />
+          )}
+
           <div>
             <span
               className="remain-todo-toggle"
@@ -54,12 +77,11 @@ export default class TodoList extends Component {
               {!this.state.toggleAll ? 'show all' : 'hide done'}
             </span>
           </div>
+
           {this.state.toggleAll && (
             <div className="done">{this.renderList(this.props.doneTodos)}</div>
           )}
         </div>
-
-        <div>sd</div>
       </div>
     );
   }

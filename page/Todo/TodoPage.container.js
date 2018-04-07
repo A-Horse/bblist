@@ -1,7 +1,9 @@
+// @flow
 import { connect } from 'react-redux';
 import TodoPage from 'page/Todo/TodoPage';
 import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
+import { Map } from 'immutable';
 import Actions, { makeActionRequestCollection } from '../../actions/actions';
 
 const mapStateToProps = state => {
@@ -9,6 +11,7 @@ const mapStateToProps = state => {
     todoBoxs: state.todos
       .get('todoBoxIds')
       .map(id => state.todos.get('todoBoxEntities').get(String(id)))
+      .unshift(Map({ name: 'My Todo', id: '' }))
   };
 };
 

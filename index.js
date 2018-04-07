@@ -10,6 +10,8 @@ import { createEpicMiddleware } from 'redux-observable';
 import * as reducers from 'reducers';
 import rootEpic from './epic';
 
+import './style/index.less';
+
 const routeMiddleware = routerMiddleware(history);
 const epicMiddleware = createEpicMiddleware(rootEpic);
 

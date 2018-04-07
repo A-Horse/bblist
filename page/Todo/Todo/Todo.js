@@ -1,3 +1,4 @@
+// @flow
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { CheckBox } from 'components/widget/CheckBox/CheckBox';
@@ -11,6 +12,7 @@ import R from 'ramda';
 import ConfirmModalButton from '../../../components/ConfrimModalButton/ConfirmModalButton';
 import { activeTdRepeatHistory, getTodoRepeatHistory } from 'actions/todo/todo-statistics';
 import { Select } from 'components/widget/Select';
+import { Map } from 'immutable';
 
 import './Todo.scss';
 
@@ -18,7 +20,15 @@ const todoMetaHeight = 24;
 
 import { repeatItems } from '../constants';
 
-class Todo extends Component {
+class Todo extends Component<
+  {
+    actions: any,
+    todo: Map<Todo>
+  },
+  {
+    editToggle: boolean
+  }
+> {
   static propTypes = {
     actions: PropTypes.object.isRequired,
     todo: PropTypes.object
