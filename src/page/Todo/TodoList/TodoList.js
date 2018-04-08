@@ -5,7 +5,7 @@ import TodoCreater from '../TodoCreater/TodoCreater';
 import Todo from '../Todo/Todo';
 import { Map, List } from 'immutable';
 
-import { Layout, Menu, Icon, List as AntList } from 'antd';
+import { Layout, Menu, Icon, List as AntList, Button } from 'antd';
 const { Header, Sider, Content } = Layout;
 
 import './TodoList.scss';
@@ -29,7 +29,9 @@ export default class TodoList extends Component<
   }
 
   componentWillReceiveProps(newProps) {
-    this.getTodoList(newProps);
+    if (newProps.match.params.boxId !== this.props.match.params.boxId) {
+      this.getTodoList(newProps);
+    }
   }
 
   getTodoList(props, force) {
@@ -53,8 +55,6 @@ export default class TodoList extends Component<
         </div>
 
         <div className="todos">
-          <div className="undone">{this.renderList(this.props.unDoneTodos)}</div>
-
           {this.props.unDoneTodos && (
             <AntList
               className="demo-loadmore-list"
@@ -68,6 +68,7 @@ export default class TodoList extends Component<
             />
           )}
 
+          <Button type="primary">Display completed task</Button>
           <div>
             <span
               className="remain-todo-toggle"
@@ -77,7 +78,6 @@ export default class TodoList extends Component<
               {!this.state.toggleAll ? 'show all' : 'hide done'}
             </span>
           </div>
-
           {this.state.toggleAll && (
             <div className="done">{this.renderList(this.props.doneTodos)}</div>
           )}

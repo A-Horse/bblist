@@ -1,12 +1,14 @@
+// @flow
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 import { bindActionCreators } from 'redux';
-
 import { withRouter } from 'react-router-dom';
 import Actions, { makeActionRequestCollection } from '../../../actions/actions';
 import TodoList from './TodoList';
 
-const getAllTodos = (state /* props*/) => {
+import type { Dispatch } from 'redux';
+
+const getAllTodos = state => {
   const todoEntities = state.todos.get('todoEntities');
   const todoIds = state.todos.get('todoIds');
   return todoIds.map(id => todoEntities.get(String(id)));
@@ -32,7 +34,7 @@ const mapStateToProps = (state, props) => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch: Dispatch) => {
   return {
     actions: bindActionCreators(
       makeActionRequestCollection([

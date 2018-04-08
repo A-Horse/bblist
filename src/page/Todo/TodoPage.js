@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
-import { PageContainer } from 'components/widget/PageContainer';
 import { updateTitle } from 'services/title';
 import TodoBoxs from './TodoBoxs/TodoBoxs';
-import TodoRepeatHistoryModal from 'containers/todo/TodoRepeatHistoryModal';
 import TodoList from './TodoList/TodoList.container';
 import PropTypes from 'prop-types';
 
-import { Layout, Menu } from 'antd';
-const { Header, Footer, Sider, Content } = Layout;
+import { Layout } from 'antd';
+const { Sider, Content } = Layout;
 
-import './TodoPage.scss';
+import './TodoPage.less';
 
 export class TodoPage extends Component {
   static propTypes = {
