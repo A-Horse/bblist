@@ -6,10 +6,10 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 module.exports = {
   resolve: {
     extensions: ['.js', '.jsx', '.scss', '.css'],
-    modules: [path.resolve('.'), 'node_modules']
+    modules: [path.resolve('./src'), 'node_modules']
   },
   entry: {
-    main: ['./index.js']
+    main: ['./src/index.js']
   },
   output: {
     filename: '[name].bundle.js',
@@ -93,7 +93,7 @@ module.exports = {
           {
             loader: 'fast-sass-loader',
             options: {
-              includePaths: ['.']
+              includePaths: ['./src']
             }
           }
         ]
