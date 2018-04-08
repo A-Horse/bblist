@@ -40,7 +40,6 @@ class Todo extends Component<
 
   constructor(props) {
     super(props);
-    this.onClickOutside = this.onClickOutside.bind(this);
     this.onRepeatHistoryModal = this.onRepeatHistoryModal.bind(this);
     this.removeTodo = this.removeTodo.bind(this);
     this.updateDone = this.updateDone.bind(this);
@@ -99,15 +98,6 @@ class Todo extends Component<
     this.updateTodo({ isDone: checked });
   }
 
-  onClickOutside() {
-    if (this.state.editToggle) {
-      if (this.refs.datePicker.state.toggle) {
-        return;
-      }
-      this.closeEditable();
-    }
-  }
-
   onRepeatHistoryModal() {
     this.props.dispatch(activeTdRepeatHistory(this.props.todo.id));
     this.props.dispatch(getTodoRepeatHistory(this.props.todo.id));
@@ -127,91 +117,85 @@ class Todo extends Component<
     const { todo } = this.props;
 
     return (
-      <ClickOutSide onClickOutside={this.onClickOutside}>
-        <div
-          className={`todo${this.state.editToggle ? ' open' : ''}${todo.isDone ? ' done' : ''}`}
-          ref="main"
-        >
-          <div className="todo--main">
-            <CheckBox
-              className="todo-done-checkbox"
-              defaultChecked={todo.get('isDone')}
-              onChange={this.updateDone}
-            />
-            <div
-              style={{ display: !this.state.editToggle ? 'block' : 'none' }}
-              className="todo--content"
-              onClick={this.onContentClick.bind(this)}
-            >
-              {todo.get('content')}
-              {todo.get('deadline') &&
-                !this.state.editToggle && (
-                  <div className="todo-deadline-label">
-                    <span>{new moment(todo.get('deadline')).format('MM-DD')}</span>
-                  </div>
-                )}
-            </div>
-            <Textarea
-              ref="content"
-              className="todo--content__input"
-              style={{ display: this.state.editToggle ? 'block' : 'none' }}
-              defaultValue={todo.get('content')}
-              onChange={this.onContendChanged}
-            />
-
-            <div className="todo-operation">
-              {this.state.editToggle && (
-                <ConfirmModalButton className="todo--delete-button" onConfirm={this.removeTodo}>
-                  <i className="fa fa-trash" aria-hidden="true" />
-                </ConfirmModalButton>
+      <div
+        className={`todo${this.state.editToggle ? ' open' : ''}${todo.isDone ? ' done' : ''}`}
+        ref="main"
+      >
+        <div className="todo--main">
+          <CheckBox
+            className="todo-done-checkbox"
+            defaultChecked={todo.get('isDone')}
+            onChange={this.updateDone}
+          />
+          <div
+            style={{ display: !this.state.editToggle ? 'block' : 'none' }}
+            className="todo--content"
+            onClick={this.onContentClick.bind(this)}
+          >
+            {todo.get('content')}
+            {todo.get('deadline') &&
+              !this.state.editToggle && (
+                <div className="todo-deadline-label">
+                  <span>{new moment(todo.get('deadline')).format('MM-DD')}</span>
+                </div>
               )}
+          </div>
+          <Textarea
+            ref="content"
+            className="todo--content__input"
+            style={{ display: this.state.editToggle ? 'block' : 'none' }}
+            defaultValue={todo.get('content')}
+            onChange={this.onContendChanged}
+          />
 
-              <i
-                className="fa fa-bar-chart"
-                onClick={this.onRepeatHistoryModal}
-                aria-hidden="true"
+          <div className="todo-operation">
+            {this.state.editToggle && (
+              <ConfirmModalButton className="todo--delete-button" onConfirm={this.removeTodo}>
+                <i className="fa fa-trash" aria-hidden="true" />
+              </ConfirmModalButton>
+            )}
+
+            <i className="fa fa-bar-chart" onClick={this.onRepeatHistoryModal} aria-hidden="true" />
+
+            <StarCheckBox
+              defaultChecked={todo.get('isStar')}
+              onChange={checked => {
+                this.updateTodo({ isStar: checked });
+              }}
+            />
+          </div>
+        </div>
+        {this.state.editToggle && (
+          <div
+            className="todo-editing--meta"
+            style={{ display: this.state.editToggle ? 'block' : 'none' }}
+          >
+            <div className="todo-editing-field todo-editing--deadline">
+              <i className="fa fa-calendar-check-o" aria-hidden="true" />
+              <label>Deadline:</label>
+              <DatePicker
+                ref="datePicker"
+                placeholder="YYYY-MM-DD"
+                hideIcon={true}
+                defaultValue={todo.get('deadline')}
+                onSelected={date => this.updateTodo({ deadline: date ? date.getTime() : null })}
               />
+            </div>
 
-              <StarCheckBox
-                defaultChecked={todo.get('isStar')}
-                onChange={checked => {
-                  this.updateTodo({ isStar: checked });
-                }}
+            <div className="todo-editing-field todo-editing--repeat">
+              <i className="fa fa-repeat" aria-hidden="true" />
+              <label>Repeat:</label>
+              <Select
+                defaultItem={R.find(R.propEq('value', parseInt(todo.get('repeat'), 10)))(
+                  repeatItems
+                )}
+                items={repeatItems}
+                onSelect={repeat => this.updateTodo({ repeat: repeat.value })}
               />
             </div>
           </div>
-          {this.state.editToggle && (
-            <div
-              className="todo-editing--meta"
-              style={{ display: this.state.editToggle ? 'block' : 'none' }}
-            >
-              <div className="todo-editing-field todo-editing--deadline">
-                <i className="fa fa-calendar-check-o" aria-hidden="true" />
-                <label>Deadline:</label>
-                <DatePicker
-                  ref="datePicker"
-                  placeholder="YYYY-MM-DD"
-                  hideIcon={true}
-                  defaultValue={todo.get('deadline')}
-                  onSelected={date => this.updateTodo({ deadline: date ? date.getTime() : null })}
-                />
-              </div>
-
-              <div className="todo-editing-field todo-editing--repeat">
-                <i className="fa fa-repeat" aria-hidden="true" />
-                <label>Repeat:</label>
-                <Select
-                  defaultItem={R.find(R.propEq('value', parseInt(todo.get('repeat'), 10)))(
-                    repeatItems
-                  )}
-                  items={repeatItems}
-                  onSelect={repeat => this.updateTodo({ repeat: repeat.value })}
-                />
-              </div>
-            </div>
-          )}
-        </div>
-      </ClickOutSide>
+        )}
+      </div>
     );
   }
 }
