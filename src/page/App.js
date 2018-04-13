@@ -1,5 +1,5 @@
+// @flow
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import Nav from './Nav/Nav';
 import Bundle from 'components/Bundle';
 
@@ -9,6 +9,7 @@ import NotFound from 'page/NotFound';
 import DashBoard from 'page/DashBoard';
 
 import Ideas from 'containers/idea/Ideas';
+import { getUserData } from '../utils/auth';
 
 const TodoPage = props => (
   <Bundle load={require('bundle-loader?lazy&name=todo-page!./Todo/TodoPage.container')}>
@@ -42,38 +43,35 @@ const ProfilePage = props => (
   </Bundle>
 );
 
-export default class App extends Component {
-  static propTypes = {
-    actions: PropTypes.object.isRequired,
-    identifyFetching: PropTypes.bool,
-    identifyAuthenticated: PropTypes.bool,
-    user: PropTypes.object
-  };
+export default class App extends Component<
+  {
+    actions: { [*]: * },
+    identifyFetching: boolean,
+    identifyAuthenticated: boolean
+  },
+  {
+    userData: UserData | null
+  }
+> {
+  state = { userData: null };
 
-  componentDidMount() {
-    this.props.actions.IDENTIFY_REQUEST();
+  componentWillMount() {
+    const userData = getUserData();
+    this.props.actions.SETUP_USER_REQUEST(userData);
+    this.setState({ userData });
   }
 
-  componentWillReceiveProps(newProps) {
-    if (!newProps.identifyFetching && !newProps.identifyAuthenticated) {
-      this.props.actions.IDENTIFY_FINISH();
-    }
-  }
+  componentDidMount() {}
+
+  componentWillReceiveProps() {}
 
   render() {
-    if (this.props.identifyFetching === undefined || this.props.identifyFetching) {
-      return null;
-    }
-    if (!this.props.identifyFetching && !this.props.identifyAuthenticated) {
-      return <Redirect to="/signin" push={true} />;
+    if (!this.state.userData) {
+      return <Redirect to="/signin" />;
     }
     return (
       <div>
-        <Nav
-          user={this.props.user}
-          identifyFetching={this.props.identifyFetching}
-          actions={this.props.actions}
-        />
+        <Nav user={this.state.userData} actions={this.props.actions} />
         <Switch>
           <Route path="/home" component={DashBoard} />
 

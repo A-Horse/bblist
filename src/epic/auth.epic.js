@@ -1,3 +1,4 @@
+// @flow
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/map';
@@ -9,18 +10,9 @@ import { makeApiUrl } from '../utils/api';
 import { http } from '../services/http';
 import { saveAuthData, getJWT } from 'utils/auth';
 
-export const IDENTIFY_REQUEST = action$ =>
-  action$.ofType(Actions.IDENTIFY.REQUEST).mergeMap(action => {
-    if (!getJWT()) {
-      return Observable.of(Actions.IDENTIFY.failure(new Error('Not auth data.')));
-    }
-    return http
-      .get(makeApiUrl('/user/identify'))
-      .then(Actions.IDENTIFY.success)
-      .catch(Actions.IDENTIFY.failure);
-  });
+import type { ActionsObservable } from 'redux-observable';
 
-export const LOGIN_REQUEST = action$ =>
+export const LOGIN_REQUEST = (action$: ActionsObservable<FSAction>) =>
   action$.ofType(Actions.LOGIN.REQUEST).mergeMap(action =>
     http
       .post(makeApiUrl('/user/signin'), null, action.playload)
@@ -36,6 +28,8 @@ export const LOGIN_REQUEST = action$ =>
         return Actions.LOGIN.failure(error.message);
       })
   );
+
+/* export const SETUP_USER = () => action$.ofType(Actions.SETUP_USER.REQUEST).merge(action => {}); */
 
 export const SIGNUP_REQUEST = action$ =>
   action$.ofType(Actions.SIGNUP.REQUEST).mergeMap(action =>

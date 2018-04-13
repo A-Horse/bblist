@@ -1,25 +1,30 @@
+// @flow
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { validateFormValue } from 'services/validate-strategy';
-import { Button } from 'components/widget/Button/Button';
-import { Input } from 'components/widget/Input/Input';
-import { LogoBan } from 'components/commons/LogoBan';
-import { ErrorMsg } from 'components/ErrorMsg/ErrorMsg';
+import { validateFormValue } from '../../services/validate-strategy';
+import { Button } from '../../components/widget/Button/Button';
+import { Input } from '../../components/widget/Input/Input';
+import { LogoBan } from '../../components/commons/LogoBan';
+import { ErrorMsg } from '../../components/ErrorMsg/ErrorMsg';
 import { PageContainer } from '../../components/widget/PageContainer';
 import { Link } from 'react-router-dom';
-import { updateTitle } from 'services/title';
+import { updateTitle } from '../../services/title';
 
 import R from 'ramda';
 
 import './SignIn.scss';
 
-class SignIn extends Component {
-  static propTypes = {
-    actions: PropTypes.object.isRequired,
-    history: PropTypes.object.isRequired,
-    signInErrorMessages: PropTypes.string
-  };
-
+class SignIn extends Component<
+  {
+    actions: any,
+    history: any,
+    signInErrorMessages: string
+  },
+  {
+    errorMessages: any,
+    email: string,
+    password: string
+  }
+> {
   state = {
     errorMessages: {},
     email: '',

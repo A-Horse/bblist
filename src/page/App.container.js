@@ -1,3 +1,4 @@
+// @flow
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
@@ -7,10 +8,7 @@ import App from './App';
 
 const mapDispatchToProps = dispatch => {
   return {
-    actions: bindActionCreators(
-      makeActionRequestCollection([Actions.IDENTIFY, Actions.LOGOUT]),
-      dispatch
-    )
+    actions: bindActionCreators(makeActionRequestCollection(), dispatch)
   };
 };
 

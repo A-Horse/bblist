@@ -20,8 +20,6 @@ const SignUp = props => (
   </Bundle>
 );
 
-console.log(ConnectedRouter);
-
 export class Application extends Component {
   render() {
     return (

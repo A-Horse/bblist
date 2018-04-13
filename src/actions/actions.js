@@ -1,40 +1,8 @@
-const actionNames = [
-  'TEST_ONLY',
+// @flow
+import { values } from 'ramda';
+import actionNames from './actions-name';
 
-  'IDENTIFY',
-
-  'LOGIN',
-  'LOGOUT',
-  'SIGNUP',
-
-  'UPDATE_USER',
-  'QUERY_USER_INFOMATION_WITH_EMAIL',
-
-  'ADD_TODO',
-  'UPDATE_TODO',
-  'GET_TODOLIST',
-  'GET_TODOBOXS',
-  'ADD_TODOBOX',
-  'DESTORY_TODO',
-
-  'GET_TASK_BOARD',
-  'GET_TASK_ALL_BOARD',
-  'GET_CARD_DETAIL',
-  'ADD_TASK_BOARD',
-  'ADD_TASK_CARD',
-  'ADD_TASK_TRACK',
-  'UPDATE_TASK_CARD',
-  'UPDATE_TASK_TRACK',
-  'UPDATE_TASK_TRACK_INDEX',
-  'UPDATE_TASK_BOARD',
-  'UPLOAD_TASK_BOARD_COVER',
-  'DESTORY_TASK_BOARD',
-  'DESTORY_TASK_TRACK',
-  'GET_TASK_BOARD_PARTICIPANT',
-  'INVITE_TASK_BOARD_PARTICIPANT'
-];
-
-const ACTIONS = actionNames.reduce((result, actionName) => {
+const ACTIONS: { [*]: * } = actionNames.reduce((result, actionName) => {
   const REQUEST_SYMBOL = actionName + '_REQUEST';
   const SUCCESS_SYMBOL = actionName + '_SUCCESS';
   const FAILURE_SYMBOL = actionName + '_FAILURE';
@@ -78,8 +46,8 @@ const ACTIONS = actionNames.reduce((result, actionName) => {
   return result;
 }, {});
 
-export function makeActionRequestCollection(actionFactors) {
-  return actionFactors.reduce((result, actionFactor) => {
+export function makeActionRequestCollection() {
+  return values(ACTIONS).reduce((result, actionFactor) => {
     result[actionFactor.name + '_REQUEST'] = actionFactor.request;
     result[actionFactor.name + '_FINISH'] = actionFactor.finish;
     return result;
