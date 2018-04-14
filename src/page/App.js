@@ -1,15 +1,16 @@
 // @flow
 import React, { Component } from 'react';
 import Nav from './Nav/Nav';
-import Bundle from 'components/Bundle';
+import Bundle from '../components/Bundle';
 
 import { Route, Switch, Redirect } from 'react-router';
 
-import NotFound from 'page/NotFound';
-import DashBoard from 'page/DashBoard';
+import NotFound from '../page/NotFound';
+import DashBoard from '../page/DashBoard';
 
-import Ideas from 'containers/idea/Ideas';
+import Ideas from '../containers/idea/Ideas';
 import { getUserData } from '../utils/auth';
+import { Layout } from 'antd';
 
 const TodoPage = props => (
   <Bundle load={require('bundle-loader?lazy&name=todo-page!./Todo/TodoPage.container')}>
@@ -70,7 +71,7 @@ export default class App extends Component<
       return <Redirect to="/signin" />;
     }
     return (
-      <div>
+      <Layout>
         <Nav user={this.state.userData} actions={this.props.actions} />
         <Switch>
           <Route path="/home" component={DashBoard} />
@@ -88,7 +89,7 @@ export default class App extends Component<
 
           <Route path="*" component={NotFound} />
         </Switch>
-      </div>
+      </Layout>
     );
   }
 }

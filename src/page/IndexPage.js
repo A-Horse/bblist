@@ -5,7 +5,7 @@ import { SeaWaves } from 'effect/SeaWaves';
 import { Button } from '../components/widget/Button/Button';
 import { Link } from 'react-router-dom';
 import { isLogin } from 'services/login';
-import { LogoBan } from 'components/commons/LogoBan';
+import { LogoBan } from 'components/commons/LogoBan/LogoBan';
 import { isEnterKey } from 'utils/keyboard';
 import { withRouter } from 'react-router-dom';
 

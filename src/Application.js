@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { ConnectedRouter } from 'react-router-redux';
 import { Router, Route, Switch /* Redirect*/ } from 'react-router';
 import history from './services/history';
 import Bundle from 'components/Bundle';

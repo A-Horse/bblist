@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { validateFormValue } from '../../services/validate-strategy';
 import { Button } from '../../components/widget/Button/Button';
 import { Input } from '../../components/widget/Input/Input';
-import { LogoBan } from '../../components/commons/LogoBan';
+import { LogoBan } from '../../components/commons/LogoBan/LogoBan';
 import { ErrorMsg } from '../../components/ErrorMsg/ErrorMsg';
 import { PageContainer } from '../../components/widget/PageContainer';
 import { Link } from 'react-router-dom';
