@@ -57,10 +57,10 @@
  * */
 // export const TASKTRACK_CHANGE_INDEX_SUCCESS = 'TASKTRACK_CHANGE_INDEX_SUCCESS';
 /*
- * function updateTaskTrackIndexSuccess(playload) {
+ * function updateTaskTrackIndexSuccess(payload) {
  *   return {
  *     type: TASKTRACK_CHANGE_INDEX_SUCCESS,
- *     playload: playload
+ *     payload: payload
  *   };
  * }
  * */

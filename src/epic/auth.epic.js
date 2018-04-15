@@ -15,7 +15,7 @@ import type { ActionsObservable } from 'redux-observable';
 export const LOGIN_REQUEST = (action$: ActionsObservable<FSAction>) =>
   action$.ofType(Actions.LOGIN.REQUEST).mergeMap(action =>
     http
-      .post(makeApiUrl('/user/signin'), null, action.playload)
+      .post(makeApiUrl('/user/signin'), null, action.payload)
       .then(response => {
         // TODO 从 header 拿
         saveAuthData(response);
@@ -34,7 +34,7 @@ export const LOGIN_REQUEST = (action$: ActionsObservable<FSAction>) =>
 export const SIGNUP_REQUEST = action$ =>
   action$.ofType(Actions.SIGNUP.REQUEST).mergeMap(action =>
     http
-      .post(makeApiUrl('/user/signup'), null, action.playload)
+      .post(makeApiUrl('/user/signup'), null, action.payload)
       .then(Actions.SIGNUP.success)
       .catch(Actions.SIGNUP.failure)
   );

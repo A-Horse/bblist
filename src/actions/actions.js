@@ -13,32 +13,32 @@ const ACTIONS: { [*]: * } = actionNames.reduce((result, actionName) => {
     SUCCESS: SUCCESS_SYMBOL,
     FAILURE: FAILURE_SYMBOL,
     FINISH: FINISH_SYMBOL,
-    request: (playload, meta) => {
+    request: (payload, meta) => {
       return {
         type: REQUEST_SYMBOL,
-        playload,
+        payload,
         meta
       };
     },
-    success: (playload, meta) => {
+    success: (payload, meta) => {
       return {
         type: SUCCESS_SYMBOL,
-        playload,
+        payload,
         meta
       };
     },
-    failure: (playload, meta) => {
+    failure: (payload, meta) => {
       return {
         type: FAILURE_SYMBOL,
         error: true,
-        playload,
+        payload,
         meta
       };
     },
-    finish: (playload, meta) => {
+    finish: (payload, meta) => {
       return {
         type: FINISH_SYMBOL,
-        playload,
+        payload,
         meta
       };
     }

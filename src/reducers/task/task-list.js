@@ -106,7 +106,7 @@ function taskList(
 
     case ALL_TASKCARD_GET_SUCCESS:
       return Object.assign({}, state, {
-        entities: action.playload.entities.track
+        entities: action.payload.entities.track
       });
       break;
 
@@ -118,7 +118,7 @@ function taskList(
 
     case INSERT_VIRTUAL_CARD:
       {
-        const { listId, virtualIndex } = action.playload;
+        const { listId, virtualIndex } = action.payload;
         const { lists } = state;
         const { height, width } = state.movingCardInfo;
         const listIndex = R.findIndex(R.propEq('id', listId))(lists);

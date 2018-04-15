@@ -8,7 +8,7 @@ export function user(state = fromJS({}), action) {
       return state.delete('inviteParticipant');
       break;
     case Actions.QUERY_USER_INFOMATION_WITH_EMAIL.SUCCESS:
-      return state.set('inviteParticipant', fromJS(action.playload));
+      return state.set('inviteParticipant', fromJS(action.payload));
       break;
 
     default:

@@ -16,17 +16,17 @@
  *   };
  * }
  *
- * function receiveTodoBoxSuccess(playload) {
+ * function receiveTodoBoxSuccess(payload) {
  *   return {
  *     type: TODOBOX_GET_SUCCESS,
- *     playload
+ *     payload
  *   };
  * }
  *
  * function receiveTodoBoxFailure(error) {
  *   return {
  *     type: TODOBOX_GET_FAILURE,
- *     playload: error,
+ *     payload: error,
  *     error: true
  *   };
  * }
@@ -53,17 +53,17 @@
  *   };
  * }
  *
- * function createTodoBoxSuccess(playload) {
+ * function createTodoBoxSuccess(payload) {
  *   return {
  *     type: TODOBOX_CREATE_SUCCESS,
- *     playload
+ *     payload
  *   };
  * }
  *
  * function createTodoBoxFailure(error) {
  *   return {
  *     type: TODOBOX_CREATE_FAILURE,
- *     playload: error,
+ *     payload: error,
  *     error: true
  *   };
  * }
@@ -89,10 +89,10 @@
  *   };
  * }
  *
- * function receiveTodoList(playload, meta) {
+ * function receiveTodoList(payload, meta) {
  *   return {
  *     type: TODOLIST_GET_SUCCESS,
- *     playload,
+ *     payload,
  *     meta
  *   };
  * }
@@ -101,7 +101,7 @@
  *   return {
  *     type: TODOLIST_GET_FAILURE,
  *     error: true,
- *     playload: error
+ *     payload: error
  *   };
  * }*/
 /*
@@ -127,17 +127,17 @@
  *   };
  * }
  *
- * function createTodoSucceess(playload) {
+ * function createTodoSucceess(payload) {
  *   return {
  *     type: TODO_POST_SUCCESS,
- *     playload
+ *     payload
  *   };
  * }
  *
  * function createTodoError(error) {
  *   return {
  *     type: TODO_POST_FAILURE,
- *     playload: error,
+ *     payload: error,
  *     error: true
  *   };
  * }*/
@@ -162,21 +162,21 @@
  * function requestDestroyTodo(id) {
  *   return {
  *     type: TODO_DESTORY_REQUEST,
- *     playload: id
+ *     payload: id
  *   };
  * }
  *
- * function destroyTodoSuccess(playload) {
+ * function destroyTodoSuccess(payload) {
  *   return {
  *     type: TODO_DESTORY_SUCCESS,
- *     playload
+ *     payload
  *   };
  * }
  *
  * function destroyTodoError(error) {
  *   return {
  *     type: TODO_DESTORY_FAILURE,
- *     playload: error,
+ *     payload: error,
  *     error: true
  *   };
  * }
@@ -200,14 +200,14 @@
  * function requestUpdateTodo(data) {
  *   return {
  *     type: TODO_PATCH_REQUEST,
- *     playload: data
+ *     payload: data
  *   };
  * }
  *
- * function updateTodoSuccess(playload) {
+ * function updateTodoSuccess(payload) {
  *   return {
  *     type: TODO_PATCH_SUCCESS,
- *     playload
+ *     payload
  *   };
  * }
  *
@@ -215,7 +215,7 @@
  *   return {
  *     type: TODO_PATCH_FAILURE,
  *     error: true,
- *     playload: error
+ *     payload: error
  *   };
  * }
  * */

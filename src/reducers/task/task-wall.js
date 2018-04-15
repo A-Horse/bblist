@@ -33,7 +33,7 @@ function taskWall(
       return {
         ...state,
         isTaskBoardsFetching: false,
-        ...normalize(action.playload, Boards)
+        ...normalize(action.payload, Boards)
       };
 
     case TASKWALL_DELETE_SUCCESS:
@@ -44,7 +44,7 @@ function taskWall(
       return Object.assign({}, state, {
         // isFetching: false,
         // TODO merge not cover
-        entities: action.playload.entities.board
+        entities: action.payload.entities.board
       });
 
     case CLEAR_BOARD:
@@ -55,7 +55,7 @@ function taskWall(
       break;
 
     case TASKBOARD_PATCH_SUCCESS:
-      return Object.assign({}, state, normalize(action.playload, Boards));
+      return Object.assign({}, state, normalize(action.payload, Boards));
 
     default:
       return state;

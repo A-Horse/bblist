@@ -31,8 +31,8 @@ export const updateTaskBoardDescription = action$ =>
     .distinctUntilChanged()
     .debounceTime(250)
     .mergeMap(action => {
-      return patchTaskBoard(action.playload.boardId, {
-        description: action.playload.description
+      return patchTaskBoard(action.payload.boardId, {
+        description: action.payload.description
       }).map(response => updateTaskBoardSuccess(response));
     })
     .catch((err, caught) => caught);
@@ -44,7 +44,7 @@ export const updateTaskBoardDescription = action$ =>
  *     .distinctUntilChanged()
  *     .debounceTime(250)
  *     .mergeMap(action => {
- *       return patchTaskBoard(action.playload.boardId, { name: action.playload.name }).map(response =>
+ *       return patchTaskBoard(action.payload.boardId, { name: action.payload.name }).map(response =>
  *         updateTaskBoardSuccess(response)
  *       );
  *     })

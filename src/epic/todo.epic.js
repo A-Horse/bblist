@@ -11,7 +11,7 @@ import { getCachedUserId } from 'utils/auth';
 export const ADD_TODO_REQUEST = action$ =>
   action$.ofType(Actions.ADD_TODO.REQUEST).mergeMap(action => {
     return http
-      .post(makeApiUrl('/t/todo'), null, action.playload)
+      .post(makeApiUrl('/t/todo'), null, action.payload)
       .then(Actions.ADD_TODO.success)
       .catch(Actions.ADD_TODO.failure);
   });
@@ -19,7 +19,7 @@ export const ADD_TODO_REQUEST = action$ =>
 export const ADD_TODOBOX_REQUEST = action$ =>
   action$.ofType(Actions.ADD_TODOBOX.REQUEST).mergeMap(action => {
     return http
-      .post(makeApiUrl('/t/todo-box'), null, action.playload)
+      .post(makeApiUrl('/t/todo-box'), null, action.payload)
       .then(Actions.ADD_TODOBOX.success)
       .catch(Actions.ADD_TODOBOX.failure);
   });
@@ -27,8 +27,8 @@ export const ADD_TODOBOX_REQUEST = action$ =>
 export const GET_TODOLIST_REQUEST = action$ =>
   action$.ofType(Actions.GET_TODOLIST.REQUEST).mergeMap(action => {
     const userId = getCachedUserId();
-    const url = action.playload.todoBoxId
-      ? `/t/todo-box/${action.playload.todoBoxId}`
+    const url = action.payload.todoBoxId
+      ? `/t/todo-box/${action.payload.todoBoxId}`
       : `/t/user/${userId}/todo`;
 
     return http
@@ -43,20 +43,20 @@ export const UPDATE_TODO = action$ =>
     .distinctUntilChanged()
     .debounceTime(750)
     .mergeMap(action => {
-      const { id } = action.playload;
+      const { id } = action.payload;
       return http
-        .patch(makeApiUrl(`/t/todo/${id}`), null, action.playload)
+        .patch(makeApiUrl(`/t/todo/${id}`), null, action.payload)
         .then(Actions.UPDATE_TODO.success)
         .catch(Actions.UPDATE_TODO.failure);
     });
 
 export const DESTORY_TODO = action$ =>
   action$.ofType(Actions.DESTORY_TODO.REQUEST).mergeMap(action => {
-    const { id } = action.playload;
+    const { id } = action.payload;
     return http
       .delete(makeApiUrl(`/t/todo/${id}`))
       .then(() => {
-        return Actions.DESTORY_TODO.success(null, { id: action.playload.ideas });
+        return Actions.DESTORY_TODO.success(null, { id: action.payload.ideas });
       })
       .catch(Actions.DESTORY_TODO.failure);
   });

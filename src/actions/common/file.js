@@ -26,7 +26,7 @@ function uploadFileFail(error) {
   return {
     type: UPLOAD_FILE_FAILURE,
     error: true,
-    playload: error
+    payload: error
   };
 }
 

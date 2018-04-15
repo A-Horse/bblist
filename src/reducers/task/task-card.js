@@ -48,12 +48,12 @@ function taskCard(
 
     case CARD_META_SUCCESS:
       return Object.assign({}, state, {
-        card: action.playload
+        card: action.payload
       });
       break;
 
     case TASKCARD_PATCH_SUCCESS:
-      const updatedCard = normalize(action.playload, card);
+      const updatedCard = normalize(action.payload, card);
       return Object.assign({}, state, {
         entities: { ...state.entities, ...updatedCard.entities.cards }
       });
@@ -64,7 +64,7 @@ function taskCard(
 
     case ALL_TASKCARD_GET_SUCCESS:
       return Object.assign({}, state, {
-        entities: action.playload.entities.cards
+        entities: action.payload.entities.cards
       });
       break;
 

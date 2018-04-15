@@ -24,7 +24,7 @@ function requestLogin(creds) {
 function receiveLogin(jwt, user) {
   return {
     type: LOGIN_SUCCESS,
-    playload: { jwt, user }
+    payload: { jwt, user }
   };
 }
 
@@ -65,10 +65,10 @@ export function signin(creds) {
  *   };
  * }
  *
- * function authLoginError(playload) {
+ * function authLoginError(payload) {
  *   return {
  *     type: IDENTIFY_FAILURE,
- *     playload
+ *     payload
  *   };
  * }
  *
@@ -105,14 +105,14 @@ export function signin(creds) {
  * function authSuccess(resp) {
  *   return {
  *     type: AUTH_SUCCESS,
- *     playload: resp
+ *     payload: resp
  *   };
  * }
  *
  * function authFailure(message) {
  *   return {
  *     type: AUTH_FAILURE,
- *     playload: message
+ *     payload: message
  *   };
  * }
  *

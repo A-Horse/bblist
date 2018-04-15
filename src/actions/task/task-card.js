@@ -43,7 +43,7 @@ export const TASKCARD_POST_FAILURE = 'TASKCARD_POST_FAILURE';
  * function updateTaskCardSuccess(card) {
  *   return {
  *     type: TASKCARD_PATCH_SUCCESS,
- *     playload: card
+ *     payload: card
  *   };
  * }
  *
@@ -87,21 +87,21 @@ export const CARD_META_FAILURE = 'CARD_META_FAILURE';
 function requestCardMeta(id) {
   return {
     type: CARD_META_FAILURE,
-    playload: id
+    payload: id
   };
 }
 
 function receiveCardMeta(data) {
   return {
     type: CARD_META_SUCCESS,
-    playload: data
+    payload: data
   };
 }
 
 function requestCardMetaFail(error) {
   return {
     type: CARD_META_FAILURE,
-    playload: error,
+    payload: error,
     error: true
   };
 }

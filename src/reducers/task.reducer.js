@@ -22,13 +22,13 @@ export function task2(
       return state.update('board', () => null).update('boardFetching', R.T);
 
     case Actions.ADD_TASK_BOARD.SUCCESS:
-      const normalizedAddBoard = normalize(action.playload, TaskBoard);
+      const normalizedAddBoard = normalize(action.payload, TaskBoard);
       return state.update('boardMap', boardMap =>
         boardMap.merge(fromJS(normalizedAddBoard.entities.TaskBoard))
       );
 
     case Actions.GET_TASK_BOARD.SUCCESS:
-      const normalizedBoard = normalize(action.playload, TaskBoard);
+      const normalizedBoard = normalize(action.payload, TaskBoard);
       console.log(normalizedBoard);
       return state
         .update('boardFetching', R.F)
@@ -44,22 +44,22 @@ export function task2(
       return state.update('board', () => null).update('boardFetching', R.F);
 
     case Actions.GET_TASK_ALL_BOARD.SUCCESS:
-      const normalizedAllBoard = normalize(action.playload, TaskBoards);
+      const normalizedAllBoard = normalize(action.payload, TaskBoards);
       return state.update('boardMap', () => fromJS(normalizedAllBoard.entities.TaskBoard));
 
     case Actions.UPDATE_TASK_BOARD.SUCCESS:
       return state.update('board', board => {
-        return board.merge(fromJS(R.omit(['id'], action.playload)));
+        return board.merge(fromJS(R.omit(['id'], action.payload)));
       });
 
     case Actions.UPLOAD_TASK_BOARD_COVER.SUCCESS:
-      return state.update('board', board => board.merge(fromJS(R.omit(['id'], action.playload))));
+      return state.update('board', board => board.merge(fromJS(R.omit(['id'], action.payload))));
 
     case Actions.DESTORY_TASK_BOARD.SUCCESS:
       return state.delete('board').deleteIn(['boardMap', String(action.meta.id)]);
 
     case Actions.ADD_TASK_CARD.SUCCESS:
-      const normalizedAddedCard = normalize(action.playload, TaskCard);
+      const normalizedAddedCard = normalize(action.payload, TaskCard);
 
       return state
         .update('cardMap', cardMap => {
@@ -68,24 +68,24 @@ export function task2(
             : fromJS(normalizedAddedCard.entities.TaskCard);
           // TODO rename taskListId
         })
-        .updateIn(['trackMap', String(action.playload.taskListId)], trackMap =>
+        .updateIn(['trackMap', String(action.payload.taskListId)], trackMap =>
           trackMap.update(
             'cards',
-            cards => cards.push(action.playload.id) // TODO 考虑卡片排序的问题，理应是 push 到最后一个的，但是以后可能会优先级的情况会弹到第一个，所以暂时考虑以后在后端返回index
+            cards => cards.push(action.payload.id) // TODO 考虑卡片排序的问题，理应是 push 到最后一个的，但是以后可能会优先级的情况会弹到第一个，所以暂时考虑以后在后端返回index
           )
         );
 
     case Actions.UPDATE_TASK_CARD.SUCCESS:
-      return state.updateIn(['cardMap', String(action.playload.id)], () => fromJS(action.playload));
+      return state.updateIn(['cardMap', String(action.payload.id)], () => fromJS(action.payload));
 
     case Actions.GET_CARD_DETAIL.SUCCESS:
-      const normalizedCardDetail = normalize(action.playload, TaskCard);
+      const normalizedCardDetail = normalize(action.payload, TaskCard);
       return state.update('cardMap', cardMap => {
         return cardMap.merge(fromJS(normalizedCardDetail.entities.TaskCard));
       });
 
     case Actions.ADD_TASK_TRACK.SUCCESS:
-      const normalizedAddedTrack = normalize(action.playload, TaskTrack);
+      const normalizedAddedTrack = normalize(action.payload, TaskTrack);
       return state.update('trackMap', trackMap =>
         trackMap.merge(fromJS(normalizedAddedTrack.entities.TaskTrack))
       );
@@ -94,15 +94,15 @@ export function task2(
       return state.deleteIn(['trackMap', String(action.meta.trackId)]);
 
     case Actions.UPDATE_TASK_TRACK.SUCCESS:
-      return state.updateIn(['trackMap', String(action.playload.id)], track =>
-        track.merge(fromJS(action.playload))
+      return state.updateIn(['trackMap', String(action.payload.id)], track =>
+        track.merge(fromJS(action.payload))
       );
 
     case Actions.GET_TASK_BOARD_PARTICIPANT.REQUEST:
       return state.delete('boardParticipant');
 
     case Actions.GET_TASK_BOARD_PARTICIPANT.SUCCESS:
-      return state.set('boardParticipants', fromJS(action.playload));
+      return state.set('boardParticipants', fromJS(action.payload));
 
     default:
       return state;

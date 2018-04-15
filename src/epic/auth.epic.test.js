@@ -33,7 +33,7 @@ describe('auth epic test', () => {
     nock.isDone();
     expect(store.getActions()).toEqual([
       { type: 'IDENTIFY_REQUEST' },
-      { type: 'IDENTIFY_SUCCESS', playload: { jwt: 'jwt' } }
+      { type: 'IDENTIFY_SUCCESS', payload: { jwt: 'jwt' } }
     ]);
   });
 
@@ -44,16 +44,16 @@ describe('auth epic test', () => {
 
     store.dispatch({
       type: 'LOGIN_REQUEST',
-      playload: { email: 'octopus@octopus.com', password: '1234567' }
+      payload: { email: 'octopus@octopus.com', password: '1234567' }
     });
 
     await timeout(10);
     nock.isDone();
     expect(store.getActions()).toEqual([
-      { type: 'LOGIN_REQUEST', playload: { email: 'octopus@octopus.com', password: '1234567' } },
+      { type: 'LOGIN_REQUEST', payload: { email: 'octopus@octopus.com', password: '1234567' } },
       {
         type: 'LOGIN_SUCCESS',
-        playload: {
+        payload: {
           user: {
             username: 'octopus',
             email: 'test@ocotpus.com',

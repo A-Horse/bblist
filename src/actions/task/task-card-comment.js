@@ -18,14 +18,14 @@ function requestCreateTaskCardComment() {
 function createTaskCardCommentSucceess(comment) {
   return {
     type: TASKCARDCOMMENT_POST_SUCCESS,
-    playload: comment
+    payload: comment
   };
 }
 
 function createTaskCardCommentError(error) {
   return {
     type: TASKCARDCOMMENT_POST_FAILURE,
-    playload: error,
+    payload: error,
     error: true
   };
 }

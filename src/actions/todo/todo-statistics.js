@@ -11,7 +11,7 @@ export const UNACTIVE_TD_REPEAT_HISTORY = 'UNACTIVE_TD_REPEAT_HISTORY';
 export function activeTdRepeatHistory(tdId) {
   return {
     type: ACTIVE_TD_REPEAT_HISTORY,
-    playload: { tdId }
+    payload: { tdId }
   };
 }
 
@@ -34,14 +34,14 @@ export function tdRepeatHistoryRequest() {
 export function tdRepeatHistorySuccess(resp) {
   return {
     type: TD_REPEAT_HISTORY_SUCCESS,
-    playload: resp
+    payload: resp
   };
 }
 
 export function tdRepeatHistoryFailure(error) {
   return {
     type: TD_REPEAT_HISTORY_FAILURE,
-    playload: error,
+    payload: error,
     error: true
   };
 }
@@ -63,14 +63,14 @@ export const TD_REPEAT_HISTORY_YESTORY_UPDATE_FAILURE = 'TD_REPEAT_HISTORY_YESTO
 export function tdRepeatHistoryYestoryUpdateSuccess(resp) {
   return {
     type: TD_REPEAT_HISTORY_YESTORY_UPDATE_SUCCESS,
-    playload: resp
+    payload: resp
   };
 }
 
 export function tdRepeatHistoryYestoryUpdateFailure(error) {
   return {
     type: TD_REPEAT_HISTORY_YESTORY_UPDATE_FAILURE,
-    playload: error,
+    payload: error,
     error: true
   };
 }

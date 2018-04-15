@@ -11,7 +11,7 @@ export const UPDATE_USER_REQUEST = action$ =>
   action$.ofType(Actions.UPDATE_USER.REQUEST).mergeMap(action => {
     const userId = getCachedUserId();
     return http
-      .patch(makeApiUrl(`/user/${userId}`), null, action.playload, {
+      .patch(makeApiUrl(`/user/${userId}`), null, action.payload, {
         withHeader: true
       })
       .then(responseAndHeader => {
@@ -28,7 +28,7 @@ export const QUERY_USER_INFOMATION_WITH_EMAIL_REQUEST = action$ =>
     .debounceTime(500)
     .mergeMap(action => {
       return http
-        .get(makeApiUrl(`/user/search`), action.playload)
+        .get(makeApiUrl(`/user/search`), action.payload)
         .then(Actions.QUERY_USER_INFOMATION_WITH_EMAIL.success)
         .catch(Actions.QUERY_USER_INFOMATION_WITH_EMAIL.failure);
     });

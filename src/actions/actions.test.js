@@ -5,18 +5,18 @@ test('Actions generated behavior', () => {
   expect(Actions.TEST_ONLY.SUCCESS).toEqual('TEST_ONLY_SUCCESS');
   expect(Actions.TEST_ONLY.FAILURE).toEqual('TEST_ONLY_FAILURE');
 
-  expect(Actions.TEST_ONLY.request('playload')).toEqual({
+  expect(Actions.TEST_ONLY.request('payload')).toEqual({
     type: 'TEST_ONLY_REQUEST',
-    playload: 'playload'
+    payload: 'payload'
   });
-  expect(Actions.TEST_ONLY.success('playload', { meta: 'meta' })).toEqual({
+  expect(Actions.TEST_ONLY.success('payload', { meta: 'meta' })).toEqual({
     type: 'TEST_ONLY_SUCCESS',
-    playload: 'playload',
+    payload: 'payload',
     meta: { meta: 'meta' }
   });
-  expect(Actions.TEST_ONLY.failure('playload', { meta: 'meta' })).toEqual({
+  expect(Actions.TEST_ONLY.failure('payload', { meta: 'meta' })).toEqual({
     type: 'TEST_ONLY_FAILURE',
-    playload: 'playload',
+    payload: 'payload',
     meta: { meta: 'meta' },
     error: true
   });

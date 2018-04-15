@@ -6,7 +6,7 @@ import { Map, fromJS } from 'immutable';
 export function auth(state: Map<any> = Map({}), action) {
   switch (action.type) {
     case Actions.SETUP_USER.REQUEST:
-      return state.set('loginedUser', fromJS(action.playload));
+      return state.set('loginedUser', fromJS(action.payload));
 
     case Actions.LOGIN.REQUEST:
       return state.delete('signInErrorMessage');
@@ -17,7 +17,7 @@ export function auth(state: Map<any> = Map({}), action) {
     case Actions.LOGIN.FAILURE:
       return state
         .update('signInAuthenticated', R.F)
-        .update('signInErrorMessage', () => action.playload);
+        .update('signInErrorMessage', () => action.payload);
 
     case Actions.LOGIN.FINISH:
       return state.delete('signInAuthenticated').delete('signInErrorMessage');
@@ -35,7 +35,7 @@ export function auth(state: Map<any> = Map({}), action) {
       return state;
 
     case Actions.UPDATE_USER.SUCCESS:
-      return state.update('loginedUser', loginedUser => loginedUser.merge(fromJS(action.playload)));
+      return state.update('loginedUser', loginedUser => loginedUser.merge(fromJS(action.payload)));
 
     default:
       return state;

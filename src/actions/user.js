@@ -23,7 +23,7 @@ function updatePasswordSuccess() {
 function updatePasswordFail(message) {
   return {
     type: UPDATE_PASSWORD_FAILURE,
-    playload: message
+    payload: message
   };
 }
 
@@ -49,14 +49,14 @@ function requestUserInfoPassword() {
 function updateUserInfoSuccess(user) {
   return {
     type: UPDATE_PASSWORD_SUCCESS,
-    playload: user
+    payload: user
   };
 }
 
 function updateUserInfoFail(message) {
   return {
     type: UPDATE_PASSWORD_FAILURE,
-    playload: message
+    payload: message
   };
 }
 

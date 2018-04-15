@@ -25,25 +25,25 @@ describe('auth epic test', () => {
   });
 
   test('ADD TODO REQUEST', async () => {
-    const playload = {
+    const payload = {
       content: 'i want to add this todo',
       deadline: '2017-9-31'
     };
     nock('http://ocotpuese.xyz')
-      .post('/api/todo', playload)
-      .reply(200, { ...playload });
+      .post('/api/todo', payload)
+      .reply(200, { ...payload });
     // .log(console.log);
 
     store.dispatch({
       type: 'ADD_TODO_REQUEST',
-      playload: playload
+      payload: payload
     });
 
     await timeout(10);
     nock.isDone();
     expect(store.getActions()).toEqual([
-      { type: 'ADD_TODO_REQUEST', playload },
-      { type: 'ADD_TODO_SUCCESS', playload: { ...playload } }
+      { type: 'ADD_TODO_REQUEST', payload },
+      { type: 'ADD_TODO_SUCCESS', payload: { ...payload } }
     ]);
   });
 
@@ -64,7 +64,7 @@ describe('auth epic test', () => {
 
     store.dispatch({
       type: 'GET_TODOBOXS_REQUEST',
-      playload: {
+      payload: {
         todoBoxId: null
       }
     });
@@ -72,9 +72,9 @@ describe('auth epic test', () => {
     await timeout(10);
     nock.isDone();
     expect(store.getActions()).toEqual([
-      { type: 'GET_TODOBOXS_REQUEST', playload: { todoBoxId: null } },
+      { type: 'GET_TODOBOXS_REQUEST', payload: { todoBoxId: null } },
       {
-        playload: [
+        payload: [
           {
             created_at: null,
             creatorId: 1,
@@ -101,7 +101,7 @@ describe('auth epic test', () => {
 
     store.dispatch({
       type: 'GET_TODOLIST_REQUEST',
-      playload: {
+      payload: {
         todoBoxId: '21'
       }
     });
@@ -109,9 +109,9 @@ describe('auth epic test', () => {
     await timeout(10);
     nock.isDone();
     expect(store.getActions()).toEqual([
-      { playload: { todoBoxId: '21' }, type: 'GET_TODOLIST_REQUEST' },
+      { payload: { todoBoxId: '21' }, type: 'GET_TODOLIST_REQUEST' },
       {
-        playload: [
+        payload: [
           {
             id: 11
           }

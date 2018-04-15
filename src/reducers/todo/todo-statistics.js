@@ -18,7 +18,7 @@ export function todoStatistics(
     case ACTIVE_TD_REPEAT_HISTORY:
       return {
         ...state,
-        activedTdId: action.playload.tdId
+        activedTdId: action.payload.tdId
       };
     case UNACTIVE_TD_REPEAT_HISTORY:
       return {
@@ -28,7 +28,7 @@ export function todoStatistics(
     case TD_REPEAT_HISTORY_SUCCESS:
       return {
         ...state,
-        repeatHistory: action.playload
+        repeatHistory: action.payload
       };
     default:
       return state;

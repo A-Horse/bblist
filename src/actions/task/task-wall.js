@@ -34,14 +34,14 @@
  * function receiveTaskWalls(response) {
  *   return {
  *     type: TASKWALL_GET_SUCCESS,
- *     playload: response
+ *     payload: response
  *   };
  * }
  *
  * function receiveTaskWallsFail(error) {
  *   return {
  *     type: TASKWALL_GET_FAILURE,
- *     playload: error,
+ *     payload: error,
  *     error: true
  *   };
  * }*/
@@ -67,7 +67,7 @@
  * function receiveTaskWallCards(response) {
  *   return {
  *     type: ALL_TASKCARD_GET_SUCCESS,
- *     playload: normalize(response, board)
+ *     payload: normalize(response, board)
  *   };
  * }
  *
@@ -119,7 +119,7 @@
  * export function requestRenameTaskBoard(boardId, newName) {
  *   return {
  *     type: TASKBOARD_RENAME_REQUEST,
- *     playload: {
+ *     payload: {
  *       boardId: boardId,
  *       name: newName
  *     }
@@ -131,7 +131,7 @@
  * export function requestUpdateTaskBoardDescription(boardId, description) {
  *   return {
  *     type: TASKBOARD_DESCRIPTION_UPDATE_REQUEST,
- *     playload: {
+ *     payload: {
  *       boardId: board,
  *       description: description
  *     }
@@ -143,7 +143,7 @@
  * export function updateTaskBoardSuccess(board) {
  *   return {
  *     type: TASKBOARD_PATCH_SUCCESS,
- *     playload: board
+ *     payload: board
  *   };
  * }
  * */

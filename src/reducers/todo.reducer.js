@@ -17,7 +17,7 @@ export function todos(
 ) {
   switch (action.type) {
     case Actions.ADD_TODO.SUCCESS:
-      const addedTodo = action.playload;
+      const addedTodo = action.payload;
       return state
         .update('todoEntities', todoEntities =>
           todoEntities.set(String(addedTodo.id), fromJS(addedTodo))
@@ -28,14 +28,14 @@ export function todos(
       return state.update('todoIds', () => fromJS([]));
 
     case Actions.GET_TODOLIST.SUCCESS:
-      const normalizedTodos = normalize(action.playload, TDS);
+      const normalizedTodos = normalize(action.payload, TDS);
       return state
         .update('todoIds', () => List(normalizedTodos.result))
         .update('todoEntities', () => fromJS(normalizedTodos.entities.Todo || {}));
 
     case Actions.UPDATE_TODO.SUCCESS:
-      return state.updateIn(['todoEntities', String(action.playload.id)], () =>
-        fromJS(action.playload)
+      return state.updateIn(['todoEntities', String(action.payload.id)], () =>
+        fromJS(action.payload)
       );
 
     case Actions.DESTORY_TODO.SUCCESS:
@@ -43,7 +43,7 @@ export function todos(
       return state.update('todoIds', ids => ids.delete(toDeletedIndex));
 
     case Actions.ADD_TODOBOX.SUCCESS:
-      const normalizedAddedTodoBox = normalize(action.playload, TDBox);
+      const normalizedAddedTodoBox = normalize(action.payload, TDBox);
       return state
         .update('todoBoxEntities', todoBoxEntities =>
           todoBoxEntities.merge(normalizedAddedTodoBox.entities.TodoBox)
@@ -51,13 +51,13 @@ export function todos(
         .update('todoBoxIds', todoBoxIds => todoBoxIds.push(normalizedAddedTodoBox.result));
 
     case Actions.GET_TODOBOXS.SUCCESS:
-      const normalizeTodoBox = normalize(action.playload, TDBoxs);
+      const normalizeTodoBox = normalize(action.payload, TDBoxs);
       return state
         .update('todoBoxIds', () => List(normalizeTodoBox.result))
         .update('todoBoxEntities', () => fromJS(normalizeTodoBox.entities.TodoBox || {}));
 
     case TODOBOX_CREATE_SUCCESS:
-      normalize(action.playload, TD);
+      normalize(action.payload, TD);
       return {
         ...state
       };
