@@ -1,51 +1,39 @@
+// @flow
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-/* import { connect } from 'react-redux';
- * import { browserHistory } from 'react-router';*/
-import R from 'ramda';
 import moment from 'moment';
-
-import { deleteTaskCard, updateTaskCard, getCardDetail } from 'actions/task/task-card';
-import { createTaskCardComment } from 'actions/task/task-card-comment';
-import { CloseIcon } from 'services/svg-icons';
-import UserAvatar from 'components/UserAvatar/UserAvatar';
-import { Modal } from 'components/widget/Modal/Modal';
-import { CheckBox } from 'components/widget/CheckBox/CheckBox';
-import { Pomodoro } from 'components/Pomodoro';
 import Textarea from 'react-textarea-autosize';
-import { Hr } from 'components/widget/Hr';
-import { Select } from 'components/widget/Select';
-import { isEnterKey } from 'utils/keyboard';
-// import { wrapDispathToAction } from 'utils/wrap-props';
 
-import './CardDetail.scss';
+import { deleteTaskCard, updateTaskCard, getCardDetail } from '../../../actions/task/task-card';
+import { createTaskCardComment } from '../../../actions/task/task-card-comment';
+import UserAvatar from '../../../components/UserAvatar/UserAvatar';
+import { CheckBox } from '../../../components/widget/CheckBox/CheckBox';
+import { isEnterKey } from '../../../utils/keyboard';
+import { Select, Modal as AntModal, Button } from 'antd';
+import { Map } from 'immutable';
 
-class CardDetail extends Component {
-  static propTypes = {
-    actions: PropTypes.object.isRequired,
-    trackMap: PropTypes.object,
-    match: PropTypes.object.isRequired,
-    history: PropTypes.object.isRequired
-  };
+const Option = Select.Option;
 
-  state = {};
+import './CardDetail.less';
 
-  constructor(props) {
-    super(props);
-    this.close = this.close.bind(this);
-  }
+export class CardDetail extends Component<
+  {
+    actions: any,
+    trackMap: any,
+    match: any,
+    history: any,
+    card: Map<any>
+  },
+  { toggle: boolean }
+> {
+  state = { toggle: true };
 
   componentWillMount() {
     this.props.actions.GET_CARD_DETAIL_REQUEST({ id: this.props.match.params.cardId });
   }
 
-  close() {
-    this.props.history.push(`/task-board/${this.props.match.params.id}`);
-  }
-
-  onChangeTrack(track) {
-    this.updateTaskCard({ taskListId: track.value });
-  }
+  close = () => {
+    this.setState({ toggle: false });
+  };
 
   getCardDetail() {
     const { dispatch, card } = this.props;
@@ -102,33 +90,47 @@ class CardDetail extends Component {
 
   render() {
     const { card } = this.props;
-    /* const cardId = this.props.params.cardId;
-     * const card = normalizedCards.entities[cardId];*/
-
-    // TODO duplicable check
 
     if (!card) {
       return null;
     }
 
-    // const currentList = this.getCurrentTrack();
-    /* if (!tracks) {
-     *   return null;
-     * }*/
     return (
-      <Modal className="taskcard-modal" toggle={true} close={this.close.bind(this)}>
+      <AntModal
+        className="taskcard-modal"
+        visible={this.state.toggle}
+        onCancel={this.close}
+        afterClose={() => this.props.history.push(`/task-board/${this.props.match.params.id}`)}
+        footer={[
+          <Button key="back" onClick={this.close}>
+            Done
+          </Button>
+        ]}
+      >
         <div className="taskcard-modal--top-bar">
           <div className="top-bar-list-chooser">
             <span className="top-bar--list-label">Track:</span>
-            <Select
-              defaultItem={this.buildListSelectDefaultItem()}
-              items={this.buildListSelectItems()}
-              onSelect={selected =>
+
+            <Select defaultValue="lucy" style={{ width: 120 }} onChange={this.updateBelongTrack}>
+              {this.props.trackMap.toArray().map(track => {
+                return (
+                  <Option key={track.get('id')} value={track.get('id')}>
+                    {track.get('name')}
+                  </Option>
+                );
+              })}
+            </Select>
+            {/*
+                <Select
+                defaultItem={this.buildListSelectDefaultItem()}
+                items={this.buildListSelectItems()}
+                onSelect={selected =>
                 this.props.actions.UPDATE_TASK_CARD_REQUEST({
-                  id: card.get('id'),
-                  taskListId: selected.value
-                })}
-            />
+                id: card.get('id'),
+                taskListId: selected.value
+                })
+                }
+                /> */}
           </div>
           <i className="fa fa-times" aria-hidden="true" onClick={this.close} />
         </div>
@@ -153,8 +155,6 @@ class CardDetail extends Component {
           />
         </div>
 
-        <Hr />
-
         <div className="taskcard-modal--content">
           <Textarea
             placeholder="Add Description"
@@ -177,7 +177,7 @@ class CardDetail extends Component {
             placeholder="add comment (Enter to post)"
           />
         </div>
-      </Modal>
+      </AntModal>
     );
   }
 
@@ -207,6 +207,13 @@ class CardDetail extends Component {
     });
   }
 
+  updateBelongTrack = (trackId: string) => {
+    this.props.actions.UPDATE_TASK_CARD_REQUEST({
+      id: this.props.card.get('id'),
+      trackId
+    });
+  };
+
   updateTitle() {
     const title = this.refs.title.value.trim();
     this.updateTaskCard({ title });
@@ -233,18 +240,3 @@ class CardDetail extends Component {
     return dispatch(deleteTaskCard(this.props.card.id));
   }
 }
-/*
- * const mapStateToProps = (state, props) => {
- *   return {
- *     card: state.task.card.entities[props.params.cardId],
- *     normalizedCards: state.task.card,
- *     taskLists: state.task.list.lists,
- *     normalizedList: state.task.list
- *   };
- * };
- *
- * const actions = {
- *   getCardDetail
- * };
- * */
-export default CardDetail;

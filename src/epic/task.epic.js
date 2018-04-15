@@ -85,7 +85,10 @@ export const UPDATE_TASK_CARD_REQUEST = action$ =>
     .debounceTime(250)
     .mergeMap(action => {
       return http
-        .patch(makeApiUrl(`/task-card/${action.playload.id}`), null, action.playload)
+        .patch(makeApiUrl(`/task-card/${action.playload.id}`), null, {
+          id: action.playload.id,
+          taskListId: action.playload.trackId
+        })
         .then(response => {
           return Actions.UPDATE_TASK_CARD.success(response, action.playload);
         })

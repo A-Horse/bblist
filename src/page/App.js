@@ -11,6 +11,7 @@ import DashBoard from '../page/DashBoard';
 import Ideas from '../containers/idea/Ideas';
 import { getUserData } from '../utils/auth';
 import { Layout } from 'antd';
+const { Content } = Layout;
 
 const TodoPage = props => (
   <Bundle load={require('bundle-loader?lazy&name=todo-page!./Todo/TodoPage.container')}>
@@ -73,22 +74,25 @@ export default class App extends Component<
     return (
       <Layout>
         <Nav user={this.state.userData} actions={this.props.actions} />
-        <Switch>
-          <Route path="/home" component={DashBoard} />
 
-          <Route path="/idea" component={Ideas} />
+        <Content>
+          <Switch>
+            <Route path="/home" component={DashBoard} />
 
-          <Route exact path="/task-board" component={TaskBoardWallPage} />
-          <Route path="/task-board/:boardId" component={TaskBoardPage} />
+            <Route path="/idea" component={Ideas} />
 
-          <Route path="/todo/:boxId" component={TodoPage} />
-          <Route exact path="/todo" component={TodoPage} />
+            <Route exact path="/task-board" component={TaskBoardWallPage} />
+            <Route path="/task-board/:boardId" component={TaskBoardPage} />
 
-          <Route path="/setting" component={SettingPage} />
-          <Route path="/profile" component={ProfilePage} />
+            <Route path="/todo/:boxId" component={TodoPage} />
+            <Route exact path="/todo" component={TodoPage} />
 
-          <Route path="*" component={NotFound} />
-        </Switch>
+            <Route path="/setting" component={SettingPage} />
+            <Route path="/profile" component={ProfilePage} />
+
+            <Route path="*" component={NotFound} />
+          </Switch>
+        </Content>
       </Layout>
     );
   }
