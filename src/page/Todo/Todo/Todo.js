@@ -1,17 +1,14 @@
 // @flow
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { CheckBox } from 'components/widget/CheckBox/CheckBox';
-import { StarCheckBox } from 'components/widget/StarCheckBox/StarCheckBox';
-import DatePicker from 'components/DatePicker/DatePicker';
+import { CheckBox } from '../../../components/widget/CheckBox/CheckBox';
+import { StarCheckBox } from '../../../components/widget/StarCheckBox/StarCheckBox';
+import DatePicker from '../../../components/DatePicker/DatePicker';
 import Textarea from 'react-textarea-autosize';
-import ClickOutSide from 'components/utils/ClickOutSide';
-import { timeout } from 'utils/timeout';
+import { timeout } from '../../../utils/timeout';
 import moment from 'moment';
 import R from 'ramda';
 import ConfirmModalButton from '../../../components/ConfrimModalButton/ConfirmModalButton';
-import { activeTdRepeatHistory, getTodoRepeatHistory } from 'actions/todo/todo-statistics';
-import { Select } from 'components/widget/Select';
+import { Select } from '../../../components/widget/Select';
 import { Map } from 'immutable';
 
 import './Todo.scss';
@@ -29,11 +26,6 @@ class Todo extends Component<
     editToggle: boolean
   }
 > {
-  static propTypes = {
-    actions: PropTypes.object.isRequired,
-    todo: PropTypes.object
-  };
-
   state = {
     editToggle: false
   };

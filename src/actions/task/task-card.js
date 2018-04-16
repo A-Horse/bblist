@@ -127,25 +127,3 @@ export function deleteTaskCard(cardId) {
       .catch(error => deleteTaskCardFail(error, cardId));
   };
 }
-
-/* export function updateTaskCard(cardId, data) {
- *
- *   const config = createConfigWithAuth('PATCH', data);
- *   return dispatch => {
- *     return fetch(makeApiUrl(`/task-card/${cardId}`), config)
- *       .then(handleResponse)
- *       .then(card => dispatch(updateTaskCardSuccess(card)))
- *       .catch(error => dispatch(updateTaskCardError(error)));
- *   };
- * }*/
-
-/* export function createTaskCard(card) {
- *   const config = createConfigWithAuth('POST', card);
- *   return dispatch => {
- *     dispatch(requestPostTaskCard(card));
- *     return fetch(makeApiUrl('/task-card'), config)
- *       .then(handleResponse)
- *       .then(response => dispatch(createTaskCardSuccess(response)))
- *       .catch(error => dispatch(updateTaskCardError(error)));
- *   };
- * }*/

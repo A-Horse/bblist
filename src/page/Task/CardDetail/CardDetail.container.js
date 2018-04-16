@@ -4,10 +4,12 @@ import { CardDetail } from './CardDetail';
 import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
 import { makeActionRequestCollection } from '../../../actions/actions';
+import epicAdapterService from '../../../services/single/epic-adapter.service';
 
 const mapDispatchToProps = dispatch => {
   return {
-    actions: bindActionCreators(makeActionRequestCollection(), dispatch)
+    actions: bindActionCreators(makeActionRequestCollection(), dispatch),
+    epicAdapterService
   };
 };
 

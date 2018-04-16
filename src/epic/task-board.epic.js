@@ -4,14 +4,10 @@ import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/catch';
 import { ajax } from 'rxjs/observable/dom/ajax';
 import { AjaxObservable } from 'rxjs/observable/dom/AjaxObservable';
-import {
-  TASKBOARD_RENAME_REQUEST,
-  TASKBOARD_DESCRIPTION_UPDATE_REQUEST,
-  updateTaskBoardSuccess
-} from 'actions/task/task-wall';
-import { makeApiUrl } from '../../utils/api';
+import { updateTaskBoardSuccess } from 'actions/task/task-wall';
+import { makeApiUrl } from '../utils/api';
 import { Observable } from 'rxjs/Observable';
-import { JWT_STORAGE_KEY } from '../../constants';
+import { JWT_STORAGE_KEY } from '../constants';
 import { getJWT } from 'utils/auth';
 
 function patchTaskBoard(boardId, data) {
@@ -25,7 +21,7 @@ function patchTaskBoard(boardId, data) {
   });
 }
 
-export const updateTaskBoardDescription = action$ =>
+export const TASKBOARD_DESCRIPTION_UPDATE_REQUEST = action$ =>
   action$
     .ofType(TASKBOARD_DESCRIPTION_UPDATE_REQUEST)
     .distinctUntilChanged()
@@ -36,16 +32,3 @@ export const updateTaskBoardDescription = action$ =>
       }).map(response => updateTaskBoardSuccess(response));
     })
     .catch((err, caught) => caught);
-
-/*
- * export const renameTaskBoard = action$ =>
- *   action$
- *     .ofType(TASKBOARD_RENAME_REQUEST)
- *     .distinctUntilChanged()
- *     .debounceTime(250)
- *     .mergeMap(action => {
- *       return patchTaskBoard(action.payload.boardId, { name: action.payload.name }).map(response =>
- *         updateTaskBoardSuccess(response)
- *       );
- *     })
- *     .catch((err, caught) => caught);*/

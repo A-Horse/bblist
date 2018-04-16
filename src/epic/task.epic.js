@@ -78,23 +78,6 @@ export const GET_TASK_ALL_BOARD = action$ =>
       .catch(Actions.GET_TASK_ALL_BOARD.failure);
   });
 
-export const UPDATE_TASK_CARD_REQUEST = action$ =>
-  action$
-    .ofType(Actions.UPDATE_TASK_CARD.REQUEST)
-    .distinctUntilChanged()
-    .debounceTime(250)
-    .mergeMap(action => {
-      return http
-        .patch(makeApiUrl(`/task-card/${action.payload.id}`), null, {
-          id: action.payload.id,
-          taskListId: action.payload.trackId
-        })
-        .then(response => {
-          return Actions.UPDATE_TASK_CARD.success(response, action.payload);
-        })
-        .catch(Actions.UPDATE_TASK_CARD.failure);
-    });
-
 /* export const UPDATE_TASK_CARD_SUCCESS = action$ =>
  *   action$.ofType(Actions.UPDATE_TASK_CARD.SUCCESS).mergeMap(action => {
  *     if (action.meta.taskListId) {

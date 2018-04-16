@@ -1,10 +1,10 @@
 // @flow
 import { connect } from 'react-redux';
-import TodoPage from 'page/Todo/TodoPage';
 import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
 import { Map } from 'immutable';
-import Actions, { makeActionRequestCollection } from '../../actions/actions';
+import { makeActionRequestCollection } from '../../actions/actions';
+import TodoPage from '../../page/Todo/TodoPage';
 
 const mapStateToProps = state => {
   return {
@@ -17,10 +17,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    actions: bindActionCreators(
-      makeActionRequestCollection([Actions.GET_TODOBOXS, Actions.ADD_TODOBOX]),
-      dispatch
-    )
+    actions: bindActionCreators(makeActionRequestCollection(), dispatch)
   };
 };
 

@@ -2,16 +2,18 @@
 import React, { Component } from 'react';
 import moment from 'moment';
 import Textarea from 'react-textarea-autosize';
-
-import { deleteTaskCard, updateTaskCard, getCardDetail } from '../../../actions/task/task-card';
-import { createTaskCardComment } from '../../../actions/task/task-card-comment';
+import { Select, Modal as AntModal, Button, Form, Input } from 'antd';
 import UserAvatar from '../../../components/UserAvatar/UserAvatar';
 import { CheckBox } from '../../../components/widget/CheckBox/CheckBox';
 import { isEnterKey } from '../../../utils/keyboard';
-import { Select, Modal as AntModal, Button } from 'antd';
 import { Map } from 'immutable';
+import { EpicAdapterService } from '../../../services/single/epic-adapter.service';
+import Actions from '../../../actions/actions';
+
+import 'rxjs/add/operator/take';
 
 const Option = Select.Option;
+const FormItem = Form.Item;
 
 import './CardDetail.less';
 
@@ -22,14 +24,15 @@ export class CardDetail extends Component<
     match: any,
     history: any,
     board: Map<any>,
-    card: Map<any>
+    card: Map<any>,
+    epicAdapterService: EpicAdapterService
   },
-  { toggle: boolean }
+  { toggle: boolean, title: string }
 > {
   state = { toggle: true };
 
   componentWillMount() {
-    this.props.actions.GET_CARD_DETAIL_REQUEST({ id: this.props.match.params.cardId });
+    this.getCardDetail();
   }
 
   close = () => {
@@ -37,57 +40,53 @@ export class CardDetail extends Component<
   };
 
   getCardDetail() {
-    const { dispatch, card } = this.props;
-    return dispatch(getCardDetail(card.id));
+    this.props.actions.GET_CARD_DETAIL_REQUEST({ id: this.props.match.params.cardId });
   }
 
-  buildListSelectItems() {
-    return this.props.trackMap
-      .map(track => {
-        return { value: track.get('id'), name: track.get('name') };
-      })
-      .toArray();
-  }
+  /* findCurrentTrack() {
+   *   const currentTrack = this.props.trackMap.find(track => {
+   *     return track.get('cards').find(cardId => String(cardId) === this.props.match.params.cardId);
+   *   });
+   *   return currentTrack;
+   * }
+   */
 
-  buildListSelectDefaultItem() {
-    const currentTrack = this.props.trackMap.find(track => {
-      return track.get('cards').find(cardId => String(cardId) === this.props.match.params.cardId);
+  /* getCurrentTrack() {
+   *   const { card, normalizedList } = this.props;
+   *   return normalizedList.entities[card.taskListId];
+   * }
+   */
+
+  updateDetail(patchObj: any) {
+    this.props.actions.UPDATE_TASK_CARD_REQUEST({
+      id: this.props.card.get('id'),
+      ...patchObj
     });
-    if (!currentTrack) {
-      return null;
-    }
-    return { value: currentTrack.get('id'), name: currentTrack.get('name') };
   }
 
-  renderComments() {
-    const { card } = this.props;
-    if (card.comments) {
-      const comments = card.comments.map(comment => {
-        return (
-          <li key={comment.id} className="comment-item">
-            <UserAvatar user={comment.creater} />
-            <span className="comment-item--content">{comment.content}</span>
-            <span className="comment-item--date">
-              {moment(comment.updated_at ? comment.updated_at : comment.created_at).format(
-                'MMMM Do YYYY, h:mm:ss a'
-              )}
-            </span>
-          </li>
-        );
+  updateBelongTrack = (trackId: string) => {
+    const originalCardBelongTrackId: number = this.props.card.get('taskListId');
+
+    this.props.epicAdapterService.input$
+      .ofType(Actions.UPDATE_TASK_CARD.SUCCESS)
+      .take(1)
+      .subscribe(() => {
+        this.props.actions.GET_TASK_TRACK_CARD_REQUEST({
+          boardId: +this.props.board.get('id'),
+          trackId: originalCardBelongTrackId
+        });
+
+        this.props.actions.GET_TASK_TRACK_CARD_REQUEST({
+          boardId: +this.props.board.get('id'),
+          trackId: trackId
+        });
       });
-      return (
-        <div className="taskcard-modal--comments">
-          <ul>{comments}</ul>
-        </div>
-      );
-    }
-    return null;
-  }
 
-  getCurrentTrack() {
-    const { card, normalizedList } = this.props;
-    return normalizedList.entities[card.taskListId];
-  }
+    this.props.actions.UPDATE_TASK_CARD_REQUEST({
+      id: this.props.card.get('id'),
+      trackId
+    });
+  };
 
   render() {
     const { card } = this.props;
@@ -96,11 +95,21 @@ export class CardDetail extends Component<
       return null;
     }
 
+    const formItemLayout = {
+      labelCol: {
+        sm: { span: 4 }
+      },
+      wrapperCol: {
+        sm: { span: 16 }
+      }
+    };
+
     return (
       <AntModal
         className="taskcard-modal"
         visible={this.state.toggle}
         onCancel={this.close}
+        title={this.props.card.get('title')}
         afterClose={() => this.props.history.push(`/task-board/${this.props.match.params.id}`)}
         footer={[
           <Button key="back" onClick={this.close}>
@@ -108,33 +117,31 @@ export class CardDetail extends Component<
           </Button>
         ]}
       >
-        <div className="taskcard-modal--top-bar">
-          <div className="top-bar-list-chooser">
-            <span className="top-bar--list-label">Track:</span>
+        <Select defaultValue={card.get('taskListId')} onChange={this.updateBelongTrack}>
+          {this.props.trackMap.toArray().map(track => {
+            return (
+              <Option
+                key={track.get('id')}
+                value={track.get('id')}
+                disabled={card.get('taskListId') === track.get('id')}
+              >
+                {track.get('name')}
+              </Option>
+            );
+          })}
+        </Select>
 
-            <Select defaultValue="lucy" style={{ width: 120 }} onChange={this.updateBelongTrack}>
-              {this.props.trackMap.toArray().map(track => {
-                return (
-                  <Option key={track.get('id')} value={track.get('id')}>
-                    {track.get('name') + track.get('id')}
-                  </Option>
-                );
-              })}
-            </Select>
-            {/*
-                <Select
-                defaultItem={this.buildListSelectDefaultItem()}
-                items={this.buildListSelectItems()}
-                onSelect={selected =>
-                this.props.actions.UPDATE_TASK_CARD_REQUEST({
-                id: card.get('id'),
-                taskListId: selected.value
-                })
-                }
-                /> */}
-          </div>
-          <i className="fa fa-times" aria-hidden="true" onClick={this.close} />
-        </div>
+        <Input value={this.props.card.get('title')} onChange={updateTitle} />
+
+        <FormItem {...formItemLayout} label="Track">
+          <Textarea
+            className="title--input"
+            ref="title"
+            onKeyDown={this.onTitleKeyDown.bind(this)}
+            defaultValue={card.get('title')}
+            onBlur={this.updateTitle.bind(this)}
+          />
+        </FormItem>
 
         <div className="taskcard-modal--title">
           <CheckBox
@@ -146,13 +153,6 @@ export class CardDetail extends Component<
                 isDone: value
               });
             }}
-          />
-          <Textarea
-            className="title--input"
-            ref="title"
-            onKeyDown={this.onTitleKeyDown.bind(this)}
-            defaultValue={card.get('title')}
-            onBlur={this.updateTitle.bind(this)}
           />
         </div>
 
@@ -167,16 +167,6 @@ export class CardDetail extends Component<
 
         <div className="taskcard-modal--people">
           <UserAvatar user={card.get('creater').toJS()} />
-        </div>
-
-        {/* {this.renderComments()} */}
-
-        <div className="taskcard-modal--comment-input">
-          <Textarea
-            onKeyDown={this.onCommentInputKeyDown.bind(this)}
-            ref="comment"
-            placeholder="add comment (Enter to post)"
-          />
         </div>
       </AntModal>
     );
@@ -207,24 +197,6 @@ export class CardDetail extends Component<
       this.getCardDetail();
     });
   }
-
-  updateBelongTrack = (trackId: string) => {
-    this.props.actions.UPDATE_TASK_CARD_REQUEST({
-      id: this.props.card.get('id'),
-      trackId
-    });
-
-    this.props.actions.GET_TASK_TRACK_CARD_REQUEST({
-      boardId: +this.props.board.get('id'),
-      // TODO rename
-      trackId: +this.props.card.get('taskListId')
-    });
-
-    this.props.actions.GET_TASK_TRACK_CARD_REQUEST({
-      boardId: +this.props.board.get('id'),
-      trackId: trackId
-    });
-  };
 
   updateTitle() {
     const title = this.refs.title.value.trim();
