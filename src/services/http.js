@@ -10,7 +10,7 @@ function generateUri(url, query) {
 }
 
 function f(method) {
-  return (url, query, body = null, options = {}) => {
+  return (url, query = null, body = null, options = {}) => {
     let createConfigFn;
     if (options.formData) {
       createConfigFn = createFormDataConfigWithAuth;
@@ -27,7 +27,8 @@ export const http = {
   get: f('GET'),
   post: f('POST'),
   patch: f('PATCH'),
-  delete: f('DELETE')
+  delete: f('DELETE'),
+  del: f('DELETE')
 };
 
 export default http;

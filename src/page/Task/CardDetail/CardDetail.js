@@ -21,6 +21,7 @@ export class CardDetail extends Component<
     trackMap: any,
     match: any,
     history: any,
+    board: Map<any>,
     card: Map<any>
   },
   { toggle: boolean }
@@ -115,7 +116,7 @@ export class CardDetail extends Component<
               {this.props.trackMap.toArray().map(track => {
                 return (
                   <Option key={track.get('id')} value={track.get('id')}>
-                    {track.get('name')}
+                    {track.get('name') + track.get('id')}
                   </Option>
                 );
               })}
@@ -181,14 +182,14 @@ export class CardDetail extends Component<
     );
   }
 
-  onCommentInputKeyDown(event) {
+  onCommentInputKeyDown(event: Event) {
     if (!isEnterKey(event)) {
       return;
     }
     this.postComment();
   }
 
-  onTitleKeyDown(event) {
+  onTitleKeyDown(event: Event) {
     if (isEnterKey(event)) {
       this.updateTitle();
       event.preventDefault();
@@ -211,6 +212,17 @@ export class CardDetail extends Component<
     this.props.actions.UPDATE_TASK_CARD_REQUEST({
       id: this.props.card.get('id'),
       trackId
+    });
+
+    this.props.actions.GET_TASK_TRACK_CARD_REQUEST({
+      boardId: +this.props.board.get('id'),
+      // TODO rename
+      trackId: +this.props.card.get('taskListId')
+    });
+
+    this.props.actions.GET_TASK_TRACK_CARD_REQUEST({
+      boardId: +this.props.board.get('id'),
+      trackId: trackId
     });
   };
 

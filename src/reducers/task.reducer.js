@@ -29,7 +29,6 @@ export function task2(
 
     case Actions.GET_TASK_BOARD.SUCCESS:
       const normalizedBoard = normalize(action.payload, TaskBoard);
-      console.log(normalizedBoard);
       return state
         .update('boardFetching', R.F)
         .update('board', () => fromJS(normalizedBoard.entities.TaskBoard[normalizedBoard.result]))
@@ -39,6 +38,16 @@ export function task2(
           })
         )
         .update('cardMap', () => fromJS(normalizedBoard.entities.TaskCard));
+
+    case Actions.GET_TASK_TRACK_CARD.SUCCESS:
+      const normalizedTrack = normalize(action.payload, TaskTrack);
+      return state
+        .updateIn(['trackMap'], trackMap => {
+          return trackMap.merge(fromJS(normalizedTrack.entities.TaskTrack));
+        })
+        .updateIn(['cardMap'], cardMap => {
+          return cardMap.merge(fromJS(normalizedTrack.entities.TaskCard));
+        });
 
     case Actions.GET_TASK_BOARD.FAILURE:
       return state.update('board', () => null).update('boardFetching', R.F);

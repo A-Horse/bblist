@@ -121,7 +121,7 @@ export const DESTORY_TASK_TRACK = action$ =>
       .catch(Actions.DESTORY_TASK_TRACK.failure);
   });
 
-export const UPDATE_TASK_TRACK = action$ =>
+export const UPDATE_TASK_TRACK_REQUEST = action$ =>
   action$
     .ofType(Actions.UPDATE_TASK_TRACK.REQUEST)
     .distinctUntilChanged()

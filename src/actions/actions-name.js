@@ -21,6 +21,7 @@ const actionNames = [
 
   'GET_TASK_BOARD',
   'GET_TASK_ALL_BOARD',
+  'GET_TASK_TRACK_CARD',
   'GET_CARD_DETAIL',
   'ADD_TASK_BOARD',
   'ADD_TASK_CARD',
