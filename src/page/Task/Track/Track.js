@@ -1,28 +1,26 @@
+// @flow
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import R from 'ramda';
 import Input from '../../../components/widget/Input/Input';
 import TaskCard from '../TaskCard/TaskCard';
 import TaskCardCreater from '../CardCreater/CardCreater';
-import { DropList } from 'components/widget/DropList/DropList';
-import ClickOutSide from 'components/utils/ClickOutSide';
-import { isEnterKey } from 'utils/keyboard';
+import { DropList } from '../../../components/widget/DropList/DropList';
+import ClickOutSide from '../../../components/utils/ClickOutSide';
+import { isEnterKey } from '../../../utils/keyboard';
 import { onTrackTopBarMouseDown } from './track-switch-helper';
 
 import './Track.scss';
 
-export class Track extends Component {
-  static propTypes = {
-    cards: PropTypes.object.isRequired,
-    track: PropTypes.object.isRequired,
-    boardId: PropTypes.number.isRequired,
-    loginedUser: PropTypes.object.isRequired,
-    actions: PropTypes.object.isRequired,
-    updateTrack: PropTypes.func.isRequired,
-    addTaskCard: PropTypes.func.isRequired,
-    destroyTrack: PropTypes.func.isRequired
-  };
-
+export class Track extends Component<{
+  cards: any,
+  track: any,
+  boardId: any,
+  loginedUser: any,
+  actions: any,
+  updateTrack: any,
+  addTaskCard: any,
+  destroyTrack: any
+}> {
   state = {
     operationToggle: false
   };
@@ -94,7 +92,8 @@ export class Track extends Component {
                 this.props.updateTrack({
                   trackId: this.props.track.get('id'),
                   name
-                })}
+                })
+              }
               defaultValue={this.props.track.get('name')}
             />
           </div>
@@ -137,7 +136,8 @@ export class Track extends Component {
               return (
                 <TaskCard
                   ref={cardConnectedInstance =>
-                    this.pickCardInstance(cardConnectedInstance, card.get('id'))}
+                    this.pickCardInstance(cardConnectedInstance, card.get('id'))
+                  }
                   actions={this.props.actions}
                   key={card.get('id')}
                   boardId={this.props.boardId}

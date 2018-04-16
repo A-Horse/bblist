@@ -114,9 +114,6 @@ class Nav extends Component<
       <Header className="app-header">
         <LogoBan white={true} />
         <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']}>
-          <Menu.Item key="1">
-            <Link to="/home">Dash</Link>
-          </Menu.Item>
           <Menu.Item key="2">
             <Link to="/task-board">Task</Link>
           </Menu.Item>

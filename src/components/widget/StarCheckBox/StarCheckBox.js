@@ -1,5 +1,5 @@
+// @flow
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import Checkbox from '../CheckBox/CheckBox';
 import './StarCheckbox.scss';
 

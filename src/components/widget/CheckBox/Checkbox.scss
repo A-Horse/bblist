@@ -4,10 +4,10 @@
 .checkbox {
   position: relative;
   display: inline-block;
+  vertical-align: middle;
 
   .checkbox--mock {
     display: block;
-    position: absolute;
     height: 0;
     width: 0;
     height: 100%;
@@ -22,13 +22,15 @@
     width: 0;
     height: 100%;
     width: 100%;
+    z-index: 10;
   }
 
   .fa {
-    position: absolute;
     cursor: pointer;
     top: 0;
     left: 0;
+    font-size: 25px;
+    vertical-align: middle;
 
     &.fa-check-square-o {
       color: #4caf50;

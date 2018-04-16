@@ -7,18 +7,18 @@ $nav-height: 42px;
   display: flex;
   height: 33px;
   padding: 0 20px;
-  justify-content: space-between;
   align-items: center;
   background-color: $drak-light;
 
-  .taskboard-name {
-    &--star {
-      vertical-align: middle;
-      fill: $white;
-      margin-right: 7px;
-      cursor: pointer;
-    }
 
+  &--star {
+    margin-right: 12px;
+  }
+
+
+  .taskboard-name {
+    vertical-align: middle;
+    margin-top: 1px;
     &--text {
       vertical-align: middle;
       color: $white;
@@ -33,7 +33,11 @@ $nav-height: 42px;
   .taskboard-header-setting {
     color: $white;
     cursor: pointer;
-    .setting-icon {
+    position: absolute;
+    right: 20px;
+    font-size: 18px;
+
+    i {
       fill: $white;
       margin-right: 7px;
     }
@@ -42,7 +46,7 @@ $nav-height: 42px;
       font-weight: lighter;
     }
 
-    .setting-icon, span {
+    i, span {
       vertical-align: middle;
     }
   }
@@ -51,6 +55,7 @@ $nav-height: 42px;
 
 .board-container {
   height: calc(100% - 42px);
+  width: 100%;
   overflow: hidden;
-  position: relative;
+  position: absolute;
 }

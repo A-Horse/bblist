@@ -33,7 +33,7 @@ export class CheckBox extends Component {
   }
 
   render() {
-    const className = (this.className += this.props.className ? ` ${this.props.className}` : '');
+    const className = this.className + (this.props.className ? ` ${this.props.className}` : '');
     return (
       <div className={className} onClick={this.onClick}>
         {this.state.checked ? this.domChecked : this.domUnchecked}

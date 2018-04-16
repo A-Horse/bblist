@@ -1,6 +1,7 @@
 @import 'style/variable';
 
 .checkbox.star {
+  position: relative;
 
   .fa {
     &.fa-star-o {

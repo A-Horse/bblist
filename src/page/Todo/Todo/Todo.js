@@ -122,7 +122,6 @@ class Todo extends Component<
           <div
             style={{ display: !this.state.editToggle ? 'block' : 'none' }}
             className="todo--content"
-            onClick={this.onContentClick.bind(this)}
           >
             {todo.get('content')}
             {todo.get('deadline') &&
@@ -147,8 +146,6 @@ class Todo extends Component<
               </ConfirmModalButton>
             )}
 
-            <i className="fa fa-bar-chart" onClick={this.onRepeatHistoryModal} aria-hidden="true" />
-
             <StarCheckBox
               defaultChecked={todo.get('isStar')}
               onChange={checked => {
@@ -157,6 +154,7 @@ class Todo extends Component<
             />
           </div>
         </div>
+
         {this.state.editToggle && (
           <div
             className="todo-editing--meta"

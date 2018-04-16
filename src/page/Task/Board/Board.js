@@ -8,6 +8,9 @@ import { StarCheckBox } from '../../../components/widget/StarCheckBox/StarCheckB
 import BoardContent from '../BoardContent/BoardContent';
 import BoardSetting from '../BoardSetting/BoardSetting';
 
+import { Layout } from 'antd';
+const { Header, Footer, Sider, Content } = Layout;
+
 import './Board.scss';
 
 interface Props {
@@ -41,14 +44,15 @@ export class Board extends Component<Props> {
       return null;
     }
     return (
-      <div className="board-container">
-        <div className="taskboard-header">
+      <Layout className="board-container">
+        <Header className="taskboard-header">
+          <StarCheckBox className="taskboard-header--star" defaultChecked={board.get('isStar')} />
           <div className="taskboard-name">
-            <StarCheckBox defaultChecked={board.get('isStar')} />
             <Link className="taskboard-name--text" to={`/task-board/${boardId}`}>
               {board && board.get('name')}
             </Link>
           </div>
+
           <div
             className="taskboard-header-setting"
             onClick={() =>
@@ -60,7 +64,7 @@ export class Board extends Component<Props> {
             <i className="fa fa-cog" aria-hidden="true" />
             <span>setting</span>
           </div>
-        </div>
+        </Header>
 
         <Switch>
           <Route
@@ -72,7 +76,7 @@ export class Board extends Component<Props> {
             render={props => <BoardContent {...this.props} {...props} />}
           />
         </Switch>
-      </div>
+      </Layout>
     );
   }
 }
