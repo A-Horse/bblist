@@ -10,7 +10,8 @@
     "transform-flow-strip-types",
     "transform-object-rest-spread",
     "syntax-class-properties",
-    "transform-class-properties"
+    "transform-class-properties",
+    "transform-decorators-legacy"
   ],
   "env": {
     "test": {
