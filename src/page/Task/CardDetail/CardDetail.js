@@ -1,12 +1,8 @@
 // @flow
 import React, { Component } from 'react';
-import moment from 'moment';
-import Textarea from 'react-textarea-autosize';
-import { Select, Modal as AntModal, Button, Form, Input } from 'antd';
-import UserAvatar from '../../../components/UserAvatar/UserAvatar';
-import { CheckBox } from '../../../components/widget/CheckBox/CheckBox';
-import { isEnterKey } from '../../../utils/keyboard';
 import { Map } from 'immutable';
+import { Select, Modal as AntModal, Button, Form, Input, Checkbox } from 'antd';
+import UserAvatar from '../../../components/UserAvatar/UserAvatar';
 import { EpicAdapterService } from '../../../services/single/epic-adapter.service';
 import Actions from '../../../actions/actions';
 
@@ -14,6 +10,7 @@ import 'rxjs/add/operator/take';
 
 const Option = Select.Option;
 const FormItem = Form.Item;
+const { TextArea } = Input;
 
 import './CardDetail.less';
 
@@ -27,7 +24,7 @@ export class CardDetail extends Component<
     card: Map<any>,
     epicAdapterService: EpicAdapterService
   },
-  { toggle: boolean, title: string }
+  { toggle: boolean }
 > {
   state = { toggle: true };
 
@@ -57,12 +54,27 @@ export class CardDetail extends Component<
    * }
    */
 
-  updateDetail(patchObj: any) {
+  updateDetail = (patchObj: any) => {
     this.props.actions.UPDATE_TASK_CARD_REQUEST({
       id: this.props.card.get('id'),
       ...patchObj
     });
-  }
+  };
+
+  updateTitle = (event: any) => {
+    const title = event.target.value.trim();
+    this.updateDetail({ title });
+  };
+
+  updateContent = (event: any) => {
+    const content = event.target.value.trim();
+    this.updateDetail({ content });
+  };
+
+  updateDone = (event: any) => {
+    const isDone = event.target.checked;
+    this.updateDetail({ isDone });
+  };
 
   updateBelongTrack = (trackId: string) => {
     const originalCardBelongTrackId: number = this.props.card.get('taskListId');
@@ -84,7 +96,7 @@ export class CardDetail extends Component<
 
     this.props.actions.UPDATE_TASK_CARD_REQUEST({
       id: this.props.card.get('id'),
-      trackId
+      taskListId: trackId
     });
   };
 
@@ -94,15 +106,6 @@ export class CardDetail extends Component<
     if (!card) {
       return null;
     }
-
-    const formItemLayout = {
-      labelCol: {
-        sm: { span: 4 }
-      },
-      wrapperCol: {
-        sm: { span: 16 }
-      }
-    };
 
     return (
       <AntModal
@@ -117,106 +120,38 @@ export class CardDetail extends Component<
           </Button>
         ]}
       >
-        <Select defaultValue={card.get('taskListId')} onChange={this.updateBelongTrack}>
-          {this.props.trackMap.toArray().map(track => {
-            return (
-              <Option
-                key={track.get('id')}
-                value={track.get('id')}
-                disabled={card.get('taskListId') === track.get('id')}
-              >
-                {track.get('name')}
-              </Option>
-            );
-          })}
-        </Select>
+        <FormItem className="headline">
+          <Checkbox checked={this.props.card.get('isDone')} onChange={this.updateDone} />
+          <Select defaultValue={card.get('taskListId')} onChange={this.updateBelongTrack}>
+            {this.props.trackMap.toArray().map(track => {
+              return (
+                <Option
+                  key={track.get('id')}
+                  value={track.get('id')}
+                  disabled={card.get('taskListId') === track.get('id')}
+                >
+                  {track.get('name')}
+                </Option>
+              );
+            })}
+          </Select>
 
-        <Input value={this.props.card.get('title')} onChange={updateTitle} />
-
-        <FormItem {...formItemLayout} label="Track">
-          <Textarea
-            className="title--input"
-            ref="title"
-            onKeyDown={this.onTitleKeyDown.bind(this)}
-            defaultValue={card.get('title')}
-            onBlur={this.updateTitle.bind(this)}
-          />
+          <Input value={this.props.card.get('title')} onChange={this.updateTitle} />
         </FormItem>
 
-        <div className="taskcard-modal--title">
-          <CheckBox
-            className="title--checkbox"
-            defaultChecked={card.get('isDone')}
-            onChange={value => {
-              this.props.actions.UPDATE_TASK_CARD_REQUEST({
-                id: card.get('id'),
-                isDone: value
-              });
-            }}
+        <FormItem label="Description">
+          <TextArea
+            rows={8}
+            defaultValue={this.props.card.get('content')}
+            onChange={this.updateContent}
           />
-        </div>
-
-        <div className="taskcard-modal--content">
-          <Textarea
-            placeholder="Add Description"
-            ref="content"
-            onBlur={this.updateContent.bind(this)}
-            defaultValue={card.get('content')}
-          />
-        </div>
+        </FormItem>
 
         <div className="taskcard-modal--people">
           <UserAvatar user={card.get('creater').toJS()} />
         </div>
       </AntModal>
     );
-  }
-
-  onCommentInputKeyDown(event: Event) {
-    if (!isEnterKey(event)) {
-      return;
-    }
-    this.postComment();
-  }
-
-  onTitleKeyDown(event: Event) {
-    if (isEnterKey(event)) {
-      this.updateTitle();
-      event.preventDefault();
-    }
-  }
-
-  postComment() {
-    const { dispatch, card } = this.props;
-    return dispatch(
-      createTaskCardComment(card.id, {
-        content: this.refs.comment.value.trim()
-      })
-    ).then(() => {
-      this.refs.comment.value = '';
-      this.getCardDetail();
-    });
-  }
-
-  updateTitle() {
-    const title = this.refs.title.value.trim();
-    this.updateTaskCard({ title });
-  }
-
-  updateDone() {
-    const isDone = this.refs.checkbox.checked;
-    this.updateTaskCard({ isDone });
-  }
-
-  updateContent() {
-    const content = this.refs.content.value.trim();
-    this.updateTaskCard({ content });
-  }
-
-  updateTaskCard(data) {
-    const { dispatch } = this.props;
-    const currentList = this.getCurrentTrack();
-    return dispatch(updateTaskCard(this.props.card.id, data));
   }
 
   deleteTaskCard() {

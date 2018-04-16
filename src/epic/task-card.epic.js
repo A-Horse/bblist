@@ -1,5 +1,6 @@
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/throttleTime';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/catch';
 import { ajax } from 'rxjs/observable/dom/ajax';
@@ -15,7 +16,7 @@ export const UPDATE_TASK_CARD_REQUEST = action$ =>
   action$
     .ofType(Actions.UPDATE_TASK_CARD.REQUEST)
     .distinctUntilChanged()
-    .debounceTime(250)
+    .throttleTime(250)
     .mergeMap(action => {
       return http
         .patch(makeApiUrl(`/task-card/${action.payload.id}`), null, {

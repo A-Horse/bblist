@@ -1,19 +1,20 @@
+// @flow
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import UserAvatar from 'components/UserAvatar/UserAvatar';
-import { CheckBox } from 'components/widget/CheckBox/CheckBox';
-import { getMouseElementInnerOffset } from 'utils/dom';
+import UserAvatar from '../../../components/UserAvatar/UserAvatar';
+import { getMouseElementInnerOffset } from '../../../utils/dom';
+import { Select, Modal as AntModal, Button, Form, Input, Checkbox } from 'antd';
 
 import './TaskCard.scss';
 
-class TaskCard extends Component {
-  static propTypes = {
-    card: PropTypes.object.isRequired,
-    actions: PropTypes.object.isRequired,
-    history: PropTypes.object.isRequired,
-    match: PropTypes.object.isRequired
-  };
-
+class TaskCard extends Component<
+  {
+    card: any,
+    actions: any,
+    history: any,
+    match: any
+  },
+  {}
+> {
   state = {};
 
   constructor(props) {
@@ -28,7 +29,7 @@ class TaskCard extends Component {
     document.body.removeChild(this.crt);
   }
 
-  updateCard(toPatchData) {
+  updateCard(toPatchData: any) {
     this.props.actions.UPDATE_TASK_CARD_REQUEST({
       id: this.props.card.get('id'),
       ...toPatchData
@@ -95,10 +96,9 @@ class TaskCard extends Component {
     const { card } = this.props;
     return (
       <div className="task-card" ref="main">
-        <CheckBox
-          ref="checkbox"
-          defaultChecked={card.get('isDone')}
-          onChange={checked => this.updateCard({ isDone: checked })}
+        <Checkbox
+          checked={card.get('isDone')}
+          onChange={event => this.updateCard({ isDone: event.target.checked })}
         />
         <p
           className="task-card--title"

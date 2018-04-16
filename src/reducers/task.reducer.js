@@ -84,8 +84,11 @@ export function task2(
           )
         );
 
+    case Actions.UPDATE_TASK_CARD.REQUEST:
     case Actions.UPDATE_TASK_CARD.SUCCESS:
-      return state.updateIn(['cardMap', String(action.payload.id)], () => fromJS(action.payload));
+      return state.updateIn(['cardMap', String(action.payload.id)], card =>
+        card.merge(fromJS(action.payload))
+      );
 
     case Actions.GET_CARD_DETAIL.SUCCESS:
       const normalizedCardDetail = normalize(action.payload, TaskCard);
