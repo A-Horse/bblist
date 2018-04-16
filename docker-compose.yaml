@@ -1,0 +1,18 @@
+version: "3.2"
+services:
+  nginx:
+    build: .
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /etc/letsencrypt:/etc/letsencrypt
+    links:
+      - api:api
+  api:
+    build: ../backend-octopus/
+    volumes:
+     - ../backend-octopus/database:database
+    command: >
+      bash -c "node built/main"
+  
