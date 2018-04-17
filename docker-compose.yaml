@@ -14,5 +14,5 @@ services:
     volumes:
      - ../backend-octopus/database:/app/database
     command: >
-      bash -c "node built/main"
+      sh -c "node built/main"
   
