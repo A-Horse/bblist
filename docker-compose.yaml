@@ -12,7 +12,7 @@ services:
   api:
     build: ../backend-octopus/
     volumes:
-     - ../backend-octopus/database:database
+     - ../backend-octopus/database:/app/database
     command: >
       bash -c "node built/main"
   
