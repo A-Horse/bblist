@@ -20,12 +20,3 @@ export const store = configureStore(
   }),
   applyMiddleware(thunkMiddleware, routeMiddleware, epicMiddleware)
 );
-
-/* export const store = createStore(
- *   combineReducers({
- *     ...reducers,
- *     router: routerReducer
- *   }),
- *   // DevTools.instrument(),
- *   applyMiddleware(thunkMiddleware, routeMiddleware, epicMiddleware)
- * ); */
