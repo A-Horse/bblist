@@ -7,12 +7,18 @@ services:
       - "443:443"
     volumes:
       - /etc/letsencrypt:/etc/letsencrypt
-    links:
-      - api:api
+    networks:
+      - default
   api:
     build: ../backend-octopus/
     volumes:
      - ../backend-octopus/database:/app/database
+    networks:
+      - default
     command: >
       sh -c "node built/main"
+
+networks:
+  default:
+    driver: bridge
   
