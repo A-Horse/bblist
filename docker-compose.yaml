@@ -13,6 +13,8 @@ services:
     build: ../backend-octopus/
     volumes:
      - ../backend-octopus/database:/app/database
+    ports:
+      - "5500:5500"
     networks:
       - default
     command: >
