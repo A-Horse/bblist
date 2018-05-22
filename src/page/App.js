@@ -75,7 +75,17 @@ export default class App extends Component<
 
         <Content>
           <Switch>
-            <Route path="" exact component={<Redirect to="/task-board" />} />
+            <Route
+              path="/"
+              exact
+              render={() => (
+                <Redirect
+                  to={{
+                    pathname: '/task-board'
+                  }}
+                />
+              )}
+            />
 
             <Route exact path="/task-board" component={TaskBoardWallPage} />
             <Route path="/task-board/:boardId" component={TaskBoardPage} />
