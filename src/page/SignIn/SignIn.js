@@ -89,7 +89,7 @@ class SignIn extends Component<
     );
   }
 
-  login(event) {
+  login(event: Event) {
     event.preventDefault();
     const loginInfo = {
       email: this.state.email.trim(),

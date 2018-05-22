@@ -6,9 +6,7 @@ import Bundle from '../components/Bundle';
 import { Route, Switch, Redirect } from 'react-router';
 
 import NotFound from '../page/NotFound';
-import DashBoard from '../page/DashBoard';
 
-import Ideas from '../containers/idea/Ideas';
 import { getUserData } from '../utils/auth';
 import { Layout } from 'antd';
 const { Content } = Layout;
@@ -77,9 +75,7 @@ export default class App extends Component<
 
         <Content>
           <Switch>
-            <Route path="/home" component={DashBoard} />
-
-            <Route path="/idea" component={Ideas} />
+            <Route path="" exact component={<Redirect to="/task-board" />} />
 
             <Route exact path="/task-board" component={TaskBoardWallPage} />
             <Route path="/task-board/:boardId" component={TaskBoardPage} />
