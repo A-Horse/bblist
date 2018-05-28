@@ -12,7 +12,7 @@ export const UPDATE_TASK_CARD_REQUEST = action$ =>
   action$
     .ofType(Actions.UPDATE_TASK_CARD.REQUEST)
     .distinctUntilChanged()
-    .throttleTime(250)
+    .debounceTime(1000)
     .mergeMap(action => {
       return http
         .patch(makeApiUrl(`/task-card/${action.payload.id}`), null, {

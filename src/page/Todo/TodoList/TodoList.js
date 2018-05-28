@@ -14,6 +14,7 @@ export default class TodoList extends Component<
   {
     todoBoxId: string,
     actions: any,
+    match: any,
     unDoneTodos: List<Todo[]>,
     doneTodos: List<Todo[]>
   },
@@ -28,13 +29,13 @@ export default class TodoList extends Component<
     this.getTodoList(this.props, true);
   }
 
-  componentWillReceiveProps(newProps) {
+  componentWillReceiveProps(newProps: any) {
     if (newProps.match.params.boxId !== this.props.match.params.boxId) {
       this.getTodoList(newProps);
     }
   }
 
-  getTodoList(props, force) {
+  getTodoList(props, force: boolean) {
     const { todoBoxId } = props;
     if (force || todoBoxId !== this.props.todoBoxId) {
       this.props.actions.GET_TODOLIST_REQUEST({ todoBoxId });
@@ -68,7 +69,6 @@ export default class TodoList extends Component<
             />
           )}
 
-          <Button type="primary">Display completed task</Button>
           <div>
             <span
               className="remain-todo-toggle"

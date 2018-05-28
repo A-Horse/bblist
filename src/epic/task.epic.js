@@ -78,16 +78,6 @@ export const GET_TASK_ALL_BOARD = action$ =>
       .catch(Actions.GET_TASK_ALL_BOARD.failure);
   });
 
-/* export const UPDATE_TASK_CARD_SUCCESS = action$ =>
- *   action$.ofType(Actions.UPDATE_TASK_CARD.SUCCESS).mergeMap(action => {
- *     if (action.meta.taskListId) {
- *       return Observable.of(
- *         Actions.GET_TASK_BOARD.request({ id: action.payload.taskWallId }, { isRefresh: true })
- *       );
- *     }
- *     return Observable.of(Actions.UPDATE_TASK_CARD.finish());
- *   });*/
-
 export const ADD_TASK_TRACK = action$ =>
   action$.ofType(Actions.ADD_TASK_TRACK.REQUEST).mergeMap(action => {
     return http

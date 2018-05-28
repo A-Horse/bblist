@@ -4,11 +4,11 @@ import { CheckBox } from '../../../components/widget/CheckBox/CheckBox';
 import { StarCheckBox } from '../../../components/widget/StarCheckBox/StarCheckBox';
 import DatePicker from '../../../components/DatePicker/DatePicker';
 import Textarea from 'react-textarea-autosize';
+import { Select, Modal, Icon, Menu, Dropdown, Button, Form, Input, Row, Col, Checkbox } from 'antd';
 import { timeout } from '../../../utils/timeout';
 import moment from 'moment';
 import R from 'ramda';
 import ConfirmModalButton from '../../../components/ConfrimModalButton/ConfirmModalButton';
-import { Select } from '../../../components/widget/Select';
 import { Map } from 'immutable';
 
 import './Todo.scss';
@@ -29,35 +29,6 @@ class Todo extends Component<
   state = {
     editToggle: false
   };
-
-  constructor(props) {
-    super(props);
-    this.onRepeatHistoryModal = this.onRepeatHistoryModal.bind(this);
-    this.removeTodo = this.removeTodo.bind(this);
-    this.updateDone = this.updateDone.bind(this);
-    this.updateTodo = this.updateTodo.bind(this);
-    this.onContendChanged = this.onContendChanged.bind(this);
-  }
-
-  async closeEditable() {
-    const currentTodoHeight = this.refs.main.offsetHeight;
-    this.refs.main.style.height = currentTodoHeight + 'px';
-    await timeout();
-    this.refs.main.style.height = currentTodoHeight - todoMetaHeight + 'px';
-    this.setState({ editToggle: false });
-    await timeout(300);
-    this.refs.main.style.height = 'auto';
-  }
-
-  async onContentClick() {
-    const currentTodoHeight = this.refs.main.offsetHeight;
-    this.refs.main.style.height = currentTodoHeight + 'px';
-    await timeout();
-    this.refs.main.style.height = currentTodoHeight + todoMetaHeight + 'px';
-    await timeout(300);
-    this.setState({ editToggle: true });
-    this.refs.main.style.height = 'auto';
-  }
 
   updateEditingTodo() {
     const newTodo = { content: this.refs.content.value.trim() };

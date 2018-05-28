@@ -3,28 +3,14 @@
 @import 'style/page/todo/variable';
 
 .todo {
-  @include clearfix();
   position: relative;
   padding: $todo-item-padding;
   background-color: $color-background-light;
   border-radius: $radius-middle;
   margin-bottom: 5px;
-  box-shadow: 0 0 5px #ccc;
   width: 100%;
   opacity: 0.8;
   transition: height 300ms ease-in-out, background-color 200ms ease-in-out;
-
-  @media screen and (max-width: 600px) {
-    box-shadow: none;
-    border-radius: 0;
-    border-bottom: 1px solid #e8e8e8;
-    margin: 0;
-
-    &.open {
-      border-bottom: none;
-    }
-  }
-
 
   &.done {
     .todo--content {
@@ -42,10 +28,6 @@
     background-color: $primary-bg;
     opacity: 1;
     color: white;
-
-    &:hover {
-      background-color: $primary-bg;
-    }
 
     .fa-trash {
       color: $white;

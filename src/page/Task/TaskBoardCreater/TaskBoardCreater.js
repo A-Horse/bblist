@@ -32,6 +32,7 @@ class TaskBoardCreaterForm extends Component<
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
         this.props.actions.ADD_TASK_BOARD_REQUEST(values);
+        this.handleCancel();
       }
     });
   };
@@ -61,7 +62,9 @@ class TaskBoardCreaterForm extends Component<
               </FormItem>
 
               <FormItem>
-                <Button type="primary">Done</Button>
+                <Button type="primary" htmlType="submit">
+                  Done
+                </Button>
               </FormItem>
             </Form>
           </div>

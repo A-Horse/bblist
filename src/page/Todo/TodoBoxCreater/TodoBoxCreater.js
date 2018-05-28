@@ -46,7 +46,7 @@ class TodoBoxCreater extends Component {
         </div>
 
         <Modal className="todo-box-creater-modal" toggle={this.state.toggle} close={this.close}>
-          <div className="todo-box-creater--heading">Create Todo Box:</div>
+          <div className="todo-box-creater--heading">Todo Box</div>
 
           <Input
             className="todo-box-name--input"
