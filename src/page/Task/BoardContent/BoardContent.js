@@ -1,6 +1,5 @@
 // @flow
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import DOM from 'react-dom-factories';
 import { Route } from 'react-router';
 
@@ -10,7 +9,7 @@ import TrackCreater from '../TrackCreater/TrackCreater';
 
 import './BoardContent.scss';
 
-class BoardContent extends Component<
+export class BoardContent extends Component<
   {
     actions: any,
     match: any,
@@ -23,14 +22,9 @@ class BoardContent extends Component<
   {}
 > {
   state = {};
+  trackInstanceMap = {};
 
-  constructor(props) {
-    super(props);
-    this.trackInstanceMap = {};
-    this.updateTaskTrackIndexs = this.updateTaskTrackIndexs.bind(this);
-  }
-
-  updateTaskTrackIndexs() {
+  updateTaskTrackIndexs = () => {
     this.props.actions.UPDATE_TASK_TRACK_INDEX_REQUEST(
       {
         trackIndexs: Object.values(this.trackInstanceMap).map(track => {
@@ -39,7 +33,7 @@ class BoardContent extends Component<
       },
       { boardId: this.props.board.get('id') }
     );
-  }
+  };
 
   render() {
     const { trackMap, cardMap } = this.props;
@@ -106,5 +100,3 @@ class BoardContent extends Component<
     );
   }
 }
-
-export default BoardContent;

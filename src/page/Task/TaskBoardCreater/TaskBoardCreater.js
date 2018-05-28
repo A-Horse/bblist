@@ -54,14 +54,14 @@ class TaskBoardCreaterForm extends Component<
             <img className="taskboard-creater--illustration" src="/assets/images/work.png" />
 
             <Form onSubmit={this.handleSubmit}>
-              <FormItem label="Name">
+              <FormItem>
                 {getFieldDecorator('name', {
                   rules: [{ required: true, message: 'Please input task board name' }]
-                })(<Input type="text" />)}
+                })(<Input type="text" placeholder="Board Name" />)}
               </FormItem>
 
               <FormItem>
-                <Button>Done</Button>
+                <Button type="primary">Done</Button>
               </FormItem>
             </Form>
           </div>

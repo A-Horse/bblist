@@ -1,8 +1,7 @@
 // @flow
 import React, { Component } from 'react';
 import { Map } from 'immutable';
-import { Select, Modal as AntModal, Button, Form, Input, Checkbox } from 'antd';
-import UserAvatar from '../../../components/UserAvatar/UserAvatar';
+import { Select, Modal, Icon, Menu, Dropdown, Button, Form, Input, Row, Col, Checkbox } from 'antd';
 import { EpicAdapterService } from '../../../services/single/epic-adapter.service';
 import Actions from '../../../actions/actions';
 
@@ -32,6 +31,12 @@ export class CardDetail extends Component<
     this.getCardDetail();
   }
 
+  destoryCard() {
+    this.props.actions.DESTORY_TASK_CARD_REQUEST({
+      id: this.props.card.get('id')
+    });
+  }
+
   close = () => {
     this.setState({ toggle: false });
   };
@@ -39,20 +44,6 @@ export class CardDetail extends Component<
   getCardDetail() {
     this.props.actions.GET_CARD_DETAIL_REQUEST({ id: this.props.match.params.cardId });
   }
-
-  /* findCurrentTrack() {
-   *   const currentTrack = this.props.trackMap.find(track => {
-   *     return track.get('cards').find(cardId => String(cardId) === this.props.match.params.cardId);
-   *   });
-   *   return currentTrack;
-   * }
-   */
-
-  /* getCurrentTrack() {
-   *   const { card, normalizedList } = this.props;
-   *   return normalizedList.entities[card.taskListId];
-   * }
-   */
 
   updateDetail = (patchObj: any) => {
     this.props.actions.UPDATE_TASK_CARD_REQUEST({
@@ -107,12 +98,56 @@ export class CardDetail extends Component<
       return null;
     }
 
+    const menu = (
+      <Menu>
+        <Menu.Item>
+          <div
+            onClick={() => {
+              this.destoryCard();
+            }}
+          >
+            <Icon type="delete" />
+            Delete task
+          </div>
+        </Menu.Item>
+      </Menu>
+    );
+
     return (
-      <AntModal
+      <Modal
         className="taskcard-modal"
         visible={this.state.toggle}
         onCancel={this.close}
-        title={this.props.card.get('title')}
+        title={
+          <div>
+            <Select defaultValue={card.get('taskListId')} onChange={this.updateBelongTrack}>
+              {this.props.trackMap.toArray().map(track => {
+                return (
+                  <Option
+                    key={track.get('id')}
+                    value={track.get('id')}
+                    disabled={card.get('taskListId') === track.get('id')}
+                  >
+                    {track.get('name')}
+                  </Option>
+                );
+              })}
+            </Select>
+            <div
+              style={{
+                float: 'right',
+                marginRight: '20px',
+                marginTop: '3px',
+                position: 'relative',
+                zIndex: '1000'
+              }}
+            >
+              <Dropdown overlay={menu}>
+                <Icon type="down" style={{ fontSize: 18 }} />
+              </Dropdown>
+            </div>
+          </div>
+        }
         afterClose={() => this.props.history.push(`/task-board/${this.props.match.params.id}`)}
         footer={[
           <Button key="back" onClick={this.close}>
@@ -120,42 +155,25 @@ export class CardDetail extends Component<
           </Button>
         ]}
       >
-        <FormItem className="headline">
-          <Checkbox checked={this.props.card.get('isDone')} onChange={this.updateDone} />
-          <Select defaultValue={card.get('taskListId')} onChange={this.updateBelongTrack}>
-            {this.props.trackMap.toArray().map(track => {
-              return (
-                <Option
-                  key={track.get('id')}
-                  value={track.get('id')}
-                  disabled={card.get('taskListId') === track.get('id')}
-                >
-                  {track.get('name')}
-                </Option>
-              );
-            })}
-          </Select>
-
-          <Input value={this.props.card.get('title')} onChange={this.updateTitle} />
+        <FormItem>
+          <Row>
+            <Col span={1}>
+              <Checkbox checked={this.props.card.get('isDone')} onChange={this.updateDone} />
+            </Col>
+            <Col span={23}>
+              <Input value={this.props.card.get('title')} onChange={this.updateTitle} />
+            </Col>
+          </Row>
         </FormItem>
 
-        <FormItem label="Description">
+        <FormItem label="Description:">
           <TextArea
             rows={8}
             defaultValue={this.props.card.get('content')}
             onChange={this.updateContent}
           />
         </FormItem>
-
-        <div className="taskcard-modal--people">
-          <UserAvatar user={card.get('creater').toJS()} />
-        </div>
-      </AntModal>
+      </Modal>
     );
-  }
-
-  deleteTaskCard() {
-    const { dispatch } = this.props;
-    return dispatch(deleteTaskCard(this.props.card.id));
   }
 }

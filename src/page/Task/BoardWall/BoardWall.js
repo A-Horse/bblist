@@ -1,27 +1,25 @@
+// @flow
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { PageContainer } from 'components/widget/PageContainer';
 import { TaskBoardCreater } from '../TaskBoardCreater/TaskBoardCreater';
-import { makeRemoteUrl } from 'services/remote-storage';
+import { makeRemoteUrl } from '../../../services/remote-storage';
 import { DEFAULT_BOARD_COVER_SRC } from '../../../constants';
+import { Layout } from 'antd';
+const { Content } = Layout;
 
 import './BoardWall.scss';
-import 'style/page/task/taskboard-creater-modal.scss';
 
-class BoardWall extends Component {
-  static propTypes = {
-    actions: PropTypes.object,
-    boardMap: PropTypes.object
-  };
-
+export class BoardWall extends Component<{
+  actions: any,
+  boardMap: any
+}> {
   componentWillMount() {
     return this.props.actions.GET_TASK_ALL_BOARD_REQUEST();
   }
 
   render() {
     return (
-      <PageContainer>
+      <Content style={{ padding: '0 20px' }}>
         <TaskBoardCreater actions={this.props.actions} />
         <div className="taskboard-boards">
           <div className="board-group">
@@ -48,7 +46,7 @@ class BoardWall extends Component {
             </div>
           </div>
         </div>
-      </PageContainer>
+      </Content>
     );
   }
 }

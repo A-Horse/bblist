@@ -3,13 +3,9 @@ import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/throttleTime';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/catch';
-import { ajax } from 'rxjs/observable/dom/ajax';
-import { AjaxObservable } from 'rxjs/observable/dom/AjaxObservable';
 import { http } from '../services/http';
 import { makeApiUrl } from '../utils/api';
 import { Observable } from 'rxjs/Observable';
-import { JWT_STORAGE_KEY } from '../constants';
-import { getJWT } from 'utils/auth';
 import Actions from '../actions/actions';
 
 export const UPDATE_TASK_CARD_REQUEST = action$ =>
@@ -28,3 +24,13 @@ export const UPDATE_TASK_CARD_REQUEST = action$ =>
         })
         .catch(Actions.UPDATE_TASK_CARD.failure);
     });
+
+export const DESTORY_TASK_CARD_REQUEST = action$ =>
+  action$.ofType(Actions.DESTORY_TASK_CARD.REQUEST).mergeMap(action => {
+    return http
+      .del(makeApiUrl(`/task-card/${action.payload.id}`))
+      .then(response => {
+        return Actions.DESTORY_TASK_CARD.success(response, action.payload);
+      })
+      .catch(Actions.DESTORY_TASK_CARD.failure);
+  });
