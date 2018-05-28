@@ -1,40 +1,24 @@
+// @flow
 import React, { Component } from 'react';
-import { Input } from 'components/widget/Input/Input';
-import { ErrorMsg } from 'components/ErrorMsg/ErrorMsg';
-import { Button, Icon, Modal } from 'antd';
-import { validateFormValue } from 'services/validate-strategy';
-import R from 'ramda';
+import { Button, Icon, Modal, Form, Input } from 'antd';
 
 import './TaskBoardCreater.scss';
 
-class TaskBoardCreater extends Component {
+const FormItem = Form.Item;
+
+class TaskBoardCreaterForm extends Component<
+  {
+    form: any,
+    actions: any
+  },
+  {
+    modalVisible: boolean
+  }
+> {
   state = {
     modalVisible: false,
     errorMessages: [],
     name: ''
-  };
-
-  onCreateClick = event => {
-    event.preventDefault();
-    const data = { name: this.state.name.trim() };
-
-    const errorMessages = validateFormValue(data, {
-      name: ['required@Please fill the name.']
-    });
-
-    this.setState({ errorMessages: errorMessages });
-
-    if (Object.keys(errorMessages).length) {
-      return;
-    }
-    this.props.actions.ADD_TASK_BOARD_REQUEST(data);
-    this.closeModal();
-  };
-
-  handleOk = () => {
-    this.setState({
-      modalVisible: false
-    });
   };
 
   handleCancel = () => {
@@ -43,18 +27,25 @@ class TaskBoardCreater extends Component {
     });
   };
 
+  handleSubmit = (event: Event) => {
+    event.preventDefault();
+    this.props.form.validateFieldsAndScroll((err, values) => {
+      if (!err) {
+        this.props.actions.ADD_TASK_BOARD_REQUEST(values);
+      }
+    });
+  };
+
   render() {
+    const { getFieldDecorator } = this.props.form;
     return (
       <div className="taskboard-creater">
         <Button type="default" onClick={() => this.setState({ modalVisible: true })}>
           <Icon type="plus" />Create Task Board
         </Button>
 
-        {this.state.modalVisible}
-
         <Modal
           title="Create Wall"
-          onOk={this.handleOk}
           onCancel={this.handleCancel}
           visible={this.state.modalVisible}
           footer={null}
@@ -62,17 +53,17 @@ class TaskBoardCreater extends Component {
           <div>
             <img className="taskboard-creater--illustration" src="/assets/images/work.png" />
 
-            <Input
-              className="taskboard-creater--name-input"
-              type="text"
-              placeholder="Board Name"
-              onChange={value => this.setState({ name: value })}
-              onKeyPress={event => event.key === 'Enter' && this.onCreateClick.bind(this)(event)}
-            />
-            <ErrorMsg messages={R.values(this.state.errorMessages)} />
-            <Button className="taskboard-creater--create-button" onClick={this.onCreateClick}>
-              Complete And Create
-            </Button>
+            <Form onSubmit={this.handleSubmit}>
+              <FormItem label="Name">
+                {getFieldDecorator('name', {
+                  rules: [{ required: true, message: 'Please input task board name' }]
+                })(<Input type="text" />)}
+              </FormItem>
+
+              <FormItem>
+                <Button>Done</Button>
+              </FormItem>
+            </Form>
           </div>
         </Modal>
       </div>
@@ -80,4 +71,4 @@ class TaskBoardCreater extends Component {
   }
 }
 
-export default TaskBoardCreater;
+export const TaskBoardCreater = Form.create()(TaskBoardCreaterForm);

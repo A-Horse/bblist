@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { PageContainer } from 'components/widget/PageContainer';
-import TaskBoardCreater from '../TaskBoardCreater/TaskBoardCreater';
+import { TaskBoardCreater } from '../TaskBoardCreater/TaskBoardCreater';
 import { makeRemoteUrl } from 'services/remote-storage';
 import { DEFAULT_BOARD_COVER_SRC } from '../../../constants';
 
@@ -52,5 +52,3 @@ class BoardWall extends Component {
     );
   }
 }
-
-export default BoardWall;

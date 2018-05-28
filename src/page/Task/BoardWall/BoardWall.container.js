@@ -1,11 +1,10 @@
 import { connect } from 'react-redux';
-import BoardWall from './BoardWall';
-import R from 'ramda';
+import { BoardWall } from './BoardWall';
 import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
 import Actions, { makeActionRequestCollection } from '../../../actions/actions';
 
-const mapStateToProps = (state, props) => {
+const mapStateToProps = state => {
   return {
     boardMap: state.task2.get('boardMap')
   };
