@@ -1,72 +1,65 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-// import { CloseIcon } from 'services/svg-icons';
-import { Modal } from 'components/widget/Modal/Modal';
-import { Button } from 'components/widget/Button/Button';
 import { Input } from 'components/widget/Input/Input';
 import { ErrorMsg } from 'components/ErrorMsg/ErrorMsg';
+import { Button, Icon, Modal } from 'antd';
 import { validateFormValue } from 'services/validate-strategy';
 import R from 'ramda';
 
 import './TaskBoardCreater.scss';
 
 class TaskBoardCreater extends Component {
-  static propTypes = {
-    actions: PropTypes.object
-  };
-
   state = {
-    modalOpen: false,
+    modalVisible: false,
     errorMessages: [],
     name: ''
   };
 
-  constructor(props) {
-    super(props);
-    this.onCreateClick = this.onCreateClick.bind(this);
-  }
-
-  onCreateClick(event) {
+  onCreateClick = event => {
     event.preventDefault();
     const data = { name: this.state.name.trim() };
 
     const errorMessages = validateFormValue(data, {
       name: ['required@Please fill the name.']
     });
+
     this.setState({ errorMessages: errorMessages });
+
     if (Object.keys(errorMessages).length) {
       return;
     }
     this.props.actions.ADD_TASK_BOARD_REQUEST(data);
     this.closeModal();
-  }
+  };
 
-  closeModal() {
-    this.setState({ modalOpen: false });
-  }
+  handleOk = () => {
+    this.setState({
+      modalVisible: false
+    });
+  };
+
+  handleCancel = () => {
+    this.setState({
+      modalVisible: false
+    });
+  };
 
   render() {
     return (
-      <div className="taskboard-creater" onClick={() => this.setState({ modalOpen: true })}>
-        <i className="fa fa-plus" aria-hidden="true" />
-        <span className="taskboard-creater-title">New Task Wall</span>
+      <div className="taskboard-creater">
+        <Button type="default" onClick={() => this.setState({ modalVisible: true })}>
+          <Icon type="plus" />Create Task Board
+        </Button>
+
+        {this.state.modalVisible}
 
         <Modal
-          className="taskboard-creater-modal"
-          toggle={this.state.modalOpen}
-          close={this.closeModal.bind(this)}
+          title="Create Wall"
+          onOk={this.handleOk}
+          onCancel={this.handleCancel}
+          visible={this.state.modalVisible}
+          footer={null}
         >
           <div>
-            <button className="close-button">
-              <i className="fa fa-times" aria-hidden="true" onClick={this.closeModal.bind(this)} />
-            </button>
-
-            <div className="taskboard-creater--name">Create Wall:</div>
-
-            <p className="taskboard-creater--quota">
-              Establish their own Board for different transactions.
-            </p>
-
             <img className="taskboard-creater--illustration" src="/assets/images/work.png" />
 
             <Input
@@ -77,11 +70,7 @@ class TaskBoardCreater extends Component {
               onKeyPress={event => event.key === 'Enter' && this.onCreateClick.bind(this)(event)}
             />
             <ErrorMsg messages={R.values(this.state.errorMessages)} />
-            <Button
-              styleType="primary"
-              className="taskboard-creater--create-button"
-              onClick={this.onCreateClick}
-            >
+            <Button className="taskboard-creater--create-button" onClick={this.onCreateClick}>
               Complete And Create
             </Button>
           </div>

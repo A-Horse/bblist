@@ -1,6 +1,6 @@
 // @flow
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import R from 'ramda';
 import { makeGravatarUrl } from '../../services/gravatar';
 import { Storage, storageImage } from '../../services/storage';
@@ -9,7 +9,7 @@ import ClickOutSide from '../../components/utils/ClickOutSide';
 import { LogoBan } from '../../components/commons/LogoBan/LogoBan';
 import { testLoactionMatchPrefix } from '../../utils/route';
 
-import { Layout, Menu } from 'antd';
+import { Layout, Icon } from 'antd';
 const { Header } = Layout;
 
 // TODO remove
@@ -112,15 +112,20 @@ class Nav extends Component<
     const avatarData = Storage.get('avator');
     return (
       <Header className="app-header">
-        <LogoBan white={true} />
-        <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']}>
-          <Menu.Item key="2">
-            <Link to="/task-board">Task</Link>
-          </Menu.Item>
-          <Menu.Item key="3">
-            <Link to="/todo">Todo</Link>
-          </Menu.Item>
-        </Menu>
+        <Link to="/task-board">
+          <LogoBan white={true} />
+        </Link>
+        <div className="app-header-menu">
+          <NavLink to="/task-board" activeClassName="active">
+            <Icon type="appstore-o" />
+            Project
+          </NavLink>
+
+          <NavLink to="/todo" activeClassName="active">
+            <Icon type="check-square" />
+            Todo
+          </NavLink>
+        </div>
       </Header>
     );
   }
