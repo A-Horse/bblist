@@ -57,14 +57,9 @@ class Todo extends Component<
     });
   }
 
-  updateDone(checked) {
+  updateDone = (checked: boolean) => {
     this.updateTodo({ isDone: checked });
-  }
-
-  onRepeatHistoryModal() {
-    this.props.dispatch(activeTdRepeatHistory(this.props.todo.id));
-    this.props.dispatch(getTodoRepeatHistory(this.props.todo.id));
-  }
+  };
 
   shouldComponentUpdate(nextProps, nextState) {
     if (this.props.todo !== nextProps.todo) {
@@ -85,7 +80,7 @@ class Todo extends Component<
         ref="main"
       >
         <div className="todo--main">
-          <CheckBox
+          <Checkbox
             className="todo-done-checkbox"
             defaultChecked={todo.get('isDone')}
             onChange={this.updateDone}
@@ -95,20 +90,12 @@ class Todo extends Component<
             className="todo--content"
           >
             {todo.get('content')}
-            {todo.get('deadline') &&
-              !this.state.editToggle && (
-                <div className="todo-deadline-label">
-                  <span>{new moment(todo.get('deadline')).format('MM-DD')}</span>
-                </div>
-              )}
+            {todo.get('deadline') && (
+              <div className="todo-deadline-label">
+                <span>{new moment(todo.get('deadline')).format('MM-DD')}</span>
+              </div>
+            )}
           </div>
-          <Textarea
-            ref="content"
-            className="todo--content__input"
-            style={{ display: this.state.editToggle ? 'block' : 'none' }}
-            defaultValue={todo.get('content')}
-            onChange={this.onContendChanged}
-          />
 
           <div className="todo-operation">
             {this.state.editToggle && (

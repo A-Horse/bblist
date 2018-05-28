@@ -1,7 +1,7 @@
 // @flow
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import TodoBoxCreater from '../TodoBoxCreater/TodoBoxCreater';
+import { TodoBoxCreater } from '../TodoBoxCreater/TodoBoxCreater';
 import { Map } from 'immutable';
 
 import { Layout, Menu, Icon, List } from 'antd';

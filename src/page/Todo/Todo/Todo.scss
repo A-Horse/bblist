@@ -4,7 +4,6 @@
 
 .todo {
   position: relative;
-  padding: $todo-item-padding;
   background-color: $color-background-light;
   border-radius: $radius-middle;
   margin-bottom: 5px;
@@ -17,63 +16,11 @@
       text-decoration: line-through;
     }
   }
-
-  .checkbox {
-    top: 2px;
-    flex-shrink: 0;
-    font-size: 20px;
-  }
-
-  &.open {
-    background-color: $primary-bg;
-    opacity: 1;
-    color: white;
-
-    .fa-trash {
-      color: $white;
-    }
-
-    .todo-done-checkbox {
-      .fa-square-o {
-        color: $white;
-      }
-      .fa-check-square-o {
-        color: #9ef092;
-      }
-    }
-
-    .todo-operation {
-      white-space: nowrap;
-      display: flex;
-      flex-shrink: 0;
-
-      .fa-bar-chart {
-        color: $white;
-      }
-
-      .checkbox.star {
-        .fa-star-o {
-          color: $white;
-        }
-      }
-    }
-  }
-
-  &:hover {
-    background-color: #f8f8f8;
-  }
 }
 
 .todo--main {
   position: relative;
   display: flex;
-  align-items: flex-start;
-
-  .todo-done-checkbox {
-    font-size: 28px;
-    width: 25px;
-    height: 25px;
-  }
 
   .todo-deadline-label {
     color: $white;
@@ -102,97 +49,3 @@
   margin-top: 3px;
 }
 
-.todo--content__input {
-  width: 100%;
-  border: none;
-  resize: none;
-  border-radius: $radius-middle;
-  background-color: $gray-light-depth;
-  margin: 0 6px;
-  padding: 0px 6px;
-  font-size: 16px;
-  height: 22px;
-}
-
-.todo-editing--meta {
-  margin-top: 10px;
-
-  .todo-editing-field {
-    & > .fa {
-      margin-right: 10px;
-      width: 20px;
-    }
-  }
-
-
-  .todo-editing--deadline {
-    display: flex;
-    align-items: center;
-
-    .fa-calendar-check-o {
-      margin-top: -2px;
-    }
-
-    .date-picker {
-      margin-left: 10px;
-      .date-picker--text {
-        color: $white;
-
-        &.placeholder {
-
-        }
-      }
-    }
-  }
-
-  .todo-editing--repeat {
-    .select {
-      margin-left: 10px;
-
-      .select--box {
-        border: none;
-      }
-
-      .select-box--name {
-        color: $white;
-      }
-
-      .select--container {
-        color: $black;
-      }
-    }
-  }
-}
-
-.todo-operation {
-  white-space: nowrap;
-  display: flex;
-  flex-shrink: 0;
-
-  .fa-bar-chart {
-    position: relative;
-    color: #555;
-    font-size: 20px;
-    top: 5px;
-    margin-right: 3px;
-  }
-
-  .fa-trash {
-    position: relative;
-    color: $white;
-    font-size: 22px;
-    top: 3px;
-    margin-right: 5px;
-  }
-
-  .checkbox.star {
-    width: 25px;
-    height: 25px;
-    .fa {
-      font-size: 25px;
-    }
-    .fa-star-o {
-      color: #555;
-    }
-  }
-}

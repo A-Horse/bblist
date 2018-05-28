@@ -1,28 +1,15 @@
+// @flow
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { Button } from 'components/widget/Button/Button';
-import { Modal } from 'components/widget/Modal/Modal';
-import { isEnterKey } from 'utils/keyboard';
-import Input from 'components/widget/Input/Input';
+import { Input, Button, Layout, Menu, Icon, List, Modal } from 'antd';
 
 import './TodoBoxCreater.scss';
 
-class TodoBoxCreater extends Component {
-  static propTypes = {
-    actions: PropTypes.object.isRequired
-  };
-
+export class TodoBoxCreater extends Component<{}, { toggle: boolean }> {
   state = { toggle: false, name: '' };
 
-  constructor(props) {
-    super(props);
-    this.close = this.close.bind(this);
-    this.onAddClick = this.onAddClick.bind(this);
-  }
-
-  close() {
+  close = () => {
     this.setState({ toggle: false });
-  }
+  };
 
   onAddClick() {
     this.props.actions.ADD_TODOBOX_REQUEST({
@@ -34,29 +21,23 @@ class TodoBoxCreater extends Component {
   render() {
     return (
       <div>
-        <div
-          className="todo-box-creater--toggle"
+        <Button
           onClick={event => {
             event.stopPropagation();
             this.setState({ toggle: true });
           }}
         >
-          <i className="fa fa-plus" aria-hidden="true" />
-          <span className="toggle-text">Create Todo Box</span>
-        </div>
+          <Icon type="folder-add" />
+          Todo Box
+        </Button>
 
-        <Modal className="todo-box-creater-modal" toggle={this.state.toggle} close={this.close}>
+        <Modal className="todo-box-creater-modal" visible={this.state.toggle} close={this.close}>
           <div className="todo-box-creater--heading">Todo Box</div>
 
           <Input
             className="todo-box-name--input"
             type="text"
             ref={ref => (this.nameInput = ref)}
-            onKeyDown={event => {
-              if (isEnterKey(event) && this.state.name.length) {
-                this.onAddClick();
-              }
-            }}
             onChange={value => this.setState({ name: value })}
             placeholder="Board Name"
           />
@@ -73,5 +54,3 @@ class TodoBoxCreater extends Component {
     );
   }
 }
-
-export default TodoBoxCreater;
