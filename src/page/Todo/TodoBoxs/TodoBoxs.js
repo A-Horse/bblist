@@ -7,7 +7,7 @@ import { Map } from 'immutable';
 import { Layout, Menu, Icon, List } from 'antd';
 const { Header, Sider, Content } = Layout;
 
-import './TodoBoxs.scss';
+import './TodoBoxs.less';
 
 class TodoBoxs extends Component<{
   actions: Object,

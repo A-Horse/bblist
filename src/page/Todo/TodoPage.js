@@ -30,7 +30,7 @@ export class TodoPage extends Component {
             match={this.props.match}
           />
         </Sider>
-        <Content>
+        <Content style={{ height: 'calc(100vh - 42px)' }}>
           <TodoPageContentContainer />
         </Content>
       </Layout>

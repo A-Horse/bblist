@@ -33,14 +33,17 @@ class TodoCreaterForm extends Component<
     return (
       <div>
         <Form onSubmit={this.handleSubmit}>
-          <InputGroup compact style={{ display: 'flex' }}>
-            <Input
-              onPressEnter={this.handleSubmit}
-              addonBefore={<Icon type="plus" />}
-              placeholder="Add Todo..."
-            />
-            <DatePicker />
-          </InputGroup>
+          <Icon type="plus" />
+          <div>
+            <InputGroup compact>
+              <Input
+                style={{ width: '50%' }}
+                onPressEnter={this.handleSubmit}
+                placeholder="Add Todo..."
+              />
+              <DatePicker />
+            </InputGroup>
+          </div>
         </Form>
       </div>
     );

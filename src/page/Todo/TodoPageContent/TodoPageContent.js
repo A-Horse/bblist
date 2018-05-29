@@ -7,7 +7,7 @@ import { List } from 'immutable';
 import { Layout, Menu, Icon, List as AntList, Button } from 'antd';
 const { Header, Sider, Content } = Layout;
 
-import './TodoPageContent.scss';
+import './TodoPageContent.less';
 
 interface Props {
   todoBoxId: string;
@@ -43,12 +43,6 @@ export class TodoPageContent extends Component<
     }
   }
 
-  renderList(todos: any[]) {
-    return todos.map(todo => (
-      <Todo key={todo.get('id')} todo={todo} actions={this.props.actions} />
-    ));
-  }
-
   createTodo = () => {};
 
   render() {
@@ -58,33 +52,39 @@ export class TodoPageContent extends Component<
           <TodoCreater submit={this.createTodo} />
         </div>
 
-        <div className="todos">
-          {this.props.unDoneTodos && (
-            <AntList
-              className="demo-loadmore-list"
-              itemLayout="horizontal"
-              dataSource={this.props.unDoneTodos.toArray()}
-              renderItem={todo => (
-                <AntList.Item>
-                  <Todo key={todo.get('id')} todo={todo} actions={this.props.actions} />
-                </AntList.Item>
-              )}
-            />
-          )}
+        {this.props.unDoneTodos && (
+          <AntList
+            className="demo-loadmore-list"
+            itemLayout="horizontal"
+            dataSource={this.props.unDoneTodos.toArray()}
+            renderItem={todo => (
+              <AntList.Item>
+                <Todo key={todo.get('id')} todo={todo} actions={this.props.actions} />
+              </AntList.Item>
+            )}
+          />
+        )}
 
-          <div>
-            <span
-              className="remain-todo-toggle"
-              onClick={() => this.setState({ toggleAll: !this.state.toggleAll })}
-            >
-              <i className="fa fa-check-circle" aria-hidden="true" />
-              {!this.state.toggleAll ? 'show all' : 'hide done'}
-            </span>
-          </div>
-          {this.state.toggleAll && (
-            <div className="done">{this.renderList(this.props.doneTodos)}</div>
-          )}
-        </div>
+        <span
+          className="remain-todo-toggle"
+          onClick={() => this.setState({ toggleAll: !this.state.toggleAll })}
+        >
+          <i className="fa fa-check-circle" aria-hidden="true" />
+          {!this.state.toggleAll ? 'show all' : 'hide done'}
+        </span>
+
+        {this.state.toggleAll && (
+          <AntList
+            className="demo-loadmore-list"
+            itemLayout="horizontal"
+            dataSource={this.props.doneTodos.toArray()}
+            renderItem={todo => (
+              <AntList.Item>
+                <Todo key={todo.get('id')} todo={todo} actions={this.props.actions} />
+              </AntList.Item>
+            )}
+          />
+        )}
       </div>
     );
   }
