@@ -1,106 +1,56 @@
+// @flow
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import Textarea from 'react-textarea-autosize';
-import { isEnterKey } from 'utils/keyboard';
-import ClickOutSide from 'components/utils/ClickOutSide';
-import { Button } from 'components/widget/Button/Button';
-import DatePicker from 'components/DatePicker/DatePicker';
-import { Select } from 'components/widget/Select';
+import { Input, Icon, Form, DatePicker, Row, Col } from 'antd';
+import { formShape } from 'rc-form';
 
 import './TodoCreater.scss';
-import { repeatItems } from '../constants';
 
-class TodoCreater extends Component {
-  static propTypes = {
-    actions: PropTypes.object.isRequired,
-    todoBoxId: PropTypes.string
-  };
+const InputGroup = Input.Group;
+const FormItem = Form.Item;
 
+class TodoCreaterForm extends Component<
+  { form: formShape, submit: any => {} },
+  {
+    toggle: boolean
+  }
+> {
   state = {
-    toggle: false,
-    content: ''
+    toggle: false
   };
 
-  constructor(props) {
-    super(props);
-
-    this.toggle = this.toggle.bind(this);
-    this.close = this.close.bind(this);
-    this.onInputKeyDown = this.onInputKeyDown.bind(this);
-  }
-
-  toggle() {
-    this.setState({ toggle: true });
-  }
-
-  close() {
-    if (this.datePicker.state.toggle) {
-      return;
-    }
-    this.setState({ toggle: false });
-  }
-
-  onInputKeyDown(event) {
-    if (isEnterKey(event)) {
-      event.preventDefault();
-      this.addTodo();
-    }
-  }
+  handleSubmit = (event: Event) => {
+    event.preventDefault();
+    this.props.form.validateFieldsAndScroll((err, values) => {
+      if (!err) {
+        this.props.submit(values);
+      }
+    });
+  };
 
   render() {
-    if (!this.state.toggle) {
-      return (
-        <div className="todo-creater--toggle" onClick={this.toggle}>
-          <i className="fa fa-plus" aria-hidden="true" />
-          <span className="toggle-text">Add Todo</span>
-        </div>
-      );
-    }
+    const { getFieldDecorator } = this.props.form;
+
     return (
-      <ClickOutSide onClickOutside={this.close}>
-        <div className="todo-creater-body">
-          <div className="todo-creater--input">
-            <Textarea
-              onKeyDown={this.onInputKeyDown}
-              placeholder="write a todo"
-              className="todo-creater--content"
-              type="text"
-              value={this.state.content}
-              onChange={event => this.setState({ content: event.target.value })}
-            />
-          </div>
-
-          <div
-            className="todo-creater-props todo-creater-deadline"
-            onClick={() => this.datePicker.toggle()}
-          >
-            <i className="fa fa-calendar-check-o date-picker--icon" aria-hidden="true" />
-            <label>Deadline:</label>
-            <DatePicker
-              ref={ref => (this.datePicker = ref)}
-              hideIcon={true}
-              placeholder="YYYY-MM-DD"
-            />
-          </div>
-
-          <div className="todo-creater-props todo-creater-repeat">
-            <i className="fa fa-repeat" aria-hidden="true" />
-            <label>Repeat:</label>
-            <Select items={repeatItems} />
-          </div>
-
-          <div className="todo-creater-operation">
-            <Button styleType="primary" onClick={this.addTodo} disable={!this.state.content.length}>
-              Create Todo
-            </Button>
-            <Button className="cancel-button" styleType="default" onClick={this.close}>
-              Cancel
-            </Button>
-          </div>
-        </div>
-      </ClickOutSide>
+      <div>
+        <Form onSubmit={this.handleSubmit}>
+          <InputGroup compact>
+            {getFieldDecorator('content', {
+              rules: [{ required: true, message: 'Please input content' }]
+            })(
+              <Input
+                onPressEnter={this.handleSubmit}
+                addonBefore={<Icon type="plus" />}
+                placeholder="Add Todo..."
+              />
+            )}
+            {getFieldDecorator('deadline', {
+              rules: []
+            })(<DatePicker />)}
+          </InputGroup>
+        </Form>
+      </div>
     );
   }
 }
 
-export default TodoCreater;
+export const TodoCreater = Form.create()(TodoCreaterForm);

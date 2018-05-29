@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { updateTitle } from 'services/title';
+import { TodoPageContentContainer } from './TodoPageContent/TodoPageContent.container';
 import TodoBoxs from './TodoBoxs/TodoBoxs';
-import TodoList from './TodoList/TodoList.container';
 import PropTypes from 'prop-types';
 
 import { Layout } from 'antd';
@@ -31,7 +31,7 @@ export class TodoPage extends Component {
           />
         </Sider>
         <Content>
-          <TodoList />
+          <TodoPageContentContainer />
         </Content>
       </Layout>
     );

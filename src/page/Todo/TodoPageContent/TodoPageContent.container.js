@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
-import Actions, { makeActionRequestCollection } from '../../../actions/actions';
-import TodoList from './TodoList';
+import { makeActionRequestCollection } from '../../../actions/actions';
+import { TodoPageContent } from './TodoPageContent';
 
 import type { Dispatch } from 'redux';
 
@@ -34,18 +34,12 @@ const mapStateToProps = (state, props) => {
   };
 };
 
-const mapDispatchToProps = (dispatch: Dispatch) => {
+const mapDispatchToProps = (dispatch: Dispatch<*>) => {
   return {
-    actions: bindActionCreators(
-      makeActionRequestCollection([
-        Actions.ADD_TODO,
-        Actions.GET_TODOLIST,
-        Actions.UPDATE_TODO,
-        Actions.DESTORY_TODO
-      ]),
-      dispatch
-    )
+    actions: bindActionCreators(makeActionRequestCollection(), dispatch)
   };
 };
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(TodoList));
+export const TodoPageContentContainer = withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(TodoPageContent)
+);

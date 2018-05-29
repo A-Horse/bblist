@@ -1,23 +1,24 @@
 // @flow
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import TodoCreater from '../TodoCreater/TodoCreater';
+import { TodoCreater } from '../TodoCreater/TodoCreater';
 import Todo from '../Todo/Todo';
-import { Map, List } from 'immutable';
+import { List } from 'immutable';
 
 import { Layout, Menu, Icon, List as AntList, Button } from 'antd';
 const { Header, Sider, Content } = Layout;
 
-import './TodoList.scss';
+import './TodoPageContent.scss';
 
-export default class TodoList extends Component<
-  {
-    todoBoxId: string,
-    actions: any,
-    match: any,
-    unDoneTodos: List<Todo[]>,
-    doneTodos: List<Todo[]>
-  },
+interface Props {
+  todoBoxId: string;
+  actions: any;
+  match: any;
+  unDoneTodos: List<Todo[]>;
+  doneTodos: List<Todo[]>;
+}
+
+export class TodoPageContent extends Component<
+  Props,
   {
     toggleAll: boolean
   }
@@ -35,24 +36,26 @@ export default class TodoList extends Component<
     }
   }
 
-  getTodoList(props, force: boolean) {
+  getTodoList(props: Props, force?: boolean) {
     const { todoBoxId } = props;
     if (force || todoBoxId !== this.props.todoBoxId) {
       this.props.actions.GET_TODOLIST_REQUEST({ todoBoxId });
     }
   }
 
-  renderList(todos) {
+  renderList(todos: any[]) {
     return todos.map(todo => (
       <Todo key={todo.get('id')} todo={todo} actions={this.props.actions} />
     ));
   }
 
+  createTodo = () => {};
+
   render() {
     return (
       <div className="todo-list">
         <div className="creater-container">
-          <TodoCreater actions={this.props.actions} todoBoxId={this.props.todoBoxId} />
+          <TodoCreater submit={this.createTodo} />
         </div>
 
         <div className="todos">

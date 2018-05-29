@@ -62,7 +62,6 @@ export class Board extends Component<Props> {
             }
           >
             <i className="fa fa-cog" aria-hidden="true" />
-            <span>setting</span>
           </div>
         </Header>
 
