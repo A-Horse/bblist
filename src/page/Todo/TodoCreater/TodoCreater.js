@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { Input, Icon, Form, DatePicker, Row, Col } from 'antd';
 import { formShape } from 'rc-form';
 
-import './TodoCreater.scss';
+import './TodoCreater.less';
 
 const InputGroup = Input.Group;
 const FormItem = Form.Item;
@@ -11,11 +11,14 @@ const FormItem = Form.Item;
 class TodoCreaterForm extends Component<
   { form: formShape, submit: any => {} },
   {
-    toggle: boolean
+    toggle: boolean,
+    content: string
   }
 > {
   state = {
-    toggle: false
+    toggle: false,
+    content: '',
+    deadline: null
   };
 
   handleSubmit = (event: Event) => {
@@ -28,22 +31,20 @@ class TodoCreaterForm extends Component<
   };
 
   render() {
-    const { getFieldDecorator } = this.props.form;
-
     return (
-      <div>
+      <div class="todo-creater">
         <Form onSubmit={this.handleSubmit}>
-          <Icon type="plus" />
-          <div>
+          <FormItem>
+            <Icon type="plus" />
             <InputGroup compact>
               <Input
-                style={{ width: '50%' }}
+                onChange={value => this.setState({ content: value })}
                 onPressEnter={this.handleSubmit}
                 placeholder="Add Todo..."
               />
               <DatePicker />
             </InputGroup>
-          </div>
+          </FormItem>
         </Form>
       </div>
     );
