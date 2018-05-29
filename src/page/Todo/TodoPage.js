@@ -22,7 +22,7 @@ export class TodoPage extends Component {
 
   render() {
     return (
-      <Layout>
+      <Layout style={{ padding: '0 50px' }}>
         <Sider>
           <TodoBoxs
             todoBoxs={this.props.todoBoxs}
@@ -37,5 +37,3 @@ export class TodoPage extends Component {
     );
   }
 }
-
-export default TodoPage;

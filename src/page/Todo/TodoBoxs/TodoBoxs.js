@@ -25,7 +25,7 @@ class TodoBoxs extends Component<{
           <TodoBoxCreater actions={this.props.actions} />
         </div>
         <div className="todo-box-group-list">
-          <Menu mode="inline" defaultSelectedKeys={['1']}>
+          <Menu defaultSelectedKeys={['1']}>
             {this.props.todoBoxs.map(todoBox => {
               return (
                 <Menu.Item key={todoBox.get('id')}>

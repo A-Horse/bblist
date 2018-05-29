@@ -33,19 +33,13 @@ class TodoCreaterForm extends Component<
     return (
       <div>
         <Form onSubmit={this.handleSubmit}>
-          <InputGroup compact>
-            {getFieldDecorator('content', {
-              rules: [{ required: true, message: 'Please input content' }]
-            })(
-              <Input
-                onPressEnter={this.handleSubmit}
-                addonBefore={<Icon type="plus" />}
-                placeholder="Add Todo..."
-              />
-            )}
-            {getFieldDecorator('deadline', {
-              rules: []
-            })(<DatePicker />)}
+          <InputGroup compact style={{ display: 'flex' }}>
+            <Input
+              onPressEnter={this.handleSubmit}
+              addonBefore={<Icon type="plus" />}
+              placeholder="Add Todo..."
+            />
+            <DatePicker />
           </InputGroup>
         </Form>
       </div>

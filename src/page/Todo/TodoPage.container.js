@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
 import { Map } from 'immutable';
 import { makeActionRequestCollection } from '../../actions/actions';
-import TodoPage from '../../page/Todo/TodoPage';
+import { TodoPage } from '../../page/Todo/TodoPage';
 
 const mapStateToProps = state => {
   return {

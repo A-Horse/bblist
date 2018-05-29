@@ -57,8 +57,8 @@ class Todo extends Component<
     });
   }
 
-  updateDone = (checked: boolean) => {
-    this.updateTodo({ isDone: checked });
+  updateDone = (event: SyntheticEvent<Event>) => {
+    this.updateTodo({ isDone: event.target.checked });
   };
 
   shouldComponentUpdate(nextProps, nextState) {
