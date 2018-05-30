@@ -2,13 +2,11 @@
 import React, { Component } from 'react';
 import { CheckBox } from '../../../components/widget/CheckBox/CheckBox';
 import { StarCheckBox } from '../../../components/widget/StarCheckBox/StarCheckBox';
-import DatePicker from '../../../components/DatePicker/DatePicker';
 import Textarea from 'react-textarea-autosize';
 import { Select, Modal, Icon, Menu, Dropdown, Button, Form, Input, Row, Col, Checkbox } from 'antd';
 import { timeout } from '../../../utils/timeout';
 import moment from 'moment';
 import R from 'ramda';
-import ConfirmModalButton from '../../../components/ConfrimModalButton/ConfirmModalButton';
 import { Map } from 'immutable';
 
 import './Todo.scss';
@@ -75,10 +73,7 @@ class Todo extends Component<
     const { todo } = this.props;
 
     return (
-      <div
-        className={`todo${this.state.editToggle ? ' open' : ''}${todo.isDone ? ' done' : ''}`}
-        ref="main"
-      >
+      <div ref="main">
         <div className="todo--main">
           <Checkbox
             className="todo-done-checkbox"
@@ -98,12 +93,6 @@ class Todo extends Component<
           </div>
 
           <div className="todo-operation">
-            {this.state.editToggle && (
-              <ConfirmModalButton className="todo--delete-button" onConfirm={this.removeTodo}>
-                <i className="fa fa-trash" aria-hidden="true" />
-              </ConfirmModalButton>
-            )}
-
             <StarCheckBox
               defaultChecked={todo.get('isStar')}
               onChange={checked => {
@@ -112,37 +101,6 @@ class Todo extends Component<
             />
           </div>
         </div>
-
-        {this.state.editToggle && (
-          <div
-            className="todo-editing--meta"
-            style={{ display: this.state.editToggle ? 'block' : 'none' }}
-          >
-            <div className="todo-editing-field todo-editing--deadline">
-              <i className="fa fa-calendar-check-o" aria-hidden="true" />
-              <label>Deadline:</label>
-              <DatePicker
-                ref="datePicker"
-                placeholder="YYYY-MM-DD"
-                hideIcon={true}
-                defaultValue={todo.get('deadline')}
-                onSelected={date => this.updateTodo({ deadline: date ? date.getTime() : null })}
-              />
-            </div>
-
-            <div className="todo-editing-field todo-editing--repeat">
-              <i className="fa fa-repeat" aria-hidden="true" />
-              <label>Repeat:</label>
-              <Select
-                defaultItem={R.find(R.propEq('value', parseInt(todo.get('repeat'), 10)))(
-                  repeatItems
-                )}
-                items={repeatItems}
-                onSelect={repeat => this.updateTodo({ repeat: repeat.value })}
-              />
-            </div>
-          </div>
-        )}
       </div>
     );
   }

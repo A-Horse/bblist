@@ -43,7 +43,9 @@ export class TodoPageContent extends Component<
     }
   }
 
-  createTodo = () => {};
+  createTodo = (todo: { content: string, deadline: number | null }) => {
+    this.props.actions.ADD_TODO_REQUEST(todo);
+  };
 
   render() {
     return (

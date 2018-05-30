@@ -1,48 +1,59 @@
 // @flow
 import React, { Component } from 'react';
-import { Input, Icon, Form, DatePicker, Row, Col } from 'antd';
-import { formShape } from 'rc-form';
+import { Input, Icon, Form, DatePicker, Row, Col, message } from 'antd';
 
 import './TodoCreater.less';
 
 const InputGroup = Input.Group;
 const FormItem = Form.Item;
 
-class TodoCreaterForm extends Component<
-  { form: formShape, submit: any => {} },
+export class TodoCreater extends Component<
+  { submit: any },
   {
-    toggle: boolean,
-    content: string
+    content: string,
+    deadline: number | null
   }
 > {
   state = {
-    toggle: false,
     content: '',
     deadline: null
   };
 
-  handleSubmit = (event: Event) => {
+  handleSubmit = (event: SyntheticInputEvent<*>) => {
     event.preventDefault();
-    this.props.form.validateFieldsAndScroll((err, values) => {
-      if (!err) {
-        this.props.submit(values);
-      }
+    if (!this.state.content) {
+      return message.error('Please input todo content');
+    }
+
+    this.props.submit({
+      content: this.state.content,
+      deadline: this.state.deadline
+    });
+
+    this.setState({
+      content: '',
+      deadline: null
     });
   };
 
   render() {
     return (
-      <div class="todo-creater">
+      <div className="todo-creater">
         <Form onSubmit={this.handleSubmit}>
           <FormItem>
             <Icon type="plus" />
             <InputGroup compact>
               <Input
-                onChange={value => this.setState({ content: value })}
+                value={this.state.content}
+                onChange={event => this.setState({ content: event.target.value })}
                 onPressEnter={this.handleSubmit}
                 placeholder="Add Todo..."
               />
-              <DatePicker />
+              <DatePicker
+                value={this.state.deadline}
+                onChange={date => this.setState({ deadline: date.getTime() })}
+                placeholder="Deadline"
+              />
             </InputGroup>
           </FormItem>
         </Form>
@@ -50,5 +61,3 @@ class TodoCreaterForm extends Component<
     );
   }
 }
-
-export const TodoCreater = Form.create()(TodoCreaterForm);

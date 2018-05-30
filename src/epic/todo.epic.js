@@ -7,12 +7,16 @@ import Actions from '../actions/actions';
 import { makeApiUrl } from '../utils/api';
 import { http } from '../services/http';
 import { getCachedUserId } from 'utils/auth';
+import { message } from 'antd';
 
 export const ADD_TODO_REQUEST = action$ =>
   action$.ofType(Actions.ADD_TODO.REQUEST).mergeMap(action => {
     return http
       .post(makeApiUrl('/t/todo'), null, action.payload)
-      .then(Actions.ADD_TODO.success)
+      .then(resp => {
+        message.success('Add todo success');
+        return Actions.ADD_TODO.success(resp);
+      })
       .catch(Actions.ADD_TODO.failure);
   });
 
