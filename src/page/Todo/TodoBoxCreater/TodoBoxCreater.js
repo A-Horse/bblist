@@ -1,10 +1,15 @@
 // @flow
 import React, { Component } from 'react';
-import { Input, Button, Layout, Menu, Icon, List, Modal } from 'antd';
+import { Input, Button, Icon, Modal } from 'antd';
 
-import './TodoBoxCreater.scss';
+import './TodoBoxCreater.less';
 
-export class TodoBoxCreater extends Component<{}, { toggle: boolean }> {
+export class TodoBoxCreater extends Component<
+  {
+    actions: any
+  },
+  { toggle: boolean }
+> {
   state = { toggle: false, name: '' };
 
   close = () => {
