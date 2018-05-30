@@ -1,11 +1,9 @@
 // @flow
 import React, { Component } from 'react';
 import { TodoCreater } from '../TodoCreater/TodoCreater';
-import Todo from '../Todo/Todo';
+import { Todo } from '../Todo/Todo';
 import { List } from 'immutable';
-
-import { Layout, Menu, Icon, List as AntList, Button } from 'antd';
-const { Header, Sider, Content } = Layout;
+import { List as AntList } from 'antd';
 
 import './TodoPageContent.less';
 

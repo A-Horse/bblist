@@ -24,10 +24,11 @@ export class TodoCreater extends Component<
     if (!this.state.content) {
       return message.error('Please input todo content');
     }
+    console.log(this.state);
 
     this.props.submit({
       content: this.state.content,
-      deadline: this.state.deadline
+      deadline: this.state.deadline ? this.state.deadline.valueOf() : null
     });
 
     this.setState({
@@ -51,7 +52,7 @@ export class TodoCreater extends Component<
               />
               <DatePicker
                 value={this.state.deadline}
-                onChange={date => this.setState({ deadline: date.getTime() })}
+                onChange={date => this.setState({ deadline: date })}
                 placeholder="Deadline"
               />
             </InputGroup>
