@@ -30,7 +30,7 @@ class TodoBoxs extends Component<{
               return (
                 <Menu.Item key={todoBox.get('id')}>
                   <Link to={`/todo/${todoBox.get('id')}`}>
-                    <i className="fa fa-archive" aria-hidden="true" />
+                    <Icon type="check-square-o" />
                     <span>{todoBox.get('name')}</span>
                   </Link>
                 </Menu.Item>

@@ -4,7 +4,7 @@ import { StarCheckBox } from '../../../components/widget/StarCheckBox/StarCheckB
 import { Checkbox } from 'antd';
 import moment from 'moment';
 import { Map } from 'immutable';
-import { Row, Col } from 'antd';
+import { Row, Col, Tag } from 'antd';
 
 import './Todo.less';
 
@@ -52,14 +52,18 @@ export class Todo extends Component<Props, State> {
       <div className="todo-item">
         <Row>
           <Col span={2}>
-            <Checkbox className="todo-done-checkbox" defaultChecked={todo.get('isDone')} />
+            <Checkbox
+              className="todo-done-checkbox"
+              onChange={this.updateDone}
+              defaultChecked={todo.get('isDone')}
+            />
           </Col>
           <Col span={20}>
             {todo.get('content')}
             {todo.get('deadline') && (
-              <div className="todo-deadline-label">
-                <span>{new moment(todo.get('deadline')).format('MM-DD')}</span>
-              </div>
+              <Tag color="magenta" style={{ marginLeft: '10px' }}>
+                {new moment(todo.get('deadline')).format('MM-DD')}
+              </Tag>
             )}
           </Col>
 
