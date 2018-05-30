@@ -1,11 +1,15 @@
 // @flow
 import React, { Component } from 'react';
-import { Input, Button, Icon, Modal } from 'antd';
+import { Input, Form, Button, Icon, Modal } from 'antd';
+import { formShape } from 'rc-form';
 
 import './TodoBoxCreater.less';
 
-export class TodoBoxCreater extends Component<
+const FormItem = Form.Item;
+
+export class TodoBoxCreaterForm extends Component<
   {
+    form: formShape,
     actions: any
   },
   { toggle: boolean }
@@ -16,14 +20,24 @@ export class TodoBoxCreater extends Component<
     this.setState({ toggle: false });
   };
 
-  onAddClick() {
-    this.props.actions.ADD_TODOBOX_REQUEST({
-      name: this.nameInput.value.trim()
+  handleSubmit = (event: Event) => {
+    event.preventDefault();
+    this.props.form.validateFieldsAndScroll((err, values) => {
+      if (!err) {
+        this.props.actions.ADD_TODOBOX_REQUEST(values);
+        this.handleCancel();
+      }
     });
-    this.close();
-  }
+  };
+
+  handleCancel = () => {
+    this.setState({
+      toggle: false
+    });
+  };
 
   render() {
+    const { getFieldDecorator } = this.props.form;
     return (
       <div>
         <Button
@@ -36,26 +50,30 @@ export class TodoBoxCreater extends Component<
           Todo Box
         </Button>
 
-        <Modal className="todo-box-creater-modal" visible={this.state.toggle} close={this.close}>
-          <div className="todo-box-creater--heading">Todo Box</div>
+        <Modal
+          className="todo-box-creater-modal"
+          title="Create Todo Box:"
+          onCancel={this.handleCancel}
+          visible={this.state.toggle}
+          footer={null}
+        >
+          <Form onSubmit={this.handleSubmit}>
+            <FormItem>
+              {getFieldDecorator('name', {
+                rules: [{ required: true, message: 'Please input Todo Box name' }]
+              })(<Input type="text" placeholder="Todo Box" />)}
+            </FormItem>
 
-          <Input
-            className="todo-box-name--input"
-            type="text"
-            ref={ref => (this.nameInput = ref)}
-            onChange={value => this.setState({ name: value })}
-            placeholder="Board Name"
-          />
-          <Button
-            styleType="primary"
-            disable={!this.state.name.length}
-            className="taskboard-creater--create-button"
-            onClick={this.onAddClick}
-          >
-            OK
-          </Button>
+            <FormItem>
+              <Button type="primary" htmlType="submit">
+                Done
+              </Button>
+            </FormItem>
+          </Form>
         </Modal>
       </div>
     );
   }
 }
+
+export const TodoBoxCreater = Form.create()(TodoBoxCreaterForm);

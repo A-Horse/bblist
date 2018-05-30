@@ -4,8 +4,7 @@ import { Link } from 'react-router-dom';
 import { TodoBoxCreater } from '../TodoBoxCreater/TodoBoxCreater';
 import { Map } from 'immutable';
 
-import { Layout, Menu, Icon, List } from 'antd';
-const { Header, Sider, Content } = Layout;
+import { Menu, Icon } from 'antd';
 
 import './TodoBoxs.less';
 
