@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Route, Switch } from 'react-router';
 
-import Infomation from './Infomation/Infomation';
+import { Infomation } from './Infomation/Infomation';
 import Operation from './Operation/Operation';
 import Preference from './Preference/Preference';
 import Participant from './Participant/Participant';

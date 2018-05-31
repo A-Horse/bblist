@@ -1,17 +1,15 @@
+// @flow
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { ImageUploader } from 'components/ImageUploader/ImageUploader';
 import { makeRemoteUrl } from 'services/remote-storage';
-import Input from 'components/widget/Input/Input';
+import { Input } from 'antd';
 
 import './Infomation.scss';
 
-class Infomation extends Component {
-  static propTypes = {
-    actions: PropTypes.object.isRequired,
-    board: PropTypes.object
-  };
-
+export class Infomation extends Component<{
+  actions: any,
+  board: any
+}> {
   render() {
     const board = this.props.board;
     if (!board) {
@@ -48,8 +46,12 @@ class Infomation extends Component {
             <Input
               className="board-name--input"
               defaultValue={board.get('name')}
-              onChange={value =>
-                this.props.actions.UPDATE_TASK_BOARD_REQUEST({ id: board.get('id'), name: value })}
+              onChange={event =>
+                this.props.actions.UPDATE_TASK_BOARD_REQUEST({
+                  id: board.get('id'),
+                  name: event.target.value
+                })
+              }
             />
           </div>
         </div>
@@ -64,5 +66,3 @@ class Infomation extends Component {
     );
   }
 }
-
-export default Infomation;
