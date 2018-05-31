@@ -1,25 +1,20 @@
 // @flow
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { Route, Switch } from 'react-router';
-
 import { Infomation } from './Infomation/Infomation';
 import Operation from './Operation/Operation';
 import Preference from './Preference/Preference';
 import Participant from './Participant/Participant';
-
 import { Link } from 'react-router-dom';
-import { Layout, Menu, Breadcrumb, Icon } from 'antd';
-const { SubMenu } = Menu;
-const { Header, Content, Sider } = Layout;
+import { Layout, Menu, Icon } from 'antd';
+const { Content, Sider } = Layout;
 import './BoardSetting.scss';
 
-export class BoardSetting extends Component {
-  static propTypes = {
-    actions: PropTypes.object.isRequired,
-    board: PropTypes.object,
-    loginedUser: PropTypes.object
-  };
+export class BoardSetting extends Component<{
+  actions: any,
+  board: any,
+  loginedUser: any
+}> {
   render() {
     return (
       <Layout>
@@ -71,5 +66,3 @@ export class BoardSetting extends Component {
     );
   }
 }
-
-export default BoardSetting;
