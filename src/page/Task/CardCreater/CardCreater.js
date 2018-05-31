@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Button } from 'components/widget/Button/Button';
 import { Hr } from 'components/widget/Hr';
-import UserAvatar from 'components/UserAvatar/UserAvatar';
+import { UserAvatar } from 'components/UserAvatar/UserAvatar';
 import ClickOutSide from 'components/utils/ClickOutSide';
 import { timeout } from 'utils/timeout';
 

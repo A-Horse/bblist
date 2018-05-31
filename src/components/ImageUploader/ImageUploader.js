@@ -1,38 +1,44 @@
+// @flow
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import ReactCrop from 'react-image-crop';
-import { imageCrop } from 'services/image-crop';
-import { Button } from 'components/widget/Button/Button';
-import { Modal } from 'components/widget/Modal/Modal';
+import { imageCrop } from '../../services/image-crop';
+import { Button, Modal } from 'antd';
 
-import './ImageUploader.scss';
+import './ImageUploader.less';
 
 const crop = { width: 30, aspect: 2 / 1 };
 
-export class ImageUploader extends Component {
-  static propTypes = {
-    uploadFn: PropTypes.func.isRequired,
-    children: PropTypes.any
+export class ImageUploader extends Component<
+  {
+    uploadFn: any,
+    children: any
+  },
+  {
+    modalVisible: boolean,
+    imageDataURL: string,
+    cropedimageDataUrl: string,
+    crop: any
+  }
+> {
+  state = { modalVisible: false, imageDataURL: '', cropedimageDataUrl: '', crop };
+  fileInput: any;
+
+  handleCancelModal = () => {
+    this.setState({
+      modalVisible: false
+    });
   };
 
-  state = { imageDataURL: '', cropedimageDataUrl: '', crop };
-
-  constructor(props) {
-    super(props);
-    this.closeModal = this.closeModal.bind(this);
-    this.upload = this.upload.bind(this);
-    this.openFilePicker = this.openFilePicker.bind(this);
-    this.onImageLoaded = this.onImageLoaded.bind(this);
-    this.onCropChange = this.onCropChange.bind(this);
-    this.onCropComplete = this.onCropComplete.bind(this);
-  }
-
-  upload() {
+  upload = () => {
     this.props.uploadFn(this.state.cropedimageDataUrl);
     this.closeModal();
-  }
+  };
 
-  async cropImage(crop, pixelCrop) {
+  cropImage = async (crop, pixelCrop) => {
+    console.log(crop, pixelCrop);
+    if (!pixelCrop) {
+      return;
+    }
     const cropedimageDataUrl = await imageCrop(
       this.state.imageDataURL,
       pixelCrop.width,
@@ -42,57 +48,54 @@ export class ImageUploader extends Component {
     );
     this.setState({ cropedimageDataUrl });
     this.setState({ crop });
-  }
+  };
 
-  onCropChange(crop, pixelCrop) {
+  onCropChange = (crop, pixelCrop) => {
     this.cropImage(crop, pixelCrop);
-  }
+  };
 
-  onCropComplete(crop, pixelCrop) {
+  onCropComplete = (crop, pixelCrop) => {
     this.cropImage(crop, pixelCrop);
-  }
+  };
 
-  onImageLoaded(crop, image, pixelCrop) {
+  onImageLoaded = (crop, image, pixelCrop) => {
     this.cropImage(crop, pixelCrop);
-  }
+  };
 
-  openFilePicker() {
+  openFilePicker = () => {
     this.fileInput.click();
-  }
+  };
 
-  closeModal() {
-    this.setState({ modalToggle: false });
-  }
+  closeModal = () => {
+    this.setState({ modalVisible: false });
+  };
 
-  openModal() {
+  openModal = () => {
     const reader = new FileReader();
     reader.onload = e => {
       this.setState({ imageDataURL: e.target.result });
     };
     reader.readAsDataURL(this.fileInput.files[0]);
-    this.setState({ modalToggle: true });
-  }
+    this.setState({ modalVisible: true });
+  };
 
   render() {
     return (
       <div className="image-uploader">
-        <Button
-          borderType="primary"
-          className="image-uploader--button"
-          onClick={this.openFilePicker.bind(this)}
-        >
+        <Button className="image-uploader--button" onClick={this.openFilePicker}>
           {this.props.children || 'Upload'}
         </Button>
         <input
           ref={ref => (this.fileInput = ref)}
           type="file"
           accept="image/*"
-          onChange={this.openModal.bind(this)}
+          onChange={this.openModal}
         />
         <Modal
           className="image-uploader-modal"
-          toggle={this.state.modalToggle}
-          close={this.closeModal.bind(this)}
+          onCancel={this.handleCancelModal}
+          visible={this.state.modalVisible}
+          footer={[<Button onClick={this.upload}>Upload</Button>]}
         >
           <div>
             <div>
@@ -117,11 +120,6 @@ export class ImageUploader extends Component {
             </div>
 
             <img className="upload--preview-image" src={this.state.cropedimageDataUrl} />
-            <div>
-              <Button styleType="primary" onClick={this.upload}>
-                Upload
-              </Button>
-            </div>
           </div>
         </Modal>
       </div>

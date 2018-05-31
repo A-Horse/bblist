@@ -1,14 +1,12 @@
+// @flow
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { makeGravatarUrl, getUserGravatorFromStorge } from '../../services/gravatar';
 
-import './UserAvatar.scss';
+import './UserAvatar.less';
 
-class UserAvatar extends Component {
-  static propTypes = {
-    user: PropTypes.object.isRequired
-  };
-
+class UserAvatar extends Component<{
+  user: any
+}> {
   render() {
     const { user } = this.props;
 

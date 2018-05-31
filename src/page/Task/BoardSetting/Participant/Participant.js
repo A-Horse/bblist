@@ -1,6 +1,7 @@
+// @flow
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import UserAvatar from 'components/UserAvatar/UserAvatar';
+import { UserAvatar } from 'components/UserAvatar/UserAvatar';
 import Input from 'components/widget/Input/Input';
 import { Button } from 'components/widget/Button/Button';
 import { testRegex } from 'services/validate-strategy';
