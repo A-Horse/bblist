@@ -1,15 +1,13 @@
+// @flow
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import Button from 'components/widget/Button/Button';
+import { Button } from 'antd';
 
 import './Operation.scss';
 
-class Operation extends Component {
-  static propTypes = {
-    actions: PropTypes.object.isRequired,
-    board: PropTypes.object
-  };
-
+export class Operation extends Component<{
+  actions: any,
+  board: any
+}> {
   render() {
     return (
       <div className="board-setting-operation">
@@ -19,9 +17,10 @@ class Operation extends Component {
           <div className="board-delete--heading">Delete this Board:</div>
           <div>
             <Button
-              styleType="dangerous"
+              type="danger"
               onClick={() =>
-                this.props.actions.DESTORY_TASK_BOARD_REQUEST({ id: this.props.board.get('id') })}
+                this.props.actions.DESTORY_TASK_BOARD_REQUEST({ id: this.props.board.get('id') })
+              }
             >
               Delete
             </Button>
@@ -31,5 +30,3 @@ class Operation extends Component {
     );
   }
 }
-
-export default Operation;

@@ -2,12 +2,13 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router';
 import { Infomation } from './Infomation/Infomation';
-import Operation from './Operation/Operation';
-import Preference from './Preference/Preference';
-import Participant from './Participant/Participant';
+import { Operation } from './Operation/Operation';
+import { Preference } from './Preference/Preference';
+import { Participant } from './Participant/Participant';
 import { Link } from 'react-router-dom';
 import { Layout, Menu, Icon } from 'antd';
 const { Content, Sider } = Layout;
+
 import './BoardSetting.scss';
 
 export class BoardSetting extends Component<{

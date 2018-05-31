@@ -1,22 +1,17 @@
 // @flow
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { UserAvatar } from 'components/UserAvatar/UserAvatar';
+import { UserAvatar } from '../../../../components/UserAvatar/UserAvatar';
 import Input from 'components/widget/Input/Input';
 import { Button } from 'components/widget/Button/Button';
 import { testRegex } from 'services/validate-strategy';
 
-import './Participant.scss';
-
-class Participant extends Component {
-  static propTypes = {
-    actions: PropTypes.object.isRequired,
-    board: PropTypes.object,
-    match: PropTypes.object.isRequired,
-    boardParticipants: PropTypes.object,
-    inviteParticipant: PropTypes.object
-  };
-
+export class Participant extends Component<{
+  actions: any,
+  board: any,
+  match: any,
+  boardParticipants: any,
+  inviteParticipant: any
+}> {
   componentWillMount() {
     this.props.actions.GET_TASK_BOARD_PARTICIPANT_REQUEST({
       id: this.props.match.params.boardId
@@ -79,5 +74,3 @@ class Participant extends Component {
     );
   }
 }
-
-export default Participant;

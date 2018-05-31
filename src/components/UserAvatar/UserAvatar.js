@@ -4,19 +4,17 @@ import { makeGravatarUrl, getUserGravatorFromStorge } from '../../services/grava
 
 import './UserAvatar.less';
 
-class UserAvatar extends Component<{
+export class UserAvatar extends Component<{
   user: any
 }> {
   render() {
     const { user } = this.props;
 
-    const storgeData = getUserGravatorFromStorge(user.id);
     // TODO 把 avatrar 通过后台代理吧
+    const storgeData = getUserGravatorFromStorge(user.id);
     if (storgeData) {
       return <img src={`data:image/png;base64,${storgeData}`} className="useravatar" />;
     }
     return <img src={makeGravatarUrl(user.email)} className="useravatar" crossOrigin="Anonymous" />;
   }
 }
-
-export default UserAvatar;

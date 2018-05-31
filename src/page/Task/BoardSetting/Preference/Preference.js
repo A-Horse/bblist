@@ -1,9 +1,9 @@
+// @flow
 import React, { Component } from 'react';
-import RadioGroup from 'components/widget/RadioGroup';
 
-import './Preference.scss';
+import './Preference.less';
 
-class Preference extends Component {
+export class Preference extends Component<{}> {
   render() {
     return (
       <div className="board-setting-preference">
@@ -11,15 +11,6 @@ class Preference extends Component {
 
         <div className="board-notification">
           <div className="board-notification--heading">Notification:</div>
-
-          <RadioGroup
-            name="board-preference-notification"
-            onChange={this.onNotificationSettingChange.bind(this)}
-            radioArray={[
-              { value: true, text: 'Receive notification' },
-              { value: false, text: 'Notifications are not received' }
-            ]}
-          />
         </div>
       </div>
     );
@@ -27,5 +18,3 @@ class Preference extends Component {
 
   onNotificationSettingChange() {}
 }
-
-export default Preference;

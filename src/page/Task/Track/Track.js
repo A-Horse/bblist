@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import R from 'ramda';
 import Input from '../../../components/widget/Input/Input';
-import TaskCard from '../TaskCard/TaskCard';
+import { TaskCard } from '../TaskCard/TaskCard';
 import TaskCardCreater from '../CardCreater/CardCreater';
 import { DropList } from '../../../components/widget/DropList/DropList';
 import ClickOutSide from '../../../components/utils/ClickOutSide';

@@ -1,12 +1,12 @@
 // @flow
 import React, { Component } from 'react';
-import UserAvatar from '../../../components/UserAvatar/UserAvatar';
+import { UserAvatar } from '../../../components/UserAvatar/UserAvatar';
 import { Checkbox } from 'antd';
 import { getMouseElementInnerOffset } from '../../../utils/dom';
 
 import './TaskCard.scss';
 
-class TaskCard extends Component<
+export class TaskCard extends Component<
   {
     card: any,
     actions: any,
@@ -92,5 +92,3 @@ class TaskCard extends Component<
     );
   }
 }
-
-export default TaskCard;
