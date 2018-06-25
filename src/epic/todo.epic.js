@@ -1,12 +1,13 @@
-// import { Observable } from 'rxjs/Observable';
+// @flow
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/of';
+import { Observable } from 'rxjs/Observable';
 import Actions from '../actions/actions';
 import { makeApiUrl } from '../utils/api';
 import { http } from '../services/http';
-import { getCachedUserId } from 'utils/auth';
+import { getCachedUserId } from '../utils/auth';
 import { message } from 'antd';
 
 export const ADD_TODO_REQUEST = action$ =>
@@ -37,7 +38,9 @@ export const GET_TODOLIST_REQUEST = action$ =>
 
     return http
       .get(makeApiUrl(url))
-      .then(Actions.GET_TODOLIST.success)
+      .then(data => {
+        return Actions.GET_TODOLIST.success(data);
+      })
       .catch(Actions.GET_TODOLIST.failure);
   });
 

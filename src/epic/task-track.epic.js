@@ -4,8 +4,7 @@ import 'rxjs/add/operator/distinctUntilChanged';
 import Actions from '../actions/actions';
 import { makeApiUrl } from '../utils/api';
 import { http } from '../services/http';
-import R from 'ramda';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
 export const GET_TASK_TRACK_CARD_REQUEST = action$ =>
   action$.ofType(Actions.GET_TASK_TRACK_CARD.REQUEST).mergeMap(action => {

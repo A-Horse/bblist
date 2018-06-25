@@ -50,34 +50,28 @@ export class Todo extends Component<Props, State> {
 
     return (
       <div className="todo-item">
-        <Row>
-          <Col span={2}>
-            <Checkbox
-              className="todo-done-checkbox"
-              onChange={this.updateDone}
-              defaultChecked={todo.get('isDone')}
-            />
-          </Col>
-          <Col span={20}>
-            {todo.get('content')}
-            {todo.get('deadline') && (
-              <Tag color="magenta" style={{ marginLeft: '10px' }}>
-                {new moment(todo.get('deadline')).format('MM-DD')}
-              </Tag>
-            )}
-          </Col>
+        <Checkbox
+          className="todo-done-checkbox"
+          onChange={this.updateDone}
+          defaultChecked={todo.get('isDone')}
+        />
+        <div className="todo-item-main">
+          {todo.get('content')}
+          {todo.get('deadline') && (
+            <Tag color="magenta" style={{ marginLeft: '10px' }}>
+              {new moment(todo.get('deadline')).format('MM-DD')}
+            </Tag>
+          )}
+        </div>
 
-          <Col span={2}>
-            <div className="todo-operation">
-              <StarCheckBox
-                defaultChecked={todo.get('isStar')}
-                onChange={checked => {
-                  this.updateTodo({ isStar: checked });
-                }}
-              />
-            </div>
-          </Col>
-        </Row>
+        <div className="todo-operation">
+          <StarCheckBox
+            defaultChecked={todo.get('isStar')}
+            onChange={checked => {
+              this.updateTodo({ isStar: checked });
+            }}
+          />
+        </div>
       </div>
     );
   }

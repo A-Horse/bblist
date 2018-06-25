@@ -1,6 +1,6 @@
 // @flow
 
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import type { ActionsObservable } from 'redux-observable';
 
 import 'rxjs/add/operator/publish';

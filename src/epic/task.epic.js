@@ -9,7 +9,6 @@ import { makeApiUrl } from '../utils/api';
 import { http } from '../services/http';
 import R from 'ramda';
 import { getCachedUserId } from 'utils/auth';
-import { Observable } from 'rxjs/Observable';
 
 export const GET_TASK_BOARD = action$ =>
   action$.ofType(Actions.GET_TASK_BOARD.REQUEST).mergeMap(action => {

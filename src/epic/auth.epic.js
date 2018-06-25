@@ -1,5 +1,5 @@
 // @flow
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -28,8 +28,6 @@ export const LOGIN_REQUEST = (action$: ActionsObservable<FSAction>) =>
         return Actions.LOGIN.failure(error.message);
       })
   );
-
-/* export const SETUP_USER = () => action$.ofType(Actions.SETUP_USER.REQUEST).merge(action => {}); */
 
 export const SIGNUP_REQUEST = action$ =>
   action$.ofType(Actions.SIGNUP.REQUEST).mergeMap(action =>

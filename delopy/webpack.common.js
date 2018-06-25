@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
+  stats: { children: false, chunks: false },
   resolve: {
     extensions: ['.js', '.jsx', '.scss', '.css'],
     modules: [path.resolve('./src'), 'node_modules'],

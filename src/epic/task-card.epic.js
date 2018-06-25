@@ -5,7 +5,7 @@ import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/catch';
 import { http } from '../services/http';
 import { makeApiUrl } from '../utils/api';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import Actions from '../actions/actions';
 
 export const UPDATE_TASK_CARD_REQUEST = action$ =>
