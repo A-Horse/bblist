@@ -7,16 +7,17 @@ import { DragSource, ConnectDragSource } from 'react-dnd';
 
 import './TaskCard.less';
 
-@DragSource(
-  {
-    type: 'CARD'
-  },
-  boxSource,
-  (connect, monitor) => ({
-    connectDragSource: connect.dragSource(),
-    isDragging: monitor.isDragging()
-  })
-)
+const TaskCardSource = {
+  beginDrag() {
+    return {};
+  }
+};
+
+@DragSource('CARD', TaskCardSource, (connect, monitor) => ({
+  connectDragSource: connect.dragSource(),
+  connectDragPreview: connect.dragPreview(),
+  isDragging: monitor.isDragging()
+}))
 export class TaskCard extends Component<
   {
     card: any,
@@ -84,22 +85,32 @@ export class TaskCard extends Component<
 
   render() {
     const { card } = this.props;
+    const { isDragging, connectDragSource, connectDragPreview } = this.props;
+    const opacity = isDragging ? 0.4 : 1;
     return (
-      <div className="task-card" ref="main" onMouseDown={this.onMouseDown}>
-        <Checkbox
-          checked={card.get('isDone')}
-          onChange={event => this.updateCard({ isDone: event.target.checked })}
-        />
-        <p
-          className="task-card--title"
-          onClick={() => {
-            this.props.history.push(this.props.match.url + `/card/${card.get('id')}`);
-          }}
-        >
-          {card.get('title')}
-        </p>
-        <UserAvatar user={card.get('creater').toJS()} />
-      </div>
+      connectDragPreview &&
+      connectDragSource &&
+      connectDragPreview(
+        <div style={{ opacity }}>
+          {connectDragSource(
+            <div className="task-card">
+              <Checkbox
+                checked={card.get('isDone')}
+                onChange={event => this.updateCard({ isDone: event.target.checked })}
+              />
+              <p
+                className="task-card--title"
+                onClick={() => {
+                  this.props.history.push(this.props.match.url + `/card/${card.get('id')}`);
+                }}
+              >
+                {card.get('title')}
+              </p>
+              <UserAvatar user={card.get('creater').toJS()} />
+            </div>
+          )}
+        </div>
+      )
     );
   }
 }

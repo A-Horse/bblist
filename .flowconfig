@@ -19,5 +19,6 @@ module.name_mapper.extension='css' -> 'empty/object'
 module.name_mapper.extension='scss' -> 'empty/object'
 module.name_mapper.extension='less' -> 'empty/object'
 suppress_comment= \\(.\\|\n\\)*\\$flow-ignore
+esproposal.decorators=ignore
 
 [strict]
