@@ -1,9 +1,3 @@
-@import 'style/variable';
-
-
-$card-margin: 8px;
-$card-padding: 12px;
-
 .task-card {
   flex: 1 0 auto;
   background: white;
@@ -12,9 +6,9 @@ $card-padding: 12px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: $card-margin / 2 0;
-  padding: $card-padding;
-  box-shadow: 0 2px 4px $gray-light-litte-depth;
+  margin: 4px 0;
+  padding: 12px;
+  box-shadow: 0 2px 4px #eee;
   cursor: pointer;
 
   .task-card--title {
@@ -30,5 +24,3 @@ $card-padding: 12px;
     margin-top: 0px;
   }
 }
-
-.task-card:-khtml-drag {}

@@ -1,8 +1,6 @@
 const Merge = require('webpack-merge');
 const webpack = require('webpack');
 
-const path = require('path');
-
 const CommonConfig = require('./webpack.common.js');
 
 module.exports = Merge(CommonConfig, {
@@ -12,7 +10,8 @@ module.exports = Merge(CommonConfig, {
     // clientLogLevel: 'none',
     port: 9000,
     publicPath: '/',
-    proxy: require('./proxy-options')
+    proxy: require('./proxy-options'),
+    stats: { children: false }
   },
   plugins: [
     new webpack.DefinePlugin({

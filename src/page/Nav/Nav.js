@@ -1,15 +1,11 @@
 // @flow
 import React, { Component } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import R from 'ramda';
 import { makeGravatarUrl } from '../../services/gravatar';
 import { Storage, storageImage } from '../../services/storage';
-import { DropList } from '../../components/widget/DropList/DropList';
-import ClickOutSide from '../../components/utils/ClickOutSide';
 import { LogoBan } from '../../components/commons/LogoBan/LogoBan';
-import { testLoactionMatchPrefix } from '../../utils/route';
 
-import { Layout, Icon } from 'antd';
+import { Layout, Icon, Dropdown, Menu } from 'antd';
 const { Header } = Layout;
 
 // TODO remove
@@ -32,14 +28,9 @@ class Nav extends Component<
     { name: 'Todo', url: '/todo' }
   ];
 
-  findActivedLinkName() {
-    const activedLink = R.find(R.compose(testLoactionMatchPrefix, R.prop('url')))(this.links);
-    return activedLink ? activedLink.name : 'Octopus';
-  }
-
-  renderLinks() {
-    return <div>{this.renderLinkList()}</div>;
-  }
+  onNewAvatarImageLoaded = (event: SyntheticEvent<any>) => {
+    storageImage('avator', event.nativeEvent.target);
+  };
 
   comment() {
     return (
@@ -54,21 +45,6 @@ class Nav extends Component<
         >
           <span className="nav-username">{userName}</span>
 
-          {avatarData ? (
-            <img
-              ref={ref => (this.avator = ref)}
-              className="nav-avatar"
-              src={`data:image/png;base64,${avatarData}`}
-            />
-          ) : (
-            <img
-              ref={ref => (this.avator = ref)}
-              className="nav-avatar"
-              crossOrigin="Anonymous"
-              onLoad={() => storageImage('avator', this.avator)}
-              src={makeGravatarUrl(user.email)}
-            />
-          )}
           <i
             className={`fa fa-angle-down ${this.state.avatarDropDownToggle ? ' toggle' : ''}`}
             aria-hidden="true"
@@ -110,21 +86,61 @@ class Nav extends Component<
     const userName = this.props.user.username;
     const { user } = this.props;
     const avatarData = Storage.get('avator');
+
+    const menu = (
+      <Menu>
+        <Menu.Item>
+          <Link to="/profile">
+            Signed in as <strong>{userName}</strong>
+          </Link>
+        </Menu.Item>
+        <Menu.Item>
+          <a target="_blank" rel="noopener noreferrer" href="http://www.taobao.com/">
+            2nd menu item
+          </a>
+        </Menu.Item>
+        <Menu.Item>
+          <span onClick={this.props.actions.LOGOUT_REQUEST}>Logout</span>
+        </Menu.Item>
+      </Menu>
+    );
     return (
       <Header className="app-header">
         <Link to="/task-board">
           <LogoBan white={true} />
         </Link>
         <div className="app-header-menu">
-          <NavLink to="/task-board" activeClassName="active">
-            <Icon type="appstore-o" />
-            Project
-          </NavLink>
+          <div>
+            <NavLink to="/task-board" activeClassName="active">
+              <Icon type="appstore-o" />
+              Project
+            </NavLink>
 
-          <NavLink to="/todo" activeClassName="active">
-            <Icon type="check-square" />
-            Todo
-          </NavLink>
+            <NavLink to="/todo" activeClassName="active">
+              <Icon type="check-square" />
+              Todo
+            </NavLink>
+          </div>
+
+          <div style={{ display: 'inline-block' }}>
+            <Dropdown overlay={menu} placement="bottomRight">
+              {avatarData ? (
+                <img
+                  ref={ref => (this.avator = ref)}
+                  className="nav-avatar"
+                  src={`data:image/png;base64,${avatarData}`}
+                />
+              ) : (
+                <img
+                  ref={ref => (this.avator = ref)}
+                  className="nav-avatar"
+                  crossOrigin="Anonymous"
+                  onLoad={this.onNewAvatarImageLoaded}
+                  src={makeGravatarUrl(user.email)}
+                />
+              )}
+            </Dropdown>
+          </div>
         </div>
       </Header>
     );

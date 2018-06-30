@@ -4,7 +4,7 @@ import thunkMiddleware from 'redux-thunk';
 import { createEpicMiddleware } from 'redux-observable';
 import * as reducers from '../reducers';
 import rootEpic from '../epic';
-import epicAdapterService from '../services/single/epic-adapter.service';
+/* import epicAdapterService from '../services/single/epic-adapter.service'; */
 
 import configureStore from './configureStore';
 
@@ -19,7 +19,7 @@ export const store = configureStore(
   applyMiddleware(thunkMiddleware, routeMiddleware, epicMiddleware),
   () => {
     epicMiddleware.run(rootEpic, {
-      adapter: epicAdapterService
+      /* adapter: epicAdapterService */
     });
   }
 );

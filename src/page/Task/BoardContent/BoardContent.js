@@ -6,9 +6,12 @@ import { Route } from 'react-router';
 import TaskTrack from '../Track/Track';
 import { CardDetailContainer } from '../CardDetail/CardDetail.container';
 import TrackCreater from '../TrackCreater/TrackCreater';
+import HTML5Backend from 'react-dnd-html5-backend';
+import { DragDropContext } from 'react-dnd';
 
 import './BoardContent.scss';
 
+@DragDropContext(HTML5Backend)
 export class BoardContent extends Component<
   {
     actions: any,

@@ -3,9 +3,20 @@ import React, { Component } from 'react';
 import { UserAvatar } from '../../../components/UserAvatar/UserAvatar';
 import { Checkbox } from 'antd';
 import { getMouseElementInnerOffset } from '../../../utils/dom';
+import { DragSource, ConnectDragSource } from 'react-dnd';
 
-import './TaskCard.scss';
+import './TaskCard.less';
 
+@DragSource(
+  {
+    type: 'CARD'
+  },
+  boxSource,
+  (connect, monitor) => ({
+    connectDragSource: connect.dragSource(),
+    isDragging: monitor.isDragging()
+  })
+)
 export class TaskCard extends Component<
   {
     card: any,
