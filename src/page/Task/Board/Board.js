@@ -30,7 +30,7 @@ export class Board extends Component<Props> {
 
   componentWillReceiveProps(nextProps: Props) {
     if (nextProps.boardName !== this.props.boardName) {
-      updateTitle(`Task Board ${nextProps.boardName}`);
+      updateTitle(` ${nextProps.boardName}`);
     }
   }
 

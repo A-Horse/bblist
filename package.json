@@ -57,6 +57,7 @@
     "react-dom": "^16.3.1",
     "react-dom-factories": "^1.0.2",
     "react-image-crop": "3.0.11",
+    "react-measure": "^2.0.2",
     "react-redux": "^5.0.7",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
