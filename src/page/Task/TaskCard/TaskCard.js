@@ -5,6 +5,7 @@ import { Checkbox } from 'antd';
 import { getMouseElementInnerOffset } from '../../../utils/dom';
 import { DragSource, DropTarget, ConnectDragSource } from 'react-dnd';
 import { findDOMNode } from 'react-dom';
+import { Map } from 'immutable';
 
 import './TaskCard.less';
 
@@ -25,7 +26,6 @@ const TaskCardSource = {
       console.log(component);
     },
     canDrop(props, monitor) {
-      // You can disallow drop based on props or item
       const item = monitor.getItem();
       return item.card.get('id') !== props.card.get('id');
     }
@@ -65,6 +65,13 @@ export class TaskCard extends Component<
       ...toPatchData
     });
   };
+
+  onTaskCardDrop(iCard: Map<any>) {
+    this.props.actions.CARD_MOVE_REQUEST({
+      sourceCard: iCard.toJSON(),
+      targetCard: this.props.card.toJSON()
+    });
+  }
 
   render() {
     const { card } = this.props;

@@ -18,9 +18,9 @@ class Nav extends Component<
     user: UserData,
     actions: any
   },
-  { avatarDropDownToggle: boolean, smallDeviceNavLinkToggle: boolean }
+  {}
 > {
-  state = { avatarDropDownToggle: false, smallDeviceNavLinkToggle: false };
+  state = {};
 
   links = [
     { name: 'Dash', url: '/home' },
