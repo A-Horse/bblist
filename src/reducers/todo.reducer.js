@@ -1,9 +1,8 @@
 // @flow
-import { TODOBOX_CREATE_SUCCESS } from 'actions/todo/todos';
 import { TDBox, TD, TDS, TDBoxs } from '../schema';
 import { normalize } from 'normalizr';
 import { Map, List, fromJS } from 'immutable';
-import Actions from 'actions/actions';
+import Actions from '../actions/actions';
 
 export function todos(
   state = fromJS({
@@ -56,12 +55,12 @@ export function todos(
         .update('todoBoxIds', () => List(normalizeTodoBox.result))
         .update('todoBoxEntities', () => fromJS(normalizeTodoBox.entities.TodoBox || {}));
 
-    case TODOBOX_CREATE_SUCCESS:
-      normalize(action.payload, TD);
-      return {
-        ...state
-      };
-
+    /* case TODOBOX_CREATE_SUCCESS:
+       *   normalize(action.payload, TD);
+       *   return {
+       *     ...state
+       *   };
+       */
     default:
       return state;
   }

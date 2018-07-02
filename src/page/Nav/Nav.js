@@ -32,56 +32,6 @@ class Nav extends Component<
     storageImage('avator', event.nativeEvent.target);
   };
 
-  comment() {
-    return (
-      <ClickOutSide
-        className="avatar-area"
-        onClickOutside={() => {
-          this.state.avatarDropDownToggle && this.setState({ avatarDropDownToggle: false });
-        }}
-      >
-        <div
-          onClick={() => this.setState({ avatarDropDownToggle: !this.state.avatarDropDownToggle })}
-        >
-          <span className="nav-username">{userName}</span>
-
-          <i
-            className={`fa fa-angle-down ${this.state.avatarDropDownToggle ? ' toggle' : ''}`}
-            aria-hidden="true"
-          />
-        </div>
-
-        <DropList className="nav-avatar-drop-down" toggle={this.state.avatarDropDownToggle}>
-          <ClickOutSide
-            onClickOutside={() => {
-              this.setState({ avatarDropDownToggle: false });
-            }}
-            onClick={() => {
-              this.setState({ avatarDropDownToggle: false });
-            }}
-          >
-            <ul>
-              <li>
-                <Link to="/profile">
-                  Signed in as <strong>{userName}</strong>
-                </Link>
-              </li>
-              <li>
-                <Link to="/profile">Profile</Link>
-              </li>
-              <li>
-                <Link to="/setting">setting</Link>
-              </li>
-              <li className="logout-button" onClick={this.props.actions.LOGOUT_REQUEST}>
-                logout
-              </li>
-            </ul>
-          </ClickOutSide>
-        </DropList>
-      </ClickOutSide>
-    );
-  }
-
   render() {
     const userName = this.props.user.username;
     const { user } = this.props;
@@ -93,11 +43,6 @@ class Nav extends Component<
           <Link to="/profile">
             Signed in as <strong>{userName}</strong>
           </Link>
-        </Menu.Item>
-        <Menu.Item>
-          <a target="_blank" rel="noopener noreferrer" href="http://www.taobao.com/">
-            2nd menu item
-          </a>
         </Menu.Item>
         <Menu.Item>
           <span onClick={this.props.actions.LOGOUT_REQUEST}>Logout</span>

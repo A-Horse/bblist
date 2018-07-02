@@ -4,7 +4,6 @@ import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/catch';
 import { ajax } from 'rxjs/observable/dom/ajax';
 import { AjaxObservable } from 'rxjs/observable/dom/AjaxObservable';
-import { updateTaskBoardSuccess } from 'actions/task/task-wall';
 import { makeApiUrl } from '../utils/api';
 import { Observable } from 'rxjs';
 import { JWT_STORAGE_KEY } from '../constants';
