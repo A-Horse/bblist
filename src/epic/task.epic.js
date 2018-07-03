@@ -63,8 +63,6 @@ export const CARD_MOVE_REQUEST = (action$, state) =>
       })
     );
 
-    console.log(sourceUdpatedCards, targetUdpatedCards, mergedCards, resultUpdatedCards);
-
     return Actions.CARD_MOVE_HANDLE.request(resultUpdatedCards);
   });
 
