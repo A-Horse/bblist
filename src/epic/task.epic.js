@@ -68,14 +68,14 @@ export const CARD_MOVE_REQUEST = (action$, state) =>
     return Actions.CARD_MOVE_HANDLE.request(resultUpdatedCards);
   });
 
-/* export const CARD_MOVE_HANDLE_REQUEST = action$ =>
- *   action$.ofType(Actions.CARD_MOVE.REQUEST).mergeMap(action => {
- *     return http
- *       .patch(makeApiUrl(`/tk/task-cards/move-batch`), null, action.payload)
- *       .then(Actions.ADD_TASK_BOARD.success)
- *       .catch(Actions.ADD_TASK_BOARD.failure);
- *   });
- *  */
+export const CARD_MOVE_HANDLE_REQUEST = action$ =>
+  action$.ofType(Actions.CARD_MOVE_HANDLE.REQUEST).mergeMap(action => {
+    return http
+      .patch(makeApiUrl(`/task-cards/move-batch`), null, action.payload)
+      .then(Actions.CARD_MOVE_HANDLE.success)
+      .catch(Actions.CARD_MOVE_HANDLE.failure);
+  });
+
 export const ADD_TASK_BOARD_REQUEST = action$ =>
   action$.ofType(Actions.ADD_TASK_BOARD.REQUEST).mergeMap(action => {
     return http

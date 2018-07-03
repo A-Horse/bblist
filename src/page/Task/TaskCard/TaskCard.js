@@ -85,7 +85,6 @@ export class TaskCard extends Component<
             {connectDragSource(
               <div>
                 <div className="task-card">
-                  {card.get('id')}
                   <Checkbox
                     checked={card.get('isDone')}
                     onChange={event => this.updateCard({ isDone: event.target.checked })}
