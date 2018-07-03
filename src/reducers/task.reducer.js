@@ -27,6 +27,9 @@ export function task2(
         boardMap.merge(fromJS(normalizedAddBoard.entities.TaskBoard))
       );
 
+    case Actions.CARD_MOVE_HANDLE.REQUEST:
+      return state.update('cardMap', cardMap => cardMap.merge(action.payload));
+
     case Actions.GET_TASK_BOARD.SUCCESS:
       const normalizedBoard = normalize(action.payload, TaskBoard);
       return state

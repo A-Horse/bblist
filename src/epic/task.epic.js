@@ -9,6 +9,7 @@ import { makeApiUrl } from '../utils/api';
 import { http } from '../services/http';
 import R from 'ramda';
 import { getCachedUserId } from 'utils/auth';
+import { fromJS } from 'immutable';
 
 export const GET_TASK_BOARD = action$ =>
   action$.ofType(Actions.GET_TASK_BOARD.REQUEST).mergeMap(action => {
@@ -18,6 +19,63 @@ export const GET_TASK_BOARD = action$ =>
       .catch(Actions.GET_TASK_BOARD.failure);
   });
 
+export const CARD_MOVE_REQUEST = (action$, state) =>
+  action$.ofType(Actions.CARD_MOVE.REQUEST).map(action => {
+    const sourceUdpatedCards = state.value.task2
+      .get('cardMap')
+      .filter(card => {
+        console.log(card);
+        console.log(action.payload.sourceCard);
+        return (
+          card.get('taskListId') === action.payload.sourceCard.taskListId &&
+          card.get('index') > action.payload.sourceCard.index
+        );
+      })
+      .map(card => {
+        return card.update('index', i => i - 1);
+      });
+
+    const targetUdpatedCards = state.value.task2
+      .get('cardMap')
+      .filter(card => {
+        return (
+          card.get('taskListId') === action.payload.targetCard.taskListId &&
+          card.get('index') > action.payload.targetCard.index
+        );
+      })
+      .map(card => {
+        return card.update('index', i => i + 1);
+      });
+
+    const mergedCards = sourceUdpatedCards.merge(targetUdpatedCards);
+
+    const resultUpdatedCards = mergedCards.set(
+      action.payload.sourceCard.id.toString(),
+      fromJS({
+        ...action.payload.sourceCard,
+        taskListId: action.payload.targetCard.taskListId,
+        index:
+          state.value.task2
+            .get('cardMap')
+            .merge(mergedCards)
+            .find(card => card.get('id') === action.payload.targetCard.id)
+            .get('index') + 1
+      })
+    );
+
+    console.log(sourceUdpatedCards, targetUdpatedCards, mergedCards, resultUpdatedCards);
+
+    return Actions.CARD_MOVE_HANDLE.request(resultUpdatedCards);
+  });
+
+/* export const CARD_MOVE_HANDLE_REQUEST = action$ =>
+ *   action$.ofType(Actions.CARD_MOVE.REQUEST).mergeMap(action => {
+ *     return http
+ *       .patch(makeApiUrl(`/tk/task-cards/move-batch`), null, action.payload)
+ *       .then(Actions.ADD_TASK_BOARD.success)
+ *       .catch(Actions.ADD_TASK_BOARD.failure);
+ *   });
+ *  */
 export const ADD_TASK_BOARD_REQUEST = action$ =>
   action$.ofType(Actions.ADD_TASK_BOARD.REQUEST).mergeMap(action => {
     return http

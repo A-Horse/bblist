@@ -132,7 +132,7 @@ export class Track extends Component<{
 
         <div className="task-track--body">
           <div>
-            {this.props.cards.map(card => {
+            {this.props.cards.sortBy(card => card.get('index')).map(card => {
               return (
                 <TaskCard
                   ref={cardConnectedInstance =>

@@ -24,6 +24,11 @@ const TaskCardSource = {
   {
     drop(props, monitor, component) {
       console.log(component);
+      /* component.onTaskCardDrop(props.card); */
+      props.actions.CARD_MOVE_REQUEST({
+        sourceCard: monitor.getItem().card.toJS(),
+        targetCard: props.card.toJS()
+      });
     },
     canDrop(props, monitor) {
       const item = monitor.getItem();
@@ -66,13 +71,6 @@ export class TaskCard extends Component<
     });
   };
 
-  onTaskCardDrop(iCard: Map<any>) {
-    this.props.actions.CARD_MOVE_REQUEST({
-      sourceCard: iCard.toJSON(),
-      targetCard: this.props.card.toJSON()
-    });
-  }
-
   render() {
     const { card } = this.props;
     const { isDragging, connectDragSource, connectDragPreview } = this.props;
@@ -87,6 +85,7 @@ export class TaskCard extends Component<
             {connectDragSource(
               <div>
                 <div className="task-card">
+                  {card.get('id')}
                   <Checkbox
                     checked={card.get('isDone')}
                     onChange={event => this.updateCard({ isDone: event.target.checked })}
