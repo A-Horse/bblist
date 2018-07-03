@@ -73,6 +73,7 @@ export class Track extends Component<{
   }
 
   render() {
+    console.log('this.props.cards', this.props.cards);
     return (
       <div
         ref={ref => (this.domMain = ref)}
@@ -132,21 +133,24 @@ export class Track extends Component<{
 
         <div className="task-track--body">
           <div>
-            {this.props.cards.sortBy(card => card.get('index')).map(card => {
-              return (
-                <TaskCard
-                  ref={cardConnectedInstance =>
-                    this.pickCardInstance(cardConnectedInstance, card.get('id'))
-                  }
-                  actions={this.props.actions}
-                  key={card.get('id')}
-                  boardId={this.props.boardId}
-                  card={card}
-                  history={this.props.history}
-                  match={this.props.match}
-                />
-              );
-            })}
+            {this.props.cards
+              .sortBy(card => card.get('index'))
+              .toArray()
+              .map(card => {
+                return (
+                  <TaskCard
+                    ref={cardConnectedInstance =>
+                      this.pickCardInstance(cardConnectedInstance, card.get('id'))
+                    }
+                    actions={this.props.actions}
+                    key={card.get('id')}
+                    boardId={this.props.boardId}
+                    card={card}
+                    history={this.props.history}
+                    match={this.props.match}
+                  />
+                );
+              })}
           </div>
           <TaskCardCreater
             loginedUser={this.props.loginedUser}
