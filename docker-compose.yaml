@@ -13,6 +13,7 @@ services:
     build: ../backend-octopus/
     volumes:
      - ../backend-octopus/db:/app/db
+     - ../backend-octopus/storage:/app/storage
     ports:
       - "5500:5500"
     networks:
