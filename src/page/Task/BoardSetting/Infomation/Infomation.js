@@ -36,9 +36,7 @@ export class Infomation extends Component<{
             <ImageUploader
               style={{ width: '250px', height: '125px', borderRadius: '6px', display: 'block' }}
               source={
-                board.get('cover')
-                  ? `url(${makeRemoteUrl(board.get('cover'))})`
-                  : `url(${DEFAULT_BOARD_COVER_SRC})`
+                board.get('cover') ? makeRemoteUrl(board.get('cover')) : DEFAULT_BOARD_COVER_SRC
               }
               upload={this.onCoverUpload}
             >
