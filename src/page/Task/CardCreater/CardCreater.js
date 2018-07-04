@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Button } from 'components/widget/Button/Button';
-import { Hr } from 'components/widget/Hr';
 import { UserAvatar } from 'components/UserAvatar/UserAvatar';
 import ClickOutSide from 'components/utils/ClickOutSide';
 import { timeout } from 'utils/timeout';
@@ -76,14 +75,12 @@ class CardCreater extends Component {
               <UserAvatar user={this.props.loginedUser.toJS()} />
               <span>{this.props.loginedUser.get('username')}</span>
             </div>
-            <Hr />
             <div className="taskcard-creater--participants">
               <div>Participants</div>
               <div>
                 <UserAvatar user={this.props.loginedUser.toJS()} />
               </div>
             </div>
-            <Hr />
             <div className="taskcard-creater--operation">
               <div>
                 <i className="fa fa-ellipsis-h" aria-hidden="true" />

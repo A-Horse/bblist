@@ -24,8 +24,6 @@ export const CARD_MOVE_REQUEST = (action$, state) =>
     const sourceUdpatedCards = state.value.task2
       .get('cardMap')
       .filter(card => {
-        console.log(card);
-        console.log(action.payload.sourceCard);
         return (
           card.get('taskListId') === action.payload.sourceCard.taskListId &&
           card.get('index') > action.payload.sourceCard.index
