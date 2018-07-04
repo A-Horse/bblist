@@ -29,7 +29,7 @@ export class ImageUploader extends Component<
       y: 0,
       aspect: 16 / 9,
       width: 80,
-      height: 45
+      height: 55.55
     }
   };
   fileInput: any;

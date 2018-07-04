@@ -1,8 +1,10 @@
 // @flow
 import React, { Component } from 'react';
+import { Input } from 'antd';
+
 import { ImageUploader } from '../../../../components/ImageUploader/ImageUploader';
 import { makeRemoteUrl } from '../../../../services/remote-storage';
-import { Input } from 'antd';
+import { DEFAULT_BOARD_COVER_SRC } from '../../../../constants';
 
 import './Infomation.scss';
 
@@ -32,8 +34,12 @@ export class Infomation extends Component<{
           <div className="board-cover--heading">Board Cover:</div>
           <div className="board-cover--uploader">
             <ImageUploader
-              style={{ width: '250px', height: '125px', borderRadius: '6px' }}
-              source={makeRemoteUrl(board.get('cover'))}
+              style={{ width: '250px', height: '125px', borderRadius: '6px', display: 'block' }}
+              source={
+                board.get('cover')
+                  ? `url(${makeRemoteUrl(board.get('cover'))})`
+                  : `url(${DEFAULT_BOARD_COVER_SRC})`
+              }
               upload={this.onCoverUpload}
             >
               Upload new Cover
