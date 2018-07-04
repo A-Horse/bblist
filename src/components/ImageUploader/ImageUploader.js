@@ -1,17 +1,17 @@
 // @flow
 import React, { Component } from 'react';
 import ReactCrop from 'react-image-crop';
-import { imageCrop } from '../../services/image-crop';
 import { Button, Modal } from 'antd';
+import { imageCrop } from './ImageUploader.helper';
 
-import './ImageUploader.less';
-
-const crop = { width: 30, aspect: 2 / 1 };
+import './ImageUploader.css';
+import 'react-image-crop/dist/ReactCrop.css';
 
 export class ImageUploader extends Component<
   {
-    uploadFn: any,
-    children: any
+    upload: any,
+    source: string,
+    style: any
   },
   {
     modalVisible: boolean,
@@ -20,7 +20,18 @@ export class ImageUploader extends Component<
     crop: any
   }
 > {
-  state = { modalVisible: false, imageDataURL: '', cropedimageDataUrl: '', crop };
+  state = {
+    modalVisible: false,
+    imageDataURL: '',
+    cropedimageDataUrl: '',
+    crop: {
+      x: 0,
+      y: 0,
+      aspect: 16 / 9,
+      width: 80,
+      height: 45
+    }
+  };
   fileInput: any;
 
   handleCancelModal = () => {
@@ -30,12 +41,11 @@ export class ImageUploader extends Component<
   };
 
   upload = () => {
-    this.props.uploadFn(this.state.cropedimageDataUrl);
+    this.props.upload(this.state.cropedimageDataUrl);
     this.closeModal();
   };
 
-  cropImage = async (crop, pixelCrop) => {
-    console.log(crop, pixelCrop);
+  cropImage = async (crop: any, pixelCrop: any) => {
     if (!pixelCrop) {
       return;
     }
@@ -50,15 +60,15 @@ export class ImageUploader extends Component<
     this.setState({ crop });
   };
 
-  onCropChange = (crop, pixelCrop) => {
+  onCropChange = (crop: any, pixelCrop: any) => {
+    this.setState({ crop });
+  };
+
+  onCropComplete = (crop: any, pixelCrop: any) => {
     this.cropImage(crop, pixelCrop);
   };
 
-  onCropComplete = (crop, pixelCrop) => {
-    this.cropImage(crop, pixelCrop);
-  };
-
-  onImageLoaded = (crop, image, pixelCrop) => {
+  onImageLoaded = (crop: any, image: any, pixelCrop: any) => {
     this.cropImage(crop, pixelCrop);
   };
 
@@ -71,20 +81,30 @@ export class ImageUploader extends Component<
   };
 
   openModal = () => {
+    if (!this.fileInput.files) {
+      return;
+    }
     const reader = new FileReader();
     reader.onload = e => {
       this.setState({ imageDataURL: e.target.result });
     };
     reader.readAsDataURL(this.fileInput.files[0]);
     this.setState({ modalVisible: true });
+    this.fileInput.value = '';
   };
 
   render() {
     return (
-      <div className="image-uploader">
-        <Button className="image-uploader--button" onClick={this.openFilePicker}>
-          {this.props.children || 'Upload'}
-        </Button>
+      <div className="image-upload">
+        <img
+          style={{
+            backgroundColor: '#f8f8f8',
+            ...this.props.style
+          }}
+          alt=""
+          src={this.props.source}
+          onClick={this.openFilePicker}
+        />
         <input
           ref={ref => (this.fileInput = ref)}
           type="file"
@@ -92,34 +112,25 @@ export class ImageUploader extends Component<
           onChange={this.openModal}
         />
         <Modal
+          title="裁剪您的新头像:"
           className="image-uploader-modal"
           onCancel={this.handleCancelModal}
           visible={this.state.modalVisible}
-          footer={[<Button onClick={this.upload}>Upload</Button>]}
+          footer={[
+            <Button type="primary" key="1" onClick={this.upload}>
+              上传头像
+            </Button>
+          ]}
         >
-          <div>
-            <div>
-              <h2>Upload Image</h2>
-            </div>
-
-            <div>
-              <div className="crop-image-container">
-                <ReactCrop
-                  crop={this.state.crop}
-                  onChange={this.onCropChange}
-                  onComplete={this.onCropComplete}
-                  onImageLoaded={this.onImageLoaded}
-                  src={this.state.imageDataURL}
-                />
-              </div>
-
-              <div className="upload-link" onClick={this.openFilePicker}>
-                <i className="fa fa-picture-o" aria-hidden="true" />
-                <a>Choose Image:</a>
-              </div>
-            </div>
-
-            <img className="upload--preview-image" src={this.state.cropedimageDataUrl} />
+          <div className="crop-image-container">
+            <ReactCrop
+              style={{ maxHeight: '60vh' }}
+              crop={this.state.crop}
+              onChange={this.onCropChange}
+              onComplete={this.onCropComplete}
+              onImageLoaded={this.onImageLoaded}
+              src={this.state.imageDataURL}
+            />
           </div>
         </Modal>
       </div>

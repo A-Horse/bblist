@@ -20,37 +20,31 @@ class CardCreater extends Component {
     beforeClose: false
   };
 
-  constructor(props) {
-    super(props);
-    this.close = this.close.bind(this);
-    this.toggle = this.toggle.bind(this);
-    this.addCard = this.addCard.bind(this);
-  }
-
   clearInput() {
     this.taskCardTitle.value = '';
   }
 
-  addCard() {
+  addCard = () => {
     this.props.addTaskCard({ title: this.state.title.trim() });
     this.clearInput();
     this.close();
-  }
+  };
 
-  async close() {
+  close = async () => {
     this.setState({ beforeClose: true });
     await timeout(200);
     this.setState({ toggle: false, beforeClose: false });
-  }
+  };
 
-  async toggle() {
+  // TODO refactor
+  toggle = async () => {
     this.setState({ toggle: true });
     await timeout();
     // TODO animate
     window.document.querySelector(
       `[data-id="${this.props.track.get('id')}"].task-track .task-track--body`
     ).scrollTop = 10000;
-  }
+  };
 
   render() {
     if (this.state.toggle)
