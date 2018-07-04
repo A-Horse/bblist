@@ -4,25 +4,30 @@ import R from 'ramda';
 import Input from '../../../components/widget/Input/Input';
 import { TaskCard } from '../TaskCard/TaskCard';
 import TaskCardCreater from '../CardCreater/CardCreater';
-import { DropList } from '../../../components/widget/DropList/DropList';
 import ClickOutSide from '../../../components/utils/ClickOutSide';
 import { isEnterKey } from '../../../utils/keyboard';
 import { onTrackTopBarMouseDown } from './track-switch-helper';
+import { Menu, Dropdown, Icon } from 'antd';
 
 import './Track.scss';
 
-export class Track extends Component<{
-  cards: any,
-  track: any,
-  boardId: any,
-  loginedUser: any,
-  actions: any,
-  updateTrack: any,
-  addTaskCard: any,
-  destroyTrack: any
-}> {
+export class Track extends Component<
+  {
+    cards: any,
+    track: any,
+    boardId: any,
+    loginedUser: any,
+    actions: any,
+    updateTrack: any,
+    addTaskCard: any,
+    destroyTrack: any
+  },
+  {
+    trackDropDownVisible: boolean
+  }
+> {
   state = {
-    operationToggle: false
+    trackDropDownVisible: false
   };
 
   constructor(props) {
@@ -73,7 +78,6 @@ export class Track extends Component<{
   }
 
   render() {
-    console.log('this.props.cards', this.props.cards);
     return (
       <div
         ref={ref => (this.domMain = ref)}
@@ -98,37 +102,22 @@ export class Track extends Component<{
               defaultValue={this.props.track.get('name')}
             />
           </div>
-
-          <i
-            className="fa fa-ellipsis-h"
-            aria-hidden="true"
-            onMouseDown={event => event.stopPropagation()}
-            onClick={event => {
-              event.stopPropagation();
-              this.setState({ operationToggle: !this.state.operationToggle });
-            }}
-          />
-
-          <DropList
-            className="task-track-operation"
-            toggle={this.state.operationToggle}
-            onMouseDown={event => event.stopPropagation()}
+          <Dropdown
+            trigger={['click']}
+            overlay={
+              <Menu>
+                <Menu.Item
+                  key="0"
+                  onClick={() => this.props.destroyTrack({ trackId: this.props.track.get('id') })}
+                >
+                  <i className="fa fa-trash" aria-hidden="true" />
+                  <span>Delete</span>
+                </Menu.Item>
+              </Menu>
+            }
           >
-            <ClickOutSide
-              onClickOutside={event => {
-                event.stopPropagation();
-                this.setState({ operationToggle: false });
-              }}
-            >
-              <li
-                className="task-track-operation--remove"
-                onClick={() => this.props.destroyTrack({ trackId: this.props.track.get('id') })}
-              >
-                <i className="fa fa-trash" aria-hidden="true" />
-                <span>Delete</span>
-              </li>
-            </ClickOutSide>
-          </DropList>
+            <Icon type="ellipsis" />
+          </Dropdown>,
         </div>
 
         <div className="task-track--body">

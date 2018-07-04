@@ -16,8 +16,8 @@
   transition: transform 200ms ease-in-out;
   box-shadow: 0 0 5px #e8e8e8;
 
-  @media screen and (max-width: 600px) {
-    width: 260px;
+  .ant-dropdown-trigger {
+    cursor: pointer;
   }
 
   &.has-draging-card {

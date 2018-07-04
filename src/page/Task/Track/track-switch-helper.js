@@ -1,12 +1,13 @@
 export function onTrackTopBarMouseDown(event, component) {
   // TODO 只需要在content里query
+  if (event.nativeEvent.target.classList.contains('ant-dropdown-trigger')) {
+    return;
+  }
+
   const tracks = window.document.querySelectorAll('.task-track');
   const thisTrack = component.domMain;
   const movingTrack = thisTrack.cloneNode(true);
 
-  // const trackOffsetLeft = thisTrack.offsetLeft;
-
-  // const pageContainer = window.document.body.querySelector('.board-container');
   const trackContainer = window.document.body.querySelector('.board-track-container');
 
   const trackHorMargin = 14;
@@ -98,5 +99,6 @@ export function onTrackTopBarMouseDown(event, component) {
 
   window.document.body.addEventListener('mousemove', onMouseMove);
   window.document.body.addEventListener('mouseup', onMouseUp);
+
   // TODO body onblur
 }
