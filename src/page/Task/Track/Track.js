@@ -104,6 +104,7 @@ export class Track extends Component<
           </div>
           <Dropdown
             trigger={['click']}
+            placement="bottomRight"
             overlay={
               <Menu>
                 <Menu.Item
@@ -116,8 +117,8 @@ export class Track extends Component<
               </Menu>
             }
           >
-            <Icon type="ellipsis" />
-          </Dropdown>,
+            <Icon type="appstore-o" />
+          </Dropdown>
         </div>
 
         <div className="task-track--body">

@@ -27,6 +27,7 @@ export function onTrackTopBarMouseDown(event, component) {
   };
 
   movingTrack.classList.add('moving');
+
   movingTrack.style.height = thisTrack.offsetHeight + 'px';
   movingTrack.style.width = thisTrack.offsetWidth + 'px';
   movingTrack.style.top = thisTrackRect.top - trackVerMargin + 'px';
