@@ -15,7 +15,7 @@ export const UPDATE_USER_REQUEST = action$ =>
         withHeader: true
       })
       .then(responseAndHeader => {
-        saveJWT(responseAndHeader.header.get('jwts-token'));
+        saveJWT(responseAndHeader.header.get('jwt-token'));
         return Actions.UPDATE_USER.success(responseAndHeader.body);
       })
       .catch(Actions.UPDATE_USER.failure);

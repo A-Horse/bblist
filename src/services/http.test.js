@@ -11,7 +11,7 @@ test('http get', () => {
 test('http get with jwt', () => {
   nock('http://ocotpus.xyz', {
     reqheaders: {
-      'jwts-token':
+      'jwt-token':
         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoyLCJ1c2VybmFtZSI6IumZs-aUvueCujJzZHNkITIyMjIyMjIyMjIyIiwiZW1haWwiOiJjaGVuZmFuZ3dlaUBvdXRsb29rLmNvbSIsInN0YXR1cyI6bnVsbCwidHlwZSI6bnVsbCwiZGVzYyI6bnVsbCwiY3JlYXRlZF9hdCI6bnVsbCwidXBkYXRlZF9hdCI6bnVsbH0sImlhdCI6MTUwNjAwOTIwNX0.aWTfMa9hnf51hBq9jzv7niE3N-qxsGlOPaMdrbKOcYI'
     }
   })
@@ -24,9 +24,9 @@ test('http get query', () => {
   nock('http://ocotpus.xyz')
     .get('/api/test?a=b&date=zero')
     .reply(200, { foo: 'bar' });
-  return expect(
-    http.get('http://ocotpus.xyz/api/test', { a: 'b', date: 'zero' })
-  ).resolves.toEqual({ foo: 'bar' });
+  return expect(http.get('http://ocotpus.xyz/api/test', { a: 'b', date: 'zero' })).resolves.toEqual(
+    { foo: 'bar' }
+  );
 });
 
 test('http post', () => {

@@ -1,6 +1,6 @@
 import END_POINT from './constant/endpoint';
 
-export const JWT_STORAGE_KEY = 'jwts-token';
+export const JWT_STORAGE_KEY = 'jwt-token';
 
 export const CACHED_USERNAME = 'CACHED_USERNAME';
 export const CACHED_USERID = 'CACHED_USERID';
