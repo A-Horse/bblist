@@ -2,10 +2,8 @@ import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/catch';
-import { ajax } from 'rxjs/observable/dom/ajax';
 import { AjaxObservable } from 'rxjs/observable/dom/AjaxObservable';
 import { makeApiUrl } from '../utils/api';
-import { Observable } from 'rxjs';
 import { JWT_STORAGE_KEY } from '../constants';
 import { getJWT } from 'utils/auth';
 
