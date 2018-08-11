@@ -13,7 +13,3 @@ export const TDS = new schema.Array(TD);
 export const TDBox = new schema.Entity('TodoBox', { todos: TDS });
 export const TDBoxs = new schema.Array(TDBox);
 export const TDRepeat = new schema.Entity('TodoRepeat');
-export const TDRepeats = new schema.Array(TDRepeat);
-
-export const WIKI = new schema.Entity('Wiki');
-export const WIKILIST = new schema.Array(WIKI);

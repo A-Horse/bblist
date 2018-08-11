@@ -50,7 +50,7 @@ export function task2(
             return a.get('index') < b.get('index') ? -1 : 1;
           })
         )
-        .update('cardMap', () => fromJS(normalizedBoard.entities.TaskCard));
+        .update('cardMap', () => fromJS(normalizedBoard.entities.TaskCard || {}));
 
     case Actions.GET_TASK_BOARD.FAILURE:
       return state.update('board', () => null).update('boardFetching', R.F);
