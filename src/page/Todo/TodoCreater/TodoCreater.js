@@ -18,13 +18,13 @@ export class TodoCreater extends Component<
     content: '',
     deadline: null
   };
+  input: HTMLElement | null;
 
   handleSubmit = (event: SyntheticInputEvent<*>) => {
     event.preventDefault();
     if (!this.state.content) {
       return message.error('Please input todo content');
     }
-    console.log(this.state);
 
     this.props.submit({
       content: this.state.content,
@@ -45,6 +45,7 @@ export class TodoCreater extends Component<
             <Icon type="plus" />
             <InputGroup compact>
               <Input
+                ref={input => (this.input = input)}
                 value={this.state.content}
                 onChange={event => this.setState({ content: event.target.value })}
                 onPressEnter={this.handleSubmit}

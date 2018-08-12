@@ -118,7 +118,7 @@ export class ImageUploader extends Component<
           visible={this.state.modalVisible}
           footer={[
             <Button type="primary" key="1" onClick={this.upload}>
-              上传头像
+              Uoload Cover
             </Button>
           ]}
         >

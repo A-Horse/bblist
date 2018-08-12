@@ -36,11 +36,9 @@ class CardCreater extends Component {
     this.setState({ toggle: false, beforeClose: false });
   };
 
-  // TODO refactor
   toggle = async () => {
     this.setState({ toggle: true });
     await timeout();
-    // TODO animate
     window.document.querySelector(
       `[data-id="${this.props.track.get('id')}"].task-track .task-track--body`
     ).scrollTop = 10000;
@@ -56,6 +54,7 @@ class CardCreater extends Component {
           >
             <div>
               <textarea
+                autoFocus
                 type="text"
                 ref={ref => (this.taskCardTitle = ref)}
                 placeholder="Task Content"
