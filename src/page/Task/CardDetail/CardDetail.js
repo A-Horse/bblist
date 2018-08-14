@@ -68,7 +68,7 @@ export class CardDetail extends Component<
   };
 
   updateBelongTrack = (trackId: string) => {
-    const originalCardBelongTrackId: number = this.props.card.get('taskListId');
+    const originalCardBelongTrackId: number = this.props.card.get('taskTrackId');
 
     this.props.epicAdapterService.input$
       .ofType(Actions.UPDATE_TASK_CARD.SUCCESS)
@@ -87,7 +87,7 @@ export class CardDetail extends Component<
 
     this.props.actions.UPDATE_TASK_CARD_REQUEST({
       id: this.props.card.get('id'),
-      taskListId: trackId
+      taskTrackId: trackId
     });
   };
 
@@ -120,13 +120,13 @@ export class CardDetail extends Component<
         onCancel={this.close}
         title={
           <div>
-            <Select defaultValue={card.get('taskListId')} onChange={this.updateBelongTrack}>
+            <Select defaultValue={card.get('taskTrackId')} onChange={this.updateBelongTrack}>
               {this.props.trackMap.toArray().map(track => {
                 return (
                   <Option
                     key={track.get('id')}
                     value={track.get('id')}
-                    disabled={card.get('taskListId') === track.get('id')}
+                    disabled={card.get('taskTrackId') === track.get('id')}
                   >
                     {track.get('name')}
                   </Option>

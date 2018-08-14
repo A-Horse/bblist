@@ -25,7 +25,7 @@ test('TaskBoard', () => {
   const cardMap = fromJS({
     '20': {
       created_at: null,
-      taskWallId: 15,
+      taskBoardId: 15,
       isDone: 0,
       executorId: null,
       ownerId: null,
@@ -39,13 +39,13 @@ test('TaskBoard', () => {
       content: null,
       sprint: null,
       id: 20,
-      taskListId: 21
+      taskTrackId: 21
     }
   });
   const trackMap = fromJS({
     '21': {
       id: 21,
-      taskWallId: 15,
+      taskBoardId: 15,
       index: 1,
       name: 'Track No.1',
       type: null,

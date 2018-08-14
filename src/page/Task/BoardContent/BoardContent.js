@@ -63,7 +63,7 @@ export class BoardContent extends Component<
               }}
               actions={this.props.actions}
               track={track}
-              cards={this.props.cardMap.filter(card => card.get('taskListId') === track.get('id'))}
+              cards={this.props.cardMap.filter(card => card.get('taskTrackId') === track.get('id'))}
               addTaskCard={data =>
                 this.props.actions.ADD_TASK_CARD_REQUEST({
                   boardId: +this.props.board.get('id'),

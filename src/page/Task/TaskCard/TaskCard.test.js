@@ -7,7 +7,7 @@ test('TaskCard', () => {
   const card = fromJS({
     id: 23,
     title: 'sdsd!!!',
-    taskListId: 17,
+    taskTrackId: 17,
     sprint: null,
     createrId: 2,
     ownerId: null,
@@ -19,8 +19,8 @@ test('TaskCard', () => {
     ownerId: null,
     sprint: null,
     status: null,
-    taskListId: 17,
-    taskWallId: 15,
+    taskTrackId: 17,
+    taskBoardId: 15,
     title: 'taskcard',
     updated_at: null,
     creater: {

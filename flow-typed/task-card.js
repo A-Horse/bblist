@@ -11,8 +11,8 @@ declare interface TaskCard {
   ownerId: number;
   sprint: any;
   status: string;
-  taskListId: number;
-  taskWallId: number;
+  taskTrackId: number;
+  taskBoardId: number;
   title: string;
   updated_at: number;
 }

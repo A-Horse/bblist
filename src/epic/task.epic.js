@@ -25,7 +25,7 @@ export const CARD_MOVE_REQUEST = (action$, state) =>
       .get('cardMap')
       .filter(card => {
         return (
-          card.get('taskListId') === action.payload.sourceCard.taskListId &&
+          card.get('taskTrackId') === action.payload.sourceCard.taskTrackId &&
           card.get('index') > action.payload.sourceCard.index
         );
       })
@@ -37,7 +37,7 @@ export const CARD_MOVE_REQUEST = (action$, state) =>
       .get('cardMap')
       .filter(card => {
         return (
-          card.get('taskListId') === action.payload.targetCard.taskListId &&
+          card.get('taskTrackId') === action.payload.targetCard.taskTrackId &&
           card.get('index') > action.payload.targetCard.index
         );
       })
@@ -51,7 +51,7 @@ export const CARD_MOVE_REQUEST = (action$, state) =>
       action.payload.sourceCard.id.toString(),
       fromJS({
         ...action.payload.sourceCard,
-        taskListId: action.payload.targetCard.taskListId,
+        taskTrackId: action.payload.targetCard.taskTrackId,
         index:
           state.value.task2
             .get('cardMap')
