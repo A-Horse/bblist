@@ -23,8 +23,6 @@ const TaskCardSource = {
   'CARD',
   {
     drop(props, monitor, component) {
-      console.log(component);
-      /* component.onTaskCardDrop(props.card); */
       props.actions.CARD_MOVE_REQUEST({
         sourceCard: monitor.getItem().card.toJS(),
         targetCard: props.card.toJS()
@@ -62,7 +60,7 @@ export class TaskCard extends Component<
 
   componentWillMount() {}
 
-  componentWillReceiveProps(newProps) {}
+  componentWillReceiveProps() {}
 
   updateCard = (toPatchData: any) => {
     this.props.actions.UPDATE_TASK_CARD_REQUEST({
