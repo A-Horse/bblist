@@ -11,6 +11,7 @@ const actionNames = [
 
   'UPDATE_USER',
   'QUERY_USER_INFOMATION_WITH_EMAIL',
+  'CHANGE_PASSWORD',
 
   'ADD_TODO',
   'UPDATE_TODO',

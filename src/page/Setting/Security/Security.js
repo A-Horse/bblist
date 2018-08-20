@@ -4,11 +4,18 @@ import Input from '../../../components/widget/Input/Input';
 import { Button } from '../../../components/widget/Button/Button';
 import { ErrorMsg } from '../../../components/ErrorMsg/ErrorMsg';
 import { validateFormValue } from '../../../services/validate-strategy';
+import { bindActionCreators } from 'redux';
+import { makeActionRequestCollection } from '../../../actions/actions';
 import R from 'ramda';
+import { connect } from 'react-redux';
+import SettingPage from 'page/Setting/SettingPage';
+import { withRouter } from 'react-router-dom';
 
 import './security.less';
 
-export class SettingSecurity extends Component<{}> {
+class SettingSecurity extends Component<{
+  actions: any
+}> {
   state = {};
 
   componentWillMount() {}
@@ -23,7 +30,7 @@ export class SettingSecurity extends Component<{}> {
       newPassword: newPassword.value,
       confirmPassword: confirmPassword.value
     };
-    this.props.actions.updatePassword(data);
+    this.props.actions.CHANGE_PASSWORD_REQUEST(data);
   };
 
   render() {
@@ -64,3 +71,16 @@ export class SettingSecurity extends Component<{}> {
     );
   }
 }
+
+export const SettingSecurityContainer = withRouter(
+  connect(
+    state => {
+      return {};
+    },
+    dispatch => {
+      return {
+        actions: bindActionCreators(makeActionRequestCollection(), dispatch)
+      };
+    }
+  )(SettingSecurity)
+);

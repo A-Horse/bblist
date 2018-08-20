@@ -3,7 +3,7 @@ import { updateTitle } from 'services/title';
 import { Link } from 'react-router-dom';
 import { Route, Switch, Redirect } from 'react-router';
 
-import Security from './Security/Security';
+import { SettingSecurityContainer } from './Security/Security';
 import Profile from './Profile/Profile.container';
 
 import './SettingPage.scss';
@@ -31,7 +31,7 @@ export default class Setting extends Component {
           <Switch>
             <Route exact path="/setting" render={() => <Redirect to="/setting/profile" />} />
             <Route path="/setting/profile" component={Profile} />
-            <Route path="/setting/security" component={Security} />
+            <Route path="/setting/security" component={SettingSecurityContainer} />
           </Switch>
         </div>
       </section>

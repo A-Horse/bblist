@@ -1,3 +1,4 @@
+// @flow
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mapTo';
@@ -5,7 +6,9 @@ import 'rxjs/add/operator/catch';
 import Actions from '../actions/actions';
 import { makeApiUrl } from '../utils/api';
 import { http } from '../services/http';
-import { getCachedUserId, saveJWT } from 'utils/auth';
+import { getCachedUserId, saveJWT } from '../utils/auth';
+import { ofType } from 'redux-observable';
+import { mergeMap, tap, ignoreElements } from 'rxjs/operators';
 
 export const UPDATE_USER_REQUEST = action$ =>
   action$.ofType(Actions.UPDATE_USER.REQUEST).mergeMap(action => {
@@ -32,3 +35,11 @@ export const QUERY_USER_INFOMATION_WITH_EMAIL_REQUEST = action$ =>
         .then(Actions.QUERY_USER_INFOMATION_WITH_EMAIL.success)
         .catch(Actions.QUERY_USER_INFOMATION_WITH_EMAIL.failure);
     });
+
+export const CHANGE_PASSWORD_REQUEST = action$ =>
+  action$.pipe(
+    ofType(Actions.CHANGE_PASSWORD.REQUEST),
+    mergeMap(action => {
+      /* return  */
+    })
+  );
