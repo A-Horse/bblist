@@ -21,6 +21,7 @@ class Nav extends Component<
   {}
 > {
   state = {};
+  avator: any;
 
   links = [
     { name: 'Dash', url: '/home' },

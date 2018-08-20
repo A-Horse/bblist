@@ -47,7 +47,7 @@ class SignIn extends Component<
       <PageContainer className="signin-page">
         <div className="signin-main">
           <LogoBan />
-          <form className="signin-form" onSubmit={this.login.bind(this)}>
+          <form className="signin-form" onSubmit={this.login}>
             <div>
               <Input
                 type="text"
@@ -89,7 +89,7 @@ class SignIn extends Component<
     );
   }
 
-  login(event: Event) {
+  login = (event: Event) => {
     event.preventDefault();
     const loginInfo = {
       email: this.state.email.trim(),
@@ -106,7 +106,7 @@ class SignIn extends Component<
       return;
     }
     this.props.actions.LOGIN_REQUEST(loginInfo);
-  }
+  };
 }
 
 export default SignIn;

@@ -6,10 +6,10 @@ import { ErrorMsg } from '../../../components/ErrorMsg/ErrorMsg';
 import { validateFormValue } from '../../../services/validate-strategy';
 import R from 'ramda';
 
-import 'style/page/setting/security.scss';
+import './security.less';
 
-export default class Security extends Component {
-  state = { updatePwderrorMessages: {} };
+export class SettingSecurity extends Component<{}> {
+  state = {};
 
   componentWillMount() {}
 
@@ -21,15 +21,8 @@ export default class Security extends Component {
     const data = {
       oldPassword: oldPassword.value,
       newPassword: newPassword.value,
-      confirmPassword: newPassword.value
+      confirmPassword: confirmPassword.value
     };
-    const errorMessages = validateFormValue(data, {
-      confirmPassword: [`eqTo@${data.newPassword}#password don't match`]
-    });
-    this.setState({ updatePwderrorMessages: errorMessages });
-    if (Object.keys(errorMessages).length) {
-      return;
-    }
     this.props.actions.updatePassword(data);
   };
 
@@ -57,8 +50,6 @@ export default class Security extends Component {
               name="update-password-confirm"
             />
           </div>
-
-          <ErrorMsg messages={R.values(this.state.updatePwderrorMessages)} />
 
           <Button
             className="signin-button"
