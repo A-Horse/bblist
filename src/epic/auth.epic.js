@@ -8,24 +8,26 @@ import { Storage } from '../services/storage';
 import Actions from '../actions/actions';
 import { makeApiUrl } from '../utils/api';
 import { http } from '../services/http';
-import { saveAuthData, getJWT } from 'utils/auth';
+import { saveAuthData, getJWT } from '../utils/auth';
+import { setupAxiosJwtHeader } from '../helper/http-intercetor';
+import axios from 'axios';
 
 import type { ActionsObservable } from 'redux-observable';
 
 export const LOGIN_REQUEST = (action$: ActionsObservable<FSAction>) =>
   action$.ofType(Actions.LOGIN.REQUEST).mergeMap(action =>
-    http
-      .post(makeApiUrl('/user/signin'), null, action.payload)
+    axios
+      .post(makeApiUrl('/user/signin'), action.payload)
       .then(response => {
-        // TODO 从 header 拿
-        saveAuthData(response);
+        saveAuthData(response.data);
+        setupAxiosJwtHeader(response.data.jwt);
         return Actions.LOGIN.success(response);
       })
       .catch(error => {
-        if (error.name === 'NotAuthError') {
-          return Actions.LOGIN.failure('Email or password not match!');
+        if (error.response && error.response.code === 401) {
+          return Actions.LOGIN.failure('email and password not matched');
         }
-        return Actions.LOGIN.failure(error.message);
+        return Actions.LOGIN.failure('Login fail');
       })
   );
 

@@ -14,7 +14,7 @@ export function getCachedUserId() {
   return Storage.get(CACHED_USERID);
 }
 
-function saveUserData(userData: UserData): void {
+function saveUserData(userData: string): void {
   return Storage.set('USER_DATA', userData);
 }
 

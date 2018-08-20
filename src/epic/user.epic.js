@@ -9,6 +9,7 @@ import { http } from '../services/http';
 import { getCachedUserId, saveJWT } from '../utils/auth';
 import { ofType } from 'redux-observable';
 import { mergeMap, tap, ignoreElements } from 'rxjs/operators';
+import axios from 'axios';
 
 export const UPDATE_USER_REQUEST = action$ =>
   action$.ofType(Actions.UPDATE_USER.REQUEST).mergeMap(action => {
@@ -40,6 +41,6 @@ export const CHANGE_PASSWORD_REQUEST = action$ =>
   action$.pipe(
     ofType(Actions.CHANGE_PASSWORD.REQUEST),
     mergeMap(action => {
-      /* return  */
+      return axios.post(makeApiUrl(`/ser`));
     })
   );
