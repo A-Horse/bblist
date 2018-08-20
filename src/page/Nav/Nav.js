@@ -45,6 +45,10 @@ class Nav extends Component<
           </Link>
         </Menu.Item>
         <Menu.Item>
+          <Link to="/setting">Setting</Link>
+        </Menu.Item>
+
+        <Menu.Item>
           <span onClick={this.props.actions.LOGOUT_REQUEST}>Logout</span>
         </Menu.Item>
       </Menu>

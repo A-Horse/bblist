@@ -1,12 +1,9 @@
+// @flow
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { browserHistory } from 'react-router';
-import { PageContainer } from 'components/widget/PageContainer';
-import { makeGravatarUrl } from 'services/gravatar';
-import Input from 'components/widget/Input/Input';
-import { Button } from 'components/widget/Button/Button';
-import { ErrorMsg } from 'components/ErrorMsg/ErrorMsg';
-import { validateFormValue } from 'services/validate-strategy';
+import Input from '../../../components/widget/Input/Input';
+import { Button } from '../../../components/widget/Button/Button';
+import { ErrorMsg } from '../../../components/ErrorMsg/ErrorMsg';
+import { validateFormValue } from '../../../services/validate-strategy';
 import R from 'ramda';
 
 import 'style/page/setting/security.scss';
@@ -14,14 +11,9 @@ import 'style/page/setting/security.scss';
 export default class Security extends Component {
   state = { updatePwderrorMessages: {} };
 
-  constructor() {
-    super();
-    this.updatePassword = this.updatePassword.bind(this);
-  }
-
   componentWillMount() {}
 
-  updatePassword(event) {
+  updatePassword = event => {
     const oldPassword = this.refs.oldPassword.instance;
     const newPassword = this.refs.newPassword.instance;
     const confirmPassword = this.refs.confirmPassword.instance;
@@ -39,7 +31,7 @@ export default class Security extends Component {
       return;
     }
     this.props.actions.updatePassword(data);
-  }
+  };
 
   render() {
     return (

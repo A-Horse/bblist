@@ -1,15 +1,9 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { makeGravatarUrl } from 'services/gravatar';
-import { ActiveCalendar } from './ActiveCalendar/ActiveCalendar';
+import { makeGravatarUrl } from '../../services/gravatar';
 
 import './ProfilePage.scss';
 
 export class Profile extends Component {
-  static propTypes = {
-    user: PropTypes.object
-  };
-
   componentWillMount() {}
 
   render() {
@@ -31,21 +25,6 @@ export class Profile extends Component {
             </a>{' '}
             to display you avatar. you can change avatar in gravatar by your email;
           </p>
-        </div>
-
-        <div className="profile-detail">
-          <div>
-            Join Octopus ready <span className="profile-detail-number">N</span> days.
-          </div>
-
-          <div>
-            Own <span className="profile-detail-number">N</span> Task board.
-          </div>
-          <div>
-            Finished <span className="profile-detail-number">N</span> Todos.
-          </div>
-
-          <ActiveCalendar />
         </div>
       </div>
     );
