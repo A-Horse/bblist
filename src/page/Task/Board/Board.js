@@ -25,7 +25,9 @@ interface Props {
 export class Board extends Component<Props> {
   componentWillMount() {
     updateTitle(`Task Board ${this.props.boardName}`);
-    this.props.actions.GET_TASK_BOARD_REQUEST({ id: this.props.match.params.boardId });
+    const taskBoardId = this.props.match.params.boardId;
+    this.props.actions.GET_TASK_BOARD_REQUEST({ id: taskBoardId });
+    this.props.actions.GET_TASK_BOARD_SETTING_REQUEST({ id: taskBoardId });
   }
 
   componentWillReceiveProps(nextProps: Props) {
@@ -71,7 +73,7 @@ export class Board extends Component<Props> {
             render={props => <BoardSetting {...this.props} {...props} />}
           />
           <Route
-            path="/task-board/:id"
+            path="/task-board/:boardId"
             render={props => <BoardContent {...this.props} {...props} />}
           />
         </Switch>

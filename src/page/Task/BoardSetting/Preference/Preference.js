@@ -4,12 +4,13 @@ import { Radio } from 'antd';
 const RadioGroup = Radio.Group;
 import { bindActionCreators } from 'redux';
 import { makeActionRequestCollection } from '../../../../actions/actions';
+import { withRouter } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 
 import './Preference.less';
 
-class TaskBoardPreference extends Component<{ actions: any }> {
+class TaskBoardPreference extends Component<{ actions: any, taskBoardId: string }> {
   render() {
     return (
       <div className="board-setting-preference">
@@ -33,23 +34,28 @@ class TaskBoardPreference extends Component<{ actions: any }> {
 
   onNotificationSettingChange() {}
 
-  onCardModeChange = (value: 'Column' | 'List') => {
+  onCardModeChange = event => {
+    console.log(event);
     this.props.actions.TASKBOARD_SETTING_UPDATE_REQUEST(
       {
-        showType: value
+        showType: event.target.value
       },
-      { taskBoardId: null }
+      { taskBoardId: this.props.taskBoardId }
     );
   };
 }
 
-export const TaskBoardPreferenceContainer = connect(
-  state => {
-    return {};
-  },
-  dispatch => {
-    return {
-      actions: bindActionCreators(makeActionRequestCollection(), dispatch)
-    };
-  }
-)(TaskBoardPreference);
+export const TaskBoardPreferenceContainer = withRouter(
+  connect(
+    (state, props) => {
+      const taskBoardId = props.match.params.id;
+
+      return { taskBoardId };
+    },
+    dispatch => {
+      return {
+        actions: bindActionCreators(makeActionRequestCollection(), dispatch)
+      };
+    }
+  )(TaskBoardPreference)
+);

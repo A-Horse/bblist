@@ -46,3 +46,14 @@ export const TASKBOARD_SETTING_UPDATE_REQUEST = (action$: Observable<FSAction>) 
         .catch(Actions.TASKBOARD_SETTING_UPDATE.failure);
     })
   );
+
+export const GET_TASK_BOARD_SETTING_REQUEST = (action$: Observable<FSAction>) =>
+  action$.pipe(
+    ofType(Actions.TASKBOARD_SETTING_UPDATE.REQUEST),
+    mergeMap(action => {
+      return axios
+        .get(`/api/task-board/${action.meta.taskBoardId}/setting`, action.payload)
+        .then(resp => Actions.GET_TASK_BOARD_SETTING.success(resp.data))
+        .catch(Actions.GET_TASK_BOARD_SETTING.failure);
+    })
+  );
