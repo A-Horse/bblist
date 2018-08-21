@@ -14,7 +14,7 @@ export function user(state: Map<any> = fromJS({}), action: FSAction) {
     case Actions.CHANGE_PASSWORD.REQUEST:
       return state;
 
-    case Actions.CHANGE_PASSWORD.REQUEST:
+    case Actions.CHANGE_PASSWORD.SUCCESS:
       return state;
 
     default:
