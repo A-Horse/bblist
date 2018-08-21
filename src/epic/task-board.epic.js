@@ -42,7 +42,7 @@ export const TASKBOARD_SETTING_UPDATE_REQUEST = (action$: Observable<FSAction>) 
     mergeMap(action => {
       return axios
         .patch(`/api/task-board/${action.meta.taskBoardId}/setting`, action.payload)
-        .then(resp => Actions.TASKBOARD_SETTING_UPDATE.success(resp.data))
+        .then(resp => Actions.TASKBOARD_SETTING_UPDATE.success(resp.data, action.meta))
         .catch(Actions.TASKBOARD_SETTING_UPDATE.failure);
     })
   );

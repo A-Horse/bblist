@@ -10,7 +10,8 @@ export function task2(
     board: null,
     boardMap: {},
     trackMap: {},
-    cardMap: {}
+    cardMap: {},
+    boardSettingMap: {}
   }),
   action
 ) {
@@ -30,7 +31,12 @@ export function task2(
     case Actions.GET_TASK_BOARD_SETTING.REQUEST:
       return state;
     case Actions.GET_TASK_BOARD_SETTING.SUCCESS:
-      return state;
+      return state.setIn(['boardSettingMap', action.payload.boardId], fromJS(action.payload));
+
+    case Actions.TASKBOARD_SETTING_UPDATE.REQUEST:
+      return state.updateIn(['boardSettingMap', action.meta.taskBoardId], setting => {
+        return setting.merge(fromJS(action.payload));
+      });
 
     case Actions.CARD_MOVE_HANDLE.REQUEST:
       return state.update('cardMap', cardMap => cardMap.merge(action.payload));

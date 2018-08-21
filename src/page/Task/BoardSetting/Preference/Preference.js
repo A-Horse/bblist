@@ -5,12 +5,17 @@ const RadioGroup = Radio.Group;
 import { bindActionCreators } from 'redux';
 import { makeActionRequestCollection } from '../../../../actions/actions';
 import { withRouter } from 'react-router-dom';
+import { Map } from 'immutable';
 
 import { connect } from 'react-redux';
 
 import './Preference.less';
 
-class TaskBoardPreference extends Component<{ actions: any, taskBoardId: string }> {
+class TaskBoardPreference extends Component<{
+  actions: any,
+  boardSetting: any,
+  taskBoardId: string
+}> {
   render() {
     return (
       <div className="board-setting-preference">
@@ -23,7 +28,10 @@ class TaskBoardPreference extends Component<{ actions: any, taskBoardId: string 
         <div>
           <div className="">Card Mode:</div>
 
-          <RadioGroup onChange={this.onCardModeChange} value={'COLUMN'}>
+          <RadioGroup
+            onChange={this.onCardModeChange}
+            value={this.props.boardSetting.get('showType') || 'COLUMN'}
+          >
             <Radio value={'COLUMN'}>Columns</Radio>
             <Radio value={'LIST'}>List</Radio>
           </RadioGroup>
@@ -35,7 +43,6 @@ class TaskBoardPreference extends Component<{ actions: any, taskBoardId: string 
   onNotificationSettingChange() {}
 
   onCardModeChange = event => {
-    console.log(event);
     this.props.actions.TASKBOARD_SETTING_UPDATE_REQUEST(
       {
         showType: event.target.value
@@ -49,8 +56,10 @@ export const TaskBoardPreferenceContainer = withRouter(
   connect(
     (state, props) => {
       const taskBoardId = props.match.params.boardId;
-
-      return { taskBoardId };
+      return {
+        taskBoardId,
+        boardSetting: state.task2.get('boardSettingMap').get(taskBoardId) || Map()
+      };
     },
     dispatch => {
       return {
