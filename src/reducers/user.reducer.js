@@ -12,10 +12,24 @@ export function user(state: Map<any> = fromJS({}), action: FSAction) {
       return state.set('inviteParticipant', fromJS(action.payload));
 
     case Actions.CHANGE_PASSWORD.REQUEST:
-      return state;
+      return {
+        ...state,
+        changePasswordFetching: true
+      };
 
     case Actions.CHANGE_PASSWORD.SUCCESS:
-      return state;
+      return {
+        ...state,
+        changePasswordFetching: false,
+        changePasswordSuccess: true
+      };
+
+    case Actions.CHANGE_PASSWORD.FAILURE:
+      return {
+        ...state,
+        changePasswordFetching: false,
+        changePasswordSuccess: false
+      };
 
     default:
       return state;
