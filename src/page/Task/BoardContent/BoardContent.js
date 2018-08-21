@@ -2,7 +2,6 @@
 import React, { Component } from 'react';
 import DOM from 'react-dom-factories';
 import { Route } from 'react-router';
-
 import TaskTrack from '../Track/Track';
 import { CardDetailContainer } from '../CardDetail/CardDetail.container';
 import TrackCreater from '../TrackCreater/TrackCreater';
@@ -39,7 +38,7 @@ export class BoardContent extends Component<
   };
 
   render() {
-    const { trackMap, cardMap } = this.props;
+    const { trackMap } = this.props;
     if (!this.props.board) {
       return DOM.noscript();
     }
@@ -56,6 +55,7 @@ export class BoardContent extends Component<
               key={track.get('id')}
               ref={ref => {
                 if (!ref) {
+                  // TODO delete 耗性能
                   delete this.trackInstanceMap[trackMap.get('id')];
                 } else {
                   this.trackInstanceMap[track.get('id')] = ref;

@@ -9,7 +9,7 @@ import { BoardContent } from '../BoardContent/BoardContent';
 import { BoardSetting } from '../BoardSetting/BoardSetting';
 
 import { Layout } from 'antd';
-const { Header, Footer, Sider, Content } = Layout;
+const { Header } = Layout;
 
 import './Board.scss';
 
