@@ -30,7 +30,10 @@ class SettingSecurity extends Component<{
       newPassword: newPassword.value,
       confirmPassword: confirmPassword.value
     };
-    this.props.actions.CHANGE_PASSWORD_REQUEST(data);
+    this.props.actions.CHANGE_PASSWORD_REQUEST({
+      oldPassword: oldPassword.value,
+      newPassword: newPassword.value
+    });
   };
 
   render() {

@@ -37,10 +37,13 @@ export const QUERY_USER_INFOMATION_WITH_EMAIL_REQUEST = action$ =>
         .catch(Actions.QUERY_USER_INFOMATION_WITH_EMAIL.failure);
     });
 
-export const CHANGE_PASSWORD_REQUEST = action$ =>
+export const CHANGE_PASSWORD_REQUEST = (action$: Observable<FSAction>) =>
   action$.pipe(
     ofType(Actions.CHANGE_PASSWORD.REQUEST),
     mergeMap(action => {
-      return axios.post(makeApiUrl(`/ser`));
+      return axios
+        .post(makeApiUrl(`/user/update-password`), action.payload)
+        .then(resp => Actions.CHANGE_PASSWORD.success(resp.data))
+        .catch(Actions.CHANGE_PASSWORD.failure);
     })
   );
