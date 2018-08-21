@@ -2,10 +2,14 @@
 import React, { Component } from 'react';
 import { Radio } from 'antd';
 const RadioGroup = Radio.Group;
+import { bindActionCreators } from 'redux';
+import { makeActionRequestCollection } from '../../../../actions/actions';
+
+import { connect } from 'react-redux';
 
 import './Preference.less';
 
-export class Preference extends Component<{}> {
+class TaskBoardPreference extends Component<{ actions: any }> {
   render() {
     return (
       <div className="board-setting-preference">
@@ -18,8 +22,8 @@ export class Preference extends Component<{}> {
         <div>
           <div className="">Card Mode:</div>
 
-          <RadioGroup onChange={this.onChange} value={this.state.value}>
-            <Radio value={'Colmn'}>Columns</Radio>
+          <RadioGroup onChange={this.onCardModeChange} value={'Column'}>
+            <Radio value={'Column'}>Columns</Radio>
             <Radio value={'List'}>List</Radio>
           </RadioGroup>
         </div>
@@ -29,5 +33,23 @@ export class Preference extends Component<{}> {
 
   onNotificationSettingChange() {}
 
-  onCardModeChange() {}
+  onCardModeChange = (value: 'Column' | 'List') => {
+    this.props.actions.TASKBOARD_SETTING_UPDATE_REQUEST(
+      {
+        showType: value
+      },
+      { taskBoardId: null }
+    );
+  };
 }
+
+export const TaskBoardPreferenceContainer = connect(
+  state => {
+    return {};
+  },
+  dispatch => {
+    return {
+      actions: bindActionCreators(makeActionRequestCollection(), dispatch)
+    };
+  }
+)(TaskBoardPreference);
