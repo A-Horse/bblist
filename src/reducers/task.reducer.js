@@ -27,6 +27,11 @@ export function task2(
         boardMap.merge(fromJS(normalizedAddBoard.entities.TaskBoard))
       );
 
+    case Actions.GET_TASK_BOARD_SETTING.REQUEST:
+      return state;
+    case Actions.GET_TASK_BOARD_SETTING.SUCCESS:
+      return state;
+
     case Actions.CARD_MOVE_HANDLE.REQUEST:
       return state.update('cardMap', cardMap => cardMap.merge(action.payload));
 

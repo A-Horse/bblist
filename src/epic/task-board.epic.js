@@ -49,10 +49,10 @@ export const TASKBOARD_SETTING_UPDATE_REQUEST = (action$: Observable<FSAction>) 
 
 export const GET_TASK_BOARD_SETTING_REQUEST = (action$: Observable<FSAction>) =>
   action$.pipe(
-    ofType(Actions.TASKBOARD_SETTING_UPDATE.REQUEST),
+    ofType(Actions.GET_TASK_BOARD_SETTING.REQUEST),
     mergeMap(action => {
       return axios
-        .get(`/api/task-board/${action.meta.taskBoardId}/setting`, action.payload)
+        .get(`/api/task-board/${action.payload.taskBoardId}/setting`)
         .then(resp => Actions.GET_TASK_BOARD_SETTING.success(resp.data))
         .catch(Actions.GET_TASK_BOARD_SETTING.failure);
     })

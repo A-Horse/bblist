@@ -23,9 +23,9 @@ class TaskBoardPreference extends Component<{ actions: any, taskBoardId: string 
         <div>
           <div className="">Card Mode:</div>
 
-          <RadioGroup onChange={this.onCardModeChange} value={'Column'}>
-            <Radio value={'Column'}>Columns</Radio>
-            <Radio value={'List'}>List</Radio>
+          <RadioGroup onChange={this.onCardModeChange} value={'COLUMN'}>
+            <Radio value={'COLUMN'}>Columns</Radio>
+            <Radio value={'LIST'}>List</Radio>
           </RadioGroup>
         </div>
       </div>
@@ -48,7 +48,7 @@ class TaskBoardPreference extends Component<{ actions: any, taskBoardId: string 
 export const TaskBoardPreferenceContainer = withRouter(
   connect(
     (state, props) => {
-      const taskBoardId = props.match.params.id;
+      const taskBoardId = props.match.params.boardId;
 
       return { taskBoardId };
     },

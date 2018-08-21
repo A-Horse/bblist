@@ -27,7 +27,7 @@ export class Board extends Component<Props> {
     updateTitle(`Task Board ${this.props.boardName}`);
     const taskBoardId = this.props.match.params.boardId;
     this.props.actions.GET_TASK_BOARD_REQUEST({ id: taskBoardId });
-    this.props.actions.GET_TASK_BOARD_SETTING_REQUEST({ id: taskBoardId });
+    this.props.actions.GET_TASK_BOARD_SETTING_REQUEST({ taskBoardId: taskBoardId });
   }
 
   componentWillReceiveProps(nextProps: Props) {

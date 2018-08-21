@@ -52,7 +52,7 @@ export class BoardSetting extends Component<{
                   render={props => <Participant {...this.props} {...props} />}
                 />
                 <Route
-                  path="/task-board/:id/setting/preference"
+                  path="/task-board/:boardId/setting/preference"
                   render={() => <TaskBoardPreferenceContainer />}
                 />
                 <Route
