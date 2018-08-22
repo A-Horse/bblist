@@ -4,7 +4,6 @@ import R from 'ramda';
 import Input from '../../../components/widget/Input/Input';
 import { TaskCard } from '../TaskCard/TaskCard';
 import TaskCardCreater from '../CardCreater/CardCreater';
-import ClickOutSide from '../../../components/utils/ClickOutSide';
 import { isEnterKey } from '../../../utils/keyboard';
 import { onTrackTopBarMouseDown } from './track-switch-helper';
 import { Menu, Dropdown, Icon } from 'antd';
@@ -33,8 +32,6 @@ export class Track extends Component<
   constructor(props) {
     super(props);
     this.resetDragMeta();
-    this.addTaskCard = this.addTaskCard.bind(this);
-    this.onTopBarMouseDown = this.onTopBarMouseDown.bind(this);
   }
 
   componentWillMount() {
@@ -57,17 +54,17 @@ export class Track extends Component<
     }
   }
 
-  onTopBarMouseDown(event) {
+  onTopBarMouseDown = event => {
     onTrackTopBarMouseDown(event, this);
-  }
+  };
 
   resetDragMeta() {
     this.cardDragMeta = { placeholderCardIndex: -1 };
   }
 
-  addTaskCard(data) {
+  addTaskCard = data => {
     return this.props.addTaskCard({ trackId: +this.props.track.get('id'), ...data });
-  }
+  };
 
   shouldComponentUpdate(newProps, newState) {
     return (
