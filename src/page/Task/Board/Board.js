@@ -5,7 +5,7 @@ import { Route, Switch, Redirect } from 'react-router';
 import { updateTitle } from '../../../services/title';
 import { StarCheckBox } from '../../../components/widget/StarCheckBox/StarCheckBox';
 
-import { BoardContent } from '../BoardContent/BoardContent';
+import { BoardContentContainer } from '../BoardContent/BoardContent';
 import { BoardSetting } from '../BoardSetting/BoardSetting';
 
 import { Layout } from 'antd';
@@ -72,10 +72,7 @@ export class Board extends Component<Props> {
             path="/task-board/:boardId/setting"
             render={props => <BoardSetting {...this.props} {...props} />}
           />
-          <Route
-            path="/task-board/:boardId"
-            render={props => <BoardContent {...this.props} {...props} />}
-          />
+          <Route path="/task-board/:boardId" render={props => <BoardContentContainer />} />
         </Switch>
       </Layout>
     );

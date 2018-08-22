@@ -9,7 +9,12 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
 import { makeActionRequestCollection } from '../../../../actions/actions';
+import HTML5Backend from 'react-dnd-html5-backend';
+import { DragDropContext } from 'react-dnd';
 
+import './ColumnBoard.less';
+
+@DragDropContext(HTML5Backend)
 export class ColumnBoard extends Component<
   {
     actions: any,
