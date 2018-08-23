@@ -36,6 +36,13 @@ export class Board extends Component<Props> {
     }
   }
 
+  onStarCheckChange = value => {
+    this.props.actions.UPDATE_TASK_BOARD_REQUEST({
+      id: this.props.match.params.boardId,
+      isStar: value
+    });
+  };
+
   render() {
     const { boardId } = this.props.match.params;
     const { board, boardFetching } = this.props;
@@ -48,7 +55,11 @@ export class Board extends Component<Props> {
     return (
       <Layout className="board-container">
         <Header className="taskboard-header">
-          <StarCheckBox className="taskboard-header--star" defaultChecked={board.get('isStar')} />
+          <StarCheckBox
+            className="taskboard-header--star"
+            onChange={this.onStarCheckChange}
+            defaultChecked={board.get('isStar')}
+          />
           <div className="taskboard-name">
             <Link className="taskboard-name--text" to={`/task-board/${boardId}`}>
               {board && board.get('name')}

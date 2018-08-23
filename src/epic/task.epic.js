@@ -102,7 +102,7 @@ export const UPDATE_TASK_BOARD_REQUEST = action$ =>
   action$
     .ofType(Actions.UPDATE_TASK_BOARD.REQUEST)
     .distinctUntilChanged()
-    .debounceTime(1000)
+    .debounceTime(300)
     .mergeMap(action => {
       return http
         .patch(
