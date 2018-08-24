@@ -32,9 +32,18 @@ export const ADD_TODOBOX_REQUEST = action$ =>
 export const GET_TODOLIST_REQUEST = action$ =>
   action$.ofType(Actions.GET_TODOLIST.REQUEST).mergeMap(action => {
     const userId = getCachedUserId();
-    const url = action.payload.todoBoxId
-      ? `/t/todo-box/${action.payload.todoBoxId}`
-      : `/t/user/${userId}/todo`;
+    let url;
+    switch (action.payload.todoBoxid) {
+      case '@all':
+        url = `/t/user/${userId}/todo`;
+        break;
+      case '@task':
+        url = `/t/user/${userId}/task-todo`;
+        break;
+      default:
+        url = `/t/todo-box/${action.payload.todoBoxId}`;
+        break;
+    }
 
     return http
       .get(makeApiUrl(url))

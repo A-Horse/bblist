@@ -10,7 +10,6 @@ import './TodoBoxs.less';
 
 class TodoBoxs extends Component<{
   actions: Object,
-  match: any,
   todoBoxs: Map<TodoBox>[]
 }> {
   componentWillMount() {

@@ -41,13 +41,14 @@ export class TodoBoxCreaterForm extends Component<
     return (
       <div>
         <Button
+          className=""
           onClick={event => {
             event.stopPropagation();
             this.setState({ toggle: true });
           }}
         >
           <Icon type="folder-add" />
-          Todo Box
+          Add Todo Box
         </Button>
 
         <Modal

@@ -23,22 +23,15 @@ export class TodoPageContent extends Component<
 > {
   state = { toggleAll: false };
 
-  // TODO move logic outside
   componentWillMount() {
-    this.getTodoList(this.props, true);
+    this.getTodoList();
   }
 
-  componentWillReceiveProps(newProps: any) {
-    if (newProps.match.params.boxId !== this.props.match.params.boxId) {
-      this.getTodoList(newProps);
-    }
-  }
+  componentWillReceiveProps(newProps: any) {}
 
-  getTodoList(props: Props, force?: boolean) {
-    const { todoBoxId } = props;
-    if (force || todoBoxId !== this.props.todoBoxId) {
-      this.props.actions.GET_TODOLIST_REQUEST({ todoBoxId });
-    }
+  getTodoList() {
+    const { todoBoxId } = this.props;
+    this.props.actions.GET_TODOLIST_REQUEST({ todoBoxId });
   }
 
   createTodo = (todo: { content: string, deadline: number | null }) => {
