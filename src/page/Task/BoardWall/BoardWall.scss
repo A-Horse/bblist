@@ -3,9 +3,14 @@
 .board-wall-page-content {
   overflow-y: auto;
   height: calc(100vh - 42px);
-  padding: 0 16px;
-  width: 850px;
+  padding: 0px 20px;
+  width: 100%;
   margin: 0 auto;
+
+  .inner-container {
+    width: 1080px;
+    margin: 0 auto;
+  }
 }
 
 .taskboard-boards {
