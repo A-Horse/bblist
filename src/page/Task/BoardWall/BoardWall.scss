@@ -1,5 +1,10 @@
 @import 'style/variable';
 
+.board-wall-page-content {
+  overflow: auto;
+  height: calc(99vh - 42px);
+}
+
 .taskboard-boards {
 
   .board-group {
@@ -25,6 +30,7 @@
   .board-card-container {
     display: flex;
     flex-wrap: wrap;
+    padding-bottom: 50px;
   }
 }
 
