@@ -1,8 +1,11 @@
 @import 'style/variable';
 
 .board-wall-page-content {
-  overflow: auto;
-  height: calc(99vh - 42px);
+  overflow-y: auto;
+  height: calc(100vh - 42px);
+  padding: 0 16px;
+  width: 850px;
+  margin: 0 auto;
 }
 
 .taskboard-boards {

@@ -19,10 +19,7 @@ export class BoardWall extends Component<{
 
   render() {
     return (
-      <Content
-        className="board-wall-page-content"
-        style={{ padding: '0 20px', width: '850px', margin: '0 auto' }}
-      >
+      <Content className="board-wall-page-content">
         <TaskBoardCreater actions={this.props.actions} />
         <div className="taskboard-boards">
           <div className="board-group">
