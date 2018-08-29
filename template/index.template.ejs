@@ -141,13 +141,6 @@
       </div>
     </div>
 
-    <script>
-      window.onload = function() {
-        document.body.querySelector('#dash-loading').remove();
-        document.body.querySelector('#root').style.opacity = 1;
-      }
-    </script>
-
     <% if (htmlWebpackPlugin.options.production) { %>
       <script src="https://cdn.ravenjs.com/3.17.0/raven.min.js" crossorigin="anonymous"></script>
       <script>
