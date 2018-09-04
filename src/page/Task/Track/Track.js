@@ -119,7 +119,7 @@ export class Track extends Component<
         </div>
 
         <div className="task-track--body">
-          <div style={{ width: '300px' }}>
+          <div>
             {this.props.cards
               .sortBy(card => card.get('index'))
               .toArray()
