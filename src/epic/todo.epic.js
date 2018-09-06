@@ -33,7 +33,7 @@ export const GET_TODOLIST_REQUEST = action$ =>
   action$.ofType(Actions.GET_TODOLIST.REQUEST).mergeMap(action => {
     const userId = getCachedUserId();
     let url;
-    switch (action.payload.todoBoxid) {
+    switch (action.payload.todoBoxId) {
       case '@all':
         url = `/t/user/${userId}/todo`;
         break;
