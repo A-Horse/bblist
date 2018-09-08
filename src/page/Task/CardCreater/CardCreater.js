@@ -5,6 +5,10 @@ import { UserAvatar } from 'components/UserAvatar/UserAvatar';
 import ClickOutSide from 'components/utils/ClickOutSide';
 import { timeout } from 'utils/timeout';
 
+import { Select } from 'antd';
+
+const Option = Select.Option;
+
 import './CardCreater.scss';
 
 class CardCreater extends Component {
@@ -63,6 +67,16 @@ class CardCreater extends Component {
                   if (event.ctrlKey && event.key === 'Enter') this.addCard();
                 }}
               />
+            </div>
+            <div>
+              <Select defaultValue="lucy" style={{ width: 120 }} onChange={handleChange}>
+                <Option value="jack">Jack</Option>
+                <Option value="lucy">Lucy</Option>
+                <Option value="disabled" disabled>
+                  Disabled
+                </Option>
+                <Option value="Yiminghe">yiminghe</Option>
+              </Select>
             </div>
             <div className="taskcard-creater--user">
               <UserAvatar user={this.props.loginedUser.toJS()} />
