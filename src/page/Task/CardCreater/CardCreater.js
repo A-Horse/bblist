@@ -48,6 +48,10 @@ class CardCreater extends Component {
     ).scrollTop = 10000;
   };
 
+  handleTaskTypeChange = value => {
+    this.setState({ type: value });
+  };
+
   render() {
     if (this.state.toggle)
       return (
@@ -69,12 +73,13 @@ class CardCreater extends Component {
               />
             </div>
             <div>
-              <Select defaultValue="lucy" style={{ width: 120 }} onChange={handleChange}>
-                <Option value="jack">Jack</Option>
-                <Option value="lucy">Lucy</Option>
-                <Option value="disabled" disabled>
-                  Disabled
-                </Option>
+              <Select
+                defaultValue="lucy"
+                style={{ width: 120 }}
+                onChange={this.handleTaskTypeChange}
+              >
+                <Option value="STORY">Story</Option>
+                <Option value="TODO">Todo</Option>
                 <Option value="Yiminghe">yiminghe</Option>
               </Select>
             </div>
