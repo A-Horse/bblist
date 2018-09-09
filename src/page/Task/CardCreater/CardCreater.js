@@ -80,7 +80,6 @@ class CardCreater extends Component {
               >
                 <Option value="STORY">Story</Option>
                 <Option value="TODO">Todo</Option>
-                <Option value="Yiminghe">yiminghe</Option>
               </Select>
             </div>
             <div className="taskcard-creater--user">
