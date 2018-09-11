@@ -1,10 +1,10 @@
 // @flow
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Button } from 'components/widget/Button/Button';
-import { UserAvatar } from 'components/UserAvatar/UserAvatar';
-import ClickOutSide from 'components/utils/ClickOutSide';
-import { timeout } from 'utils/timeout';
+import { Button } from '../../../components/widget/Button/Button';
+import { UserAvatar } from '../../../components/UserAvatar/UserAvatar';
+import ClickOutSide from '../../../components/utils/ClickOutSide';
+import { timeout } from '../../../utils/timeout';
 
 import { Select } from 'antd';
 
@@ -12,13 +12,19 @@ const Option = Select.Option;
 
 import './CardCreater.scss';
 
-class CardCreater extends Component {
-  static propTypes = {
+class CardCreater extends Component<
+  {
     loginedUser: PropTypes.object.isRequired,
     addTaskCard: PropTypes.func.isRequired,
     track: PropTypes.object.isRequired
-  };
-
+  },
+  {
+    title: '',
+    toggle: false,
+    beforeClose: false,
+    type: 'STORY'
+  }
+> {
   state = {
     title: '',
     toggle: false,
