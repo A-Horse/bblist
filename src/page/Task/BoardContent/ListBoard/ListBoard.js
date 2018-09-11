@@ -4,27 +4,43 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
 import { makeActionRequestCollection } from '../../../../actions/actions';
-import { ListBoardCardContainer } from './ListBoardCard/ListBoardCard';
+/* import { ListBoardCardContainer } from './ListBoardCard/ListBoardCard'; */
 import HTML5Backend from 'react-dnd-html5-backend';
 import { DragDropContext } from 'react-dnd';
 import { List } from 'immutable';
+import { TaskCard } from '../../TaskCard/TaskCard';
 
 import './ListBoard.less';
 
 @DragDropContext(HTML5Backend)
 export class ListBoard extends Component<
   {
+    board: any,
     actions: any,
-    cards: any
+    cards: any,
+    boardId: string,
+    history: any,
+    match: any
   },
   {}
 > {
   state = {};
 
   render() {
+    const boardId = this.props.board.get('id');
+    // TODO 我的天，用不用传这么多东西进来
     return (
       <div className="list-board-container">
-        {this.props.cards.map(card => <ListBoardCardContainer key={card.get('id')} card={card} />)}
+        {this.props.cards.map(card => (
+          <TaskCard
+            key={card.get('id')}
+            card={card}
+            actions={this.props.actions}
+            boardId={boardId}
+            history={this.props.history}
+            match={this.props.match}
+          />
+        ))}
       </div>
     );
   }
