@@ -39,17 +39,13 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = state => {
   const trackMap = state.task2.get('trackMap');
   const cardMap = state.task2.get('cardMap');
-  console.log(cardMap);
-  console.log(trackMap);
   const tracks = trackMap.toArray();
-  console.log(tracks);
   const cards = trackMap
     .map(track => track.get('cards'))
     .reduce((all, cards) => {
       return all.concat(cards);
     }, List())
     .map(cardId => cardMap.get(cardId.toString()));
-  console.log('cards', cards);
 
   return {
     board: state.task2.get('board'),
