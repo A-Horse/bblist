@@ -1,3 +1,4 @@
+// @flow
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Button } from 'components/widget/Button/Button';
@@ -21,7 +22,8 @@ class CardCreater extends Component {
   state = {
     title: '',
     toggle: false,
-    beforeClose: false
+    beforeClose: false,
+    type: 'STORY'
   };
 
   clearInput() {
@@ -29,7 +31,7 @@ class CardCreater extends Component {
   }
 
   addCard = () => {
-    this.props.addTaskCard({ title: this.state.title.trim() });
+    this.props.addTaskCard({ title: this.state.title.trim(), type: this.state.type });
     this.clearInput();
     this.close();
   };
@@ -72,9 +74,10 @@ class CardCreater extends Component {
                 }}
               />
             </div>
+
             <div>
               <Select
-                defaultValue="lucy"
+                defaultValue="STORY"
                 style={{ width: 120 }}
                 onChange={this.handleTaskTypeChange}
               >
@@ -82,6 +85,7 @@ class CardCreater extends Component {
                 <Option value="TODO">Todo</Option>
               </Select>
             </div>
+
             <div className="taskcard-creater--user">
               <UserAvatar user={this.props.loginedUser.toJS()} />
               <span>{this.props.loginedUser.get('username')}</span>
