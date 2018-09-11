@@ -32,6 +32,8 @@ class CardCreater extends Component<
     type: 'STORY'
   };
 
+  containerRef = null;
+
   clearInput() {
     this.taskCardTitle.value = '';
   }
@@ -65,6 +67,7 @@ class CardCreater extends Component<
       return (
         <ClickOutSide onClickOutside={this.close}>
           <div
+            ref={ref => (this.containerRef = ref)}
             className={`taskcard-creater--body${this.state.beforeClose ? ' before-close' : ''}`}
             onClick={event => event.stopPropagation()}
           >
@@ -86,6 +89,9 @@ class CardCreater extends Component<
                 defaultValue="STORY"
                 style={{ width: 120 }}
                 onChange={this.handleTaskTypeChange}
+                getPopupContainer={() => {
+                  return this.containerRef;
+                }}
               >
                 <Option value="STORY">Story</Option>
                 <Option value="TODO">Todo</Option>
