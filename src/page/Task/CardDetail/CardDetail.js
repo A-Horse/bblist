@@ -63,8 +63,7 @@ export class CardDetail extends Component<
   };
 
   updateDone = (event: any) => {
-    const isDone = event.target.checked;
-    this.updateDetail({ isDone });
+    this.updateDetail({ isDone: event.target.checked ? 'DONE' : 'UNDONE' });
   };
 
   updateBelongTrack = (trackId: string) => {
