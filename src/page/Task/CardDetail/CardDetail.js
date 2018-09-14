@@ -53,7 +53,7 @@ export class CardDetail extends Component<
   };
 
   updateTitle = (event: SyntheticEvent<HTMLInputElement>) => {
-    const title = event.target.value.trim();
+    const title = event.target.value;
     this.updateDetail({ title });
   };
 
@@ -158,9 +158,14 @@ export class CardDetail extends Component<
       >
         <FormItem>
           <Row>
-            <Col span={2}>
-              <Checkbox checked={this.props.card.get('isDone')} onChange={this.updateDone} />
-            </Col>
+            {this.props.card.get('type') === 'TODO' && (
+              <Col span={2}>
+                <Checkbox
+                  checked={this.props.card.get('status') === 'DONE'}
+                  onChange={this.updateDone}
+                />
+              </Col>
+            )}
             <Col span={22}>
               <Input value={this.props.card.get('title')} onChange={this.updateTitle} />
             </Col>

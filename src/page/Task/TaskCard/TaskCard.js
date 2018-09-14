@@ -85,8 +85,10 @@ export class TaskCard extends Component<
                 <div className="task-card">
                   {card.get('type') === 'TODO' && (
                     <Checkbox
-                      checked={card.get('isDone')}
-                      onChange={event => this.updateCard({ isDone: event.target.checked })}
+                      checked={card.get('status') === 'DONE'}
+                      onChange={event =>
+                        this.updateCard({ status: event.target.checked ? 'DONE' : 'UNDONE' })
+                      }
                     />
                   )}
                   <p
