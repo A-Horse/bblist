@@ -24,9 +24,7 @@ export function task2(
 
     case Actions.ADD_TASK_BOARD.SUCCESS:
       const normalizedAddBoard = normalize(action.payload, TaskBoard);
-      return state.update('boardMap', boardMap =>
-        boardMap.merge(fromJS(normalizedAddBoard.entities.TaskBoard))
-      );
+      return state.update('boardMap', boardMap => boardMap.merge(fromJS(normalizedAddBoard.entities.TaskBoard)));
 
     case Actions.GET_TASK_BOARD_SETTING.REQUEST:
       return state;
@@ -100,9 +98,7 @@ export function task2(
 
     case Actions.UPDATE_TASK_CARD.REQUEST:
     case Actions.UPDATE_TASK_CARD.SUCCESS:
-      return state.updateIn(['cardMap', String(action.payload.id)], card =>
-        card.merge(fromJS(action.payload))
-      );
+      return state.updateIn(['cardMap', String(action.payload.id)], card => card.merge(fromJS(action.payload)));
 
     case Actions.GET_CARD_DETAIL.SUCCESS:
       const normalizedCardDetail = normalize(action.payload, TaskCard);
@@ -112,17 +108,13 @@ export function task2(
 
     case Actions.ADD_TASK_TRACK.SUCCESS:
       const normalizedAddedTrack = normalize(action.payload, TaskTrack);
-      return state.update('trackMap', trackMap =>
-        trackMap.merge(fromJS(normalizedAddedTrack.entities.TaskTrack))
-      );
+      return state.update('trackMap', trackMap => trackMap.merge(fromJS(normalizedAddedTrack.entities.TaskTrack)));
 
     case Actions.DESTORY_TASK_TRACK.SUCCESS:
       return state.deleteIn(['trackMap', String(action.meta.trackId)]);
 
     case Actions.UPDATE_TASK_TRACK.SUCCESS:
-      return state.updateIn(['trackMap', String(action.payload.id)], track =>
-        track.merge(fromJS(action.payload))
-      );
+      return state.updateIn(['trackMap', String(action.payload.id)], track => track.merge(fromJS(action.payload)));
 
     case Actions.GET_TASK_BOARD_PARTICIPANT.REQUEST:
       return state.delete('boardParticipant');
