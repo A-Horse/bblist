@@ -37,6 +37,7 @@ const actionNames = [
 
   'GET_CARD_DETAIL',
   'ADD_TASK_CARD',
+  'ARCHIVE_TASK_CARD',
   'UPDATE_TASK_CARD',
   'DESTORY_TASK_CARD',
   'CARD_MOVE',

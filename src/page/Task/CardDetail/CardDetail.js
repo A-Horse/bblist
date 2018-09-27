@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { Map } from 'immutable';
 import { Select, Modal, Icon, Menu, Dropdown, Button, Form, Input, Row, Col, Checkbox } from 'antd';
-import { EpicAdapterService } from '../../../services/single/epic-adapter.service';
+/* import { EpicAdapterService } from '../../../services/single/epic-adapter.service'; */
 import Actions from '../../../actions/actions';
 
 import 'rxjs/add/operator/take';
@@ -20,8 +20,7 @@ export class CardDetail extends Component<
     match: any,
     history: any,
     board: Map<any>,
-    card: Map<any>,
-    epicAdapterService: EpicAdapterService
+    card: Map<any>
   },
   { toggle: boolean }
 > {
@@ -33,6 +32,12 @@ export class CardDetail extends Component<
 
   destoryCard() {
     this.props.actions.DESTORY_TASK_CARD_REQUEST({
+      id: this.props.card.get('id')
+    });
+  }
+
+  archiveCard() {
+    this.props.actions.ARCHIVE_TASK_CARD_REQUEST({
       id: this.props.card.get('id')
     });
   }
@@ -69,21 +74,21 @@ export class CardDetail extends Component<
   updateBelongTrack = (trackId: string) => {
     const originalCardBelongTrackId: number = this.props.card.get('taskTrackId');
 
-    this.props.epicAdapterService.input$
-      .ofType(Actions.UPDATE_TASK_CARD.SUCCESS)
-      .take(1)
-      .subscribe(() => {
-        this.props.actions.GET_TASK_TRACK_CARD_REQUEST({
-          boardId: +this.props.board.get('id'),
-          trackId: originalCardBelongTrackId
-        });
+    /* this.props.epicAdapterService.input$
+     *   .ofType(Actions.UPDATE_TASK_CARD.SUCCESS)
+     *   .take(1)
+     *   .subscribe(() => {
+     *     this.props.actions.GET_TASK_TRACK_CARD_REQUEST({
+     *       boardId: +this.props.board.get('id'),
+     *       trackId: originalCardBelongTrackId
+     *     });
 
-        this.props.actions.GET_TASK_TRACK_CARD_REQUEST({
-          boardId: +this.props.board.get('id'),
-          trackId: trackId
-        });
-      });
-
+     *     this.props.actions.GET_TASK_TRACK_CARD_REQUEST({
+     *       boardId: +this.props.board.get('id'),
+     *       trackId: trackId
+     *     });
+     *   });
+     */
     this.props.actions.UPDATE_TASK_CARD_REQUEST({
       id: this.props.card.get('id'),
       taskTrackId: trackId
@@ -107,6 +112,17 @@ export class CardDetail extends Component<
           >
             <Icon type="delete" />
             Delete task
+          </div>
+        </Menu.Item>
+
+        <Menu.Item>
+          <div
+            onClick={() => {
+              this.archiveCard();
+            }}
+          >
+            <Icon type="flag" />
+            Archive
           </div>
         </Menu.Item>
       </Menu>
@@ -159,10 +175,7 @@ export class CardDetail extends Component<
           <Row>
             {this.props.card.get('type') === 'TODO' && (
               <Col span={2}>
-                <Checkbox
-                  checked={this.props.card.get('status') === 'DONE'}
-                  onChange={this.updateDone}
-                />
+                <Checkbox checked={this.props.card.get('status') === 'DONE'} onChange={this.updateDone} />
               </Col>
             )}
             <Col span={22}>
@@ -172,11 +185,7 @@ export class CardDetail extends Component<
         </FormItem>
 
         <FormItem label="Description:">
-          <TextArea
-            rows={8}
-            defaultValue={this.props.card.get('content')}
-            onChange={this.updateContent}
-          />
+          <TextArea rows={8} defaultValue={this.props.card.get('content')} onChange={this.updateContent} />
         </FormItem>
       </Modal>
     );

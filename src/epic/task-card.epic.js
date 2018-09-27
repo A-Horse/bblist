@@ -5,8 +5,8 @@ import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/catch';
 import { http } from '../services/http';
 import { makeApiUrl } from '../utils/api';
-import { Observable } from 'rxjs';
 import Actions from '../actions/actions';
+import axios from 'axios';
 
 export const UPDATE_TASK_CARD_REQUEST = action$ =>
   action$
@@ -27,10 +27,24 @@ export const UPDATE_TASK_CARD_REQUEST = action$ =>
 
 export const DESTORY_TASK_CARD_REQUEST = action$ =>
   action$.ofType(Actions.DESTORY_TASK_CARD.REQUEST).mergeMap(action => {
-    return http
-      .del(makeApiUrl(`/task-card/${action.payload.id}`))
+    return axios
+      .patch(makeApiUrl(`/task-card/${action.payload.id}`), {
+        id: action.payload.id,
+        status: 'ARCHIVE'
+      })
       .then(response => {
-        return Actions.DESTORY_TASK_CARD.success(response, action.payload);
+        return Actions.DESTORY_TASK_CARD.success(response.data);
       })
       .catch(Actions.DESTORY_TASK_CARD.failure);
+  });
+
+export const ARCHIVE_TASK_CARD_REQUEST = action$ =>
+  action$.ofType(Actions.ARCHIVE_TASK_CARD.REQUEST).mergeMap(action => {
+    return axios
+      .patch(makeApiUrl(`/task-card/${action.payload.id}`), {
+        id: action.payload.id,
+        status: 'ARCHIVE'
+      })
+      .then(resp => Actions.ARCHIVE_TASK_CARD.success(resp.data))
+      .catch(resp => Actions.ARCHIVE_TASK_CARD.success(resp.data));
   });
