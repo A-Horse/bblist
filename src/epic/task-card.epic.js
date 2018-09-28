@@ -30,7 +30,7 @@ export const DESTORY_TASK_CARD_REQUEST = action$ =>
     return axios
       .patch(makeApiUrl(`/task-card/${action.payload.id}`), {
         id: action.payload.id,
-        status: 'ARCHIVE'
+        status: 'DELETED'
       })
       .then(response => {
         return Actions.DESTORY_TASK_CARD.success(response.data);
