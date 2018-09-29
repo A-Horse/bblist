@@ -21,7 +21,6 @@ export class TodoPage extends Component<{
 
   render() {
     const todoBoxId = this.props.match.params.boxId;
-    console.log(todoBoxId);
     if (!todoBoxId) {
       return <Redirect to="/todo/@all" />;
     }

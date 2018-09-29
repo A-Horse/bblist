@@ -103,7 +103,7 @@ export class CardDetail extends Component<
     }
 
     const menu = (
-      <Menu>
+      <Menu className="card-detail-dropmenu">
         <Menu.Item>
           <div
             onClick={() => {
@@ -152,24 +152,20 @@ export class CardDetail extends Component<
               style={{
                 cursor: 'pointer',
                 float: 'right',
-                marginRight: '20px',
+                marginRight: '30px',
                 marginTop: '10px',
                 position: 'relative',
                 zIndex: '1000'
               }}
             >
-              <Dropdown overlay={menu}>
-                <Icon type="down" style={{ fontSize: 18 }} />
+              <Dropdown overlay={menu} placement="bottomRight">
+                <Icon type="ellipsis" style={{ fontSize: 20, color: '#008bad' }} />
               </Dropdown>
             </div>
           </div>
         }
         afterClose={() => this.props.history.push(`/task-board/${this.props.match.params.id}`)}
-        footer={[
-          <Button key="back" onClick={this.close}>
-            Done
-          </Button>
-        ]}
+        footer={null}
       >
         <FormItem>
           <Row>
