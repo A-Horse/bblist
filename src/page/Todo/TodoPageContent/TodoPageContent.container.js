@@ -8,10 +8,12 @@ import { TodoPageContent } from './TodoPageContent';
 
 import type { Dispatch } from 'redux';
 
-const getAllTodos = state => {
+const getAllTodos = (state, props) => {
   const todoEntities = state.todos.get('todoEntities');
   const todoIds = state.todos.get('todoIds');
-  return todoIds.map(id => todoEntities.get(String(id)));
+  return todoIds
+    .map(id => todoEntities.get(String(id)))
+    .filter(todo => todo.get('todoBoxId') === props.match.params.boxId);
 };
 
 const getUnDoneTodos = createSelector([getAllTodos], todos =>
@@ -40,6 +42,4 @@ const mapDispatchToProps = (dispatch: Dispatch<*>) => {
   };
 };
 
-export const TodoPageContentContainer = withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(TodoPageContent)
-);
+export const TodoPageContentContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(TodoPageContent));

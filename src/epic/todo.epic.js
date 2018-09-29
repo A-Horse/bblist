@@ -48,7 +48,11 @@ export const GET_TODOLIST_REQUEST = action$ =>
     return http
       .get(makeApiUrl(url))
       .then(data => {
-        return Actions.GET_TODOLIST.success(data);
+        return Actions.GET_TODOLIST.success(
+          (data || []).map(todo => {
+            return todo.todoBoxId ? todo : { ...todo, todoBoxId: action.payload.todoBoxId };
+          })
+        );
       })
       .catch(Actions.GET_TODOLIST.failure);
   });
