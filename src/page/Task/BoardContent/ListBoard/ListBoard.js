@@ -33,6 +33,7 @@ export class ListBoard extends Component<
       <div className="list-board-container">
         {this.props.cards.map(card => (
           <TaskCard
+            mode={'LONG'}
             key={card.get('id')}
             card={card}
             actions={this.props.actions}
@@ -72,6 +73,4 @@ const mapStateToProps = state => {
   };
 };
 
-export const ListBoardContainer = withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(ListBoard)
-);
+export const ListBoardContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(ListBoard));
