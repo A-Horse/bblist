@@ -40,7 +40,7 @@ class SettingSecurity extends Component<{
     return (
       <section className="setting-security">
         <section className="setting-security-password">
-          <div className="section-heading">Password</div>
+          <div className="section-heading">Change Password</div>
           <div className="heading">Old password</div>
           <div>
             <Input type="password" ref="oldPassword" name="update-password-old" className="input" />
@@ -53,20 +53,10 @@ class SettingSecurity extends Component<{
 
           <div className="heading">Confirm new password</div>
           <div>
-            <Input
-              type="password"
-              ref="confirmPassword"
-              className="input"
-              name="update-password-confirm"
-            />
+            <Input type="password" ref="confirmPassword" className="input" name="update-password-confirm" />
           </div>
 
-          <Button
-            className="signin-button"
-            styleType="primary"
-            onClick={this.updatePassword}
-            size="middle"
-          >
+          <Button className="signin-button" styleType="primary" onClick={this.updatePassword} size="middle">
             Update Passoword
           </Button>
         </section>

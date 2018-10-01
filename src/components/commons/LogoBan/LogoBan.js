@@ -11,7 +11,15 @@ export class LogoBan extends Component<{
   render() {
     return (
       <div className="logoban">
-        <Logo white={this.props.white} />
+        <img
+          src="/assets/octopus.png"
+          style={{
+            width: '30px',
+            height: '30px',
+            borderRadius: '50%',
+            marginTop: '5px'
+          }}
+        />
         <TextLogo white={this.props.white} />
       </div>
     );
