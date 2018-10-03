@@ -52,7 +52,8 @@ export class TaskCard extends Component<
     card: any,
     actions: any,
     history: any,
-    match: any
+    match: any,
+    mpde: string
   },
   {}
 > {
@@ -82,13 +83,11 @@ export class TaskCard extends Component<
           <div style={{ opacity }}>
             {connectDragSource(
               <div>
-                <div className="task-card">
+                <div className={`task-card ${this.props.mode === 'LONG' ? 'long' : ''}`}>
                   {card.get('type') === 'TODO' && (
                     <Checkbox
                       checked={card.get('status') === 'DONE'}
-                      onChange={event =>
-                        this.updateCard({ status: event.target.checked ? 'DONE' : 'UNDONE' })
-                      }
+                      onChange={event => this.updateCard({ status: event.target.checked ? 'DONE' : 'UNDONE' })}
                     />
                   )}
                   <p
@@ -108,9 +107,7 @@ export class TaskCard extends Component<
                         ? this.props.sourceItem.height
                         : 0
                   }}
-                  className={`task-card-placeholder${
-                    this.props.isOver && this.props.canDrop ? ' active' : ''
-                  }`}
+                  className={`task-card-placeholder${this.props.isOver && this.props.canDrop ? ' active' : ''}`}
                 />
               </div>
             )}
