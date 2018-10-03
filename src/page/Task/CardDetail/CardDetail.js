@@ -135,7 +135,8 @@ export class CardDetail extends Component<
         onCancel={this.close}
         title={
           <div>
-            <Select defaultValue={card.get('taskTrackId')} onChange={this.updateBelongTrack}>
+            <Icon type="swap" theme="outlined" />
+            <Select className="track-selecter" defaultValue={card.get('taskTrackId')} onChange={this.updateBelongTrack}>
               {this.props.trackMap.toArray().map(track => {
                 return (
                   <Option
@@ -159,24 +160,20 @@ export class CardDetail extends Component<
               }}
             >
               <Dropdown overlay={menu} placement="bottomRight">
-                <Icon type="ellipsis" style={{ fontSize: 20, color: '#008bad' }} />
+                <Icon type="ellipsis" style={{ fontSize: 22 }} />
               </Dropdown>
             </div>
           </div>
         }
-        afterClose={() => this.props.history.push(`/task-board/${this.props.match.params.id}`)}
+        afterClose={() => this.props.history.replace(`/task-board/${this.props.match.params.id}`)}
         footer={null}
       >
         <FormItem>
           <Row>
             {this.props.card.get('type') === 'TODO' && (
-              <Col span={2}>
-                <Checkbox checked={this.props.card.get('status') === 'DONE'} onChange={this.updateDone} />
-              </Col>
+              <Checkbox checked={this.props.card.get('status') === 'DONE'} onChange={this.updateDone} />
             )}
-            <Col span={22}>
-              <Input value={this.props.card.get('title')} onChange={this.updateTitle} />
-            </Col>
+            <Input className="title-input" value={this.props.card.get('title')} onChange={this.updateTitle} />
           </Row>
         </FormItem>
 
