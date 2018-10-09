@@ -2,7 +2,6 @@
 import React, { Component } from 'react';
 import { Map } from 'immutable';
 import { Select, Modal, Icon, Menu, Dropdown, Button, Form, Input, Row, Col, Checkbox } from 'antd';
-/* import { EpicAdapterService } from '../../../services/single/epic-adapter.service'; */
 import Actions from '../../../actions/actions';
 
 import 'rxjs/add/operator/take';
@@ -74,21 +73,6 @@ export class CardDetail extends Component<
   updateBelongTrack = (trackId: string) => {
     const originalCardBelongTrackId: number = this.props.card.get('taskTrackId');
 
-    /* this.props.epicAdapterService.input$
-     *   .ofType(Actions.UPDATE_TASK_CARD.SUCCESS)
-     *   .take(1)
-     *   .subscribe(() => {
-     *     this.props.actions.GET_TASK_TRACK_CARD_REQUEST({
-     *       boardId: +this.props.board.get('id'),
-     *       trackId: originalCardBelongTrackId
-     *     });
-
-     *     this.props.actions.GET_TASK_TRACK_CARD_REQUEST({
-     *       boardId: +this.props.board.get('id'),
-     *       trackId: trackId
-     *     });
-     *   });
-     */
     this.props.actions.UPDATE_TASK_CARD_REQUEST({
       id: this.props.card.get('id'),
       taskTrackId: trackId
