@@ -1,10 +1,7 @@
 // @flow
 import React, { Component } from 'react';
 import { Map } from 'immutable';
-import { Select, Modal, Icon, Menu, Dropdown, Button, Form, Input, Row, Col, Checkbox } from 'antd';
-import Actions from '../../../actions/actions';
-
-import 'rxjs/add/operator/take';
+import { Select, Modal, Icon, Menu, Dropdown, Form, Input, Row, Checkbox } from 'antd';
 
 const Option = Select.Option;
 const FormItem = Form.Item;
@@ -33,16 +30,19 @@ export class CardDetail extends Component<
     this.props.actions.DESTORY_TASK_CARD_REQUEST({
       id: this.props.card.get('id')
     });
+    this.close();
   }
 
   archiveCard() {
     this.props.actions.ARCHIVE_TASK_CARD_REQUEST({
       id: this.props.card.get('id')
     });
+    this.close();
   }
 
   close = () => {
     this.setState({ toggle: false });
+    this.props.history.replace(`/task-board/${this.props.match.params.id}`);
   };
 
   getCardDetail() {
@@ -71,8 +71,6 @@ export class CardDetail extends Component<
   };
 
   updateBelongTrack = (trackId: string) => {
-    const originalCardBelongTrackId: number = this.props.card.get('taskTrackId');
-
     this.props.actions.UPDATE_TASK_CARD_REQUEST({
       id: this.props.card.get('id'),
       taskTrackId: trackId
@@ -149,7 +147,7 @@ export class CardDetail extends Component<
             </div>
           </div>
         }
-        afterClose={() => this.props.history.replace(`/task-board/${this.props.match.params.id}`)}
+        afterClose={() => {}}
         footer={null}
       >
         <FormItem>

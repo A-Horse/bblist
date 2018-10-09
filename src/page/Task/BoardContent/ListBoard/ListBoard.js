@@ -27,6 +27,9 @@ export class ListBoard extends Component<
   state = {};
 
   render() {
+    if (!this.props.board) {
+      return null;
+    }
     const boardId = this.props.board.get('id');
     // TODO 我的天，用不用传这么多东西进来
     return (

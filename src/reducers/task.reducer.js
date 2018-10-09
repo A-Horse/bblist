@@ -125,7 +125,7 @@ export function task2(
     case Actions.DESTORY_TASK_CARD.SUCCESS:
     case Actions.ARCHIVE_TASK_CARD.SUCCESS:
       return state.update('cardMap', cardMap => {
-        return cardMap.delete(action.payload.id);
+        return cardMap.delete(String(action.payload.id));
       });
 
     default:
