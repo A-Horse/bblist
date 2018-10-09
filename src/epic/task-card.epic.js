@@ -33,7 +33,7 @@ export const DESTORY_TASK_CARD_REQUEST = action$ =>
         status: 'DELETED'
       })
       .then(response => {
-        return Actions.DESTORY_TASK_CARD.success(response.data);
+        return Actions.DESTORY_TASK_CARD.success({ id: action.payload.id });
       })
       .catch(Actions.DESTORY_TASK_CARD.failure);
   });
@@ -45,6 +45,6 @@ export const ARCHIVE_TASK_CARD_REQUEST = action$ =>
         id: action.payload.id,
         status: 'ARCHIVE'
       })
-      .then(resp => Actions.ARCHIVE_TASK_CARD.success(resp.data))
-      .catch(resp => Actions.ARCHIVE_TASK_CARD.success(resp.data));
+      .then(() => Actions.ARCHIVE_TASK_CARD.success({ id: action.payload.id }))
+      .catch(resp => Actions.ARCHIVE_TASK_CARD.failure(resp.data));
   });

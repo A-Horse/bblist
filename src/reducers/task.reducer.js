@@ -122,6 +122,12 @@ export function task2(
     case Actions.GET_TASK_BOARD_PARTICIPANT.SUCCESS:
       return state.set('boardParticipants', fromJS(action.payload));
 
+    case Actions.DESTORY_TASK_CARD.SUCCESS:
+    case Actions.ARCHIVE_TASK_CARD.SUCCESS:
+      return state.update('cardMap', cardMap => {
+        return cardMap.delete(action.payload.id);
+      });
+
     default:
       return state;
   }
