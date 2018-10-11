@@ -162,6 +162,13 @@ export class CardDetail extends Component<
         <FormItem label="Description:">
           <TextArea rows={8} defaultValue={this.props.card.get('content')} onChange={this.updateContent} />
         </FormItem>
+
+        <FormItem>
+          <Select defaultValue="STORY" style={{ width: 120 }} onChange={this.handleTaskTypeChange}>
+            <Option value="STORY">Story</Option>
+            <Option value="TODO">Todo</Option>
+          </Select>
+        </FormItem>
       </Modal>
     );
   }
