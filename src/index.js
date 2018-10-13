@@ -7,8 +7,9 @@ import './style/index.less';
 import { store } from './store/store';
 import Root from './page/Root/Root';
 import { getJWT } from './utils/auth';
-import { setupAxiosJwtHeader } from './helper/http-intercetor';
+import { setupAxiosJwtHeader, setupAxiosInterceptor } from './helper/http-intercetor';
 
+setupAxiosInterceptor();
 setupAxiosJwtHeader(getJWT());
 
 ReactDOM.render(
