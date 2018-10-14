@@ -1,4 +1,5 @@
 * Octopus
+Manage software products Keep track of features, tasks and todos
 
 ** scripts:
    - dev: npm run start
