@@ -77,7 +77,7 @@ export class CardDetail extends Component<
     });
   };
 
-  handleTaskTypeChange = type => {
+  handleTaskTypeChange = (type: 'TODO' | 'STORY') => {
     this.props.actions.UPDATE_TASK_CARD_REQUEST({
       id: this.props.card.get('id'),
       type
