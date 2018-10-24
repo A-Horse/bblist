@@ -3,4 +3,4 @@ flow:
   - install: yarn install
   - build: npm run build
   - clean: rm -rf /var/www/octopuese
-  - setup: cp -r dist /var/www/octopuese
+  - setup: cp -r ./dist /var/www/octopuese
