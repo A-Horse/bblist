@@ -77,7 +77,12 @@ export class CardDetail extends Component<
     });
   };
 
-  handleTaskTypeChange = () => {};
+  handleTaskTypeChange = type => {
+    this.props.actions.UPDATE_TASK_CARD_REQUEST({
+      id: this.props.card.get('id'),
+      type
+    });
+  };
 
   render() {
     const { card } = this.props;
@@ -170,7 +175,7 @@ export class CardDetail extends Component<
         </FormItem>
 
         <FormItem>
-          <Select defaultValue="STORY" style={{ width: 120 }} onChange={this.handleTaskTypeChange}>
+          <Select defaultValue="STORY" style={{ width: 120 }} onChange={value => this.handleTaskTypeChange(value)}>
             <Option value="STORY">Story</Option>
             <Option value="TODO">Todo</Option>
           </Select>
