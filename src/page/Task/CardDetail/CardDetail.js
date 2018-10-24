@@ -26,20 +26,6 @@ export class CardDetail extends Component<
     this.getCardDetail();
   }
 
-  destoryCard() {
-    this.props.actions.DESTORY_TASK_CARD_REQUEST({
-      id: this.props.card.get('id')
-    });
-    this.close();
-  }
-
-  archiveCard() {
-    this.props.actions.ARCHIVE_TASK_CARD_REQUEST({
-      id: this.props.card.get('id')
-    });
-    this.close();
-  }
-
   close = () => {
     this.setState({ toggle: false });
     this.props.history.replace(`/task-board/${this.props.match.params.id}`);
@@ -49,33 +35,49 @@ export class CardDetail extends Component<
     this.props.actions.GET_CARD_DETAIL_REQUEST({ id: this.props.match.params.cardId });
   }
 
-  updateDetail = (patchObj: any) => {
+  handleDestoryCard() {
+    this.props.actions.DESTORY_TASK_CARD_REQUEST({
+      id: this.props.card.get('id')
+    });
+    this.close();
+  }
+
+  handleArchiveCard() {
+    this.props.actions.ARCHIVE_TASK_CARD_REQUEST({
+      id: this.props.card.get('id')
+    });
+    this.close();
+  }
+
+  handleUpdateDetail = (patchDetail: any) => {
     this.props.actions.UPDATE_TASK_CARD_REQUEST({
       id: this.props.card.get('id'),
-      ...patchObj
+      ...patchDetail
     });
   };
 
-  updateTitle = (event: SyntheticEvent<HTMLInputElement>) => {
+  handleUpdateTitle = (event: SyntheticEvent<HTMLInputElement>) => {
     const title = event.target.value;
-    this.updateDetail({ title });
+    this.handleUpdateDetail({ title });
   };
 
-  updateContent = (event: any) => {
+  handleUpdateContent = (event: any) => {
     const content = event.target.value.trim();
-    this.updateDetail({ content });
+    this.handleUpdateDetail({ content });
   };
 
-  updateDone = (event: any) => {
-    this.updateDetail({ isDone: event.target.checked ? 'DONE' : 'UNDONE' });
+  handleUpdateDone = (event: any) => {
+    this.handleUpdateDetail({ isDone: event.target.checked ? 'DONE' : 'UNDONE' });
   };
 
-  updateBelongTrack = (trackId: string) => {
+  handleUpdateBelongTrack = (trackId: string) => {
     this.props.actions.UPDATE_TASK_CARD_REQUEST({
       id: this.props.card.get('id'),
       taskTrackId: trackId
     });
   };
+
+  handleTaskTypeChange = () => {};
 
   render() {
     const { card } = this.props;
@@ -89,7 +91,7 @@ export class CardDetail extends Component<
         <Menu.Item>
           <div
             onClick={() => {
-              this.destoryCard();
+              this.handleDestoryCard();
             }}
           >
             <Icon type="delete" />
@@ -100,7 +102,7 @@ export class CardDetail extends Component<
         <Menu.Item>
           <div
             onClick={() => {
-              this.archiveCard();
+              this.handleArchiveCard();
             }}
           >
             <Icon type="flag" />
@@ -118,7 +120,11 @@ export class CardDetail extends Component<
         title={
           <div>
             <Icon type="swap" theme="outlined" />
-            <Select className="track-selecter" defaultValue={card.get('taskTrackId')} onChange={this.updateBelongTrack}>
+            <Select
+              className="track-selecter"
+              defaultValue={card.get('taskTrackId')}
+              onChange={this.handleUpdateBelongTrack}
+            >
               {this.props.trackMap.toArray().map(track => {
                 return (
                   <Option
@@ -153,14 +159,14 @@ export class CardDetail extends Component<
         <FormItem>
           <Row>
             {this.props.card.get('type') === 'TODO' && (
-              <Checkbox checked={this.props.card.get('status') === 'DONE'} onChange={this.updateDone} />
+              <Checkbox checked={this.props.card.get('status') === 'DONE'} onChange={this.handleUpdateDone} />
             )}
-            <Input className="title-input" value={this.props.card.get('title')} onChange={this.updateTitle} />
+            <Input className="title-input" value={this.props.card.get('title')} onChange={this.handleUpdateTitle} />
           </Row>
         </FormItem>
 
         <FormItem label="Description:">
-          <TextArea rows={8} defaultValue={this.props.card.get('content')} onChange={this.updateContent} />
+          <TextArea rows={8} defaultValue={this.props.card.get('content')} onChange={this.handleUpdateContent} />
         </FormItem>
 
         <FormItem>
