@@ -9,6 +9,7 @@ import Root from './page/Root/Root';
 import { getJWT } from './utils/auth';
 import { setupAxiosJwtHeader, setupAxiosInterceptor } from './helper/http-intercetor';
 
+// TODO 考虑在前端也通过时间判断自动登出
 setupAxiosInterceptor();
 setupAxiosJwtHeader(getJWT());
 
