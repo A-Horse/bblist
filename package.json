@@ -5,6 +5,7 @@
   "description": "octopus",
   "scripts": {
     "build": "NODE_ENV=production webpack --config ./delopy/webpack.prod.js --progress --profile",
+    "ci-build": "NODE_ENV=production webpack --config ./delopy/webpack.prod.js",
     "start": "NODE_ENV=development webpack-dev-server --config ./delopy/webpack.dev.js --history-api-fallback --watch --host 0.0.0.0",
     "test": "jest --ci",
     "analyze": "webpack --config ./delopy/webpack.prod.js --json | webpack-bundle-size-analyzer",
