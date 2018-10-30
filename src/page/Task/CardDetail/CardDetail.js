@@ -122,6 +122,7 @@ export class CardDetail extends Component<
         className="taskcard-modal"
         visible={this.state.toggle}
         onCancel={this.close}
+        width={720}
         title={
           <div>
             <Icon type="swap" theme="outlined" />
@@ -161,25 +162,30 @@ export class CardDetail extends Component<
         afterClose={() => {}}
         footer={null}
       >
-        <FormItem>
-          <Row>
-            {this.props.card.get('type') === 'TODO' && (
-              <Checkbox checked={this.props.card.get('status') === 'DONE'} onChange={this.handleUpdateDone} />
-            )}
-            <Input className="title-input" value={this.props.card.get('title')} onChange={this.handleUpdateTitle} />
-          </Row>
-        </FormItem>
+        <div className="card-detail-dialog-container">
+          <div className="card-detail-dialog-container-left">
+            <FormItem>
+              <Row>
+                {this.props.card.get('type') === 'TODO' && (
+                  <Checkbox checked={this.props.card.get('status') === 'DONE'} onChange={this.handleUpdateDone} />
+                )}
+                <Input className="title-input" value={this.props.card.get('title')} onChange={this.handleUpdateTitle} />
+              </Row>
+            </FormItem>
 
-        <FormItem label="Description:">
-          <TextArea rows={8} defaultValue={this.props.card.get('content')} onChange={this.handleUpdateContent} />
-        </FormItem>
+            <FormItem label="Description:">
+              <TextArea rows={8} defaultValue={this.props.card.get('content')} onChange={this.handleUpdateContent} />
+            </FormItem>
 
-        <FormItem>
-          <Select defaultValue="STORY" style={{ width: 120 }} onChange={value => this.handleTaskTypeChange(value)}>
-            <Option value="STORY">Story</Option>
-            <Option value="TODO">Todo</Option>
-          </Select>
-        </FormItem>
+            <FormItem>
+              <Select defaultValue="STORY" style={{ width: 120 }} onChange={value => this.handleTaskTypeChange(value)}>
+                <Option value="STORY">Story</Option>
+                <Option value="TODO">Todo</Option>
+              </Select>
+            </FormItem>
+          </div>
+          <div className="card-detail-dialog-container-right">right</div>
+        </div>
       </Modal>
     );
   }
