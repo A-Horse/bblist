@@ -3,9 +3,10 @@ import React, { Component } from 'react';
 import { Map } from 'immutable';
 import { Select, Modal, Icon, Menu, Dropdown, Form, Input, Row, Checkbox } from 'antd';
 
+const { TextArea } = Input;
+
 const Option = Select.Option;
 const FormItem = Form.Item;
-const { TextArea } = Input;
 
 import './CardDetail.less';
 
