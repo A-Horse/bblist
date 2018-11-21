@@ -3,7 +3,6 @@ import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/of';
-import { Observable } from 'rxjs/Observable';
 import Actions from '../actions/actions';
 import { makeApiUrl } from '../utils/api';
 import { http } from '../services/http';
