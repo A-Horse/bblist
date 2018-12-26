@@ -1,13 +1,13 @@
 //
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import { TaskBoardCreater } from "../TaskBoardCreater/TaskBoardCreater";
-import { makeRemoteUrl } from "../../../services/remote-storage";
-import { DEFAULT_BOARD_COVER_SRC } from "../../../constants";
-import { Layout } from "antd";
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import { TaskBoardCreater } from '../TaskBoardCreater/TaskBoardCreater';
+import { makeRemoteUrl } from '../../../services/remote-storage';
+import { DEFAULT_BOARD_COVER_SRC } from '../../../constants';
+import { Layout } from 'antd';
 const { Content } = Layout;
 
-import "./BoardWall.scss";
+import './BoardWall.scss';
 
 export class BoardWall extends Component {
   componentWillMount() {
@@ -28,17 +28,15 @@ export class BoardWall extends Component {
                       <Link
                         className="taskboard-card"
                         style={{
-                          backgroundImage: board.get("cover")
-                            ? `url(${makeRemoteUrl(board.get("cover"))})`
+                          backgroundImage: board.get('cover')
+                            ? `url(${makeRemoteUrl(board.get('cover'))})`
                             : `url(${DEFAULT_BOARD_COVER_SRC})`
                         }}
-                        key={board.get("id")}
-                        to={`/task-board/${board.get("id")}`}
+                        key={board.get('id')}
+                        to={`/task-board/${board.get('id')}`}
                       >
                         <div className="taskboard-card-info">
-                          <div className="taskboard-card-info--name">
-                            {board.get("name")}
-                          </div>
+                          <div className="taskboard-card-info--name">{board.get('name')}</div>
                         </div>
                       </Link>
                     );

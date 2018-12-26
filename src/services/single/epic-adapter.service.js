@@ -1,8 +1,8 @@
 //
 
-import { Observable } from "rxjs";
+import { Observable } from 'rxjs';
 
-import "rxjs/add/operator/publish";
+import 'rxjs/add/operator/publish';
 
 export class EpicAdapterService {
   input(input$) {

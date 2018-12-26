@@ -1,9 +1,9 @@
 //
-import React, { Component } from "react";
-import { Logo } from "../Logo/Logo";
-import { TextLogo } from "../TextLogo";
+import React, { Component } from 'react';
+import { Logo } from '../Logo/Logo';
+import { TextLogo } from '../TextLogo';
 
-import "./LogoBan.less";
+import './LogoBan.less';
 
 export class LogoBan extends Component {
   render() {
@@ -12,10 +12,10 @@ export class LogoBan extends Component {
         <img
           src="/assets/octopus.png"
           style={{
-            width: "30px",
-            height: "30px",
-            borderRadius: "50%",
-            marginTop: "5px"
+            width: '30px',
+            height: '30px',
+            borderRadius: '50%',
+            marginTop: '5px'
           }}
         />
         <TextLogo white={this.props.white} />

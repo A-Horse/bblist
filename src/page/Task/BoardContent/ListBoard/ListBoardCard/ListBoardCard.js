@@ -1,12 +1,12 @@
 //
-import React, { Component } from "react";
-import { Map } from "immutable";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import { withRouter } from "react-router-dom";
-import { makeActionRequestCollection } from "../../../../../actions/actions";
+import React, { Component } from 'react';
+import { Map } from 'immutable';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { withRouter } from 'react-router-dom';
+import { makeActionRequestCollection } from '../../../../../actions/actions';
 
-import "./ListBoardCard.less";
+import './ListBoardCard.less';
 
 class ListBoardCard extends Component {
   state = {};
@@ -24,12 +24,10 @@ class ListBoardCard extends Component {
             <p
               className="list-board-card--title"
               onClick={() => {
-                this.props.history.push(
-                  this.props.match.url + `/card/${card.get("id")}`
-                );
+                this.props.history.push(this.props.match.url + `/card/${card.get('id')}`);
               }}
             >
-              {card.get("title")}
+              {card.get('title')}
             </p>
           </div>
         </div>

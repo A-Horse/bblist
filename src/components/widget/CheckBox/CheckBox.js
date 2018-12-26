@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import "./Checkbox.scss";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import './Checkbox.scss';
 
 export class CheckBox extends Component {
   static propTypes = {
@@ -18,7 +18,7 @@ export class CheckBox extends Component {
     this.domChecked = <i className="fa fa-check-square-o" aria-hidden="true" />;
     this.domUnchecked = <i className="fa fa-square-o" aria-hidden="true" />;
 
-    this.className = "checkbox";
+    this.className = 'checkbox';
 
     this.onClick = this.onClick.bind(this);
   }
@@ -33,8 +33,7 @@ export class CheckBox extends Component {
   }
 
   render() {
-    const className =
-      this.className + (this.props.className ? ` ${this.props.className}` : "");
+    const className = this.className + (this.props.className ? ` ${this.props.className}` : '');
     return (
       <div className={className} onClick={this.onClick}>
         {this.state.checked ? this.domChecked : this.domUnchecked}

@@ -1,20 +1,18 @@
-import React, { Component } from "react";
-import moment from "moment";
-import { Modal } from "components/widget/Modal/Modal";
-import { Button } from "components/widget/Button/Button";
-import { IconRemove, IconDelete, IconRight } from "services/image-icon";
-import Empty from "components/Empty";
+import React, { Component } from 'react';
+import moment from 'moment';
+import { Modal } from 'components/widget/Modal/Modal';
+import { Button } from 'components/widget/Button/Button';
+import { IconRemove, IconDelete, IconRight } from 'services/image-icon';
+import Empty from 'components/Empty';
 
-import "style/page/todo/todo-repeat-chart-modal.scss";
+import 'style/page/todo/todo-repeat-chart-modal.scss';
 
 export default class CardRepeatHistoryModal extends Component {
   state = {};
 
   constructor() {
     super();
-    this.onTdRepeatHistoryYestoryUpdateClick = this.onTdRepeatHistoryYestoryUpdateClick.bind(
-      this
-    );
+    this.onTdRepeatHistoryYestoryUpdateClick = this.onTdRepeatHistoryYestoryUpdateClick.bind(this);
     this.close = this.close.bind(this);
   }
 
@@ -36,9 +34,7 @@ export default class CardRepeatHistoryModal extends Component {
             <tr>
               <th key="text">Status</th>
               {this.props.repeatHistory.map(history => (
-                <th key={history.id}>
-                  {history.isDone ? <IconRight /> : <IconDelete />}
-                </th>
+                <th key={history.id}>{history.isDone ? <IconRight /> : <IconDelete />}</th>
               ))}
             </tr>
             <tr>
@@ -46,16 +42,14 @@ export default class CardRepeatHistoryModal extends Component {
               {this.props.repeatHistory.map(history => (
                 <th key={history.id}>
                   {moment(history.created_at)
-                    .subtract(1, "days")
-                    .format("MM-DD")}
+                    .subtract(1, 'days')
+                    .format('MM-DD')}
                 </th>
               ))}
             </tr>
           </tbody>
         </table>
-        <Button onClick={this.onTdRepeatHistoryYestoryUpdateClick}>
-          I forgot yestory done.
-        </Button>
+        <Button onClick={this.onTdRepeatHistoryYestoryUpdateClick}>I forgot yestory done.</Button>
       </div>
     );
   }
@@ -79,9 +73,7 @@ export default class CardRepeatHistoryModal extends Component {
         ) : (
           <div className="todo-repeat-chart-modal--empty">
             <Empty />
-            <div className="empty--text">
-              There have not repeat history now.
-            </div>
+            <div className="empty--text">There have not repeat history now.</div>
           </div>
         )}
         <div />

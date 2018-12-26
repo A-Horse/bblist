@@ -1,10 +1,10 @@
-import React, { Component } from "react";
-import { Router, Route, Switch /* Redirect*/ } from "react-router";
-import history from "./services/history";
-import App from "page/App.container";
+import React, { Component } from 'react';
+import { Router, Route, Switch /* Redirect*/ } from 'react-router';
+import history from './services/history';
+import App from 'page/App.container';
 
-import "style/normalize.css";
-import "style/app.scss";
+import 'style/normalize.css';
+import 'style/app.scss';
 
 const SignIn = React.lazy(() => import('./page/SignIn/SignIn.container'));
 // const SignIn = props => (

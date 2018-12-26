@@ -1,11 +1,11 @@
 //
-import React, { Component } from "react";
-import { TodoCreater } from "../TodoCreater/TodoCreater";
-import { Todo } from "../Todo/Todo";
-import { List } from "immutable";
-import { List as AntList } from "antd";
+import React, { Component } from 'react';
+import { TodoCreater } from '../TodoCreater/TodoCreater';
+import { Todo } from '../Todo/Todo';
+import { List } from 'immutable';
+import { List as AntList } from 'antd';
 
-import "./TodoPageContent.less";
+import './TodoPageContent.less';
 
 export class TodoPageContent extends Component {
   state = { toggleAll: false };
@@ -39,11 +39,7 @@ export class TodoPageContent extends Component {
             dataSource={this.props.unDoneTodos.toArray()}
             renderItem={todo => (
               <AntList.Item>
-                <Todo
-                  key={todo.get("id")}
-                  todo={todo}
-                  actions={this.props.actions}
-                />
+                <Todo key={todo.get('id')} todo={todo} actions={this.props.actions} />
               </AntList.Item>
             )}
           />
@@ -54,7 +50,7 @@ export class TodoPageContent extends Component {
           onClick={() => this.setState({ toggleAll: !this.state.toggleAll })}
         >
           <i className="fa fa-check-circle" aria-hidden="true" />
-          {!this.state.toggleAll ? "show all" : "hide done"}
+          {!this.state.toggleAll ? 'show all' : 'hide done'}
         </span>
 
         {this.state.toggleAll && (
@@ -64,11 +60,7 @@ export class TodoPageContent extends Component {
             dataSource={this.props.doneTodos.toArray()}
             renderItem={todo => (
               <AntList.Item>
-                <Todo
-                  key={todo.get("id")}
-                  todo={todo}
-                  actions={this.props.actions}
-                />
+                <Todo key={todo.get('id')} todo={todo} actions={this.props.actions} />
               </AntList.Item>
             )}
           />

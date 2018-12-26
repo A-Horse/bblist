@@ -1,12 +1,12 @@
 //
-import { values } from "ramda";
-import actionNames from "./actions-name";
+import { values } from 'ramda';
+import actionNames from './actions-name';
 
 const ACTIONS = actionNames.reduce((result, actionName) => {
-  const REQUEST_SYMBOL = actionName + "_REQUEST";
-  const SUCCESS_SYMBOL = actionName + "_SUCCESS";
-  const FAILURE_SYMBOL = actionName + "_FAILURE";
-  const FINISH_SYMBOL = actionName + "_FINISH";
+  const REQUEST_SYMBOL = actionName + '_REQUEST';
+  const SUCCESS_SYMBOL = actionName + '_SUCCESS';
+  const FAILURE_SYMBOL = actionName + '_FAILURE';
+  const FINISH_SYMBOL = actionName + '_FINISH';
   result[actionName] = {
     name: actionName,
     REQUEST: REQUEST_SYMBOL,
@@ -48,8 +48,8 @@ const ACTIONS = actionNames.reduce((result, actionName) => {
 
 export function makeActionRequestCollection() {
   return values(ACTIONS).reduce((result, actionFactor) => {
-    result[actionFactor.name + "_REQUEST"] = actionFactor.request;
-    result[actionFactor.name + "_FINISH"] = actionFactor.finish;
+    result[actionFactor.name + '_REQUEST'] = actionFactor.request;
+    result[actionFactor.name + '_FINISH'] = actionFactor.finish;
     return result;
   }, {});
 }

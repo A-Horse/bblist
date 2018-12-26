@@ -1,25 +1,25 @@
 //
-import React, { Component } from "react";
-import { Route, Switch } from "react-router";
-import { Infomation } from "./Infomation/Infomation";
-import { Operation } from "./Operation/Operation";
-import { TaskBoardPreferenceContainer } from "./Preference/Preference";
-import { Participant } from "./Participant/Participant";
-import { Link } from "react-router-dom";
-import { Layout, Menu, Icon } from "antd";
+import React, { Component } from 'react';
+import { Route, Switch } from 'react-router';
+import { Infomation } from './Infomation/Infomation';
+import { Operation } from './Operation/Operation';
+import { TaskBoardPreferenceContainer } from './Preference/Preference';
+import { Participant } from './Participant/Participant';
+import { Link } from 'react-router-dom';
+import { Layout, Menu, Icon } from 'antd';
 const { Content, Sider } = Layout;
 
-import "./BoardSetting.scss";
+import './BoardSetting.scss';
 
 export class BoardSetting extends Component {
   render() {
     return (
       <Layout>
-        <Sider width={200} style={{ background: "#fff" }}>
+        <Sider width={200} style={{ background: '#fff' }}>
           <Menu
             mode="inline"
-            defaultSelectedKeys={["1"]}
-            style={{ height: "100%", borderRight: 0 }}
+            defaultSelectedKeys={['1']}
+            style={{ height: '100%', borderRight: 0 }}
           >
             <Menu.Item key={1}>
               <Link to={`infomation`}>Infomation</Link>
@@ -35,10 +35,10 @@ export class BoardSetting extends Component {
             </Menu.Item>
           </Menu>
         </Sider>
-        <Layout style={{ padding: "0 24px 24px" }}>
+        <Layout style={{ padding: '0 24px 24px' }}>
           <Content
             style={{
-              background: "#fff",
+              background: '#fff',
               padding: 24,
               margin: 0,
               minHeight: 280

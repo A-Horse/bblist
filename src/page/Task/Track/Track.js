@@ -57,7 +57,9 @@ export class Track extends Component {
 
   shouldComponentUpdate(newProps, newState) {
     return (
-      !this.props.cards.equals(newProps.cards) || !this.props.track.equals(newProps.track) || this.state !== newState
+      !this.props.cards.equals(newProps.cards) ||
+      !this.props.track.equals(newProps.track) ||
+      this.state !== newState
     );
   }
 
@@ -117,7 +119,9 @@ export class Track extends Component {
               .map(card => {
                 return (
                   <TaskCard
-                    ref={cardConnectedInstance => this.pickCardInstance(cardConnectedInstance, card.get('id'))}
+                    ref={cardConnectedInstance =>
+                      this.pickCardInstance(cardConnectedInstance, card.get('id'))
+                    }
                     actions={this.props.actions}
                     key={card.get('id')}
                     boardId={this.props.boardId}

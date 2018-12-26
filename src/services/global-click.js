@@ -2,12 +2,12 @@ class GlobalClick {
   constructor() {
     this.bubbleHandles = [];
     this.captureHandles = [];
-    window.document.body.addEventListener("click", event => {
+    window.document.body.addEventListener('click', event => {
       this.bubbleHandles.forEach(handles => handles(event));
       // event.stopPropagation();
     });
     window.document.body.addEventListener(
-      "click",
+      'click',
       event => {
         this.captureHandles.forEach(handles => handles(event));
         // event.stopPropagation();

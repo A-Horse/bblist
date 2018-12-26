@@ -1,8 +1,8 @@
 //
-import React, { Component } from "react";
-import { Button, Icon, Modal, Form, Input } from "antd";
+import React, { Component } from 'react';
+import { Button, Icon, Modal, Form, Input } from 'antd';
 
-import "./TaskBoardCreater.scss";
+import './TaskBoardCreater.scss';
 
 const FormItem = Form.Item;
 
@@ -10,7 +10,7 @@ class TaskBoardCreaterForm extends Component {
   state = {
     modalVisible: false,
     errorMessages: [],
-    name: ""
+    name: ''
   };
 
   handleCancel = () => {
@@ -33,10 +33,7 @@ class TaskBoardCreaterForm extends Component {
     const { getFieldDecorator } = this.props.form;
     return (
       <div className="taskboard-creater">
-        <Button
-          type="default"
-          onClick={() => this.setState({ modalVisible: true })}
-        >
+        <Button type="default" onClick={() => this.setState({ modalVisible: true })}>
           <Icon type="plus" />
           Create Task Board
         </Button>
@@ -48,17 +45,12 @@ class TaskBoardCreaterForm extends Component {
           footer={null}
         >
           <div>
-            <img
-              className="taskboard-creater--illustration"
-              src="/assets/images/work.png"
-            />
+            <img className="taskboard-creater--illustration" src="/assets/images/work.png" />
 
             <Form onSubmit={this.handleSubmit}>
               <FormItem>
-                {getFieldDecorator("name", {
-                  rules: [
-                    { required: true, message: "Please input task board name" }
-                  ]
+                {getFieldDecorator('name', {
+                  rules: [{ required: true, message: 'Please input task board name' }]
                 })(<Input type="text" placeholder="Board Name" />)}
               </FormItem>
 

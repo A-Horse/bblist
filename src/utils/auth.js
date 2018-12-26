@@ -1,11 +1,6 @@
 //
-import {
-  JWT_STORAGE_KEY,
-  CACHED_USERNAME,
-  CACHED_USERID,
-  CACHED_USEREMAIL
-} from "../constants";
-import { Storage } from "../services/storage";
+import { JWT_STORAGE_KEY, CACHED_USERNAME, CACHED_USERID, CACHED_USEREMAIL } from '../constants';
+import { Storage } from '../services/storage';
 
 export function getJWT() {
   return Storage.get(JWT_STORAGE_KEY);
@@ -20,11 +15,11 @@ export function getCachedUserId() {
 }
 
 function saveUserData(userData) {
-  return Storage.set("USER_DATA", userData);
+  return Storage.set('USER_DATA', userData);
 }
 
 export function getUserData() {
-  const userData = Storage.get("USER_DATA");
+  const userData = Storage.get('USER_DATA');
   return userData ? JSON.parse(userData) : null;
 }
 

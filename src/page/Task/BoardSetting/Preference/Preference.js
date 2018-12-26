@@ -1,15 +1,15 @@
 //
-import React, { Component } from "react";
-import { Radio } from "antd";
+import React, { Component } from 'react';
+import { Radio } from 'antd';
 const RadioGroup = Radio.Group;
-import { bindActionCreators } from "redux";
-import { makeActionRequestCollection } from "../../../../actions/actions";
-import { withRouter } from "react-router-dom";
-import { Map } from "immutable";
+import { bindActionCreators } from 'redux';
+import { makeActionRequestCollection } from '../../../../actions/actions';
+import { withRouter } from 'react-router-dom';
+import { Map } from 'immutable';
 
-import { connect } from "react-redux";
+import { connect } from 'react-redux';
 
-import "./Preference.less";
+import './Preference.less';
 
 class TaskBoardPreference extends Component {
   render() {
@@ -26,10 +26,10 @@ class TaskBoardPreference extends Component {
 
           <RadioGroup
             onChange={this.onCardModeChange}
-            value={this.props.boardSetting.get("showType") || "COLUMN"}
+            value={this.props.boardSetting.get('showType') || 'COLUMN'}
           >
-            <Radio value={"COLUMN"}>Columns</Radio>
-            <Radio value={"LIST"}>List</Radio>
+            <Radio value={'COLUMN'}>Columns</Radio>
+            <Radio value={'LIST'}>List</Radio>
           </RadioGroup>
         </div>
       </div>
@@ -54,8 +54,7 @@ export const TaskBoardPreferenceContainer = withRouter(
       const taskBoardId = props.match.params.boardId;
       return {
         taskBoardId,
-        boardSetting:
-          state.task2.get("boardSettingMap").get(taskBoardId) || Map()
+        boardSetting: state.task2.get('boardSettingMap').get(taskBoardId) || Map()
       };
     },
     dispatch => {

@@ -1,15 +1,15 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { PageContainer } from "components/widget/PageContainer";
-import { SeaWaves } from "effect/SeaWaves";
-import { Button } from "../components/widget/Button/Button";
-import { Link } from "react-router-dom";
-import { isLogin } from "services/login";
-import { LogoBan } from "components/commons/LogoBan/LogoBan";
-import { isEnterKey } from "utils/keyboard";
-import { withRouter } from "react-router-dom";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { PageContainer } from 'components/widget/PageContainer';
+import { SeaWaves } from 'effect/SeaWaves';
+import { Button } from '../components/widget/Button/Button';
+import { Link } from 'react-router-dom';
+import { isLogin } from 'services/login';
+import { LogoBan } from 'components/commons/LogoBan/LogoBan';
+import { isEnterKey } from 'utils/keyboard';
+import { withRouter } from 'react-router-dom';
 
-import "style/page/index.scss";
+import 'style/page/index.scss';
 
 class IndexPage extends Component {
   constructor() {
@@ -18,18 +18,18 @@ class IndexPage extends Component {
   }
 
   componentWillMount() {
-    document.addEventListener("keydown", this.handlePageKeyPress);
+    document.addEventListener('keydown', this.handlePageKeyPress);
   }
 
   componentDidMount() {}
 
   componentWillUnmount() {
-    document.removeEventListener("keydown", this.handlePageKeyPress);
+    document.removeEventListener('keydown', this.handlePageKeyPress);
   }
 
   handlePageKeyPress(event) {
     if (isLogin() && isEnterKey(event)) {
-      this.props.history.push("/home");
+      this.props.history.push('/home');
     }
   }
 
@@ -66,7 +66,7 @@ class IndexPage extends Component {
           styleType="primary"
           size="large"
           onClick={() => {
-            this.props.history.push("/home");
+            this.props.history.push('/home');
           }}
         >
           Enter Octopus

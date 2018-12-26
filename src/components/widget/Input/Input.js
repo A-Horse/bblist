@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-import "./Input.scss";
+import './Input.scss';
 
 export class Input extends Component {
   static propTypes = {
@@ -23,10 +23,8 @@ export class Input extends Component {
   }
 
   buildClassName() {
-    const { size = "middle" } = this.props;
-    return `octopus-input ${size}  ${
-      this.props.className ? " " + this.props.className : ""
-    }`;
+    const { size = 'middle' } = this.props;
+    return `octopus-input ${size}  ${this.props.className ? ' ' + this.props.className : ''}`;
   }
 
   render() {

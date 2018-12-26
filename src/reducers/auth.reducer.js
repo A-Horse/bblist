@@ -15,7 +15,9 @@ export function auth(state = Map({}), action) {
       return state.update('signInAuthenticated', R.T);
 
     case Actions.LOGIN.FAILURE:
-      return state.update('signInAuthenticated', R.F).update('signInErrorMessage', () => action.payload);
+      return state
+        .update('signInAuthenticated', R.F)
+        .update('signInErrorMessage', () => action.payload);
 
     case Actions.LOGIN.FINISH:
       return state.delete('signInAuthenticated').delete('signInErrorMessage');

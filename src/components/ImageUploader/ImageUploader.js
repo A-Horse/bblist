@@ -1,17 +1,17 @@
 //
-import React, { Component } from "react";
-import ReactCrop from "react-image-crop";
-import { Button, Modal } from "antd";
-import { imageCrop } from "./ImageUploader.helper";
+import React, { Component } from 'react';
+import ReactCrop from 'react-image-crop';
+import { Button, Modal } from 'antd';
+import { imageCrop } from './ImageUploader.helper';
 
-import "./ImageUploader.css";
-import "react-image-crop/dist/ReactCrop.css";
+import './ImageUploader.css';
+import 'react-image-crop/dist/ReactCrop.css';
 
 export class ImageUploader extends Component {
   state = {
     modalVisible: false,
-    imageDataURL: "",
-    cropedimageDataUrl: "",
+    imageDataURL: '',
+    cropedimageDataUrl: '',
     crop: {
       x: 0,
       y: 0,
@@ -77,7 +77,7 @@ export class ImageUploader extends Component {
     };
     reader.readAsDataURL(this.fileInput.files[0]);
     this.setState({ modalVisible: true });
-    this.fileInput.value = "";
+    this.fileInput.value = '';
   };
 
   render() {
@@ -85,7 +85,7 @@ export class ImageUploader extends Component {
       <div className="image-upload">
         <img
           style={{
-            backgroundColor: "#f8f8f8",
+            backgroundColor: '#f8f8f8',
             ...this.props.style
           }}
           alt=""
@@ -111,7 +111,7 @@ export class ImageUploader extends Component {
         >
           <div className="crop-image-container">
             <ReactCrop
-              style={{ maxHeight: "60vh" }}
+              style={{ maxHeight: '60vh' }}
               crop={this.state.crop}
               onChange={this.onCropChange}
               onComplete={this.onCropComplete}

@@ -6,7 +6,7 @@ import {
   UnprocessableError,
   UnKnownError,
   TimeoutError
-} from "./http-error";
+} from './http-error';
 
 function handleError(response) {
   switch (response.status) {
@@ -15,7 +15,7 @@ function handleError(response) {
       break;
     case 401:
       // TODO 简单处理，以后这个文件删掉
-      window.location.href = "signin";
+      window.location.href = 'signin';
       throw new NotAuthError();
       break;
     case 400:

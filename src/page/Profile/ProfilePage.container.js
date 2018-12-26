@@ -1,6 +1,6 @@
-import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
-import ProfilePage from "./ProfilePage";
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import ProfilePage from './ProfilePage';
 /* import Actions, { makeActionRequestCollection } from '../../actions/actions';
  *
  * const mapDispatchToProps = dispatch => {
@@ -9,7 +9,7 @@ import ProfilePage from "./ProfilePage";
 
 const mapStateToProps = state => {
   return {
-    user: state.auth.get("loginedUser")
+    user: state.auth.get('loginedUser')
   };
 };
 

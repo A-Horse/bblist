@@ -105,7 +105,11 @@ export const UPDATE_TASK_BOARD_REQUEST = action$ =>
     .debounceTime(300)
     .mergeMap(action => {
       return http
-        .patch(makeApiUrl(`/tk/task-board/${action.payload.id}`), null, R.omit(['id'], action.payload))
+        .patch(
+          makeApiUrl(`/tk/task-board/${action.payload.id}`),
+          null,
+          R.omit(['id'], action.payload)
+        )
         .then(Actions.UPDATE_TASK_BOARD.success)
         .catch(Actions.UPDATE_TASK_BOARD.failure);
     });

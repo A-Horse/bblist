@@ -13,7 +13,7 @@ export class SeaWaves {
    */
   constructor(canvas) {
     this.canvas = canvas;
-    this.context = this.canvas.getContext("2d");
+    this.context = this.canvas.getContext('2d');
     this.width = this.canvas.width = window.innerWidth;
     this.height = this.canvas.height = window.innerHeight;
     this.center = {
@@ -24,7 +24,7 @@ export class SeaWaves {
     this.circleContainers = [];
 
     //Resize listener for the canvas to fill browser window dynamically
-    window.addEventListener("resize", () => this.resizeCanvas(), false);
+    window.addEventListener('resize', () => this.resizeCanvas(), false);
   }
 
   /**
@@ -191,13 +191,11 @@ class Circle {
     this.position.x =
       this.basePosition.x +
       Math.cos(this.angleCircle) *
-        (Math.sin(this.angle + this.angleCircle) * this.bounceRadius +
-          this.baseRadius);
+        (Math.sin(this.angle + this.angleCircle) * this.bounceRadius + this.baseRadius);
     this.position.y =
       this.basePosition.y +
       Math.sin(this.angleCircle) *
-        (Math.sin(this.angle + this.angleCircle) * this.bounceRadius +
-          this.baseRadius);
+        (Math.sin(this.angle + this.angleCircle) * this.bounceRadius + this.baseRadius);
     this.size = Math.cos(this.angle) * 8 + this.baseSize;
 
     this.angle += this.speed;
@@ -209,7 +207,7 @@ class Circle {
    * @return void
    */
   render(context) {
-    context.fillStyle = "hsl(195, 100%, " + this.size * 4 + "%)";
+    context.fillStyle = 'hsl(195, 100%, ' + this.size * 4 + '%)';
     context.beginPath();
     context.arc(this.position.x, this.position.y, this.size, 0, TWO_PI);
     context.fill();

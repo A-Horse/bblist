@@ -1,21 +1,21 @@
-import React from "react";
-import Board from "./Board";
-import renderer from "react-test-renderer";
-import { fromJS } from "immutable";
-import { MemoryRouter } from "react-router";
+import React from 'react';
+import Board from './Board';
+import renderer from 'react-test-renderer';
+import { fromJS } from 'immutable';
+import { MemoryRouter } from 'react-router';
 
-test("TaskBoard", () => {
+test('TaskBoard', () => {
   const board = fromJS({
     tracks: [21],
     created_at: null,
-    name: "sdsd!",
+    name: 'sdsd!',
     ownerId: 2,
     createrId: null,
     isPublic: 0,
     updated_at: null,
-    cover: "board-cover/71d40-59335-ce623-3dbb3",
+    cover: 'board-cover/71d40-59335-ce623-3dbb3',
     sprint: null,
-    type: "NORMAL",
+    type: 'NORMAL',
     id: 15
   });
 
@@ -23,7 +23,7 @@ test("TaskBoard", () => {
     GET_TASK_BOARD_REQUEST: jest.fn()
   };
   const cardMap = fromJS({
-    "20": {
+    '20': {
       created_at: null,
       taskBoardId: 15,
       isDone: 0,
@@ -33,9 +33,9 @@ test("TaskBoard", () => {
       index: 1,
       status: null,
       owner: {},
-      creater: { email: "chenfangwei@outlook.com", id: 2 },
+      creater: { email: 'chenfangwei@outlook.com', id: 2 },
       updated_at: null,
-      title: "I am card",
+      title: 'I am card',
       content: null,
       sprint: null,
       id: 20,
@@ -43,11 +43,11 @@ test("TaskBoard", () => {
     }
   });
   const trackMap = fromJS({
-    "21": {
+    '21': {
       id: 21,
       taskBoardId: 15,
       index: 1,
-      name: "Track No.1",
+      name: 'Track No.1',
       type: null,
       cards: [20]
     }

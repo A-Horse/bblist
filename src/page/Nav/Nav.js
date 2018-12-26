@@ -1,35 +1,35 @@
 //
-import React, { Component } from "react";
-import { Link, NavLink } from "react-router-dom";
-import { makeGravatarUrl } from "../../services/gravatar";
-import { Storage, storageImage } from "../../services/storage";
-import { LogoBan } from "../../components/commons/LogoBan/LogoBan";
+import React, { Component } from 'react';
+import { Link, NavLink } from 'react-router-dom';
+import { makeGravatarUrl } from '../../services/gravatar';
+import { Storage, storageImage } from '../../services/storage';
+import { LogoBan } from '../../components/commons/LogoBan/LogoBan';
 
-import { Layout, Icon, Dropdown, Menu } from "antd";
+import { Layout, Icon, Dropdown, Menu } from 'antd';
 const { Header } = Layout;
 
 // TODO remove
 export const navHeight = 42;
 
-import "./Nav.less";
+import './Nav.less';
 
 class Nav extends Component {
   state = {};
 
   links = [
-    { name: "Dash", url: "/home" },
-    { name: "Task", url: "/task-board" },
-    { name: "Todo", url: "/todo" }
+    { name: 'Dash', url: '/home' },
+    { name: 'Task', url: '/task-board' },
+    { name: 'Todo', url: '/todo' }
   ];
 
   onNewAvatarImageLoaded = event => {
-    storageImage("avator", event.nativeEvent.target);
+    storageImage('avator', event.nativeEvent.target);
   };
 
   render() {
     const userName = this.props.user.username;
     const { user } = this.props;
-    const avatarData = Storage.get("avator");
+    const avatarData = Storage.get('avator');
 
     const menu = (
       <Menu>
@@ -65,7 +65,7 @@ class Nav extends Component {
             </NavLink>
           </div>
 
-          <div style={{ display: "inline-block" }}>
+          <div style={{ display: 'inline-block' }}>
             <Dropdown overlay={menu} placement="bottomRight">
               {avatarData ? (
                 <img

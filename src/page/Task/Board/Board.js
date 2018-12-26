@@ -1,17 +1,17 @@
 //
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import { Route, Switch, Redirect } from "react-router";
-import { updateTitle } from "../../../services/title";
-import { StarCheckBox } from "../../../components/widget/StarCheckBox/StarCheckBox";
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router';
+import { updateTitle } from '../../../services/title';
+import { StarCheckBox } from '../../../components/widget/StarCheckBox/StarCheckBox';
 
-import { BoardContentContainer } from "../BoardContent/BoardContent";
-import { BoardSetting } from "../BoardSetting/BoardSetting";
+import { BoardContentContainer } from '../BoardContent/BoardContent';
+import { BoardSetting } from '../BoardSetting/BoardSetting';
 
-import { Layout } from "antd";
+import { Layout } from 'antd';
 const { Header } = Layout;
 
-import "./Board.scss";
+import './Board.scss';
 
 export class Board extends Component {
   componentWillMount() {
@@ -51,14 +51,11 @@ export class Board extends Component {
           <StarCheckBox
             className="taskboard-header--star"
             onChange={this.onStarCheckChange}
-            defaultChecked={board.get("isStar")}
+            defaultChecked={board.get('isStar')}
           />
           <div className="taskboard-name">
-            <Link
-              className="taskboard-name--text"
-              to={`/task-board/${boardId}`}
-            >
-              {board && board.get("name")}
+            <Link className="taskboard-name--text" to={`/task-board/${boardId}`}>
+              {board && board.get('name')}
             </Link>
           </div>
 
@@ -66,9 +63,7 @@ export class Board extends Component {
             className="taskboard-header-setting"
             onClick={() =>
               this.props.history.push(
-                `/task-board/${
-                  this.props.match.params.boardId
-                }/setting/infomation`
+                `/task-board/${this.props.match.params.boardId}/setting/infomation`
               )
             }
           >
@@ -81,10 +76,7 @@ export class Board extends Component {
             path="/task-board/:boardId/setting"
             render={props => <BoardSetting {...this.props} {...props} />}
           />
-          <Route
-            path="/task-board/:boardId"
-            render={props => <BoardContentContainer />}
-          />
+          <Route path="/task-board/:boardId" render={props => <BoardContentContainer />} />
         </Switch>
       </Layout>
     );

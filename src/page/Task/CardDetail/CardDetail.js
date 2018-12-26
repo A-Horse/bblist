@@ -1,24 +1,14 @@
 //
-import React, { Component } from "react";
-import { Map } from "immutable";
-import {
-  Select,
-  Modal,
-  Icon,
-  Menu,
-  Dropdown,
-  Form,
-  Input,
-  Row,
-  Checkbox
-} from "antd";
+import React, { Component } from 'react';
+import { Map } from 'immutable';
+import { Select, Modal, Icon, Menu, Dropdown, Form, Input, Row, Checkbox } from 'antd';
 
 const { TextArea } = Input;
 
 const Option = Select.Option;
 const FormItem = Form.Item;
 
-import "./CardDetail.less";
+import './CardDetail.less';
 
 export class CardDetail extends Component {
   state = { toggle: true };
@@ -40,21 +30,21 @@ export class CardDetail extends Component {
 
   handleDestoryCard() {
     this.props.actions.DESTORY_TASK_CARD_REQUEST({
-      id: this.props.card.get("id")
+      id: this.props.card.get('id')
     });
     this.close();
   }
 
   handleArchiveCard() {
     this.props.actions.ARCHIVE_TASK_CARD_REQUEST({
-      id: this.props.card.get("id")
+      id: this.props.card.get('id')
     });
     this.close();
   }
 
   handleUpdateDetail = patchDetail => {
     this.props.actions.UPDATE_TASK_CARD_REQUEST({
-      id: this.props.card.get("id"),
+      id: this.props.card.get('id'),
       ...patchDetail
     });
   };
@@ -71,20 +61,20 @@ export class CardDetail extends Component {
 
   handleUpdateDone = event => {
     this.handleUpdateDetail({
-      isDone: event.target.checked ? "DONE" : "UNDONE"
+      isDone: event.target.checked ? 'DONE' : 'UNDONE'
     });
   };
 
   handleUpdateBelongTrack = trackId => {
     this.props.actions.UPDATE_TASK_CARD_REQUEST({
-      id: this.props.card.get("id"),
+      id: this.props.card.get('id'),
       taskTrackId: trackId
     });
   };
 
   handleTaskTypeChange = type => {
     this.props.actions.UPDATE_TASK_CARD_REQUEST({
-      id: this.props.card.get("id"),
+      id: this.props.card.get('id'),
       type
     });
   };
@@ -133,29 +123,29 @@ export class CardDetail extends Component {
             <Icon type="swap" theme="outlined" />
             <Select
               className="track-selecter"
-              defaultValue={card.get("taskTrackId")}
+              defaultValue={card.get('taskTrackId')}
               onChange={this.handleUpdateBelongTrack}
             >
               {this.props.trackMap.toArray().map(track => {
                 return (
                   <Option
-                    key={track.get("id")}
-                    value={track.get("id")}
-                    disabled={card.get("taskTrackId") === track.get("id")}
+                    key={track.get('id')}
+                    value={track.get('id')}
+                    disabled={card.get('taskTrackId') === track.get('id')}
                   >
-                    {track.get("name")}
+                    {track.get('name')}
                   </Option>
                 );
               })}
             </Select>
             <div
               style={{
-                cursor: "pointer",
-                float: "right",
-                marginRight: "30px",
-                marginTop: "10px",
-                position: "relative",
-                zIndex: "1000"
+                cursor: 'pointer',
+                float: 'right',
+                marginRight: '30px',
+                marginTop: '10px',
+                position: 'relative',
+                zIndex: '1000'
               }}
             >
               <Dropdown overlay={menu} placement="bottomRight">
@@ -171,15 +161,15 @@ export class CardDetail extends Component {
           <div className="card-detail-dialog-container-left">
             <FormItem>
               <Row>
-                {this.props.card.get("type") === "TODO" && (
+                {this.props.card.get('type') === 'TODO' && (
                   <Checkbox
-                    checked={this.props.card.get("status") === "DONE"}
+                    checked={this.props.card.get('status') === 'DONE'}
                     onChange={this.handleUpdateDone}
                   />
                 )}
                 <Input
                   className="title-input"
-                  value={this.props.card.get("title")}
+                  value={this.props.card.get('title')}
                   onChange={this.handleUpdateTitle}
                 />
               </Row>
@@ -188,7 +178,7 @@ export class CardDetail extends Component {
             <FormItem label="Description:">
               <TextArea
                 rows={8}
-                defaultValue={this.props.card.get("content")}
+                defaultValue={this.props.card.get('content')}
                 onChange={this.handleUpdateContent}
               />
             </FormItem>

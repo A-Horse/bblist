@@ -1,8 +1,8 @@
-const BASE_STATIC_PATH = "/static/";
+const BASE_STATIC_PATH = '/static/';
 
 const SVG = {
-  clear: "ic_clear_black_24px.svg",
-  black: "ic_settings_black_24px.svg"
+  clear: 'ic_clear_black_24px.svg',
+  black: 'ic_settings_black_24px.svg'
 };
 
 const IMAGE = {};
@@ -13,7 +13,7 @@ const ASSETS = {
 };
 
 const ASSETS_DIR_MAP = {
-  svg: "svg/"
+  svg: 'svg/'
 };
 
 export function getAssets(type, name) {

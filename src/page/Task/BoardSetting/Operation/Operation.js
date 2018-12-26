@@ -1,8 +1,8 @@
 //
-import React, { Component } from "react";
-import { Button } from "antd";
+import React, { Component } from 'react';
+import { Button } from 'antd';
 
-import "./Operation.scss";
+import './Operation.scss';
 
 export class Operation extends Component {
   render() {
@@ -17,7 +17,7 @@ export class Operation extends Component {
               type="danger"
               onClick={() =>
                 this.props.actions.DESTORY_TASK_BOARD_REQUEST({
-                  id: this.props.board.get("id")
+                  id: this.props.board.get('id')
                 })
               }
             >

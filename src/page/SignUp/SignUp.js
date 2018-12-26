@@ -109,7 +109,10 @@ class SignUp extends Component {
     };
 
     const errorMessages = validateFormValue(signUpData, {
-      name: ['max@100#Name Up to 100 characters ', 'min@3#The name must be a minimum of three characters'],
+      name: [
+        'max@100#Name Up to 100 characters ',
+        'min@3#The name must be a minimum of three characters'
+      ],
       password: ['max@100#Password Up to 100 characters', 'min@6#password min 6'],
       confirmPassword: [`eqTo@${signUpData.password}#password don't match`],
       email: ['email#email express wrong', 'max@150#max 150']

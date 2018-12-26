@@ -1,14 +1,14 @@
-import nock from "nock";
-import configureMockStore from "redux-mock-store";
-import { createEpicMiddleware, combineEpics } from "redux-observable";
-import { IDENTIFY_REQUEST, LOGIN_REQUEST } from "./auth.epic.js";
-import { timeout } from "../utils/timeout";
+import nock from 'nock';
+import configureMockStore from 'redux-mock-store';
+import { createEpicMiddleware, combineEpics } from 'redux-observable';
+import { IDENTIFY_REQUEST, LOGIN_REQUEST } from './auth.epic.js';
+import { timeout } from '../utils/timeout';
 
 const rootEpic = combineEpics(IDENTIFY_REQUEST, LOGIN_REQUEST);
 const epicMiddleware = createEpicMiddleware(rootEpic);
 const mockStore = configureMockStore([epicMiddleware]);
 
-describe("auth epic test", () => {
+describe('auth epic test', () => {
   let store;
 
   beforeAll(() => {
@@ -24,51 +24,51 @@ describe("auth epic test", () => {
     epicMiddleware.replaceEpic(rootEpic);
   });
 
-  test("IDENTIFY_REQUEST", async () => {
-    nock("http://ocotpuese.xyz")
-      .get("/api/user/identify")
-      .reply(200, { jwt: "jwt" });
-    store.dispatch({ type: "IDENTIFY_REQUEST" });
+  test('IDENTIFY_REQUEST', async () => {
+    nock('http://ocotpuese.xyz')
+      .get('/api/user/identify')
+      .reply(200, { jwt: 'jwt' });
+    store.dispatch({ type: 'IDENTIFY_REQUEST' });
     await timeout(10);
     nock.isDone();
     expect(store.getActions()).toEqual([
-      { type: "IDENTIFY_REQUEST" },
-      { type: "IDENTIFY_SUCCESS", payload: { jwt: "jwt" } }
+      { type: 'IDENTIFY_REQUEST' },
+      { type: 'IDENTIFY_SUCCESS', payload: { jwt: 'jwt' } }
     ]);
   });
 
-  test("LOGIN_REQUEST", async () => {
-    nock("http://ocotpuese.xyz")
-      .post("/api/signin", {
-        email: "octopus@octopus.com",
-        password: "1234567"
+  test('LOGIN_REQUEST', async () => {
+    nock('http://ocotpuese.xyz')
+      .post('/api/signin', {
+        email: 'octopus@octopus.com',
+        password: '1234567'
       })
       .reply(200, {
-        user: { username: "octopus", email: "test@ocotpus.com", id: 34 },
-        jwt: "jwt"
+        user: { username: 'octopus', email: 'test@ocotpus.com', id: 34 },
+        jwt: 'jwt'
       });
 
     store.dispatch({
-      type: "LOGIN_REQUEST",
-      payload: { email: "octopus@octopus.com", password: "1234567" }
+      type: 'LOGIN_REQUEST',
+      payload: { email: 'octopus@octopus.com', password: '1234567' }
     });
 
     await timeout(10);
     nock.isDone();
     expect(store.getActions()).toEqual([
       {
-        type: "LOGIN_REQUEST",
-        payload: { email: "octopus@octopus.com", password: "1234567" }
+        type: 'LOGIN_REQUEST',
+        payload: { email: 'octopus@octopus.com', password: '1234567' }
       },
       {
-        type: "LOGIN_SUCCESS",
+        type: 'LOGIN_SUCCESS',
         payload: {
           user: {
-            username: "octopus",
-            email: "test@ocotpus.com",
+            username: 'octopus',
+            email: 'test@ocotpus.com',
             id: 34
           },
-          jwt: "jwt"
+          jwt: 'jwt'
         }
       }
     ]);
