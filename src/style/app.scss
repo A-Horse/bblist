@@ -1,9 +1,9 @@
-@import './mixin';
-@import './reset';
-@import './icon';
-@import './vendor';
-@import './variable';
-@import './font';
+@import "./mixin";
+@import "./reset";
+@import "./icon";
+@import "./vendor";
+@import "./variable";
+@import "./font";
 
 .clearfix {
   @include clearfix;
@@ -15,13 +15,13 @@
 
 html {
   background-color: $page-background-gray;
-  font-family: 'Mukta', sans-serif;
+  font-family: "Mukta", sans-serif;
   font-weight: 300;
 }
 
 * {
   -webkit-overflow-scrolling: touch;
-  -webkit-text-size-adjust: none
+  -webkit-text-size-adjust: none;
 }
 
 #root {
@@ -36,4 +36,3 @@ html {
     overflow: auto;
   }
 }
-

@@ -1,6 +1,6 @@
-export const MQ_LARGE = 'MQ_LARGE';
-export const MQ_MIDDLE = 'MQ_MIDDLE';
-export const MQ_SMALL = 'MQ_SMALL';
+export const MQ_LARGE = "MQ_LARGE";
+export const MQ_MIDDLE = "MQ_MIDDLE";
+export const MQ_SMALL = "MQ_SMALL";
 
 let windowPx = {
   height: null,
@@ -12,7 +12,7 @@ const queryScreen = () => {
   windowPx.width = window.innerWidth;
 };
 
-window.addEventListener('resize', queryScreen, true);
+window.addEventListener("resize", queryScreen, true);
 
 export function getWindowSize() {}
 

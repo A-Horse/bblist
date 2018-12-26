@@ -1,30 +1,16 @@
-// @flow
-import React, { Component } from 'react';
-import R from 'ramda';
-import Input from '../../../components/widget/Input/Input';
-import { TaskCard } from '../TaskCard/TaskCard';
-import TaskCardCreater from '../CardCreater/CardCreater';
-import { isEnterKey } from '../../../utils/keyboard';
-import { onTrackTopBarMouseDown } from './track-switch-helper';
-import { Menu, Dropdown, Icon } from 'antd';
+//
+import React, { Component } from "react";
+import R from "ramda";
+import Input from "../../../components/widget/Input/Input";
+import { TaskCard } from "../TaskCard/TaskCard";
+import TaskCardCreater from "../CardCreater/CardCreater";
+import { isEnterKey } from "../../../utils/keyboard";
+import { onTrackTopBarMouseDown } from "./track-switch-helper";
+import { Menu, Dropdown, Icon } from "antd";
 
-import './Track.scss';
+import "./Track.scss";
 
-export class Track extends Component<
-  {
-    cards: any,
-    track: any,
-    boardId: any,
-    loginedUser: any,
-    actions: any,
-    updateTrack: any,
-    addTaskCard: any,
-    destroyTrack: any
-  },
-  {
-    trackDropDownVisible: boolean
-  }
-> {
+export class Track extends Component {
   state = {
     trackDropDownVisible: false
   };
@@ -42,7 +28,7 @@ export class Track extends Component<
 
   getTrackIdAndIndex() {
     return {
-      id: this.props.track.get('id'),
+      id: this.props.track.get("id"),
       index: Number(this.domMain.dataset.index)
     };
   }
@@ -63,7 +49,10 @@ export class Track extends Component<
   }
 
   addTaskCard = data => {
-    return this.props.addTaskCard({ trackId: +this.props.track.get('id'), ...data });
+    return this.props.addTaskCard({
+      trackId: +this.props.track.get("id"),
+      ...data
+    });
   };
 
   shouldComponentUpdate(newProps, newState) {
@@ -78,11 +67,14 @@ export class Track extends Component<
     return (
       <div
         ref={ref => (this.domMain = ref)}
-        data-index={this.props.track.get('index')}
-        data-id={this.props.track.get('id')}
+        data-index={this.props.track.get("index")}
+        data-id={this.props.track.get("id")}
         className="task-track"
       >
-        <div className="task-track--top-bar" onMouseDown={this.onTopBarMouseDown.bind(this)}>
+        <div
+          className="task-track--top-bar"
+          onMouseDown={this.onTopBarMouseDown.bind(this)}
+        >
           <div className="task-track--name">
             <Input
               className="task-track--input"
@@ -92,21 +84,25 @@ export class Track extends Component<
               }}
               onChange={name =>
                 this.props.updateTrack({
-                  trackId: this.props.track.get('id'),
+                  trackId: this.props.track.get("id"),
                   name
                 })
               }
-              defaultValue={this.props.track.get('name')}
+              defaultValue={this.props.track.get("name")}
             />
           </div>
           <Dropdown
-            trigger={['click']}
+            trigger={["click"]}
             placement="bottomRight"
             overlay={
               <Menu>
                 <Menu.Item
                   key="0"
-                  onClick={() => this.props.destroyTrack({ trackId: this.props.track.get('id') })}
+                  onClick={() =>
+                    this.props.destroyTrack({
+                      trackId: this.props.track.get("id")
+                    })
+                  }
                 >
                   <i className="fa fa-trash" aria-hidden="true" />
                   <span>Delete</span>
@@ -121,16 +117,19 @@ export class Track extends Component<
         <div className="task-track--body">
           <div>
             {this.props.cards
-              .sortBy(card => card.get('index'))
+              .sortBy(card => card.get("index"))
               .toArray()
               .map(card => {
                 return (
                   <TaskCard
                     ref={cardConnectedInstance =>
-                      this.pickCardInstance(cardConnectedInstance, card.get('id'))
+                      this.pickCardInstance(
+                        cardConnectedInstance,
+                        card.get("id")
+                      )
                     }
                     actions={this.props.actions}
-                    key={card.get('id')}
+                    key={card.get("id")}
                     boardId={this.props.boardId}
                     card={card}
                     history={this.props.history}

@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import 'style/component/loading.scss';
+import "style/component/loading.scss";
 
 export class Loading extends Component {
   render() {

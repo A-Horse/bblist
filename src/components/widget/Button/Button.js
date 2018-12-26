@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import './Button.scss';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import "./Button.scss";
 
 export class Button extends Component {
   static propTypes = {
-    size: PropTypes.oneOf(['small', 'middle', 'large']),
+    size: PropTypes.oneOf(["small", "middle", "large"]),
     type: PropTypes.any,
-    styleType: PropTypes.oneOf(['default', 'primary', 'disable', 'dangerous']),
+    styleType: PropTypes.oneOf(["default", "primary", "disable", "dangerous"]),
     disable: PropTypes.bool,
     borderType: PropTypes.string,
     className: PropTypes.string,
@@ -14,10 +14,14 @@ export class Button extends Component {
   };
 
   buildClassName() {
-    const { size = 'middle', styleType = 'default', borderType = 'default' } = this.props;
-    return `button ${size} ${styleType} border-${borderType} ${this.props.className
-      ? ' ' + this.props.className
-      : ''}`;
+    const {
+      size = "middle",
+      styleType = "default",
+      borderType = "default"
+    } = this.props;
+    return `button ${size} ${styleType} border-${borderType} ${
+      this.props.className ? " " + this.props.className : ""
+    }`;
   }
 
   render() {

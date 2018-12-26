@@ -1,8 +1,8 @@
-import { connect } from 'react-redux';
-import Profile from 'page/setting/Profile';
-import { bindActionCreators } from 'redux';
+import { connect } from "react-redux";
+import Profile from "page/setting/Profile";
+import { bindActionCreators } from "redux";
 
-import { updateUserInfo } from 'actions/user';
+import { updateUserInfo } from "actions/user";
 
 // TODO:
 const actions = {
@@ -23,6 +23,9 @@ const mapStateToProps = state => {
   };
 };
 
-const ProfileContainer = connect(mapStateToProps, mapDispatchToProps)(Profile);
+const ProfileContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Profile);
 
 export default ProfileContainer;

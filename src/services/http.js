@@ -1,12 +1,21 @@
-import fetch from 'isomorphic-fetch';
-import R from 'ramda';
-import { handleResponse } from 'utils/http-handle';
-import { createConfigWithAuth, createFormDataConfigWithAuth } from '../utils/header';
+import fetch from "isomorphic-fetch";
+import R from "ramda";
+import { handleResponse } from "utils/http-handle";
+import {
+  createConfigWithAuth,
+  createFormDataConfigWithAuth
+} from "../utils/header";
 
 function generateUri(url, query) {
   return !query
     ? url
-    : url + '?' + R.compose(R.join('&'), R.map(k => `${k}=${query[k]}`), R.keys)(query);
+    : url +
+        "?" +
+        R.compose(
+          R.join("&"),
+          R.map(k => `${k}=${query[k]}`),
+          R.keys
+        )(query);
 }
 
 function f(method) {
@@ -24,11 +33,11 @@ function f(method) {
 }
 
 export const http = {
-  get: f('GET'),
-  post: f('POST'),
-  patch: f('PATCH'),
-  delete: f('DELETE'),
-  del: f('DELETE')
+  get: f("GET"),
+  post: f("POST"),
+  patch: f("PATCH"),
+  delete: f("DELETE"),
+  del: f("DELETE")
 };
 
 export default http;

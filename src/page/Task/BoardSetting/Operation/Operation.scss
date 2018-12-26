@@ -1,8 +1,7 @@
-@import 'style/variable';
-@import 'style/mixin';
+@import "style/variable";
+@import "style/mixin";
 
 .board-setting-operation {
-
   .board-delete {
     margin-top: 20px;
     &--heading {

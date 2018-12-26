@@ -1,4 +1,4 @@
-@import 'style/variable';
+@import "style/variable";
 $list-horiz-padding: 10px;
 $list-vertical-padding: 12px;
 
@@ -32,17 +32,19 @@ $list-vertical-padding: 12px;
   .icon-add {
     vertical-align: middle;
     margin-right: 8px;
-
   }
 }
 
-.taskcard-creater--user, .taskcard-creater--operation, .taskcard-creater--participants {
+.taskcard-creater--user,
+.taskcard-creater--operation,
+.taskcard-creater--participants {
   margin-top: 10px;
   font-size: $font-size-x-middle;
   color: $gray-light-deep;
 }
 
-.taskcard-creater--user, .taskcard-creater--participants {
+.taskcard-creater--user,
+.taskcard-creater--participants {
   margin-bottom: 8px;
 }
 
@@ -65,13 +67,12 @@ $list-vertical-padding: 12px;
   }
 }
 
-.taskcard-creater--operation, .taskcard-creater--operation > div {
+.taskcard-creater--operation,
+.taskcard-creater--operation > div {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-
 .taskcard-creater--participants {
-
 }

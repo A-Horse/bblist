@@ -1,6 +1,5 @@
-@import 'style/variable';
-@import 'style/mixin';
-
+@import "style/variable";
+@import "style/mixin";
 
 // TODO refactor with signin
 .signup-page {
@@ -27,7 +26,7 @@
       font-weight: bolder;
     }
   }
-  
+
   .signup-form {
     margin-top: 18px;
     width: 330px;

@@ -1,22 +1,19 @@
-// @flow
-import React, { Component } from 'react';
-import { Input } from 'antd';
+//
+import React, { Component } from "react";
+import { Input } from "antd";
 
-import { ImageUploader } from '../../../../components/ImageUploader/ImageUploader';
-import { makeRemoteUrl } from '../../../../services/remote-storage';
-import { DEFAULT_BOARD_COVER_SRC } from '../../../../constants';
+import { ImageUploader } from "../../../../components/ImageUploader/ImageUploader";
+import { makeRemoteUrl } from "../../../../services/remote-storage";
+import { DEFAULT_BOARD_COVER_SRC } from "../../../../constants";
 
-import './Infomation.scss';
+import "./Infomation.scss";
 
-export class Infomation extends Component<{
-  actions: any,
-  board: any
-}> {
-  onCoverUpload = (coverBase64: string) => {
+export class Infomation extends Component {
+  onCoverUpload = coverBase64 => {
     const data = new FormData();
-    data.append('cover', coverBase64);
+    data.append("cover", coverBase64);
     this.props.actions.UPLOAD_TASK_BOARD_COVER_REQUEST({
-      id: this.props.board.get('id'),
+      id: this.props.board.get("id"),
       data: data
     });
   };
@@ -34,9 +31,16 @@ export class Infomation extends Component<{
           <div className="board-cover--heading">Board Cover:</div>
           <div className="board-cover--uploader">
             <ImageUploader
-              style={{ width: '250px', height: '125px', borderRadius: '6px', display: 'block' }}
+              style={{
+                width: "250px",
+                height: "125px",
+                borderRadius: "6px",
+                display: "block"
+              }}
               source={
-                board.get('cover') ? makeRemoteUrl(board.get('cover')) : DEFAULT_BOARD_COVER_SRC
+                board.get("cover")
+                  ? makeRemoteUrl(board.get("cover"))
+                  : DEFAULT_BOARD_COVER_SRC
               }
               upload={this.onCoverUpload}
             >
@@ -50,10 +54,10 @@ export class Infomation extends Component<{
           <div>
             <Input
               className="board-name--input"
-              defaultValue={board.get('name')}
+              defaultValue={board.get("name")}
               onChange={event =>
                 this.props.actions.UPDATE_TASK_BOARD_REQUEST({
-                  id: board.get('id'),
+                  id: board.get("id"),
                   name: event.target.value
                 })
               }

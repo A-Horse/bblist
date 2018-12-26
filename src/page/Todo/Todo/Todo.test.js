@@ -1,10 +1,10 @@
-import React from 'react';
-import Todo from './Todo';
-import renderer from 'react-test-renderer';
+import React from "react";
+import Todo from "./Todo";
+import renderer from "react-test-renderer";
 // import ShallowRenderer from 'react-test-renderer/shallow';
-import { fromJS } from 'immutable';
+import { fromJS } from "immutable";
 
-test('Todo Component render', () => {
+test("Todo Component render", () => {
   const todo = fromJS({
     id: 76,
     userId: 2,
@@ -13,7 +13,7 @@ test('Todo Component render', () => {
     remark: null,
     isDone: 1,
     isStar: 0,
-    repeat: '2',
+    repeat: "2",
     deadline: null,
     noticeTime: null,
     doneTime: null,
@@ -25,8 +25,11 @@ test('Todo Component render', () => {
 
   const mockDispatch = jest.fn();
   const actions = {};
-  const tree = renderer.create(<Todo todo={todo} dispatch={mockDispatch} actions={actions} />, {
-    createNodeMock: () => document.createElement('textarea')
-  });
+  const tree = renderer.create(
+    <Todo todo={todo} dispatch={mockDispatch} actions={actions} />,
+    {
+      createNodeMock: () => document.createElement("textarea")
+    }
+  );
   expect(tree).toMatchSnapshot();
 });

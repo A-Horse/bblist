@@ -1,10 +1,10 @@
-// @flow
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { withRouter } from 'react-router-dom';
+//
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { withRouter } from "react-router-dom";
 
-import Actions, { makeActionRequestCollection } from '../actions/actions';
-import App from './App';
+import Actions, { makeActionRequestCollection } from "../actions/actions";
+import App from "./App";
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -14,12 +14,17 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = state => {
   return {
-    identifyAuthenticated: state.auth.get('identifyAuthenticated'),
-    identifyFetching: state.auth.get('identifyFetching'),
-    user: state.auth.get('loginedUser')
+    identifyAuthenticated: state.auth.get("identifyAuthenticated"),
+    identifyFetching: state.auth.get("identifyFetching"),
+    user: state.auth.get("loginedUser")
   };
 };
 
-const AppContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
+const AppContainer = withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(App)
+);
 
 export default AppContainer;

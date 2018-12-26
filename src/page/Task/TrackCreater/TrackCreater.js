@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { Button } from 'components/widget/Button/Button';
-import { isEnterKey } from 'utils/keyboard';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { Button } from "components/widget/Button/Button";
+import { isEnterKey } from "utils/keyboard";
 
-import './TrackCreater.scss';
+import "./TrackCreater.scss";
 
 class TrackCreater extends Component {
   static propTypes = {
@@ -53,7 +53,11 @@ class TrackCreater extends Component {
               onChange={event => this.setState({ name: event.target.value })}
               onKeyDown={this.onKeyDown}
             />
-            <Button className="creater-button" styleType="primary" onClick={this.addTrack}>
+            <Button
+              className="creater-button"
+              styleType="primary"
+              onClick={this.addTrack}
+            >
               OK
             </Button>
             <Button onClick={this.close}>Cancel</Button>

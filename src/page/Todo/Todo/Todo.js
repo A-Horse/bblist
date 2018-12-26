@@ -1,41 +1,32 @@
-// @flow
-import React, { Component } from 'react';
-import { StarCheckBox } from '../../../components/widget/StarCheckBox/StarCheckBox';
-import { Checkbox } from 'antd';
-import moment from 'moment';
-import { Map } from 'immutable';
-import { Row, Col, Tag } from 'antd';
+//
+import React, { Component } from "react";
+import { StarCheckBox } from "../../../components/widget/StarCheckBox/StarCheckBox";
+import { Checkbox } from "antd";
+import moment from "moment";
+import { Map } from "immutable";
+import { Row, Col, Tag } from "antd";
 
-import './Todo.less';
+import "./Todo.less";
 
-interface Props {
-  actions: any;
-  todo: Map<Todo>;
-}
-
-interface State {
-  editToggle: boolean;
-}
-
-export class Todo extends Component<Props, State> {
+export class Todo extends Component {
   state = {
     editToggle: false
   };
 
-  updateTodo(updatedPart: Object) {
+  updateTodo(updatedPart) {
     const { todo } = this.props;
     const data = {
-      id: todo.get('id'),
+      id: todo.get("id"),
       ...updatedPart
     };
     this.props.actions.UPDATE_TODO_REQUEST(data);
   }
 
-  updateDone = (event: SyntheticEvent<Event>) => {
+  updateDone = event => {
     this.updateTodo({ isDone: event.target.checked });
   };
 
-  shouldComponentUpdate(nextProps: Props, nextState: State) {
+  shouldComponentUpdate(nextProps, nextState) {
     if (this.props.todo !== nextProps.todo) {
       return true;
     }
@@ -53,20 +44,20 @@ export class Todo extends Component<Props, State> {
         <Checkbox
           className="todo-done-checkbox"
           onChange={this.updateDone}
-          defaultChecked={todo.get('isDone')}
+          defaultChecked={todo.get("isDone")}
         />
         <div className="todo-item-main">
-          {todo.get('content')}
-          {todo.get('deadline') && (
-            <Tag color="magenta" style={{ marginLeft: '10px' }}>
-              {new moment(todo.get('deadline')).format('MM-DD')}
+          {todo.get("content")}
+          {todo.get("deadline") && (
+            <Tag color="magenta" style={{ marginLeft: "10px" }}>
+              {new moment(todo.get("deadline")).format("MM-DD")}
             </Tag>
           )}
         </div>
 
         <div className="todo-operation">
           <StarCheckBox
-            defaultChecked={todo.get('isStar')}
+            defaultChecked={todo.get("isStar")}
             onChange={checked => {
               this.updateTodo({ isStar: checked });
             }}

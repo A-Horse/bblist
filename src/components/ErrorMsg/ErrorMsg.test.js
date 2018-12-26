@@ -1,9 +1,9 @@
-import React from 'react';
-import ErrorMsg from './ErrorMsg';
-import renderer from 'react-test-renderer';
+import React from "react";
+import ErrorMsg from "./ErrorMsg";
+import renderer from "react-test-renderer";
 
-test('ErrorMsg', () => {
-  let messages = ['first error', 'second error'];
+test("ErrorMsg", () => {
+  let messages = ["first error", "second error"];
   const tree = renderer.create(<ErrorMsg messages={messages} />);
   expect(tree).toMatchSnapshot();
 

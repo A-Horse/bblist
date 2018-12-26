@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import 'style/component/widget/page-container.scss';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import "style/component/widget/page-container.scss";
 
 export class PageContainer extends Component {
   static propTypes = {
@@ -8,9 +8,9 @@ export class PageContainer extends Component {
   };
 
   buildClassName() {
-    let className = 'page-container';
+    let className = "page-container";
     if (this.props.className) {
-      className += ' ' + this.props.className;
+      className += " " + this.props.className;
     }
     return className;
   }

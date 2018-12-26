@@ -1,4 +1,4 @@
-@import 'style/variable';
+@import "style/variable";
 
 .error-msg {
   width: 100%;
@@ -20,7 +20,7 @@
 
       &:before {
         position: absolute;
-        content: '';
+        content: "";
         display: block;
         width: 6px;
         height: 6px;

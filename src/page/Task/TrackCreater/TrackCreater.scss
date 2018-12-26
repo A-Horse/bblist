@@ -1,5 +1,5 @@
-@import 'style/variable';
-@import '../_task-variable';
+@import "style/variable";
+@import "../_task-variable";
 
 .tasklist-creater {
   border-radius: $list-radius;
@@ -12,11 +12,10 @@
   background-color: $gray-super-light;
   align-items: center;
 
-
   input {
     border: none;
     padding: 5px 8px;
-    background-color: #FFF;
+    background-color: #fff;
     border-radius: 3px;
     display: block;
     margin-bottom: 12px;

@@ -1,29 +1,22 @@
-// @flow
-import React, { Component } from 'react';
-import { Input, Icon, Form, DatePicker, Row, Col, message } from 'antd';
+//
+import React, { Component } from "react";
+import { Input, Icon, Form, DatePicker, Row, Col, message } from "antd";
 
-import './TodoCreater.less';
+import "./TodoCreater.less";
 
 const InputGroup = Input.Group;
 const FormItem = Form.Item;
 
-export class TodoCreater extends Component<
-  { submit: any },
-  {
-    content: string,
-    deadline: number | null
-  }
-> {
+export class TodoCreater extends Component {
   state = {
-    content: '',
+    content: "",
     deadline: null
   };
-  input: HTMLElement | null;
 
-  handleSubmit = (event: SyntheticInputEvent<*>) => {
+  handleSubmit = event => {
     event.preventDefault();
     if (!this.state.content) {
-      return message.error('Please input todo content');
+      return message.error("Please input todo content");
     }
 
     this.props.submit({
@@ -32,7 +25,7 @@ export class TodoCreater extends Component<
     });
 
     this.setState({
-      content: '',
+      content: "",
       deadline: null
     });
   };
@@ -47,7 +40,9 @@ export class TodoCreater extends Component<
               <Input
                 ref={input => (this.input = input)}
                 value={this.state.content}
-                onChange={event => this.setState({ content: event.target.value })}
+                onChange={event =>
+                  this.setState({ content: event.target.value })
+                }
                 onPressEnter={this.handleSubmit}
                 placeholder="Add Todo..."
               />

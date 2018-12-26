@@ -1,4 +1,4 @@
-import { getImageBase64 } from './image';
+import { getImageBase64 } from "./image";
 
 export const Storage = {
   get(key) {

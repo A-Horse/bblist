@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 export default class ClickOutSide extends Component {
   static propTypes = {
@@ -25,11 +25,11 @@ export default class ClickOutSide extends Component {
   }
 
   componentDidMount() {
-    document.addEventListener('click', this.handle, true);
+    document.addEventListener("click", this.handle, true);
   }
 
   componentWillUnmount() {
-    document.removeEventListener('click', this.handle, true);
+    document.removeEventListener("click", this.handle, true);
   }
 
   handle = e => {

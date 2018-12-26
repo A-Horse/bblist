@@ -1,17 +1,11 @@
-// @flow
-import React, { Component } from 'react';
-import { UserAvatar } from '../../../../components/UserAvatar/UserAvatar';
-import Input from 'components/widget/Input/Input';
-import { Button } from 'components/widget/Button/Button';
-import { testRegex } from 'services/validate-strategy';
+//
+import React, { Component } from "react";
+import { UserAvatar } from "../../../../components/UserAvatar/UserAvatar";
+import Input from "components/widget/Input/Input";
+import { Button } from "components/widget/Button/Button";
+import { testRegex } from "services/validate-strategy";
 
-export class Participant extends Component<{
-  actions: any,
-  board: any,
-  match: any,
-  boardParticipants: any,
-  inviteParticipant: any
-}> {
+export class Participant extends Component {
   componentWillMount() {
     this.props.actions.GET_TASK_BOARD_PARTICIPANT_REQUEST({
       id: this.props.match.params.boardId
@@ -32,9 +26,9 @@ export class Participant extends Component<{
             <div>
               {this.props.boardParticipants.map(participant => {
                 return (
-                  <div key={participant.get('id')}>
-                    <UserAvatar user={participant.get('user').toJS()} />
-                    <div>{participant.getIn(['user', 'username'])}</div>
+                  <div key={participant.get("id")}>
+                    <UserAvatar user={participant.get("user").toJS()} />
+                    <div>{participant.getIn(["user", "username"])}</div>
                   </div>
                 );
               })}
@@ -46,7 +40,7 @@ export class Participant extends Component<{
           <Input
             size="middle"
             onChange={value => {
-              if (testRegex('email', value)) {
+              if (testRegex("email", value)) {
                 this.props.actions.QUERY_USER_INFOMATION_WITH_EMAIL_REQUEST({
                   email: value
                 });
@@ -61,8 +55,8 @@ export class Participant extends Component<{
               disable={!this.props.inviteParticipant}
               onClick={() => {
                 this.props.actions.INVITE_TASK_BOARD_PARTICIPANT_REQUEST({
-                  boardId: board.get('id'),
-                  userId: this.props.inviteParticipant.get('id')
+                  boardId: board.get("id"),
+                  userId: this.props.inviteParticipant.get("id")
                 });
               }}
             >

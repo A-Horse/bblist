@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import 'style/page/task/card-placeholder.scss';
+import "style/page/task/card-placeholder.scss";
 
 class CardPlaceholder extends Component {
   buildStyle() {
     const { height, width } = this.props;
     return {
-      height: height + 'px',
-      width: width + 'px'
+      height: height + "px",
+      width: width + "px"
     };
   }
 

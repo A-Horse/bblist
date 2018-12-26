@@ -1,36 +1,29 @@
-// @flow
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { Route, Switch, Redirect } from 'react-router';
-import { updateTitle } from '../../../services/title';
-import { StarCheckBox } from '../../../components/widget/StarCheckBox/StarCheckBox';
+//
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router";
+import { updateTitle } from "../../../services/title";
+import { StarCheckBox } from "../../../components/widget/StarCheckBox/StarCheckBox";
 
-import { BoardContentContainer } from '../BoardContent/BoardContent';
-import { BoardSetting } from '../BoardSetting/BoardSetting';
+import { BoardContentContainer } from "../BoardContent/BoardContent";
+import { BoardSetting } from "../BoardSetting/BoardSetting";
 
-import { Layout } from 'antd';
+import { Layout } from "antd";
 const { Header } = Layout;
 
-import './Board.scss';
+import "./Board.scss";
 
-interface Props {
-  actions: any;
-  board: any;
-  boardName: string;
-  boardFetching: boolean;
-  match: any;
-  history: any;
-}
-
-export class Board extends Component<Props> {
+export class Board extends Component {
   componentWillMount() {
     updateTitle(`Task Board ${this.props.boardName}`);
     const taskBoardId = this.props.match.params.boardId;
     this.props.actions.GET_TASK_BOARD_REQUEST({ id: taskBoardId });
-    this.props.actions.GET_TASK_BOARD_SETTING_REQUEST({ taskBoardId: taskBoardId });
+    this.props.actions.GET_TASK_BOARD_SETTING_REQUEST({
+      taskBoardId: taskBoardId
+    });
   }
 
-  componentWillReceiveProps(nextProps: Props) {
+  componentWillReceiveProps(nextProps) {
     if (nextProps.boardName !== this.props.boardName) {
       updateTitle(` ${nextProps.boardName}`);
     }
@@ -58,11 +51,14 @@ export class Board extends Component<Props> {
           <StarCheckBox
             className="taskboard-header--star"
             onChange={this.onStarCheckChange}
-            defaultChecked={board.get('isStar')}
+            defaultChecked={board.get("isStar")}
           />
           <div className="taskboard-name">
-            <Link className="taskboard-name--text" to={`/task-board/${boardId}`}>
-              {board && board.get('name')}
+            <Link
+              className="taskboard-name--text"
+              to={`/task-board/${boardId}`}
+            >
+              {board && board.get("name")}
             </Link>
           </div>
 
@@ -70,7 +66,9 @@ export class Board extends Component<Props> {
             className="taskboard-header-setting"
             onClick={() =>
               this.props.history.push(
-                `/task-board/${this.props.match.params.boardId}/setting/infomation`
+                `/task-board/${
+                  this.props.match.params.boardId
+                }/setting/infomation`
               )
             }
           >
@@ -83,7 +81,10 @@ export class Board extends Component<Props> {
             path="/task-board/:boardId/setting"
             render={props => <BoardSetting {...this.props} {...props} />}
           />
-          <Route path="/task-board/:boardId" render={props => <BoardContentContainer />} />
+          <Route
+            path="/task-board/:boardId"
+            render={props => <BoardContentContainer />}
+          />
         </Switch>
       </Layout>
     );

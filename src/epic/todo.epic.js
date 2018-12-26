@@ -1,20 +1,20 @@
-// @flow
-import 'rxjs/add/operator/mergeMap';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/observable/of';
-import Actions from '../actions/actions';
-import { makeApiUrl } from '../utils/api';
-import { http } from '../services/http';
-import { getCachedUserId } from '../utils/auth';
-import { message } from 'antd';
+//
+import "rxjs/add/operator/mergeMap";
+import "rxjs/add/operator/map";
+import "rxjs/add/operator/catch";
+import "rxjs/add/observable/of";
+import Actions from "../actions/actions";
+import { makeApiUrl } from "../utils/api";
+import { http } from "../services/http";
+import { getCachedUserId } from "../utils/auth";
+import { message } from "antd";
 
 export const ADD_TODO_REQUEST = action$ =>
   action$.ofType(Actions.ADD_TODO.REQUEST).mergeMap(action => {
     return http
-      .post(makeApiUrl('/t/todo'), null, action.payload)
+      .post(makeApiUrl("/t/todo"), null, action.payload)
       .then(resp => {
-        message.success('Add todo success');
+        message.success("Add todo success");
         return Actions.ADD_TODO.success(resp);
       })
       .catch(Actions.ADD_TODO.failure);
@@ -23,7 +23,7 @@ export const ADD_TODO_REQUEST = action$ =>
 export const ADD_TODOBOX_REQUEST = action$ =>
   action$.ofType(Actions.ADD_TODOBOX.REQUEST).mergeMap(action => {
     return http
-      .post(makeApiUrl('/t/todo-box'), null, action.payload)
+      .post(makeApiUrl("/t/todo-box"), null, action.payload)
       .then(Actions.ADD_TODOBOX.success)
       .catch(Actions.ADD_TODOBOX.failure);
   });
@@ -33,10 +33,10 @@ export const GET_TODOLIST_REQUEST = action$ =>
     const userId = getCachedUserId();
     let url;
     switch (action.payload.todoBoxId) {
-      case '@all':
+      case "@all":
         url = `/t/user/${userId}/todo`;
         break;
-      case '@task':
+      case "@task":
         url = `/t/user/${userId}/task-todo`;
         break;
       default:
@@ -49,7 +49,9 @@ export const GET_TODOLIST_REQUEST = action$ =>
       .then(data => {
         return Actions.GET_TODOLIST.success(
           (data || []).map(todo => {
-            return todo.todoBoxId ? todo : { ...todo, todoBoxId: action.payload.todoBoxId };
+            return todo.todoBoxId
+              ? todo
+              : { ...todo, todoBoxId: action.payload.todoBoxId };
           })
         );
       })

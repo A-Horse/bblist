@@ -1,20 +1,17 @@
-// @flow
+//
 
-import { Observable } from 'rxjs';
-import type { ActionsObservable } from 'redux-observable';
+import { Observable } from "rxjs";
 
-import 'rxjs/add/operator/publish';
+import "rxjs/add/operator/publish";
 
 export class EpicAdapterService {
-  input$: ActionsObservable<FSAction>;
-
-  input(input$: ActionsObservable<FSAction>): ActionsObservable<FSAction> {
+  input(input$) {
     this.input$ = input$.publish();
     this.input$.connect();
     return input$;
   }
 
-  output(output: Observable<any>): Observable<any> {
+  output(output) {
     return output;
   }
 }

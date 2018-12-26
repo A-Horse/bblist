@@ -1,4 +1,4 @@
-@import 'style/variable';
+@import "style/variable";
 
 .select {
   position: relative;
@@ -17,7 +17,7 @@
     position: relative;
     top: 2px;
     right: -5px;
-    transition: transform 80ms ease-in-out, top;/* TODO 贝塞尔 */
+    transition: transform 80ms ease-in-out, top; /* TODO 贝塞尔 */
   }
 
   .select-box--name {
@@ -58,11 +58,11 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  
+
   &:hover {
     background-color: $gray-light-depth;
   }
-  
+
   &:last-child {
     border-bottom: none;
   }

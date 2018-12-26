@@ -1,6 +1,19 @@
-@import 'style/variable';
+@import "style/variable";
 
-html, header, footer, body, div, p, span, h1, h2, h3, h4, h5, h6, input {
+html,
+header,
+footer,
+body,
+div,
+p,
+span,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+input {
   box-sizing: border-box;
 }
 
@@ -19,11 +32,18 @@ a {
   }
 }
 
-h1, h2, h3, h4, h5, h6, p {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
   margin: 0;
 }
 
-div, p {
+div,
+p {
   margin: 0;
 }
 
@@ -37,14 +57,15 @@ button {
   user-select: none;
 }
 
-
 hr {
   border: 0;
   height: 1px;
   background: $gray-light-litte-depth;
 }
 
-
-input:focus, select:focus, textarea:focus, button:focus {
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
   outline: none;
 }

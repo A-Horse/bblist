@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Application } from '../../Application';
+import React, { Component } from "react";
+import { Application } from "../../Application";
 
 export default class Root extends Component {
   render() {

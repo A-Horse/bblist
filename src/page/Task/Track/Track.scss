@@ -1,5 +1,5 @@
-@import 'style/variable';
-@import '../_task-variable';
+@import "style/variable";
+@import "../_task-variable";
 
 .task-track {
   border-radius: $list-radius;
@@ -21,7 +21,8 @@
   }
 
   &.has-draging-card {
-    .task-card, .taskcard-creater--toggle {
+    .task-card,
+    .taskcard-creater--toggle {
       pointer-events: none;
     }
   }
@@ -29,7 +30,7 @@
   &.shadowing {
     &:before {
       border-radius: $list-radius;
-      content: '';
+      content: "";
       display: block;
       position: absolute;
       z-index: 10;
@@ -47,8 +48,6 @@
     transition: none;
     box-shadow: 1px 1px 10px #999;
   }
-
-
 }
 
 .task-track--body {

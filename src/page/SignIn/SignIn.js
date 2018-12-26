@@ -1,44 +1,33 @@
-// @flow
-import React, { Component } from 'react';
-import { validateFormValue } from '../../services/validate-strategy';
-import { Button } from '../../components/widget/Button/Button';
-import { Input } from '../../components/widget/Input/Input';
-import { LogoBan } from '../../components/commons/LogoBan/LogoBan';
-import { ErrorMsg } from '../../components/ErrorMsg/ErrorMsg';
-import { PageContainer } from '../../components/widget/PageContainer';
-import { Link } from 'react-router-dom';
-import { updateTitle } from '../../services/title';
+//
+import React, { Component } from "react";
+import { validateFormValue } from "../../services/validate-strategy";
+import { Button } from "../../components/widget/Button/Button";
+import { Input } from "../../components/widget/Input/Input";
+import { LogoBan } from "../../components/commons/LogoBan/LogoBan";
+import { ErrorMsg } from "../../components/ErrorMsg/ErrorMsg";
+import { PageContainer } from "../../components/widget/PageContainer";
+import { Link } from "react-router-dom";
+import { updateTitle } from "../../services/title";
 
-import R from 'ramda';
+import R from "ramda";
 
-import './SignIn.scss';
+import "./SignIn.scss";
 
-class SignIn extends Component<
-  {
-    actions: any,
-    history: any,
-    signInErrorMessages: string
-  },
-  {
-    errorMessages: any,
-    email: string,
-    password: string
-  }
-> {
+class SignIn extends Component {
   state = {
     errorMessages: {},
-    email: '',
-    password: ''
+    email: "",
+    password: ""
   };
 
   componentDidMount() {
-    updateTitle('Sign In');
+    updateTitle("Sign In");
   }
 
   componentWillReceiveProps(newProps) {
     if (newProps.signInAuthenticated) {
       this.props.actions.LOGIN_FINISH();
-      this.props.history.push('/home');
+      this.props.history.push("/home");
     }
   }
 
@@ -69,11 +58,17 @@ class SignIn extends Component<
             </div>
 
             <ErrorMsg
-              messages={R.compose(R.concat([this.props.signInErrorMessages]), R.values)(
-                this.state.errorMessages
-              )}
+              messages={R.compose(
+                R.concat([this.props.signInErrorMessages]),
+                R.values
+              )(this.state.errorMessages)}
             />
-            <Button className="signin-button" size="large" type="submit" styleType="primary">
+            <Button
+              className="signin-button"
+              size="large"
+              type="submit"
+              styleType="primary"
+            >
               Login
             </Button>
           </form>
@@ -89,7 +84,7 @@ class SignIn extends Component<
     );
   }
 
-  login = (event: Event) => {
+  login = event => {
     event.preventDefault();
     const loginInfo = {
       email: this.state.email.trim(),
@@ -97,8 +92,8 @@ class SignIn extends Component<
     };
 
     const errorMessages = validateFormValue(loginInfo, {
-      email: ['email'],
-      password: ['max@100#Password Up to 100 characters', 'min@6#min 6']
+      email: ["email"],
+      password: ["max@100#Password Up to 100 characters", "min@6#min 6"]
     });
 
     this.setState({ errorMessages: errorMessages });

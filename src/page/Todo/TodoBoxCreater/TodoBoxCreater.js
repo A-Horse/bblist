@@ -1,26 +1,20 @@
-// @flow
-import React, { Component } from 'react';
-import { Input, Form, Button, Icon, Modal } from 'antd';
-import { formShape } from 'rc-form';
+//
+import React, { Component } from "react";
+import { Input, Form, Button, Icon, Modal } from "antd";
+import { formShape } from "rc-form";
 
-import './TodoBoxCreater.less';
+import "./TodoBoxCreater.less";
 
 const FormItem = Form.Item;
 
-export class TodoBoxCreaterForm extends Component<
-  {
-    form: formShape,
-    actions: any
-  },
-  { toggle: boolean }
-> {
-  state = { toggle: false, name: '' };
+export class TodoBoxCreaterForm extends Component {
+  state = { toggle: false, name: "" };
 
   close = () => {
     this.setState({ toggle: false });
   };
 
-  handleSubmit = (event: Event) => {
+  handleSubmit = event => {
     event.preventDefault();
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
@@ -60,8 +54,10 @@ export class TodoBoxCreaterForm extends Component<
         >
           <Form onSubmit={this.handleSubmit}>
             <FormItem>
-              {getFieldDecorator('name', {
-                rules: [{ required: true, message: 'Please input Todo Box name' }]
+              {getFieldDecorator("name", {
+                rules: [
+                  { required: true, message: "Please input Todo Box name" }
+                ]
               })(<Input type="text" placeholder="Todo Box" />)}
             </FormItem>
 

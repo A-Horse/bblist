@@ -1,24 +1,16 @@
-// @flow
-import React, { Component } from 'react';
-import { Button, Icon, Modal, Form, Input } from 'antd';
+//
+import React, { Component } from "react";
+import { Button, Icon, Modal, Form, Input } from "antd";
 
-import './TaskBoardCreater.scss';
+import "./TaskBoardCreater.scss";
 
 const FormItem = Form.Item;
 
-class TaskBoardCreaterForm extends Component<
-  {
-    form: any,
-    actions: any
-  },
-  {
-    modalVisible: boolean
-  }
-> {
+class TaskBoardCreaterForm extends Component {
   state = {
     modalVisible: false,
     errorMessages: [],
-    name: ''
+    name: ""
   };
 
   handleCancel = () => {
@@ -27,7 +19,7 @@ class TaskBoardCreaterForm extends Component<
     });
   };
 
-  handleSubmit = (event: Event) => {
+  handleSubmit = event => {
     event.preventDefault();
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
@@ -41,8 +33,12 @@ class TaskBoardCreaterForm extends Component<
     const { getFieldDecorator } = this.props.form;
     return (
       <div className="taskboard-creater">
-        <Button type="default" onClick={() => this.setState({ modalVisible: true })}>
-          <Icon type="plus" />Create Task Board
+        <Button
+          type="default"
+          onClick={() => this.setState({ modalVisible: true })}
+        >
+          <Icon type="plus" />
+          Create Task Board
         </Button>
 
         <Modal
@@ -52,12 +48,17 @@ class TaskBoardCreaterForm extends Component<
           footer={null}
         >
           <div>
-            <img className="taskboard-creater--illustration" src="/assets/images/work.png" />
+            <img
+              className="taskboard-creater--illustration"
+              src="/assets/images/work.png"
+            />
 
             <Form onSubmit={this.handleSubmit}>
               <FormItem>
-                {getFieldDecorator('name', {
-                  rules: [{ required: true, message: 'Please input task board name' }]
+                {getFieldDecorator("name", {
+                  rules: [
+                    { required: true, message: "Please input task board name" }
+                  ]
                 })(<Input type="text" placeholder="Board Name" />)}
               </FormItem>
 

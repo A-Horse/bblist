@@ -1,12 +1,12 @@
-import React from 'react';
-import TaskCard from './TaskCard';
-import renderer from 'react-test-renderer';
-import { fromJS } from 'immutable';
+import React from "react";
+import TaskCard from "./TaskCard";
+import renderer from "react-test-renderer";
+import { fromJS } from "immutable";
 
-test('TaskCard', () => {
+test("TaskCard", () => {
   const card = fromJS({
     id: 23,
-    title: 'sdsd!!!',
+    title: "sdsd!!!",
     taskTrackId: 17,
     sprint: null,
     createrId: 2,
@@ -21,11 +21,11 @@ test('TaskCard', () => {
     status: null,
     taskTrackId: 17,
     taskBoardId: 15,
-    title: 'taskcard',
+    title: "taskcard",
     updated_at: null,
     creater: {
-      name: 'God',
-      email: 'god@ocotpus.com',
+      name: "God",
+      email: "god@ocotpus.com",
       id: 0
     }
   });

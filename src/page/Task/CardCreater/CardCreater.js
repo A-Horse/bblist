@@ -1,45 +1,36 @@
-// @flow
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { Button } from '../../../components/widget/Button/Button';
-import { UserAvatar } from '../../../components/UserAvatar/UserAvatar';
-import ClickOutSide from '../../../components/utils/ClickOutSide';
-import { timeout } from '../../../utils/timeout';
+//
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { Button } from "../../../components/widget/Button/Button";
+import { UserAvatar } from "../../../components/UserAvatar/UserAvatar";
+import ClickOutSide from "../../../components/utils/ClickOutSide";
+import { timeout } from "../../../utils/timeout";
 
-import { Select } from 'antd';
+import { Select } from "antd";
 
 const Option = Select.Option;
 
-import './CardCreater.scss';
+import "./CardCreater.scss";
 
-class CardCreater extends Component<
-  {
-    loginedUser: PropTypes.object.isRequired,
-    addTaskCard: PropTypes.func.isRequired,
-    track: PropTypes.object.isRequired
-  },
-  {
-    title: '',
-    toggle: false,
-    beforeClose: false,
-    type: 'STORY'
-  }
-> {
+class CardCreater extends Component {
   state = {
-    title: '',
+    title: "",
     toggle: false,
     beforeClose: false,
-    type: 'STORY'
+    type: "STORY"
   };
 
   containerRef = null;
 
   clearInput() {
-    this.taskCardTitle.value = '';
+    this.taskCardTitle.value = "";
   }
 
   addCard = () => {
-    this.props.addTaskCard({ title: this.state.title.trim(), type: this.state.type });
+    this.props.addTaskCard({
+      title: this.state.title.trim(),
+      type: this.state.type
+    });
     this.clearInput();
     this.close();
   };
@@ -54,7 +45,7 @@ class CardCreater extends Component<
     this.setState({ toggle: true });
     await timeout();
     window.document.querySelector(
-      `[data-id="${this.props.track.get('id')}"].task-track .task-track--body`
+      `[data-id="${this.props.track.get("id")}"].task-track .task-track--body`
     ).scrollTop = 10000;
   };
 
@@ -68,7 +59,9 @@ class CardCreater extends Component<
         <ClickOutSide onClickOutside={this.close}>
           <div
             ref={ref => (this.containerRef = ref)}
-            className={`taskcard-creater--body${this.state.beforeClose ? ' before-close' : ''}`}
+            className={`taskcard-creater--body${
+              this.state.beforeClose ? " before-close" : ""
+            }`}
             onClick={event => event.stopPropagation()}
           >
             <div>
@@ -79,7 +72,7 @@ class CardCreater extends Component<
                 placeholder="Task Content"
                 onChange={event => this.setState({ title: event.target.value })}
                 onKeyPress={event => {
-                  if (event.ctrlKey && event.key === 'Enter') this.addCard();
+                  if (event.ctrlKey && event.key === "Enter") this.addCard();
                 }}
               />
             </div>
@@ -100,7 +93,7 @@ class CardCreater extends Component<
 
             <div className="taskcard-creater--user">
               <UserAvatar user={this.props.loginedUser.toJS()} />
-              <span>{this.props.loginedUser.get('username')}</span>
+              <span>{this.props.loginedUser.get("username")}</span>
             </div>
             <div className="taskcard-creater--participants">
               <div>Participants</div>
@@ -114,7 +107,11 @@ class CardCreater extends Component<
                 <span>more</span>
               </div>
               <div>
-                <Button className="btn-cancel" styleType="default" onClick={this.close}>
+                <Button
+                  className="btn-cancel"
+                  styleType="default"
+                  onClick={this.close}
+                >
                   Cancel
                 </Button>
                 <Button styleType="primary" onClick={this.addCard}>

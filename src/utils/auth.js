@@ -1,6 +1,11 @@
-// @flow
-import { JWT_STORAGE_KEY, CACHED_USERNAME, CACHED_USERID, CACHED_USEREMAIL } from '../constants';
-import { Storage } from '../services/storage';
+//
+import {
+  JWT_STORAGE_KEY,
+  CACHED_USERNAME,
+  CACHED_USERID,
+  CACHED_USEREMAIL
+} from "../constants";
+import { Storage } from "../services/storage";
 
 export function getJWT() {
   return Storage.get(JWT_STORAGE_KEY);
@@ -14,16 +19,16 @@ export function getCachedUserId() {
   return Storage.get(CACHED_USERID);
 }
 
-function saveUserData(userData: string): void {
-  return Storage.set('USER_DATA', userData);
+function saveUserData(userData) {
+  return Storage.set("USER_DATA", userData);
 }
 
-export function getUserData(): UserData | null {
-  const userData: string = Storage.get('USER_DATA');
+export function getUserData() {
+  const userData = Storage.get("USER_DATA");
   return userData ? JSON.parse(userData) : null;
 }
 
-export function saveAuthData(response: { user: UserData, jwt: string }): void {
+export function saveAuthData(response) {
   Storage.set(CACHED_USERID, response.user.id);
   Storage.set(CACHED_USERNAME, response.user.username);
   Storage.set(CACHED_USEREMAIL, response.user.email);

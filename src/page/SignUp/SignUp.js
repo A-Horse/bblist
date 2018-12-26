@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { validateFormValue } from '../../services/validate-strategy';
-import { PageContainer } from 'components/widget/PageContainer';
-import { Input } from '../../components/widget/Input/Input';
-import { updateTitle } from 'services/title';
-import { Button } from '../../components/widget/Button/Button';
-import { LogoBan } from 'components/commons/LogoBan/LogoBan';
-import { ErrorMsg } from 'components/ErrorMsg/ErrorMsg';
-import { Link } from 'react-router-dom';
-import R from 'ramda';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { validateFormValue } from "../../services/validate-strategy";
+import { PageContainer } from "components/widget/PageContainer";
+import { Input } from "../../components/widget/Input/Input";
+import { updateTitle } from "services/title";
+import { Button } from "../../components/widget/Button/Button";
+import { LogoBan } from "components/commons/LogoBan/LogoBan";
+import { ErrorMsg } from "components/ErrorMsg/ErrorMsg";
+import { Link } from "react-router-dom";
+import R from "ramda";
 
-import './SignUp.scss';
+import "./SignUp.scss";
 
 class SignUp extends Component {
   static propTypes = {
@@ -29,13 +29,13 @@ class SignUp extends Component {
   }
 
   componentWillMount() {
-    updateTitle('Sign Up');
+    updateTitle("Sign Up");
   }
 
   componentWillReceiveProps(newProps) {
     if (newProps.signUpSuccess) {
       this.props.actions.SIGNUP_FINISH();
-      this.props.history.push('/signin');
+      this.props.history.push("/signin");
     }
   }
 
@@ -89,7 +89,12 @@ class SignUp extends Component {
 
             <ErrorMsg messages={R.values(errorMessages)} />
 
-            <Button className="signup-button" type="submit" styleType="primary" size="large">
+            <Button
+              className="signup-button"
+              type="submit"
+              styleType="primary"
+              size="large"
+            >
               Sign Up
             </Button>
           </form>
@@ -117,12 +122,15 @@ class SignUp extends Component {
 
     const errorMessages = validateFormValue(signUpData, {
       name: [
-        'max@100#Name Up to 100 characters ',
-        'min@3#The name must be a minimum of three characters'
+        "max@100#Name Up to 100 characters ",
+        "min@3#The name must be a minimum of three characters"
       ],
-      password: ['max@100#Password Up to 100 characters', 'min@6#password min 6'],
+      password: [
+        "max@100#Password Up to 100 characters",
+        "min@6#password min 6"
+      ],
       confirmPassword: [`eqTo@${signUpData.password}#password don't match`],
-      email: ['email#email express wrong', 'max@150#max 150']
+      email: ["email#email express wrong", "max@150#max 150"]
     });
 
     this.setState({ errorMessages: errorMessages });

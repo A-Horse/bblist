@@ -1,5 +1,5 @@
-@import 'style/variable';
-@import 'style/mixin';
+@import "style/variable";
+@import "style/mixin";
 
 .checkbox {
   position: relative;
@@ -13,7 +13,6 @@
     height: 100%;
     width: 100%;
   }
-
 
   input {
     visibility: hidden;
@@ -40,5 +39,4 @@
       color: #999;
     }
   }
-
 }

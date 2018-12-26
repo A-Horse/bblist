@@ -8,7 +8,7 @@ export class Notification {
   }
 
   checkNotificationGranted() {
-    return window.Notification.permission === 'granted';
+    return window.Notification.permission === "granted";
   }
 
   requestNotificationPermission() {

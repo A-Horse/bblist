@@ -1,23 +1,35 @@
-import React, { Component } from 'react';
-import 'style/component/image-icons.scss';
+import React, { Component } from "react";
+import "style/component/image-icons.scss";
 
 class Icon extends Component {
   buildClassName(name) {
-    return `image-icon${this.props.className ? ' ' + this.props.className : ''}${name
-      ? ' ' + name
-      : ''}`;
+    return `image-icon${
+      this.props.className ? " " + this.props.className : ""
+    }${name ? " " + name : ""}`;
   }
 }
 
 export class IconAdd extends Icon {
   render() {
-    return <img src="/assets/icons/add.png" {...this.props} className={this.buildClassName()} />;
+    return (
+      <img
+        src="/assets/icons/add.png"
+        {...this.props}
+        className={this.buildClassName()}
+      />
+    );
   }
 }
 
 export class IconRight extends Icon {
   render() {
-    return <img src="/assets/icons/right.png" {...this.props} className={this.buildClassName()} />;
+    return (
+      <img
+        src="/assets/icons/right.png"
+        {...this.props}
+        className={this.buildClassName()}
+      />
+    );
   }
 }
 
@@ -27,7 +39,7 @@ export class IconDelete extends Icon {
       <img
         src="/assets/icons/remove-red.png"
         {...this.props}
-        className={this.buildClassName('icon-delete')}
+        className={this.buildClassName("icon-delete")}
       />
     );
   }
@@ -35,7 +47,13 @@ export class IconDelete extends Icon {
 
 export class IconChart extends Icon {
   render() {
-    return <img src="/assets/icons/chart.png" {...this.props} className={this.buildClassName()} />;
+    return (
+      <img
+        src="/assets/icons/chart.png"
+        {...this.props}
+        className={this.buildClassName()}
+      />
+    );
   }
 }
 
@@ -45,7 +63,7 @@ export class IconRemove extends Icon {
       <img
         src="/assets/icons/remove.png"
         {...this.props}
-        className={this.buildClassName('icon-remove')}
+        className={this.buildClassName("icon-remove")}
       />
     );
   }
@@ -57,7 +75,7 @@ export class IconDate extends Icon {
       <img
         src="/assets/icons/date.png"
         {...this.props}
-        className={this.buildClassName('icon-date')}
+        className={this.buildClassName("icon-date")}
       />
     );
   }
@@ -69,7 +87,7 @@ export class IconRepeat extends Icon {
       <img
         src="/assets/icons/repeat.png"
         {...this.props}
-        className={this.buildClassName('icon-repeat')}
+        className={this.buildClassName("icon-repeat")}
       />
     );
   }

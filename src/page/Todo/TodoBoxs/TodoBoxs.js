@@ -1,17 +1,14 @@
-// @flow
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { TodoBoxCreater } from '../TodoBoxCreater/TodoBoxCreater';
-import { Map } from 'immutable';
+//
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import { TodoBoxCreater } from "../TodoBoxCreater/TodoBoxCreater";
+import { Map } from "immutable";
 
-import { Menu, Icon } from 'antd';
+import { Menu, Icon } from "antd";
 
-import './TodoBoxs.less';
+import "./TodoBoxs.less";
 
-class TodoBoxs extends Component<{
-  actions: Object,
-  todoBoxs: Map<TodoBox>[]
-}> {
+class TodoBoxs extends Component {
   componentWillMount() {
     this.props.actions.GET_TODOBOXS_REQUEST();
   }
@@ -23,13 +20,13 @@ class TodoBoxs extends Component<{
           <TodoBoxCreater actions={this.props.actions} />
         </div>
         <div className="todo-box-group-list">
-          <Menu defaultSelectedKeys={['1']}>
+          <Menu defaultSelectedKeys={["1"]}>
             {this.props.todoBoxs.map(todoBox => {
               return (
-                <Menu.Item key={todoBox.get('id')}>
-                  <Link to={`/todo/${todoBox.get('id')}`}>
+                <Menu.Item key={todoBox.get("id")}>
+                  <Link to={`/todo/${todoBox.get("id")}`}>
                     <Icon type="check-square-o" />
-                    <span>{todoBox.get('name')}</span>
+                    <span>{todoBox.get("name")}</span>
                   </Link>
                 </Menu.Item>
               );

@@ -1,36 +1,36 @@
-import React from 'react';
-import BoardWall from './BoardWall';
-import { MemoryRouter } from 'react-router';
-import renderer from 'react-test-renderer';
-import { fromJS } from 'immutable';
+import React from "react";
+import BoardWall from "./BoardWall";
+import { MemoryRouter } from "react-router";
+import renderer from "react-test-renderer";
+import { fromJS } from "immutable";
 
-test('Button', () => {
+test("Button", () => {
   const actions = {
     GET_TASK_ALL_BOARD_REQUEST: jest.fn()
   };
   const boardMap = fromJS({
-    '3': {
+    "3": {
       created_at: null,
-      name: 'sdssdsdsdsssdsd!!!sd',
+      name: "sdssdsdsdsssdsd!!!sd",
       ownerId: 1,
       createrId: null,
       isPublic: 0,
       updated_at: null,
-      cover: 'board-cover/c4e4c-a7e6f-53ac2-165f9',
+      cover: "board-cover/c4e4c-a7e6f-53ac2-165f9",
       sprint: null,
-      type: 'NORMAL',
+      type: "NORMAL",
       id: 3
     },
-    '10': {
+    "10": {
       created_at: null,
-      name: 'jkj',
+      name: "jkj",
       ownerId: 1,
       createrId: null,
       isPublic: 0,
       updated_at: null,
       cover: null,
       sprint: null,
-      type: 'NORMAL',
+      type: "NORMAL",
       id: 10
     }
   });

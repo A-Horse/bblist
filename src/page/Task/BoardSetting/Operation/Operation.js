@@ -1,13 +1,10 @@
-// @flow
-import React, { Component } from 'react';
-import { Button } from 'antd';
+//
+import React, { Component } from "react";
+import { Button } from "antd";
 
-import './Operation.scss';
+import "./Operation.scss";
 
-export class Operation extends Component<{
-  actions: any,
-  board: any
-}> {
+export class Operation extends Component {
   render() {
     return (
       <div className="board-setting-operation">
@@ -19,7 +16,9 @@ export class Operation extends Component<{
             <Button
               type="danger"
               onClick={() =>
-                this.props.actions.DESTORY_TASK_BOARD_REQUEST({ id: this.props.board.get('id') })
+                this.props.actions.DESTORY_TASK_BOARD_REQUEST({
+                  id: this.props.board.get("id")
+                })
               }
             >
               Delete

@@ -1,10 +1,8 @@
-@import 'style/variable';
-@import 'style/mixin';
+@import "style/variable";
+@import "style/mixin";
 
 .board-setting-infomation {
-
   .board-cover {
-
     .cover-image {
       border-radius: $radius-middle;
       border: 1px solid $gray;
@@ -41,7 +39,9 @@
     }
   }
 
-  .board-name, .board-description, .board-cover {
+  .board-name,
+  .board-description,
+  .board-cover {
     margin-top: 20px;
     &--heading {
       color: $text-primary;

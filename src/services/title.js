@@ -3,5 +3,5 @@ export function updateTitle(title) {
 }
 
 export function resetTitle() {
-  window.document.title = 'Octopus';
+  window.document.title = "Octopus";
 }

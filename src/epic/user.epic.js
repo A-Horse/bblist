@@ -1,15 +1,15 @@
-// @flow
-import 'rxjs/add/operator/mergeMap';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/mapTo';
-import 'rxjs/add/operator/catch';
-import Actions from '../actions/actions';
-import { makeApiUrl } from '../utils/api';
-import { http } from '../services/http';
-import { getCachedUserId, saveJWT } from '../utils/auth';
-import { ofType } from 'redux-observable';
-import { mergeMap, tap, ignoreElements } from 'rxjs/operators';
-import axios from 'axios';
+//
+import "rxjs/add/operator/mergeMap";
+import "rxjs/add/operator/map";
+import "rxjs/add/operator/mapTo";
+import "rxjs/add/operator/catch";
+import Actions from "../actions/actions";
+import { makeApiUrl } from "../utils/api";
+import { http } from "../services/http";
+import { getCachedUserId, saveJWT } from "../utils/auth";
+import { ofType } from "redux-observable";
+import { mergeMap, tap, ignoreElements } from "rxjs/operators";
+import axios from "axios";
 
 export const UPDATE_USER_REQUEST = action$ =>
   action$.ofType(Actions.UPDATE_USER.REQUEST).mergeMap(action => {
@@ -19,7 +19,7 @@ export const UPDATE_USER_REQUEST = action$ =>
         withHeader: true
       })
       .then(responseAndHeader => {
-        saveJWT(responseAndHeader.header.get('jwt-token'));
+        saveJWT(responseAndHeader.header.get("jwt-token"));
         return Actions.UPDATE_USER.success(responseAndHeader.body);
       })
       .catch(Actions.UPDATE_USER.failure);
@@ -37,7 +37,7 @@ export const QUERY_USER_INFOMATION_WITH_EMAIL_REQUEST = action$ =>
         .catch(Actions.QUERY_USER_INFOMATION_WITH_EMAIL.failure);
     });
 
-export const CHANGE_PASSWORD_REQUEST = (action$: Observable<FSAction>) =>
+export const CHANGE_PASSWORD_REQUEST = action$ =>
   action$.pipe(
     ofType(Actions.CHANGE_PASSWORD.REQUEST),
     mergeMap(action => {

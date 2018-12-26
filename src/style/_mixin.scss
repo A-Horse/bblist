@@ -1,17 +1,16 @@
-@import 'mixin/shadow';
-@import 'mixin/input';
+@import "mixin/shadow";
+@import "mixin/input";
 
 @mixin clearfix() {
   &:before,
   &:after {
     content: " "; // 1
-                  display: table; // 2
+    display: table; // 2
   }
   &:after {
     clear: both;
   }
 }
-
 
 @mixin hide-scroll-bar() {
   &::-webkit-scrollbar {

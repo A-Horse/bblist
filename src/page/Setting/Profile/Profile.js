@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import Input from 'components/widget/Input/Input';
-import { Button } from 'components/widget/Button/Button';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import Input from "components/widget/Input/Input";
+import { Button } from "components/widget/Button/Button";
+import PropTypes from "prop-types";
 
-import 'style/page/setting/profile.scss';
+import "style/page/setting/profile.scss";
 
 export default class Profile extends Component {
   static propTypes = {
@@ -12,7 +12,7 @@ export default class Profile extends Component {
   };
 
   state = {
-    username: ''
+    username: ""
   };
 
   constructor(props) {
@@ -28,7 +28,7 @@ export default class Profile extends Component {
           <div className="heading">Username:</div>
           <div>
             <Input
-              defaultValue={this.props.user.get('username')}
+              defaultValue={this.props.user.get("username")}
               type="text"
               ref={ref => (this.usernameInput = ref)}
               onChange={value => this.setState({ username: value })}
@@ -39,11 +39,14 @@ export default class Profile extends Component {
               className="update-button"
               styleType="primary"
               onClick={() => {
-                this.props.actions.UPDATE_USER_REQUEST({ username: this.state.username });
+                this.props.actions.UPDATE_USER_REQUEST({
+                  username: this.state.username
+                });
               }}
               size="middle"
               disable={
-                !this.state.username || this.state.username === this.props.user.get('username')
+                !this.state.username ||
+                this.state.username === this.props.user.get("username")
               }
             >
               Update
