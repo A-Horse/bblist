@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TodoBoxCreater 1`] = `
+<div>
+  <div
+    className="todo-box-creater--toggle"
+    onClick={[Function]}
+  >
+    <i
+      aria-hidden="true"
+      className="fa fa-plus"
+    />
+    <span
+      className="toggle-text"
+    >
+      Create Todo Box
+    </span>
+  </div>
+  <noscript />
+</div>
+`;

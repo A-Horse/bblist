@@ -1,0 +1,54 @@
+// $Mixin
+@mixin size($width, $height: $width) {
+  width: $width;
+  height: $height;
+}
+
+@mixin absPosition($top: auto, $right: auto, $bottom: auto, $left: auto) {
+  position: absolute;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+}
+
+@mixin animation($animation...) {
+  -o-animation: $animation;
+  -moz-animation: $animation;
+  -webkit-animation: $animation;
+  animation: $animation;
+}
+
+.loading {
+  text-align: center;
+  .loader {
+    display: inline-block;
+    position: relative;
+    @include size(50px);
+    vertical-align: middle;
+  }
+
+  .loader-quart {
+    border-radius: 50px;
+    border: 6px solid rgba(0, 0, 0, 0.4);
+    &:after {
+      content: "";
+      @include absPosition(-6px, -6px, -6px, -6px);
+      border-radius: 50px;
+      border: 6px solid transparent;
+      border-top-color: #777;
+      @include animation(spin 1s linear infinite);
+    }
+  }
+}
+
+@keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    tranform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    tranform: rotate(360deg);
+  }
+}

@@ -1,0 +1,51 @@
+@import "style/variable";
+@import "style/mixin";
+
+.board-setting-infomation {
+  .board-cover {
+    .cover-image {
+      border-radius: $radius-middle;
+      border: 1px solid $gray;
+      max-width: 100%;
+    }
+
+    .board-cover--wrapper {
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .board-cover--uploader {
+      margin-top: 10px;
+    }
+  }
+
+  .board-name {
+    &--input {
+      padding: 8px;
+      box-sizing: border-box;
+      border-radius: $radius-middle;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      width: 300px;
+    }
+  }
+
+  .board-description {
+    &--input {
+      padding: 8px;
+      border-radius: $radius-middle;
+      box-sizing: border-box;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      width: 300px;
+    }
+  }
+
+  .board-name,
+  .board-description,
+  .board-cover {
+    margin-top: 20px;
+    &--heading {
+      color: $text-primary;
+      margin-bottom: 10px;
+    }
+  }
+}

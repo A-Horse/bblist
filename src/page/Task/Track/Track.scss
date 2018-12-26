@@ -1,0 +1,110 @@
+@import "style/variable";
+@import "../_task-variable";
+
+.task-track {
+  border-radius: $list-radius;
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  width: $list-width;
+  height: calc(100% - #{2 * $list-vertical-margin});
+  z-index: 1;
+  vertical-align: middle;
+  background-color: $gray-super-light;
+  margin: $list-vertical-margin $list-horiz-margin;
+  transform: translate(0, 0);
+  transition: transform 200ms ease-in-out;
+  box-shadow: 0 0 5px #e8e8e8;
+
+  .ant-dropdown-trigger {
+    cursor: pointer;
+  }
+
+  &.has-draging-card {
+    .task-card,
+    .taskcard-creater--toggle {
+      pointer-events: none;
+    }
+  }
+
+  &.shadowing {
+    &:before {
+      border-radius: $list-radius;
+      content: "";
+      display: block;
+      position: absolute;
+      z-index: 10;
+      background-color: black;
+      height: 100%;
+      width: 100%;
+      opacity: 0.7;
+    }
+  }
+
+  &.moving {
+    z-index: 100;
+    left: 0;
+    position: absolute;
+    transition: none;
+    box-shadow: 1px 1px 10px #999;
+  }
+}
+
+.task-track--body {
+  overflow-y: auto;
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+}
+
+.task-track--name {
+  .task-track--input {
+    resize: none;
+    border: none;
+    padding: 5px 8px;
+    background-color: $white;
+    border-radius: $radius-small;
+  }
+}
+
+.task-track--top-bar {
+  position: relative;
+  flex: 1 0 auto;
+  height: $top-bar-height;
+  max-height: $top-bar-height;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+  padding: 0 8px;
+
+  .fa-ellipsis-h {
+    padding: 5px;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .task-track-operation {
+    padding: 3px 10px 1px;
+    position: absolute;
+    z-index: 99;
+    top: 30px;
+    right: 0;
+    border-radius: 3px;
+
+    &--remove {
+      color: $primary-bg;
+    }
+
+    li {
+      & > .fa {
+        margin-right: 8px;
+      }
+
+      & > span {
+        font-weight: bold;
+      }
+    }
+  }
+}

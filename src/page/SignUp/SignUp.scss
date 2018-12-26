@@ -1,0 +1,47 @@
+@import "../../style/variable";
+@import "../../style/mixin";
+
+// TODO refactor with signin
+.signup-page {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  .signup-main {
+    width: 330px;
+    align-self: center;
+  }
+
+  .signin-tip {
+    margin-top: 18px;
+    display: flex;
+    justify-content: space-between;
+    color: $black-light;
+
+    .signin-link {
+      font-weight: bolder;
+    }
+  }
+
+  .signup-form {
+    margin-top: 18px;
+    width: 330px;
+    align-self: center;
+
+    input {
+      @include form-input;
+    }
+
+    .error-msg {
+      margin-bottom: 25px;
+    }
+
+    .signup-button {
+      width: 100%;
+    }
+  }
+}

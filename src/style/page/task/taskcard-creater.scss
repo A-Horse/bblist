@@ -1,0 +1,78 @@
+@import "style/variable";
+$list-horiz-padding: 10px;
+$list-vertical-padding: 12px;
+
+.taskcard-creater--body {
+  background-color: $content-light;
+  box-shadow: 0 2px 4px $gray-light-litte-depth;
+  margin-top: 4px;
+  padding: $list-horiz-padding $list-vertical-padding;
+
+  textarea {
+    width: 100%;
+    border: 1px solid $border-light;
+    border-radius: $radius-middle;
+    box-shadow: 0 1px 3px $gray-light-litte-depth inset;
+    font-size: $font-size-x-middle;
+    padding: 8px 11px;
+    box-sizing: border-box;
+  }
+}
+
+.taskcard-creater--toggle {
+  font-weight: bolder;
+  color: $gray-deep;
+  margin: 8px 10px 10px;
+  cursor: pointer;
+
+  span {
+    vertical-align: middle;
+  }
+
+  .icon-add {
+    vertical-align: middle;
+    margin-right: 8px;
+  }
+}
+
+.taskcard-creater--user,
+.taskcard-creater--operation,
+.taskcard-creater--participants {
+  margin-top: 10px;
+  font-size: $font-size-x-middle;
+  color: $gray-light-deep;
+}
+
+.taskcard-creater--user,
+.taskcard-creater--participants {
+  margin-bottom: 8px;
+}
+
+.taskcard-creater--user {
+  display: flex;
+  align-items: center;
+
+  span {
+    margin-left: 12px;
+  }
+}
+
+.taskcard-creater--operation {
+  svg {
+    fill: $gray-light-deep;
+  }
+
+  .btn-cancel {
+    margin-right: 20px;
+  }
+}
+
+.taskcard-creater--operation,
+.taskcard-creater--operation > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.taskcard-creater--participants {
+}
