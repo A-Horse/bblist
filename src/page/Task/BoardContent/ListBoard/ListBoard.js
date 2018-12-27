@@ -12,7 +12,7 @@ import { TaskCard } from '../../TaskCard/TaskCard';
 
 import './ListBoard.less';
 
-export @DragDropContext(HTML5Backend) class ListBoard extends Component {
+class ListBoardBase extends Component {
   state = {};
 
   render() {
@@ -38,6 +38,8 @@ export @DragDropContext(HTML5Backend) class ListBoard extends Component {
     );
   }
 }
+
+export const ListBoard = DragDropContext(HTML5Backend)(ListBoardBase);
 
 const mapDispatchToProps = dispatch => {
   return {

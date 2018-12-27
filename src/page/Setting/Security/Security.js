@@ -2,13 +2,9 @@
 import React, { Component } from 'react';
 import Input from '../../../components/widget/Input/Input';
 import { Button } from '../../../components/widget/Button/Button';
-import { ErrorMsg } from '../../../components/ErrorMsg/ErrorMsg';
-import { validateFormValue } from '../../../services/validate-strategy';
 import { bindActionCreators } from 'redux';
 import { makeActionRequestCollection } from '../../../actions/actions';
-import * as R from 'ramda';
 import { connect } from 'react-redux';
-import SettingPage from 'page/Setting/SettingPage';
 import { withRouter } from 'react-router-dom';
 
 import './security.less';

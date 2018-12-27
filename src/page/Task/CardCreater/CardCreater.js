@@ -7,10 +7,11 @@ import ClickOutSide from '../../../components/utils/ClickOutSide';
 import { timeout } from '../../../utils/timeout';
 
 import { Select } from 'antd';
+import './CardCreater.scss';
 
 const Option = Select.Option;
 
-import './CardCreater.scss';
+
 
 class CardCreater extends Component {
   state = {

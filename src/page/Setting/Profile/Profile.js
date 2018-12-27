@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Input from 'components/widget/Input/Input';
-import { Button } from 'components/widget/Button/Button';
+import Input from '../../../components/widget/Input/Input';
+import { Button } from '../../../components/widget/Button/Button';
 import PropTypes from 'prop-types';
 
 import '../../../style/page/setting/profile.scss';

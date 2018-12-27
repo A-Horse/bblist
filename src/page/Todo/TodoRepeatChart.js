@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import moment from 'moment';
-import { Modal } from 'components/widget/Modal/Modal';
-import { Button } from 'components/widget/Button/Button';
-import { IconRemove, IconDelete, IconRight } from 'services/image-icon';
-import Empty from 'components/Empty';
+import { Modal } from '../../../components/widget/Modal/Modal';
+import { Button } from '../../../components/widget/Button/Button';
+import { IconRemove, IconDelete, IconRight } from '../../../services/image-icon';
+import Empty from '../../../components/Empty';
 
 import '../../../style/page/todo/todo-repeat-chart-modal.scss';
 

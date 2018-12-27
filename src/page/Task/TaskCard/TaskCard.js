@@ -2,10 +2,8 @@
 import React, { Component } from 'react';
 import { UserAvatar } from '../../../components/UserAvatar/UserAvatar';
 import { Checkbox } from 'antd';
-import { getMouseElementInnerOffset } from '../../../utils/dom';
-import { DragSource, DropTarget, ConnectDragSource } from 'react-dnd';
+import { DragSource, DropTarget } from 'react-dnd';
 import { findDOMNode } from 'react-dom';
-import { Map } from 'immutable';
 
 import './TaskCard.less';
 
@@ -19,35 +17,7 @@ const TaskCardSource = {
   }
 };
 
-@DropTarget(
-  'CARD',
-  {
-    drop(props, monitor, component) {
-      props.actions.CARD_MOVE_REQUEST({
-        sourceCard: monitor.getItem().card.toJS(),
-        targetCard: props.card.toJS()
-      });
-    },
-    canDrop(props, monitor) {
-      const item = monitor.getItem();
-      return item.card.get('id') !== props.card.get('id');
-    }
-  },
-  (connect, monitor) => ({
-    connectDropTarget: connect.dropTarget(),
-    isOver: monitor.isOver(),
-    isOverCurrent: monitor.isOver({ shallow: true }),
-    canDrop: monitor.canDrop(),
-    itemType: monitor.getItemType(),
-    sourceItem: monitor.getItem()
-  })
-)
-@DragSource('CARD', TaskCardSource, (connect, monitor) => ({
-  connectDragSource: connect.dragSource(),
-  connectDragPreview: connect.dragPreview(),
-  isDragging: monitor.isDragging()
-}))
-export class TaskCard extends Component {
+class TaskCardBase extends Component {
   state = {};
 
   componentWillMount() {}
@@ -114,3 +84,32 @@ export class TaskCard extends Component {
     );
   }
 }
+
+
+export const TaskCard = DropTarget(
+  'CARD',
+  {
+    drop(props, monitor, component) {
+      props.actions.CARD_MOVE_REQUEST({
+        sourceCard: monitor.getItem().card.toJS(),
+        targetCard: props.card.toJS()
+      });
+    },
+    canDrop(props, monitor) {
+      const item = monitor.getItem();
+      return item.card.get('id') !== props.card.get('id');
+    }
+  },
+  (connect, monitor) => ({
+    connectDropTarget: connect.dropTarget(),
+    isOver: monitor.isOver(),
+    isOverCurrent: monitor.isOver({ shallow: true }),
+    canDrop: monitor.canDrop(),
+    itemType: monitor.getItemType(),
+    sourceItem: monitor.getItem()
+  })
+)(DragSource('CARD', TaskCardSource, (connect, monitor) => ({
+  connectDragSource: connect.dragSource(),
+  connectDragPreview: connect.dragPreview(),
+  isDragging: monitor.isDragging()
+})))(TaskCardBase)

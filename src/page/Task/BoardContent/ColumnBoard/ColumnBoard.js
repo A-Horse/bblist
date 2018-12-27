@@ -1,6 +1,5 @@
 //
 import React, { Component } from 'react';
-import DOM from 'react-dom-factories';
 import { Route } from 'react-router';
 import TaskTrack from '../../Track/Track';
 import { CardDetailContainer } from '../../CardDetail/CardDetail.container';
@@ -14,7 +13,7 @@ import { DragDropContext } from 'react-dnd';
 
 import './ColumnBoard.less';
 
-export @DragDropContext(HTML5Backend) class ColumnBoard extends Component {
+class ColumnBoardBase extends Component {
   state = {};
   trackInstanceMap = {};
 
@@ -32,7 +31,7 @@ export @DragDropContext(HTML5Backend) class ColumnBoard extends Component {
   render() {
     const { trackMap } = this.props;
     if (!this.props.board) {
-      return DOM.noscript();
+      return null;
     }
 
     return (
@@ -95,6 +94,8 @@ export @DragDropContext(HTML5Backend) class ColumnBoard extends Component {
     );
   }
 }
+
+export const ColumnBoard = DragDropContext(HTML5Backend)(ColumnBoardBase);
 
 const mapDispatchToProps = dispatch => {
   return {
