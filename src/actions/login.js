@@ -1,7 +1,6 @@
 import fetch from 'isomorphic-fetch';
-import { createConfigWithAuth, createConfig } from 'utils/header';
-import { handleResponse, handleResponseWithoutJson } from 'utils/http-handle';
-import { getJWT } from 'utils/auth';
+import { createConfig } from '../utils/header';
+import { handleResponse } from '../utils/http-handle';
 import { makeApiUrl } from 'utils/api';
 
 export const LOGIN_REQUEST = 'LOGIN_REQUEST';
@@ -52,76 +51,3 @@ export function signin(creds) {
       });
   };
 }
-
-/* function canNotLoginAuth() {
- *   return {
- *     type: IDENTIFY_FAILURE
- *   };
- * }
- *
- * function requestAuthLogin() {
- *   return {
- *     type: IDENTIFY_REQUEST
- *   };
- * }
- *
- * function authLoginError(payload) {
- *   return {
- *     type: IDENTIFY_FAILURE,
- *     payload
- *   };
- * }
- *
- * function authLoginSuccess(user) {
- *   return {
- *     type: IDENTIFY_SUCCESS,
- *     user: user
- *   };
- * }
- * */
-/* export function indentifyUser() {
- *   // const token = getJWT();
- *   const config = createConfigWithAuth('GET');
- *   return dispatch => {
- *     if (!token) return dispatch(canNotLoginAuth());
- *     dispatch(requestAuthLogin());
- *     return fetch(makeApiUrl(`/user/identify`), config)
- *       .then(handleResponse)
- *       .then(response => dispatch(authLoginSuccess(response)))
- *       .catch(err => dispatch(authLoginError(err)));
- *   };
- * }*/
-/*
- * export const AUTH_FAILURE = 'AUTH_FAILURE';
- * export const AUTH_REQUEST = 'AUTH_REQUEST';
- * export const AUTH_SUCCESS = 'AUTH_SUCCESS';
- *
- * function authRequest() {
- *   return {
- *     type: AUTH_REQUEST
- *   };
- * }
- *
- * function authSuccess(resp) {
- *   return {
- *     type: AUTH_SUCCESS,
- *     payload: resp
- *   };
- * }
- *
- * function authFailure(message) {
- *   return {
- *     type: AUTH_FAILURE,
- *     payload: message
- *   };
- * }
- *
- * export function authUser(userId) {
- *   const config = createConfigWithAuth('GET');
- *   return dispatch => {
- *     return fetch(makeApiUrl(`/user/${userId}`), config)
- *       .then(handleResponse)
- *       .then(response => dispatch(authSuccess(response)))
- *       .catch(err => dispatch(authFailure(err.message)));
- *   };
- * }*/

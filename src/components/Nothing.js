@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import 'style/component/nothing.scss';
+import '../style/component/nothing.scss';
 
 export class Nothing extends Component {
   render() {

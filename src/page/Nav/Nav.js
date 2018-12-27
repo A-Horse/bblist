@@ -1,4 +1,3 @@
-//
 import React, { Component } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { makeGravatarUrl } from '../../services/gravatar';
@@ -6,12 +5,14 @@ import { Storage, storageImage } from '../../services/storage';
 import { LogoBan } from '../../components/commons/LogoBan/LogoBan';
 
 import { Layout, Icon, Dropdown, Menu } from 'antd';
+import './Nav.less';
+
 const { Header } = Layout;
 
 // TODO remove
 export const navHeight = 42;
 
-import './Nav.less';
+
 
 class Nav extends Component {
   state = {};

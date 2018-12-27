@@ -8,7 +8,7 @@ import Actions from '../actions/actions';
 import { makeApiUrl } from '../utils/api';
 import { http } from '../services/http';
 import * as R from 'ramda';
-import { getCachedUserId } from 'utils/auth';
+import { getCachedUserId } from '../utils/auth';
 import { fromJS } from 'immutable';
 
 export const GET_TASK_BOARD = action$ =>

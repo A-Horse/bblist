@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-fetch';
 import * as R from 'ramda';
-import { handleResponse } from 'utils/http-handle';
+import { handleResponse } from '../utils/http-handle';
 import { createConfigWithAuth, createFormDataConfigWithAuth } from '../utils/header';
 
 function generateUri(url, query) {

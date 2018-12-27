@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import 'style/component/empty.scss';
+import '../style/component/empty.scss';
 
 export class Empty extends Component {
   render() {

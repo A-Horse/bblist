@@ -9,9 +9,11 @@ import { BoardContentContainer } from '../BoardContent/BoardContent';
 import { BoardSetting } from '../BoardSetting/BoardSetting';
 
 import { Layout } from 'antd';
-const { Header } = Layout;
+
 
 import './Board.scss';
+
+const { Header } = Layout;
 
 export class Board extends Component {
   componentWillMount() {

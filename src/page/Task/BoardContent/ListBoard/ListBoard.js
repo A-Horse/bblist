@@ -12,8 +12,7 @@ import { TaskCard } from '../../TaskCard/TaskCard';
 
 import './ListBoard.less';
 
-@DragDropContext(HTML5Backend)
-export class ListBoard extends Component {
+export @DragDropContext(HTML5Backend) class ListBoard extends Component {
   state = {};
 
   render() {

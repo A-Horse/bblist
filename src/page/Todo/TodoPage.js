@@ -6,9 +6,11 @@ import { TodoPageContentContainer } from './TodoPageContent/TodoPageContent.cont
 import TodoBoxs from './TodoBoxs/TodoBoxs';
 
 import { Layout } from 'antd';
-const { Sider, Content } = Layout;
+
 
 import './TodoPage.less';
+
+const { Sider, Content } = Layout;
 
 export class TodoPage extends Component {
   componentDidUpdate() {

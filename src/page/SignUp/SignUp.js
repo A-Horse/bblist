@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { validateFormValue } from '../../services/validate-strategy';
-import { PageContainer } from 'components/widget/PageContainer';
+import { PageContainer } from '../../components/widget/PageContainer';
 import { Input } from '../../components/widget/Input/Input';
-import { updateTitle } from 'services/title';
+import { updateTitle } from '../../services/title';
 import { Button } from '../../components/widget/Button/Button';
 import { LogoBan } from '../../components/commons/LogoBan/LogoBan';
 import { ErrorMsg } from '../../components/ErrorMsg/ErrorMsg';

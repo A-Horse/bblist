@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import 'style/page/task/card-placeholder.scss';
+import '../../../style/page/task/card-placeholder.scss';
 
 class CardPlaceholder extends Component {
   buildStyle() {

@@ -1,7 +1,7 @@
 import fetch from 'isomorphic-fetch';
 import { createConfigWithAuth } from '../utils/header';
 import { makeApiUrl } from 'utils/api';
-import { handleResponse, handleResponseWithoutJson } from 'utils/http-handle';
+import { handleResponse, handleResponseWithoutJson } from '../utils/http-handle';
 import { authUser } from './login';
 
 export const UPDATE_PASSWORD_REQUEST = 'UPDATE_PASSWORD_REQUEST';

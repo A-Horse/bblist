@@ -11,37 +11,42 @@ import { getUserData } from '../utils/auth';
 import { Layout } from 'antd';
 const { Content } = Layout;
 
-const TodoPage = props => (
-  <Bundle load={require('bundle-loader?lazy&name=todo-page!./Todo/TodoPage.container')}>
-    {B => <B {...props} />}
-  </Bundle>
-);
+const TodoPage = React.lazy(() => import('./Todo/TodoPage.container'));
+// const TodoPage = props => (
+//   <Bundle load={require('bundle-loader?lazy&name=todo-page!./Todo/TodoPage.container')}>
+//     {B => <B {...props} />}
+//   </Bundle>
+// );
 
-const SettingPage = props => (
-  <Bundle load={require('bundle-loader?lazy&name=setting-page!./Setting/SettingPage.container')}>
-    {B => <B {...props} />}
-  </Bundle>
-);
+const SettingPage = React.lazy(() => import('./Setting/SettingPage.container'));
+// const SettingPage = props => (
+//   <Bundle load={require('bundle-loader?lazy&name=setting-page!./Setting/SettingPage.container')}>
+//     {B => <B {...props} />}
+//   </Bundle>
+// );
 
-const TaskBoardWallPage = props => (
-  <Bundle
-    load={require('bundle-loader?lazy&name=task-board-wall-page!./Task/BoardWall/BoardWall.container')}
-  >
-    {B => <B {...props} />}
-  </Bundle>
-);
+const TaskBoardWallPage = React.lazy(() => import('./Task/BoardWall/BoardWall.container'));
+// const TaskBoardWallPage = props => (
+//   <Bundle
+//     load={require('bundle-loader?lazy&name=task-board-wall-page!./Task/BoardWall/BoardWall.container')}
+//   >
+//     {B => <B {...props} />}
+//   </Bundle>
+// );
 
-const TaskBoardPage = props => (
-  <Bundle load={require('bundle-loader?lazy&name=task-board-page!page/Task/Board/Board.container')}>
-    {B => <B {...props} />}
-  </Bundle>
-);
+const TaskBoardPage = React.lazy(() => import('../page/Task/Board/Board.container'));
+// const TaskBoardPage = props => (
+//   <Bundle load={require('bundle-loader?lazy&name=task-board-page!page/Task/Board/Board.container')}>
+//     {B => <B {...props} />}
+//   </Bundle>
+// );
 
-const ProfilePage = props => (
-  <Bundle load={require('bundle-loader?lazy&name=profile-page!page/Profile/ProfilePage.container')}>
-    {B => <B {...props} />}
-  </Bundle>
-);
+const ProfilePage = React.lazy(() => import('../page/Profile/ProfilePage.container'));
+// const ProfilePage = props => (
+//   <Bundle load={require('bundle-loader?lazy&name=profile-page!page/Profile/ProfilePage.container')}>
+//     {B => <B {...props} />}
+//   </Bundle>
+// );
 
 export default class App extends Component {
   state = { userData: null };

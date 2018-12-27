@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import 'style/component/image-icons.scss';
+import '../style/component/image-icons.scss';
 
 class Icon extends Component {
   buildClassName(name) {

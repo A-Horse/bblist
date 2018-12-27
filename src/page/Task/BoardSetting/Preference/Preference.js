@@ -1,7 +1,5 @@
-//
 import React, { Component } from 'react';
 import { Radio } from 'antd';
-const RadioGroup = Radio.Group;
 import { bindActionCreators } from 'redux';
 import { makeActionRequestCollection } from '../../../../actions/actions';
 import { withRouter } from 'react-router-dom';
@@ -10,6 +8,8 @@ import { Map } from 'immutable';
 import { connect } from 'react-redux';
 
 import './Preference.less';
+
+const RadioGroup = Radio.Group;
 
 class TaskBoardPreference extends Component {
   render() {

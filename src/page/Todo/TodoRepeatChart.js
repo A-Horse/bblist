@@ -5,7 +5,7 @@ import { Button } from 'components/widget/Button/Button';
 import { IconRemove, IconDelete, IconRight } from 'services/image-icon';
 import Empty from 'components/Empty';
 
-import 'style/page/todo/todo-repeat-chart-modal.scss';
+import '../../../style/page/todo/todo-repeat-chart-modal.scss';
 
 export default class CardRepeatHistoryModal extends Component {
   state = {};

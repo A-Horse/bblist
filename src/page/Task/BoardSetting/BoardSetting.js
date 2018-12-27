@@ -7,9 +7,10 @@ import { TaskBoardPreferenceContainer } from './Preference/Preference';
 import { Participant } from './Participant/Participant';
 import { Link } from 'react-router-dom';
 import { Layout, Menu, Icon } from 'antd';
-const { Content, Sider } = Layout;
 
 import './BoardSetting.scss';
+
+const { Content, Sider } = Layout;
 
 export class BoardSetting extends Component {
   render() {

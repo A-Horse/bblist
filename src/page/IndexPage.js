@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { PageContainer } from 'components/widget/PageContainer';
+import { PageContainer } from '../components/widget/PageContainer';
 import { SeaWaves } from 'effect/SeaWaves';
 import { Button } from '../components/widget/Button/Button';
 import { Link } from 'react-router-dom';
-import { isLogin } from 'services/login';
-import { LogoBan } from 'components/commons/LogoBan/LogoBan';
+import { isLogin } from '../services/login';
+import { LogoBan } from '../components/commons/LogoBan/LogoBan';
 import { isEnterKey } from 'utils/keyboard';
 import { withRouter } from 'react-router-dom';
 
-import 'style/page/index.scss';
+import '../style/page/index.scss';
 
 class IndexPage extends Component {
   constructor() {

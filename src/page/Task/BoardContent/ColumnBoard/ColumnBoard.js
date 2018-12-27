@@ -14,8 +14,7 @@ import { DragDropContext } from 'react-dnd';
 
 import './ColumnBoard.less';
 
-@DragDropContext(HTML5Backend)
-export class ColumnBoard extends Component {
+export @DragDropContext(HTML5Backend) class ColumnBoard extends Component {
   state = {};
   trackInstanceMap = {};
 

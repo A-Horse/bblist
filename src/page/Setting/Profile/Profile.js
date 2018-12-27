@@ -3,7 +3,7 @@ import Input from 'components/widget/Input/Input';
 import { Button } from 'components/widget/Button/Button';
 import PropTypes from 'prop-types';
 
-import 'style/page/setting/profile.scss';
+import '../../../style/page/setting/profile.scss';
 
 export default class Profile extends Component {
   static propTypes = {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import 'style/page/building.scss';
+import '../style/page/building.scss';
 
 export default class Building extends Component {
   render() {

@@ -1,13 +1,14 @@
-//
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { TaskBoardCreater } from '../TaskBoardCreater/TaskBoardCreater';
 import { makeRemoteUrl } from '../../../services/remote-storage';
 import { DEFAULT_BOARD_COVER_SRC } from '../../../constants';
 import { Layout } from 'antd';
-const { Content } = Layout;
+
 
 import './BoardWall.scss';
+
+const { Content } = Layout;
 
 export class BoardWall extends Component {
   componentWillMount() {
