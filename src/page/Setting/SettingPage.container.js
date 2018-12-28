@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import SettingPage from '../../../page/Setting/SettingPage';
+import SettingPage from '../../page/Setting/SettingPage';
 import { withRouter } from 'react-router-dom';
 
 const mapDispatchToProps = dispatch => {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { updateTitle } from 'services/title';
+import { updateTitle } from '../../services/title';
 import { Link } from 'react-router-dom';
 import { Route, Switch, Redirect } from 'react-router';
 

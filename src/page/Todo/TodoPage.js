@@ -1,6 +1,6 @@
 //
 import React, { Component } from 'react';
-import { updateTitle } from 'services/title';
+import { updateTitle } from '../../services/title';
 import { Route, Switch, Redirect } from 'react-router';
 import { TodoPageContentContainer } from './TodoPageContent/TodoPageContent.container';
 import TodoBoxs from './TodoBoxs/TodoBoxs';
