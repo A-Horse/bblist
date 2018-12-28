@@ -1,7 +1,6 @@
-//
 import React, { Component } from 'react';
 import { Select, Modal, Icon, Menu, Dropdown, Form, Input, Row, Checkbox } from 'antd';
-import './CardDetail.less';
+import './CardDetail.scss';
 
 const { TextArea } = Input;
 

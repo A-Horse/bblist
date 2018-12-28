@@ -5,7 +5,7 @@ import { Checkbox } from 'antd';
 import { DragSource, DropTarget } from 'react-dnd';
 import { findDOMNode } from 'react-dom';
 
-import './TaskCard.less';
+import './TaskCard.scss';
 
 const TaskCardSource = {
   beginDrag(props, monitor, component) {
@@ -112,5 +112,5 @@ export const TaskCard = DropTarget(
     connectDragSource: connect.dragSource(),
     connectDragPreview: connect.dragPreview(),
     isDragging: monitor.isDragging()
-  }))
-)(TaskCardBase);
+  }))(TaskCardBase)
+);

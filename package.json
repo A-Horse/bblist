@@ -2,6 +2,7 @@
   "name": "web-octopus-refactor",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://work.octopuese.xyz",
   "dependencies": {
     "antd": "^3.11.6",
     "axios": "^0.18.0",

@@ -1,7 +1,7 @@
 //
-import { TDBox, TD, TDS, TDBoxs } from '../schema';
+import { TDBox, TDS, TDBoxs } from '../schema';
 import { normalize } from 'normalizr';
-import { Map, List, fromJS } from 'immutable';
+import { List, fromJS } from 'immutable';
 import Actions from '../actions/actions';
 
 export function todos(
