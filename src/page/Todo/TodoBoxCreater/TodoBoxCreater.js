@@ -1,9 +1,7 @@
-//
 import React, { Component } from 'react';
 import { Input, Form, Button, Icon, Modal } from 'antd';
-import { formShape } from 'rc-form';
 
-import './TodoBoxCreater.less';
+import './TodoBoxCreater.scss';
 
 const FormItem = Form.Item;
 

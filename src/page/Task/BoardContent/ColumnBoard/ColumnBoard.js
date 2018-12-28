@@ -11,7 +11,7 @@ import { makeActionRequestCollection } from '../../../../actions/actions';
 import HTML5Backend from 'react-dnd-html5-backend';
 import { DragDropContext } from 'react-dnd';
 
-import './ColumnBoard.less';
+import './ColumnBoard.scss';
 
 class ColumnBoardBase extends Component {
   state = {};

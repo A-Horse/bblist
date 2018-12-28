@@ -1,14 +1,11 @@
-//
 import React, { Component } from 'react';
 import { Select, Modal, Icon, Menu, Dropdown, Form, Input, Row, Checkbox } from 'antd';
-import './CardDetail.less';
-
+import './CardDetail.scss';
 
 const { TextArea } = Input;
 
 const Option = Select.Option;
 const FormItem = Form.Item;
-
 
 export class CardDetail extends Component {
   state = { toggle: true };

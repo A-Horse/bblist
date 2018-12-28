@@ -6,7 +6,7 @@ import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
 import { makeActionRequestCollection } from '../../../../../actions/actions';
 
-import './ListBoardCard.less';
+import './ListBoardCard.scss';
 
 class ListBoardCard extends Component {
   state = {};

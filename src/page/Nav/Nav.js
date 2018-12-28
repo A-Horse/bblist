@@ -5,14 +5,12 @@ import { Storage, storageImage } from '../../services/storage';
 import { LogoBan } from '../../components/commons/LogoBan/LogoBan';
 
 import { Layout, Icon, Dropdown, Menu } from 'antd';
-import './Nav.less';
+import './Nav.scss';
 
 const { Header } = Layout;
 
 // TODO remove
 export const navHeight = 42;
-
-
 
 class Nav extends Component {
   state = {};
@@ -70,12 +68,14 @@ class Nav extends Component {
             <Dropdown overlay={menu} placement="bottomRight">
               {avatarData ? (
                 <img
+                  alt=""
                   ref={ref => (this.avator = ref)}
                   className="nav-avatar"
                   src={`data:image/png;base64,${avatarData}`}
                 />
               ) : (
                 <img
+                  alt=""
                   ref={ref => (this.avator = ref)}
                   className="nav-avatar"
                   crossOrigin="Anonymous"

@@ -1,8 +1,6 @@
 //
-import React, { Component } from 'react';
+import React, { Component, Suspense } from 'react';
 import Nav from './Nav/Nav';
-import Bundle from '../components/Bundle';
-
 import { Route, Switch, Redirect } from 'react-router';
 
 import NotFound from '../page/NotFound';
@@ -11,42 +9,50 @@ import { getUserData } from '../utils/auth';
 import { Layout } from 'antd';
 const { Content } = Layout;
 
-const TodoPage = React.lazy(() => import('./Todo/TodoPage.container'));
-// const TodoPage = props => (
-//   <Bundle load={require('bundle-loader?lazy&name=todo-page!./Todo/TodoPage.container')}>
-//     {B => <B {...props} />}
-//   </Bundle>
-// );
+const TodoPageContainer = React.lazy(() => import('./Todo/TodoPage.container'));
+const TodoPage = () => {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <TodoPageContainer />
+    </Suspense>
+  );
+};
 
-const SettingPage = React.lazy(() => import('./Setting/SettingPage.container'));
-// const SettingPage = props => (
-//   <Bundle load={require('bundle-loader?lazy&name=setting-page!./Setting/SettingPage.container')}>
-//     {B => <B {...props} />}
-//   </Bundle>
-// );
+const SettingPageContainer = React.lazy(() => import('./Setting/SettingPage.container'));
+const SettingPage = () => {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <SettingPageContainer />
+    </Suspense>
+  );
+};
 
-const TaskBoardWallPage = React.lazy(() => import('./Task/BoardWall/BoardWall.container'));
-// const TaskBoardWallPage = props => (
-//   <Bundle
-//     load={require('bundle-loader?lazy&name=task-board-wall-page!./Task/BoardWall/BoardWall.container')}
-//   >
-//     {B => <B {...props} />}
-//   </Bundle>
-// );
+const TaskBoardWallPageContainer = React.lazy(() => import('./Task/BoardWall/BoardWall.container'));
+const TaskBoardWallPage = () => {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <TaskBoardWallPageContainer />
+    </Suspense>
+  );
+};
 
-const TaskBoardPage = React.lazy(() => import('../page/Task/Board/Board.container'));
-// const TaskBoardPage = props => (
-//   <Bundle load={require('bundle-loader?lazy&name=task-board-page!page/Task/Board/Board.container')}>
-//     {B => <B {...props} />}
-//   </Bundle>
-// );
+const TaskBoardPageContainer = React.lazy(() => import('../page/Task/Board/Board.container'));
+const TaskBoardPage = () => {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <TaskBoardPageContainer />
+    </Suspense>
+  );
+};
 
-const ProfilePage = React.lazy(() => import('../page/Profile/ProfilePage.container'));
-// const ProfilePage = props => (
-//   <Bundle load={require('bundle-loader?lazy&name=profile-page!page/Profile/ProfilePage.container')}>
-//     {B => <B {...props} />}
-//   </Bundle>
-// );
+const ProfilePageContainer = React.lazy(() => import('../page/Profile/ProfilePage.container'));
+const ProfilePage = () => {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ProfilePageContainer />
+    </Suspense>
+  );
+};
 
 export default class App extends Component {
   state = { userData: null };

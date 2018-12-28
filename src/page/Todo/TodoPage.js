@@ -1,14 +1,13 @@
 //
 import React, { Component } from 'react';
-import { updateTitle } from 'services/title';
-import { Route, Switch, Redirect } from 'react-router';
+import { updateTitle } from '../../services/title';
+import { Redirect } from 'react-router';
 import { TodoPageContentContainer } from './TodoPageContent/TodoPageContent.container';
 import TodoBoxs from './TodoBoxs/TodoBoxs';
 
 import { Layout } from 'antd';
 
-
-import './TodoPage.less';
+import './TodoPage.scss';
 
 const { Sider, Content } = Layout;
 

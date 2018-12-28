@@ -10,7 +10,6 @@ import { BoardSetting } from '../BoardSetting/BoardSetting';
 
 import { Layout } from 'antd';
 
-
 import './Board.scss';
 
 const { Header } = Layout;

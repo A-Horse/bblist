@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { UserAvatar } from '../../../../components/UserAvatar/UserAvatar';
 import Input from '../../../../components/widget/Input/Input';
 import { Button } from '../../../../components/widget/Button/Button';
-import { testRegex } from 'services/validate-strategy';
+import { testRegex } from '../../../../services/validate-strategy';
 
 export class Participant extends Component {
   componentWillMount() {

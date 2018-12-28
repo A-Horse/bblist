@@ -1,5 +1,4 @@
-//
-import React, { Component } from 'react';
+import React from 'react';
 import Checkbox from '../CheckBox/CheckBox';
 import './StarCheckbox.scss';
 

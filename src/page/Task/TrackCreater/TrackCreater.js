@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import { Button } from '../../../../components/widget/Button/Button';
-import { isEnterKey } from '../../../../utils/keyboard';
+import { Button } from '../../../components/widget/Button/Button';
+import { isEnterKey } from '../../../utils/keyboard';
 
 import './TrackCreater.scss';
 
 class TrackCreater extends Component {
-
   state = {
     name: null,
     toggle: false

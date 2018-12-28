@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { makeGravatarUrl, getUserGravatorFromStorge } from '../../services/gravatar';
 
-import './UserAvatar.less';
+import './UserAvatar.scss';
 
 export class UserAvatar extends Component {
   render() {

@@ -7,7 +7,7 @@ import { makeActionRequestCollection } from '../../../actions/actions';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-import './security.less';
+import './security.scss';
 
 class SettingSecurity extends Component {
   state = {};

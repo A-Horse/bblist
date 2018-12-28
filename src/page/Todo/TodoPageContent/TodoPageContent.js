@@ -2,10 +2,9 @@
 import React, { Component } from 'react';
 import { TodoCreater } from '../TodoCreater/TodoCreater';
 import { Todo } from '../Todo/Todo';
-import { List } from 'immutable';
 import { List as AntList } from 'antd';
 
-import './TodoPageContent.less';
+import './TodoPageContent.scss';
 
 export class TodoPageContent extends Component {
   state = { toggleAll: false };

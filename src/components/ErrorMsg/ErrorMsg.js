@@ -4,7 +4,6 @@ import * as R from 'ramda';
 import './ErrorMsg.scss';
 
 export class ErrorMsg extends Component {
-
   render() {
     const messages = this.props.messages.filter(R.complement(R.isNil));
     if (!messages.length) {

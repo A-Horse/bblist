@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
-import './style/index.less';
+import './style/antd.css';
 import { store } from './store/store';
 import Root from './page/Root/Root';
 import { getJWT } from './utils/auth';
