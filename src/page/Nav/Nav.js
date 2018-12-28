@@ -5,7 +5,7 @@ import { Storage, storageImage } from '../../services/storage';
 import { LogoBan } from '../../components/commons/LogoBan/LogoBan';
 
 import { Layout, Icon, Dropdown, Menu } from 'antd';
-import './Nav.less';
+import './Nav.scss';
 
 const { Header } = Layout;
 

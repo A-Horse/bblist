@@ -7,7 +7,7 @@ import { Map } from 'immutable';
 
 import { connect } from 'react-redux';
 
-import './Preference.less';
+import './Preference.scss';
 
 const RadioGroup = Radio.Group;
 

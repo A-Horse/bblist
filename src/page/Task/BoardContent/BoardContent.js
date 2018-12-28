@@ -8,7 +8,7 @@ import { makeActionRequestCollection } from '../../../actions/actions';
 import { ListBoardContainer } from './ListBoard/ListBoard';
 import { Map } from 'immutable';
 
-import './BoardContent.less';
+import './BoardContent.scss';
 
 export class BoardContent extends Component {
   state = {};

@@ -6,7 +6,7 @@ import { Map } from 'immutable';
 
 import { Menu, Icon } from 'antd';
 
-import './TodoBoxs.less';
+import './TodoBoxs.scss';
 
 class TodoBoxs extends Component {
   componentWillMount() {

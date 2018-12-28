@@ -45,12 +45,14 @@ const TaskBoardPage = () => {
   );
 };
 
-const ProfilePage = React.lazy(() => import('../page/Profile/ProfilePage.container'));
-// const ProfilePage = props => (
-//   <Bundle load={require('bundle-loader?lazy&name=profile-page!page/Profile/ProfilePage.container')}>
-//     {B => <B {...props} />}
-//   </Bundle>
-// );
+const ProfilePageContainer = React.lazy(() => import('../page/Profile/ProfilePage.container'));
+const ProfilePage = () => {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ProfilePageContainer />
+    </Suspense>
+  );
+};
 
 export default class App extends Component {
   state = { userData: null };

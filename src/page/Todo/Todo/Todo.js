@@ -6,7 +6,7 @@ import moment from 'moment';
 import { Map } from 'immutable';
 import { Row, Col, Tag } from 'antd';
 
-import './Todo.less';
+import './Todo.scss';
 
 export class Todo extends Component {
   state = {

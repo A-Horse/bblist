@@ -10,7 +10,7 @@ import { DragDropContext } from 'react-dnd';
 import { List } from 'immutable';
 import { TaskCard } from '../../TaskCard/TaskCard';
 
-import './ListBoard.less';
+import './ListBoard.scss';
 
 class ListBoardBase extends Component {
   state = {};

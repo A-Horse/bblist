@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { TextLogo } from '../TextLogo';
 import octopusImage from '../../../assets/octopus.png';
 
-import './LogoBan.less';
+import './LogoBan.scss';
 
 export class LogoBan extends Component {
   render() {

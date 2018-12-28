@@ -8,7 +8,7 @@ import { makeApiUrl } from '../utils/api';
 import { http } from '../services/http';
 import { getCachedUserId, saveJWT } from '../utils/auth';
 import { ofType } from 'redux-observable';
-import { mergeMap, tap, ignoreElements } from 'rxjs/operators';
+import { mergeMap } from 'rxjs/operators';
 import axios from 'axios';
 
 export const UPDATE_USER_REQUEST = action$ =>

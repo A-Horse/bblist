@@ -8,7 +8,7 @@ import { Storage } from '../services/storage';
 import Actions from '../actions/actions';
 import { makeApiUrl } from '../utils/api';
 import { http } from '../services/http';
-import { saveAuthData, getJWT } from '../utils/auth';
+import { saveAuthData } from '../utils/auth';
 import { setupAxiosJwtHeader } from '../helper/http-intercetor';
 import axios from 'axios';
 
