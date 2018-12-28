@@ -1,0 +1,26 @@
+.image-upload {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+}
+
+.image-uploader-modal .crop-image-container {
+  text-align: center;
+}
+
+.image-upload .ReactCrop__image {
+  margin: 0 auto;
+}
+
+.image-upload .ReactCrop {
+  background-color: transparent !important;
+}
+
+.image-upload input {
+  visibility: hidden;
+  position: absolute;
+  height: 0;
+  widht: 0;
+  top: 0;
+  left: 0;
+}

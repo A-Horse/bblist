@@ -1,0 +1,80 @@
+@import "../../style/variable";
+
+$setting-side-bar-width: 200px;
+
+.setting-page {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  padding-top: 30px;
+  align-items: flex-start;
+
+  .heading {
+    color: $text-primary;
+    margin-bottom: 10px;
+  }
+
+  .input {
+    padding: 8px;
+    box-sizing: border-box;
+    border-radius: $radius-middle;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    width: 300px;
+    margin-bottom: 20px;
+  }
+
+  .section-heading {
+    color: $text-primary;
+    font-size: 22px;
+    margin-bottom: 10px;
+    font-weight: bolder;
+  }
+
+  .setting-side-bar {
+    width: $setting-side-bar-width;
+    min-width: $setting-side-bar-width;
+    margin-right: 50px;
+    // TODO board-setting same
+    ul {
+      background-color: $white;
+      border-radius: $radius-small;
+      border: 1px solid $gray-light;
+
+      li {
+        position: relative;
+        height: 50px;
+        line-height: 50px;
+        border-bottom: 1px solid $gray-light;
+        cursor: pointer;
+
+        a {
+          display: block;
+          position: relative;
+          height: 100%;
+          width: 100%;
+          padding-left: 10px;
+          box-sizing: border-box;
+
+          &.active:before {
+            content: "";
+            display: block;
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 3px;
+            background-color: $red-litte-light;
+          }
+        }
+
+        &:last-child {
+          border-bottom: none;
+        }
+      }
+    }
+  }
+
+  .setting-panel {
+    width: 100%;
+  }
+}

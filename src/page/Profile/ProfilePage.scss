@@ -1,0 +1,31 @@
+@import "../../style/variable";
+
+.profile-page {
+  display: flex;
+  width: 1000px;
+  margin: 0 auto;
+  padding-top: 20px;
+
+  @media screen and (max-width: 600px) {
+    .profile-detail {
+      display: none;
+    }
+  }
+
+  .profile-infomation {
+    width: 200px;
+    .profile-avatar {
+      border-radius: 10px;
+      height: 200px;
+      width: 200px;
+    }
+  }
+
+  .profile-detail {
+    &-number {
+      color: $red;
+      font-size: 28px;
+    }
+    padding-left: 60px;
+  }
+}

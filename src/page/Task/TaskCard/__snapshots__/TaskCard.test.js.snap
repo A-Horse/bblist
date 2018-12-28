@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TaskCard 1`] = `
+<div
+  className="task-card"
+>
+  <div
+    className="checkbox"
+    onClick={undefined}
+  >
+    <label
+      className="checkbox--mock"
+    >
+      <input
+        defaultChecked={1}
+        onChange={[Function]}
+        type="checkbox"
+      />
+      <i
+        aria-hidden="true"
+        className="fa fa-check-square-o"
+      />
+    </label>
+  </div>
+  <p
+    className="task-card--title"
+  >
+    taskcard
+  </p>
+  <img
+    className="useravatar"
+    crossOrigin="Anonymous"
+    src="https://www.gravatar.com/avatar/0f6dbc559e6c30c7a6294a7bcb62cebd"
+  />
+</div>
+`;

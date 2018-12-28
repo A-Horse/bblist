@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ErrorMsg 1`] = `
+<div
+  className="error-msg"
+>
+  <ul>
+    <li>
+      first error
+    </li>
+    <li>
+      second error
+    </li>
+  </ul>
+</div>
+`;
+
+exports[`ErrorMsg 2`] = `<noscript />`;
+
+exports[`ErrorMsg 3`] = `<noscript />`;

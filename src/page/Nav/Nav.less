@@ -1,0 +1,48 @@
+@import "../../style/variable.less";
+
+.app-header {
+  background-color: @primary-color !important;
+  padding: 0 20px !important;
+  letter-spacing: 1px;
+
+  .app-header-menu {
+    line-height: 46px;
+    padding-left: 30px;
+    display: flex;
+    justify-content: space-between;
+
+    a {
+      color: #f8f8f8;
+      text-decoration: none;
+      margin-left: 10px;
+      display: inline-block;
+      width: 80px;
+    }
+    a.active {
+      color: #fff;
+      font-weight: 500;
+    }
+  }
+
+  .nav-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .logoban {
+    float: left;
+    display: inline-block;
+    margin-top: -3px;
+  }
+  .logo {
+    width: 20px;
+    height: 20px;
+  }
+
+  .logo-text {
+    width: 80px;
+    margin: 8px 0 0 3px;
+  }
+}

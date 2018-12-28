@@ -1,0 +1,42 @@
+@import "../../../style/variable";
+@import "../../../style/mixin";
+
+.checkbox {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+
+  .checkbox--mock {
+    display: block;
+    height: 0;
+    width: 0;
+    height: 100%;
+    width: 100%;
+  }
+
+  input {
+    visibility: hidden;
+    position: absolute;
+    height: 0;
+    width: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 10;
+  }
+
+  .fa {
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    font-size: 25px;
+    vertical-align: middle;
+
+    &.fa-check-square-o {
+      color: #4caf50;
+    }
+
+    &.fa-square-o {
+      color: #999;
+    }
+  }
+}

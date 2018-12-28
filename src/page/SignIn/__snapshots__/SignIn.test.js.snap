@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SignIn 1`] = `
+<div
+  className="page-container signin-page"
+>
+  <div
+    className="signin-main"
+  >
+    <div
+      className="logoban"
+      onClick={[Function]}
+    >
+      <img
+        className="logo"
+        src="/static/logo.png"
+      />
+      <img
+        className="text-logo"
+        src="/static/text-logo.svg"
+      />
+    </div>
+    <form
+      className="signin-form"
+      onSubmit={[Function]}
+    >
+      <div>
+        <input
+          name="octopus-email"
+          onChange={[Function]}
+          placeholder="Email"
+          required={true}
+          type="text"
+        />
+      </div>
+      <div>
+        <input
+          name="octopus-password"
+          onChange={[Function]}
+          placeholder="Password"
+          required={true}
+          type="password"
+        />
+      </div>
+      <noscript />
+      <button
+        className="button large primary border-default  signin-button"
+        disabled={undefined}
+        onClick={undefined}
+        type="submit"
+      >
+        Login
+      </button>
+    </form>
+    <div
+      className="signup-tip"
+    >
+      Do not have an account yet?
+      <a
+        className="signup-link"
+        href="/signup"
+        onClick={[Function]}
+      >
+        Sign up
+      </a>
+    </div>
+  </div>
+</div>
+`;

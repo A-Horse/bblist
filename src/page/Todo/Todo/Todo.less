@@ -1,0 +1,18 @@
+.todo-item {
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+
+  .todo-done-checkbox {
+    width: 30px;
+  }
+
+  & > * {
+    flex-shrink: 0;
+  }
+
+  .todo-item-main {
+    width: 100%;
+    flex-shrink: inherit;
+  }
+}

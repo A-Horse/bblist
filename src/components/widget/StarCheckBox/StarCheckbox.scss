@@ -1,0 +1,15 @@
+@import "../../../style/variable";
+
+.checkbox.star {
+  position: relative;
+
+  .fa {
+    &.fa-star-o {
+      color: #999;
+    }
+
+    &.fa-star {
+      color: #ffe446;
+    }
+  }
+}

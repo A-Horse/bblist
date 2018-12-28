@@ -1,0 +1,51 @@
+@import "../../style/variable";
+@import "../../style/mixin";
+
+.signin-page {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  padding-top: 14%;
+  box-sizing: border-box;
+
+  .signin-main {
+    width: 330px;
+
+    .signin-form {
+      margin-top: 25px;
+
+      input {
+        @include form-input;
+      }
+
+      .error-msg {
+        margin-bottom: 25px;
+      }
+
+      .signin-button {
+        width: 100%;
+      }
+    }
+
+    .signup-tip {
+      margin-top: 18px;
+      display: flex;
+      justify-content: space-between;
+      color: $black-light;
+
+      .signup-link {
+        font-weight: bolder;
+      }
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    padding-left: 15px;
+    padding-right: 15px;
+
+    .text-logo {
+      height: 30px;
+    }
+  }
+}
