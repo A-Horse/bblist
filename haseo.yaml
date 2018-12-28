@@ -1,6 +1,0 @@
-name: web-octopus
-flow:
-  - install: yarn install
-  - test: npm run test
-  - build: npm run build
-watch: true
