@@ -11,7 +11,6 @@ import { ofType } from 'redux-observable';
 import Actions from '../actions/actions';
 import { mergeMap } from 'rxjs/operators';
 import axios from 'axios';
-import { Observable } from 'rxjs';
 
 function patchTaskBoard(boardId, data) {
   const header = {};
