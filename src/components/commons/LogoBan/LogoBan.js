@@ -1,7 +1,6 @@
-//
 import React, { Component } from 'react';
-import { Logo } from '../Logo/Logo';
 import { TextLogo } from '../TextLogo';
+import octopusImage from '../../../assets/octopus.png';
 
 import './LogoBan.less';
 
@@ -10,7 +9,7 @@ export class LogoBan extends Component {
     return (
       <div className="logoban">
         <img
-          src="/assets/octopus.png"
+          src={octopusImage}
           style={{
             width: '30px',
             height: '30px',

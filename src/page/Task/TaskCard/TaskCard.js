@@ -85,7 +85,6 @@ class TaskCardBase extends Component {
   }
 }
 
-
 export const TaskCard = DropTarget(
   'CARD',
   {
@@ -108,8 +107,10 @@ export const TaskCard = DropTarget(
     itemType: monitor.getItemType(),
     sourceItem: monitor.getItem()
   })
-)(DragSource('CARD', TaskCardSource, (connect, monitor) => ({
-  connectDragSource: connect.dragSource(),
-  connectDragPreview: connect.dragPreview(),
-  isDragging: monitor.isDragging()
-})))(TaskCardBase)
+)(
+  DragSource('CARD', TaskCardSource, (connect, monitor) => ({
+    connectDragSource: connect.dragSource(),
+    connectDragPreview: connect.dragPreview(),
+    isDragging: monitor.isDragging()
+  }))
+)(TaskCardBase);

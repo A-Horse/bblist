@@ -5,7 +5,6 @@ import { isEnterKey } from '../../../utils/keyboard';
 import './TrackCreater.scss';
 
 class TrackCreater extends Component {
-
   state = {
     name: null,
     toggle: false

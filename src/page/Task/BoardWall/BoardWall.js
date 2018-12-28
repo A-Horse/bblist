@@ -5,7 +5,6 @@ import { makeRemoteUrl } from '../../../services/remote-storage';
 import { DEFAULT_BOARD_COVER_SRC } from '../../../constants';
 import { Layout } from 'antd';
 
-
 import './BoardWall.scss';
 
 const { Content } = Layout;

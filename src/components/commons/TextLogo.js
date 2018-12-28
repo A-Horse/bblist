@@ -5,7 +5,6 @@ export class TextLogo extends Component {
     if (this.props.white) {
       return <img className="logo-text" src="/static/text-logo-white.svg" />;
     }
-
     return <img className="logo-text" src="/static/text-logo.svg" />;
   }
 }

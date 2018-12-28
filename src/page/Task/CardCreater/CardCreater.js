@@ -11,8 +11,6 @@ import './CardCreater.scss';
 
 const Option = Select.Option;
 
-
-
 class CardCreater extends Component {
   state = {
     title: '',
