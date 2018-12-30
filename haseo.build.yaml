@@ -1,0 +1,6 @@
+name: web-octopus-build
+flow:
+  - install: yarn install
+  - build: npm run ci-build
+  - clean: rm -rf /var/www/octopuese
+  - setup: cp -r ./dist/ /var/www/octopuese
