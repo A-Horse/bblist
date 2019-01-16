@@ -1,6 +1,6 @@
 //
 
-import { Map, fromJS } from 'immutable';
+import { fromJS } from 'immutable';
 import Actions from '../actions/actions';
 
 export function user(state = fromJS({}), action) {

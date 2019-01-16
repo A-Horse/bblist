@@ -17,12 +17,13 @@ $nav-height: 42px;
   .taskboard-name {
     vertical-align: middle;
     margin-top: 1px;
+
     &--text {
       vertical-align: middle;
       color: $white;
       cursor: pointer;
       font: {
-        size: $font-size-xxx-large;
+        size: 18px;
         weight: 700;
       }
     }

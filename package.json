@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://work.octopuese.xyz",
   "dependencies": {
+    "@types/react-router-dom": "^4.3.1",
     "antd": "^3.11.6",
     "axios": "^0.18.0",
     "babel-plugin-import": "^1.11.0",
@@ -42,7 +43,7 @@
     "typescript": "^3.2.2"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "react-scripts start --port=9000",
     "compile-less": "lessc --js ./src/style/index.less ./src/style/antd.css",
     "build": "react-scripts build",
     "test": "react-scripts test",
