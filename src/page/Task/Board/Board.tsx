@@ -14,7 +14,14 @@ import './Board.scss';
 
 const { Header } = Layout;
 
-export class Board extends Component {
+export class Board extends Component<{
+  boardName: string,
+  match: any,
+  actions: any,
+  board: any,
+  boardFetching: any,
+  history: any
+}> {
   componentWillMount() {
     updateTitle(`Task Board ${this.props.boardName}`);
     const taskBoardId = this.props.match.params.boardId;
@@ -24,13 +31,13 @@ export class Board extends Component {
     });
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps: any) {
     if (nextProps.boardName !== this.props.boardName) {
       updateTitle(` ${nextProps.boardName}`);
     }
   }
 
-  onStarCheckChange = value => {
+  onStarCheckChange = (value: any) => {
     this.props.actions.UPDATE_TASK_BOARD_REQUEST({
       id: this.props.match.params.boardId,
       isStar: value

@@ -12,8 +12,10 @@ const { Header } = Layout;
 // TODO remove
 export const navHeight = 42;
 
-class Nav extends Component {
+class Nav extends Component<any> {
   state = {};
+
+  avator: any;
 
   links = [
     { name: 'Dash', url: '/home' },
@@ -21,7 +23,7 @@ class Nav extends Component {
     { name: 'Todo', url: '/todo' }
   ];
 
-  onNewAvatarImageLoaded = event => {
+  onNewAvatarImageLoaded = (event: any) => {
     storageImage('avator', event.nativeEvent.target);
   };
 
@@ -78,7 +80,7 @@ class Nav extends Component {
                   alt=""
                   ref={ref => (this.avator = ref)}
                   className="nav-avatar"
-                  crossOrigin="Anonymous"
+                  crossOrigin="anonymous"
                   onLoad={this.onNewAvatarImageLoaded}
                   src={makeGravatarUrl(user.email)}
                 />
