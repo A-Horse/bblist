@@ -12,8 +12,6 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = state => {
   return {
-    identifyAuthenticated: state.auth.get('identifyAuthenticated'),
-    identifyFetching: state.auth.get('identifyFetching'),
     user: state.auth.get('loginedUser')
   };
 };

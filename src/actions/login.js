@@ -7,9 +7,6 @@ export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 
-export const IDENTIFY_FAILURE = 'IDENTIFY_FAILURE';
-export const IDENTIFY_REQUEST = 'IDENTIFY_REQUEST';
-export const IDENTIFY_SUCCESS = 'IDENTIFY_SUCCESS';
 
 function requestLogin(creds) {
   return {

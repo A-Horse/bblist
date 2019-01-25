@@ -1,8 +1,6 @@
 const actionNames = [
   'TEST_ONLY',
 
-  'IDENTIFY',
-
   'LOGIN',
   'LOGOUT',
   'SIGNUP',
