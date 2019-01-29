@@ -1,4 +1,4 @@
-const actionNames = [
+export const actionNames = [
   'TEST_ONLY',
 
   'LOGIN',

@@ -23,6 +23,7 @@ export function getUserData() {
   return userData ? JSON.parse(userData) : null;
 }
 
+
 export function saveAuthData(response) {
   Storage.set(CACHED_USERID, response.user.id);
   Storage.set(CACHED_USERNAME, response.user.username);
@@ -30,5 +31,5 @@ export function saveAuthData(response) {
 
   saveUserData(JSON.stringify(response.user));
 
-  saveJWT(response.jwt);
+  saveJWT(response.token);
 }
