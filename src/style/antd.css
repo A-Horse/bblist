@@ -2045,7 +2045,7 @@ form .ant-input-group-wrapper {
   background: rgba(0, 0, 0, 0);
   color: #fff;
   font-size: 18px;
-  border-radius: 0 4px 4px 0;
+  border-radius: 0 8px 8px 0;
   cursor: pointer;
   transition: background 0.3s ease;
 }
@@ -2101,7 +2101,7 @@ form .ant-input-group-wrapper {
   position: relative;
   background-color: #fff;
   border: 0;
-  border-radius: 4px;
+  border-radius: 8px;
   background-clip: padding-box;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
@@ -2140,7 +2140,7 @@ form .ant-input-group-wrapper {
 }
 .ant-modal-header {
   padding: 16px 24px;
-  border-radius: 4px 4px 0 0;
+  border-radius: 8px 8px 0 0;
   background: #fff;
   color: rgba(0, 0, 0, 0.65);
   border-bottom: 1px solid #e8e8e8;
@@ -2155,7 +2155,7 @@ form .ant-input-group-wrapper {
   border-top: 1px solid #e8e8e8;
   padding: 10px 16px;
   text-align: right;
-  border-radius: 0 0 4px 4px;
+  border-radius: 0 0 8px 8px;
 }
 .ant-modal-footer button + button {
   margin-left: 8px;
@@ -2296,7 +2296,7 @@ form .ant-input-group-wrapper {
   background-color: #fff;
   background-image: none;
   border: 1px solid #d9d9d9;
-  border-radius: 4px;
+  border-radius: 8px;
   transition: all 0.3s;
 }
 .ant-input::-moz-placeholder {
@@ -2413,7 +2413,7 @@ textarea.ant-input {
   text-align: center;
   background-color: #fafafa;
   border: 1px solid #d9d9d9;
-  border-radius: 4px;
+  border-radius: 8px;
   position: relative;
   transition: all 0.3s;
 }
@@ -2574,8 +2574,8 @@ textarea.ant-input {
 .ant-input-group.ant-input-group-compact > .ant-cascader-picker:first-child .ant-input,
 .ant-input-group.ant-input-group-compact > .ant-mention-wrapper:first-child .ant-mention-editor,
 .ant-input-group.ant-input-group-compact > .ant-time-picker:first-child .ant-time-picker-input {
-  border-top-left-radius: 4px;
-  border-bottom-left-radius: 4px;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
 }
 .ant-input-group.ant-input-group-compact > *:last-child,
 .ant-input-group.ant-input-group-compact > .ant-select:last-child > .ant-select-selection,
@@ -2585,8 +2585,8 @@ textarea.ant-input {
 .ant-input-group.ant-input-group-compact > .ant-cascader-picker-focused:last-child .ant-input,
 .ant-input-group.ant-input-group-compact > .ant-mention-wrapper:last-child .ant-mention-editor,
 .ant-input-group.ant-input-group-compact > .ant-time-picker:last-child .ant-time-picker-input {
-  border-top-right-radius: 4px;
-  border-bottom-right-radius: 4px;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
   border-right-width: 1px;
 }
 .ant-input-group.ant-input-group-compact > .ant-select-auto-complete .ant-input {
@@ -2682,7 +2682,7 @@ textarea.ant-input {
   white-space: nowrap;
   padding: 0 15px;
   font-size: 14px;
-  border-radius: 4px;
+  border-radius: 8px;
   height: 32px;
   user-select: none;
   transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
@@ -2718,13 +2718,13 @@ textarea.ant-input {
 .ant-btn-lg {
   padding: 0 15px;
   font-size: 16px;
-  border-radius: 4px;
+  border-radius: 8px;
   height: 40px;
 }
 .ant-btn-sm {
   padding: 0 7px;
   font-size: 14px;
-  border-radius: 4px;
+  border-radius: 8px;
   height: 24px;
 }
 .ant-btn > a:only-child {
@@ -3408,36 +3408,36 @@ textarea.ant-input {
   margin-left: 0;
 }
 .ant-btn-group > .ant-btn:only-child {
-  border-radius: 4px;
+  border-radius: 8px;
 }
 .ant-btn-group > span:only-child > .ant-btn {
-  border-radius: 4px;
+  border-radius: 8px;
 }
 .ant-btn-group > .ant-btn:first-child:not(:last-child),
 .ant-btn-group > span:first-child:not(:last-child) > .ant-btn {
-  border-bottom-left-radius: 4px;
-  border-top-left-radius: 4px;
+  border-bottom-left-radius: 8px;
+  border-top-left-radius: 8px;
 }
 .ant-btn-group > .ant-btn:last-child:not(:first-child),
 .ant-btn-group > span:last-child:not(:first-child) > .ant-btn {
-  border-bottom-right-radius: 4px;
-  border-top-right-radius: 4px;
+  border-bottom-right-radius: 8px;
+  border-top-right-radius: 8px;
 }
 .ant-btn-group-sm > .ant-btn:only-child {
-  border-radius: 4px;
+  border-radius: 8px;
 }
 .ant-btn-group-sm > span:only-child > .ant-btn {
-  border-radius: 4px;
+  border-radius: 8px;
 }
 .ant-btn-group-sm > .ant-btn:first-child:not(:last-child),
 .ant-btn-group-sm > span:first-child:not(:last-child) > .ant-btn {
-  border-bottom-left-radius: 4px;
-  border-top-left-radius: 4px;
+  border-bottom-left-radius: 8px;
+  border-top-left-radius: 8px;
 }
 .ant-btn-group-sm > .ant-btn:last-child:not(:first-child),
 .ant-btn-group-sm > span:last-child:not(:first-child) > .ant-btn {
-  border-bottom-right-radius: 4px;
-  border-top-right-radius: 4px;
+  border-bottom-right-radius: 8px;
+  border-top-right-radius: 8px;
 }
 .ant-btn-group > .ant-btn-group {
   float: left;
@@ -7575,7 +7575,7 @@ a.ant-btn-sm {
   max-width: 100%;
 }
 .ant-list-bordered {
-  border-radius: 4px;
+  border-radius: 8px;
   border: 1px solid #d9d9d9;
 }
 .ant-list-bordered .ant-list-header {
@@ -7642,7 +7642,7 @@ a.ant-btn-sm {
   padding: 0;
   list-style: none;
   background-color: #fafafa;
-  border-radius: 4px;
+  border-radius: 8px;
   border: 1px solid #d9d9d9;
   border-bottom: 0;
 }
@@ -7651,7 +7651,7 @@ a.ant-btn-sm {
 }
 .ant-collapse > .ant-collapse-item:last-child,
 .ant-collapse > .ant-collapse-item:last-child > .ant-collapse-header {
-  border-radius: 0 0 4px 4px;
+  border-radius: 0 0 8px 8px;
 }
 .ant-collapse > .ant-collapse-item > .ant-collapse-header {
   line-height: 22px;
@@ -7717,7 +7717,7 @@ a.ant-btn-sm {
   display: none;
 }
 .ant-collapse-item:last-child > .ant-collapse-content {
-  border-radius: 0 0 4px 4px;
+  border-radius: 0 0 8px 8px;
 }
 .ant-collapse > .ant-collapse-item > .ant-collapse-header[aria-expanded='true'] .anticon-right svg {
   transform: rotate(90deg);
@@ -7809,7 +7809,7 @@ a.ant-btn-sm {
   box-sizing: border-box;
   display: block;
   background-color: #fff;
-  border-radius: 4px;
+  border-radius: 8px;
   border: 1px solid #d9d9d9;
   border-top-width: 1.02px;
   transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
@@ -8007,7 +8007,7 @@ a.ant-btn-sm {
   width: 100%;
   background: transparent;
   outline: 0;
-  border-radius: 4px;
+  border-radius: 8px;
   line-height: 1;
 }
 .ant-select-search--inline > i {
@@ -8176,7 +8176,7 @@ a.ant-btn-sm {
   font-variant: initial;
   background-color: #fff;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-  border-radius: 4px;
+  border-radius: 8px;
   box-sizing: border-box;
   z-index: 1050;
   left: -9999px;
@@ -8245,10 +8245,10 @@ a.ant-btn-sm {
   background-color: #fff2f0;
 }
 .ant-select-dropdown-menu-item:first-child {
-  border-radius: 4px 4px 0 0;
+  border-radius: 8px 8px 0 0;
 }
 .ant-select-dropdown-menu-item:last-child {
-  border-radius: 0 0 4px 4px;
+  border-radius: 0 0 8px 8px;
 }
 .ant-select-dropdown-menu-item-disabled {
   color: rgba(0, 0, 0, 0.25);
@@ -8324,7 +8324,7 @@ a.ant-btn-sm {
   line-height: 20px;
   height: 22px;
   padding: 0 7px;
-  border-radius: 4px;
+  border-radius: 8px;
   border: 1px solid #d9d9d9;
   background: #fafafa;
   font-size: 12px;
@@ -8725,7 +8725,7 @@ a.ant-btn-sm {
 }
 .ant-menu-submenu-popup {
   position: absolute;
-  border-radius: 4px;
+  border-radius: 8px;
   z-index: 1050;
   background: #fff;
 }
@@ -8743,7 +8743,7 @@ a.ant-btn-sm {
 }
 .ant-menu-submenu > .ant-menu {
   background-color: #ffffff;
-  border-radius: 4px;
+  border-radius: 8px;
 }
 .ant-menu-submenu > .ant-menu-submenu-title:after {
   transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
@@ -9255,7 +9255,7 @@ a.ant-btn-sm {
   margin: 0;
   text-align: left;
   background-color: #fff;
-  border-radius: 4px;
+  border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   background-clip: padding-box;
   -webkit-transform: translate3d(0, 0, 0);
@@ -9561,7 +9561,7 @@ a.ant-btn-sm {
   font-size: 14px;
   text-align: left;
   background-color: #fff;
-  border-radius: 4px;
+  border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   background-clip: padding-box;
   line-height: 1.5;
@@ -9867,7 +9867,7 @@ a.ant-btn-sm {
   box-shadow: 0 2px 0 rgba(0, 0, 0, 0.045);
   padding: 0 7px;
   font-size: 14px;
-  border-radius: 4px;
+  border-radius: 8px;
   height: 24px;
   line-height: 22px;
 }
@@ -9897,13 +9897,13 @@ a.ant-btn-sm {
 .ant-calendar .ant-calendar-ok-btn-lg {
   padding: 0 15px;
   font-size: 16px;
-  border-radius: 4px;
+  border-radius: 8px;
   height: 40px;
 }
 .ant-calendar .ant-calendar-ok-btn-sm {
   padding: 0 7px;
   font-size: 14px;
-  border-radius: 4px;
+  border-radius: 8px;
   height: 24px;
 }
 .ant-calendar .ant-calendar-ok-btn > a:only-child {
@@ -10130,7 +10130,7 @@ a.ant-btn-sm {
   background-color: #fff;
   background-image: none;
   border: 1px solid #d9d9d9;
-  border-radius: 4px;
+  border-radius: 8px;
   transition: all 0.3s;
   height: 24px;
   border: 0;
@@ -10433,7 +10433,7 @@ li.ant-calendar-time-picker-select-option-disabled:hover {
   bottom: 0;
   left: 0;
   z-index: 10;
-  border-radius: 4px;
+  border-radius: 8px;
   background: #fff;
   outline: none;
 }
@@ -10567,7 +10567,7 @@ li.ant-calendar-time-picker-select-option-disabled:hover {
   bottom: 0;
   left: 0;
   z-index: 10;
-  border-radius: 4px;
+  border-radius: 8px;
   background: #fff;
   outline: none;
 }
@@ -10701,7 +10701,7 @@ li.ant-calendar-time-picker-select-option-disabled:hover {
   left: 0;
   z-index: 10;
   background: #fff;
-  border-radius: 4px;
+  border-radius: 8px;
   outline: none;
 }
 .ant-calendar-decade-panel-hidden {
@@ -10878,7 +10878,7 @@ li.ant-calendar-time-picker-select-option-disabled:hover {
 }
 .ant-message-notice-content {
   padding: 10px 16px;
-  border-radius: 4px;
+  border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   background: #fff;
   display: inline-block;
@@ -10950,7 +10950,7 @@ li.ant-calendar-time-picker-select-option-disabled:hover {
   border: 1px dashed #d9d9d9;
   width: 104px;
   height: 104px;
-  border-radius: 4px;
+  border-radius: 8px;
   background-color: #fafafa;
   text-align: center;
   cursor: pointer;
@@ -10975,7 +10975,7 @@ li.ant-calendar-time-picker-select-option-disabled:hover {
   border: 1px dashed #d9d9d9;
   transition: border-color 0.3s;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 8px;
   text-align: center;
   width: 100%;
   height: 100%;
@@ -11132,7 +11132,7 @@ li.ant-calendar-time-picker-select-option-disabled:hover {
 .ant-upload-list-picture .ant-upload-list-item,
 .ant-upload-list-picture-card .ant-upload-list-item {
   padding: 8px;
-  border-radius: 4px;
+  border-radius: 8px;
   border: 1px solid #d9d9d9;
   height: 66px;
   position: relative;

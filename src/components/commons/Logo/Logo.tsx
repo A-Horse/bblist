@@ -1,12 +1,22 @@
-import React, { Component } from 'react';
+import React, { Component, CSSProperties } from "react";
+import octopusImage from "../../../assets/octopus.png";
 
 export class Logo extends Component<{
-  white: boolean
+  style?: CSSProperties
 }> {
   render() {
-    if (this.props.white) {
-      return <img className="logo" src="/assets/new-logo-white.png" />;
-    }
-    return <img className="logo" src="/assets/new-logo.png" />;
+    return (
+      <img
+        src={octopusImage}
+        style={
+          {
+            width: "30px",
+            height: "30px",
+            borderRadius: "50%",
+            marginTop: "5px",
+            ...this.props.style
+          }}
+      />
+    );
   }
 }
