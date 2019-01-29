@@ -1,4 +1,4 @@
-import { Form, Icon, Input, Button, Checkbox } from "antd";
+import { Form, Icon, Input, Button } from "antd";
 import React, { Component, FormEvent } from "react";
 import { WrappedFormUtils } from "antd/lib/form/Form";
 

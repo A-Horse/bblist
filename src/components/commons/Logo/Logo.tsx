@@ -10,10 +10,7 @@ export class Logo extends Component<{
         src={octopusImage}
         style={
           {
-            width: "30px",
-            height: "30px",
-            borderRadius: "50%",
-            marginTop: "5px",
+            width: 30,
             ...this.props.style
           }}
       />

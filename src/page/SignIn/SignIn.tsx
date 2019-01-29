@@ -6,7 +6,9 @@ import { updateTitle } from '../../services/title';
 import { WrappedSignInForm } from './SignInForm';
 import { Logo } from '../../components/commons/Logo/Logo';
 
+
 import './SignIn.scss';
+import { TextLogo } from '../../components/commons/TextLogo';
 
 interface Props {
   actions: any;
@@ -34,10 +36,13 @@ class SignIn extends Component<Props> {
 
   render() {
     return (
-      <PageContainer className="signin-page">
+      <div className="signin-page">
         <div className="signin-main">
-          <Logo />
+          <Logo style={{
+            width: 45
+          }} />
           
+          <TextLogo />
 
           <WrappedSignInForm onSubmit={this.login} />
 
@@ -48,7 +53,7 @@ class SignIn extends Component<Props> {
             </Link>
           </div>
         </div>
-      </PageContainer>
+      </div>
     );
   }
 
