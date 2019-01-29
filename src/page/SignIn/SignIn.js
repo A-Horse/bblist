@@ -39,8 +39,8 @@ class SignIn extends Component {
           <form className="signin-form" onSubmit={this.login}>
             <div>
               <Input
-                type="text"
-                name="octopus-email"
+                type="email"
+                name="email"
                 required
                 placeholder="Email"
                 onChange={value => this.setState({ email: value })}
@@ -50,7 +50,7 @@ class SignIn extends Component {
             <div>
               <Input
                 type="password"
-                name="octopus-password"
+                name="password"
                 onChange={value => this.setState({ password: value })}
                 required
                 placeholder="Password"

@@ -1,6 +1,6 @@
 /// <reference types="react-scripts" />
-declare var process : {
+declare var process: {
   env: {
-    NODE_ENV: string
-  }
-}
+    NODE_ENV: string;
+  };
+};
