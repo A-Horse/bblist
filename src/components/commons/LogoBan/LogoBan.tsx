@@ -4,7 +4,9 @@ import octopusImage from '../../../assets/octopus.png';
 
 import './LogoBan.scss';
 
-export class LogoBan extends Component {
+export class LogoBan extends Component<{
+  white?: boolean
+}> {
   render() {
     return (
       <div className="logoban">
