@@ -19,7 +19,11 @@ export class LogoBan extends Component<{
             marginTop: '5px'
           }}
         />
-        <TextLogo white={this.props.white} />
+        <TextLogo style={{
+          width: 80,
+          marginLeft: 6,
+          marginTop: 4
+        }} white={this.props.white} />
       </div>
     );
   }
