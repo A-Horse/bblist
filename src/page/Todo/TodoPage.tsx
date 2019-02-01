@@ -1,4 +1,3 @@
-//
 import React, { Component } from 'react';
 import { updateTitle } from '../../services/title';
 import { Redirect } from 'react-router';
@@ -11,7 +10,7 @@ import './TodoPage.scss';
 
 const { Sider, Content } = Layout;
 
-export class TodoPage extends Component {
+export class TodoPage extends Component<any> {
   componentDidUpdate() {
     updateTitle('Todo');
   }

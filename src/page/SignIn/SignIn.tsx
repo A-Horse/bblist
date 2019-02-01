@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
-
-import { PageContainer } from '../../components/widget/PageContainer';
 import { Link } from 'react-router-dom';
 import { updateTitle } from '../../services/title';
 import { WrappedSignInForm } from './SignInForm';
 import { Logo } from '../../components/commons/Logo/Logo';
 
+import { TextLogo } from '../../components/commons/TextLogo';
 
 import './SignIn.scss';
-import { TextLogo } from '../../components/commons/TextLogo';
 
 interface Props {
   actions: any;
@@ -38,10 +36,12 @@ class SignIn extends Component<Props> {
     return (
       <div className="signin-page">
         <div className="signin-main">
-          <Logo style={{
-            width: 45
-          }} />
-          
+          <Logo
+            style={{
+              width: 45
+            }}
+          />
+
           <TextLogo />
 
           <WrappedSignInForm onSubmit={this.login} />

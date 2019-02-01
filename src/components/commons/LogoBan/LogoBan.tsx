@@ -5,7 +5,7 @@ import octopusImage from '../../../assets/octopus.png';
 import './LogoBan.scss';
 
 export class LogoBan extends Component<{
-  white?: boolean
+  white?: boolean;
 }> {
   render() {
     return (
@@ -19,11 +19,14 @@ export class LogoBan extends Component<{
             marginTop: '5px'
           }}
         />
-        <TextLogo style={{
-          width: 80,
-          marginLeft: 6,
-          marginTop: 4
-        }} white={this.props.white} />
+        <TextLogo
+          style={{
+            width: 80,
+            marginLeft: 6,
+            marginTop: 4
+          }}
+          white={this.props.white}
+        />
       </div>
     );
   }

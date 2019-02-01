@@ -1,7 +1,7 @@
 {
   "overrides": [
     {
-      "files": ["**/*.ts", "**/*.js"],
+      "files": ["**/*.ts", "**/*.js", "**/*.tsx"],
       "options": {
         "parser": "typescript",
         "singleQuote": true,

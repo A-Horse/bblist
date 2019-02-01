@@ -15,12 +15,12 @@ import './Board.scss';
 const { Header } = Layout;
 
 export class Board extends Component<{
-  boardName: string,
-  match: any,
-  actions: any,
-  board: any,
-  boardFetching: any,
-  history: any
+  boardName: string;
+  match: any;
+  actions: any;
+  board: any;
+  boardFetching: any;
+  history: any;
 }> {
   componentWillMount() {
     updateTitle(`Task Board ${this.props.boardName}`);
