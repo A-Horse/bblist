@@ -1,4 +1,3 @@
-//
 import { TDBox, TDS, TDBoxs } from '../schema';
 import { normalize } from 'normalizr';
 import { List, fromJS } from 'immutable';
@@ -12,16 +11,16 @@ export function todos(
     todoBoxEntities: {},
     todoBoxIds: []
   }),
-  action
+  action: any
 ) {
   switch (action.type) {
     case Actions.ADD_TODO.SUCCESS:
       const addedTodo = action.payload;
       return state
-        .update('todoEntities', todoEntities =>
+        .update('todoEntities', (todoEntities: any) =>
           todoEntities.set(String(addedTodo.id), fromJS(addedTodo))
         )
-        .update('todoIds', todoIds => todoIds.push(String(addedTodo.id)));
+        .update('todoIds', (todoIds: any) => todoIds.push(String(addedTodo.id)));
 
     case Actions.GET_TODOLIST.REQUEST:
       return state.update('todoIds', () => fromJS([]));
@@ -39,15 +38,15 @@ export function todos(
 
     case Actions.DESTORY_TODO.SUCCESS:
       const toDeletedIndex = state.get('todoIds').indexOf(action.meta.id);
-      return state.update('todoIds', ids => ids.delete(toDeletedIndex));
+      return state.update('todoIds', (ids: any) => ids.delete(toDeletedIndex));
 
     case Actions.ADD_TODOBOX.SUCCESS:
       const normalizedAddedTodoBox = normalize(action.payload, TDBox);
       return state
-        .update('todoBoxEntities', todoBoxEntities =>
+        .update('todoBoxEntities', (todoBoxEntities: any) =>
           todoBoxEntities.merge(normalizedAddedTodoBox.entities.TodoBox)
         )
-        .update('todoBoxIds', todoBoxIds => todoBoxIds.push(normalizedAddedTodoBox.result));
+        .update('todoBoxIds', (todoBoxIds: any) => todoBoxIds.push(normalizedAddedTodoBox.result));
 
     case Actions.GET_TODOBOXS.SUCCESS:
       const normalizeTodoBox = normalize(action.payload, TDBoxs);
@@ -55,12 +54,6 @@ export function todos(
         .update('todoBoxIds', () => List(normalizeTodoBox.result))
         .update('todoBoxEntities', () => fromJS(normalizeTodoBox.entities.TodoBox || {}));
 
-    /* case TODOBOX_CREATE_SUCCESS:
-     *   normalize(action.payload, TD);
-     *   return {
-     *     ...state
-     *   };
-     */
     default:
       return state;
   }

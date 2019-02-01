@@ -1,4 +1,3 @@
-//
 import React, { Component } from 'react';
 import { TodoCreater } from '../TodoCreater/TodoCreater';
 import { Todo } from '../Todo/Todo';
@@ -6,21 +5,19 @@ import { List as AntList } from 'antd';
 
 import './TodoPageContent.scss';
 
-export class TodoPageContent extends Component {
+export class TodoPageContent extends Component<any> {
   state = { toggleAll: false };
 
   componentWillMount() {
     this.getTodoList();
   }
 
-  componentWillReceiveProps(newProps) {}
-
   getTodoList() {
     const { todoBoxId } = this.props;
     this.props.actions.GET_TODOLIST_REQUEST({ todoBoxId });
   }
 
-  createTodo = todo => {
+  createTodo = (todo: any) => {
     this.props.actions.ADD_TODO_REQUEST(todo);
   };
 
@@ -36,7 +33,7 @@ export class TodoPageContent extends Component {
             className="demo-loadmore-list"
             itemLayout="horizontal"
             dataSource={this.props.unDoneTodos.toArray()}
-            renderItem={todo => (
+            renderItem={(todo: any) => (
               <AntList.Item>
                 <Todo key={todo.get('id')} todo={todo} actions={this.props.actions} />
               </AntList.Item>
@@ -57,7 +54,7 @@ export class TodoPageContent extends Component {
             className="demo-loadmore-list"
             itemLayout="horizontal"
             dataSource={this.props.doneTodos.toArray()}
-            renderItem={todo => (
+            renderItem={(todo: any) => (
               <AntList.Item>
                 <Todo key={todo.get('id')} todo={todo} actions={this.props.actions} />
               </AntList.Item>
