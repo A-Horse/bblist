@@ -1,16 +1,37 @@
 import { TDBox, TDS, TDBoxs } from '../schema';
 import { normalize } from 'normalizr';
-import { List, fromJS } from 'immutable';
+import { List, Map, fromJS, Record } from 'immutable';
 import Actions from '../actions/actions';
 
+export interface Todo {
+  id: string;
+  content: string;
+  desc: string;
+  deadline: string;
+  deletedAt?: string;
+  status: 'ACTIVE' | 'DONE';
+  type: 'NORMAL';
+  isDelete: boolean;
+  updatedAt: string;
+  createdAt: string;
+}
+
+export interface TodoStateProp {
+  todoBoxId: any;
+  todoIds: any;
+  todoEntities: any;
+  todoBoxEntities: any;
+  todoBoxIds: any;
+}
+
 export function todos(
-  state = fromJS({
+  state = Record<TodoStateProp>({
     todoBoxId: null,
-    todoIds: [],
-    todoEntities: {},
-    todoBoxEntities: {},
-    todoBoxIds: []
-  }),
+    todoIds: List(),
+    todoEntities: Map(),
+    todoBoxEntities: Map(),
+    todoBoxIds: List()
+  })(),
   action: any
 ) {
   switch (action.type) {
@@ -37,7 +58,7 @@ export function todos(
       );
 
     case Actions.DESTORY_TODO.SUCCESS:
-      const toDeletedIndex = state.get('todoIds').indexOf(action.meta.id);
+      const toDeletedIndex = state.get('todoIds')!.indexOf(action.meta.id);
       return state.update('todoIds', (ids: any) => ids.delete(toDeletedIndex));
 
     case Actions.ADD_TODOBOX.SUCCESS:
