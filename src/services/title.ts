@@ -1,4 +1,4 @@
-export function updateTitle(title) {
+export function updateTitle(title: string) {
   window.document.title = `Octopus - ${title}`;
 }
 

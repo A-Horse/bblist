@@ -1,5 +1,4 @@
-//
-import React, { Component } from 'react';
+import React, { Component, FormEvent } from 'react';
 import { Input, Icon, Form, DatePicker, message } from 'antd';
 
 import './TodoCreater.scss';
@@ -7,13 +6,16 @@ import './TodoCreater.scss';
 const InputGroup = Input.Group;
 const FormItem = Form.Item;
 
-export class TodoCreater extends Component {
+export class TodoCreater extends Component<any, any> {
+  // TODO remove
+  input :any;
+
   state = {
     content: '',
     deadline: null
   };
 
-  handleSubmit = event => {
+  handleSubmit = (event: FormEvent) => {
     event.preventDefault();
     if (!this.state.content) {
       return message.error('Please input todo content');
@@ -21,7 +23,7 @@ export class TodoCreater extends Component {
 
     this.props.submit({
       content: this.state.content,
-      deadline: this.state.deadline ? this.state.deadline.valueOf() : null
+      deadline: this.state.deadline ? (this.state.deadline as any).valueOf() : null
     });
 
     this.setState({
@@ -45,7 +47,7 @@ export class TodoCreater extends Component {
                 placeholder="Add Todo..."
               />
               <DatePicker
-                value={this.state.deadline}
+                value={this.state.deadline as any}
                 onChange={date => this.setState({ deadline: date })}
                 placeholder="Deadline"
               />
