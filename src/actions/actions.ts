@@ -6,6 +6,7 @@ const ACTIONS: {
     name: string;
     REQUEST: string;
     SUCCESS: string;
+    FAILURE: string;
     FINISH: string;
     request: any;
     success: any;

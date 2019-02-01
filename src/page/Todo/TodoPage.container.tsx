@@ -7,9 +7,9 @@ import { TodoPage } from './TodoPage';
 
 const mapStateToProps = (state: any) => {
   return {
-    todoBoxs: state.todos
+    todoBoxs: state.todo
       .get('todoBoxIds')
-      .map((id: number) => state.todos.get('todoBoxEntities').get(String(id)))
+      .map((id: number) => state.todo.get('todoBoxEntities').get(String(id)))
       .unshift(Map({ name: 'Task Todo', id: '@task' }))
       .unshift(Map({ name: 'Default Todo', id: '@all' }))
   };

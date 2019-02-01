@@ -1,19 +1,17 @@
-//
 import React, { Component } from 'react';
 import { StarCheckBox } from '../../../components/widget/StarCheckBox/StarCheckBox';
 import { Checkbox } from 'antd';
 import moment from 'moment';
-import { Map } from 'immutable';
-import { Row, Col, Tag } from 'antd';
+import { Tag } from 'antd';
 
 import './Todo.scss';
 
-export class Todo extends Component {
+export class Todo extends Component<any, any> {
   state = {
     editToggle: false
   };
 
-  updateTodo(updatedPart) {
+  updateTodo(updatedPart: any) {
     const { todo } = this.props;
     const data = {
       id: todo.get('id'),
@@ -22,11 +20,11 @@ export class Todo extends Component {
     this.props.actions.UPDATE_TODO_REQUEST(data);
   }
 
-  updateDone = event => {
+  updateDone = (event: any) => {
     this.updateTodo({ isDone: event.target.checked });
   };
 
-  shouldComponentUpdate(nextProps, nextState) {
+  shouldComponentUpdate(nextProps: any, nextState: any) {
     if (this.props.todo !== nextProps.todo) {
       return true;
     }
@@ -50,7 +48,7 @@ export class Todo extends Component {
           {todo.get('content')}
           {todo.get('deadline') && (
             <Tag color="magenta" style={{ marginLeft: '10px' }}>
-              {new moment(todo.get('deadline')).format('MM-DD')}
+              {moment(todo.get('deadline')).format('MM-DD')}
             </Tag>
           )}
         </div>
@@ -58,7 +56,7 @@ export class Todo extends Component {
         <div className="todo-operation">
           <StarCheckBox
             defaultChecked={todo.get('isStar')}
-            onChange={checked => {
+            onChange={(checked: boolean) => {
               this.updateTodo({ isStar: checked });
             }}
           />

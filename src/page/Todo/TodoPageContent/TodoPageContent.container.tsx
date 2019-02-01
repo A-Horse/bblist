@@ -2,12 +2,16 @@ import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
+import { Record } from 'immutable';
 import { makeActionRequestCollection } from '../../../actions/actions';
 import { TodoPageContent } from './TodoPageContent';
+import { Todo } from '../../../reducers/todo.reducer';
+import { RootState } from '../../../reducers';
+import { Dispatch } from 'redux';
 
-const getAllTodos = (state: any, props: any) => {
-  const todoEntities = state.todos.get('todoEntities');
-  const todoIds = state.todos.get('todoIds');
+const getAllTodos = (state: RootState, props: any) => {
+  const todoEntities = state.todo.get('todoEntities');
+  const todoIds = state.todo.get('todoIds');
   return todoIds
     .map((id: string) => todoEntities.get(id))
     .filter((todo: any) => todo.get('todoBoxId') === props.match.params.boxId);
@@ -17,9 +21,9 @@ const getUnDoneTodos = createSelector(
   [getAllTodos],
   todos =>
     todos
-      .filter((todo: any) => !todo.get('isDone'))
-      .sort((a: any, b: any) => {
-        return a.get('created_at') > b.get('created_at');
+      .filter((todo: Record<Todo>) => todo.get('status') !== 'DONE')
+      .sort((a: Record<Todo>, b: Record<Todo>) => {
+        return new Date(a.get('createdAt')).getTime() > new Date(b.get('createdAt')).getTime();
       })
 );
 
@@ -28,12 +32,12 @@ const getDoneTodos = createSelector(
   todos =>
     todos
       .filter((todo: any) => todo.get('isDone'))
-      .sort((a: any, b: any) => {
-        return a.get('created_at') > b.get('created_at');
+      .sort((a: Record<Todo>, b: Record<Todo>) => {
+        return new Date(a.get('createdAt')).getTime() > new Date(b.get('createdAt')).getTime();
       })
 );
 
-const mapStateToProps = (state: any, props: any) => {
+const mapStateToProps = (state: RootState, props: any) => {
   return {
     unDoneTodos: getUnDoneTodos(state, props),
     doneTodos: getDoneTodos(state, props),
@@ -41,7 +45,7 @@ const mapStateToProps = (state: any, props: any) => {
   };
 };
 
-const mapDispatchToProps = (dispatch: any) => {
+const mapDispatchToProps = (dispatch: Dispatch) => {
   return {
     actions: bindActionCreators(makeActionRequestCollection(), dispatch)
   };

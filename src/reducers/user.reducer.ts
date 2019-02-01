@@ -1,9 +1,7 @@
-//
-
 import { fromJS } from 'immutable';
 import Actions from '../actions/actions';
 
-export function user(state = fromJS({}), action) {
+export function user(state = fromJS({}), action: any) {
   switch (action.type) {
     case Actions.QUERY_USER_INFOMATION_WITH_EMAIL.REQUEST:
     case Actions.QUERY_USER_INFOMATION_WITH_EMAIL.FINISH:

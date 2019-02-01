@@ -19,12 +19,12 @@ export interface Todo {
 export interface TodoStateProp {
   todoBoxId: any;
   todoIds: any;
-  todoEntities: any;
+  todoEntities: Map<string, Record<Todo>>;
   todoBoxEntities: any;
   todoBoxIds: any;
 }
 
-export function todos(
+export function todo(
   state = Record<TodoStateProp>({
     todoBoxId: null,
     todoIds: List(),
@@ -44,7 +44,7 @@ export function todos(
         .update('todoIds', (todoIds: any) => todoIds.push(String(addedTodo.id)));
 
     case Actions.GET_TODOLIST.REQUEST:
-      return state.update('todoIds', () => fromJS([]));
+      return state.update('todoIds', () => List());
 
     case Actions.GET_TODOLIST.SUCCESS:
       const normalizedTodos = normalize(action.payload, TDS);
