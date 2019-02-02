@@ -1,7 +1,6 @@
-//
 import { createStore } from 'redux';
 
-export default function configureStore(rootreducer, middle, cb) {
+export default function configureStore(rootreducer: any, middle: any, cb: any) {
   const store = createStore(rootreducer, middle);
 
   cb && cb();

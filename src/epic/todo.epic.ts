@@ -1,35 +1,34 @@
-//
-import 'rxjs/add/operator/mergeMap';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/observable/of';
 import Actions from '../actions/actions';
 import { makeApiUrl } from '../utils/api';
 import { http } from '../services/http';
 import { getCachedUserId } from '../utils/auth';
 import { message } from 'antd';
+import 'rxjs/add/operator/mergeMap';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/of';
 
-export const ADD_TODO_REQUEST = action$ =>
-  action$.ofType(Actions.ADD_TODO.REQUEST).mergeMap(action => {
+export const ADD_TODO_REQUEST = (action$: any) =>
+  action$.ofType(Actions.ADD_TODO.REQUEST).mergeMap((action: any) => {
     return http
       .post(makeApiUrl('/t/todo'), null, action.payload)
-      .then(resp => {
+      .then((resp: any) => {
         message.success('Add todo success');
         return Actions.ADD_TODO.success(resp);
       })
       .catch(Actions.ADD_TODO.failure);
   });
 
-export const ADD_TODOBOX_REQUEST = action$ =>
-  action$.ofType(Actions.ADD_TODOBOX.REQUEST).mergeMap(action => {
+export const ADD_TODOBOX_REQUEST = (action$: any) =>
+  action$.ofType(Actions.ADD_TODOBOX.REQUEST).mergeMap((action: any) => {
     return http
       .post(makeApiUrl('/t/todo-box'), null, action.payload)
       .then(Actions.ADD_TODOBOX.success)
       .catch(Actions.ADD_TODOBOX.failure);
   });
 
-export const GET_TODOLIST_REQUEST = action$ =>
-  action$.ofType(Actions.GET_TODOLIST.REQUEST).mergeMap(action => {
+export const GET_TODOLIST_REQUEST = (action$: any) =>
+  action$.ofType(Actions.GET_TODOLIST.REQUEST).mergeMap((action: any) => {
     const userId = getCachedUserId();
     let url;
     switch (action.payload.todoBoxId) {
@@ -46,9 +45,9 @@ export const GET_TODOLIST_REQUEST = action$ =>
 
     return http
       .get(makeApiUrl(url))
-      .then(data => {
+      .then((data: any) => {
         return Actions.GET_TODOLIST.success(
-          (data || []).map(todo => {
+          (data || []).map((todo: any) => {
             return todo.todoBoxId ? todo : { ...todo, todoBoxId: action.payload.todoBoxId };
           })
         );
@@ -56,12 +55,12 @@ export const GET_TODOLIST_REQUEST = action$ =>
       .catch(Actions.GET_TODOLIST.failure);
   });
 
-export const UPDATE_TODO = action$ =>
+export const UPDATE_TODO = (action$: any) =>
   action$
     .ofType(Actions.UPDATE_TODO.REQUEST)
     .distinctUntilChanged()
     .debounceTime(750)
-    .mergeMap(action => {
+    .mergeMap((action: any) => {
       const { id } = action.payload;
       return http
         .patch(makeApiUrl(`/t/todo/${id}`), null, action.payload)
@@ -69,8 +68,8 @@ export const UPDATE_TODO = action$ =>
         .catch(Actions.UPDATE_TODO.failure);
     });
 
-export const DESTORY_TODO = action$ =>
-  action$.ofType(Actions.DESTORY_TODO.REQUEST).mergeMap(action => {
+export const DESTORY_TODO = (action$: any) =>
+  action$.ofType(Actions.DESTORY_TODO.REQUEST).mergeMap((action: any) => {
     const { id } = action.payload;
     return http
       .delete(makeApiUrl(`/t/todo/${id}`))
@@ -80,7 +79,7 @@ export const DESTORY_TODO = action$ =>
       .catch(Actions.DESTORY_TODO.failure);
   });
 
-export const GET_TODOBOXS_REQUEST = actions$ =>
+export const GET_TODOBOXS_REQUEST = (actions$: any) =>
   actions$.ofType(Actions.GET_TODOBOXS.REQUEST).mergeMap(() => {
     const userId = getCachedUserId();
     return http

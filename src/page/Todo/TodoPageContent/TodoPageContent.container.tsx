@@ -31,7 +31,7 @@ const getDoneTodos = createSelector(
   [getAllTodos],
   todos =>
     todos
-      .filter((todo: any) => todo.get('isDone'))
+      .filter((todo: Record<Todo>) => todo.get('status') === 'DONE')
       .sort((a: Record<Todo>, b: Record<Todo>) => {
         return new Date(a.get('createdAt')).getTime() > new Date(b.get('createdAt')).getTime();
       })

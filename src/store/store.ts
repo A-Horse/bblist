@@ -1,25 +1,24 @@
 import { combineReducers, applyMiddleware } from 'redux';
-import { routerReducer, routerMiddleware } from 'react-router-redux';
 import thunkMiddleware from 'redux-thunk';
 import { createEpicMiddleware } from 'redux-observable';
 import * as reducers from '../reducers';
 import rootEpic from '../epic';
-import history from '../services/history';
+
+// import history from '../services/history';
+
+// NOTE: if need router <=> redux sync see 👇
+// https://github.com/supasate/connected-react-router
 
 import { configureStore } from './configureStore';
 
-const routeMiddleware = routerMiddleware(history);
 const epicMiddleware = createEpicMiddleware();
 
 export const store = configureStore(
   combineReducers({
-    ...reducers,
-    router: routerReducer
+    ...reducers
   }),
-  applyMiddleware(thunkMiddleware, routeMiddleware, epicMiddleware),
+  applyMiddleware(thunkMiddleware, epicMiddleware),
   () => {
-    epicMiddleware.run(rootEpic, {
-      /* adapter: epicAdapterService */
-    });
+    epicMiddleware.run(rootEpic);
   }
 );

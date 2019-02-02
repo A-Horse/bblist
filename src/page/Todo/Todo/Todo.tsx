@@ -6,10 +6,7 @@ import { Tag } from 'antd';
 
 import './Todo.scss';
 
-export class Todo extends Component<any, any> {
-  state = {
-    editToggle: false
-  };
+export class Todo extends Component<any> {
 
   updateTodo(updatedPart: any) {
     const { todo } = this.props;
@@ -24,16 +21,6 @@ export class Todo extends Component<any, any> {
     this.updateTodo({ isDone: event.target.checked });
   };
 
-  shouldComponentUpdate(nextProps: any, nextState: any) {
-    if (this.props.todo !== nextProps.todo) {
-      return true;
-    }
-    if (this.state !== nextState) {
-      return true;
-    }
-    return false;
-  }
-
   render() {
     const { todo } = this.props;
 
@@ -42,7 +29,7 @@ export class Todo extends Component<any, any> {
         <Checkbox
           className="todo-done-checkbox"
           onChange={this.updateDone}
-          defaultChecked={todo.get('isDone')}
+          defaultChecked={todo.get('status') === 'DONE'}
         />
         <div className="todo-item-main">
           {todo.get('content')}
