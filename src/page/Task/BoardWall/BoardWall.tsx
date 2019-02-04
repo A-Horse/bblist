@@ -9,7 +9,12 @@ import './BoardWall.scss';
 
 const { Content } = Layout;
 
-export class BoardWall extends Component {
+interface Props {
+  actions: any;
+  boardMap: any;
+}
+
+export class BoardWall extends Component<Props> {
   componentWillMount() {
     return this.props.actions.GET_TASK_ALL_BOARD_REQUEST();
   }
@@ -23,7 +28,7 @@ export class BoardWall extends Component {
             <div className="board-group">
               <div className="board-card-container">
                 {this.props.boardMap &&
-                  this.props.boardMap.toArray().map(board => {
+                  this.props.boardMap.valueSeq().toArray().map((board: any) => {
                     return (
                       <Link
                         className="taskboard-card"
