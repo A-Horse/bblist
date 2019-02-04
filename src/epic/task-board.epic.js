@@ -12,29 +12,6 @@ import Actions from '../actions/actions';
 import { mergeMap } from 'rxjs/operators';
 import axios from 'axios';
 
-function patchTaskBoard(boardId, data) {
-  const header = {};
-  header[JWT_STORAGE_KEY] = getJWT();
-  return new AjaxObservable({
-    method: 'PATCH',
-    url: makeApiUrl(`/task-board/${boardId}`),
-    body: data,
-    headers: header
-  });
-}
-
-// export const TASKBOARD_DESCRIPTION_UPDATE_REQUEST = action$ =>
-//   action$
-//     .ofType(TASKBOARD_DESCRIPTION_UPDATE_REQUEST)
-//     .distinctUntilChanged()
-//     .debounceTime(250)
-//     .mergeMap(action => {
-//       return patchTaskBoard(action.payload.boardId, {
-//         description: action.payload.description
-//       }).map(response => updateTaskBoardSuccess(response));
-//     })
-//     .catch((err, caught) => caught);
-
 export const TASKBOARD_SETTING_UPDATE_REQUEST = action$ =>
   action$.pipe(
     ofType(Actions.TASKBOARD_SETTING_UPDATE.REQUEST),

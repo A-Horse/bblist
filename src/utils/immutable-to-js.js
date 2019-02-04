@@ -1,5 +1,5 @@
 import React from 'react';
-import { Iterable, Map, isImmutable, isCollection } from 'immutable';
+import { isImmutable } from 'immutable';
 
 export const toJS = WrappedComponent => wrappedComponentProps => {
   const KEY = 0;
