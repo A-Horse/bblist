@@ -1,19 +1,33 @@
-//
 import { normalize } from 'normalizr';
-import { fromJS } from 'immutable';
+import { fromJS, Record, Map } from 'immutable';
 import * as R from 'ramda';
 import Actions from '../actions/actions';
 import { TaskBoards, TaskBoard, TaskCard, TaskTrack } from '../schema';
 
+export interface TaskBoard {
+  id: string;
+  name: string;
+  status: string;
+}
+
+export interface TaskStateProp {
+  board: any; // TODO rename currentBoard
+  boardFetching: boolean;
+  trackMap: Map<string, any>;
+  boardMap: Map<string, Record<TaskBoard>>;
+  cardMap: Map<string, any>;
+  boardParticipant: any;
+}
+
 export function task2(
-  state = fromJS({
+  state: Record<TaskStateProp> = fromJS({
     board: null,
     boardMap: {},
     trackMap: {},
     cardMap: {},
     boardSettingMap: {}
   }),
-  action
+  action: any
 ) {
   switch (action.type) {
     case Actions.GET_TASK_BOARD.REQUEST:
@@ -21,6 +35,22 @@ export function task2(
         return state;
       }
       return state.update('board', () => null).update('boardFetching', R.T);
+
+    case Actions.GET_TASK_BOARD.SUCCESS:
+      const normalizedBoard = normalize(action.payload, TaskBoard);
+      return state
+        .update('boardFetching', R.F)
+        .update('board', () => fromJS(normalizedBoard.entities.TaskBoard[normalizedBoard.result]))
+        .update('trackMap', () =>
+          fromJS(normalizedBoard.entities.TaskTrack || {}).sort((a: any, b: any) => {
+            return a.get('index') < b.get('index') ? -1 : 1;
+          })
+        )
+        .update('cardMap', () => fromJS(normalizedBoard.entities.TaskCard || {}));
+
+        case Actions.GET_TASK_BOARD.FAILURE:
+        return state.update('board', () => null).update('boardFetching', R.F);
+  
 
     case Actions.ADD_TASK_BOARD.SUCCESS:
       const normalizedAddBoard = normalize(action.payload, TaskBoard);
@@ -51,20 +81,6 @@ export function task2(
           return cardMap.merge(fromJS(normalizedTrack.entities.TaskCard));
         });
 
-    case Actions.GET_TASK_BOARD.SUCCESS:
-      const normalizedBoard = normalize(action.payload, TaskBoard);
-      return state
-        .update('boardFetching', R.F)
-        .update('board', () => fromJS(normalizedBoard.entities.TaskBoard[normalizedBoard.result]))
-        .update('trackMap', () =>
-          fromJS(normalizedBoard.entities.TaskTrack || {}).sort((a, b) => {
-            return a.get('index') < b.get('index') ? -1 : 1;
-          })
-        )
-        .update('cardMap', () => fromJS(normalizedBoard.entities.TaskCard || {}));
-
-    case Actions.GET_TASK_BOARD.FAILURE:
-      return state.update('board', () => null).update('boardFetching', R.F);
 
     case Actions.GET_TASK_ALL_BOARD.SUCCESS:
       const normalizedAllBoard = normalize(action.payload, TaskBoards);
@@ -94,7 +110,7 @@ export function task2(
         .updateIn(['trackMap', String(action.payload.taskTrackId)], trackMap =>
           trackMap.update(
             'cards',
-            cards => cards.push(action.payload.id) // TODO 考虑卡片排序的问题，理应是 push 到最后一个的，但是以后可能会优先级的情况会弹到第一个，所以暂时考虑以后在后端返回index
+            (cards: any) => cards.push(action.payload.id) // TODO 考虑卡片排序的问题，理应是 push 到最后一个的，但是以后可能会优先级的情况会弹到第一个，所以暂时考虑以后在后端返回index
           )
         );
 
