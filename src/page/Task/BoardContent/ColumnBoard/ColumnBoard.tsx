@@ -13,14 +13,14 @@ import { DragDropContext } from 'react-dnd';
 
 import './ColumnBoard.scss';
 
-class ColumnBoardBase extends Component {
+class ColumnBoardBase extends Component<any, any> {
   state = {};
-  trackInstanceMap = {};
+  trackInstanceMap: any = {};
 
   updateTaskTrackIndexs = () => {
     this.props.actions.UPDATE_TASK_TRACK_INDEX_REQUEST(
       {
-        trackIndexs: Object.values(this.trackInstanceMap).map(track => {
+        trackIndexs: Object.values(this.trackInstanceMap).map((track: any) => {
           return track.getTrackIdAndIndex();
         })
       },
@@ -39,12 +39,13 @@ class ColumnBoardBase extends Component {
         <Route path="/task-board/:id/card/:cardId" render={() => <CardDetailContainer />} />
 
         {trackMap
-          .sort((a, b) => a.get('index') > b.get('index'))
+          .sort((a: any, b: any) => a.get('index') > b.get('index'))
+          .valueSeq()
           .toArray()
-          .map(track => (
+          .map((track: any) => (
             <TaskTrack
               key={track.get('id')}
-              ref={ref => {
+              ref={(ref: any) => {
                 if (!ref) {
                   // TODO delete 耗性能
                   delete this.trackInstanceMap[trackMap.get('id')];
@@ -54,20 +55,22 @@ class ColumnBoardBase extends Component {
               }}
               actions={this.props.actions}
               track={track}
-              cards={this.props.cardMap.filter(card => card.get('taskTrackId') === track.get('id'))}
-              addTaskCard={data =>
+              cards={this.props.cardMap.filter(
+                (card: any) => card.get('taskTrackId') === track.get('id')
+              )}
+              addTaskCard={(data: any) =>
                 this.props.actions.ADD_TASK_CARD_REQUEST({
                   boardId: +this.props.board.get('id'),
                   ...data
                 })
               }
-              updateTrack={data =>
+              updateTrack={(data: any) =>
                 this.props.actions.UPDATE_TASK_TRACK_REQUEST({
                   boardId: +this.props.board.get('id'),
                   ...data
                 })
               }
-              destroyTrack={data =>
+              destroyTrack={(data: any) =>
                 this.props.actions.DESTORY_TASK_TRACK_REQUEST({
                   boardId: +this.props.board.get('id'),
                   ...data
@@ -83,7 +86,7 @@ class ColumnBoardBase extends Component {
             />
           ))}
         <TrackCreater
-          addTrack={data =>
+          addTrack={(data: any) =>
             this.props.actions.ADD_TASK_TRACK_REQUEST({
               boardId: this.props.board.get('id'),
               ...data
@@ -97,13 +100,13 @@ class ColumnBoardBase extends Component {
 
 export const ColumnBoard = DragDropContext(HTML5Backend)(ColumnBoardBase);
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch: any) => {
   return {
     actions: bindActionCreators(makeActionRequestCollection(), dispatch)
   };
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state: any) => {
   return {
     board: state.task2.get('board'),
     trackMap: state.task2.get('trackMap'),
@@ -112,9 +115,7 @@ const mapStateToProps = state => {
   };
 };
 
-export const ColumnBoardContainer = withRouter(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(ColumnBoard)
-);
+export const ColumnBoardContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(ColumnBoard));

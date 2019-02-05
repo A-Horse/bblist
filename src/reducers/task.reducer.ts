@@ -16,6 +16,7 @@ export interface TaskStateProp {
   trackMap: Map<string, any>;
   boardMap: Map<string, Record<TaskBoard>>;
   cardMap: Map<string, any>;
+  boardParticipants: any;
   boardParticipant: any;
 }
 

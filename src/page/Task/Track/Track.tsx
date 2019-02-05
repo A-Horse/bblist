@@ -1,5 +1,4 @@
-//
-import React, { Component } from 'react';
+import React, { Component, MouseEvent } from 'react';
 import * as R from 'ramda';
 import Input from '../../../components/widget/Input/Input';
 import { TaskCard } from '../TaskCard/TaskCard';
@@ -10,12 +9,15 @@ import { Menu, Dropdown, Icon } from 'antd';
 
 import './Track.scss';
 
-export class Track extends Component {
+export class Track extends Component<any> {
   state = {
     trackDropDownVisible: false
   };
+  domMain: any;
+  cardInstanceMap: any;
+  cardDragMeta: any
 
-  constructor(props) {
+  constructor(props: any) {
     super(props);
     this.resetDragMeta();
   }
@@ -33,14 +35,14 @@ export class Track extends Component {
     };
   }
 
-  pickCardInstance(cardConnectedInstance, id) {
+  pickCardInstance(cardConnectedInstance: any, id: string) {
     this.cardInstanceMap[id] = cardConnectedInstance;
     if (!cardConnectedInstance) {
       this.cardInstanceMap = R.omit([id], this.cardInstanceMap);
     }
   }
 
-  onTopBarMouseDown = event => {
+  onTopBarMouseDown = (event: MouseEvent) => {
     onTrackTopBarMouseDown(event, this);
   };
 
@@ -48,14 +50,14 @@ export class Track extends Component {
     this.cardDragMeta = { placeholderCardIndex: -1 };
   }
 
-  addTaskCard = data => {
+  addTaskCard = (data: any) => {
     return this.props.addTaskCard({
       trackId: +this.props.track.get('id'),
       ...data
     });
   };
 
-  shouldComponentUpdate(newProps, newState) {
+  shouldComponentUpdate(newProps: any, newState: any) {
     return (
       !this.props.cards.equals(newProps.cards) ||
       !this.props.track.equals(newProps.track) ||
@@ -75,11 +77,11 @@ export class Track extends Component {
           <div className="task-track--name">
             <Input
               className="task-track--input"
-              onMouseDown={event => event.stopPropagation()}
-              onKeyDown={event => {
+              onMouseDown={(event: any) => event.stopPropagation()}
+              onKeyDown={(event: any) => {
                 isEnterKey(event) && event.preventDefault();
               }}
-              onChange={name =>
+              onChange={(name: string) =>
                 this.props.updateTrack({
                   trackId: this.props.track.get('id'),
                   name
@@ -114,9 +116,9 @@ export class Track extends Component {
         <div className="task-track--body">
           <div>
             {this.props.cards
-              .sortBy(card => card.get('index'))
+              .sortBy((card: any) => card.get('index'))
               .toArray()
-              .map(card => {
+              .map((card: any) => {
                 return (
                   <TaskCard
                     ref={cardConnectedInstance =>
