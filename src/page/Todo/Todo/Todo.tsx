@@ -11,14 +11,14 @@ export class Todo extends Component<any> {
   updateTodo(updatedPart: any) {
     const { todo } = this.props;
     const data = {
-      id: todo.get('id'),
+      ...todo.toJS(),
       ...updatedPart
     };
     this.props.actions.UPDATE_TODO_REQUEST(data);
   }
 
   updateDone = (event: any) => {
-    this.updateTodo({ isDone: event.target.checked });
+    this.updateTodo({ status: event.target.checked ? 'DONE' : 'ACTIVE' });
   };
 
   render() {
