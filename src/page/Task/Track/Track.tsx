@@ -117,6 +117,7 @@ export class Track extends Component<any> {
           <div>
             {this.props.cards
               .sortBy((card: any) => card.get('index'))
+              .valueSeq()
               .toArray()
               .map((card: any) => {
                 return (
