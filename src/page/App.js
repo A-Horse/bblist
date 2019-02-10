@@ -93,7 +93,13 @@ export default class App extends Component {
             <Route path="/task-board/:boardId" component={TaskBoardPage} />
 
             <Route path="/todo/:boxId" component={TodoPage} />
-            <Route exact path="/todo" component={TodoPage} />
+            <Route exact path="/todo" render={() => (
+                <Redirect
+                  to={{
+                    pathname: '/todo/@all'
+                  }}
+                />
+              )} />
 
             <Route path="/setting" component={SettingPage} />
             <Route path="/profile" component={ProfilePage} />

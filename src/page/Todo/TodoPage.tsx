@@ -16,11 +16,6 @@ export class TodoPage extends Component<any> {
   }
 
   render() {
-    const todoBoxId = this.props.match.params.boxId;
-    if (!todoBoxId) {
-      return <Redirect to="/todo/@all" />;
-    }
-
     return (
       <Layout style={{ padding: '0 50px' }}>
         <Sider>

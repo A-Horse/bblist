@@ -7,7 +7,7 @@ const { TextArea } = Input;
 const Option = Select.Option;
 const FormItem = Form.Item;
 
-export class CardDetail extends Component {
+export class CardDetail extends Component<any, any> {
   state = { toggle: true };
 
   componentWillMount() {
@@ -39,37 +39,37 @@ export class CardDetail extends Component {
     this.close();
   }
 
-  handleUpdateDetail = patchDetail => {
+  handleUpdateDetail = (patchDetail: any) => {
     this.props.actions.UPDATE_TASK_CARD_REQUEST({
       id: this.props.card.get('id'),
       ...patchDetail
     });
   };
 
-  handleUpdateTitle = event => {
+  handleUpdateTitle = (event: any) => {
     const title = event.target.value;
     this.handleUpdateDetail({ title });
   };
 
-  handleUpdateContent = event => {
+  handleUpdateContent = (event: any) => {
     const content = event.target.value.trim();
     this.handleUpdateDetail({ content });
   };
 
-  handleUpdateDone = event => {
+  handleUpdateDone = (event: any) => {
     this.handleUpdateDetail({
       isDone: event.target.checked ? 'DONE' : 'UNDONE'
     });
   };
 
-  handleUpdateBelongTrack = trackId => {
+  handleUpdateBelongTrack = (trackId: any) => {
     this.props.actions.UPDATE_TASK_CARD_REQUEST({
       id: this.props.card.get('id'),
       taskTrackId: trackId
     });
   };
 
-  handleTaskTypeChange = type => {
+  handleTaskTypeChange = (type: any) => {
     this.props.actions.UPDATE_TASK_CARD_REQUEST({
       id: this.props.card.get('id'),
       type
@@ -123,7 +123,7 @@ export class CardDetail extends Component {
               defaultValue={card.get('taskTrackId')}
               onChange={this.handleUpdateBelongTrack}
             >
-              {this.props.trackMap.toArray().map(track => {
+              {this.props.trackMap.valueSeq().toArray().map((track: any) => {
                 return (
                   <Option
                     key={track.get('id')}
@@ -143,7 +143,7 @@ export class CardDetail extends Component {
                 marginTop: '10px',
                 position: 'relative',
                 zIndex: '1000'
-              }}
+              } as any}
             >
               <Dropdown overlay={menu} placement="bottomRight">
                 <Icon type="ellipsis" style={{ fontSize: 22 }} />
