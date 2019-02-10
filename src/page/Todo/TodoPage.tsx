@@ -17,8 +17,8 @@ export class TodoPage extends Component<any> {
 
   render() {
     return (
-      <Layout style={{ padding: '0 50px' }}>
-        <Sider>
+      <Layout className="todo-page" style={{ padding: '0 50px' }}>
+        <Sider theme="dark">
           <TodoBoxs todoBoxs={this.props.todoBoxs} actions={this.props.actions} />
         </Sider>
         <Content style={{ height: 'calc(100vh - 42px)' }}>

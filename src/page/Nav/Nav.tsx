@@ -5,6 +5,9 @@ import { Storage, storageImage } from '../../services/storage';
 import { LogoBan } from '../../components/commons/LogoBan/LogoBan';
 
 import { Layout, Icon, Dropdown, Menu } from 'antd';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 import './Nav.scss';
 
 const { Header } = Layout;
@@ -61,7 +64,7 @@ class Nav extends Component<any> {
             </NavLink>
 
             <NavLink to="/todo" activeClassName="active">
-              <Icon type="check-square" />
+              <FontAwesomeIcon icon="check-circle" />
               Todo
             </NavLink>
           </div>
