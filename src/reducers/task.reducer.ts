@@ -3,6 +3,7 @@ import { fromJS, Record, Map } from 'immutable';
 import * as R from 'ramda';
 import Actions from '../actions/actions';
 import { TaskBoards, TaskBoard, TaskCard, TaskTrack } from '../schema';
+import { ITaskBoard, ITaskBoardSetting } from '../typings/task/task-board.typing';
 
 export interface TaskBoard {
   id: string;
@@ -11,10 +12,11 @@ export interface TaskBoard {
 }
 
 export interface TaskStateProp {
-  board: any; // TODO rename currentBoard
+  currentBoard: Record<ITaskBoard> | null;
   boardFetching: boolean;
   trackMap: Map<string, any>;
   boardMap: Map<string, Record<TaskBoard>>;
+  boardSettingMap: Map<string, Record<ITaskBoardSetting>>;
   cardMap: Map<string, any>;
   boardParticipants: any;
   boardParticipant: any;
@@ -22,7 +24,7 @@ export interface TaskStateProp {
 
 export function task2(
   state: Record<TaskStateProp> = fromJS({
-    board: null,
+    currentBoard: null,
     boardMap: {},
     trackMap: {},
     cardMap: {},
@@ -35,13 +37,13 @@ export function task2(
       if (action.meta && action.meta.isRefresh) {
         return state;
       }
-      return state.update('board', () => null).update('boardFetching', R.T);
+      return state.update('currentBoard', () => null).update('boardFetching', R.T);
 
     case Actions.GET_TASK_BOARD.SUCCESS:
       const normalizedBoard = normalize(action.payload, TaskBoard);
       return state
         .update('boardFetching', R.F)
-        .update('board', () => fromJS(normalizedBoard.entities.TaskBoard[normalizedBoard.result]))
+        .update('currentBoard', () => fromJS(normalizedBoard.entities.TaskBoard[normalizedBoard.result]))
         .update('trackMap', () =>
           fromJS(normalizedBoard.entities.TaskTrack || {}).sort((a: any, b: any) => {
             return a.get('index') < b.get('index') ? -1 : 1;
@@ -50,7 +52,7 @@ export function task2(
         .update('cardMap', () => fromJS(normalizedBoard.entities.TaskCard || {}));
 
         case Actions.GET_TASK_BOARD.FAILURE:
-        return state.update('board', () => null).update('boardFetching', R.F);
+        return state.update('currentBoard', () => null).update('boardFetching', R.F);
   
 
     case Actions.ADD_TASK_BOARD.SUCCESS:
@@ -88,15 +90,21 @@ export function task2(
       return state.update('boardMap', () => fromJS(normalizedAllBoard.entities.TaskBoard));
 
     case Actions.UPDATE_TASK_BOARD.SUCCESS:
-      return state.update('board', board => {
+      return state.update('currentBoard', board => {
+        if (!board) {return null};
         return board.merge(fromJS(R.omit(['id'], action.payload)));
       });
 
     case Actions.UPLOAD_TASK_BOARD_COVER.SUCCESS:
-      return state.update('board', board => board.merge(fromJS(R.omit(['id'], action.payload))));
+      return state.update('currentBoard', board => {
+        if (!board) {
+          return null;
+        }
+        return board.merge(fromJS(R.omit(['id'], action.payload)))
+      });
 
     case Actions.DESTORY_TASK_BOARD.SUCCESS:
-      return state.delete('board').deleteIn(['boardMap', String(action.meta.id)]);
+      return state.delete('currentBoard').deleteIn(['boardMap', String(action.meta.id)]);
 
     case Actions.ADD_TASK_CARD.SUCCESS:
       const normalizedAddedCard = normalize(action.payload, TaskCard);

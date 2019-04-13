@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
 import { makeActionRequestCollection } from '../../../../actions/actions';
-/* import { ListBoardCardContainer } from './ListBoardCard/ListBoardCard'; */
 import HTML5Backend from 'react-dnd-html5-backend';
 import { DragDropContext } from 'react-dnd';
 import { List } from 'immutable';
@@ -50,7 +49,7 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = state => {
   const trackMap = state.task2.get('trackMap');
   const cardMap = state.task2.get('cardMap');
-  const tracks = trackMap.toArray();
+
   const cards = trackMap
     .map(track => track.get('cards'))
     .reduce((all, cards) => {
@@ -59,7 +58,7 @@ const mapStateToProps = state => {
     .map(cardId => cardMap.get(cardId.toString()));
 
   return {
-    board: state.task2.get('board'),
+    board: state.task2.get('currentBoard'),
     trackMap,
     cardMap,
     cards,

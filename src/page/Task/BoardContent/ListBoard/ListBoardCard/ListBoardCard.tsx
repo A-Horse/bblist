@@ -1,6 +1,4 @@
-//
 import React, { Component } from 'react';
-import { Map } from 'immutable';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
@@ -8,7 +6,7 @@ import { makeActionRequestCollection } from '../../../../../actions/actions';
 
 import './ListBoardCard.scss';
 
-class ListBoardCard extends Component {
+class ListBoardCard extends Component<any, any> {
   state = {};
 
   componentWillMount() {}
@@ -36,19 +34,18 @@ class ListBoardCard extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch: any) => {
   return {
     actions: bindActionCreators(makeActionRequestCollection(), dispatch)
   };
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state: any) => {
   return {};
 };
 
-export const ListBoardCardContainer = withRouter(
+export const ListBoardCardContainer = 
   connect(
     mapStateToProps,
     mapDispatchToProps
-  )(ListBoardCard)
-);
+  )(withRouter(ListBoardCard));

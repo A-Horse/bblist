@@ -108,7 +108,7 @@ const mapDispatchToProps = (dispatch: any) => {
 
 const mapStateToProps = (state: any) => {
   return {
-    board: state.task2.get('board'),
+    board: state.task2.get('currentBoard'),
     trackMap: state.task2.get('trackMap'),
     cardMap: state.task2.get('cardMap'),
     loginedUser: state.auth.get('loginedUser')

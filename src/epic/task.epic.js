@@ -11,13 +11,6 @@ import * as R from 'ramda';
 import { getCachedUserId } from '../utils/auth';
 import { fromJS } from 'immutable';
 
-export const GET_TASK_BOARD = action$ =>
-  action$.ofType(Actions.GET_TASK_BOARD.REQUEST).mergeMap(action => {
-    return http
-      .get(makeApiUrl(`/tk/task-board/${action.payload.id}/verbose`), null)
-      .then(Actions.GET_TASK_BOARD.success)
-      .catch(Actions.GET_TASK_BOARD.failure);
-  });
 
 export const CARD_MOVE_REQUEST = (action$, state) =>
   action$.ofType(Actions.CARD_MOVE.REQUEST).map(action => {
@@ -72,23 +65,7 @@ export const CARD_MOVE_HANDLE_REQUEST = action$ =>
       .catch(Actions.CARD_MOVE_HANDLE.failure);
   });
 
-export const ADD_TASK_BOARD_REQUEST = action$ =>
-  action$.ofType(Actions.ADD_TASK_BOARD.REQUEST).mergeMap(action => {
-    return http
-      .post(makeApiUrl(`/tk/task-board/`), null, action.payload)
-      .then(Actions.ADD_TASK_BOARD.success)
-      .catch(Actions.ADD_TASK_BOARD.failure);
-  });
 
-export const UPLOAD_TASK_BOARD_COVER_REQUEST = action$ =>
-  action$.ofType(Actions.UPLOAD_TASK_BOARD_COVER.REQUEST).mergeMap(action => {
-    return http
-      .post(makeApiUrl(`/tk/task-board/${action.payload.id}/cover`), null, action.payload.data, {
-        formData: true
-      })
-      .then(Actions.UPLOAD_TASK_BOARD_COVER.success)
-      .catch(Actions.UPLOAD_TASK_BOARD_COVER.failure);
-  });
 
 export const DESTORY_TASK_BOARD_REQUEST = action$ =>
   action$.ofType(Actions.DESTORY_TASK_BOARD.REQUEST).mergeMap(action => {
@@ -122,11 +99,11 @@ export const ADD_TASK_CARD = action$ =>
       .catch(Actions.ADD_TASK_CARD.failure);
   });
 
-export const GET_TASK_ALL_BOARD = action$ =>
+export const GET_USER_TASK_ALL_BOARD = action$ =>
   action$.ofType(Actions.GET_TASK_ALL_BOARD.REQUEST).mergeMap(action => {
     const userId = getCachedUserId();
     return http
-      .get(makeApiUrl(`/tk/user/${userId}/task-board`))
+      .get(makeApiUrl(`/tk/v2/user/${userId}/task-board`))
       .then(Actions.GET_TASK_ALL_BOARD.success)
       .catch(Actions.GET_TASK_ALL_BOARD.failure);
   });
