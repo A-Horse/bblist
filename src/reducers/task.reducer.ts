@@ -43,17 +43,18 @@ export function task2(
       const normalizedBoard = normalize(action.payload, TaskBoard);
       return state
         .update('boardFetching', R.F)
-        .update('currentBoard', () => fromJS(normalizedBoard.entities.TaskBoard[normalizedBoard.result]))
+        .update('currentBoard', () =>
+          fromJS(normalizedBoard.entities.TaskBoard[normalizedBoard.result])
+        )
         .update('trackMap', () =>
           fromJS(normalizedBoard.entities.TaskTrack || {}).sort((a: any, b: any) => {
-            return a.get('index') < b.get('index') ? -1 : 1;
+            return a.get('order') < b.get('order') ? -1 : 1;
           })
         )
         .update('cardMap', () => fromJS(normalizedBoard.entities.TaskCard || {}));
 
-        case Actions.GET_TASK_BOARD.FAILURE:
-        return state.update('currentBoard', () => null).update('boardFetching', R.F);
-  
+    case Actions.GET_TASK_BOARD.FAILURE:
+      return state.update('currentBoard', () => null).update('boardFetching', R.F);
 
     case Actions.ADD_TASK_BOARD.SUCCESS:
       const normalizedAddBoard = normalize(action.payload, TaskBoard);
@@ -84,14 +85,15 @@ export function task2(
           return cardMap.merge(fromJS(normalizedTrack.entities.TaskCard));
         });
 
-
     case Actions.GET_TASK_ALL_BOARD.SUCCESS:
       const normalizedAllBoard = normalize(action.payload, TaskBoards);
       return state.update('boardMap', () => fromJS(normalizedAllBoard.entities.TaskBoard));
 
     case Actions.UPDATE_TASK_BOARD.SUCCESS:
       return state.update('currentBoard', board => {
-        if (!board) {return null};
+        if (!board) {
+          return null;
+        }
         return board.merge(fromJS(R.omit(['id'], action.payload)));
       });
 
@@ -100,7 +102,7 @@ export function task2(
         if (!board) {
           return null;
         }
-        return board.merge(fromJS(R.omit(['id'], action.payload)))
+        return board.merge(fromJS(R.omit(['id'], action.payload)));
       });
 
     case Actions.DESTORY_TASK_BOARD.SUCCESS:
@@ -109,14 +111,14 @@ export function task2(
     case Actions.ADD_TASK_CARD.SUCCESS:
       const normalizedAddedCard = normalize(action.payload, TaskCard);
 
+      console.log(action);
       return state
         .update('cardMap', cardMap => {
           return cardMap
             ? cardMap.merge(fromJS(normalizedAddedCard.entities.TaskCard))
             : fromJS(normalizedAddedCard.entities.TaskCard);
-          // TODO rename taskTrackId
         })
-        .updateIn(['trackMap', String(action.payload.taskTrackId)], trackMap =>
+        .updateIn(['trackMap', action.meta.trackId], trackMap =>
           trackMap.update(
             'cards',
             (cards: any) => cards.push(action.payload.id) // TODO 考虑卡片排序的问题，理应是 push 到最后一个的，但是以后可能会优先级的情况会弹到第一个，所以暂时考虑以后在后端返回index

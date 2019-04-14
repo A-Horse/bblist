@@ -8,7 +8,7 @@ const FormItem = Form.Item;
 
 export class TodoCreater extends Component<any, any> {
   // TODO remove
-  input :any;
+  input: any;
 
   state = {
     content: '',

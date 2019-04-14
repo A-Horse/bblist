@@ -44,8 +44,7 @@ const mapStateToProps = (state: any) => {
   return {};
 };
 
-export const ListBoardCardContainer = 
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(withRouter(ListBoardCard));
+export const ListBoardCardContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(ListBoardCard));

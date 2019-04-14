@@ -91,14 +91,6 @@ export const UPDATE_TASK_BOARD_REQUEST = action$ =>
         .catch(Actions.UPDATE_TASK_BOARD.failure);
     });
 
-export const ADD_TASK_CARD = action$ =>
-  action$.ofType(Actions.ADD_TASK_CARD.REQUEST).mergeMap(action => {
-    return http
-      .post(makeApiUrl('/task-card'), null, action.payload)
-      .then(Actions.ADD_TASK_CARD.success)
-      .catch(Actions.ADD_TASK_CARD.failure);
-  });
-
 export const GET_USER_TASK_ALL_BOARD = action$ =>
   action$.ofType(Actions.GET_TASK_ALL_BOARD.REQUEST).mergeMap(action => {
     const userId = getCachedUserId();
@@ -111,7 +103,7 @@ export const GET_USER_TASK_ALL_BOARD = action$ =>
 export const ADD_TASK_TRACK = action$ =>
   action$.ofType(Actions.ADD_TASK_TRACK.REQUEST).mergeMap(action => {
     return http
-      .post(makeApiUrl(`/task-board/${action.payload.boardId}/track`), null, action.payload)
+      .post(makeApiUrl(`/v2/task-board/${action.payload.boardId}/track`), null, action.payload)
       .then(Actions.ADD_TASK_TRACK.success)
       .catch(Actions.ADD_TASK_TRACK.failure);
   });

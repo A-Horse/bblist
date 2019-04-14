@@ -7,7 +7,6 @@ import { Tag } from 'antd';
 import './Todo.scss';
 
 export class Todo extends Component<any> {
-
   updateTodo(updatedPart: any) {
     const { todo } = this.props;
     const data = {

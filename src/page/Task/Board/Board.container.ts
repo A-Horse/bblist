@@ -24,10 +24,7 @@ const mapStateToProps = (state: any) => {
 };
 
 export const BoardContainer = withRouter(
-  (<any>connect)(
-    mapStateToProps,
-    mapDispatchToProps
-  )(Board)
+  (<any>connect)(mapStateToProps, mapDispatchToProps)(Board)
 );
 
 export default BoardContainer;

@@ -1,7 +1,7 @@
 //
 import React, { Component } from 'react';
 import { Route } from 'react-router';
-import TaskTrack from '../../Track/Track';
+import { TaskTrack } from '../../Track/Track';
 import { CardDetailContainer } from '../../CardDetail/CardDetail.container';
 import TrackCreater from '../../TrackCreater/TrackCreater';
 import { connect } from 'react-redux';
@@ -12,6 +12,8 @@ import HTML5Backend from 'react-dnd-html5-backend';
 import { DragDropContext } from 'react-dnd';
 
 import './ColumnBoard.scss';
+import { TaskTrackNormalized } from '../../../../typings/task/task-track.typing';
+import { Record } from 'immutable';
 
 class ColumnBoardBase extends Component<any, any> {
   state = {};
@@ -39,10 +41,10 @@ class ColumnBoardBase extends Component<any, any> {
         <Route path="/task-board/:id/card/:cardId" render={() => <CardDetailContainer />} />
 
         {trackMap
-          .sort((a: any, b: any) => a.get('index') > b.get('index'))
+          .sort((a: any, b: any) => a.get('order') > b.get('order'))
           .valueSeq()
           .toArray()
-          .map((track: any) => (
+          .map((track: Record<TaskTrackNormalized>) => (
             <TaskTrack
               key={track.get('id')}
               ref={(ref: any) => {
@@ -55,12 +57,14 @@ class ColumnBoardBase extends Component<any, any> {
               }}
               actions={this.props.actions}
               track={track}
-              cards={this.props.cardMap.filter(
-                (card: any) => card.get('taskTrackId') === track.get('id')
-              )}
+              cards={
+                track.get('cards').map((id: string) => {
+                  return this.props.cardMap.get(id);
+                })
+              }
               addTaskCard={(data: any) =>
                 this.props.actions.ADD_TASK_CARD_REQUEST({
-                  boardId: +this.props.board.get('id'),
+                  boardId: this.props.board.get('id'),
                   ...data
                 })
               }

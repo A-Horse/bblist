@@ -9,13 +9,13 @@ import { Menu, Dropdown, Icon } from 'antd';
 
 import './Track.scss';
 
-export class Track extends Component<any> {
+export class TaskTrack extends Component<any> {
   state = {
     trackDropDownVisible: false
   };
   domMain: any;
   cardInstanceMap: any;
-  cardDragMeta: any
+  cardDragMeta: any;
 
   constructor(props: any) {
     super(props);
@@ -52,7 +52,7 @@ export class Track extends Component<any> {
 
   addTaskCard = (data: any) => {
     return this.props.addTaskCard({
-      trackId: +this.props.track.get('id'),
+      trackId: this.props.track.get('id'),
       ...data
     });
   };
@@ -145,4 +145,3 @@ export class Track extends Component<any> {
     );
   }
 }
-export default Track;

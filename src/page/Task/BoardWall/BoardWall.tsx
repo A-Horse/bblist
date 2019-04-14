@@ -28,24 +28,27 @@ export class BoardWall extends Component<Props> {
             <div className="board-group">
               <div className="board-card-container">
                 {this.props.boardMap &&
-                  this.props.boardMap.valueSeq().toArray().map((board: any) => {
-                    return (
-                      <Link
-                        className="taskboard-card"
-                        style={{
-                          backgroundImage: board.get('cover')
-                            ? `url(${makeRemoteUrl(board.get('cover'))})`
-                            : `url(${DEFAULT_BOARD_COVER_SRC})`
-                        }}
-                        key={board.get('id')}
-                        to={`/task-board/${board.get('id')}`}
-                      >
-                        <div className="taskboard-card-info">
-                          <div className="taskboard-card-info--name">{board.get('name')}</div>
-                        </div>
-                      </Link>
-                    );
-                  })}
+                  this.props.boardMap
+                    .valueSeq()
+                    .toArray()
+                    .map((board: any) => {
+                      return (
+                        <Link
+                          className="taskboard-card"
+                          style={{
+                            backgroundImage: board.get('cover')
+                              ? `url(${makeRemoteUrl(board.get('cover'))})`
+                              : `url(${DEFAULT_BOARD_COVER_SRC})`
+                          }}
+                          key={board.get('id')}
+                          to={`/task-board/${board.get('id')}`}
+                        >
+                          <div className="taskboard-card-info">
+                            <div className="taskboard-card-info--name">{board.get('name')}</div>
+                          </div>
+                        </Link>
+                      );
+                    })}
               </div>
             </div>
           </div>

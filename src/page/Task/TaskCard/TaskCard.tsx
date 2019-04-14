@@ -8,8 +8,8 @@ import { findDOMNode } from 'react-dom';
 import './TaskCard.scss';
 
 const TaskCardSource = {
-  beginDrag(props, monitor, component) {
-    const componentRect = findDOMNode(component).getBoundingClientRect();
+  beginDrag(props: any, monitor: any, component: any) {
+    const componentRect = (findDOMNode as any)(component).getBoundingClientRect();
     return {
       card: props.card,
       height: componentRect.height
@@ -17,14 +17,14 @@ const TaskCardSource = {
   }
 };
 
-class TaskCardBase extends Component {
+class TaskCardBase extends Component<any, any> {
   state = {};
 
   componentWillMount() {}
 
   componentWillReceiveProps() {}
 
-  updateCard = toPatchData => {
+  updateCard = (toPatchData: any) => {
     this.props.actions.UPDATE_TASK_CARD_REQUEST({
       id: this.props.card.get('id'),
       ...toPatchData
@@ -63,7 +63,10 @@ class TaskCardBase extends Component {
                   >
                     {card.get('title')}
                   </p>
-                  <UserAvatar user={card.get('creater').toJS()} />
+                  {
+                    card.get('creator') ? <UserAvatar user={card.get('creator').toJS()} /> : null
+                  }
+                  
                 </div>
                 <div
                   style={{
@@ -88,7 +91,7 @@ class TaskCardBase extends Component {
 export const TaskCard = DropTarget(
   'CARD',
   {
-    drop(props, monitor, component) {
+    drop(props: any, monitor: any, component: any) {
       props.actions.CARD_MOVE_REQUEST({
         sourceCard: monitor.getItem().card.toJS(),
         targetCard: props.card.toJS()

@@ -1,6 +1,4 @@
-//
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { Button } from '../../../components/widget/Button/Button';
 import { UserAvatar } from '../../../components/UserAvatar/UserAvatar';
 import ClickOutSide from '../../../components/utils/ClickOutSide';
@@ -11,7 +9,7 @@ import './CardCreater.scss';
 
 const Option = Select.Option;
 
-class CardCreater extends Component {
+class CardCreater extends Component<any, any> {
   state = {
     title: '',
     toggle: false,
@@ -19,7 +17,8 @@ class CardCreater extends Component {
     type: 'STORY'
   };
 
-  containerRef = null;
+  containerRef: any;
+  taskCardTitle: any;
 
   clearInput() {
     this.taskCardTitle.value = '';
@@ -43,12 +42,12 @@ class CardCreater extends Component {
   toggle = async () => {
     this.setState({ toggle: true });
     await timeout();
-    window.document.querySelector(
+    (window as any).document.querySelector(
       `[data-id="${this.props.track.get('id')}"].task-track .task-track--body`
     ).scrollTop = 10000;
   };
 
-  handleTaskTypeChange = value => {
+  handleTaskTypeChange = (value: any) => {
     this.setState({ type: value });
   };
 
@@ -64,7 +63,6 @@ class CardCreater extends Component {
             <div>
               <textarea
                 autoFocus
-                type="text"
                 ref={ref => (this.taskCardTitle = ref)}
                 placeholder="Task Content"
                 onChange={event => this.setState({ title: event.target.value })}

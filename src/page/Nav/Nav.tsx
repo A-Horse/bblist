@@ -6,7 +6,7 @@ import { LogoBan } from '../../components/commons/LogoBan/LogoBan';
 
 import { Layout, Icon, Dropdown, Menu } from 'antd';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import './Nav.scss';
 

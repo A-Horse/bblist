@@ -123,27 +123,32 @@ export class CardDetail extends Component<any, any> {
               defaultValue={card.get('taskTrackId')}
               onChange={this.handleUpdateBelongTrack}
             >
-              {this.props.trackMap.valueSeq().toArray().map((track: any) => {
-                return (
-                  <Option
-                    key={track.get('id')}
-                    value={track.get('id')}
-                    disabled={card.get('taskTrackId') === track.get('id')}
-                  >
-                    {track.get('name')}
-                  </Option>
-                );
-              })}
+              {this.props.trackMap
+                .valueSeq()
+                .toArray()
+                .map((track: any) => {
+                  return (
+                    <Option
+                      key={track.get('id')}
+                      value={track.get('id')}
+                      disabled={card.get('taskTrackId') === track.get('id')}
+                    >
+                      {track.get('name')}
+                    </Option>
+                  );
+                })}
             </Select>
             <div
-              style={{
-                cursor: 'pointer',
-                float: 'right',
-                marginRight: '30px',
-                marginTop: '10px',
-                position: 'relative',
-                zIndex: '1000'
-              } as any}
+              style={
+                {
+                  cursor: 'pointer',
+                  float: 'right',
+                  marginRight: '30px',
+                  marginTop: '10px',
+                  position: 'relative',
+                  zIndex: '1000'
+                } as any
+              }
             >
               <Dropdown overlay={menu} placement="bottomRight">
                 <Icon type="ellipsis" style={{ fontSize: 22 }} />
