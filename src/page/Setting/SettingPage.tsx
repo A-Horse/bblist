@@ -8,7 +8,7 @@ import Profile from './Profile/Profile.container';
 
 import './SettingPage.scss';
 
-export default class Setting extends Component {
+export default class Setting extends Component<any> {
   componentDidMount() {
     updateTitle('Setting');
   }

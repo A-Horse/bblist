@@ -35,7 +35,9 @@ export const GET_TASK_BOARD_SETTING_REQUEST = (action$: any) =>
     mergeMap((action: any) => {
       return axios
         .get(`/api/v2/task-board/${action.payload.taskBoardId}/setting`)
-        .then(resp => Actions.GET_TASK_BOARD_SETTING.success(resp.data))
+        .then(resp => Actions.GET_TASK_BOARD_SETTING.success(resp.data, {
+          boardId: action.payload.taskBoardId
+        }))
         .catch(Actions.GET_TASK_BOARD_SETTING.failure);
     })
   );

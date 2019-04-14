@@ -1,7 +1,6 @@
-//
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router';
-import { Infomation } from './Infomation/Infomation';
+import { InfomationContainer } from './Infomation/Infomation';
 import { Operation } from './Operation/Operation';
 import { TaskBoardPreferenceContainer } from './Preference/Preference';
 import { Participant } from './Participant/Participant';
@@ -12,7 +11,7 @@ import './BoardSetting.scss';
 
 const { Content, Sider } = Layout;
 
-export class BoardSetting extends Component {
+export class BoardSetting extends Component<any> {
   render() {
     return (
       <Layout>
@@ -49,11 +48,11 @@ export class BoardSetting extends Component {
               <Switch>
                 <Route
                   path="/task-board/:id/setting/infomation"
-                  render={() => <Infomation {...this.props} />}
+                  render={() => <InfomationContainer {...this.props} />}
                 />
                 <Route
                   path="/task-board/:boardId/setting/participant"
-                  render={props => <Participant {...this.props} {...props} />}
+                  render={(props: any) => <Participant {...this.props} {...props} />}
                 />
                 <Route
                   path="/task-board/:boardId/setting/preference"

@@ -6,7 +6,8 @@ import Actions, { makeActionRequestCollection } from '../../../actions/actions';
 
 const mapStateToProps = state => {
   return {
-    boardMap: state.task2.get('boardMap')
+    boardMap: state.task2.get('boardMap'),
+    boardSettingMap: state.task2.get('boardSettingMap')
   };
 };
 

@@ -1,15 +1,18 @@
 //
 import React, { Component } from 'react';
 import { Input } from 'antd';
-
 import { ImageUploader } from '../../../../components/ImageUploader/ImageUploader';
-import { makeRemoteUrl } from '../../../../services/remote-storage';
 import { DEFAULT_BOARD_COVER_SRC } from '../../../../constants';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { makeActionRequestCollection } from '../../../../actions/actions';
+import { withRouter } from 'react-router';
+import { generateBoardCoverUrl } from '../../../../utils/url';
 
 import './Infomation.scss';
 
-export class Infomation extends Component {
-  onCoverUpload = coverBase64 => {
+class Infomation extends Component<any> {
+  onCoverUpload = (coverBase64: any) => {
     const data = new FormData();
     data.append('cover', coverBase64);
     this.props.actions.UPLOAD_TASK_BOARD_COVER_REQUEST({
@@ -20,7 +23,7 @@ export class Infomation extends Component {
 
   render() {
     const board = this.props.board;
-    if (!board) {
+    if (!board || !this.props.boardSetting) {
       return null;
     }
     return (
@@ -38,7 +41,7 @@ export class Infomation extends Component {
                 display: 'block'
               }}
               source={
-                board.get('cover') ? makeRemoteUrl(board.get('cover')) : DEFAULT_BOARD_COVER_SRC
+                this.props.boardSetting.get('cover') ?  generateBoardCoverUrl(this.props.boardSetting.get('cover')) : DEFAULT_BOARD_COVER_SRC
               }
               upload={this.onCoverUpload}
             >
@@ -73,3 +76,31 @@ export class Infomation extends Component {
     );
   }
 }
+
+
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    actions: bindActionCreators(makeActionRequestCollection(), dispatch)
+  };
+};
+
+
+const mapStateToProps = (state: any, props: any) => {
+  console.log(props);
+  console.log(state);
+  return {
+    board: state.task2.get('currentBoard'),
+    boardSetting: state.task2.get('boardSettingMap').get(props.match.params.boardId),
+    boardParticipants: state.task2.get('boardParticipants'),
+    boardFetching: state.task2.get('boardFetching'),
+    boardName: state.task2.get('board') ? state.task2.getIn(['board', 'name']) : '',
+    trackMap: state.task2.get('trackMap'),
+    cardMap: state.task2.get('cardMap'),
+    loginedUser: state.auth.get('loginedUser')
+  };
+};
+
+export const InfomationContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(Infomation));

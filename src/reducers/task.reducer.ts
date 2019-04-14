@@ -41,6 +41,8 @@ export function task2(
 
     case Actions.GET_TASK_BOARD.SUCCESS:
       const normalizedBoard = normalize(action.payload, TaskBoard);
+      // TODO 同时设置board 里面的 setting  
+      // TODO 把 card 和 track 用 board id 索引
       return state
         .update('boardFetching', R.F)
         .update('currentBoard', () =>
@@ -65,7 +67,7 @@ export function task2(
     case Actions.GET_TASK_BOARD_SETTING.REQUEST:
       return state;
     case Actions.GET_TASK_BOARD_SETTING.SUCCESS:
-      return state.setIn(['boardSettingMap', action.payload.boardId], fromJS(action.payload));
+      return state.setIn(['boardSettingMap', action.meta.boardId], fromJS(action.payload));
 
     case Actions.TASKBOARD_SETTING_UPDATE.REQUEST:
       return state.updateIn(['boardSettingMap', action.meta.taskBoardId], setting => {
@@ -111,7 +113,6 @@ export function task2(
     case Actions.ADD_TASK_CARD.SUCCESS:
       const normalizedAddedCard = normalize(action.payload, TaskCard);
 
-      console.log(action);
       return state
         .update('cardMap', cardMap => {
           return cardMap

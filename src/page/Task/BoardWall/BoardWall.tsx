@@ -12,6 +12,7 @@ const { Content } = Layout;
 interface Props {
   actions: any;
   boardMap: any;
+  boardSettingMap: any;
 }
 
 export class BoardWall extends Component<Props> {
@@ -24,6 +25,7 @@ export class BoardWall extends Component<Props> {
       <Content className="board-wall-page-content">
         <div className="inner-container">
           <TaskBoardCreater actions={this.props.actions} />
+
           <div className="taskboard-boards">
             <div className="board-group">
               <div className="board-card-container">
