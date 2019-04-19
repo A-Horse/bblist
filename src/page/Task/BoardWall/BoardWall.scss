@@ -7,9 +7,15 @@
   width: 100%;
   margin: 0 auto;
 
-  .inner-container {
+  .board-wall-page-content--inner-container {
     width: 1080px;
     margin: 0 auto;
+  }
+
+  .board-wall-page-content--inner-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
   }
 }
 

@@ -4,17 +4,17 @@ import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
 import Actions, { makeActionRequestCollection } from '../../../actions/actions';
 
-const mapStateToProps = state => {
+const mapStateToProps = (state: any) => {
   return {
     boardMap: state.task2.get('boardMap'),
     boardSettingMap: state.task2.get('boardSettingMap')
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch: any) => {
   return {
     actions: bindActionCreators(
-      makeActionRequestCollection([Actions.GET_TASK_ALL_BOARD, Actions.ADD_TASK_BOARD]),
+      makeActionRequestCollection(),
       dispatch
     )
   };
@@ -24,7 +24,7 @@ const BoardsContainer = withRouter(
   connect(
     mapStateToProps,
     mapDispatchToProps
-  )(BoardWall)
+  )(BoardWall) as any
 );
 
 export default BoardsContainer;

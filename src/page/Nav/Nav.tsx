@@ -57,14 +57,12 @@ class Nav extends Component<any> {
           <LogoBan white={true} />
         </Link>
         <div className="app-header-menu">
-          <div>
+          <div className="app-header-menu--link-containner">
             <NavLink to="/task-board" activeClassName="active">
-              <Icon type="appstore-o" />
               Project
             </NavLink>
 
             <NavLink to="/todo" activeClassName="active">
-              <FontAwesomeIcon icon="check-circle" />
               Todo
             </NavLink>
           </div>
