@@ -13,18 +13,13 @@ const mapStateToProps = (state: any) => {
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    actions: bindActionCreators(
-      makeActionRequestCollection(),
-      dispatch
-    )
+    actions: bindActionCreators(makeActionRequestCollection(), dispatch)
   };
 };
 
-const BoardsContainer = withRouter(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(BoardWall) as any
-);
+const BoardsContainer = withRouter(connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(BoardWall) as any);
 
 export default BoardsContainer;

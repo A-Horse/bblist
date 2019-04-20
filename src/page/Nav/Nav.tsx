@@ -3,7 +3,7 @@ import { Link, NavLink } from 'react-router-dom';
 import { makeGravatarUrl } from '../../services/gravatar';
 import { Storage, storageImage } from '../../services/storage';
 import { LogoBan } from '../../components/commons/LogoBan/LogoBan';
-
+import { NavAddOperation } from './NavAddOperation/NavAddOperation';
 import { Layout, Icon, Dropdown, Menu } from 'antd';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -65,6 +65,8 @@ class Nav extends Component<any> {
             <NavLink to="/todo" activeClassName="active">
               Todo
             </NavLink>
+
+            <NavAddOperation />
           </div>
 
           <div style={{ display: 'inline-block' }}>

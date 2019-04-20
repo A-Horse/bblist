@@ -57,11 +57,9 @@ class ColumnBoardBase extends Component<any, any> {
               }}
               actions={this.props.actions}
               track={track}
-              cards={
-                track.get('cards').map((id: string) => {
-                  return this.props.cardMap.get(id);
-                })
-              }
+              cards={track.get('cards').map((id: string) => {
+                return this.props.cardMap.get(id);
+              })}
               addTaskCard={(data: any) =>
                 this.props.actions.ADD_TASK_CARD_REQUEST({
                   boardId: this.props.board.get('id'),

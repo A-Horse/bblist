@@ -47,6 +47,7 @@ class TaskCardBase extends Component<any, any> {
                 <div className={`task-card ${this.props.mode === 'LONG' ? 'long' : ''}`}>
                   {card.get('type') === 'TODO' && (
                     <Checkbox
+                      className="task-card--checkbox"
                       checked={card.get('status') === 'DONE'}
                       onChange={event =>
                         this.updateCard({
@@ -63,10 +64,7 @@ class TaskCardBase extends Component<any, any> {
                   >
                     {card.get('title')}
                   </div>
-                  {
-                    card.get('creator') ? <UserAvatar user={card.get('creator').toJS()} /> : null
-                  }
-                  
+                  {card.get('creator') ? <UserAvatar user={card.get('creator').toJS()} /> : null}
                 </div>
                 <div
                   style={{

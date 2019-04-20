@@ -25,12 +25,10 @@ export class BoardWall extends Component<Props> {
     return (
       <Content className="board-wall-page-content">
         <div className="board-wall-page-content--inner-container">
-        <TaskBoardCreater actions={this.props.actions} />
 
           <div className="board-wall-page-content--inner-content">
+            <BoardWallAside />
 
-          <BoardWallAside />
-          
             <div className="taskboard-boards">
               <div className="board-group">
                 <div className="board-card-container">

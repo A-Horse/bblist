@@ -1,12 +1,16 @@
 //
 import React, { Component } from 'react';
-import { Button, Icon, Modal, Form, Input } from 'antd';
-
+import { Button, Modal, Form, Input } from 'antd';
+import { AppIcon } from '../../../components/widget/Icon';
 import './TaskBoardCreater.scss';
+import { connect } from 'react-redux';
+import { makeActionRequestCollection } from '../../../actions/actions';
+import { bindActionCreators } from 'redux';
 
 const FormItem = Form.Item;
 
-class TaskBoardCreaterForm extends Component {
+class TaskBoardCreaterBase extends Component<any, any> {
+
   state = {
     modalVisible: false,
     errorMessages: [],
@@ -19,9 +23,9 @@ class TaskBoardCreaterForm extends Component {
     });
   };
 
-  handleSubmit = event => {
+  handleSubmit = (event: any) => {
     event.preventDefault();
-    this.props.form.validateFieldsAndScroll((err, values) => {
+    this.props.form.validateFieldsAndScroll((err: any, values: any) => {
       if (!err) {
         this.props.actions.ADD_TASK_BOARD_REQUEST(values);
         this.handleCancel();
@@ -33,13 +37,15 @@ class TaskBoardCreaterForm extends Component {
     const { getFieldDecorator } = this.props.form;
     return (
       <div className="taskboard-creater">
-        <Button type="default" onClick={() => this.setState({ modalVisible: true })}>
-          <Icon type="plus" />
-          Create Task Board
-        </Button>
+
+      <div onClick={() => this.setState({ modalVisible: true })}>
+        <AppIcon icon="columns" />
+          Project
+      </div>
+         
 
         <Modal
-          title="Create Wall"
+          title="Create Project"
           onCancel={this.handleCancel}
           visible={this.state.modalVisible}
           footer={null}
@@ -67,4 +73,22 @@ class TaskBoardCreaterForm extends Component {
   }
 }
 
-export const TaskBoardCreater = Form.create()(TaskBoardCreaterForm);
+export const TaskBoardCreaterWithForm = Form.create()(TaskBoardCreaterBase);
+
+
+const mapStateToProps = (state: any) => {
+  return {
+
+  };
+};
+
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    actions: bindActionCreators(makeActionRequestCollection(), dispatch)
+  };
+};
+
+export const TaskBoardCreater =  connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(TaskBoardCreaterWithForm);

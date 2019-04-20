@@ -41,7 +41,9 @@ class Infomation extends Component<any> {
                 display: 'block'
               }}
               source={
-                this.props.boardSetting.get('cover') ?  generateBoardCoverUrl(this.props.boardSetting.get('cover')) : DEFAULT_BOARD_COVER_SRC
+                this.props.boardSetting.get('cover')
+                  ? generateBoardCoverUrl(this.props.boardSetting.get('cover'))
+                  : DEFAULT_BOARD_COVER_SRC
               }
               upload={this.onCoverUpload}
             >
@@ -77,13 +79,11 @@ class Infomation extends Component<any> {
   }
 }
 
-
 const mapDispatchToProps = (dispatch: any) => {
   return {
     actions: bindActionCreators(makeActionRequestCollection(), dispatch)
   };
 };
-
 
 const mapStateToProps = (state: any, props: any) => {
   console.log(props);
