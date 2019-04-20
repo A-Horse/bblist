@@ -11,7 +11,7 @@ export class BoardWallAside extends Component<Props> {
   render() {
     return (
       <AppMenu
-        style={{ width: 256 }}
+        style={{ width: 256, flexShrink: 0 }}
         defaultSelectedKeys={['1']}
         defaultOpenKeys={['sub1']}
         mode={'vertical'}

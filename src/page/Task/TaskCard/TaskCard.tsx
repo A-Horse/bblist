@@ -34,7 +34,7 @@ class TaskCardBase extends Component<any, any> {
   render() {
     const { card } = this.props;
     const { isDragging, connectDragSource, connectDragPreview } = this.props;
-    const { isOver, canDrop, connectDropTarget } = this.props;
+    const { connectDropTarget } = this.props;
     const opacity = isDragging ? 0.4 : 1;
     return (
       connectDragPreview &&
@@ -55,14 +55,14 @@ class TaskCardBase extends Component<any, any> {
                       }
                     />
                   )}
-                  <p
+                  <div
                     className="task-card--title"
                     onClick={() => {
                       this.props.history.push(this.props.match.url + `/card/${card.get('id')}`);
                     }}
                   >
                     {card.get('title')}
-                  </p>
+                  </div>
                   {
                     card.get('creator') ? <UserAvatar user={card.get('creator').toJS()} /> : null
                   }
