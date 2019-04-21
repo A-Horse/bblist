@@ -1,11 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Modal, Form, Input } from 'antd';
-import { AppIcon } from '../../../components/widget/Icon';
-
-import { connect } from 'react-redux';
-import { makeActionRequestCollection } from '../../../actions/actions';
-import { bindActionCreators } from 'redux';
-import { TaskCreatorModal } from './TaskCreatorModal';
+import { Button, Form, Input } from 'antd';
 
 const FormItem = Form.Item;
 
@@ -14,6 +8,7 @@ import './TaskCreatorModal.scss';
 class CreateProjectTaskFormBase extends Component<
   {
     form: any;
+    style: any
   },
   any
 > {
@@ -34,7 +29,7 @@ class CreateProjectTaskFormBase extends Component<
   render() {
     const { getFieldDecorator } = this.props.form;
     return (
-      <div className="taskboard-creater">
+      <div style={this.props.style} className="taskboard-creater">
         <Form onSubmit={this.handleSubmit}>
           <FormItem label="Task Title">
             {getFieldDecorator('name', {

@@ -14,6 +14,9 @@ export const ADD_TODO_REQUEST = (action$: any) =>
       .post(makeApiUrl('/t/todo'), null, action.payload)
       .then((resp: any) => {
         message.success('Add todo success');
+        if (action.meta && action.meta.closeFn) {
+          action.meta.closeFn();
+        }
         return Actions.ADD_TODO.success(resp);
       })
       .catch(Actions.ADD_TODO.failure);

@@ -38,22 +38,31 @@ class TaskCreaterModalBase extends Component<
     return (
       <AppModal
         title="Create Task"
+        maskClosable={false}
         onCancel={this.props.closeModal}
         visible={this.props.modalVisible}
         footer={null}
+        closable={false}
       >
         <div className="create-task-modal-content">
           <div className="create-task-modal-left">
             <AppMenu defaultSelectedKeys={['PROJECT']} onClick={this.handleMenuClick}>
-              <AppMenu.Item key="PROJECT">Task</AppMenu.Item>
+              <AppMenu.Item key="PROJECT">
+              <AppIcon icon="columns" />
+              Task</AppMenu.Item>
 
-              <AppMenu.Item key="TODO">Todo</AppMenu.Item>
+              <AppMenu.Item key="TODO">
+              <AppIcon icon="cube" />
+              Todo</AppMenu.Item>
             </AppMenu>
           </div>
           <div className="create-task-modal-right">
-            {this.state.selectedType === 'PROJECT' && <CreateProjectTaskForm />}
+             <CreateProjectTaskForm style={{display : this.state.selectedType === 'PROJECT' ? 'block' : 'none'}} />
 
-            {this.state.selectedType === 'TODO' && <CreateTodoTaskForm />}
+           <CreateTodoTaskForm 
+           style={{display : this.state.selectedType === 'TODO' ? 'block' : 'none'}}
+           onCancel={this.props.closeModal}
+            />
           </div>
         </div>
       </AppModal>
