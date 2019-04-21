@@ -25,7 +25,6 @@ export class BoardWall extends Component<Props> {
     return (
       <Content className="board-wall-page-content">
         <div className="board-wall-page-content--inner-container">
-
           <div className="board-wall-page-content--inner-content">
             <BoardWallAside />
 

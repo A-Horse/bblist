@@ -1,4 +1,3 @@
-//
 import React, { Component } from 'react';
 import { Button, Modal, Form, Input } from 'antd';
 import { AppIcon } from '../../../components/widget/Icon';
@@ -10,7 +9,6 @@ import { bindActionCreators } from 'redux';
 const FormItem = Form.Item;
 
 class TaskBoardCreaterBase extends Component<any, any> {
-
   state = {
     modalVisible: false,
     errorMessages: [],
@@ -37,12 +35,10 @@ class TaskBoardCreaterBase extends Component<any, any> {
     const { getFieldDecorator } = this.props.form;
     return (
       <div className="taskboard-creater">
-
-      <div onClick={() => this.setState({ modalVisible: true })}>
-        <AppIcon icon="columns" />
+        <div onClick={() => this.setState({ modalVisible: true })}>
+          <AppIcon icon="columns" />
           Project
-      </div>
-         
+        </div>
 
         <Modal
           title="Create Project"
@@ -75,11 +71,8 @@ class TaskBoardCreaterBase extends Component<any, any> {
 
 export const TaskBoardCreaterWithForm = Form.create()(TaskBoardCreaterBase);
 
-
 const mapStateToProps = (state: any) => {
-  return {
-
-  };
+  return {};
 };
 
 const mapDispatchToProps = (dispatch: any) => {
@@ -88,7 +81,7 @@ const mapDispatchToProps = (dispatch: any) => {
   };
 };
 
-export const TaskBoardCreater =  connect(
+export const TaskBoardCreater = connect(
   mapStateToProps,
   mapDispatchToProps
 )(TaskBoardCreaterWithForm);

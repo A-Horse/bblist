@@ -8,20 +8,20 @@ import { AppMenu } from '../../../components/widget/Menu/Menu';
 
 import './NavAddOperation.scss';
 import { TaskBoardCreater } from '../../Task/TaskBoardCreater/TaskBoardCreater';
+import { TaskCreator } from '../../../components/creators/TaskCreator/TaskCreator';
 
 export class NavAddOperation extends Component<any> {
   state = {};
 
   render() {
     const menu = (
-      <AppMenu className="nav-add-operation-menu" style={{width: '156px'}}>
+      <AppMenu className="nav-add-operation-menu" style={{ width: '156px' }}>
         <AppMenu.Item>
           <TaskBoardCreater />
         </AppMenu.Item>
 
         <AppMenu.Item>
-          <AppIcon icon="cube" />
-          Task
+          <TaskCreator />
         </AppMenu.Item>
       </AppMenu>
     );

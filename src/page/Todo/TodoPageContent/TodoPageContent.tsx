@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { TodoCreater } from '../TodoCreater/TodoCreater';
 import { Todo } from '../Todo/Todo';
 import { List as AntList } from 'antd';
 
@@ -24,10 +23,6 @@ export class TodoPageContent extends Component<any> {
   render() {
     return (
       <div className="todo-list">
-        <div className="creater-container">
-          <TodoCreater submit={this.createTodo} />
-        </div>
-
         {this.props.unDoneTodos && (
           <AntList
             className="demo-loadmore-list"

@@ -36,13 +36,15 @@ class SignIn extends Component<Props> {
     return (
       <div className="signin-page">
         <div className="signin-main">
-          <Logo
-            style={{
-              width: 45
-            }}
-          />
+          <div className="signin-main--logo-container">
+            <Logo
+              style={{
+                width: 45
+              }}
+            />
 
-          <TextLogo />
+            <TextLogo />
+          </div>
 
           <WrappedSignInForm onSubmit={this.login} />
 
