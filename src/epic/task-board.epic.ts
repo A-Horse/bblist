@@ -1,9 +1,4 @@
-import 'rxjs/add/operator/distinctUntilChanged';
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/mergeMap';
-import 'rxjs/add/operator/catch';
 import { makeApiUrl } from '../utils/api';
-import { JWT_STORAGE_KEY } from '../constants';
 import { ofType } from 'redux-observable';
 import Actions from '../actions/actions';
 import { mergeMap } from 'rxjs/operators';
@@ -11,12 +6,15 @@ import axios from 'axios';
 import http from '../services/http';
 
 export const GET_TASK_BOARD = (action$: any) =>
-  action$.ofType(Actions.GET_TASK_BOARD.REQUEST).mergeMap((action: any) => {
-    return http
-      .get(makeApiUrl(`/tk/v2/task-board/${action.payload.id}/verbose`), null)
-      .then(Actions.GET_TASK_BOARD.success)
-      .catch(Actions.GET_TASK_BOARD.failure);
-  });
+  action$.pipe(
+    ofType(Actions.GET_TASK_BOARD.REQUEST),
+    mergeMap((action: any) => {
+      return http
+        .get(makeApiUrl(`/tk/v2/task-board/${action.payload.id}/verbose`), null)
+        .then(Actions.GET_TASK_BOARD.success)
+        .catch(Actions.GET_TASK_BOARD.failure);
+    })
+  );
 
 export const TASKBOARD_SETTING_UPDATE_REQUEST = (action$: any) =>
   action$.pipe(
@@ -35,27 +33,40 @@ export const GET_TASK_BOARD_SETTING_REQUEST = (action$: any) =>
     mergeMap((action: any) => {
       return axios
         .get(`/api/v2/task-board/${action.payload.taskBoardId}/setting`)
-        .then(resp => Actions.GET_TASK_BOARD_SETTING.success(resp.data, {
-          boardId: action.payload.taskBoardId
-        }))
+        .then(resp =>
+          Actions.GET_TASK_BOARD_SETTING.success(resp.data, {
+            boardId: action.payload.taskBoardId
+          })
+        )
         .catch(Actions.GET_TASK_BOARD_SETTING.failure);
     })
   );
 
 export const ADD_TASK_BOARD_REQUEST = (action$: any) =>
-  action$.ofType(Actions.ADD_TASK_BOARD.REQUEST).mergeMap((action: any) => {
-    return http
-      .post(makeApiUrl(`/tk/v2/task-board/`), null, action.payload)
-      .then(Actions.ADD_TASK_BOARD.success)
-      .catch(Actions.ADD_TASK_BOARD.failure);
-  });
+  action$.pipe(
+    ofType(Actions.ADD_TASK_BOARD.REQUEST),
+    mergeMap((action: any) => {
+      return http
+        .post(makeApiUrl(`/tk/v2/task-board/`), null, action.payload)
+        .then(Actions.ADD_TASK_BOARD.success)
+        .catch(Actions.ADD_TASK_BOARD.failure);
+    })
+  );
 
 export const UPLOAD_TASK_BOARD_COVER_REQUEST = (action$: any) =>
-  action$.ofType(Actions.UPLOAD_TASK_BOARD_COVER.REQUEST).mergeMap((action: any) => {
-    return http
-      .post(makeApiUrl(`/tk/v2/task-board/${action.payload.id}/cover`), null, action.payload.data, {
-        formData: true
-      })
-      .then(Actions.UPLOAD_TASK_BOARD_COVER.success)
-      .catch(Actions.UPLOAD_TASK_BOARD_COVER.failure);
-  });
+  action$.pipe(
+    ofType(Actions.UPLOAD_TASK_BOARD_COVER.REQUEST),
+    mergeMap((action: any) => {
+      return http
+        .post(
+          makeApiUrl(`/tk/v2/task-board/${action.payload.id}/cover`),
+          null,
+          action.payload.data,
+          {
+            formData: true
+          }
+        )
+        .then(Actions.UPLOAD_TASK_BOARD_COVER.success)
+        .catch(Actions.UPLOAD_TASK_BOARD_COVER.failure);
+    })
+  );

@@ -41,7 +41,7 @@ export function task2(
 
     case Actions.GET_TASK_BOARD.SUCCESS:
       const normalizedBoard = normalize(action.payload, TaskBoard);
-      // TODO 同时设置board 里面的 setting  
+      // TODO 同时设置board 里面的 setting
       // TODO 把 card 和 track 用 board id 索引
       return state
         .update('boardFetching', R.F)

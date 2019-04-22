@@ -22,7 +22,6 @@ export function getUserData() {
   return userData ? JSON.parse(userData) : null;
 }
 
-
 export function saveAuthData(response) {
   Storage.set(CACHED_USERID, response.user.id);
   Storage.set(CACHED_USERNAME, response.user.username);

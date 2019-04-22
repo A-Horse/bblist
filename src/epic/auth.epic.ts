@@ -1,8 +1,4 @@
 import { Observable } from 'rxjs';
-import 'rxjs/add/operator/mergeMap';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/observable/of';
 import { Storage } from '../services/storage';
 import Actions from '../actions/actions';
 import { makeApiUrl } from '../utils/api';
@@ -12,6 +8,7 @@ import { setupAxiosJwtHeader } from '../helper/http-intercetor';
 import axios from 'axios';
 import { ofType } from 'redux-observable';
 import { mergeMap } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 export const LOGIN_REQUEST = (action$: Observable<any>) =>
   action$.pipe(
@@ -61,6 +58,6 @@ export const LOGOUT_SUCCESS = (action$: Observable<any>) =>
     mergeMap(() => {
       Storage.clear();
       window.location.pathname = '/';
-      return Observable.of(Actions.LOGOUT.finish);
+      return of(Actions.LOGOUT.finish);
     })
   );
