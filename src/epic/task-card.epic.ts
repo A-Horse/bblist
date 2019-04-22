@@ -47,7 +47,7 @@ export const DESTORY_TASK_CARD_REQUEST = (action$: any) =>
           id: action.payload.id,
           status: 'DELETED'
         })
-        .then(response => {
+        .then((response: any) => {
           return Actions.DESTORY_TASK_CARD.success({ id: action.payload.id });
         })
         .catch(Actions.DESTORY_TASK_CARD.failure);
