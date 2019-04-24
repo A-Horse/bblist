@@ -1,4 +1,3 @@
-//
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { TodoBoxCreater } from '../TodoBoxCreater/TodoBoxCreater';
@@ -7,8 +6,9 @@ import { Map } from 'immutable';
 import { Menu, Icon } from 'antd';
 
 import './TodoBoxs.scss';
+import { AppIcon } from '../../../components/widget/Icon';
 
-class TodoBoxs extends Component {
+class TodoBoxs extends Component<any> {
   componentWillMount() {
     this.props.actions.GET_TODOBOXS_REQUEST();
   }
@@ -16,22 +16,24 @@ class TodoBoxs extends Component {
   render() {
     return (
       <ul className="todo-boxs">
-        <div className="todo-box-creater-container">
-          <TodoBoxCreater actions={this.props.actions} />
-        </div>
+        
         <div className="todo-box-group-list">
           <Menu defaultSelectedKeys={['1']}>
-            {this.props.todoBoxs.map(todoBox => {
+            {this.props.todoBoxs.map((todoBox: any) => {
               return (
                 <Menu.Item key={todoBox.get('id')}>
                   <Link to={`/todo/${todoBox.get('id')}`}>
-                    <Icon type="check-square-o" />
+                  <AppIcon className="todo-box-item-icon" icon={todoBox.get('iconName')} />
                     <span>{todoBox.get('name')}</span>
                   </Link>
                 </Menu.Item>
               );
             })}
           </Menu>
+        </div>
+
+        <div className="todo-box-creater-container">
+          <TodoBoxCreater actions={this.props.actions} />
         </div>
       </ul>
     );

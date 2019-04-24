@@ -7,4 +7,15 @@
 .todo-page {
   .ant-layout-sider {
   }
+
+  .todo-page--sider {
+    // background-color: #f1f1f1;
+    // border-right: 1px solid #f1f1f1;
+  }
+
+  .todo-page--main {
+    width: 100%;
+    background-color: #f1f1f1;
+    border-left: 1px solid #f1f1f1;
+  }
 }

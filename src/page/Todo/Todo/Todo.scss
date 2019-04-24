@@ -1,7 +1,11 @@
 .todo-item {
+  background-color: white;
   width: 100%;
   display: flex;
   flex-wrap: nowrap;
+  padding: 8px 12px;
+  font-size: 16px;
+  border-radius: 4px;
 
   .todo-done-checkbox {
     width: 30px;
@@ -12,7 +16,10 @@
   }
 
   .todo-item-main {
-    width: 100%;
+    width: 80%;
     flex-shrink: inherit;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }

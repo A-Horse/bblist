@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { updateTitle } from '../../services/title';
-import { Redirect } from 'react-router';
 import { TodoPageContentContainer } from './TodoPageContent/TodoPageContent.container';
 import TodoBoxs from './TodoBoxs/TodoBoxs';
 
@@ -17,11 +16,11 @@ export class TodoPage extends Component<any> {
 
   render() {
     return (
-      <Layout className="todo-page" style={{ padding: '0 50px' }}>
-        <Sider theme="dark">
+      <Layout className="todo-page">
+        <Sider className="todo-page--sider">
           <TodoBoxs todoBoxs={this.props.todoBoxs} actions={this.props.actions} />
         </Sider>
-        <Content style={{ height: 'calc(100vh - 42px)' }}>
+        <Content  className="todo-page--main" style={{ height: 'calc(100vh - 42px)' }}>
           <TodoPageContentContainer />
         </Content>
       </Layout>

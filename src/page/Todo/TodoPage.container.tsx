@@ -10,8 +10,8 @@ const mapStateToProps = (state: any) => {
     todoBoxs: state.todo
       .get('todoBoxIds')
       .map((id: number) => state.todo.get('todoBoxEntities').get(String(id)))
-      .unshift(Map({ name: 'Task Todos', id: '@task' }))
-      .unshift(Map({ name: 'All Todos', id: '@all' }))
+      .unshift(Map({ name: 'Task Todos', id: '@task', iconName: 'clipboard-list' }))
+      .unshift(Map({ name: 'All Todos', id: '@all', iconName: 'cube' }))
   };
 };
 

@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { TaskBoardCreater } from '../TaskBoardCreater/TaskBoardCreater';
-import { makeRemoteUrl } from '../../../services/remote-storage';
 import { DEFAULT_BOARD_COVER_SRC } from '../../../constants';
 import { Layout } from 'antd';
 
-import './BoardWall.scss';
+
 import { BoardWallAside } from './BoardWallAside/BoardWallAside';
+import { generateBoardCoverUrl } from '../../../utils/url';
 
 const { Content } = Layout;
+
+import './BoardWall.scss';
 
 interface Props {
   actions: any;
@@ -36,12 +37,13 @@ export class BoardWall extends Component<Props> {
                       .valueSeq()
                       .toArray()
                       .map((board: any) => {
+                        console.log(board);
                         return (
                           <Link
                             className="taskboard-card"
                             style={{
-                              backgroundImage: board.get('cover')
-                                ? `url(${makeRemoteUrl(board.get('cover'))})`
+                              backgroundImage: board.get('setting').get('cover')
+                                ? `url(${generateBoardCoverUrl(board.get('setting').get('cover'))})`
                                 : `url(${DEFAULT_BOARD_COVER_SRC})`
                             }}
                             key={board.get('id')}
