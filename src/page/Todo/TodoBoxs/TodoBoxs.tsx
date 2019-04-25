@@ -18,12 +18,16 @@ class TodoBoxs extends Component<any> {
       <ul className="todo-boxs">
         
         <div className="todo-box-group-list">
-          <Menu defaultSelectedKeys={['1']}>
+          <Menu defaultSelectedKeys={['@all']}>
             {this.props.todoBoxs.map((todoBox: any) => {
               return (
-                <Menu.Item key={todoBox.get('id')}>
+                <Menu.Item className="todo-box-item" key={todoBox.get('id')}>
                   <Link to={`/todo/${todoBox.get('id')}`}>
-                  <AppIcon className="todo-box-item-icon" icon={todoBox.get('iconName')} />
+
+                  <div className="todo-box-item-icon-wrapper">
+                  <AppIcon size="lg" className="todo-box-item-icon" icon={todoBox.get('iconName')} color="#999" />
+
+                  </div>
                     <span>{todoBox.get('name')}</span>
                   </Link>
                 </Menu.Item>

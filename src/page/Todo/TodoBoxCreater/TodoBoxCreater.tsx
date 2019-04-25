@@ -5,16 +5,16 @@ import './TodoBoxCreater.scss';
 
 const FormItem = Form.Item;
 
-export class TodoBoxCreaterForm extends Component {
+export class TodoBoxCreaterForm extends Component<any> {
   state = { toggle: false, name: '' };
 
   close = () => {
     this.setState({ toggle: false });
   };
 
-  handleSubmit = event => {
+  handleSubmit = (event: any) => {
     event.preventDefault();
-    this.props.form.validateFieldsAndScroll((err, values) => {
+    this.props.form.validateFieldsAndScroll((err: any, values: any) => {
       if (!err) {
         this.props.actions.ADD_TODOBOX_REQUEST(values);
         this.handleCancel();
@@ -31,17 +31,12 @@ export class TodoBoxCreaterForm extends Component {
   render() {
     const { getFieldDecorator } = this.props.form;
     return (
-      <div>
-        <Button
-          className=""
-          onClick={event => {
-            event.stopPropagation();
-            this.setState({ toggle: true });
-          }}
-        >
-          <Icon type="folder-add" />
+      <div onClick={(event: any) => {
+        event.stopPropagation();
+        this.setState({ toggle: true });
+      }}>
+        <Icon type="folder-add" />
           Add Todo Box
-        </Button>
 
         <Modal
           className="todo-box-creater-modal"
