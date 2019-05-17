@@ -11,21 +11,21 @@ import * as R from 'ramda';
 
 import './SignUp.scss';
 
-class SignUp extends Component {
+class SignUp extends Component<any, any> {
   state = {
     errorMessage: {}
   };
 
-  constructor(props) {
+  constructor(props: any) {
     super(props);
     this.signup = this.signup.bind(this);
   }
 
-  componentWillMount() {
+  componentWillMount(): void {
     updateTitle('Sign Up');
   }
 
-  componentWillReceiveProps(newProps) {
+  componentWillReceiveProps(newProps: any) {
     if (newProps.signUpSuccess) {
       this.props.actions.SIGNUP_FINISH();
       this.props.history.push('/signin');
@@ -33,7 +33,7 @@ class SignUp extends Component {
   }
 
   render() {
-    const errorMessages = this.state.errorMessages;
+    const errorMessages = this.state.errorMessage;
 
     return (
       <PageContainer className="signup-page">
@@ -43,7 +43,6 @@ class SignUp extends Component {
             <div>
               <Input
                 type="text"
-                ref={ref => (this.emailInput = ref)}
                 name="octopus-email"
                 required
                 placeholder="Email"
@@ -53,7 +52,6 @@ class SignUp extends Component {
             <div>
               <Input
                 type="text"
-                ref={ref => (this.userNameInput = ref)}
                 name="octopus-username"
                 required
                 placeholder="Name"
@@ -63,7 +61,6 @@ class SignUp extends Component {
             <div>
               <Input
                 type="password"
-                ref={ref => (this.passwordInput = ref)}
                 name="octopus-password"
                 required
                 placeholder="Password"
@@ -73,7 +70,6 @@ class SignUp extends Component {
             <div>
               <Input
                 type="password"
-                ref={ref => (this.confirmPasswordInput = ref)}
                 name="octopus-confirm-password"
                 required
                 placeholder="Password ConfirmPassword"
@@ -98,7 +94,7 @@ class SignUp extends Component {
     );
   }
 
-  signup(event) {
+  signup(event: any) {
     event.preventDefault();
 
     const signUpData = {
