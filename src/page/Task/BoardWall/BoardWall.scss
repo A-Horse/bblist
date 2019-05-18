@@ -20,6 +20,8 @@
 }
 
 .taskboard-boards {
+  flex-grow: 10;
+
   .board-group {
     overflow: hidden;
     background-color: $white;

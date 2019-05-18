@@ -77,10 +77,6 @@ export class TaskTrack extends Component<any> {
           <div className="task-track--name">
             <Input
               className="task-track--input"
-              onMouseDown={(event: any) => event.stopPropagation()}
-              onKeyDown={(event: any) => {
-                isEnterKey(event) && event.preventDefault();
-              }}
               onChange={(name: string) =>
                 this.props.updateTrack({
                   trackId: this.props.track.get('id'),

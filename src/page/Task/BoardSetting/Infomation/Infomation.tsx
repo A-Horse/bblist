@@ -86,8 +86,6 @@ const mapDispatchToProps = (dispatch: any) => {
 };
 
 const mapStateToProps = (state: any, props: any) => {
-  console.log(props);
-  console.log(state);
   return {
     board: state.task2.get('currentBoard'),
     boardSetting: state.task2.get('boardSettingMap').get(props.match.params.boardId),

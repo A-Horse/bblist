@@ -37,7 +37,6 @@ export class BoardWall extends Component<Props> {
                       .valueSeq()
                       .toArray()
                       .map((board: any) => {
-                        console.log(board);
                         return (
                           <Link
                             className="taskboard-card"

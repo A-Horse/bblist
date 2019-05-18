@@ -13,7 +13,11 @@ import './SignUp.scss';
 
 class SignUp extends Component<any, any> {
   state = {
-    errorMessage: {}
+    errorMessage: {},
+    username: '',
+    password: '',
+    passwordConfirm: '',
+    email: ''
   };
 
   constructor(props: any) {
@@ -42,6 +46,8 @@ class SignUp extends Component<any, any> {
           <form className="signup-form" onSubmit={this.signup}>
             <div>
               <Input
+                value={this.state.email}
+                onChange={value => this.setState({email: value})}
                 type="text"
                 name="octopus-email"
                 required
@@ -51,6 +57,8 @@ class SignUp extends Component<any, any> {
 
             <div>
               <Input
+                value={this.state.username}
+                onChange={value => this.setState({username: value})}
                 type="text"
                 name="octopus-username"
                 required
@@ -60,6 +68,8 @@ class SignUp extends Component<any, any> {
 
             <div>
               <Input
+                value={this.state.password}
+                onChange={value => this.setState({password: value})}
                 type="password"
                 name="octopus-password"
                 required
@@ -69,10 +79,12 @@ class SignUp extends Component<any, any> {
 
             <div>
               <Input
+                value={this.state.passwordConfirm}
+                onChange={value => this.setState({passwordConfirm: value})}
                 type="password"
                 name="octopus-confirm-password"
                 required
-                placeholder="Password ConfirmPassword"
+                placeholder="Confirm Password"
               />
             </div>
 
@@ -98,10 +110,9 @@ class SignUp extends Component<any, any> {
     event.preventDefault();
 
     const signUpData = {
-      name: this.userNameInput.value.trim(),
-      password: this.passwordInput.value.trim(),
-      email: this.emailInput.value.trim(),
-      confirmPassword: this.confirmPasswordInput.value.trim()
+      username: this.state.username,
+      email: this.state.email,
+      password: this.state.password  
     };
 
     const errorMessages = validateFormValue(signUpData, {
@@ -116,9 +127,7 @@ class SignUp extends Component<any, any> {
 
     this.setState({ errorMessages: errorMessages });
 
-    if (Object.keys(errorMessages).length) {
-      return;
-    }
+    
     this.props.actions.SIGNUP_REQUEST(signUpData);
   }
 }
