@@ -48,7 +48,7 @@
     "typescript": "^3.2.2"
   },
   "scripts": {
-    "start": "PORT=9000 react-scripts start",
+    "start": "PORT=9100 react-scripts start",
     "win-start": "set PORT=9000 && react-scripts start",
     "compile-less": "lessc --js ./src/style/index.less ./src/style/antd.css",
     "build": "react-scripts build",
