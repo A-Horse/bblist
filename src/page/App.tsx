@@ -35,7 +35,7 @@ const TaskBoardWallPage = () => {
   );
 };
 
-const TaskBoardPageContainer = React.lazy(() => import('../page/Task/Board/Board.container'));
+const TaskBoardPageContainer = React.lazy(() => import('./Task/ProjectPage/ProjectPage.container'));
 const TaskBoardPage = () => {
   return (
     <Suspense fallback={<div>Loading...</div>}>

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { Board } from './Board';
+import { Board } from './ProjectPage';
 import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
 import { makeActionRequestCollection } from '../../../actions/actions';
