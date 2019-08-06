@@ -1,16 +1,16 @@
-//
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Route, Switch, Redirect } from 'react-router';
 import { updateTitle } from '../../../services/title';
 import { StarCheckBox } from '../../../components/widget/StarCheckBox/StarCheckBox';
 
-import { BoardContentContainer } from '../ProjectContent/BoardContentnt';
+import { ProjectContentContainer } from '../ProjectContent/ProjectContent';
 import { BoardSetting } from '../BoardSetting/BoardSetting';
 
 import { Layout } from 'antd';
 
-import './Board.scss';
+import './ProjectPage.scss';
+import { BoardSideBar } from './BoardSideBar/BoardSideBar';
 
 const { Header } = Layout;
 
@@ -79,13 +79,18 @@ export class Board extends Component<{
           </div>
         </Header>
 
-        <Switch>
-          <Route
-            path="/task-board/:boardId/setting"
-            render={props => <BoardSetting {...this.props} {...props} />}
-          />
-          <Route path="/task-board/:boardId" render={props => <BoardContentContainer />} />
-        </Switch>
+        <div>
+          <BoardSideBar />
+
+          <Switch>
+            <Route
+              path="/task-board/:boardId/setting"
+              render={props => <BoardSetting {...this.props} {...props} />}
+            />
+            <Route path="/task-board/:boardId" render={props => <ProjectContentContainer />} />
+            <Route path="/project/:boardId" render={props => <ProjectContentContainer />} />
+          </Switch>
+        </div>
       </Layout>
     );
   }

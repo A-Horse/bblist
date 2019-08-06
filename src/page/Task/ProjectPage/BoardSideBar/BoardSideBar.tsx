@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
 import './BoardSideBar.scss';
-import { Side } from '../../../../../components/widget/Side/Side';
-import { SideItem } from '../../../../../components/widget/Side/SideItem';
+import { Side } from '../../../../components/widget/Side/Side';
+import { SideItem } from '../../../../components/widget/Side/SideItem';
 
 export class BoardSideBar extends Component<{}> {
   render() {

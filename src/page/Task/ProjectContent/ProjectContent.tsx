@@ -38,7 +38,7 @@ const mapStateToProps = (state: any, props: any) => {
   };
 };
 
-export const BoardContentContainer = withRouter(
+export const ProjectContentContainer = withRouter(
   connect(
     mapStateToProps,
     mapDispatchToProps
