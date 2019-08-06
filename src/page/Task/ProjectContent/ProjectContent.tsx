@@ -1,35 +1,35 @@
-//
 import React, { Component } from 'react';
 import { ColumnBoardContainer } from './ColumnBoard/ColumnBoard';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
 import { makeActionRequestCollection } from '../../../actions/actions';
-import { ListBoardContainer } from './ListBoard/ListBoard';
 import { Map } from 'immutable';
 
-import './BoardContent.scss';
+import './ProjectContent.scss';
+import { BoardSideBar } from './ColumnBoard/BoardSideBar/BoardSideBar';
 
-export class BoardContent extends Component {
+export class ProjectContent extends Component {
   state = {};
 
   render() {
-    const isListView = this.props.boardSetting.get('showType') === 'LIST';
     return (
-      <div className="board-content-container">
-        {isListView ? <ListBoardContainer /> : <ColumnBoardContainer />}
+      <div>
+        <BoardSideBar />
+        <ColumnBoardContainer />
       </div>
+      
     );
   }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch: any) => {
   return {
     actions: bindActionCreators(makeActionRequestCollection(), dispatch)
   };
 };
 
-const mapStateToProps = (state, props) => {
+const mapStateToProps = (state: any, props: any) => {
   const taskBoardId = props.match.params.boardId;
   return {
     taskBoardId,
@@ -42,5 +42,5 @@ export const BoardContentContainer = withRouter(
   connect(
     mapStateToProps,
     mapDispatchToProps
-  )(BoardContent)
+  )(ProjectContent)
 );

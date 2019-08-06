@@ -6,8 +6,6 @@ import { LogoBan } from '../../components/commons/LogoBan/LogoBan';
 import { NavAddOperation } from './NavAddOperation/NavAddOperation';
 import { Layout, Icon, Dropdown, Menu } from 'antd';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
 import './Nav.scss';
 
 const { Header } = Layout;
@@ -64,6 +62,10 @@ class Nav extends Component<any> {
 
             <NavLink to="/todo" activeClassName="active">
               Todo
+            </NavLink>
+
+            <NavLink to="/schedule" activeClassName="active">
+              Schedule
             </NavLink>
 
             <NavAddOperation />

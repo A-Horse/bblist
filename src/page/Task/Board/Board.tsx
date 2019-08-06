@@ -5,7 +5,7 @@ import { Route, Switch, Redirect } from 'react-router';
 import { updateTitle } from '../../../services/title';
 import { StarCheckBox } from '../../../components/widget/StarCheckBox/StarCheckBox';
 
-import { BoardContentContainer } from '../BoardContent/BoardContent';
+import { BoardContentContainer } from '../ProjectContent/BoardContentnt';
 import { BoardSetting } from '../BoardSetting/BoardSetting';
 
 import { Layout } from 'antd';

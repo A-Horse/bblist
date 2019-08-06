@@ -1,4 +1,3 @@
-//
 import React, { Component, Suspense } from 'react';
 import Nav from './Nav/Nav';
 import { Route, Switch, Redirect } from 'react-router';
@@ -54,7 +53,7 @@ const ProfilePage = () => {
   );
 };
 
-export default class App extends Component {
+export default class App extends Component<any> {
   state = { userData: null };
 
   componentWillMount() {

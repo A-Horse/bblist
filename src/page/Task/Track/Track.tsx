@@ -1,10 +1,8 @@
-import React, { Component, MouseEvent } from 'react';
+import React, { Component } from 'react';
 import * as R from 'ramda';
 import Input from '../../../components/widget/Input/Input';
 import { TaskCard } from '../TaskCard/TaskCard';
 import TaskCardCreater from '../CardCreater/CardCreater';
-import { isEnterKey } from '../../../utils/keyboard';
-import { onTrackTopBarMouseDown } from './track-switch-helper';
 import { Menu, Dropdown, Icon } from 'antd';
 
 import './Track.scss';
@@ -42,10 +40,6 @@ export class TaskTrack extends Component<any> {
     }
   }
 
-  onTopBarMouseDown = (event: MouseEvent) => {
-    onTrackTopBarMouseDown(event, this);
-  };
-
   resetDragMeta() {
     this.cardDragMeta = { placeholderCardIndex: -1 };
   }
@@ -73,7 +67,7 @@ export class TaskTrack extends Component<any> {
         data-id={this.props.track.get('id')}
         className="task-track"
       >
-        <div className="task-track--top-bar" onMouseDown={this.onTopBarMouseDown.bind(this)}>
+        <div className="task-track--top-bar">
           <div className="task-track--name">
             <Input
               className="task-track--input"
