@@ -26,6 +26,30 @@ export function getProjectsFailure(): FSAction  {
   };
 }
 
+export const GET_PROJCET_DETAIL_REQUEST = 'GET_PROJCET_DETAIL_REQUEST';
+export const GET_PROJCET_DETAIL_SUCCESS = 'GET_PROJCET_DETAIL_SUCCESS';
+export const GET_PROJCET_DETAIL_FAILURE = 'GET_PROJCET_DETAIL_FAILURE';
+
+export function getProjectDetailRequest(): FSAction  {
+  return {
+    type: GET_PROJCET_DETAIL_REQUEST
+  };
+}
+
+export function getProjectDetailSuccess(projects: Project[]): FSAction  {
+  return {
+    type: GET_PROJCET_DETAIL_SUCCESS,
+    payload: projects
+  };
+}
+
+export function getProjectDetailFailure(): FSAction  {
+  return {
+    type: GET_PROJCET_DETAIL_FAILURE,
+    error: true
+  };
+}
+
 export const CREATE_PROJCET_REQUEST = 'CREATE_PROJCETS_REQUEST';
 export const CREATE_PROJCET_SUCCESS = 'CREATE_PROJCETS_SUCCESS';
 export const CREATE_PROJCET_FAILURE = 'CREATE_PROJCETS_FAILURE';
