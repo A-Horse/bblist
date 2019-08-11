@@ -1,4 +1,11 @@
+import { Record } from "immutable";
+
 export type ProjectId = string;
+
+export interface ProjectSetting {
+    id: string;
+    coverUrl: string;
+}
 
 export interface Project {
     id: string;
@@ -6,6 +13,7 @@ export interface Project {
     desc: string;
     createdAt: Date;
     updatedAt: Date;
+    setting: Record<ProjectSetting>;
 }
 
 export interface CreateProjectInput {

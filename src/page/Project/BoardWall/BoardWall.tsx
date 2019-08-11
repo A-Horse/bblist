@@ -34,20 +34,20 @@ export class BoardWall extends Component<Props> {
             <div className="taskboard-boards">
               <div className="board-group">
                 <div className="board-card-container">
-                  {this.props.projects.map((board: any) => {
+                  {this.props.projects.map((project: Record<Project>) => {
                     return (
                       <Link
                         className="taskboard-card"
                         style={{
-                          backgroundImage: board.get('setting').get('cover')
-                            ? `url(${generateBoardCoverUrl(board.get('setting').get('cover'))})`
+                          backgroundImage: project.get('setting').get('coverUrl')
+                            ? `url(${generateBoardCoverUrl(project.get('setting').get('coverUrl'))})`
                             : `url(${DEFAULT_BOARD_COVER_SRC})`
                         }}
-                        key={board.get('id')}
-                        to={`/task-board/${board.get('id')}`}
+                        key={project.get('id')}
+                        to={`/project/${project.get('id')}`}
                       >
                         <div className="taskboard-card-info">
-                          <div className="taskboard-card-info--name">{board.get('name')}</div>
+                          <div className="taskboard-card-info--name">{project.get('name')}</div>
                         </div>
                       </Link>
                     );
