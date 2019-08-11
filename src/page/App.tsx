@@ -26,7 +26,7 @@ const SettingPage = () => {
   );
 };
 
-const TaskBoardWallPageContainer = React.lazy(() => import('./Task/BoardWall/BoardWall.container'));
+const TaskBoardWallPageContainer = React.lazy(() => import('./Project/BoardWall/BoardWall.container'));
 const TaskBoardWallPage = () => {
   return (
     <Suspense fallback={<div>Loading...</div>}>
@@ -82,13 +82,13 @@ export default class App extends Component<any> {
               render={() => (
                 <Redirect
                   to={{
-                    pathname: '/task-board'
+                    pathname: '/project'
                   }}
                 />
               )}
             />
 
-            <Route exact path="/task-board" component={TaskBoardWallPage} />
+            <Route exact path="/project" component={TaskBoardWallPage} />
             <Route path="/task-board/:boardId" component={TaskBoardPage} />
 
             <Route path="/todo/:boxId" component={TodoPage} />
