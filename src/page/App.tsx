@@ -26,20 +26,20 @@ const SettingPage = () => {
   );
 };
 
-const TaskBoardWallPageContainer = React.lazy(() => import('./Project/BoardWall/BoardWall.container'));
-const TaskBoardWallPage = () => {
+const ProjectWallPageContainer = React.lazy(() => import('./Project/BoardWall/BoardWall.container'));
+const ProjectWallPage = () => {
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <TaskBoardWallPageContainer />
+      <ProjectWallPageContainer />
     </Suspense>
   );
 };
 
-const TaskBoardPageContainer = React.lazy(() => import('./Task/ProjectPage/ProjectPage.container'));
-const TaskBoardPage = () => {
+const ProjectPageContainer = React.lazy(() => import('./Task/ProjectPage/ProjectPage.container'));
+const ProjectPage = () => {
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <TaskBoardPageContainer />
+      <ProjectPageContainer />
     </Suspense>
   );
 };
@@ -88,8 +88,8 @@ export default class App extends Component<any> {
               )}
             />
 
-            <Route exact path="/project" component={TaskBoardWallPage} />
-            <Route path="/task-board/:boardId" component={TaskBoardPage} />
+            <Route exact path="/project" component={ProjectWallPage} />
+            <Route path="/project/:project" component={ProjectPage} />
 
             <Route path="/todo/:boxId" component={TodoPage} />
             <Route
