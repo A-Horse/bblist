@@ -1,6 +1,13 @@
 import { values } from 'ramda';
 import actionNames from './actions-name';
 
+export interface FSAction {
+  type: string;
+  payload?: any;
+  error?: boolean;
+  meta?: any;
+}
+
 const ACTIONS: {
   [string: string]: {
     name: string;

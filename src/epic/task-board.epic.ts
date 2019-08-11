@@ -42,16 +42,6 @@ export const GET_TASK_BOARD_SETTING_REQUEST = (action$: any) =>
     })
   );
 
-export const ADD_TASK_BOARD_REQUEST = (action$: any) =>
-  action$.pipe(
-    ofType(Actions.ADD_TASK_BOARD.REQUEST),
-    mergeMap((action: any) => {
-      return http
-        .post(makeApiUrl(`/tk/v2/task-board/`), null, action.payload)
-        .then(Actions.ADD_TASK_BOARD.success)
-        .catch(Actions.ADD_TASK_BOARD.failure);
-    })
-  );
 
 export const UPLOAD_TASK_BOARD_COVER_REQUEST = (action$: any) =>
   action$.pipe(

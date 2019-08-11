@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { Button, Modal, Form, Input } from 'antd';
 import { AppIcon } from '../../../components/widget/Icon';
-import './TaskBoardCreater.scss';
 import { connect } from 'react-redux';
-import { makeActionRequestCollection } from '../../../actions/actions';
 import { bindActionCreators } from 'redux';
+import { createProjectRequest } from '../../../actions/project/project.action';
+
+import './ProjectCreator.scss';
 
 const FormItem = Form.Item;
 
@@ -25,7 +26,7 @@ class TaskBoardCreaterBase extends Component<any, any> {
     event.preventDefault();
     this.props.form.validateFieldsAndScroll((err: any, values: any) => {
       if (!err) {
-        this.props.actions.ADD_TASK_BOARD_REQUEST(values);
+        this.props.actions.createProjectRequest(values);
         this.handleCancel();
       }
     });
@@ -77,11 +78,13 @@ const mapStateToProps = (state: any) => {
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    actions: bindActionCreators(makeActionRequestCollection(), dispatch)
+    actions: bindActionCreators({
+      createProjectRequest
+    }, dispatch)
   };
 };
 
-export const TaskBoardCreater = connect(
+export const ProjectCreator = connect(
   mapStateToProps,
   mapDispatchToProps
 )(TaskBoardCreaterWithForm);

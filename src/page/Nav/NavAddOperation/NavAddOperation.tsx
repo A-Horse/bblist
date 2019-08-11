@@ -7,7 +7,7 @@ import { AppDropdown } from '../../../components/widget/Dropdown';
 import { AppMenu } from '../../../components/widget/Menu/Menu';
 
 import './NavAddOperation.scss';
-import { TaskBoardCreater } from '../../Task/TaskBoardCreater/TaskBoardCreater';
+import { ProjectCreator } from '../../Task/ProjectCreator/ProjectCreator';
 import { TaskCreator } from '../../../components/creators/TaskCreator/TaskCreator';
 
 export class NavAddOperation extends Component<any> {
@@ -17,7 +17,7 @@ export class NavAddOperation extends Component<any> {
     const menu = (
       <AppMenu className="nav-add-operation-menu" style={{ width: '156px' }}>
         <AppMenu.Item>
-          <TaskBoardCreater />
+          <ProjectCreator />
         </AppMenu.Item>
 
         <AppMenu.Item>

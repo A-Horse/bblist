@@ -1,5 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component, FormEvent } from 'react';
 import { Button, Form, Input } from 'antd';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { makeActionRequestCollection } from '../../../actions/actions';
 
 const FormItem = Form.Item;
 
@@ -8,7 +11,9 @@ import './TaskCreatorModal.scss';
 class CreateProjectTaskFormBase extends Component<
   {
     form: any;
-    style: any
+    actions: any;
+    style: any;
+    onCancel?: () => void;
   },
   any
 > {
@@ -18,7 +23,16 @@ class CreateProjectTaskFormBase extends Component<
     name: ''
   };
 
-  handleSubmit() {}
+  handleSubmit(event: FormEvent<any>) {
+    event.preventDefault();
+    this.props.form.validateFieldsAndScroll((err: any, values: any) => {
+      if (!err) {
+        this.props.actions.ADD_TODO_REQUEST(values, {
+          closeFn: this.props.onCancel
+        });
+      }
+    });
+  }
 
   handleCancel = () => {
     this.setState({
@@ -48,4 +62,19 @@ class CreateProjectTaskFormBase extends Component<
   }
 }
 
-export const CreateProjectTaskForm = Form.create()(CreateProjectTaskFormBase);
+const CreateProjectTaskFormWrapper = Form.create()(CreateProjectTaskFormBase);
+
+const mapStateToProps = (state: any) => {
+  return {};
+};
+
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    actions: bindActionCreators(makeActionRequestCollection(), dispatch)
+  };
+};
+
+export const CreateProjectTaskForm = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CreateProjectTaskFormWrapper);

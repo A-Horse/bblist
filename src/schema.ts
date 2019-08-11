@@ -15,3 +15,7 @@ export const TDS = new schema.Array(TD);
 export const TDBox = new schema.Entity('TodoBox', { todos: TDS });
 export const TDBoxs = new schema.Array(TDBox);
 export const TDRepeat = new schema.Entity('TodoRepeat');
+
+
+export const ProjectEntity = new schema.Entity('Project');
+export const ProjectEntityList = new schema.Array(ProjectEntity);

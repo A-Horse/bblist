@@ -1,19 +1,26 @@
 import { connect } from 'react-redux';
 import { BoardWall } from './BoardWall';
-import { bindActionCreators } from 'redux';
+import { bindActionCreators, AnyAction, Dispatch } from 'redux';
 import { withRouter } from 'react-router-dom';
-import Actions, { makeActionRequestCollection } from '../../../actions/actions';
+import { getProjectsRequest } from '../../../actions/project/project.action';
 
 const mapStateToProps = (state: any) => {
   return {
-    boardMap: state.task2.get('boardMap'),
-    boardSettingMap: state.task2.get('boardSettingMap')
+    projects: state.project
+      .get('projectMap')
+      .valueSeq()
+      .toArray(),
   };
 };
 
-const mapDispatchToProps = (dispatch: any) => {
+const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
   return {
-    actions: bindActionCreators(makeActionRequestCollection(), dispatch)
+    actions: bindActionCreators(
+      {
+        getProjectsRequest
+      },
+      dispatch
+    )
   };
 };
 

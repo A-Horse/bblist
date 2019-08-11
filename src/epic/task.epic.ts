@@ -2,10 +2,8 @@ import Actions from '../actions/actions';
 import { makeApiUrl } from '../utils/api';
 import { http } from '../services/http';
 import * as R from 'ramda';
-import { getCachedUserId } from '../utils/auth';
-import { fromJS } from 'immutable';
 import { ofType } from 'redux-observable';
-import { map, mergeMap, distinctUntilChanged, debounceTime } from 'rxjs/operators';
+import { mergeMap, distinctUntilChanged, debounceTime } from 'rxjs/operators';
 
 // export const CARD_MOVE_REQUEST = (action$: any, state: any) =>
 //   action$.pipe(
@@ -90,18 +88,6 @@ export const UPDATE_TASK_BOARD_REQUEST = (action$: any) =>
         )
         .then(Actions.UPDATE_TASK_BOARD.success)
         .catch(Actions.UPDATE_TASK_BOARD.failure);
-    })
-  );
-
-export const GET_USER_TASK_ALL_BOARD = (action$: any) =>
-  action$.pipe(
-    ofType(Actions.GET_TASK_ALL_BOARD.REQUEST),
-    mergeMap(action => {
-      const userId = getCachedUserId();
-      return http
-        .get(makeApiUrl(`/tk/v2/user/${userId}/task-board`))
-        .then(Actions.GET_TASK_ALL_BOARD.success)
-        .catch(Actions.GET_TASK_ALL_BOARD.failure);
     })
   );
 

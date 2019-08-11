@@ -1,3 +1,4 @@
+import { GET_PROJCETS_SUCCESS } from './../actions/project/project.action';
 import { normalize } from 'normalizr';
 import { fromJS, Record, Map } from 'immutable';
 import * as R from 'ramda';
@@ -15,7 +16,6 @@ export interface TaskStateProp {
   currentBoard: Record<ITaskBoard> | null;
   boardFetching: boolean;
   trackMap: Map<string, any>;
-  boardMap: Map<string, Record<TaskBoard>>;
   boardSettingMap: Map<string, Record<ITaskBoardSetting>>;
   cardMap: Map<string, any>;
   boardParticipants: any;
@@ -58,11 +58,7 @@ export function task2(
     case Actions.GET_TASK_BOARD.FAILURE:
       return state.update('currentBoard', () => null).update('boardFetching', R.F);
 
-    case Actions.ADD_TASK_BOARD.SUCCESS:
-      const normalizedAddBoard = normalize(action.payload, TaskBoard);
-      return state.update('boardMap', boardMap =>
-        boardMap.merge(fromJS(normalizedAddBoard.entities.TaskBoard))
-      );
+  
 
     case Actions.GET_TASK_BOARD_SETTING.REQUEST:
       return state;
@@ -86,10 +82,6 @@ export function task2(
         .updateIn(['cardMap'], cardMap => {
           return cardMap.merge(fromJS(normalizedTrack.entities.TaskCard));
         });
-
-    case Actions.GET_TASK_ALL_BOARD.SUCCESS:
-      const normalizedAllBoard = normalize(action.payload, TaskBoards);
-      return state.update('boardMap', () => fromJS(normalizedAllBoard.entities.TaskBoard));
 
     case Actions.UPDATE_TASK_BOARD.SUCCESS:
       return state.update('currentBoard', board => {
