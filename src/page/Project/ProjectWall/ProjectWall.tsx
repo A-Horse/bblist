@@ -9,22 +9,21 @@ import { generateBoardCoverUrl } from '../../../utils/url';
 const { Content } = Layout;
 
 import './BoardWall.scss';
-import { Project } from '../../../typings/project/project.typing';
+import { Project, ProjectSetting, ProjectRecord } from '../../../typings/project/project.typing';
 import { Record, List } from 'immutable';
 
 interface Props {
   actions: any;
   boardMap: any;
-  projects: Record<Project>[];
+  projects: ProjectRecord[];
 }
 
-export class BoardWall extends Component<Props> {
+export class ProjectWall extends Component<Props> {
   componentWillMount() {
     return this.props.actions.getProjectsRequest();
   }
 
   render() {
-    console.log(this.props);
     return (
       <Content className="board-wall-page-content">
         <div className="board-wall-page-content--inner-container">
@@ -34,7 +33,7 @@ export class BoardWall extends Component<Props> {
             <div className="taskboard-boards">
               <div className="board-group">
                 <div className="board-card-container">
-                  {this.props.projects.map((project: Record<Project>) => {
+                  {this.props.projects.map((project: ProjectRecord) => {
                     return (
                       <Link
                         className="taskboard-card"

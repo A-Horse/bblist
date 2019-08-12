@@ -3,10 +3,13 @@ import { Board } from './ProjectPage';
 import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
 import { makeActionRequestCollection } from '../../../actions/actions';
+import { getProjectDetailRequest } from '../../../actions/project/project.action';
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    actions: bindActionCreators(makeActionRequestCollection(), dispatch)
+    actions: bindActionCreators({
+      getProjectDetailRequest
+    }, dispatch)
   };
 };
 

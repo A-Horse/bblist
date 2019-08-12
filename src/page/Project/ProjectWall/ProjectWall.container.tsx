@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { BoardWall } from './BoardWall';
+import { ProjectWall } from './ProjectWall';
 import { bindActionCreators, AnyAction, Dispatch } from 'redux';
 import { withRouter } from 'react-router-dom';
 import { getProjectsRequest } from '../../../actions/project/project.action';
@@ -24,9 +24,9 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
   };
 };
 
-const BoardsContainer = withRouter(connect(
+const ProjectWallContainer = withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(BoardWall) as any);
+)(ProjectWall) as any);
 
-export default BoardsContainer;
+export default ProjectWallContainer;

@@ -7,7 +7,7 @@ import { makeActionRequestCollection } from '../../../actions/actions';
 import { Map } from 'immutable';
 
 import './ProjectContent.scss';
-import { BoardSideBar } from '../ProjectPage/BoardSideBar/BoardSideBar';
+import { BoardSideBar } from '../../Project/ProjectPage/BoardSideBar/BoardSideBar';
 
 export class ProjectContent extends Component {
   state = {};

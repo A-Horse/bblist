@@ -5,17 +5,6 @@ import { mergeMap } from 'rxjs/operators';
 import axios from 'axios';
 import http from '../services/http';
 
-export const GET_TASK_BOARD = (action$: any) =>
-  action$.pipe(
-    ofType(Actions.GET_TASK_BOARD.REQUEST),
-    mergeMap((action: any) => {
-      return http
-        .get(makeApiUrl(`/tk/v2/task-board/${action.payload.id}/verbose`), null)
-        .then(Actions.GET_TASK_BOARD.success)
-        .catch(Actions.GET_TASK_BOARD.failure);
-    })
-  );
-
 export const TASKBOARD_SETTING_UPDATE_REQUEST = (action$: any) =>
   action$.pipe(
     ofType(Actions.TASKBOARD_SETTING_UPDATE.REQUEST),

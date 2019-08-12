@@ -30,16 +30,17 @@ export const GET_PROJCET_DETAIL_REQUEST = 'GET_PROJCET_DETAIL_REQUEST';
 export const GET_PROJCET_DETAIL_SUCCESS = 'GET_PROJCET_DETAIL_SUCCESS';
 export const GET_PROJCET_DETAIL_FAILURE = 'GET_PROJCET_DETAIL_FAILURE';
 
-export function getProjectDetailRequest(): FSAction  {
+export function getProjectDetailRequest(projectId: string): FSAction  {
   return {
-    type: GET_PROJCET_DETAIL_REQUEST
+    type: GET_PROJCET_DETAIL_REQUEST,
+    payload: projectId
   };
 }
 
-export function getProjectDetailSuccess(projects: Project[]): FSAction  {
+export function getProjectDetailSuccess(project: Project): FSAction  {
   return {
     type: GET_PROJCET_DETAIL_SUCCESS,
-    payload: projects
+    payload: project
   };
 }
 

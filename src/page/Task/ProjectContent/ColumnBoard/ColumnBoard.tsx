@@ -11,7 +11,7 @@ import HTML5Backend from 'react-dnd-html5-backend';
 import { DragDropContext } from 'react-dnd';
 import { TaskTrackNormalized } from '../../../../typings/task/task-track.typing';
 import { Record } from 'immutable';
-import { BoardSideBar } from '../../ProjectPage/BoardSideBar/BoardSideBar';
+import { BoardSideBar } from '../../../Project/ProjectPage/BoardSideBar/BoardSideBar';
 
 import './ColumnBoard.scss';
 

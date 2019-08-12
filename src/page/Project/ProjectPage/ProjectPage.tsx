@@ -1,34 +1,33 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Route, Switch, Redirect } from 'react-router';
+import { Route, Switch, Redirect, match } from 'react-router';
 import { updateTitle } from '../../../services/title';
 import { StarCheckBox } from '../../../components/widget/StarCheckBox/StarCheckBox';
-
-import { ProjectContentContainer } from '../ProjectContent/ProjectContent';
-import { BoardSetting } from '../BoardSetting/BoardSetting';
-
+import { ProjectContentContainer } from '../../Task/ProjectContent/ProjectContent';
+import { BoardSetting } from '../../Task/BoardSetting/BoardSetting';
 import { Layout } from 'antd';
+import { BoardSideBar } from './BoardSideBar/BoardSideBar';
 
 import './ProjectPage.scss';
-import { BoardSideBar } from './BoardSideBar/BoardSideBar';
 
 const { Header } = Layout;
 
 export class Board extends Component<{
   boardName: string;
-  match: any;
-  actions: any;
+  match:  match<{
+    projectId: string
+  }>;
+  actions: {
+    getProjectDetailRequest: (projectId: string) => void
+  };
   board: any;
   boardFetching: any;
   history: any;
 }> {
+
   componentWillMount() {
-    updateTitle(`Task Board ${this.props.boardName}`);
-    const taskBoardId = this.props.match.params.boardId;
-    this.props.actions.GET_TASK_BOARD_REQUEST({ id: taskBoardId });
-    this.props.actions.GET_TASK_BOARD_SETTING_REQUEST({
-      taskBoardId: taskBoardId
-    });
+    const projectId = this.props.match.params.projectId;
+    this.props.actions.getProjectDetailRequest(projectId);
   }
 
   componentWillReceiveProps(nextProps: any) {
@@ -38,15 +37,16 @@ export class Board extends Component<{
   }
 
   onStarCheckChange = (value: any) => {
-    this.props.actions.UPDATE_TASK_BOARD_REQUEST({
-      id: this.props.match.params.boardId,
-      isStar: value
-    });
+    // this.props.actions.UPDATE_TASK_BOARD_REQUEST({
+    //   id: this.props.match.params.boardId,
+    //   isStar: value
+    // });
   };
 
   render() {
-    const { boardId } = this.props.match.params;
+    const { projectId } = this.props.match.params;
     const { board, boardFetching } = this.props;
+
     if (boardFetching === false && !board) {
       return <Redirect to="/task-board" />;
     }
@@ -62,7 +62,7 @@ export class Board extends Component<{
             defaultChecked={board.get('isStar')}
           />
           <div className="taskboard-name">
-            <Link className="taskboard-name--text" to={`/task-board/${boardId}`}>
+            <Link className="taskboard-name--text" to={`/proejct/${projectId}`}>
               {board && board.get('name')}
             </Link>
           </div>
@@ -71,7 +71,7 @@ export class Board extends Component<{
             className="taskboard-header-setting"
             onClick={() =>
               this.props.history.push(
-                `/task-board/${this.props.match.params.boardId}/setting/infomation`
+                `/project/${this.props.match.params.projectId}/setting/infomation`
               )
             }
           >

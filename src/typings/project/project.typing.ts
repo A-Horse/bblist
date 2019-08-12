@@ -1,5 +1,4 @@
-import { Record } from "immutable";
-
+import { Record } from 'immutable';
 export type ProjectId = string;
 
 export interface ProjectSetting {
@@ -13,8 +12,17 @@ export interface Project {
     desc: string;
     createdAt: Date;
     updatedAt: Date;
-    setting: Record<ProjectSetting>;
+    setting: ProjectSetting;
 }
+
+export type ProjectRecord = Record<{
+    id: string;
+    name: string;
+    desc: string;
+    createdAt: Date;
+    updatedAt: Date;
+    setting: Record<ProjectSetting>;
+}>;
 
 export interface CreateProjectInput {
     name: string;

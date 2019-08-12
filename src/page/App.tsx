@@ -26,7 +26,7 @@ const SettingPage = () => {
   );
 };
 
-const ProjectWallPageContainer = React.lazy(() => import('./Project/BoardWall/BoardWall.container'));
+const ProjectWallPageContainer = React.lazy(() => import('./Project/ProjectWall/ProjectWall.container'));
 const ProjectWallPage = () => {
   return (
     <Suspense fallback={<div>Loading...</div>}>
@@ -35,7 +35,7 @@ const ProjectWallPage = () => {
   );
 };
 
-const ProjectPageContainer = React.lazy(() => import('./Task/ProjectPage/ProjectPage.container'));
+const ProjectPageContainer = React.lazy(() => import('./Project/ProjectPage/ProjectPage.container'));
 const ProjectPage = () => {
   return (
     <Suspense fallback={<div>Loading...</div>}>
