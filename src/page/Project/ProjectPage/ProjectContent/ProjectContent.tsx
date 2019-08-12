@@ -7,7 +7,7 @@ import { withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 
 import { makeActionRequestCollection } from '../../../../actions/actions';
-import { BoardSideBar } from '../BoardSideBar/BoardSideBar';
+import { BoardSideBar } from '../ProjectSideBar/ProjectSideBar';
 import { ColumnBoardContainer } from './ColumnBoard/ColumnBoard';
 
 export class ProjectContent extends Component {

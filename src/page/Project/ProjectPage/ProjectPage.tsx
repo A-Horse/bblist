@@ -9,7 +9,7 @@ import { StarCheckBox } from '../../../components/widget/StarCheckBox/StarCheckB
 import { updateTitle } from '../../../services/title';
 import { BoardSetting } from '../../Task/BoardSetting/BoardSetting';
 import { ProjectContentContainer } from './ProjectContent/ProjectContent';
-import { BoardSideBar } from './BoardSideBar/BoardSideBar';
+import { BoardSideBar } from './ProjectSideBar/ProjectSideBar';
 import { getProjectDetailRequest } from '../../../actions/project/project.action';
 
 import { connect } from 'react-redux';
@@ -88,7 +88,7 @@ class ProjectPageComponent extends Component<Props> {
         </Header>
 
         <div>
-          <BoardSideBar />
+          <BoardSideBar match={this.props.match} />
 
           <Switch>
             <Route

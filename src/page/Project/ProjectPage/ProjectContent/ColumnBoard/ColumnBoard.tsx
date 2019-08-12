@@ -11,7 +11,7 @@ import { bindActionCreators } from 'redux';
 
 import { makeActionRequestCollection } from '../../../../../actions/actions';
 import { TaskTrackNormalized } from '../../../../../typings/task/task-track.typing';
-import { BoardSideBar } from '../../BoardSideBar/BoardSideBar';
+import { BoardSideBar } from '../../ProjectSideBar/ProjectSideBar';
 import { CardDetailContainer } from '../../../../Task/CardDetail/CardDetail.container';
 import { TaskTrack } from '../../../../Task/Track/Track';
 import TrackCreater from '../../../../Task/TrackCreater/TrackCreater';
