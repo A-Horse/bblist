@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
-import { Todo } from '../Todo/Todo';
-import { List as AntList } from 'antd';
-
 import './TodoPageContent.scss';
+
+import { List as AntList } from 'antd';
+import React, { Component } from 'react';
+
+import { Todo } from '../Todo/Todo';
 
 export class TodoPageContent extends Component<any> {
   state = { toggleAll: false };

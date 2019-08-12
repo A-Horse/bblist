@@ -1,15 +1,16 @@
+import './Infomation.scss';
+
+import { Input } from 'antd';
 //
 import React, { Component } from 'react';
-import { Input } from 'antd';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
+import { bindActionCreators } from 'redux';
+
+import { makeActionRequestCollection } from '../../../../actions/actions';
 import { ImageUploader } from '../../../../components/ImageUploader/ImageUploader';
 import { DEFAULT_BOARD_COVER_SRC } from '../../../../constants';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { makeActionRequestCollection } from '../../../../actions/actions';
-import { withRouter } from 'react-router';
 import { generateBoardCoverUrl } from '../../../../utils/url';
-
-import './Infomation.scss';
 
 class Infomation extends Component<any> {
   onCoverUpload = (coverBase64: any) => {

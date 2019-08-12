@@ -1,14 +1,14 @@
+import './NavAddOperation.scss';
+
+import { Dropdown, Menu } from 'antd';
 import React, { Component } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 
-import { Dropdown, Menu } from 'antd';
-import { AppIcon } from '../../../components/widget/Icon';
-import { AppDropdown } from '../../../components/widget/Dropdown';
-import { AppMenu } from '../../../components/widget/Menu/Menu';
-
-import './NavAddOperation.scss';
-import { ProjectCreator } from '../../Task/ProjectCreator/ProjectCreator';
 import { TaskCreator } from '../../../components/creators/TaskCreator/TaskCreator';
+import { AppDropdown } from '../../../components/widget/Dropdown';
+import { AppIcon } from '../../../components/widget/Icon';
+import { AppMenu } from '../../../components/widget/Menu/Menu';
+import { ProjectCreator } from '../../Task/ProjectCreator/ProjectCreator';
 
 export class NavAddOperation extends Component<any> {
   state = {};

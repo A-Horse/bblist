@@ -1,14 +1,15 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { Route, Switch, Redirect, match } from 'react-router';
-import { updateTitle } from '../../../services/title';
-import { StarCheckBox } from '../../../components/widget/StarCheckBox/StarCheckBox';
-import { ProjectContentContainer } from '../../Task/ProjectContent/ProjectContent';
-import { BoardSetting } from '../../Task/BoardSetting/BoardSetting';
-import { Layout } from 'antd';
-import { BoardSideBar } from './BoardSideBar/BoardSideBar';
-
 import './ProjectPage.scss';
+
+import { Layout } from 'antd';
+import React, { Component } from 'react';
+import { match, Redirect, Route, Switch } from 'react-router';
+import { Link } from 'react-router-dom';
+
+import { StarCheckBox } from '../../../components/widget/StarCheckBox/StarCheckBox';
+import { updateTitle } from '../../../services/title';
+import { BoardSetting } from '../../Task/BoardSetting/BoardSetting';
+import { ProjectContentContainer } from '../../Task/ProjectContent/ProjectContent';
+import { BoardSideBar } from './BoardSideBar/BoardSideBar';
 
 const { Header } = Layout;
 

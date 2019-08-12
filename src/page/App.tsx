@@ -1,11 +1,11 @@
+import { Layout } from 'antd';
 import React, { Component, Suspense } from 'react';
-import Nav from './Nav/Nav';
-import { Route, Switch, Redirect } from 'react-router';
+import { Redirect, Route, Switch } from 'react-router';
 
 import NotFound from '../page/NotFound';
-
 import { getUserData } from '../utils/auth';
-import { Layout } from 'antd';
+import Nav from './Nav/Nav';
+
 const { Content } = Layout;
 
 const TodoPageContainer = React.lazy(() => import('./Todo/TodoPage.container'));

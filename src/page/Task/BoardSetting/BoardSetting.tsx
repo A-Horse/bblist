@@ -1,13 +1,14 @@
+import './BoardSetting.scss';
+
+import { Icon, Layout, Menu } from 'antd';
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router';
+import { Link } from 'react-router-dom';
+
 import { InfomationContainer } from './Infomation/Infomation';
 import { Operation } from './Operation/Operation';
-import { TaskBoardPreferenceContainer } from './Preference/Preference';
 import { Participant } from './Participant/Participant';
-import { Link } from 'react-router-dom';
-import { Layout, Menu, Icon } from 'antd';
-
-import './BoardSetting.scss';
+import { TaskBoardPreferenceContainer } from './Preference/Preference';
 
 const { Content, Sider } = Layout;
 

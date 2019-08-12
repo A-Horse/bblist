@@ -1,11 +1,12 @@
-import React, { Component } from 'react';
-import * as R from 'ramda';
-import Input from '../../../components/widget/Input/Input';
-import { TaskCard } from '../TaskCard/TaskCard';
-import TaskCardCreater from '../CardCreater/CardCreater';
-import { Menu, Dropdown, Icon } from 'antd';
-
 import './Track.scss';
+
+import { Dropdown, Icon, Menu } from 'antd';
+import * as R from 'ramda';
+import React, { Component } from 'react';
+
+import Input from '../../../components/widget/Input/Input';
+import TaskCardCreater from '../CardCreater/CardCreater';
+import { TaskCard } from '../TaskCard/TaskCard';
 
 export class TaskTrack extends Component<any> {
   state = {

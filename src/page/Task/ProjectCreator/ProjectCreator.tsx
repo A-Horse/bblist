@@ -1,11 +1,12 @@
+import './ProjectCreator.scss';
+
+import { Button, Form, Input, Modal } from 'antd';
 import React, { Component } from 'react';
-import { Button, Modal, Form, Input } from 'antd';
-import { AppIcon } from '../../../components/widget/Icon';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { createProjectRequest } from '../../../actions/project/project.action';
 
-import './ProjectCreator.scss';
+import { createProjectRequest } from '../../../actions/project/project.action';
+import { AppIcon } from '../../../components/widget/Icon';
 
 const FormItem = Form.Item;
 

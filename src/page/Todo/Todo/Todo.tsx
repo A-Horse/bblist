@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import { StarCheckBox } from '../../../components/widget/StarCheckBox/StarCheckBox';
-import { Checkbox } from 'antd';
-import moment from 'moment';
-import { Tag } from 'antd';
-
 import './Todo.scss';
+
+import { Checkbox, Tag } from 'antd';
+import moment from 'moment';
+import React, { Component } from 'react';
+
+import { StarCheckBox } from '../../../components/widget/StarCheckBox/StarCheckBox';
 
 export class Todo extends Component<any> {
   updateTodo(updatedPart: any) {

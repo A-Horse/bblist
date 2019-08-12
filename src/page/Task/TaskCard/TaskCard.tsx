@@ -1,11 +1,12 @@
+import './TaskCard.scss';
+
+import { Checkbox } from 'antd';
 //
 import React, { Component } from 'react';
-import { UserAvatar } from '../../../components/UserAvatar/UserAvatar';
-import { Checkbox } from 'antd';
 import { DragSource, DropTarget } from 'react-dnd';
 import { findDOMNode } from 'react-dom';
 
-import './TaskCard.scss';
+import { UserAvatar } from '../../../components/UserAvatar/UserAvatar';
 
 const TaskCardSource = {
   beginDrag(props: any, monitor: any, component: any) {

@@ -1,9 +1,10 @@
 import { connect } from 'react-redux';
-import { Board } from './ProjectPage';
-import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
+import { bindActionCreators } from 'redux';
+
 import { makeActionRequestCollection } from '../../../actions/actions';
 import { getProjectDetailRequest } from '../../../actions/project/project.action';
+import { Board } from './ProjectPage';
 
 const mapDispatchToProps = (dispatch: any) => {
   return {

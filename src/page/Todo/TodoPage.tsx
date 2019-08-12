@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-import { updateTitle } from '../../services/title';
-import { TodoPageContentContainer } from './TodoPageContent/TodoPageContent.container';
-import TodoBoxs from './TodoBoxs/TodoBoxs';
+import './TodoPage.scss';
 
 import { Layout } from 'antd';
+import React, { Component } from 'react';
 
-import './TodoPage.scss';
+import { updateTitle } from '../../services/title';
+import TodoBoxs from './TodoBoxs/TodoBoxs';
+import { TodoPageContentContainer } from './TodoPageContent/TodoPageContent.container';
 
 const { Sider, Content } = Layout;
 

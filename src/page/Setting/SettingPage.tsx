@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import { updateTitle } from '../../services/title';
-import { Link } from 'react-router-dom';
-import { Route, Switch, Redirect } from 'react-router';
-
-import { SettingSecurityContainer } from './Security/Security';
-import Profile from './Profile/Profile.container';
-
 import './SettingPage.scss';
+
+import React, { Component } from 'react';
+import { Redirect, Route, Switch } from 'react-router';
+import { Link } from 'react-router-dom';
+
+import { updateTitle } from '../../services/title';
+import Profile from './Profile/Profile.container';
+import { SettingSecurityContainer } from './Security/Security';
 
 export default class Setting extends Component<any> {
   componentDidMount() {

@@ -1,6 +1,6 @@
-import { Form, Icon, Input, Button } from 'antd';
-import React, { Component, FormEvent } from 'react';
+import { Button, Form, Icon, Input } from 'antd';
 import { WrappedFormUtils } from 'antd/lib/form/Form';
+import React, { Component, FormEvent } from 'react';
 
 interface Props {
   form: WrappedFormUtils;

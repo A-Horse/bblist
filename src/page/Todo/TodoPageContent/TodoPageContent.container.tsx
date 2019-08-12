@@ -1,13 +1,13 @@
-import { connect } from 'react-redux';
-import { createSelector } from 'reselect';
-import { bindActionCreators } from 'redux';
-import { withRouter } from 'react-router-dom';
 import { Record } from 'immutable';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { bindActionCreators, Dispatch } from 'redux';
+import { createSelector } from 'reselect';
+
 import { makeActionRequestCollection } from '../../../actions/actions';
-import { TodoPageContent } from './TodoPageContent';
-import { Todo } from '../../../reducers/todo.reducer';
 import { RootState } from '../../../reducers';
-import { Dispatch } from 'redux';
+import { Todo } from '../../../reducers/todo.reducer';
+import { TodoPageContent } from './TodoPageContent';
 
 const getAllTodos = (state: RootState, props: any) => {
   const todoEntities = state.todo.get('todoEntities');

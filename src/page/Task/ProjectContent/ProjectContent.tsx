@@ -1,13 +1,14 @@
-import React, { Component } from 'react';
-import { ColumnBoardContainer } from './ColumnBoard/ColumnBoard';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { withRouter } from 'react-router-dom';
-import { makeActionRequestCollection } from '../../../actions/actions';
-import { Map } from 'immutable';
-
 import './ProjectContent.scss';
+
+import { Map } from 'immutable';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { bindActionCreators } from 'redux';
+
+import { makeActionRequestCollection } from '../../../actions/actions';
 import { BoardSideBar } from '../../Project/ProjectPage/BoardSideBar/BoardSideBar';
+import { ColumnBoardContainer } from './ColumnBoard/ColumnBoard';
 
 export class ProjectContent extends Component {
   state = {};

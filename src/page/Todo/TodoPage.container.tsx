@@ -1,7 +1,8 @@
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { withRouter } from 'react-router-dom';
 import { Map } from 'immutable';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { bindActionCreators } from 'redux';
+
 import { makeActionRequestCollection } from '../../actions/actions';
 import { TodoPage } from './TodoPage';
 

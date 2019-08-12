@@ -1,7 +1,7 @@
+import { Icon } from 'antd';
 import React, { Component } from 'react';
 
 import { AppMenu } from '../../../../components/widget/Menu/Menu';
-import { Icon } from 'antd';
 
 interface Props {}
 

@@ -1,15 +1,16 @@
+import './SignUp.scss';
+
+import * as R from 'ramda';
 import React, { Component } from 'react';
-import { validateFormValue } from '../../services/validate-strategy';
-import { PageContainer } from '../../components/widget/PageContainer';
-import { Input } from '../../components/widget/Input/Input';
-import { updateTitle } from '../../services/title';
-import { Button } from '../../components/widget/Button/Button';
+import { Link } from 'react-router-dom';
+
 import { LogoBan } from '../../components/commons/LogoBan/LogoBan';
 import { ErrorMsg } from '../../components/ErrorMsg/ErrorMsg';
-import { Link } from 'react-router-dom';
-import * as R from 'ramda';
-
-import './SignUp.scss';
+import { Button } from '../../components/widget/Button/Button';
+import { Input } from '../../components/widget/Input/Input';
+import { PageContainer } from '../../components/widget/PageContainer';
+import { updateTitle } from '../../services/title';
+import { validateFormValue } from '../../services/validate-strategy';
 
 class SignUp extends Component<any, any> {
   state = {

@@ -1,6 +1,7 @@
+import './BoardSideBar.scss';
+
 import React, { Component } from 'react';
 
-import './BoardSideBar.scss';
 import { Side } from '../../../../components/widget/Side/Side';
 import { SideItem } from '../../../../components/widget/Side/SideItem';
 

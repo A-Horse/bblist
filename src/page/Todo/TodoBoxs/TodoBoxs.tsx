@@ -1,12 +1,12 @@
+import './TodoBoxs.scss';
+
+import { Icon, Menu } from 'antd';
+import { Map } from 'immutable';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { TodoBoxCreater } from '../TodoBoxCreater/TodoBoxCreater';
-import { Map } from 'immutable';
 
-import { Menu, Icon } from 'antd';
-
-import './TodoBoxs.scss';
 import { AppIcon } from '../../../components/widget/Icon';
+import { TodoBoxCreater } from '../TodoBoxCreater/TodoBoxCreater';
 
 class TodoBoxs extends Component<any> {
   componentWillMount() {

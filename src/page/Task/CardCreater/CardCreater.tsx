@@ -1,11 +1,12 @@
-import React, { Component } from 'react';
-import { Button } from '../../../components/widget/Button/Button';
-import { UserAvatar } from '../../../components/UserAvatar/UserAvatar';
-import ClickOutSide from '../../../components/utils/ClickOutSide';
-import { timeout } from '../../../utils/timeout';
+import './CardCreater.scss';
 
 import { Select } from 'antd';
-import './CardCreater.scss';
+import React, { Component } from 'react';
+
+import { UserAvatar } from '../../../components/UserAvatar/UserAvatar';
+import ClickOutSide from '../../../components/utils/ClickOutSide';
+import { Button } from '../../../components/widget/Button/Button';
+import { timeout } from '../../../utils/timeout';
 
 const Option = Select.Option;
 

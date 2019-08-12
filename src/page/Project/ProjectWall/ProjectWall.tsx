@@ -1,16 +1,15 @@
+import './BoardWall.scss';
+
+import { Layout } from 'antd';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { DEFAULT_BOARD_COVER_SRC } from '../../../constants';
-import { Layout } from 'antd';
 
-import { BoardWallAside } from './BoardWallAside/BoardWallAside';
+import { DEFAULT_BOARD_COVER_SRC } from '../../../constants';
+import { ProjectRecord, ProjectSetting } from '../../../typings/project/project.typing';
 import { generateBoardCoverUrl } from '../../../utils/url';
+import { BoardWallAside } from './BoardWallAside/BoardWallAside';
 
 const { Content } = Layout;
-
-import './BoardWall.scss';
-import { Project, ProjectSetting, ProjectRecord } from '../../../typings/project/project.typing';
-import { Record, List } from 'immutable';
 
 interface Props {
   actions: any;
