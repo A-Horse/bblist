@@ -1,13 +1,14 @@
-import React, { Component } from 'react';
-import { Button, Form, Input } from 'antd';
-import { AppIcon } from '../../../components/widget/Icon';
-import { connect } from 'react-redux';
-import { makeActionRequestCollection } from '../../../actions/actions';
-import { bindActionCreators } from 'redux';
-import { AppModal } from '../../widget/Modal';
-import { AppMenu } from '../../widget/Menu/Menu';
-
 import './TaskCreatorModal.scss';
+
+import { Button, Form, Input } from 'antd';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import { makeActionRequestCollection } from '../../../actions/actions';
+import { AppIcon } from '../../../components/widget/Icon';
+import { AppMenu } from '../../widget/Menu/Menu';
+import { AppModal } from '../../widget/Modal';
 import { CreateProjectTaskForm } from './CreateProjecTaskForm';
 import { CreateTodoTaskForm } from './CreateTodoTaskForm';
 

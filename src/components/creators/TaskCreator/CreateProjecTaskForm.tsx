@@ -1,12 +1,13 @@
-import React, { Component, FormEvent } from 'react';
+import './TaskCreatorModal.scss';
+
 import { Button, Form, Input } from 'antd';
+import React, { Component, FormEvent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+
 import { makeActionRequestCollection } from '../../../actions/actions';
 
 const FormItem = Form.Item;
-
-import './TaskCreatorModal.scss';
 
 class CreateProjectTaskFormBase extends Component<
   {

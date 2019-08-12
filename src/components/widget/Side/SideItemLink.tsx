@@ -9,8 +9,11 @@ export class SideItem extends Component<{
   name: string;
 }> {
   render() {
-    return <div style={{}}>{this.props.icon ? <AppIcon icon={this.props.icon} /> : null}
+    return (
+      <div style={{}}>
+        {this.props.icon ? <AppIcon icon={this.props.icon} /> : null}
         <span>{this.props.name}</span>
-    </div>;
+      </div>
+    );
   }
 }

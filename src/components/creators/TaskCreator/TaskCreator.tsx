@@ -1,8 +1,9 @@
+import './TaskCreatorModal.scss';
+
 import React, { Component } from 'react';
+
 import { AppIcon } from '../../../components/widget/Icon';
 import { TaskCreatorModal } from './TaskCreatorModal';
-
-import './TaskCreatorModal.scss';
 
 export class TaskCreator extends Component<{}, any> {
   state = {

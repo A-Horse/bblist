@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
-import { TextLogo } from '../TextLogo';
-import octopusImage from '../../../assets/octopus.png';
-
 import './LogoBan.scss';
+
+import React, { Component } from 'react';
+
+import octopusImage from '../../../assets/octopus.png';
+import { TextLogo } from '../TextLogo';
 
 export class LogoBan extends Component<{
   white?: boolean;

@@ -2,7 +2,7 @@ import './ProjectPage.scss';
 
 import { Layout } from 'antd';
 import React, { Component } from 'react';
-import { match, Redirect, Route, Switch } from 'react-router';
+import { match, Redirect, Route, Switch, RouteComponentProps } from 'react-router';
 import { Link } from 'react-router-dom';
 
 import { StarCheckBox } from '../../../components/widget/StarCheckBox/StarCheckBox';
@@ -29,7 +29,7 @@ interface Props {
   history: History;
   location: Location;
   match: match<{
-    projectId: string
+    projectId: string;
   }>;
 }
 
@@ -56,23 +56,22 @@ class ProjectPageComponent extends Component<Props> {
     const { projectId } = this.props.match.params;
     const { project } = this.props;
 
-    if (boardFetching === false && !board) {
-      return <Redirect to="/task-board" />;
-    }
-    if (!board) {
+    if (!project) {
       return null;
+      // return <Redirect to="/task-board" />;
     }
+
     return (
       <Layout className="board-container">
         <Header className="taskboard-header">
           <StarCheckBox
             className="taskboard-header--star"
             onChange={this.onStarCheckChange}
-            defaultChecked={board.get('isStar')}
+            defaultChecked={project.get('setting').get('isStar')}
           />
           <div className="taskboard-name">
             <Link className="taskboard-name--text" to={`/proejct/${projectId}`}>
-              {board && board.get('name')}
+              {project && project.get('name')}
             </Link>
           </div>
 
@@ -123,9 +122,12 @@ const mapStateToProps = (state: RootState, props: Props) => {
   };
 };
 
-export const ProjectPage = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(withRouter<Props>(ProjectPageComponent));
+// TODO
+export const ProjectPage: any = withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(ProjectPageComponent)
+);
 
 export default ProjectPage;

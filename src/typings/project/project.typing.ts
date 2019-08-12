@@ -4,6 +4,7 @@ export type ProjectId = string;
 export interface ProjectSetting {
     id: string;
     coverUrl: string;
+    isStar: boolean;
 }
 
 export interface Project {

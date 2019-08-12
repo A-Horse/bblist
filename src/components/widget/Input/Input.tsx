@@ -1,6 +1,6 @@
-import React, { Component, ReactInstance, ChangeEvent } from 'react';
-
 import './Input.scss';
+
+import React, { ChangeEvent, Component, ReactInstance } from 'react';
 
 export class Input extends Component<{
   value?: string;

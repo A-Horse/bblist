@@ -1,4 +1,5 @@
 import React, { Component, CSSProperties } from 'react';
+
 import octopusImage from '../../../assets/octopus.png';
 
 export class Logo extends Component<{

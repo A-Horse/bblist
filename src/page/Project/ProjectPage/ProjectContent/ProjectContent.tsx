@@ -16,7 +16,6 @@ export class ProjectContent extends Component {
   render() {
     return (
       <div>
-        <BoardSideBar />
         <ColumnBoardContainer />  
       </div>
     );

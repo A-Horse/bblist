@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-
 export class Side extends Component<{
     width?: number
 }> {

@@ -1,16 +1,17 @@
+import './CreateTodoTaskForm.scss';
+
+import { Button, Form, Input, Modal } from 'antd';
 import React, { Component } from 'react';
-import { Button, Modal, Form, Input } from 'antd';
-import { AppIcon } from '../../../components/widget/Icon';
-import { AppButton } from '../../../components/widget/AppButton';
 import { connect } from 'react-redux';
-import { makeActionRequestCollection } from '../../../actions/actions';
 import { bindActionCreators } from 'redux';
-import { TaskCreatorModal } from './TaskCreatorModal';
+
+import { makeActionRequestCollection } from '../../../actions/actions';
+import { AppButton } from '../../../components/widget/AppButton';
+import { AppIcon } from '../../../components/widget/Icon';
 import { AppRangePicker } from '../../widget/Datepicker/Datepicker';
+import { TaskCreatorModal } from './TaskCreatorModal';
 
 const FormItem = Form.Item;
-
-import './CreateTodoTaskForm.scss';
 
 class CreateTodoTaskFormBase extends Component<
   {
