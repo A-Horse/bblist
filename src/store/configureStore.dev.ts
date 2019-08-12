@@ -1,4 +1,3 @@
-//
 import { createStore, compose } from 'redux';
 import { DevTools } from '../tool/DevTools';
 

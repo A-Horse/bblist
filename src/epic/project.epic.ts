@@ -9,14 +9,15 @@ import {
   createProjectSuccess,
   createProjectFailure,
   getProjectDetailSuccess,
-  getProjectDetailFailure
+  getProjectDetailFailure,
+  GET_PROJCET_DETAIL_REQUEST
 } from './../actions/project/project.action';
 
 import { ofType } from 'redux-observable';
 import { makeApiUrl } from '../utils/api';
 import axios, { AxiosResponse } from 'axios';
 
-export const GET_USER_TASK_ALL_BOARD = (action$: any) =>
+export const GET_PROJCETS_REQUEST_FN = (action$: any) =>
   action$.pipe(
     ofType(GET_PROJCETS_REQUEST),
     mergeMap(() => {
@@ -27,7 +28,7 @@ export const GET_USER_TASK_ALL_BOARD = (action$: any) =>
     })
   );
 
-export const GET_PROJCET_DETAIL_REQUEST = (action$: any) =>
+export const GET_PROJCET_DETAIL_REQUEST_FN = (action$: any) =>
   action$.pipe(
     ofType(GET_PROJCET_DETAIL_REQUEST),
     mergeMap((action: FSAction) => {
@@ -35,11 +36,10 @@ export const GET_PROJCET_DETAIL_REQUEST = (action$: any) =>
         .get(makeApiUrl(`/project/${action.payload}`))
         .then((result: AxiosResponse<Project>) => getProjectDetailSuccess(result.data))
         .catch(getProjectDetailFailure);
-     
     })
   );
 
-export const ADD_TASK_BOARD_REQUEST = (action$: any) =>
+export const CREATE_PROJCET_REQUEST_FN = (action$: any) =>
   action$.pipe(
     ofType(CREATE_PROJCET_REQUEST),
     mergeMap((action: FSAction) => {

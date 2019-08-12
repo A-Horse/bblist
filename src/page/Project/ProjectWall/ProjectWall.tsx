@@ -1,4 +1,4 @@
-import './BoardWall.scss';
+import './ProjectWall.scss';
 
 import { Layout } from 'antd';
 import React, { Component } from 'react';

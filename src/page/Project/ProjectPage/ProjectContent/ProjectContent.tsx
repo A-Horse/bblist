@@ -6,8 +6,8 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 
-import { makeActionRequestCollection } from '../../../actions/actions';
-import { BoardSideBar } from '../../Project/ProjectPage/BoardSideBar/BoardSideBar';
+import { makeActionRequestCollection } from '../../../../actions/actions';
+import { BoardSideBar } from '../BoardSideBar/BoardSideBar';
 import { ColumnBoardContainer } from './ColumnBoard/ColumnBoard';
 
 export class ProjectContent extends Component {
@@ -17,9 +17,8 @@ export class ProjectContent extends Component {
     return (
       <div>
         <BoardSideBar />
-        <ColumnBoardContainer />
+        <ColumnBoardContainer />  
       </div>
-      
     );
   }
 }

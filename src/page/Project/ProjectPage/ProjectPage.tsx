@@ -8,33 +8,41 @@ import { Link } from 'react-router-dom';
 import { StarCheckBox } from '../../../components/widget/StarCheckBox/StarCheckBox';
 import { updateTitle } from '../../../services/title';
 import { BoardSetting } from '../../Task/BoardSetting/BoardSetting';
-import { ProjectContentContainer } from '../../Task/ProjectContent/ProjectContent';
+import { ProjectContentContainer } from './ProjectContent/ProjectContent';
 import { BoardSideBar } from './BoardSideBar/BoardSideBar';
+import { getProjectDetailRequest } from '../../../actions/project/project.action';
+
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { bindActionCreators } from 'redux';
+import { RootState } from '../../../reducers';
+import { ProjectRecord } from '../../../typings/project/project.typing';
+import { History, Location } from 'history';
 
 const { Header } = Layout;
 
-export class Board extends Component<{
-  boardName: string;
-  match:  match<{
+interface Props {
+  actions: {
+    getProjectDetailRequest: (projectId: string) => void;
+  };
+  project: ProjectRecord;
+  history: History;
+  location: Location;
+  match: match<{
     projectId: string
   }>;
-  actions: {
-    getProjectDetailRequest: (projectId: string) => void
-  };
-  board: any;
-  boardFetching: any;
-  history: any;
-}> {
+}
 
+class ProjectPageComponent extends Component<Props> {
   componentWillMount() {
     const projectId = this.props.match.params.projectId;
     this.props.actions.getProjectDetailRequest(projectId);
   }
 
   componentWillReceiveProps(nextProps: any) {
-    if (nextProps.boardName !== this.props.boardName) {
-      updateTitle(` ${nextProps.boardName}`);
-    }
+    // if (nextProps.boardName !== this.props.boardName) {
+    //   updateTitle(` ${nextProps.boardName}`);
+    // }
   }
 
   onStarCheckChange = (value: any) => {
@@ -46,7 +54,7 @@ export class Board extends Component<{
 
   render() {
     const { projectId } = this.props.match.params;
-    const { board, boardFetching } = this.props;
+    const { project } = this.props;
 
     if (boardFetching === false && !board) {
       return <Redirect to="/task-board" />;
@@ -85,14 +93,39 @@ export class Board extends Component<{
 
           <Switch>
             <Route
-              path="/task-board/:boardId/setting"
+              path="/project/:projectId/setting"
               render={props => <BoardSetting {...this.props} {...props} />}
             />
-            <Route path="/task-board/:boardId" render={props => <ProjectContentContainer />} />
-            <Route path="/project/:boardId" render={props => <ProjectContentContainer />} />
+            <Route path="/project/:projectId" render={props => <ProjectContentContainer />} />
           </Switch>
         </div>
       </Layout>
     );
   }
 }
+
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    actions: bindActionCreators(
+      {
+        getProjectDetailRequest: getProjectDetailRequest
+      },
+      dispatch
+    )
+  };
+};
+
+const mapStateToProps = (state: RootState, props: Props) => {
+  const { projectId } = props.match.params;
+
+  return {
+    project: state.project.get('projectMap').get(projectId) as ProjectRecord
+  };
+};
+
+export const ProjectPage = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter<Props>(ProjectPageComponent));
+
+export default ProjectPage;

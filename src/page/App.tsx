@@ -35,7 +35,7 @@ const ProjectWallPage = () => {
   );
 };
 
-const ProjectPageContainer = React.lazy(() => import('./Project/ProjectPage/ProjectPage.container'));
+const ProjectPageContainer = React.lazy(() => import('./Project/ProjectPage/ProjectPage'));
 const ProjectPage = () => {
   return (
     <Suspense fallback={<div>Loading...</div>}>
@@ -89,7 +89,7 @@ export default class App extends Component<any> {
             />
 
             <Route exact path="/project" component={ProjectWallPage} />
-            <Route path="/project/:project" component={ProjectPage} />
+            <Route path="/project/:projectId" component={ProjectPage} />
 
             <Route path="/todo/:boxId" component={TodoPage} />
             <Route

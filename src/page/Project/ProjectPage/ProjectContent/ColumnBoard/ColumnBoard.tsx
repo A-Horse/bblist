@@ -9,12 +9,12 @@ import { Route } from 'react-router';
 import { withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 
-import { makeActionRequestCollection } from '../../../../actions/actions';
-import { TaskTrackNormalized } from '../../../../typings/task/task-track.typing';
-import { BoardSideBar } from '../../../Project/ProjectPage/BoardSideBar/BoardSideBar';
-import { CardDetailContainer } from '../../CardDetail/CardDetail.container';
-import { TaskTrack } from '../../Track/Track';
-import TrackCreater from '../../TrackCreater/TrackCreater';
+import { makeActionRequestCollection } from '../../../../../actions/actions';
+import { TaskTrackNormalized } from '../../../../../typings/task/task-track.typing';
+import { BoardSideBar } from '../../BoardSideBar/BoardSideBar';
+import { CardDetailContainer } from '../../../../Task/CardDetail/CardDetail.container';
+import { TaskTrack } from '../../../../Task/Track/Track';
+import TrackCreater from '../../../../Task/TrackCreater/TrackCreater';
 
 // TODO rename
 class ColumnBoardBase extends Component<any, any> {
