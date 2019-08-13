@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 import { DEFAULT_BOARD_COVER_SRC } from '../../../constants';
-import { ProjectRecord, ProjectSetting } from '../../../typings/project/project.typing';
+import { ProjectRecord, ProjectSetting } from '../../../typings/project.typing';
 import { generateBoardCoverUrl } from '../../../utils/url';
 import { BoardWallAside } from './BoardWallAside/BoardWallAside';
 

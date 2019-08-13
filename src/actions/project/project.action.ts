@@ -1,6 +1,6 @@
 import { FSAction } from './../actions';
-import { CreateProjectInput } from './../../typings/project/project.typing';
-import { Project, ProjectId } from '../../typings/project/project.typing';
+import { CreateProjectInput } from '../../typings/project.typing';
+import { Project, ProjectId } from '../../typings/project.typing';
 
 export const GET_PROJCETS_REQUEST = 'GET_PROJCETS_REQUEST';
 export const GET_PROJCETS_SUCCESS = 'GET_PROJCETS_SUCCESS';

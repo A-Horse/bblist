@@ -1,5 +1,5 @@
 import { FSAction } from './../actions/actions';
-import { Project, ProjectId } from './../typings/project/project.typing';
+import { Project, ProjectId } from '../typings/project.typing';
 import { mergeMap } from 'rxjs/operators';
 import {
   getProjectsSuccess,

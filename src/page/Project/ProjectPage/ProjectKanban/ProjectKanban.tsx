@@ -1,30 +1,44 @@
 import './ProjectKanban.scss';
 
-import { Map } from 'immutable';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
-import { bindActionCreators } from 'redux';
-
-import { makeActionRequestCollection } from '../../../../actions/actions';
+import { withRouter, RouteComponentProps } from 'react-router-dom';
+import { bindActionCreators, AnyAction, Dispatch, ActionCreatorsMapObject } from 'redux';
 import { Kanban } from './Kanban/Kanban';
-import { ProjectRecord } from '../../../../typings/project/project.typing';
+import { ProjectRecord } from '../../../../typings/project.typing';
+import { getProjectKanbansRequest } from '../../../../actions/project/kanban.action';
 
-export class ProjectKanbanComponent extends Component {
-  state = {};
+interface Props {
+  actions: ActionCreatorsMapObject;
+}
+
+export class ProjectKanbanComponent extends Component<
+  Props & RouteComponentProps<{ projectId: string }>
+> {
+
+  componentWillMount() {
+    this.props.actions.getProjectKanbansRequest({
+      projectId: this.props.match.params.projectId
+    });
+  }
 
   render() {
     return (
       <div>
-        <Kanban />  
+        <Kanban />
       </div>
     );
   }
 }
 
-const mapDispatchToProps = (dispatch: any) => {
+const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
   return {
-    actions: bindActionCreators(makeActionRequestCollection(), dispatch)
+    actions: bindActionCreators(
+      {
+        getProjectKanbansRequest: getProjectKanbansRequest
+      },
+      dispatch
+    )
   };
 };
 

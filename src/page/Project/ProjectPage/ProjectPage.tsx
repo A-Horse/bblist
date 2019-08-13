@@ -16,7 +16,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { RootState } from '../../../reducers';
-import { ProjectRecord } from '../../../typings/project/project.typing';
+import { ProjectRecord } from '../../../typings/project.typing';
 import { History, Location } from 'history';
 
 const { Header } = Layout;

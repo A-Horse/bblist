@@ -14,10 +14,9 @@ import { TaskTrackNormalized } from '../../../../../typings/task/task-track.typi
 import { CardDetailContainer } from '../../../../Task/CardDetail/CardDetail.container';
 import { TaskTrack } from '../../../../Task/Track/Track';
 import TrackCreater from '../../../../Task/TrackCreater/TrackCreater';
-import { ProjectRecord } from '../../../../../typings/project/project.typing';
+import { ProjectRecord } from '../../../../../typings/project.typing';
 
 class ColumnBoardBase extends Component<any, any> {
-
   render() {
     const { trackMap } = this.props;
     if (!this.props.board) {
@@ -95,10 +94,11 @@ const mapStateToProps = (state: any, props: any) => {
   return {
     project: state.project.get('projectMap').get(projectId) as ProjectRecord
   };
- 
 };
 
-export const Kanban = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(withRouter(ColumnBoard));
+export const Kanban = withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(ColumnBoard)
+);
