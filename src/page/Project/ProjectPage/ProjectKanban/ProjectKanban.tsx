@@ -1,4 +1,4 @@
-import './ProjectContent.scss';
+import './ProjectKanban.scss';
 
 import { Map } from 'immutable';
 import React, { Component } from 'react';
@@ -7,16 +7,16 @@ import { withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 
 import { makeActionRequestCollection } from '../../../../actions/actions';
-import { BoardSideBar } from '../ProjectSideBar/ProjectSideBar';
-import { ColumnBoardContainer } from './ColumnBoard/ColumnBoard';
+import { Kanban } from './Kanban/Kanban';
+import { ProjectRecord } from '../../../../typings/project/project.typing';
 
-export class ProjectContent extends Component {
+export class ProjectKanbanComponent extends Component {
   state = {};
 
   render() {
     return (
       <div>
-        <ColumnBoardContainer />  
+        <Kanban />  
       </div>
     );
   }
@@ -29,17 +29,16 @@ const mapDispatchToProps = (dispatch: any) => {
 };
 
 const mapStateToProps = (state: any, props: any) => {
-  const taskBoardId = props.match.params.boardId;
+  const { projectId } = props.match.params;
+
   return {
-    taskBoardId,
-    boardSetting: state.task2.get('boardSettingMap').get(taskBoardId) || Map(),
-    loginedUser: state.auth.get('loginedUser')
+    project: state.project.get('projectMap').get(projectId) as ProjectRecord
   };
 };
 
-export const ProjectContentContainer = withRouter(
+export const ProjectKanban = withRouter(
   connect(
     mapStateToProps,
     mapDispatchToProps
-  )(ProjectContent)
+  )(ProjectKanbanComponent)
 );

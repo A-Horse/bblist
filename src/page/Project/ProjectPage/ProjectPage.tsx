@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import { StarCheckBox } from '../../../components/widget/StarCheckBox/StarCheckBox';
 import { updateTitle } from '../../../services/title';
 import { BoardSetting } from '../../Task/BoardSetting/BoardSetting';
-import { ProjectContentContainer } from './ProjectContent/ProjectContent';
+import { ProjectKanban } from './ProjectKanban/ProjectKanban';
 import { BoardSideBar } from './ProjectSideBar/ProjectSideBar';
 import { getProjectDetailRequest } from '../../../actions/project/project.action';
 
@@ -95,7 +95,8 @@ class ProjectPageComponent extends Component<Props> {
               path="/project/:projectId/setting"
               render={props => <BoardSetting {...this.props} {...props} />}
             />
-            <Route path="/project/:projectId" render={props => <ProjectContentContainer />} />
+            <Route path="/project/:projectId/kanban" render={props => <ProjectKanban />} />
+            <Route path="/project/:projectId/trackers" render={props => <ProjectKanban />} />
           </Switch>
         </div>
       </Layout>

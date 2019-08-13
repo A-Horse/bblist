@@ -1,4 +1,4 @@
-import './ColumnBoard.scss';
+import './Kanban.scss';
 
 import { Record } from 'immutable';
 import React, { Component } from 'react';
@@ -11,12 +11,11 @@ import { bindActionCreators } from 'redux';
 
 import { makeActionRequestCollection } from '../../../../../actions/actions';
 import { TaskTrackNormalized } from '../../../../../typings/task/task-track.typing';
-import { BoardSideBar } from '../../ProjectSideBar/ProjectSideBar';
 import { CardDetailContainer } from '../../../../Task/CardDetail/CardDetail.container';
 import { TaskTrack } from '../../../../Task/Track/Track';
 import TrackCreater from '../../../../Task/TrackCreater/TrackCreater';
+import { ProjectRecord } from '../../../../../typings/project/project.typing';
 
-// TODO rename
 class ColumnBoardBase extends Component<any, any> {
 
   render() {
@@ -90,16 +89,16 @@ const mapDispatchToProps = (dispatch: any) => {
   };
 };
 
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: any, props: any) => {
+  const { projectId } = props.match.params;
+
   return {
-    board: state.task2.get('currentBoard'),
-    trackMap: state.task2.get('trackMap'),
-    cardMap: state.task2.get('cardMap'),
-    loginedUser: state.auth.get('loginedUser')
+    project: state.project.get('projectMap').get(projectId) as ProjectRecord
   };
+ 
 };
 
-export const ColumnBoardContainer = connect(
+export const Kanban = connect(
   mapStateToProps,
   mapDispatchToProps
 )(withRouter(ColumnBoard));
