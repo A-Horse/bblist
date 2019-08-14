@@ -9,3 +9,8 @@ export type KanbanRecord = Record<{
   id: string;
   name: string;
 }>;
+
+export interface CreateKanbanInput {
+  name: string;
+  projectId: string;
+}

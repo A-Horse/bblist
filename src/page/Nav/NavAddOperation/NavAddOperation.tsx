@@ -8,7 +8,7 @@ import { TaskCreator } from '../../../components/creators/TaskCreator/TaskCreato
 import { AppDropdown } from '../../../components/widget/Dropdown';
 import { AppIcon } from '../../../components/widget/Icon';
 import { AppMenu } from '../../../components/widget/Menu/Menu';
-import { ProjectCreator } from '../../Task/ProjectCreator/ProjectCreator';
+import { ProjectCreator } from '../../Project/ProjectCreator/ProjectCreator';
 
 export class NavAddOperation extends Component<any> {
   state = {};

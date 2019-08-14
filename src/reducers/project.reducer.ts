@@ -36,7 +36,7 @@ export function project(
       return state.updateIn([
         'projectMap', action.payload.projectId
       ], (project: ProjectRecord) => {
-        return project.set('kanbans', action.payload.kanbans);
+        return project.set('kanbans', fromJS(action.payload.kanbans));
       })
 
     default:

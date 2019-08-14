@@ -7,15 +7,16 @@ import { bindActionCreators, AnyAction, Dispatch, ActionCreatorsMapObject } from
 import { Kanban } from './Kanban/Kanban';
 import { ProjectRecord } from '../../../../typings/project.typing';
 import { getProjectKanbansRequest } from '../../../../actions/project/kanban.action';
+import { NoKanbanGuide } from './NoKanbanGuide/NoKanbanGuide';
 
 interface Props {
   actions: ActionCreatorsMapObject;
+  project: ProjectRecord;
 }
 
 export class ProjectKanbanComponent extends Component<
   Props & RouteComponentProps<{ projectId: string }>
 > {
-
   componentWillMount() {
     this.props.actions.getProjectKanbansRequest({
       projectId: this.props.match.params.projectId
@@ -23,8 +24,17 @@ export class ProjectKanbanComponent extends Component<
   }
 
   render() {
+    if (!this.props.project) {
+      return null;
+    }
+
+    if (!this.props.project.get('kanbans')) {
+      return null
+    }
+
     return (
       <div>
+        {!this.props.project.get('kanbans')!.length && <NoKanbanGuide project={this.props.project} />}
         <Kanban />
       </div>
     );
