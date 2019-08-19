@@ -1,10 +1,13 @@
 import { FSAction } from './../actions/actions';
 import { ProjectEntity, ProjectEntityList } from './../schema';
-import { Project, ProjectRecord } from '../typings/project.typing';
-import { GET_PROJCETS_SUCCESS, CREATE_PROJCET_SUCCESS, GET_PROJCET_DETAIL_SUCCESS } from './../actions/project/project.action';
+import { ProjectRecord } from '../typings/project.typing';
+import {
+  GET_PROJCETS_SUCCESS,
+  CREATE_PROJCET_SUCCESS,
+  GET_PROJCET_DETAIL_SUCCESS
+} from './../actions/project/project.action';
 import { normalize } from 'normalizr';
 import { fromJS, Record, Map } from 'immutable';
-import { GET_CARD_DETAIL_REQUEST } from '../epic/task.epic';
 import { GET_PROJCET_KANBANS_SUCCESS } from '../actions/project/kanban.action';
 
 export interface ProjectProp {
@@ -33,11 +36,9 @@ export function project(
     }
 
     case GET_PROJCET_KANBANS_SUCCESS:
-      return state.updateIn([
-        'projectMap', action.payload.projectId
-      ], (project: ProjectRecord) => {
+      return state.updateIn(['projectMap', action.payload.projectId], (project: ProjectRecord) => {
         return project.set('kanbans', fromJS(action.payload.kanbans));
-      })
+      });
 
     default:
       return state;

@@ -1,5 +1,10 @@
-@import "../../../style/variable";
-@import "../_task-variable";
+@import "../../../../../../style/variable";
+
+$top-bar-height: 50px;
+$list-width: 300px;
+$list-radius: 3px;
+$list-horiz-margin: 14px;
+$list-vertical-margin: 15px;
 
 .task-track {
   border-radius: $list-radius;

@@ -12,7 +12,7 @@ import { bindActionCreators } from 'redux';
 import { makeActionRequestCollection } from '../../../../../actions/actions';
 import { TaskTrackNormalized } from '../../../../../typings/task/task-track.typing';
 import { CardDetailContainer } from '../../../../Task/CardDetail/CardDetail.container';
-import { TaskTrack } from '../../../../Task/Track/Track';
+import { KanbanColumn } from './Track/Track';
 import TrackCreater from '../../../../Task/TrackCreater/TrackCreater';
 import { ProjectRecord } from '../../../../../typings/project.typing';
 
@@ -25,7 +25,7 @@ class ColumnBoardBase extends Component<any, any> {
 
     return (
       <div className="column-board-content-container">
-        <Route path="/task-board/:id/card/:cardId" render={() => <CardDetailContainer />} />
+        <Route path="/project/:projectId/kanban/:kanbanId/card/:cardId" render={() => <CardDetailContainer />} />
 
         <div className="board-track-container">
           {trackMap
@@ -33,7 +33,7 @@ class ColumnBoardBase extends Component<any, any> {
             .valueSeq()
             .toArray()
             .map((track: Record<TaskTrackNormalized>) => (
-              <TaskTrack
+              <KanbanColumn
                 key={track.get('id')}
                 actions={this.props.actions}
                 track={track}

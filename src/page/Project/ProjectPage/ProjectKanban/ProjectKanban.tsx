@@ -34,7 +34,7 @@ export class ProjectKanbanComponent extends Component<
 
     return (
       <div>
-        {!this.props.project.get('kanbans')!.length && <NoKanbanGuide project={this.props.project} />}
+        {!this.props.project.get('kanbans')!.count() && <NoKanbanGuide project={this.props.project} />}
         <Kanban />
       </div>
     );

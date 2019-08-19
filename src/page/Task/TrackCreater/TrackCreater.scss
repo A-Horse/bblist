@@ -1,13 +1,12 @@
 @import "../../../style/variable";
-@import "../_task-variable";
 
 .tasklist-creater {
-  border-radius: $list-radius;
+  border-radius: 3px;
   padding: 10px 12px;
   display: inline-flex;
   vertical-align: top;
-  width: $list-width;
-  margin: $list-vertical-margin $list-horiz-margin;
+  width: 300px;
+  margin: 15px 14px;
   justify-content: space-between;
   background-color: $gray-super-light;
   align-items: center;

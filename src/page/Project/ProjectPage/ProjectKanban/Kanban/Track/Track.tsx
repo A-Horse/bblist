@@ -4,11 +4,11 @@ import { Dropdown, Icon, Menu } from 'antd';
 import * as R from 'ramda';
 import React, { Component } from 'react';
 
-import Input from '../../../components/widget/Input/Input';
-import TaskCardCreater from '../CardCreater/CardCreater';
-import { TaskCard } from '../TaskCard/TaskCard';
+import Input from '../../../../../../components/widget/Input/Input';
+import TaskCardCreater from '../../../../../Task/CardCreater/CardCreater';
+import { TaskCard } from '../../../../../Task/TaskCard/TaskCard';
 
-export class TaskTrack extends Component<any> {
+export class KanbanColumn extends Component<any> {
   state = {
     trackDropDownVisible: false
   };

@@ -1,5 +1,5 @@
 import { KanbanRecord } from './kanban.typing';
-import { Record } from 'immutable';
+import { Record, List } from 'immutable';
 export type ProjectId = string;
 
 export interface ProjectSetting {
@@ -24,7 +24,7 @@ export type ProjectRecord = Record<{
   createdAt: Date;
   updatedAt: Date;
   setting: Record<ProjectSetting>;
-  kanbans?: KanbanRecord[];
+  kanbans?: List<KanbanRecord[]>;
 }>;
 
 export interface CreateProjectInput {
