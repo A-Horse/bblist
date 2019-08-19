@@ -23,6 +23,15 @@ export class ProjectKanbanComponent extends Component<
     });
   }
 
+  renderKanbanArea() {
+    if (!this.props.project.get('kanbans')!.count()) {
+      return <NoKanbanGuide project={this.props.project} />
+
+    } else {
+      <Kanban />
+    }
+  }
+
   render() {
     if (!this.props.project) {
       return null;
@@ -34,8 +43,8 @@ export class ProjectKanbanComponent extends Component<
 
     return (
       <div>
-        {!this.props.project.get('kanbans')!.count() && <NoKanbanGuide project={this.props.project} />}
-        <Kanban />
+        { this.renderKanbanArea() }
+        
       </div>
     );
   }
