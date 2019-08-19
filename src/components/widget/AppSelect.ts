@@ -1,3 +1,3 @@
 import Select from 'react-select'
 
-export const AppSelect = Select; 
+export const AppSelect = Select;
