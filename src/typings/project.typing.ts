@@ -6,6 +6,7 @@ export interface ProjectSetting {
   id: string;
   coverUrl: string;
   isStar: boolean;
+  defaultKanbanId: string;
 }
 
 export interface Project {

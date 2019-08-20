@@ -8,6 +8,9 @@ import { Kanban } from './Kanban/Kanban';
 import { ProjectRecord } from '../../../../typings/project.typing';
 import { getProjectKanbansRequest } from '../../../../actions/project/kanban.action';
 import { NoKanbanGuide } from './NoKanbanGuide/NoKanbanGuide';
+import { AppSelect } from '../../../../components/widget/AppSelect';
+import { SelectOption } from '../../../../typings/select.typing';
+import { getKanbanOptions } from '../../../../reducers/selector/kanban.selector';
 
 interface Props {
   actions: ActionCreatorsMapObject;
@@ -15,7 +18,10 @@ interface Props {
 }
 
 export class ProjectKanbanComponent extends Component<
-  Props & RouteComponentProps<{ projectId: string }>
+  Props & RouteComponentProps<{ projectId: string }>,
+  {
+    selectKanbanId: string;
+  }
 > {
   componentWillMount() {
     this.props.actions.getProjectKanbansRequest({
@@ -25,10 +31,22 @@ export class ProjectKanbanComponent extends Component<
 
   renderKanbanArea() {
     if (!this.props.project.get('kanbans')!.count()) {
-      return <NoKanbanGuide project={this.props.project} />
-
+      return <NoKanbanGuide project={this.props.project} />;
     } else {
-      <Kanban />
+      const kanbanOptions: SelectOption[] = getKanbanOptions(this.props.project);
+
+      const selectKanbanId: string =
+        this.state.selectKanbanId || this.props.project.get('setting').get('defaultKanbanId');
+
+      return (
+        <div>
+          <AppSelect options={kanbanOptions} />
+
+          {selectKanbanId && (
+            <Kanban id={selectKanbanId} projectId={this.props.project.get('id')} />
+          )}
+        </div>
+      );
     }
   }
 
@@ -38,15 +56,10 @@ export class ProjectKanbanComponent extends Component<
     }
 
     if (!this.props.project.get('kanbans')) {
-      return null
+      return null;
     }
 
-    return (
-      <div>
-        { this.renderKanbanArea() }
-        
-      </div>
-    );
+    return <div>{this.renderKanbanArea()}</div>;
   }
 }
 

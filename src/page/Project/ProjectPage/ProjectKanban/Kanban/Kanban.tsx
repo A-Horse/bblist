@@ -5,27 +5,43 @@ import React, { Component } from 'react';
 import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import { connect } from 'react-redux';
-import { Route } from 'react-router';
+import { Route, RouteComponentProps } from 'react-router';
 import { withRouter } from 'react-router-dom';
-import { bindActionCreators } from 'redux';
-
-import { makeActionRequestCollection } from '../../../../../actions/actions';
+import { bindActionCreators, AnyAction, Dispatch, ActionCreatorsMapObject } from 'redux';
 import { TaskTrackNormalized } from '../../../../../typings/task/task-track.typing';
 import { CardDetailContainer } from '../../../../Task/CardDetail/CardDetail.container';
 import { KanbanColumn } from './Track/Track';
 import TrackCreater from '../../../../Task/TrackCreater/TrackCreater';
 import { ProjectRecord } from '../../../../../typings/project.typing';
+import { KanbanRecord } from '../../../../../typings/kanban.typing';
 
-class ColumnBoardBase extends Component<any, any> {
+interface InputProps {
+  id: string;
+  projectId: string;
+}
+
+interface ComponentProps extends RouteComponentProps, InputProps {}
+
+class KanbanComponent extends Component<
+  {
+    actions: ActionCreatorsMapObject;
+    project: ProjectRecord;
+    kanban: KanbanRecord;
+  } & ComponentProps
+> {
   render() {
-    const { trackMap } = this.props;
-    if (!this.props.board) {
-      return null;
+    if (this.props.kanban) {
+      return;
     }
+
+    const columns = this.props.kanban.get('columns');
 
     return (
       <div className="column-board-content-container">
-        <Route path="/project/:projectId/kanban/:kanbanId/card/:cardId" render={() => <CardDetailContainer />} />
+        <Route
+          path="/project/:projectId/kanban/:kanbanId/card/:cardId"
+          render={() => <CardDetailContainer />}
+        />
 
         <div className="board-track-container">
           {trackMap
@@ -66,6 +82,7 @@ class ColumnBoardBase extends Component<any, any> {
                 boardId={this.props.board.get('id')}
               />
             ))}
+
           <TrackCreater
             addTrack={(data: any) =>
               this.props.actions.ADD_TASK_TRACK_REQUEST({
@@ -80,25 +97,30 @@ class ColumnBoardBase extends Component<any, any> {
   }
 }
 
-export const ColumnBoard = DragDropContext(HTML5Backend)(ColumnBoardBase);
+export const KanbanComponentDDC = DragDropContext(HTML5Backend)(KanbanComponent);
 
-const mapDispatchToProps = (dispatch: any) => {
+const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
   return {
-    actions: bindActionCreators(makeActionRequestCollection(), dispatch)
+    actions: bindActionCreators({}, dispatch)
   };
 };
 
-const mapStateToProps = (state: any, props: any) => {
-  const { projectId } = props.match.params;
+const mapStateToProps = (state: any, props: InputProps) => {
+  const { projectId } = props;
+
+  const project = state.project.get('projectMap').get(projectId) as ProjectRecord;
+
+  let kanban: KanbanRecord;
+  if (!project.get('kanbans')) {
+  }
 
   return {
-    project: state.project.get('projectMap').get(projectId) as ProjectRecord
+    project ,
+    kanban
   };
 };
 
-export const Kanban = withRouter(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(ColumnBoard)
-);
+export const Kanban = withRouter<ComponentProps>(connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(KanbanComponentDDC) as any);
