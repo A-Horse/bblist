@@ -1,4 +1,5 @@
-import { Record } from 'immutable';
+import { KanbanColumnRecord } from './kanban-column.typing';
+import { Record, List } from 'immutable';
 
 export interface Kanban {
   id: string;
@@ -8,6 +9,7 @@ export interface Kanban {
 export type KanbanRecord = Record<{
   id: string;
   name: string;
+  columns?: List<KanbanColumnRecord>;
 }>;
 
 export interface CreateKanbanInput {

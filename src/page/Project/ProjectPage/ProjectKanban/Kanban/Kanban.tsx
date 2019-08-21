@@ -1,6 +1,6 @@
 import './Kanban.scss';
 
-import { Record } from 'immutable';
+import { Record, List } from 'immutable';
 import React, { Component } from 'react';
 import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
@@ -14,6 +14,8 @@ import { KanbanColumn } from './Track/Track';
 import TrackCreater from '../../../../Task/TrackCreater/TrackCreater';
 import { ProjectRecord } from '../../../../../typings/project.typing';
 import { KanbanRecord } from '../../../../../typings/kanban.typing';
+import { KanbanColumnRecord } from '../../../../../typings/kanban-column.typing';
+import Loading from '../../../../../components/Loading';
 
 interface InputProps {
   id: string;
@@ -26,15 +28,19 @@ class KanbanComponent extends Component<
   {
     actions: ActionCreatorsMapObject;
     project: ProjectRecord;
-    kanban: KanbanRecord;
+    kanban?: KanbanRecord;
   } & ComponentProps
 > {
   render() {
-    if (this.props.kanban) {
-      return;
+    if (!this.props.kanban) {
+      return <Loading />;
     }
 
-    const columns = this.props.kanban.get('columns');
+    if (!this.props.kanban!.get('columns')) {
+      return <Loading />;
+    }
+
+    const columns: List<KanbanColumnRecord> = this.props.kanban!.get('columns')!;
 
     return (
       <div className="column-board-content-container">
@@ -44,49 +50,20 @@ class KanbanComponent extends Component<
         />
 
         <div className="board-track-container">
-          {trackMap
-            .sort((a: any, b: any) => a.get('order') > b.get('order'))
+          {columns
+            .sort((a: KanbanColumnRecord, b: KanbanColumnRecord) => a.get('order') - b.get('order'))
             .valueSeq()
             .toArray()
-            .map((track: Record<TaskTrackNormalized>) => (
+            .map((kanbanColumnRecord: KanbanColumnRecord) => (
               <KanbanColumn
-                key={track.get('id')}
-                actions={this.props.actions}
-                track={track}
-                cards={track.get('cards').map((id: string) => {
-                  return this.props.cardMap.get(id);
-                })}
-                addTaskCard={(data: any) =>
-                  this.props.actions.ADD_TASK_CARD_REQUEST({
-                    boardId: this.props.board.get('id'),
-                    ...data
-                  })
-                }
-                updateTrack={(data: any) =>
-                  this.props.actions.UPDATE_TASK_TRACK_REQUEST({
-                    boardId: +this.props.board.get('id'),
-                    ...data
-                  })
-                }
-                destroyTrack={(data: any) =>
-                  this.props.actions.DESTORY_TASK_TRACK_REQUEST({
-                    boardId: +this.props.board.get('id'),
-                    ...data
-                  })
-                }
-                listId={track.get('id')}
-                cardIds={track.get('cards')}
-                history={this.props.history}
-                match={this.props.match}
-                loginedUser={this.props.loginedUser}
-                boardId={this.props.board.get('id')}
+                key={kanbanColumnRecord.get('id')}
               />
             ))}
 
           <TrackCreater
             addTrack={(data: any) =>
               this.props.actions.ADD_TASK_TRACK_REQUEST({
-                boardId: this.props.board.get('id'),
+                boardId: this.props.kanban!.get('id'),
                 ...data
               })
             }
@@ -105,17 +82,20 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
   };
 };
 
-const mapStateToProps = (state: any, props: InputProps) => {
+const mapStateToProps = (state: any, props: ComponentProps) => {
   const { projectId } = props;
 
   const project = state.project.get('projectMap').get(projectId) as ProjectRecord;
 
-  let kanban: KanbanRecord;
-  if (!project.get('kanbans')) {
+  let kanban: KanbanRecord | undefined;
+  if (project.get('kanbans')) {
+    kanban = project.get('kanbans')!.find((k: KanbanRecord) => {
+      return k.get('id') === props.id;
+    });
   }
 
   return {
-    project ,
+    project,
     kanban
   };
 };

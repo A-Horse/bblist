@@ -20,9 +20,13 @@ interface Props {
 export class ProjectKanbanComponent extends Component<
   Props & RouteComponentProps<{ projectId: string }>,
   {
-    selectKanbanId: string;
+    selectKanbanId: string | null;
   }
 > {
+  state = {
+    selectKanbanId: null
+  };
+
   componentWillMount() {
     this.props.actions.getProjectKanbansRequest({
       projectId: this.props.match.params.projectId
