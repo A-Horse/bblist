@@ -25,7 +25,8 @@ export type ProjectRecord = Record<{
   createdAt: Date;
   updatedAt: Date;
   setting: Record<ProjectSetting>;
-  kanbans?: List<KanbanRecord>;
+  // kanbans?: List<KanbanRecord>;
+  kanbanIds?: string[];
 }>;
 
 export interface CreateProjectInput {

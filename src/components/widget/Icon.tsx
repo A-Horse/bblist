@@ -1,6 +1,12 @@
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
-    faClipboardList, faColumns, faCube, faCubes, faDharmachakra, faPlusCircle, faStroopwafel
+  faClipboardList,
+  faColumns,
+  faCube,
+  faCubes,
+  faDharmachakra,
+  faPlusCircle,
+  faStroopwafel
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 

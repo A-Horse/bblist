@@ -18,6 +18,7 @@ import { bindActionCreators } from 'redux';
 import { RootState } from '../../../reducers';
 import { ProjectRecord } from '../../../typings/project.typing';
 import { History, Location } from 'history';
+import { ProjectAdmin } from './ProjectAdmin/ProjectAdmin';
 
 const { Header } = Layout;
 
@@ -97,6 +98,7 @@ class ProjectPageComponent extends Component<Props> {
             />
             <Route path="/project/:projectId/kanban" render={props => <ProjectKanban />} />
             <Route path="/project/:projectId/trackers" render={props => <ProjectKanban />} />
+            <Route path="/project/:projectId/admin" render={props => <ProjectAdmin />} />
           </Switch>
         </div>
       </Layout>

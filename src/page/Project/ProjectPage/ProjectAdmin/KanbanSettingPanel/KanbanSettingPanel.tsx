@@ -1,20 +1,15 @@
-import './Kanban.scss';
+import './KanbanSettingPanel.scss';
 
-import { Record, List } from 'immutable';
 import React, { Component } from 'react';
-import { DragDropContext } from 'react-dnd';
-import HTML5Backend from 'react-dnd-html5-backend';
 import { connect } from 'react-redux';
-import { Route, RouteComponentProps } from 'react-router';
+import { RouteComponentProps } from 'react-router';
 import { withRouter } from 'react-router-dom';
 import { bindActionCreators, AnyAction, Dispatch, ActionCreatorsMapObject } from 'redux';
-import { TaskTrackNormalized } from '../../../../../typings/task/task-track.typing';
-import { CardDetailContainer } from '../../../../Task/CardDetail/CardDetail.container';
-import TrackCreater from '../../../../Task/TrackCreater/TrackCreater';
 import { ProjectRecord } from '../../../../../typings/project.typing';
 import { KanbanRecord } from '../../../../../typings/kanban.typing';
-import { KanbanColumnRecord } from '../../../../../typings/kanban-column.typing';
-import Loading from '../../../../../components/Loading';
+import { AppIcon } from '../../../../../components/widget/Icon';
+import { RootState } from '../../../../../reducers';
+import { KanbanSettingModal } from '../../../KanbanSettingModal/KanbanSettingModal';
 
 interface InputProps {}
 
@@ -23,32 +18,68 @@ interface ComponentProps extends RouteComponentProps<{ projectId: string }>, Inp
 class KanbanSettingPanelComponent extends Component<
   {
     actions: ActionCreatorsMapObject;
-    project: ProjectRecord;
-    kanbans?: List<KanbanRecord>;
-  } & ComponentProps
+    project?: ProjectRecord;
+    kanbans: KanbanRecord[];
+  } & ComponentProps,
+  {
+    settingModalToggle: boolean;
+    settingKanbanId: string | null;
+  }
 > {
+  state = {
+    settingModalToggle: false,
+    settingKanbanId: null
+  };
 
-    renderContent() {
-        if (!this.props.kanbans) {
-            return <div>empty</div>
-        }
-        return (
-            <div>
-{
-    this.props.kanbans.map()
+  openKanbanSettingModal = (kanbanId: string) => {
+    this.setState({
+      settingModalToggle: true,
+      settingKanbanId: kanbanId
+    });
+  };
 
-}
-            </div>
-        )
+  closeKanbanSettingModal = () => {
+    this.setState({
+      settingModalToggle: false,
+      settingKanbanId: null
+    });
+  };
+
+  renderContent() {
+    if (!this.props.kanbans.length) {
+      return <div>empty</div>;
     }
+    return (
+      <div>
+        {this.props.kanbans.map((kanban: KanbanRecord) => {
+          return (
+            <div key={kanban.get('id')}>
+              {kanban.get('name')}
+
+              <AppIcon icon="cubes" />
+            </div>
+          );
+        })}
+      </div>
+    );
+  }
 
   render() {
-    return (<div>
+    return (
+      <div>
         <div>Kanbans</div>
-        
-        {this.renderContent()}
 
-    </div>)
+        {!!this.state.settingKanbanId && (
+          <KanbanSettingModal
+            kanbanId={this.state.settingKanbanId!}
+            toggle={this.state.settingModalToggle}
+            onClose={this.closeKanbanSettingModal}
+          />
+        )}
+
+        {this.renderContent()}
+      </div>
+    );
   }
 }
 
@@ -58,14 +89,17 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
   };
 };
 
-const mapStateToProps = (state: any, props: ComponentProps) => {
+const mapStateToProps = (state: RootState, props: ComponentProps) => {
   const projectId = props.match.params.projectId;
-
   const project = state.project.get('projectMap').get(projectId) as ProjectRecord;
 
   return {
     project,
-    kanbans: project.get('kanbans')
+    kanbans: (project.get('kanbanIds') || [])
+      .map((kanbanId: string) => {
+        return state.project.get('kanbanMap').get(kanbanId) as KanbanRecord;
+      })
+      .filter(k => !!k)
   };
 };
 

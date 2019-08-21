@@ -1,4 +1,4 @@
-import './ProjectKanban.scss';
+import './ProjectAdmin.scss';
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
@@ -6,6 +6,7 @@ import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { bindActionCreators, AnyAction, Dispatch, ActionCreatorsMapObject } from 'redux';
 import { ProjectRecord } from '../../../../typings/project.typing';
 import { getProjectKanbansRequest } from '../../../../actions/project/kanban.action';
+import { KanbanSettingPanel } from './KanbanSettingPanel/KanbanSettingPanel';
 
 interface Props {
   actions: ActionCreatorsMapObject;
@@ -16,10 +17,19 @@ export class ProjectAdminComponent extends Component<
   Props & RouteComponentProps<{ projectId: string }>,
   {}
 > {
-  componentWillMount() {}
+  componentWillMount() {
+    this.props.actions.getProjectKanbansRequest({
+      projectId: this.props.match.params.projectId
+    });
+  }
 
   render() {
-    return <div>jhi</div>;
+    return (
+      <div>
+        jhi
+        <KanbanSettingPanel />
+      </div>
+    );
   }
 }
 

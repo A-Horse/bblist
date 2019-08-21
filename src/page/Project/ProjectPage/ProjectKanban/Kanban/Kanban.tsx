@@ -16,6 +16,7 @@ import { ProjectRecord } from '../../../../../typings/project.typing';
 import { KanbanRecord } from '../../../../../typings/kanban.typing';
 import { KanbanColumnRecord } from '../../../../../typings/kanban-column.typing';
 import Loading from '../../../../../components/Loading';
+import { RootState } from '../../../../../reducers';
 
 interface InputProps {
   id: string;
@@ -55,9 +56,7 @@ class KanbanComponent extends Component<
             .valueSeq()
             .toArray()
             .map((kanbanColumnRecord: KanbanColumnRecord) => (
-              <KanbanColumn
-                key={kanbanColumnRecord.get('id')}
-              />
+              <KanbanColumn key={kanbanColumnRecord.get('id')} />
             ))}
 
           <TrackCreater
@@ -82,17 +81,12 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
   };
 };
 
-const mapStateToProps = (state: any, props: ComponentProps) => {
+const mapStateToProps = (state: RootState, props: ComponentProps) => {
   const { projectId } = props;
 
   const project = state.project.get('projectMap').get(projectId) as ProjectRecord;
 
-  let kanban: KanbanRecord | undefined;
-  if (project.get('kanbans')) {
-    kanban = project.get('kanbans')!.find((k: KanbanRecord) => {
-      return k.get('id') === props.id;
-    });
-  }
+  let kanban = state.project.get('kanbanMap').get(props.id);
 
   return {
     project,

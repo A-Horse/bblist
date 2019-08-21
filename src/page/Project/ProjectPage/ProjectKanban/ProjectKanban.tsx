@@ -11,10 +11,12 @@ import { NoKanbanGuide } from './NoKanbanGuide/NoKanbanGuide';
 import { AppSelect } from '../../../../components/widget/AppSelect';
 import { SelectOption } from '../../../../typings/select.typing';
 import { getKanbanOptions } from '../../../../reducers/selector/kanban.selector';
+import { RootState } from '../../../../reducers';
 
 interface Props {
   actions: ActionCreatorsMapObject;
-  project: ProjectRecord;
+  project?: ProjectRecord;
+  kanbanOptions?: SelectOption[];
 }
 
 export class ProjectKanbanComponent extends Component<
@@ -34,20 +36,18 @@ export class ProjectKanbanComponent extends Component<
   }
 
   renderKanbanArea() {
-    if (!this.props.project.get('kanbans')!.count()) {
-      return <NoKanbanGuide project={this.props.project} />;
+    if (!this.props.project!.get('kanbanIds')!.length) {
+      return <NoKanbanGuide project={this.props.project!} />;
     } else {
-      const kanbanOptions: SelectOption[] = getKanbanOptions(this.props.project);
-
       const selectKanbanId: string =
-        this.state.selectKanbanId || this.props.project.get('setting').get('defaultKanbanId');
+        this.state.selectKanbanId || this.props.project!.get('setting').get('defaultKanbanId');
 
       return (
         <div>
-          <AppSelect options={kanbanOptions} />
+          <AppSelect options={this.props.kanbanOptions} />
 
           {selectKanbanId && (
-            <Kanban id={selectKanbanId} projectId={this.props.project.get('id')} />
+            <Kanban id={selectKanbanId} projectId={this.props.project!.get('id')} />
           )}
         </div>
       );
@@ -59,7 +59,7 @@ export class ProjectKanbanComponent extends Component<
       return null;
     }
 
-    if (!this.props.project.get('kanbans')) {
+    if (!this.props.project.get('kanbanIds')) {
       return null;
     }
 
@@ -78,11 +78,19 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
   };
 };
 
-const mapStateToProps = (state: any, props: any) => {
+const mapStateToProps = (state: RootState, props: any) => {
   const { projectId } = props.match.params;
 
+  const project = state.project.get('projectMap').get(projectId);
+
+  let kanbanOptions: SelectOption[] = [];
+  if (project) {
+    kanbanOptions = getKanbanOptions(project, state.project.get('kanbanMap'));
+  }
+
   return {
-    project: state.project.get('projectMap').get(projectId) as ProjectRecord
+    project,
+    kanbanOptions
   };
 };
 
