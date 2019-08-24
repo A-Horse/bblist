@@ -1,9 +1,10 @@
-import Actions from '../actions/actions';
-import { makeApiUrl } from '../utils/api';
-import { http } from '../services/http';
 import * as R from 'ramda';
 import { ofType } from 'redux-observable';
-import { mergeMap, distinctUntilChanged, debounceTime } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, mergeMap } from 'rxjs/operators';
+
+import Actions from '../actions/actions';
+import { http } from '../services/http';
+import { makeApiUrl } from '../utils/api';
 
 // export const CARD_MOVE_REQUEST = (action$: any, state: any) =>
 //   action$.pipe(

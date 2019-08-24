@@ -2,14 +2,18 @@ import './KanbanSettingModal.scss';
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators, AnyAction, Dispatch } from 'redux';
+import { bindActionCreators, AnyAction, Dispatch, ActionCreatorsMapObject } from 'redux';
 
-import { createKanbanRequest } from '../../../actions/project/kanban.action';
+import {
+  createKanbanRequest,
+  createKanbanColumnRequest
+} from '../../../actions/project/kanban.action';
 import { ProjectRecord } from '../../../typings/project.typing';
 import { AppModal } from '../../../components/widget/AppModal';
 import { RootState } from '../../../reducers';
 import { KanbanRecord } from '../../../typings/kanban.typing';
 import { withRouter, RouteComponentProps } from 'react-router';
+import { KanbanColumnCreator } from './KanbanColumnCreator/KanbanColumnCreator';
 
 interface InputProps {
   toggle: boolean;
@@ -25,6 +29,7 @@ class KanbanSettingModalComponent extends Component<
   InputRouterProps & {
     kanban?: KanbanRecord;
     project?: ProjectRecord;
+    actions: ActionCreatorsMapObject;
   }
 > {
   componentWillMount() {}
@@ -39,8 +44,9 @@ class KanbanSettingModalComponent extends Component<
     }
     return (
       <div>
-        assassd
         {this.props.kanban!.get('name')}
+
+        <KanbanColumnCreator createKanbanColumn={this.props.actions.createKanbanColumnRequest} />
       </div>
     );
   }
@@ -70,7 +76,8 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
   return {
     actions: bindActionCreators(
       {
-        createKanbanRequest: createKanbanRequest
+        createKanbanRequest: createKanbanRequest,
+        createKanbanColumnRequest: createKanbanColumnRequest
       },
       dispatch
     )

@@ -6,7 +6,8 @@ import {
   faCubes,
   faDharmachakra,
   faPlusCircle,
-  faStroopwafel
+  faStroopwafel,
+  faCheckCircle
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -17,5 +18,7 @@ library.add(faCube);
 library.add(faDharmachakra);
 library.add(faCubes);
 library.add(faClipboardList);
+library.add(faCheckCircle);
+
 
 export const AppIcon = FontAwesomeIcon;

@@ -1,21 +1,15 @@
-import { FSAction } from './../actions/actions';
-import { Project, ProjectId } from '../typings/project.typing';
-import { mergeMap } from 'rxjs/operators';
-import {
-  getProjectsSuccess,
-  getProjectsFailure,
-  GET_PROJCETS_REQUEST,
-  CREATE_PROJCET_REQUEST,
-  createProjectSuccess,
-  createProjectFailure,
-  getProjectDetailSuccess,
-  getProjectDetailFailure,
-  GET_PROJCET_DETAIL_REQUEST
-} from './../actions/project/project.action';
-
-import { ofType } from 'redux-observable';
-import { makeApiUrl } from '../utils/api';
 import axios, { AxiosResponse } from 'axios';
+import { ofType } from 'redux-observable';
+import { mergeMap } from 'rxjs/operators';
+
+import { FSAction } from '../actions/actions';
+import {
+    CREATE_PROJCET_REQUEST, createProjectFailure, createProjectSuccess, GET_PROJCET_DETAIL_REQUEST,
+    GET_PROJCETS_REQUEST, getProjectDetailFailure, getProjectDetailSuccess, getProjectsFailure,
+    getProjectsSuccess
+} from '../actions/project/project.action';
+import { Project, ProjectId } from '../typings/project.typing';
+import { makeApiUrl } from '../utils/api';
 
 export const GET_PROJCETS_REQUEST_FN = (action$: any) =>
   action$.pipe(

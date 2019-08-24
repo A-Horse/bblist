@@ -1,11 +1,13 @@
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/distinctUntilChanged';
-import Actions from '../actions/actions';
-import { makeApiUrl } from '../utils/api';
-import { http } from '../services/http';
+
 import { ofType } from 'redux-observable';
 import { mergeMap } from 'rxjs/operators';
+
+import Actions from '../actions/actions';
+import { http } from '../services/http';
+import { makeApiUrl } from '../utils/api';
 
 export const GET_TASK_TRACK_CARD_REQUEST = (action$: any) =>
   action$.pipe(

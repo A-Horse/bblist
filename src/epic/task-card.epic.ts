@@ -1,9 +1,10 @@
+import axios from 'axios';
+import { ofType } from 'redux-observable';
+import { debounceTime, distinctUntilChanged, mergeMap } from 'rxjs/operators';
+
+import Actions from '../actions/actions';
 import { http } from '../services/http';
 import { makeApiUrl } from '../utils/api';
-import Actions from '../actions/actions';
-import axios from 'axios';
-import { mergeMap, distinctUntilChanged, debounceTime } from 'rxjs/operators';
-import { ofType } from 'redux-observable';
 
 export const ADD_TASK_CARD = (action$: any) =>
   action$.pipe(

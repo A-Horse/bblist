@@ -1,10 +1,11 @@
-import Actions from '../actions/actions';
-import { makeApiUrl } from '../utils/api';
-import { http } from '../services/http';
-import { getCachedUserId, saveJWT } from '../utils/auth';
-import { ofType } from 'redux-observable';
-import { mergeMap, distinctUntilChanged, debounceTime } from 'rxjs/operators';
 import axios from 'axios';
+import { ofType } from 'redux-observable';
+import { debounceTime, distinctUntilChanged, mergeMap } from 'rxjs/operators';
+
+import Actions from '../actions/actions';
+import { http } from '../services/http';
+import { makeApiUrl } from '../utils/api';
+import { getCachedUserId, saveJWT } from '../utils/auth';
 
 export const UPDATE_USER_REQUEST = (action$: any) =>
   action$.pipe(

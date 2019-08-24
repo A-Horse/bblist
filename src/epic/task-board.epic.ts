@@ -1,9 +1,10 @@
-import { makeApiUrl } from '../utils/api';
-import { ofType } from 'redux-observable';
-import Actions from '../actions/actions';
-import { mergeMap } from 'rxjs/operators';
 import axios from 'axios';
+import { ofType } from 'redux-observable';
+import { mergeMap } from 'rxjs/operators';
+
+import Actions from '../actions/actions';
 import http from '../services/http';
+import { makeApiUrl } from '../utils/api';
 
 export const TASKBOARD_SETTING_UPDATE_REQUEST = (action$: any) =>
   action$.pipe(

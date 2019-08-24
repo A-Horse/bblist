@@ -10,6 +10,7 @@ import { KanbanRecord } from '../../../../../typings/kanban.typing';
 import { AppIcon } from '../../../../../components/widget/Icon';
 import { RootState } from '../../../../../reducers';
 import { KanbanSettingModal } from '../../../KanbanSettingModal/KanbanSettingModal';
+import { AppButton } from '../../../../../components/widget/AppButton';
 
 interface InputProps {}
 
@@ -56,7 +57,9 @@ class KanbanSettingPanelComponent extends Component<
             <div key={kanban.get('id')}>
               {kanban.get('name')}
 
-              <AppIcon icon="cubes" />
+              <span onClick={() => this.openKanbanSettingModal(kanban.get('id'))}>
+                <AppIcon icon="cubes" />
+              </span>
             </div>
           );
         })}

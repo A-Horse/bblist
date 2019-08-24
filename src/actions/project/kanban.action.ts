@@ -1,4 +1,4 @@
-import { CreateKanbanInput } from './../../typings/kanban.typing';
+import { CreateKanbanInput, CreateKanbanColumnInput } from './../../typings/kanban.typing';
 import { FSAction } from './../actions';
 import { Kanban } from '../../typings/kanban.typing';
 
@@ -6,14 +6,17 @@ export const GET_PROJCET_KANBANS_REQUEST = 'GET_PROJCET_KANBANS_REQUEST';
 export const GET_PROJCET_KANBANS_SUCCESS = 'GET_PROJCET_KANBANS_SUCCESS';
 export const GET_PROJCET_KANBANS_FAILURE = 'GET_PROJCET_KANBANS_FAILURE';
 
-export function getProjectKanbansRequest(payload: {projectId: string}): FSAction {
+export function getProjectKanbansRequest(payload: { projectId: string }): FSAction {
   return {
     type: GET_PROJCET_KANBANS_REQUEST,
     payload
   };
 }
 
-export function getProjectKanbansSuccess(payload: {projectId: string, kanbans: Kanban[]}): FSAction {
+export function getProjectKanbansSuccess(payload: {
+  projectId: string;
+  kanbans: Kanban[];
+}): FSAction {
   return {
     type: GET_PROJCET_KANBANS_SUCCESS,
     payload
@@ -26,7 +29,6 @@ export function getProjectKanbansFailure(): FSAction {
     error: true
   };
 }
-
 
 export const CREATAE_KANBAN_REQUEST = 'CREATAE_KANBAN_REQUEST';
 export const CREATAE_KANBAN_SUCCESS = 'CREATAE_KANBAN_SUCCESS';
@@ -49,6 +51,33 @@ export function createKanbanSuccess(id: string): FSAction {
 export function createKanbanFailure(): FSAction {
   return {
     type: CREATAE_KANBAN_FAILURE,
+    error: true
+  };
+}
+
+export const CREATAE_KANBAN_COLUMN_REQUEST = 'CREATAE_KANBAN_COLUMN_REQUEST';
+export const CREATAE_KANBAN_COLUMN_SUCCESS = 'CREATAE_KANBAN_COLUMN_SUCCESS';
+export const CREATAE_KANBAN_COLUMN_FAILURE = 'CREATAE_KANBAN_COLUMN_FAILURE';
+
+export function createKanbanColumnRequest(
+  createKanbanColumnInput: CreateKanbanColumnInput
+): FSAction {
+  return {
+    type: CREATAE_KANBAN_COLUMN_REQUEST,
+    payload: createKanbanColumnInput
+  };
+}
+
+export function createKanbanColumnSuccess(id: string): FSAction {
+  return {
+    type: CREATAE_KANBAN_COLUMN_SUCCESS,
+    payload: id
+  };
+}
+
+export function createKanbanColumnFailure(): FSAction {
+  return {
+    type: CREATAE_KANBAN_COLUMN_FAILURE,
     error: true
   };
 }
