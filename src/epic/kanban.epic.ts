@@ -50,7 +50,7 @@ export const CREATAE_KANBAN_COLUMN_REQUEST_FN = (action$: Observable<FSAction>) 
     ofType(CREATAE_KANBAN_COLUMN_REQUEST),
     mergeMap((action: FSAction) => {
       return axios
-        .post(makeApiUrl(`/project/${action.payload.projectId}/kanban/${action.payload.kanbanId}/column`), action.payload)
+        .post(makeApiUrl(`/kanban/${action.payload.kanbanId}/column`), action.payload)
         .then((result: AxiosResponse<string>) => createKanbanColumnSuccess(result.data))
         .catch(createKanbanColumnFailure);
     })

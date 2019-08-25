@@ -14,6 +14,7 @@ import { RootState } from '../../../reducers';
 import { KanbanRecord } from '../../../typings/kanban.typing';
 import { withRouter, RouteComponentProps } from 'react-router';
 import { KanbanColumnCreator } from './KanbanColumnCreator/KanbanColumnCreator';
+import { KanbanColumnPanel } from './KanbanColumnPanel/KanbanColumnPanel';
 
 interface InputProps {
   toggle: boolean;
@@ -38,6 +39,13 @@ class KanbanSettingModalComponent extends Component<
     this.props.onClose();
   };
 
+  createKanbanColumn = (formData: any) => {
+    this.props.actions.createKanbanColumnRequest({
+      kanbanId: this.props.kanban!.get('id'),
+      ...formData
+    });
+  };
+
   renderContent() {
     if (!this.props.kanban) {
       return <div>loading</div>;
@@ -46,7 +54,9 @@ class KanbanSettingModalComponent extends Component<
       <div>
         {this.props.kanban!.get('name')}
 
-        <KanbanColumnCreator createKanbanColumn={this.props.actions.createKanbanColumnRequest} />
+        <KanbanColumnPanel columns={this.props.kanban!.get('columns')}/>
+
+        <KanbanColumnCreator createKanbanColumn={this.createKanbanColumn} />
       </div>
     );
   }
