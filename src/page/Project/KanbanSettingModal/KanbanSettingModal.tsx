@@ -6,7 +6,8 @@ import { bindActionCreators, AnyAction, Dispatch, ActionCreatorsMapObject } from
 
 import {
   createKanbanRequest,
-  createKanbanColumnRequest
+  createKanbanColumnRequest,
+  getProjectKanbanDetailRequest
 } from '../../../actions/project/kanban.action';
 import { ProjectRecord } from '../../../typings/project.typing';
 import { AppModal } from '../../../components/widget/AppModal';
@@ -33,7 +34,11 @@ class KanbanSettingModalComponent extends Component<
     actions: ActionCreatorsMapObject;
   }
 > {
-  componentWillMount() {}
+  componentWillMount() {
+    this.props.actions.getProjectKanbanDetailRequest({
+      kanbanId: this.props.kanbanId
+    });
+  }
 
   closeModal = () => {
     this.props.onClose();
@@ -87,7 +92,8 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
     actions: bindActionCreators(
       {
         createKanbanRequest: createKanbanRequest,
-        createKanbanColumnRequest: createKanbanColumnRequest
+        createKanbanColumnRequest: createKanbanColumnRequest,
+        getProjectKanbanDetailRequest: getProjectKanbanDetailRequest
       },
       dispatch
     )

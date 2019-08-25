@@ -1,3 +1,4 @@
+import { GET_PROJCET_KANBAN_DETAIL_REQUEST, getProjectKanbanDetailSuccess, getProjectKanbanDetailFailure } from './../actions/project/kanban.action';
 import axios, { AxiosResponse } from 'axios';
 import { ofType } from 'redux-observable';
 import { Observable } from 'rxjs';
@@ -31,6 +32,21 @@ export const GET_PROJCET_KANBANS_REQUEST_FN = (action$: Observable<FSAction>) =>
           })
         )
         .catch(getProjectKanbansFailure);
+    })
+  );
+
+export const GET_PROJCET_KANBAN_DETAIL_REQUEST_FN = (action$: Observable<FSAction>) =>
+  action$.pipe(
+    ofType(GET_PROJCET_KANBAN_DETAIL_REQUEST),
+    mergeMap((action: FSAction) => {
+      return axios
+        .get(makeApiUrl(`/kanban/${action.payload.kanbanId}/detail`))
+        .then((result: AxiosResponse<Kanban>) =>
+        getProjectKanbanDetailSuccess({
+            kanban: result.data
+          })
+        )
+        .catch(getProjectKanbanDetailFailure);
     })
   );
 

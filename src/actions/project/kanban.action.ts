@@ -30,6 +30,31 @@ export function getProjectKanbansFailure(): FSAction {
   };
 }
 
+export const GET_PROJCET_KANBAN_DETAIL_REQUEST = 'GET_PROJCET_KANBAN_DETAIL_REQUEST';
+export const GET_PROJCET_KANBAN_DETAIL_SUCCESS = 'GET_PROJCET_KANBAN_DETAIL_SUCCESS';
+export const GET_PROJCET_KANBAN_DETAIL_FAILURE = 'GET_PROJCET_KANBAN_DETAIL_FAILURE';
+
+export function getProjectKanbanDetailRequest(payload: { kanbanId: string }): FSAction {
+  return {
+    type: GET_PROJCET_KANBAN_DETAIL_REQUEST,
+    payload
+  };
+}
+
+export function getProjectKanbanDetailSuccess(payload: { kanban: Kanban }): FSAction {
+  return {
+    type: GET_PROJCET_KANBAN_DETAIL_SUCCESS,
+    payload
+  };
+}
+
+export function getProjectKanbanDetailFailure(): FSAction {
+  return {
+    type: GET_PROJCET_KANBAN_DETAIL_FAILURE,
+    error: true
+  };
+}
+
 export const CREATAE_KANBAN_REQUEST = 'CREATAE_KANBAN_REQUEST';
 export const CREATAE_KANBAN_SUCCESS = 'CREATAE_KANBAN_SUCCESS';
 export const CREATAE_KANBAN_FAILURE = 'CREATAE_KANBAN_FAILURE';
