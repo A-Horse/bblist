@@ -9,7 +9,10 @@ import {
 } from './../actions/project/project.action';
 import { normalize } from 'normalizr';
 import { fromJS, Record, Map } from 'immutable';
-import { GET_PROJCET_KANBANS_SUCCESS } from '../actions/project/kanban.action';
+import {
+  GET_PROJCET_KANBANS_SUCCESS,
+  GET_PROJCET_KANBAN_DETAIL_SUCCESS
+} from '../actions/project/kanban.action';
 
 export type KanbanMap = Map<string, KanbanRecord>;
 
@@ -58,6 +61,15 @@ export function project(
         .update('kanbanMap', (kanbanMap: KanbanMap) => {
           return kanbanMap.merge(fromJS(normalizedKanbans.entities.Kanban));
         });
+    }
+
+    case GET_PROJCET_KANBAN_DETAIL_SUCCESS: {
+      return state.updateIn(['kanbanMap', action.payload.kanban.id], (kanban: KanbanRecord) => {
+        if (!kanban) {
+          return;
+        }
+        return kanban.merge(fromJS(action.payload.kanban));
+      });
     }
     default:
       return state;

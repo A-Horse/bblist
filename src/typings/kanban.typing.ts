@@ -4,6 +4,7 @@ import { Record, List } from 'immutable';
 export interface Kanban {
   id: string;
   name: string;
+  columns?: any[];
 }
 
 export type KanbanRecord = Record<{

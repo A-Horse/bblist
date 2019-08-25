@@ -1,8 +1,14 @@
-import { GET_PROJCET_KANBAN_DETAIL_REQUEST, getProjectKanbanDetailSuccess, getProjectKanbanDetailFailure } from './../actions/project/kanban.action';
+import {
+  GET_PROJCET_KANBAN_DETAIL_REQUEST,
+  getProjectKanbanDetailSuccess,
+  getProjectKanbanDetailFailure,
+  CREATAE_KANBAN_COLUMN_SUCCESS,
+  getProjectKanbanDetailRequest
+} from './../actions/project/kanban.action';
 import axios, { AxiosResponse } from 'axios';
 import { ofType } from 'redux-observable';
 import { Observable } from 'rxjs';
-import { mergeMap } from 'rxjs/operators';
+import { mergeMap, map } from 'rxjs/operators';
 
 import { FSAction } from '../actions/actions';
 import {
@@ -42,7 +48,7 @@ export const GET_PROJCET_KANBAN_DETAIL_REQUEST_FN = (action$: Observable<FSActio
       return axios
         .get(makeApiUrl(`/kanban/${action.payload.kanbanId}/detail`))
         .then((result: AxiosResponse<Kanban>) =>
-        getProjectKanbanDetailSuccess({
+          getProjectKanbanDetailSuccess({
             kanban: result.data
           })
         )
@@ -67,7 +73,21 @@ export const CREATAE_KANBAN_COLUMN_REQUEST_FN = (action$: Observable<FSAction>) 
     mergeMap((action: FSAction) => {
       return axios
         .post(makeApiUrl(`/kanban/${action.payload.kanbanId}/column`), action.payload)
-        .then((result: AxiosResponse<string>) => createKanbanColumnSuccess(result.data))
+        .then((result: AxiosResponse<string>) =>
+          createKanbanColumnSuccess(result.data, {
+            kanbanId: action.payload.kanbanId
+          })
+        )
         .catch(createKanbanColumnFailure);
+    })
+  );
+
+export const CREATAE_KANBAN_COLUMN_SUCCESS_FN = (action$: Observable<FSAction>) =>
+  action$.pipe(
+    ofType(CREATAE_KANBAN_COLUMN_SUCCESS),
+    map((action: FSAction) => {
+      return getProjectKanbanDetailRequest({
+        kanbanId: action.meta.kanbanId
+      });
     })
   );

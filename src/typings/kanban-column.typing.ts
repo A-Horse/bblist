@@ -1,9 +1,13 @@
-import { Record, List } from "immutable";
+import { Record, List } from 'immutable';
 
-
-export type KanbanColumnRecord = Record<{
+export interface Column {
     id: string;
     name: string;
-    order: number;
-    cards: List<any>;
-}>
+}
+
+export type KanbanColumnRecord = Record<{
+  id: string;
+  name: string;
+  order: number;
+  cards: List<any>;
+}>;

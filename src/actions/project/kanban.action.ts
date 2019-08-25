@@ -93,10 +93,13 @@ export function createKanbanColumnRequest(
   };
 }
 
-export function createKanbanColumnSuccess(id: string): FSAction {
+export function createKanbanColumnSuccess(id: string, meta: {
+  kanbanId: string
+}): FSAction {
   return {
     type: CREATAE_KANBAN_COLUMN_SUCCESS,
-    payload: id
+    payload: id,
+    meta
   };
 }
 
