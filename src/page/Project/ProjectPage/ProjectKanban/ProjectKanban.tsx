@@ -41,13 +41,13 @@ export class ProjectKanbanComponent extends Component<
     } else {
       const selectKanbanId: string =
         this.state.selectKanbanId || this.props.project!.get('setting').get('defaultKanbanId');
-
+      console.log('selectKanbanId', selectKanbanId);
       return (
         <div>
-          <AppSelect options={this.props.kanbanOptions} />
+          <AppSelect options={this.props.kanbanOptions} />    
 
           {selectKanbanId && (
-            <Kanban id={selectKanbanId} projectId={this.props.project!.get('id')} />
+            <Kanban kanbanId={selectKanbanId} projectId={this.props.project!.get('id')} />
           )}
         </div>
       );
