@@ -59,7 +59,8 @@
     "compile-less": "lessc --js ./src/style/index.less ./src/style/antd.css",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint --fix --ext js,ts,tsx src"
   },
   "eslintConfig": {
     "extends": "react-app"

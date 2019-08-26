@@ -12,13 +12,10 @@ import { AppModal } from '../../widget/Modal';
 import { CreateProjectTaskForm } from './CreateProjecTaskForm';
 import { CreateTodoTaskForm } from './CreateTodoTaskForm';
 
-const FormItem = Form.Item;
-
 class TaskCreaterModalBase extends Component<
   {
     modalVisible: boolean;
     actions: any;
-    form: any;
     closeModal: any;
   },
   {
@@ -71,7 +68,6 @@ class TaskCreaterModalBase extends Component<
   }
 }
 
-export const TaskCreaterModalWithForm = Form.create()(TaskCreaterModalBase);
 
 const mapStateToProps = (state: any) => {
   return {};
@@ -86,4 +82,4 @@ const mapDispatchToProps = (dispatch: any) => {
 export const TaskCreatorModal = connect(
   mapStateToProps,
   mapDispatchToProps
-)(TaskCreaterModalWithForm);
+)(TaskCreaterModalBase);

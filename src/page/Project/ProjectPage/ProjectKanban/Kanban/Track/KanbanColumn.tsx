@@ -1,12 +1,9 @@
 import './KanbanColumn.scss';
 
 import { Dropdown, Icon, Menu } from 'antd';
-import * as R from 'ramda';
 import React, { Component } from 'react';
 
-import Input from '../../../../../../components/widget/Input/Input';
-import { TaskCard } from '../../../../../Task/TaskCard/TaskCard';
-import { RouterProps, withRouter, RouteComponentProps } from 'react-router';
+import { withRouter, RouteComponentProps } from 'react-router';
 import { bindActionCreators, AnyAction, Dispatch, ActionCreatorsMapObject } from 'redux';
 import { connect } from 'react-redux';
 import { RootState } from '../../../../../../reducers';
