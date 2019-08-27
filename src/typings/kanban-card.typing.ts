@@ -9,3 +9,8 @@ export type KanbanCardRecord = Record<{
   id: string;
   title: string;
 }>;
+
+export interface CreateProjectCardInput {
+  title: string;
+  content: string;
+}

@@ -19,6 +19,7 @@ import { RootState } from '../../../reducers';
 import { ProjectRecord } from '../../../typings/project.typing';
 import { History, Location } from 'history';
 import { ProjectAdmin } from './ProjectAdmin/ProjectAdmin';
+import { ProjectTracker } from './ProjectTracker/ProjectTracker';
 
 const { Header } = Layout;
 
@@ -97,7 +98,7 @@ class ProjectPageComponent extends Component<Props> {
               render={props => <BoardSetting {...this.props} {...props} />}
             />
             <Route path="/project/:projectId/kanban" render={props => <ProjectKanban />} />
-            <Route path="/project/:projectId/trackers" render={props => <ProjectKanban />} />
+            <Route path="/project/:projectId/trackers" render={props => <ProjectTracker />} />
             <Route path="/project/:projectId/admin" render={props => <ProjectAdmin />} />
           </Switch>
         </div>

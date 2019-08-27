@@ -1,4 +1,4 @@
-import { Card } from './../../typings/kanban-card.typing';
+import { Card, CreateKanbanCardInput } from './../../typings/kanban-card.typing';
 import { FSAction } from './../actions';
 
 export const GET_COLUMN_CARDS_REQUEST = 'GET_COLUMN_CARDS_REQUEST';
@@ -30,5 +30,31 @@ export function getColumnCardsFailure(error: any): FSAction {
     type: GET_COLUMN_CARDS_FAILURE,
     error: true,
     payload: error
+  };
+}
+
+
+export const CREATAE_PROJECT_CARD_REQUEST = 'CREATAE_PROJECT_CARD_REQUEST';
+export const CREATAE_PROJECT_CARD_SUCCESS = 'CREATAE_PROJECT_CARD_SUCCESS';
+export const CREATAE_PROJECT_CARD_FAILURE = 'CREATAE_PROJECT_CARD_FAILURE';
+
+export function createProjectCardRequest(createKanbanCardInput: CreateKanbanCardInput): FSAction {
+  return {
+    type: CREATAE_PROJECT_CARD_REQUEST,
+    payload: createKanbanCardInput
+  };
+}
+
+export function createProjectCardSuccess(id: string): FSAction {
+  return {
+    type: CREATAE_PROJECT_CARD_SUCCESS,
+    payload: id
+  };
+}
+
+export function createProjectCardFailure(): FSAction {
+  return {
+    type: CREATAE_PROJECT_CARD_FAILURE,
+    error: true
   };
 }

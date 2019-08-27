@@ -7,16 +7,18 @@ import {
   createKanbanColumnRequest,
   getProjectKanbanDetailRequest
 } from '../../../../../actions/project/kanban.action';
-import { ProjectRecord } from '../../../../../typings/project.typing';
 import { AppModal } from '../../../../../components/widget/AppModal';
 import { RootState } from '../../../../../reducers';
 import { KanbanRecord } from '../../../../../typings/kanban.typing';
 import { withRouter, RouteComponentProps } from 'react-router';
+import { CreateProjectTaskForm } from '../../../../../components/creators/TaskCreator/CreateProjecTaskForm';
+import { ProjectRecord } from '../../../../../typings/project.typing';
 
 interface InputProps {
   toggle: boolean;
   onClose: Function;
-  kanban: KanbanRecord;
+  kanban?: KanbanRecord;
+  project?: ProjectRecord;
 }
 
 interface RouterProps extends RouteComponentProps<{ projectId: string; kanbanId: string }> {}
@@ -36,17 +38,19 @@ class CreateKanbanCardModalComoponent extends Component<
   render() {
     return (
       <AppModal isOpen={this.props.toggle} onRequestClose={this.closeModal}>
-        hihi
+        <CreateProjectTaskForm kanban={this.props.kanban} project={this.props.project} />
       </AppModal>
     );
   }
 }
 
-const mapStateToProps = (state: RootState, props: InputRouterProps) => {
+const mapStateToProps = (state: RootState, props: InputProps & RouterProps) => {
   const projectId = props.match.params.projectId;
+  const kanbanId = props.match.params.kanbanId;
 
   const project = state.project.get('projectMap').get(projectId) as ProjectRecord;
-  const kanban = state.project.get('kanbanMap').get(props.kanbanId);
+
+  const kanban = state.project.get('kanbanMap').get(kanbanId);
 
   return {
     project,
@@ -67,7 +71,7 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
   };
 };
 
-export const CreateKanbanCardModal = withRouter<InputRouterProps>(
+export const CreateKanbanCardModal = withRouter<InputProps & RouterProps>(
   connect(
     mapStateToProps,
     mapDispatchToProps

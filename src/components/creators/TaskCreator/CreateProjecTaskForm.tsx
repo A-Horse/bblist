@@ -5,16 +5,24 @@ import React, { Component, FormEvent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { makeActionRequestCollection } from '../../../actions/actions';
+import { createProjectCardRequest } from '../../../actions/project/kanban-card.action';
+import { KanbanRecord } from '../../../typings/kanban.typing';
+import { ProjectRecord } from '../../../typings/project.typing';
 
 const FormItem = Form.Item;
+
+interface FormData {
+  title: string;
+}
 
 class CreateProjectTaskFormBase extends Component<
   {
     form: any;
     actions: any;
-    style: any;
+    style?: any;
     onCancel?: () => void;
+    kanban?: KanbanRecord;
+    project?: ProjectRecord;
   },
   any
 > {
@@ -24,16 +32,17 @@ class CreateProjectTaskFormBase extends Component<
     name: ''
   };
 
-  handleSubmit(event: FormEvent<any>) {
+  handleSubmit = (event: FormEvent<any>) => {
     event.preventDefault();
-    this.props.form.validateFieldsAndScroll((err: any, values: any) => {
+    this.props.form.validateFieldsAndScroll((err: any, values: FormData) => {
       if (!err) {
-        this.props.actions.ADD_TODO_REQUEST(values, {
-          closeFn: this.props.onCancel
+        this.props.actions.createProjectCardRequest({
+          projectId: this.props.project!.get('id'),
+          ...values
         });
       }
     });
-  }
+  };
 
   handleCancel = () => {
     this.setState({
@@ -66,12 +75,19 @@ class CreateProjectTaskFormBase extends Component<
 const CreateProjectTaskFormWrapper = Form.create()(CreateProjectTaskFormBase);
 
 const mapStateToProps = (state: any) => {
-  return {};
+  return {
+
+  };
 };
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    actions: bindActionCreators(makeActionRequestCollection(), dispatch)
+    actions: bindActionCreators(
+      {
+        createProjectCardRequest: createProjectCardRequest
+      },
+      dispatch
+    )
   };
 };
 
