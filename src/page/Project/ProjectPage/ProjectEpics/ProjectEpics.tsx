@@ -1,4 +1,4 @@
-import './ProjectTracker.scss';
+import './ProjectEpics.scss';
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
@@ -13,7 +13,7 @@ interface Props {
   project: ProjectRecord;
 }
 
-export class ProjectTrackerComponent extends Component<
+export class ProjectEpicsComponent extends Component<
   Props & RouteComponentProps<{ projectId: string }>,
   {}
 > {
@@ -51,9 +51,9 @@ const mapStateToProps = (state: any, props: any) => {
   };
 };
 
-export const ProjectTracker = withRouter(
+export const ProjectEpics = withRouter(
   connect(
     mapStateToProps,
     mapDispatchToProps
-  )(ProjectTrackerComponent)
+  )(ProjectEpicsComponent)
 );

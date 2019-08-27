@@ -56,7 +56,7 @@ class CreateProjectTaskFormBase extends Component<
       <div style={this.props.style} className="taskboard-creater">
         <Form onSubmit={this.handleSubmit}>
           <FormItem label="Task Title">
-            {getFieldDecorator('name', {
+            {getFieldDecorator('title', {
               rules: [{ required: true, message: 'Please input task board name' }]
             })(<Input type="text" placeholder="Board Name" />)}
           </FormItem>

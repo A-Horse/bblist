@@ -40,7 +40,7 @@ export const CREATAE_PROJECT_CARD_REQUEST_FN = (action$: Observable<FSAction>) =
     ofType(CREATAE_PROJECT_CARD_REQUEST),
     mergeMap((action: FSAction) => {
       return axios
-        .post(makeApiUrl(`/project/${action.payload.projectId}card`), action.payload)
+        .post(makeApiUrl(`/project/${action.payload.projectId}/card`), action.payload)
         .then((result: AxiosResponse<string>) => createProjectCardSuccess(result.data))
         .catch(createProjectCardFailure);
     })
