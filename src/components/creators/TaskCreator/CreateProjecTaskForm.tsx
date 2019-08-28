@@ -8,6 +8,10 @@ import { bindActionCreators } from 'redux';
 import { createProjectCardRequest } from '../../../actions/project/kanban-card.action';
 import { KanbanRecord } from '../../../typings/kanban.typing';
 import { ProjectRecord } from '../../../typings/project.typing';
+import { AppSelect } from '../../widget/AppSelect';
+import { KanbanSelect } from '../../stateful-component/KanbanSelect/KanbanSelect';
+import { ColumnSelect } from '../../stateful-component/ColumnSelect/ColumnSelect';
+import { SelectOption } from '../../../typings/select.typing';
 
 const FormItem = Form.Item;
 
@@ -24,12 +28,16 @@ class CreateProjectTaskFormBase extends Component<
     kanban?: KanbanRecord;
     project?: ProjectRecord;
   },
-  any
+  {
+    selectedKanbanId: string | null;
+    name: any;
+    errorMessages: any;
+  }
 > {
   state = {
-    modalVisible: false,
     errorMessages: [],
-    name: ''
+    name: '',
+    selectedKanbanId: null
   };
 
   handleSubmit = (event: FormEvent<any>) => {
@@ -44,9 +52,12 @@ class CreateProjectTaskFormBase extends Component<
     });
   };
 
-  handleCancel = () => {
+  onKanbanSelectChange = (seleced?: SelectOption) => {
+    if (!seleced) {
+      return;
+    }
     this.setState({
-      modalVisible: false
+      selectedKanbanId: seleced.value
     });
   };
 
@@ -60,6 +71,13 @@ class CreateProjectTaskFormBase extends Component<
               rules: [{ required: true, message: 'Please input task board name' }]
             })(<Input type="text" placeholder="Board Name" />)}
           </FormItem>
+
+          <KanbanSelect
+            projectId={this.props.project!.get('id')}
+            onChange={this.onKanbanSelectChange}
+          />
+
+          <ColumnSelect kanbanId={'xx'} />
 
           <FormItem>
             <Button type="primary" htmlType="submit">
@@ -75,9 +93,7 @@ class CreateProjectTaskFormBase extends Component<
 const CreateProjectTaskFormWrapper = Form.create()(CreateProjectTaskFormBase);
 
 const mapStateToProps = (state: any) => {
-  return {
-
-  };
+  return {};
 };
 
 const mapDispatchToProps = (dispatch: any) => {

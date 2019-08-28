@@ -2,11 +2,9 @@ import './ProjectPage.scss';
 
 import { Layout } from 'antd';
 import React, { Component } from 'react';
-import { match, Redirect, Route, Switch, RouteComponentProps } from 'react-router';
+import { match,  Route, Switch } from 'react-router';
 import { Link } from 'react-router-dom';
-
 import { StarCheckBox } from '../../../components/widget/StarCheckBox/StarCheckBox';
-import { updateTitle } from '../../../services/title';
 import { BoardSetting } from '../../Task/BoardSetting/BoardSetting';
 import { ProjectKanban } from './ProjectKanban/ProjectKanban';
 import { BoardSideBar } from './ProjectSideBar/ProjectSideBar';

@@ -19,6 +19,7 @@ interface ReduxProps {
 interface ComponentProps extends RouteComponentProps, InputProps {}
 
 class ColumnDataFetcher {
+  private obsoleted = false;
   constructor(private component: KanbanColumnComponent) {}
 
   public fetchCards() {
@@ -36,7 +37,14 @@ class ColumnDataFetcher {
     );
   }
 
+  public obsolete() {
+    this.obsoleted = true;
+  }
+
   private onFetchDone = () => {
+    if (this.obsoleted) {
+      return;
+    }
     this.component.setState({
       cardFetching: false
     });
@@ -68,6 +76,10 @@ class KanbanColumnComponent extends Component<
 
   componentWillMount() {
     this.columDataFetcher.fetchCards();
+  }
+
+  componentWillUnmount() {
+    this.columDataFetcher.obsolete();
   }
 
   // componentDidMount() {}

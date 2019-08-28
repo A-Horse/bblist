@@ -8,15 +8,12 @@ import { Kanban } from './Kanban/Kanban';
 import { ProjectRecord } from '../../../../typings/project.typing';
 import { getProjectKanbansRequest } from '../../../../actions/project/kanban.action';
 import { NoKanbanGuide } from './NoKanbanGuide/NoKanbanGuide';
-import { AppSelect } from '../../../../components/widget/AppSelect';
-import { SelectOption } from '../../../../typings/select.typing';
-import { getKanbanOptions } from '../../../../reducers/selector/kanban.selector';
 import { RootState } from '../../../../reducers';
+import { KanbanSelect } from '../../../../components/stateful-component/KanbanSelect/KanbanSelect';
 
 interface Props {
   actions: ActionCreatorsMapObject;
   project?: ProjectRecord;
-  kanbanOptions?: SelectOption[];
 }
 
 export class ProjectKanbanComponent extends Component<
@@ -41,10 +38,9 @@ export class ProjectKanbanComponent extends Component<
     } else {
       const selectKanbanId: string =
         this.state.selectKanbanId || this.props.project!.get('setting').get('defaultKanbanId');
-      console.log('selectKanbanId', selectKanbanId);
       return (
         <div>
-          <AppSelect options={this.props.kanbanOptions} />    
+          <KanbanSelect projectId={this.props.project!.get('id')} onChange={() => {}} />
 
           {selectKanbanId && (
             <Kanban kanbanId={selectKanbanId} projectId={this.props.project!.get('id')} />
@@ -83,14 +79,8 @@ const mapStateToProps = (state: RootState, props: any) => {
 
   const project = state.project.get('projectMap').get(projectId);
 
-  let kanbanOptions: SelectOption[] = [];
-  if (project) {
-    kanbanOptions = getKanbanOptions(project, state.project.get('kanbanMap'));
-  }
-
   return {
-    project,
-    kanbanOptions
+    project
   };
 };
 

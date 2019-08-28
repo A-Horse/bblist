@@ -59,7 +59,14 @@ export function project(
           return project.set('kanbanIds', normalizedKanbans.result);
         })
         .update('kanbanMap', (kanbanMap: KanbanMap) => {
-          return kanbanMap.merge(fromJS(normalizedKanbans.entities.Kanban));
+          return normalizedKanbans.result.reduce((kanbanMapResult: KanbanMap, kanbanId: string) => {
+            return kanbanMapResult.update(kanbanId, (kanban: KanbanRecord) => {
+              if (!kanban) {
+                return fromJS(normalizedKanbans.entities.Kanban[kanbanId]);
+              }
+              return kanban.merge(fromJS(normalizedKanbans.entities.Kanban[kanbanId]))
+            })
+          }, kanbanMap);
         });
     }
 
