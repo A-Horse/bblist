@@ -6,11 +6,11 @@ import { getProjectKanbansRequest } from '../../../actions/project/kanban.action
 import { AppSelect } from '../../widget/AppSelect';
 import { getKanbanOptions } from '../../../reducers/selector/kanban.selector';
 import { SelectOption } from '../../../typings/select.typing';
-import { ValueType, ActionMeta } from 'react-select/src/types';
+import { ActionMeta } from 'react-select/src/types';
 
 interface InputProps {
   projectId: string;
-  onChange: (value: any, actionMeta: ActionMeta) => void
+  onChange: (value: any, actionMeta: ActionMeta) => void;
 }
 
 interface InjectProps {

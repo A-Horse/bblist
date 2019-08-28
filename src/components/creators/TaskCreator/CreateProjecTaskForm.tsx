@@ -1,6 +1,6 @@
 import './TaskCreatorModal.scss';
 
-import { Button, Form, Input } from 'antd';
+import { Button, Input } from 'antd';
 import React, { Component, FormEvent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -8,12 +8,12 @@ import { bindActionCreators } from 'redux';
 import { createProjectCardRequest } from '../../../actions/project/kanban-card.action';
 import { KanbanRecord } from '../../../typings/kanban.typing';
 import { ProjectRecord } from '../../../typings/project.typing';
-import { AppSelect } from '../../widget/AppSelect';
 import { KanbanSelect } from '../../stateful-component/KanbanSelect/KanbanSelect';
 import { ColumnSelect } from '../../stateful-component/ColumnSelect/ColumnSelect';
 import { SelectOption } from '../../../typings/select.typing';
+import { AppButton } from '../../widget/Button';
+import { Formik, Field, FormikActions, Form, FormikProps, FieldProps } from 'formik';
 
-const FormItem = Form.Item;
 
 interface FormData {
   title: string;
@@ -65,6 +65,29 @@ class CreateProjectTaskFormBase extends Component<
     const { getFieldDecorator } = this.props.form;
     return (
       <div style={this.props.style} className="taskboard-creater">
+        <Formik
+          initialValues={{ name: '' }}
+          onSubmit={(values: FormValues, actions: FormikActions<FormValues>) => {
+            console.log({ values, actions });
+            this.props.createKanbanColumn(values);
+            actions.setSubmitting(false);
+          }}
+          render={(formikBag: FormikProps<FormValues>) => (
+            <Form>
+              <Field
+                name="name"
+                render={({ field, form }: FieldProps<FormikValues>) => (
+                  <div>
+                    <input type="text" {...field} placeholder="First Name" />
+                    {form.touched.name && form.errors.name && form.errors.name}
+                  </div>
+                )}
+              />
+              <AppButton type="submit">OK</AppButton>
+            </Form>
+          )}
+        />
+
         <Form onSubmit={this.handleSubmit}>
           <FormItem label="Task Title">
             {getFieldDecorator('title', {
