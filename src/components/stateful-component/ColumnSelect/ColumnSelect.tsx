@@ -13,7 +13,7 @@ import { KanbanRecord } from '../../../typings/kanban.typing';
 import { generateColumnOptions } from '../../../utils/option';
 
 interface InputProps {
-  kanbanId: string;
+  kanbanId?: string;
 }
 
 interface InjectProps {
@@ -23,6 +23,13 @@ interface InjectProps {
 
 class ColumnSelectComponent extends Component<InputProps & InjectProps> {
   componentWillMount() {
+    this.fetchColumns();
+  }
+
+  fetchColumns() {
+    if (!this.props.kanbanId) {
+      return;
+    }
     this.props.actions.getProjectKanbanDetailRequest({
       kanbanId: this.props.kanbanId
     });
@@ -45,8 +52,12 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
 };
 
 const mapStateToProps = (state: RootState, props: InputProps) => {
-  const columns = selectKanbanColumns(state, props.kanbanId);
-  const columnOptions = columns ? generateColumnOptions(columns) : [];
+  let columnOptions: SelectOption[] = [];
+  if (props.kanbanId) {
+    const columns = selectKanbanColumns(state, props.kanbanId);
+    columnOptions = columns ? generateColumnOptions(columns) : [];
+  }
+
   return {
     options: columnOptions
   };

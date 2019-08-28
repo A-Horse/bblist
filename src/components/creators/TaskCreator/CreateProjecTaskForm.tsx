@@ -29,7 +29,7 @@ class CreateProjectTaskFormBase extends Component<
     project?: ProjectRecord;
   },
   {
-    selectedKanbanId: string | null;
+    selectedKanbanId?: string;
     name: any;
     errorMessages: any;
   }
@@ -37,7 +37,7 @@ class CreateProjectTaskFormBase extends Component<
   state = {
     errorMessages: [],
     name: '',
-    selectedKanbanId: null
+    selectedKanbanId: undefined
   };
 
   handleSubmit = (event: FormEvent<any>) => {
@@ -77,7 +77,7 @@ class CreateProjectTaskFormBase extends Component<
             onChange={this.onKanbanSelectChange}
           />
 
-          <ColumnSelect kanbanId={'xx'} />
+          <ColumnSelect kanbanId={this.state.selectedKanbanId} />
 
           <FormItem>
             <Button type="primary" htmlType="submit">
