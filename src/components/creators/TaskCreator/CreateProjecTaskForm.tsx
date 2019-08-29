@@ -4,7 +4,6 @@ import { Button, Input } from 'antd';
 import React, { Component, FormEvent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-
 import { createProjectCardRequest } from '../../../actions/project/kanban-card.action';
 import { KanbanRecord } from '../../../typings/kanban.typing';
 import { ProjectRecord } from '../../../typings/project.typing';
