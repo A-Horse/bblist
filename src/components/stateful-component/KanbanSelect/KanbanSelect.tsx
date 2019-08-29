@@ -10,7 +10,7 @@ import { ActionMeta } from 'react-select/src/types';
 
 interface InputProps {
   projectId: string;
-  onChange: (value: any, actionMeta: ActionMeta) => void;
+  onChange: (value: any) => void;
 }
 
 interface InjectProps {

@@ -11,11 +11,12 @@ import { KanbanSelect } from '../../stateful-component/KanbanSelect/KanbanSelect
 import { ColumnSelect } from '../../stateful-component/ColumnSelect/ColumnSelect';
 import { SelectOption } from '../../../typings/select.typing';
 import { AppButton } from '../../widget/Button';
-import { Formik, Field, FormikActions, Form, FormikProps, FieldProps } from 'formik';
+import { Formik, Field, FormikActions, Form, FormikProps, FieldProps, FormikValues } from 'formik';
 
-
-interface FormData {
+interface FormValues {
   title: string;
+  kanbanId: string;
+  columnId: string;
 }
 
 class CreateProjectTaskFormBase extends Component<
@@ -39,17 +40,14 @@ class CreateProjectTaskFormBase extends Component<
     selectedKanbanId: undefined
   };
 
-  handleSubmit = (event: FormEvent<any>) => {
-    event.preventDefault();
-    this.props.form.validateFieldsAndScroll((err: any, values: FormData) => {
-      if (!err) {
-        this.props.actions.createProjectCardRequest({
-          projectId: this.props.project!.get('id'),
-          ...values
-        });
-      }
-    });
-  };
+  // handleSubmit = (event: FormEvent<any>) => {
+  //   event.preventDefault();
+  //   this.props.form.validateFieldsAndScroll((err: any, values: FormData) => {
+  //     if (!err) {
+
+  //     }
+  //   });
+  // };
 
   onKanbanSelectChange = (seleced?: SelectOption) => {
     if (!seleced) {
@@ -60,31 +58,62 @@ class CreateProjectTaskFormBase extends Component<
     });
   };
 
+  createProjectCard(values: any) {
+    this.props.actions.createProjectCardRequest({
+      projectId: this.props.project!.get('id'),
+      ...values
+    });
+  }
+
   render() {
     const { getFieldDecorator } = this.props.form;
     return (
       <div style={this.props.style} className="taskboard-creater">
         <Formik
-          initialValues={{ name: '' }}
+          initialValues={{ title: '', kanbanId: null, columnId: null }}
           onSubmit={(values: FormValues, actions: FormikActions<FormValues>) => {
             console.log({ values, actions });
-            this.props.createKanbanColumn(values);
+            this.createProjectCard(values);
             actions.setSubmitting(false);
           }}
-          render={(formikBag: FormikProps<FormValues>) => (
-            <Form>
-              <Field
-                name="name"
-                render={({ field, form }: FieldProps<FormikValues>) => (
-                  <div>
-                    <input type="text" {...field} placeholder="First Name" />
-                    {form.touched.name && form.errors.name && form.errors.name}
-                  </div>
-                )}
-              />
-              <AppButton type="submit">OK</AppButton>
-            </Form>
-          )}
+          render={(formikBag: FormikProps<FormValues>) => {
+            console.log('formikBag', formikBag);
+            return (
+              <Form>
+                <Field
+                  name="title"
+                  render={({ field, form }: FieldProps<FormikValues>) => (
+                    <div>
+                      <input type="text" {...field} placeholder="First Name" />
+                      {form.touched.name && form.errors.name && form.errors.name}
+                    </div>
+                  )}
+                />
+                <Field
+                  name="kanbanId"
+                  render={({ field, form }: FieldProps<FormikValues>) => (
+                    <div>
+                      <KanbanSelect
+                        projectId={this.props.project!.get('id')}
+                       {...field}
+                      />
+                      {form.touched.kanbanId && form.errors.kanbanId && form.errors.kanbanId}
+                    </div>
+                  )}
+                />
+                <Field
+                  name="columnId"
+                  render={({ field, form }: FieldProps<FormikValues>) => (
+                    <div>
+                       <ColumnSelect kanbanId={this.state.selectedKanbanId}  {...field} />
+                      {form.touched.name && form.errors.name && form.errors.name}
+                    </div>
+                  )}
+                />
+                <AppButton type="submit">OK</AppButton>
+              </Form>
+            );
+          }}
         />
 
         <Form onSubmit={this.handleSubmit}>
@@ -93,11 +122,6 @@ class CreateProjectTaskFormBase extends Component<
               rules: [{ required: true, message: 'Please input task board name' }]
             })(<Input type="text" placeholder="Board Name" />)}
           </FormItem>
-
-          <KanbanSelect
-            projectId={this.props.project!.get('id')}
-            onChange={this.onKanbanSelectChange}
-          />
 
           <ColumnSelect kanbanId={this.state.selectedKanbanId} />
 

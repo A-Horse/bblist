@@ -14,6 +14,7 @@ import { generateColumnOptions } from '../../../utils/option';
 
 interface InputProps {
   kanbanId?: string;
+  onChange: any
 }
 
 interface InjectProps {
@@ -36,7 +37,7 @@ class ColumnSelectComponent extends Component<InputProps & InjectProps> {
   }
 
   render() {
-    return <AppSelect options={this.props.options} />;
+    return <AppSelect options={this.props.options} onChange={this.props.onChange} />;
   }
 }
 
