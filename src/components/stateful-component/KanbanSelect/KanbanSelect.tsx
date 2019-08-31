@@ -26,7 +26,13 @@ class KanbanSelectComponent extends Component<InputProps & InjectProps> {
   }
 
   render() {
-    return <AppSelect options={this.props.options} onChange={this.props.onChange} />;
+    return <AppSelect options={this.props.options} onChange={(x: any) => {
+        this.props.onChange({
+            target: {
+                id: '123' 
+            }
+        })
+    }} />;
   }
 }
 

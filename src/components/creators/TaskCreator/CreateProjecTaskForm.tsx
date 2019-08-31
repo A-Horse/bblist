@@ -15,13 +15,12 @@ import { Formik, Field, FormikActions, Form, FormikProps, FieldProps, FormikValu
 
 interface FormValues {
   title: string;
-  kanbanId: string;
-  columnId: string;
+  kanbanId: string | null;
+  columnId: string | null;
 }
 
-class CreateProjectTaskFormBase extends Component<
+class CreateProjectTaskFormComponent extends Component<
   {
-    form: any;
     actions: any;
     style?: any;
     onCancel?: () => void;
@@ -66,7 +65,6 @@ class CreateProjectTaskFormBase extends Component<
   }
 
   render() {
-    const { getFieldDecorator } = this.props.form;
     return (
       <div style={this.props.style} className="taskboard-creater">
         <Formik
@@ -105,7 +103,7 @@ class CreateProjectTaskFormBase extends Component<
                   name="columnId"
                   render={({ field, form }: FieldProps<FormikValues>) => (
                     <div>
-                       <ColumnSelect kanbanId={this.state.selectedKanbanId}  {...field} />
+                       <ColumnSelect kanbanId={form.values.kanbanId}  {...field} />
                       {form.touched.name && form.errors.name && form.errors.name}
                     </div>
                   )}
@@ -116,7 +114,7 @@ class CreateProjectTaskFormBase extends Component<
           }}
         />
 
-        <Form onSubmit={this.handleSubmit}>
+        {/* <Form onSubmit={this.handleSubmit}>
           <FormItem label="Task Title">
             {getFieldDecorator('title', {
               rules: [{ required: true, message: 'Please input task board name' }]
@@ -130,13 +128,12 @@ class CreateProjectTaskFormBase extends Component<
               Done
             </Button>
           </FormItem>
-        </Form>
+        </Form> */}
       </div>
     );
   }
 }
 
-const CreateProjectTaskFormWrapper = Form.create()(CreateProjectTaskFormBase);
 
 const mapStateToProps = (state: any) => {
   return {};
@@ -156,4 +153,4 @@ const mapDispatchToProps = (dispatch: any) => {
 export const CreateProjectTaskForm = connect(
   mapStateToProps,
   mapDispatchToProps
-)(CreateProjectTaskFormWrapper);
+)(CreateProjectTaskFormComponent);
