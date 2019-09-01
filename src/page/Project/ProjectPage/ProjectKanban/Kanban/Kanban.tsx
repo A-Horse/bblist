@@ -9,7 +9,7 @@ import { Route, RouteComponentProps } from 'react-router';
 import { withRouter } from 'react-router-dom';
 import { bindActionCreators, AnyAction, Dispatch, ActionCreatorsMapObject } from 'redux';
 import { CardDetailContainer } from '../../../../Task/CardDetail/CardDetail.container';
-import { KanbanColumn } from './Track/KanbanColumn';
+import { KanbanColumn } from './Column/KanbanColumn';
 import { ProjectRecord } from '../../../../../typings/project.typing';
 import { KanbanRecord } from '../../../../../typings/kanban.typing';
 import { KanbanColumnRecord } from '../../../../../typings/kanban-column.typing';

@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 import { RootState } from '../../../../../../reducers';
 import { KanbanColumnRecord } from '../../../../../../typings/kanban-column.typing';
 import { getColumnCardsRequest } from '../../../../../../actions/project/kanban-card.action';
+import { ColumnDataFetcher } from './column-data-fetcher';
 
 interface InputProps {
   column: KanbanColumnRecord;
@@ -18,40 +19,7 @@ interface ReduxProps {
 }
 interface ComponentProps extends RouteComponentProps, InputProps {}
 
-class ColumnDataFetcher {
-  private obsoleted = false;
-  constructor(private component: KanbanColumnComponent) {}
-
-  public fetchCards() {
-    this.component.setState({
-      cardFetching: true
-    });
-    this.component.props.actions.getColumnCardsRequest(
-      {
-        kanbanId: this.component.props.column.get('kanbanId'),
-        columnId: this.component.props.column.get('id')
-      },
-      {
-        requestDoneCallback: this.onFetchDone
-      }
-    );
-  }
-
-  public obsolete() {
-    this.obsoleted = true;
-  }
-
-  private onFetchDone = () => {
-    if (this.obsoleted) {
-      return;
-    }
-    this.component.setState({
-      cardFetching: false
-    });
-  };
-}
-
-class KanbanColumnComponent extends Component<
+export class KanbanColumnComponent extends Component<
   ComponentProps & ReduxProps,
   {
     cardFetching: boolean;

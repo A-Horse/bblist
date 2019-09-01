@@ -75,7 +75,6 @@ class CreateProjectTaskFormComponent extends Component<
             actions.setSubmitting(false);
           }}
           render={(formikBag: FormikProps<FormValues>) => {
-            console.log('formikBag', formikBag);
             return (
               <Form>
                 <Field
@@ -94,7 +93,7 @@ class CreateProjectTaskFormComponent extends Component<
                       <KanbanSelect
                         projectId={this.props.project!.get('id')}
                         onChange={(selected: SelectOption) => {
-                          formikBag.setFieldValue('kanbanId', selected.value)
+                          formikBag.setFieldValue('kanbanId', selected.value);
                         }}
                       />
                       {form.touched.kanbanId && form.errors.kanbanId && form.errors.kanbanId}
@@ -105,9 +104,11 @@ class CreateProjectTaskFormComponent extends Component<
                   name="columnId"
                   render={({ field, form }: FieldProps<FormikValues>) => (
                     <div>
-                       <ColumnSelect
-                        kanbanId={form.values.kanbanId} 
-                        onChange={(selected: SelectOption) => formikBag.setFieldValue('columnId', selected.value)}
+                      <ColumnSelect
+                        kanbanId={form.values.kanbanId}
+                        onChange={(selected: SelectOption) =>
+                          formikBag.setFieldValue('columnId', selected.value)
+                        }
                       />
                       {form.touched.name && form.errors.name && form.errors.name}
                     </div>
@@ -138,7 +139,6 @@ class CreateProjectTaskFormComponent extends Component<
     );
   }
 }
-
 
 const mapStateToProps = (state: any) => {
   return {};
