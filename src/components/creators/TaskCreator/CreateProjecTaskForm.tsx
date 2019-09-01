@@ -82,7 +82,7 @@ class CreateProjectTaskFormComponent extends Component<
                   name="title"
                   render={({ field, form }: FieldProps<FormikValues>) => (
                     <div>
-                      <input type="text" {...field} placeholder="First Name" />
+                      <input type="text" {...field} placeholder="title" />
                       {form.touched.name && form.errors.name && form.errors.name}
                     </div>
                   )}
@@ -93,7 +93,9 @@ class CreateProjectTaskFormComponent extends Component<
                     <div>
                       <KanbanSelect
                         projectId={this.props.project!.get('id')}
-                       {...field}
+                        onChange={(selected: SelectOption) => {
+                          formikBag.setFieldValue('kanbanId', selected.value)
+                        }}
                       />
                       {form.touched.kanbanId && form.errors.kanbanId && form.errors.kanbanId}
                     </div>
@@ -103,7 +105,10 @@ class CreateProjectTaskFormComponent extends Component<
                   name="columnId"
                   render={({ field, form }: FieldProps<FormikValues>) => (
                     <div>
-                       <ColumnSelect kanbanId={form.values.kanbanId}  {...field} />
+                       <ColumnSelect
+                        kanbanId={form.values.kanbanId} 
+                        onChange={(selected: SelectOption) => formikBag.setFieldValue('columnId', selected.value)}
+                      />
                       {form.touched.name && form.errors.name && form.errors.name}
                     </div>
                   )}
