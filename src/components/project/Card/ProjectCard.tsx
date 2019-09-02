@@ -1,7 +1,5 @@
 import './TaskCard.scss';
 
-import { Checkbox } from 'antd';
-//
 import React, { Component } from 'react';
 import { DragSource, DropTarget } from 'react-dnd';
 import { findDOMNode } from 'react-dom';
@@ -45,18 +43,7 @@ class TaskCardBase extends Component<any, any> {
           <div style={{ opacity }}>
             {connectDragSource(
               <div>
-                <div className={`task-card ${this.props.mode === 'LONG' ? 'long' : ''}`}>
-                  {card.get('type') === 'TODO' && (
-                    <Checkbox
-                      className="task-card--checkbox"
-                      checked={card.get('status') === 'DONE'}
-                      onChange={event =>
-                        this.updateCard({
-                          status: event.target.checked ? 'DONE' : 'UNDONE'
-                        })
-                      }
-                    />
-                  )}
+                <div className="task-card">
                   <div
                     className="task-card--title"
                     onClick={() => {
@@ -65,19 +52,8 @@ class TaskCardBase extends Component<any, any> {
                   >
                     {card.get('title')}
                   </div>
-                  {card.get('creator') ? <UserAvatar user={card.get('creator').toJS()} /> : null}
+                  
                 </div>
-                <div
-                  style={{
-                    height:
-                      this.props.sourceItem && this.props.isOver && this.props.canDrop
-                        ? this.props.sourceItem.height
-                        : 0
-                  }}
-                  className={`task-card-placeholder${
-                    this.props.isOver && this.props.canDrop ? ' active' : ''
-                  }`}
-                />
               </div>
             )}
           </div>
@@ -87,7 +63,7 @@ class TaskCardBase extends Component<any, any> {
   }
 }
 
-export const TaskCard = DropTarget(
+export const ProjectCard = DropTarget(
   'CARD',
   {
     drop(props: any, monitor: any, component: any) {

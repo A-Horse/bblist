@@ -30,5 +30,7 @@ export function selectKanbanColumns(state: RootState, kanbanId: string): List<Ka
   if (!kanban) {
     return null;
   }
-  return kanban.get('columns')!;
+  return kanban.get('columns')!.map(() => {
+    
+  });
 }

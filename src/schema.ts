@@ -20,5 +20,10 @@ export const TDRepeat = new schema.Entity('TodoRepeat');
 export const ProjectEntity = new schema.Entity('Project');
 export const ProjectEntityList = new schema.Array(ProjectEntity);
 
+export const KanbanColumnEntity = new schema.Entity('KanbanColumn');
+
 export const KanbanEntity = new schema.Entity('Kanban');
 export const KanbanEntityList = new schema.Array(KanbanEntity);
+export const KanbanDetailEntity = new schema.Entity('Kanban', {
+  columns: [KanbanColumnEntity]
+})

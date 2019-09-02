@@ -10,6 +10,7 @@ import { RootState } from '../../../../../../reducers';
 import { KanbanColumnRecord } from '../../../../../../typings/kanban-column.typing';
 import { getColumnCardsRequest } from '../../../../../../actions/project/kanban-card.action';
 import { ColumnDataFetcher } from './column-data-fetcher';
+import { ProjectCard } from '../../../../../../components/project/Card/ProjectCard';
 
 interface InputProps {
   column: KanbanColumnRecord;
@@ -99,24 +100,22 @@ export class KanbanColumnComponent extends Component<
         </div>
 
         <div className="task-track--body">
-          <div>
-            {/* {this.props.cards
+          {/* <div>
+            {this.props.cards
               .sortBy((card: any) => card.get('index'))
               .valueSeq()
               .toArray()
               .map((card: any) => {
                 return (
-                  <TaskCard
-                    actions={this.props.actions}
+                  <ProjectCard
                     key={card.get('id')}
-                    boardId={this.props.boardId}
                     card={card}
-                    history={this.props.history}
-                    match={this.props.match}
                   />
                 );
-              })} */}
-          </div>
+              })}
+          </div> */}
+
+          
           {/* <TaskCardCreater
             loginedUser={this.props.loginedUser}
             addTaskCard={this.addTaskCard}
@@ -140,7 +139,9 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
 };
 
 const mapStateToProps = (state: RootState, props: InputProps) => {
-  return {};
+  return {
+
+  };
 };
 
 export const KanbanColumn = withRouter<ComponentProps>(
