@@ -25,6 +25,8 @@ export const GET_COLUMN_CARDS_REQUEST_FN = (action$: Observable<FSAction>) =>
         .then((result: AxiosResponse<Card[]>) => {
           action.meta.requestDoneCallback();
           return getColumnCardsSuccess({
+            kanbanId: action.payload.kanbanId,
+            columnId: action.payload.columnId,
             cards: result.data
           });
         })

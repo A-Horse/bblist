@@ -18,7 +18,11 @@ export function getColumnCardsRequest(
   };
 }
 
-export function getColumnCardsSuccess(payload: { cards: Card[] }): FSAction {
+export function getColumnCardsSuccess(payload: {
+  cards: Card[];
+  kanbanId: string;
+  columnId: string;
+}): FSAction {
   return {
     type: GET_COLUMN_CARDS_SUCCESS,
     payload
@@ -32,7 +36,6 @@ export function getColumnCardsFailure(error: any): FSAction {
     payload: error
   };
 }
-
 
 export const CREATAE_PROJECT_CARD_REQUEST = 'CREATAE_PROJECT_CARD_REQUEST';
 export const CREATAE_PROJECT_CARD_SUCCESS = 'CREATAE_PROJECT_CARD_SUCCESS';

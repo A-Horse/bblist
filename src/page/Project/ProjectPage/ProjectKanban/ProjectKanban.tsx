@@ -33,7 +33,7 @@ export class ProjectKanbanComponent extends Component<
   }
 
   renderKanbanArea() {
-    if (!this.props.project!.get('kanbanIds')!.length) {
+    if (!this.props.project!.get('kanbans')!.length) {
       return <NoKanbanGuide project={this.props.project!} />;
     } else {
       const selectKanbanId: string =
@@ -55,7 +55,7 @@ export class ProjectKanbanComponent extends Component<
       return null;
     }
 
-    if (!this.props.project.get('kanbanIds')) {
+    if (!this.props.project.get('kanbans')) {
       return null;
     }
 

@@ -7,11 +7,11 @@ import { List } from 'immutable';
 import { KanbanColumnRecord } from '../../typings/kanban-column.typing';
 
 export function getKanbanOptions(project: ProjectRecord, kanbanMap: KanbanMap): SelectOption[] {
-  if (!project.get('kanbanIds')) {
+  if (!project.get('kanbans')) {
     return [];
   }
   return project
-    .get('kanbanIds')!
+    .get('kanbans')!
     .map((kanbanId: string) => {
       return kanbanMap.get(kanbanId) as KanbanRecord;
     })
@@ -24,13 +24,19 @@ export function getKanbanOptions(project: ProjectRecord, kanbanMap: KanbanMap): 
     });
 }
 
-export function selectKanbanColumns(state: RootState, kanbanId: string): List<KanbanColumnRecord> | null {
+export function selectKanbanColumns(
+  state: RootState,
+  kanbanId: string
+): List<KanbanColumnRecord> | null {
   const kanban = state.project.get('kanbanMap').get(kanbanId);
 
-  if (!kanban) {
+  if (!kanban || !kanban.get('columns')) {
     return null;
   }
-  return kanban.get('columns')!.map(() => {
-    
-  });
+  return kanban
+    .get('columns')!
+    .map((columnId: string) => {
+      return state.project.get('columnMap').get(columnId);
+    })
+    .filter(column => !!column) as List<KanbanColumnRecord>;
 }

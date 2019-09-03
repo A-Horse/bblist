@@ -5,7 +5,8 @@ import {
   ProjectEntity,
   ProjectEntityList,
   KanbanEntityList,
-  KanbanDetailEntity
+  KanbanDetailEntity,
+  ProjectCardList
 } from './../schema';
 import { ProjectRecord } from '../typings/project.typing';
 import {
@@ -20,20 +21,24 @@ import {
   GET_PROJCET_KANBAN_DETAIL_SUCCESS
 } from '../actions/project/kanban.action';
 import { Column, KanbanColumnRecord } from '../typings/kanban-column.typing';
+import { KanbanCardRecord } from '../typings/kanban-card.typing';
 
 export type KanbanMap = Map<string, KanbanRecord>;
 export type ColumnMap = Map<string, KanbanColumnRecord>;
+export type CardMap = Map<string, KanbanCardRecord>;
 
 export interface ProjectProp {
   projectMap: Map<string, ProjectRecord>;
   kanbanMap: KanbanMap;
   columnMap: ColumnMap;
+  cardMap: CardMap;
 }
 
 export function project(
   state: Record<ProjectProp> = fromJS({
     projectMap: {},
-    kanbanMap: {}
+    kanbanMap: {},
+    columnMap: {}
   }),
   action: FSAction
 ) {
@@ -118,6 +123,19 @@ export function project(
     }
 
     case GET_COLUMN_CARDS_SUCCESS: {
+      const normalizedCards = normalize(action.payload.cards, ProjectCardList);
+      console.log('normalizedCards', normalizedCards);
+      return state.updateIn(['columnMap', action.payload.columnId], (column: KanbanColumnRecord) => {
+        if (!column) {
+          return column;
+        } 
+        return column.update('cards', () => {
+          return normalizedCards.result;
+        });
+      }).update('cardMap', () => {
+
+      });
+      // return state.updateIn(['columnMap', action.payload.columnId])
       // return state.updateIn([kanbanId])
     }
 

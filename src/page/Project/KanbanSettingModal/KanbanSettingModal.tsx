@@ -16,6 +16,9 @@ import { KanbanRecord } from '../../../typings/kanban.typing';
 import { withRouter, RouteComponentProps } from 'react-router';
 import { KanbanColumnCreator } from './KanbanColumnCreator/KanbanColumnCreator';
 import { KanbanColumnPanel } from './KanbanColumnPanel/KanbanColumnPanel';
+import { KanbanColumnRecord } from '../../../typings/kanban-column.typing';
+import { selectKanbanColumns } from '../../../reducers/selector/kanban.selector';
+import { List } from 'immutable';
 
 interface InputProps {
   toggle: boolean;
@@ -30,6 +33,7 @@ interface InputRouterProps
 class KanbanSettingModalComponent extends Component<
   InputRouterProps & {
     kanban?: KanbanRecord;
+    columns: List<KanbanColumnRecord> | null;
     project?: ProjectRecord;
     actions: ActionCreatorsMapObject;
   }
@@ -59,7 +63,7 @@ class KanbanSettingModalComponent extends Component<
       <div>
         {this.props.kanban!.get('name')}
 
-        <KanbanColumnPanel columns={this.props.kanban!.get('columns')}/>
+        <KanbanColumnPanel columns={this.props.columns}/>
 
         <KanbanColumnCreator createKanbanColumn={this.createKanbanColumn} />
       </div>
@@ -81,9 +85,15 @@ const mapStateToProps = (state: RootState, props: InputRouterProps) => {
   const project = state.project.get('projectMap').get(projectId) as ProjectRecord;
   const kanban = state.project.get('kanbanMap').get(props.kanbanId);
 
+  let columns: List<KanbanColumnRecord> | null = null;
+  if (!!kanban && !!kanban.get('columns')) {
+    columns = selectKanbanColumns(state, kanban.get('id'))
+  }
+
   return {
     project,
-    kanban
+    kanban,
+    columns
   };
 };
 

@@ -3,7 +3,7 @@ import { KanbanColumnRecord } from '../../../../typings/kanban-column.typing';
 import { List } from 'immutable';
 
 export class KanbanColumnPanel extends Component<{
-  columns?: List<KanbanColumnRecord>;
+  columns: List<KanbanColumnRecord> | null;
 }> {
   render() {
     return (

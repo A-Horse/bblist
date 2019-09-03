@@ -17,6 +17,7 @@ import Loading from '../../../../../components/Loading';
 import { RootState } from '../../../../../reducers';
 import { getProjectKanbanDetailRequest } from '../../../../../actions/project/kanban.action';
 import { CreateKanbanCardModalButton } from '../../modals/CreateKanbanCardModal/CreateKanbanCardModalButton';
+import { selectKanbanColumns } from '../../../../../reducers/selector/kanban.selector';
 
 interface InputProps {
   kanbanId: string;
@@ -30,6 +31,7 @@ class KanbanComponent extends Component<
     actions: ActionCreatorsMapObject;
     project: ProjectRecord;
     kanban?: KanbanRecord;
+    columns: List<KanbanColumnRecord> | null;
   } & ComponentProps
 > {
   componentWillMount() {
@@ -45,7 +47,7 @@ class KanbanComponent extends Component<
       return <Loading />;
     }
 
-    const columns: List<KanbanColumnRecord> = this.props.kanban!.get('columns')!;
+    const columns: List<KanbanColumnRecord> = this.props.columns!;
 
     return (
       <div className="column-board-content-container">
@@ -88,13 +90,19 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
 const mapStateToProps = (state: RootState, props: ComponentProps) => {
   const { projectId } = props;
 
-    const project = state.project.get('projectMap').get(projectId) as ProjectRecord;
+  const project = state.project.get('projectMap').get(projectId) as ProjectRecord;
 
-    const kanban = state.project.get('kanbanMap').get(props.kanbanId);
+  const kanban = state.project.get('kanbanMap').get(props.kanbanId);
+
+  let columns: List<KanbanColumnRecord> | null = null;
+  if (!!kanban && !!kanban.get('columns')) {
+    columns = selectKanbanColumns(state, kanban.get('id'));
+  }
 
   return {
     project,
-    kanban
+    kanban,
+    columns
   };
 };
 
