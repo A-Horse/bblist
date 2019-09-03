@@ -1,4 +1,4 @@
-import { KanbanCardRecord } from './kanban-card.typing';
+import { ProjectCardRecord } from './kanban-card.typing';
 import { Record, List } from 'immutable';
 
 export interface Column {
@@ -11,5 +11,5 @@ export type KanbanColumnRecord = Record<{
   name: string;
   order: number;
   kanbanId: string;
-  cards: List<KanbanCardRecord>;
+  cards: List<ProjectCardRecord>;
 }>;

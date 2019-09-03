@@ -5,7 +5,7 @@ export interface Card {
   name: string;
 }
 
-export type KanbanCardRecord = Record<{
+export type ProjectCardRecord = Record<{
   id: string;
   title: string;
 }>;

@@ -21,11 +21,11 @@ import {
   GET_PROJCET_KANBAN_DETAIL_SUCCESS
 } from '../actions/project/kanban.action';
 import { Column, KanbanColumnRecord } from '../typings/kanban-column.typing';
-import { KanbanCardRecord } from '../typings/kanban-card.typing';
+import { ProjectCardRecord } from '../typings/kanban-card.typing';
 
 export type KanbanMap = Map<string, KanbanRecord>;
 export type ColumnMap = Map<string, KanbanColumnRecord>;
-export type CardMap = Map<string, KanbanCardRecord>;
+export type CardMap = Map<string, ProjectCardRecord>;
 
 export interface ProjectProp {
   projectMap: Map<string, ProjectRecord>;
@@ -38,7 +38,8 @@ export function project(
   state: Record<ProjectProp> = fromJS({
     projectMap: {},
     kanbanMap: {},
-    columnMap: {}
+    columnMap: {},
+    cardMap: {}
   }),
   action: FSAction
 ) {
@@ -112,9 +113,7 @@ export function project(
                 if (!column) {
                   return fromJS(normalizedKanbanDetail.entities.KanbanColumn[columnId]);
                 }
-                return columnMap.merge(
-                  fromJS(normalizedKanbanDetail.entities.KanbanColumn[columnId])
-                );
+                return column.merge(fromJS(normalizedKanbanDetail.entities.KanbanColumn[columnId]));
               });
             },
             columnMap
@@ -124,19 +123,25 @@ export function project(
 
     case GET_COLUMN_CARDS_SUCCESS: {
       const normalizedCards = normalize(action.payload.cards, ProjectCardList);
-      console.log('normalizedCards', normalizedCards);
-      return state.updateIn(['columnMap', action.payload.columnId], (column: KanbanColumnRecord) => {
-        if (!column) {
-          return column;
-        } 
-        return column.update('cards', () => {
-          return normalizedCards.result;
+      return state
+        .updateIn(['columnMap', action.payload.columnId], (column: KanbanColumnRecord) => {
+          if (!column) {
+            return column;
+          }
+          return column.update('cards', () => {
+            return normalizedCards.result;
+          });
+        })
+        .update('cardMap', (cardMap: CardMap) => {
+          return normalizedCards.result.reduce((cardMapResult: CardMap, cardId: string) => {
+            return cardMapResult.update(cardId, (card: ProjectCardRecord) => {
+              if (!card) {
+                return fromJS(normalizedCards.entities.ProjectCard[cardId]);
+              }
+              return card.merge(fromJS(normalizedCards.entities.ProjectCard[cardId]));
+            });
+          }, cardMap);
         });
-      }).update('cardMap', () => {
-
-      });
-      // return state.updateIn(['columnMap', action.payload.columnId])
-      // return state.updateIn([kanbanId])
     }
 
     default:
