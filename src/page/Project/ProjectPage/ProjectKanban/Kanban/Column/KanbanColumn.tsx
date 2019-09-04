@@ -11,13 +11,19 @@ import { KanbanColumnRecord } from '../../../../../../typings/kanban-column.typi
 import { getColumnCardsRequest } from '../../../../../../actions/project/kanban-card.action';
 import { ColumnDataFetcher } from './column-data-fetcher';
 import { ProjectCard } from '../../../../../../components/project/Card/ProjectCard';
+import { List } from 'immutable';
+import { ProjectCardRecord } from '../../../../../../typings/kanban-card.typing';
+import { selectColumnCards } from '../../../../../../reducers/selector/card.selector';
 
 interface InputProps {
   column: KanbanColumnRecord;
 }
+
 interface ReduxProps {
   actions: ActionCreatorsMapObject;
+  cards: List<ProjectCardRecord> | null;
 }
+
 interface ComponentProps extends RouteComponentProps, InputProps {}
 
 export class KanbanColumnComponent extends Component<
@@ -100,22 +106,16 @@ export class KanbanColumnComponent extends Component<
         </div>
 
         <div className="task-track--body">
-          {/* <div>
-            {this.props.cards
-              .sortBy((card: any) => card.get('index'))
-              .valueSeq()
-              .toArray()
-              .map((card: any) => {
-                return (
-                  <ProjectCard
-                    key={card.get('id')}
-                    card={card}
-                  />
-                );
-              })}
-          </div> */}
+          <div>
+            {this.props.cards &&
+              this.props
+                .cards!.sortBy((card: ProjectCardRecord) => card.get('order'))
+                .map((card: ProjectCardRecord) => {
+                  return <ProjectCard key={card.get('id')} card={card} />;
+                })
+                .toArray()}
+          </div>
 
-          
           {/* <TaskCardCreater
             loginedUser={this.props.loginedUser}
             addTaskCard={this.addTaskCard}
@@ -139,8 +139,9 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
 };
 
 const mapStateToProps = (state: RootState, props: InputProps) => {
+  const cards = selectColumnCards(state, props.column.get('id'));
   return {
-
+    cards
   };
 };
 

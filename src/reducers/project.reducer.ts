@@ -129,7 +129,7 @@ export function project(
             return column;
           }
           return column.update('cards', () => {
-            return normalizedCards.result;
+            return fromJS(normalizedCards.result);
           });
         })
         .update('cardMap', (cardMap: CardMap) => {

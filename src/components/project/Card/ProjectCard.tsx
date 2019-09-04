@@ -1,10 +1,9 @@
-import './TaskCard.scss';
+import './ProjectCard.scss';
 
 import React, { Component } from 'react';
 import { DragSource, DropTarget } from 'react-dnd';
 import { findDOMNode } from 'react-dom';
 
-import { UserAvatar } from '../../UserAvatar/UserAvatar';
 
 const TaskCardSource = {
   beginDrag(props: any, monitor: any, component: any) {

@@ -8,6 +8,7 @@ export interface Card {
 export type ProjectCardRecord = Record<{
   id: string;
   title: string;
+  order: number;
 }>;
 
 export interface CreateProjectCardInput {
