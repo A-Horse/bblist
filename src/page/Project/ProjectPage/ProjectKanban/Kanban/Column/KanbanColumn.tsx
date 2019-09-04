@@ -86,8 +86,8 @@ export class KanbanColumnComponent extends Component<
 
   render() {
     return (
-      <div>
-        <div className="task-track--top-bar">
+      <div className="KanbanColumn">
+        <div className="">
           <div className="task-track--name">{this.props.column.get('name')}</div>
           <Dropdown
             trigger={['click']}

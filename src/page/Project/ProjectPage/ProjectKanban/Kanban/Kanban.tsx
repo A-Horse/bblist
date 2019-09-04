@@ -50,7 +50,7 @@ class KanbanComponent extends Component<
     const columns: List<KanbanColumnRecord> = this.props.columns!;
 
     return (
-      <div className="column-board-content-container">
+      <div className="Kanban">
         <CreateKanbanCardModalButton kanban={this.props.kanban} />
 
         <Route
@@ -58,7 +58,6 @@ class KanbanComponent extends Component<
           render={() => <CardDetailContainer />}
         />
 
-        <div>demo</div>
 
         <div className="board-track-container">
           {columns
