@@ -1,4 +1,10 @@
 .Kanban {
   background-color: antiquewhite;
+  height: 100%;
 
+}
+
+.Kanban-ColumnContainer {
+  display: flex;
+  overflow-y: auto;
 }

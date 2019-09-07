@@ -59,7 +59,7 @@ export class ProjectKanbanComponent extends Component<
       return null;
     }
 
-    return <div>{this.renderKanbanArea()}</div>;
+    return <div className="ProjectKanban">{this.renderKanbanArea()}</div>;
   }
 }
 

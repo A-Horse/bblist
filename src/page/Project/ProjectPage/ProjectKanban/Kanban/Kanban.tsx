@@ -59,7 +59,7 @@ class KanbanComponent extends Component<
         />
 
 
-        <div className="board-track-container">
+        <div className="Kanban-ColumnContainer">
           {columns
             .sort((a: KanbanColumnRecord, b: KanbanColumnRecord) => a.get('order') - b.get('order'))
             .valueSeq()
