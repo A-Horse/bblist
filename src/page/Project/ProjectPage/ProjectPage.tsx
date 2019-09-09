@@ -3,11 +3,9 @@ import './ProjectPage.scss';
 import { Layout } from 'antd';
 import React, { Component } from 'react';
 import { match,  Route, Switch } from 'react-router';
-import { Link } from 'react-router-dom';
-import { StarCheckBox } from '../../../components/widget/StarCheckBox/StarCheckBox';
 import { BoardSetting } from '../../Task/BoardSetting/BoardSetting';
 import { ProjectKanban } from './ProjectKanban/ProjectKanban';
-import { BoardSideBar } from './ProjectSideBar/ProjectSideBar';
+import { ProjectSideBar } from './ProjectSideBar/ProjectSideBar';
 import { getProjectDetailRequest } from '../../../actions/project/project.action';
 
 import { connect } from 'react-redux';
@@ -19,7 +17,6 @@ import { History, Location } from 'history';
 import { ProjectAdmin } from './ProjectAdmin/ProjectAdmin';
 import { ProjectEpics } from './ProjectEpics/ProjectEpics';
 
-const { Header } = Layout;
 
 interface Props {
   actions: {
@@ -40,17 +37,10 @@ class ProjectPageComponent extends Component<Props> {
   }
 
   componentWillReceiveProps(nextProps: any) {
-    // if (nextProps.boardName !== this.props.boardName) {
-    //   updateTitle(` ${nextProps.boardName}`);
-    // }
+  
   }
 
-  onStarCheckChange = (value: any) => {
-    // this.props.actions.UPDATE_TASK_BOARD_REQUEST({
-    //   id: this.props.match.params.boardId,
-    //   isStar: value
-    // });
-  };
+ 
 
   render() {
     const { projectId } = this.props.match.params;
@@ -63,32 +53,10 @@ class ProjectPageComponent extends Component<Props> {
 
     return (
       <Layout className="board-container">
-        <Header className="taskboard-header">
-          <StarCheckBox
-            className="taskboard-header--star"
-            onChange={this.onStarCheckChange}
-            defaultChecked={project.get('setting').get('isStar')}
-          />
-          <div className="taskboard-name">
-            <Link className="taskboard-name--text" to={`/proejct/${projectId}`}>
-              {project && project.get('name')}
-            </Link>
-          </div>
-
-          <div
-            className="taskboard-header-setting"
-            onClick={() =>
-              this.props.history.push(
-                `/project/${this.props.match.params.projectId}/setting/infomation`
-              )
-            }
-          >
-            <i className="fa fa-cog" aria-hidden="true" />
-          </div>
-        </Header>
+        
 
         <div>
-          <BoardSideBar match={this.props.match} />
+          <ProjectSideBar match={this.props.match} />
 
           <Switch>
             <Route
