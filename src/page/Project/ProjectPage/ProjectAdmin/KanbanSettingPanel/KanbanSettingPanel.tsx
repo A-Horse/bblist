@@ -10,7 +10,6 @@ import { KanbanRecord } from '../../../../../typings/kanban.typing';
 import { AppIcon } from '../../../../../components/widget/Icon';
 import { RootState } from '../../../../../reducers';
 import { KanbanSettingModal } from '../../../KanbanSettingModal/KanbanSettingModal';
-import { AppButton } from '../../../../../components/widget/AppButton';
 
 interface InputProps {}
 

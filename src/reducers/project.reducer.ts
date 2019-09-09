@@ -45,8 +45,8 @@ export function project(
 ) {
   switch (action.type) {
     case GET_PROJCETS_SUCCESS: {
-      const normalizedAllBoard = normalize(action.payload, ProjectEntityList);
-      return state.update('projectMap', () => fromJS(normalizedAllBoard.entities.Project));
+      const normalizedAllProject = normalize(action.payload, ProjectEntityList);
+      return state.update('projectMap', () => fromJS(normalizedAllProject.entities.Project || {}));
     }
 
     case CREATE_PROJCET_SUCCESS:
