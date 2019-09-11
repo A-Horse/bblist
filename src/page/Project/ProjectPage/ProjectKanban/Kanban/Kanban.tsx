@@ -2,7 +2,7 @@ import './Kanban.scss';
 
 import { List } from 'immutable';
 import React, { Component } from 'react';
-import { DragDropContext } from 'react-dnd';
+import { DndProvider } from 'react-dnd'
 import HTML5Backend from 'react-dnd-html5-backend';
 import { connect } from 'react-redux';
 import { Route, RouteComponentProps } from 'react-router';
@@ -16,7 +16,6 @@ import { KanbanColumnRecord } from '../../../../../typings/kanban-column.typing'
 import Loading from '../../../../../components/Loading';
 import { RootState } from '../../../../../reducers';
 import { getProjectKanbanDetailRequest } from '../../../../../actions/project/kanban.action';
-import { CreateKanbanCardModalButton } from '../../modals/CreateKanbanCardModal/CreateKanbanCardModalButton';
 import { selectKanbanColumns } from '../../../../../reducers/selector/kanban.selector';
 
 interface InputProps {
@@ -51,6 +50,9 @@ class KanbanComponent extends Component<
 
     return (
       <div className="Kanban">
+        <DndProvider backend={HTML5Backend}>
+
+        
         <Route
           path="/project/:projectId/kanban/:kanbanId/card/:cardId"
           render={() => <CardDetailContainer />}
@@ -65,12 +67,11 @@ class KanbanComponent extends Component<
               <KanbanColumn key={column.get('id')} column={column} />
             ))}
         </div>
+        </DndProvider>
       </div>
     );
   }
 }
-
-export const KanbanComponentDDC = DragDropContext(HTML5Backend)(KanbanComponent);
 
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
   return {
@@ -102,7 +103,9 @@ const mapStateToProps = (state: RootState, props: ComponentProps) => {
   };
 };
 
-export const Kanban = withRouter<ComponentProps>(connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(KanbanComponentDDC) as any);
+export const Kanban = withRouter<ComponentProps>(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(KanbanComponent)
+);

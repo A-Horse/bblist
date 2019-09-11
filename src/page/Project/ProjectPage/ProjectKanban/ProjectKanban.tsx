@@ -53,7 +53,7 @@ export class ProjectKanbanComponent extends Component<
         this.state.selectKanbanId || this.props.project!.get('setting').get('defaultKanbanId');
 
       return (
-        <div>
+        <>
           <KanbanSelect
             projectId={this.props.project!.get('id')}
             selectedKanbanId={selectedKanbanId}
@@ -69,7 +69,7 @@ export class ProjectKanbanComponent extends Component<
               <Kanban kanbanId={selectedKanbanId} projectId={this.props.project!.get('id')} />
             </div>
           )}
-        </div>
+        </>
       );
     }
   }
