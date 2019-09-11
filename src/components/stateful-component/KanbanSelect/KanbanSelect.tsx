@@ -6,11 +6,10 @@ import { getProjectKanbansRequest } from '../../../actions/project/kanban.action
 import { AppSelect } from '../../widget/AppSelect';
 import { getKanbanOptions } from '../../../reducers/selector/kanban.selector';
 import { SelectOption } from '../../../typings/select.typing';
-import { ActionMeta } from 'react-select/src/types';
 
 interface InputProps {
   projectId: string;
-  onChange: (value: any) => void;
+  onChange: (value: SelectOption) => void;
 }
 
 interface InjectProps {
@@ -26,7 +25,7 @@ class KanbanSelectComponent extends Component<InputProps & InjectProps> {
   }
 
   render() {
-    return <AppSelect options={this.props.options} onChange={this.props.onChange} />;
+    return <AppSelect options={this.props.options} onChange={this.props.onChange as any} />;
   }
 }
 

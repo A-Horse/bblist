@@ -1,14 +1,13 @@
 .Kanban {
   background-color: antiquewhite;
   height: 100%;
+
+  .Kanban-ColumnContainer {
+    height: clac;
+    display: flex;
+    overflow-y: auto;
+  }
+  
 }
 
-.Kanban--Header {
-  height: 80px;
-}
 
-.Kanban-ColumnContainer {
-  height: clac;
-  display: flex;
-  overflow-y: auto;
-}

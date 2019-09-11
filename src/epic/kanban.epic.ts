@@ -9,7 +9,6 @@ import axios, { AxiosResponse } from 'axios';
 import { ofType } from 'redux-observable';
 import { Observable } from 'rxjs';
 import { mergeMap, map } from 'rxjs/operators';
-
 import { FSAction } from '../actions/actions';
 import {
   CREATAE_KANBAN_COLUMN_REQUEST,

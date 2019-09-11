@@ -1,6 +1,5 @@
 import './KanbanColumn.scss';
 
-import { Dropdown, Icon, Menu } from 'antd';
 import React, { Component } from 'react';
 
 import { withRouter, RouteComponentProps } from 'react-router';
@@ -42,12 +41,7 @@ export class KanbanColumnComponent extends Component<
     super(props);
     this.columDataFetcher = new ColumnDataFetcher(this);
   }
-  // state = {
-  //   trackDropDownVisible: false
-  // };
-  // domMain: any;
-  // cardInstanceMap: any;
-  // cardDragMeta: any;
+  
 
   componentWillMount() {
     this.columDataFetcher.fetchCards();
@@ -57,55 +51,17 @@ export class KanbanColumnComponent extends Component<
     this.columDataFetcher.obsolete();
   }
 
-  // componentDidMount() {}
-
-  // getTrackIdAndIndex() {
-  //   return {
-  //     id: this.props.track.get('id'),
-  //     index: Number(this.domMain.dataset.index)
-  //   };
-  // }
-
-  // pickCardInstance(cardConnectedInstance: any, id: string) {
-  //   this.cardInstanceMap[id] = cardConnectedInstance;
-  //   if (!cardConnectedInstance) {
-  //     this.cardInstanceMap = R.omit([id], this.cardInstanceMap);
-  //   }
-  // }
-
-  // resetDragMeta() {
-  //   this.cardDragMeta = { placeholderCardIndex: -1 };
-  // }
-
-  // addTaskCard = (data: any) => {
-  //   return this.props.addTaskCard({
-  //     trackId: this.props.track.get('id'),
-  //     ...data
-  //   });
-  // };
+  
 
   render() {
     return (
       <div className="KanbanColumn">
         <div className="">
-          <div className="task-track--name">{this.props.column.get('name')}</div>
-          <Dropdown
-            trigger={['click']}
-            placement="bottomRight"
-            overlay={
-              <Menu>
-                <Menu.Item key="0" onClick={() => {}}>
-                  <i className="fa fa-trash" aria-hidden="true" />
-                  <span>Delete</span>
-                </Menu.Item>
-              </Menu>
-            }
-          >
-            <Icon type="appstore-o" />
-          </Dropdown>
+          <div className="KanbanColumn-Name">{this.props.column.get('name')}</div>
+          
         </div>
 
-        <div className="task-track--body">
+        <div className="">
           <div>
             {this.props.cards &&
               this.props
@@ -116,11 +72,6 @@ export class KanbanColumnComponent extends Component<
                 .toArray()}
           </div>
 
-          {/* <TaskCardCreater
-            loginedUser={this.props.loginedUser}
-            addTaskCard={this.addTaskCard}
-            track={this.props.track}
-          /> */}
         </div>
       </div>
     );

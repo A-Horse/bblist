@@ -51,16 +51,10 @@ class KanbanComponent extends Component<
 
     return (
       <div className="Kanban">
-
-        <div className="Kanban--Header">
-          <CreateKanbanCardModalButton kanban={this.props.kanban} />
-        </div>
-
         <Route
           path="/project/:projectId/kanban/:kanbanId/card/:cardId"
           render={() => <CardDetailContainer />}
         />
-
 
         <div className="Kanban-ColumnContainer">
           {columns

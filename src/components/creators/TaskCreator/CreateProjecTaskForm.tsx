@@ -1,7 +1,6 @@
 import './TaskCreatorModal.scss';
 
-import { Button, Input } from 'antd';
-import React, { Component, FormEvent } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { createProjectCardRequest } from '../../../actions/project/kanban-card.action';
@@ -38,15 +37,6 @@ class CreateProjectTaskFormComponent extends Component<
     name: '',
     selectedKanbanId: undefined
   };
-
-  // handleSubmit = (event: FormEvent<any>) => {
-  //   event.preventDefault();
-  //   this.props.form.validateFieldsAndScroll((err: any, values: FormData) => {
-  //     if (!err) {
-
-  //     }
-  //   });
-  // };
 
   onKanbanSelectChange = (seleced?: SelectOption) => {
     if (!seleced) {
@@ -120,21 +110,6 @@ class CreateProjectTaskFormComponent extends Component<
           }}
         />
 
-        {/* <Form onSubmit={this.handleSubmit}>
-          <FormItem label="Task Title">
-            {getFieldDecorator('title', {
-              rules: [{ required: true, message: 'Please input task board name' }]
-            })(<Input type="text" placeholder="Board Name" />)}
-          </FormItem>
-
-          <ColumnSelect kanbanId={this.state.selectedKanbanId} />
-
-          <FormItem>
-            <Button type="primary" htmlType="submit">
-              Done
-            </Button>
-          </FormItem>
-        </Form> */}
       </div>
     );
   }
