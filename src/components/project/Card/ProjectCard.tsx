@@ -46,7 +46,7 @@ class TaskCardBase extends Component<any, any> {
                   <div
                     className="task-card--title"
                     onClick={() => {
-                      this.props.history.push(this.props.match.url + `/card/${card.get('id')}`);
+                      // this.props.history.push(this.props.match.url + `/card/${card.get('id')}`);
                     }}
                   >
                     {card.get('title')}

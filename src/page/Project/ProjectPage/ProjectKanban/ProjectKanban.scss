@@ -1,3 +1,11 @@
 .ProjectKanban {
-  height: calc(100vh - 200px);
+  height: calc(100vh - 120px);
+
+   & > div {
+     height: 100%;
+   }
+
+  .ProjectKanban--KanbanContainer {
+    height: calc(100% - 100px);
+  }
 }

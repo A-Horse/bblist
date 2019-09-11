@@ -9,6 +9,7 @@ import { SelectOption } from '../../../typings/select.typing';
 
 interface InputProps {
   projectId: string;
+  selectedKanbanId?: string;
   onChange: (value: SelectOption) => void;
 }
 
@@ -25,7 +26,14 @@ class KanbanSelectComponent extends Component<InputProps & InjectProps> {
   }
 
   render() {
-    return <AppSelect options={this.props.options} onChange={this.props.onChange as any} />;
+    const selectedOption = this.props.options.find(option => option.value === this.props.selectedKanbanId);
+    return (
+      <AppSelect
+        options={this.props.options}
+        value={selectedOption}
+        onChange={this.props.onChange as any}
+      />
+    );
   }
 }
 

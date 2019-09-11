@@ -24,7 +24,7 @@ export class ProjectKanbanComponent extends Component<
   {
     selectKanbanId: string | null;
   }
-  > {
+> {
   state = {
     selectKanbanId: null
   };
@@ -41,29 +41,33 @@ export class ProjectKanbanComponent extends Component<
       this.props.actions.setProjectDefaultKanbanRequest({
         projectId: this.props.project!.get('id'),
         kanbanId: selected.value
-      })
+      });
     }
-  }
+  };
 
   renderKanbanArea() {
     if (!this.props.project!.get('kanbans')!.length) {
       return <NoKanbanGuide project={this.props.project!} />;
     } else {
-      const selectKanbanId: string =
+      const selectedKanbanId: string =
         this.state.selectKanbanId || this.props.project!.get('setting').get('defaultKanbanId');
 
       return (
         <div>
-          <KanbanSelect projectId={this.props.project!.get('id')}
-            onChange={this.onKanbanSelectChanged} />
+          <KanbanSelect
+            projectId={this.props.project!.get('id')}
+            selectedKanbanId={selectedKanbanId}
+            onChange={this.onKanbanSelectChanged}
+          />
 
           <div>
             <CreateKanbanCardModalButton />
-
           </div>
 
-          {selectKanbanId && (
-            <Kanban kanbanId={selectKanbanId} projectId={this.props.project!.get('id')} />
+          {selectedKanbanId && (
+            <div className="ProjectKanban--KanbanContainer">
+              <Kanban kanbanId={selectedKanbanId} projectId={this.props.project!.get('id')} />
+            </div>
           )}
         </div>
       );
