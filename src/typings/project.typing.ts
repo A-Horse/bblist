@@ -31,3 +31,8 @@ export type ProjectRecord = Record<{
 export interface CreateProjectInput {
   name: string;
 }
+
+export interface SetProjectDefaultKanbanInput {
+  projectId: string;
+  kanbanId: string;
+}

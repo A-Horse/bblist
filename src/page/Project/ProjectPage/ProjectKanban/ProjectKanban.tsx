@@ -12,6 +12,7 @@ import { RootState } from '../../../../reducers';
 import { KanbanSelect } from '../../../../components/stateful-component/KanbanSelect/KanbanSelect';
 import { SelectOption } from '../../../../typings/select.typing';
 import { CreateKanbanCardModalButton } from '../modals/CreateKanbanCardModal/CreateKanbanCardModalButton';
+import { setProjectDefaultKanbanRequest } from '../../../../actions/project/project-setting.action';
 
 interface Props {
   actions: ActionCreatorsMapObject;
@@ -34,6 +35,16 @@ export class ProjectKanbanComponent extends Component<
     });
   }
 
+  onKanbanSelectChanged = (selected: SelectOption): void => {
+    this.setState({ selectKanbanId: selected.value });
+    if (!this.props.project!.get('setting').get('defaultKanbanId')) {
+      this.props.actions.setProjectDefaultKanbanRequest({
+        projectId: this.props.project!.get('id'),
+        kanbanId: selected.value
+      })
+    }
+  }
+
   renderKanbanArea() {
     if (!this.props.project!.get('kanbans')!.length) {
       return <NoKanbanGuide project={this.props.project!} />;
@@ -44,7 +55,7 @@ export class ProjectKanbanComponent extends Component<
       return (
         <div>
           <KanbanSelect projectId={this.props.project!.get('id')}
-            onChange={(selected: SelectOption) => { this.setState({ selectKanbanId: selected.value }) }} />
+            onChange={this.onKanbanSelectChanged} />
 
           <div>
             <CreateKanbanCardModalButton />
@@ -76,7 +87,8 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
   return {
     actions: bindActionCreators(
       {
-        getProjectKanbansRequest: getProjectKanbansRequest
+        getProjectKanbansRequest: getProjectKanbansRequest,
+        setProjectDefaultKanbanRequest: setProjectDefaultKanbanRequest
       },
       dispatch
     )

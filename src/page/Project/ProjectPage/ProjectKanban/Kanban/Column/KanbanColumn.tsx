@@ -51,8 +51,6 @@ export class KanbanColumnComponent extends Component<
     this.columDataFetcher.obsolete();
   }
 
-  
-
   render() {
     return (
       <div className="KanbanColumn">
