@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { makeActionRequestCollection } from '../../../actions/actions';
-import { AppButton } from '../../../components/widget/AppButton';
+import { AppButton } from '../../../components/widget/Button';
 import { AppIcon } from '../../../components/widget/Icon';
 import { AppRangePicker } from '../../widget/Datepicker/Datepicker';
 import { TaskCreatorModal } from './TaskCreatorModal';
@@ -61,9 +61,9 @@ class CreateTodoTaskFormBase extends Component<
               Cancel
             </AppButton>
 
-            <Button type="primary" htmlType="submit">
+            <AppButton type="submit">
               Done
-            </Button>
+            </AppButton>
           </div>
         </Form>
       </div>

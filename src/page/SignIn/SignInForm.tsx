@@ -1,6 +1,7 @@
 import { Button, Form, Icon, Input } from 'antd';
 import { WrappedFormUtils } from 'antd/lib/form/Form';
 import React, { Component, FormEvent } from 'react';
+import { AppButton } from '../../components/widget/Button';
 
 interface Props {
   form: WrappedFormUtils;
@@ -51,9 +52,9 @@ class SignInForm extends Component<Props> {
           )}
         </Form.Item>
         <Form.Item>
-          <Button type="primary" htmlType="submit" className="login-form-button">
+          <AppButton type="submit" className="login-form-button">
             Log in
-          </Button>
+          </AppButton>
         </Form.Item>
       </Form>
     );

@@ -1,7 +1,8 @@
 import './TodoBoxCreater.scss';
 
-import { Button, Form, Icon, Input, Modal } from 'antd';
+import {  Form, Icon, Input, Modal } from 'antd';
 import React, { Component } from 'react';
+import { AppButton } from '../../../components/widget/Button';
 
 const FormItem = Form.Item;
 
@@ -53,9 +54,9 @@ export class TodoBoxCreaterForm extends Component<any> {
             </FormItem>
 
             <FormItem>
-              <Button type="primary" htmlType="submit">
+              <AppButton type="submit">
                 Done
-              </Button>
+              </AppButton>
             </FormItem>
           </Form>
         </Modal>

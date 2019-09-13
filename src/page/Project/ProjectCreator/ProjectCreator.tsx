@@ -7,6 +7,7 @@ import { bindActionCreators } from 'redux';
 
 import { createProjectRequest } from '../../../actions/project/project.action';
 import { AppIcon } from '../../../components/widget/Icon';
+import { AppButton } from '../../../components/widget/Button';
 
 const FormItem = Form.Item;
 
@@ -59,9 +60,9 @@ class TaskBoardCreaterBase extends Component<any, any> {
               </FormItem>
 
               <FormItem>
-                <Button type="primary" htmlType="submit">
+                <AppButton type="submit">
                   Done
-                </Button>
+                </AppButton>
               </FormItem>
             </Form>
           </div>

@@ -9,6 +9,7 @@ import { createKanbanRequest } from '../../../actions/project/kanban.action';
 import { CreateKanbanInput } from '../../../typings/kanban.typing';
 import { FormComponentProps } from 'antd/lib/form';
 import { ProjectRecord } from '../../../typings/project.typing';
+import { AppButton } from '../../../components/widget/Button';
 
 const FormItem = Form.Item;
 
@@ -63,9 +64,9 @@ class KanbanCreatorComponent extends Component<
             </FormItem>
 
             <FormItem>
-              <Button type="primary" htmlType="submit">
+              <AppButton type="submit">
                 Done
-              </Button>
+              </AppButton>
             </FormItem>
           </Form>
         </div>

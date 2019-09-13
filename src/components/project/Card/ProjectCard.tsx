@@ -1,71 +1,53 @@
 import './ProjectCard.scss';
 
-import React, { Component } from 'react';
-import { DragSource, DropTarget } from 'react-dnd';
+import React, { Component, useImperativeHandle, useRef, RefForwardingComponent } from 'react';
+import { DragSource, DropTarget, DndProviderProps, DndComponentClass, ConnectDragSource, ConnectDragPreview, ConnectDropTarget } from 'react-dnd';
 import { findDOMNode } from 'react-dom';
+import { useSelector, useDispatch } from 'react-redux'
+import { ProjectCardRecord } from '../../../typings/kanban-card.typing';
 
 
-const TaskCardSource = {
-  beginDrag(props: any, monitor: any, component: any) {
-    const componentRect = (findDOMNode as any)(component).getBoundingClientRect();
-    return {
-      card: props.card,
-      height: componentRect.height
-    };
-  }
-};
-
-class TaskCardBase extends Component<any, any> {
-  state = {};
-
-  componentWillMount() {}
-
-  componentWillReceiveProps() {}
-
-  updateCard = (toPatchData: any) => {
-    this.props.actions.UPDATE_TASK_CARD_REQUEST({
-      id: this.props.card.get('id'),
-      ...toPatchData
-    });
-  };
-
-  render() {
-    const { card } = this.props;
-    const { isDragging, connectDragSource, connectDragPreview } = this.props;
-    const { connectDropTarget } = this.props;
-    const opacity = isDragging ? 0.4 : 1;
-    return (
-      connectDragPreview &&
-      connectDragSource &&
-      connectDragPreview(
-        connectDropTarget(
-          <div style={{ opacity }}>
-            {connectDragSource(
-              <div>
-                <div className="task-card">
-                  <div
-                    className="task-card--title"
-                    onClick={() => {
-                      // this.props.history.push(this.props.match.url + `/card/${card.get('id')}`);
-                    }}
-                  >
-                    {card.get('title')}
-                  </div>
-                  
-                </div>
-              </div>
-            )}
-          </div>
-        )
-      )
-    );
-  }
+interface InputProps {
+  card: ProjectCardRecord;
 }
+
+interface DndProps {
+  index: number
+  moveCard: (dragIndex: number, hoverIndex: number) => void
+
+  isDragging: boolean
+  connectDragSource: ConnectDragSource
+  connectDropTarget: ConnectDropTarget
+}
+
+interface CardInstance {
+  getNode(): HTMLDivElement | null
+}
+
+type CardComponent = RefForwardingComponent<HTMLDivElement, InputProps & DndProps>;
+
+const Card = React.forwardRef<HTMLDivElement, InputProps & DndProps>(
+  ({ card, isDragging, connectDragSource, connectDropTarget }, ref) => {
+    const elementRef = useRef(null)
+    connectDragSource(elementRef)
+    connectDropTarget(elementRef)
+
+    const opacity = isDragging ? 0 : 1
+    useImperativeHandle<{}, CardInstance>(ref, () => ({
+      getNode: () => elementRef.current,
+    }))
+    return (
+      <div ref={elementRef} style={{  opacity }}>
+        {card.get('title')}
+      </div>
+    )
+  },
+)
 
 export const ProjectCard = DropTarget(
   'CARD',
   {
-    drop(props: any, monitor: any, component: any) {
+    drop(props: any, monitor: any, component: CardComponent) {
       props.actions.CARD_MOVE_REQUEST({
         sourceCard: monitor.getItem().card.toJS(),
         targetCard: props.card.toJS()
@@ -85,9 +67,15 @@ export const ProjectCard = DropTarget(
     sourceItem: monitor.getItem()
   })
 )(
-  DragSource('CARD', TaskCardSource, (connect, monitor) => ({
+  DragSource('CARD', {
+    beginDrag(props: any, monitor: any, component: CardComponent) {
+      return {
+        card: props.card,
+      };
+    }
+  }, (connect, monitor) => ({
     connectDragSource: connect.dragSource(),
     connectDragPreview: connect.dragPreview(),
     isDragging: monitor.isDragging()
-  }))(TaskCardBase)
+  }))(Card)
 );

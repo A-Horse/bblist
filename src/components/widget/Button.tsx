@@ -1,9 +1,8 @@
-import React, { Component, ButtonHTMLAttributes, DetailedHTMLProps } from 'react';
+import React, { Component, ButtonHTMLAttributes, DetailedHTMLProps, PureComponent } from 'react';
 
-export class AppButton extends Component<
-  DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>
+export class AppButton extends PureComponent<
+  React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>
 > {
-
   render() {
     return <button {...this.props} />;
   }
