@@ -15,3 +15,7 @@ export interface CreateProjectCardInput {
   title: string;
   content: string;
 }
+
+export interface ChangeProjectCardColumnInput {
+  
+}

@@ -61,3 +61,29 @@ export function createProjectCardFailure(): FSAction {
     error: true
   };
 }
+
+
+export const CHANGE_PROJECT_CARD_COLUMN_REQUEST = 'CHANGE_PROJECT_CARD_COLUMN_REQUEST';
+export const CHANGE_PROJECT_CARD_COLUMN_SUCCESS = 'CHANGE_PROJECT_CARD_COLUMN_SUCCESS';
+export const CHANGE_PROJECT_CARD_COLUMN_FAILURE = 'CHANGE_PROJECT_CARD_COLUMN_FAILURE';
+
+export function changeProjectCardColumnRequest(changeProjectCardColumnInput: ChangeProjectCardColumnInput): FSAction {
+  return {
+    type: CHANGE_PROJECT_CARD_COLUMN_REQUEST,
+    payload: changeProjectCardColumnInput
+  };
+}
+
+export function changeProjectCardColumnSuccess(id: string): FSAction {
+  return {
+    type: CHANGE_PROJECT_CARD_COLUMN_SUCCESS,
+    payload: id
+  };
+}
+
+export function changeProjectCardColumnFailure(): FSAction {
+  return {
+    type: CHANGE_PROJECT_CARD_COLUMN_FAILURE,
+    error: true
+  };
+}
