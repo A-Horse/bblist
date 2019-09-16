@@ -1,4 +1,4 @@
-import { Card, CreateProjectCardInput } from './../../typings/kanban-card.typing';
+import { Card, CreateProjectCardInput, ChangeProjectCardColumnInput } from './../../typings/kanban-card.typing';
 import { FSAction } from './../actions';
 
 export const GET_COLUMN_CARDS_REQUEST = 'GET_COLUMN_CARDS_REQUEST';
