@@ -1,4 +1,3 @@
-//
 import { connect } from 'react-redux';
 import { CardDetail } from './CardDetail';
 import { bindActionCreators } from 'redux';
@@ -18,7 +17,6 @@ const mapStateToProps = (state, props) => {
     board: state.task2.get('board'),
     trackMap: state.task2.get('trackMap'),
     card: state.task2.get('cardMap').get(String(props.match.params.cardId))
-    /* loginedUser: state.auth.get('loginedUser') */
   };
 };
 

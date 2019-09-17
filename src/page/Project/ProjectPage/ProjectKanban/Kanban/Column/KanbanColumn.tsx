@@ -7,7 +7,7 @@ import { bindActionCreators, AnyAction, Dispatch, ActionCreatorsMapObject } from
 import { connect } from 'react-redux';
 import { RootState } from '../../../../../../reducers';
 import { KanbanColumnRecord } from '../../../../../../typings/kanban-column.typing';
-import { getColumnCardsRequest } from '../../../../../../actions/project/kanban-card.action';
+import { getColumnCardsRequest } from '../../../../../../actions/project/project-card.action';
 import { ColumnDataFetcher } from './column-data-fetcher';
 import { ProjectCard } from '../../../../../../components/project/Card/ProjectCard';
 import { List } from 'immutable';

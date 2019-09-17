@@ -1,4 +1,4 @@
-import { GET_COLUMN_CARDS_SUCCESS } from './../actions/project/kanban-card.action';
+import { GET_COLUMN_CARDS_SUCCESS } from '../actions/project/project-card.action';
 import { Kanban, KanbanRecord } from './../typings/kanban.typing';
 import { FSAction } from './../actions/actions';
 import {

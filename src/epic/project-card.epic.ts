@@ -1,5 +1,5 @@
-import { Card } from './../typings/kanban-card.typing';
-import { FSAction } from './../actions/actions';
+import { Card } from '../typings/kanban-card.typing';
+import { FSAction } from '../actions/actions';
 import { mergeMap } from 'rxjs/operators';
 import { ofType } from 'redux-observable';
 import {
@@ -8,8 +8,11 @@ import {
   getColumnCardsFailure,
   CREATAE_PROJECT_CARD_REQUEST,
   createProjectCardFailure,
-  createProjectCardSuccess
-} from './../actions/project/kanban-card.action';
+  createProjectCardSuccess,
+  RANK_PROJECT_CARD_COLUMN_REQUEST,
+  rankProjectCardColumnSuccess,
+  rankProjectCardColumnFailure
+} from '../actions/project/project-card.action';
 import axios, { AxiosResponse } from 'axios';
 import { Observable } from 'rxjs';
 import { makeApiUrl } from '../utils/api';
@@ -45,5 +48,20 @@ export const CREATAE_PROJECT_CARD_REQUEST_FN = (action$: Observable<FSAction>) =
         .post(makeApiUrl(`/project/${action.payload.projectId}/card`), action.payload)
         .then((result: AxiosResponse<string>) => createProjectCardSuccess(result.data))
         .catch(createProjectCardFailure);
+    })
+  );
+
+export const RANK_PROJECT_CARD_COLUMN_REQUEST_FN = (action$: Observable<FSAction>) =>
+  action$.pipe(
+    ofType(RANK_PROJECT_CARD_COLUMN_REQUEST),
+    mergeMap((action: FSAction) => {
+      return axios
+        .post(makeApiUrl(`/kanban/${action.payload.kanbanId}/rank-card`), {
+          cardId: action.payload.cardId,
+          targetCardId: action.payload.targetCardId,
+          isBefore: action.payload.isBefore
+        })
+        .then(() => rankProjectCardColumnSuccess())
+        .catch(rankProjectCardColumnFailure);
     })
   );
