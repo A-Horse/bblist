@@ -2,7 +2,7 @@ import { Layout } from 'antd';
 import React, { Component, Suspense } from 'react';
 import { Redirect, Route, Switch } from 'react-router';
 
-import NotFound from '../page/NotFound';
+import { NotFound } from '../page/NotFound';
 import { getUserData } from '../utils/auth';
 import Nav from './Nav/Nav';
 
@@ -26,7 +26,9 @@ const SettingPage = () => {
   );
 };
 
-const ProjectWallPageContainer = React.lazy(() => import('./Project/ProjectWallPage/ProjectWall.container'));
+const ProjectWallPageContainer = React.lazy(() =>
+  import('./Project/ProjectWallPage/ProjectWall.container')
+);
 const ProjectWallPage = () => {
   return (
     <Suspense fallback={<div>Loading...</div>}>

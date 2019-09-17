@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-class NotFound extends Component {
+export class NotFound extends Component {
   constructor() {
     super();
   }
@@ -14,9 +14,3 @@ class NotFound extends Component {
     );
   }
 }
-
-const mapStateToProps = state => {
-  return {};
-};
-
-export default connect(mapStateToProps)(NotFound);

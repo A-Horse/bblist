@@ -48,10 +48,8 @@ export const ProjectCard = DropTarget(
   'CARD',
   {
     drop(props: any, monitor: any, component: CardComponent) {
-      props.actions.CARD_MOVE_REQUEST({
-        sourceCard: monitor.getItem().card.toJS(),
-        targetCard: props.card.toJS()
-      });
+      console.log(monitor.getItem());
+      console.log(props.card);
     },
     canDrop(props, monitor) {
       const item = monitor.getItem();
