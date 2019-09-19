@@ -1,48 +1,45 @@
 import './ProjectCard.scss';
 
-import React, { Component, useImperativeHandle, useRef, RefForwardingComponent } from 'react';
-import { DragSource, DropTarget, DndProviderProps, DndComponentClass, ConnectDragSource, ConnectDragPreview, ConnectDropTarget } from 'react-dnd';
-import { findDOMNode } from 'react-dom';
-import { useSelector, useDispatch } from 'react-redux'
+import React, { useImperativeHandle, useRef, RefForwardingComponent } from 'react';
+import { DragSource, DropTarget, ConnectDragSource, ConnectDropTarget } from 'react-dnd';
 import { ProjectCardRecord } from '../../../typings/kanban-card.typing';
-
 
 interface InputProps {
   card: ProjectCardRecord;
 }
 
 interface DndProps {
-  index: number
-  moveCard: (dragIndex: number, hoverIndex: number) => void
+  index: number;
+  moveCard: (dragIndex: number, hoverIndex: number) => void;
 
-  isDragging: boolean
-  connectDragSource: ConnectDragSource
-  connectDropTarget: ConnectDropTarget
+  isDragging: boolean;
+  connectDragSource: ConnectDragSource;
+  connectDropTarget: ConnectDropTarget;
 }
 
 interface CardInstance {
-  getNode(): HTMLDivElement | null
+  getNode(): HTMLDivElement | null;
 }
 
 type CardComponent = RefForwardingComponent<HTMLDivElement, InputProps & DndProps>;
 
 const Card = React.forwardRef<HTMLDivElement, InputProps & DndProps>(
   ({ card, isDragging, connectDragSource, connectDropTarget }, ref) => {
-    const elementRef = useRef(null)
-    connectDragSource(elementRef)
-    connectDropTarget(elementRef)
+    const elementRef = useRef(null);
+    connectDragSource(elementRef);
+    connectDropTarget(elementRef);
 
-    const opacity = isDragging ? 0 : 1
+    const opacity = isDragging ? 0 : 1;
     useImperativeHandle<{}, CardInstance>(ref, () => ({
-      getNode: () => elementRef.current,
-    }))
+      getNode: () => elementRef.current
+    }));
     return (
-      <div ref={elementRef} style={{  opacity }}>
+      <div ref={elementRef} style={{ opacity }}>
         {card.get('title')}
       </div>
-    )
-  },
-)
+    );
+  }
+);
 
 export const ProjectCard = DropTarget(
   'CARD',
@@ -65,15 +62,19 @@ export const ProjectCard = DropTarget(
     sourceItem: monitor.getItem()
   })
 )(
-  DragSource('CARD', {
-    beginDrag(props: any, monitor: any, component: CardComponent) {
-      return {
-        card: props.card,
-      };
-    }
-  }, (connect, monitor) => ({
-    connectDragSource: connect.dragSource(),
-    connectDragPreview: connect.dragPreview(),
-    isDragging: monitor.isDragging()
-  }))(Card)
+  DragSource(
+    'CARD',
+    {
+      beginDrag(props: any, monitor: any, component: CardComponent) {
+        return {
+          card: props.card
+        };
+      }
+    },
+    (connect, monitor) => ({
+      connectDragSource: connect.dragSource(),
+      connectDragPreview: connect.dragPreview(),
+      isDragging: monitor.isDragging()
+    })
+  )(Card)
 );
