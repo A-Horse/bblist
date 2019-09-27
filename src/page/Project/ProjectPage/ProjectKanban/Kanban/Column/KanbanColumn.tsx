@@ -7,12 +7,22 @@ import { bindActionCreators, AnyAction, Dispatch, ActionCreatorsMapObject } from
 import { connect } from 'react-redux';
 import { RootState } from '../../../../../../reducers';
 import { KanbanColumnRecord } from '../../../../../../typings/kanban-column.typing';
-import { getColumnCardsRequest } from '../../../../../../actions/project/project-card.action';
+import {
+  getColumnCardsRequest,
+  rankProjectCardInKanbanRequest
+} from '../../../../../../actions/project/project-card.action';
 import { ColumnDataFetcher } from './column-data-fetcher';
 import { ProjectCard } from '../../../../../../components/project/Card/ProjectCard';
 import { List } from 'immutable';
-import { ProjectCardRecord } from '../../../../../../typings/kanban-card.typing';
+import {
+  ProjectCardRecord,
+  ChangeProjectCardColumnInput
+} from '../../../../../../typings/kanban-card.typing';
 import { selectColumnCards } from '../../../../../../reducers/selector/card.selector';
+import memoizeWith from 'ramda/es/memoizeWith';
+import identity from 'ramda/es/identity';
+import throttle from 'lodash/fp/throttle';
+import isEqual from 'lodash/fp/isEqual';
 
 interface InputProps {
   column: KanbanColumnRecord;
@@ -21,6 +31,7 @@ interface InputProps {
 interface ReduxProps {
   actions: ActionCreatorsMapObject;
   cards: List<ProjectCardRecord> | null;
+  rankProjectCardInKanbanRequest: Function;
 }
 
 interface ComponentProps extends RouteComponentProps, InputProps {}
@@ -55,7 +66,6 @@ export class KanbanColumnComponent extends Component<
       <div className="KanbanColumn">
         <div className="">
           <div className="KanbanColumn-Name">{this.props.column.get('name')}</div>
-          
         </div>
 
         <div className="">
@@ -64,11 +74,17 @@ export class KanbanColumnComponent extends Component<
               this.props
                 .cards!.sortBy((card: ProjectCardRecord) => card.get('order'))
                 .map((card: ProjectCardRecord, index: number) => {
-                  return <ProjectCard key={card.get('id')} card={card} index={index} />;
+                  return (
+                    <ProjectCard
+                      key={card.get('id')}
+                      rankProjectCardColumn={this.props.rankProjectCardInKanbanRequest}
+                      card={card}
+                      index={index}
+                    />
+                  );
                 })
                 .toArray()}
           </div>
-
         </div>
       </div>
     );
@@ -82,14 +98,31 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
         getColumnCardsRequest: getColumnCardsRequest
       },
       dispatch
-    )
+    ),
+    rankProjectCardInKanbanRequest: (() => {
+      let lastChangeProjectCardColumnInput: any;
+      let lastMeta: any;
+
+      return (
+        changeProjectCardColumnInput: ChangeProjectCardColumnInput,
+        meta: {
+          temporary: boolean;
+        }
+      ) => {
+        if (isEqual(changeProjectCardColumnInput, lastChangeProjectCardColumnInput) && isEqual(meta, lastMeta)) {
+          return;
+        }
+        lastChangeProjectCardColumnInput = changeProjectCardColumnInput;
+        lastMeta = meta;
+        console.log('dispatch');
+        dispatch(rankProjectCardInKanbanRequest(changeProjectCardColumnInput, meta));
+      };
+    })()
   };
 };
 
 const mapStateToProps = (state: RootState, props: InputProps) => {
   const cards = selectColumnCards(state, props.column.get('id'));
-
-  
 
   return {
     cards

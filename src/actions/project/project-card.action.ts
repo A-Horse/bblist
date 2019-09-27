@@ -93,32 +93,32 @@ export function changeProjectCardColumnFailure(): FSAction {
   };
 }
 
-export const RANK_PROJECT_CARD_COLUMN_REQUEST = 'RANK_PROJECT_CARD_COLUMN_REQUEST';
-export const RANK_PROJECT_CARD_COLUMN_SUCCESS = 'RANK_PROJECT_CARD_COLUMN_SUCCESS';
-export const RANK_PROJECT_CARD_COLUMN_FAILURE = 'RANK_PROJECT_CARD_COLUMN_FAILURE';
+export const RANK_PROJECT_CARD_IN_KANBAN_REQUEST = 'RANK_PROJECT_CARD_IN_KANBAN_REQUEST';
+export const RANK_PROJECT_CARD_IN_KANBAN_SUCCESS = 'RANK_PROJECT_CARD_IN_KANBAN_SUCCESS';
+export const RANK_PROJECT_CARD_IN_KANBAN_FAILURE = 'RANK_PROJECT_CARD_IN_KANBAN_FAILURE';
 
-export function rankProjectCardColumnRequest(
+export function rankProjectCardInKanbanRequest(
   changeProjectCardColumnInput: ChangeProjectCardColumnInput,
   meta: {
     temporary: boolean;
   }
 ): FSAction {
   return {
-    type: RANK_PROJECT_CARD_COLUMN_REQUEST,
+    type: RANK_PROJECT_CARD_IN_KANBAN_REQUEST,
     payload: changeProjectCardColumnInput,
     meta: meta
   };
 }
 
-export function rankProjectCardColumnSuccess(): FSAction {
+export function rankProjectCardInKanbanSuccess(): FSAction {
   return {
-    type: RANK_PROJECT_CARD_COLUMN_SUCCESS
+    type: RANK_PROJECT_CARD_IN_KANBAN_SUCCESS
   };
 }
 
-export function rankProjectCardColumnFailure(): FSAction {
+export function rankProjectCardInKanbanFailure(): FSAction {
   return {
-    type: RANK_PROJECT_CARD_COLUMN_FAILURE,
+    type: RANK_PROJECT_CARD_IN_KANBAN_FAILURE,
     error: true
   };
 }

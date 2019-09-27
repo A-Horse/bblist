@@ -1,6 +1,6 @@
 import {
   GET_COLUMN_CARDS_SUCCESS,
-  RANK_PROJECT_CARD_COLUMN_REQUEST
+  RANK_PROJECT_CARD_IN_KANBAN_REQUEST
 } from '../actions/project/project-card.action';
 import { Kanban, KanbanRecord } from './../typings/kanban.typing';
 import { FSAction } from './../actions/actions';
@@ -147,9 +147,10 @@ export function project(
         });
     }
 
-    case RANK_PROJECT_CARD_COLUMN_REQUEST:
+    case RANK_PROJECT_CARD_IN_KANBAN_REQUEST:
       const changeProjectCardColumnInput: ChangeProjectCardColumnInput = action.payload;
       if (action.meta.temporary) {
+        console.log('updating');
         return state.updateIn(
           ['cardMap', changeProjectCardColumnInput.selectCard.get('id'), 'order'],
           (order: number) => {
