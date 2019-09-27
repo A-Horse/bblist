@@ -2,7 +2,7 @@ import './Kanban.scss';
 
 import { List } from 'immutable';
 import React, { Component } from 'react';
-import { DndProvider } from 'react-dnd'
+import { DndProvider } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import { connect } from 'react-redux';
 import { Route, RouteComponentProps } from 'react-router';
@@ -51,22 +51,22 @@ class KanbanComponent extends Component<
     return (
       <div className="Kanban">
         <DndProvider backend={HTML5Backend}>
+          <Route
+            path="/project/:projectId/kanban/:kanbanId/card/:cardId"
+            render={() => <CardDetailContainer />}
+          />
 
-        
-        <Route
-          path="/project/:projectId/kanban/:kanbanId/card/:cardId"
-          render={() => <CardDetailContainer />}
-        />
-
-        <div className="Kanban-ColumnContainer">
-          {columns
-            .sort((a: KanbanColumnRecord, b: KanbanColumnRecord) => a.get('order') - b.get('order'))
-            .valueSeq()
-            .toArray()
-            .map((column: KanbanColumnRecord) => (
-              <KanbanColumn key={column.get('id')} column={column} />
-            ))}
-        </div>
+          <div className="Kanban-ColumnContainer">
+            {columns
+              .sort(
+                (a: KanbanColumnRecord, b: KanbanColumnRecord) => a.get('order') - b.get('order')
+              )
+              .valueSeq()
+              .toArray()
+              .map((column: KanbanColumnRecord) => (
+                <KanbanColumn key={column.get('id')} column={column} />
+              ))}
+          </div>
         </DndProvider>
       </div>
     );

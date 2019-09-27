@@ -150,7 +150,6 @@ export function project(
     case RANK_PROJECT_CARD_IN_KANBAN_REQUEST:
       const changeProjectCardColumnInput: ChangeProjectCardColumnInput = action.payload;
       if (action.meta.temporary) {
-        console.log('updating');
         return state.updateIn(
           ['cardMap', changeProjectCardColumnInput.selectCard.get('id'), 'order'],
           (order: number) => {

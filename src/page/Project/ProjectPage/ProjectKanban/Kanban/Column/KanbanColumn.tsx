@@ -19,9 +19,6 @@ import {
   ChangeProjectCardColumnInput
 } from '../../../../../../typings/kanban-card.typing';
 import { selectColumnCards } from '../../../../../../reducers/selector/card.selector';
-import memoizeWith from 'ramda/es/memoizeWith';
-import identity from 'ramda/es/identity';
-import throttle from 'lodash/fp/throttle';
 import isEqual from 'lodash/fp/isEqual';
 
 interface InputProps {
@@ -62,6 +59,7 @@ export class KanbanColumnComponent extends Component<
   }
 
   render() {
+    console.log('render column');
     return (
       <div className="KanbanColumn">
         <div className="">
@@ -114,7 +112,6 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
         }
         lastChangeProjectCardColumnInput = changeProjectCardColumnInput;
         lastMeta = meta;
-        console.log('dispatch');
         dispatch(rankProjectCardInKanbanRequest(changeProjectCardColumnInput, meta));
       };
     })()

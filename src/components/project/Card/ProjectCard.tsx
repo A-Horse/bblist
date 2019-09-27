@@ -56,26 +56,28 @@ export const ProjectCard = DropTarget(
         return null;
       }
 
-      const dragOrder = monitor.getItem().card.get('order')
-      const hoverOrder = props.card.get('order')
+      const dragCardId = monitor.getItem().card.get('id');
+      const hoverCardId = props.card.get('id');
 
+      const dragOrder = monitor.getItem().card.get('order');
+      const hoverOrder = props.card.get('order');
+      
       // Don't replace items with themselves
-      if (dragOrder === hoverOrder) {
-        return
+      if (dragCardId === hoverCardId) {
+        return;
       }
 
       // Determine rectangle on screen
-      const hoverBoundingRect = node.getBoundingClientRect()
+      const hoverBoundingRect = node.getBoundingClientRect();
 
       // Get vertical middle
-      const hoverMiddleY =
-        (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2
+      const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
 
       // Determine mouse position
-      const clientOffset = monitor.getClientOffset()
+      const clientOffset = monitor.getClientOffset();
 
       // Get pixels to the top
-      const hoverClientY = (clientOffset as XYCoord).y - hoverBoundingRect.top
+      const hoverClientY = (clientOffset as XYCoord).y - hoverBoundingRect.top;
 
       // Only perform the move when the mouse has crossed half of the items height
       // When dragging downwards, only move when the cursor is below 50%
@@ -83,15 +85,14 @@ export const ProjectCard = DropTarget(
 
       // Dragging downwards
       if (dragOrder < hoverOrder && hoverClientY < hoverMiddleY) {
-        return
+        return;
       }
 
       // Dragging upwards
       if (dragOrder > hoverOrder && hoverClientY > hoverMiddleY) {
-        return
+        return;
       }
 
-      console.log('rank temporary card', monitor.getItem().card.get('title'))
       props.rankProjectCardColumn(
         {
           selectCard: monitor.getItem().card,
