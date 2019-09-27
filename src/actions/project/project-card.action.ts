@@ -98,11 +98,15 @@ export const RANK_PROJECT_CARD_COLUMN_SUCCESS = 'RANK_PROJECT_CARD_COLUMN_SUCCES
 export const RANK_PROJECT_CARD_COLUMN_FAILURE = 'RANK_PROJECT_CARD_COLUMN_FAILURE';
 
 export function rankProjectCardColumnRequest(
-  changeProjectCardColumnInput: ChangeProjectCardColumnInput
+  changeProjectCardColumnInput: ChangeProjectCardColumnInput,
+  meta: {
+    temporary: boolean;
+  }
 ): FSAction {
   return {
     type: RANK_PROJECT_CARD_COLUMN_REQUEST,
-    payload: changeProjectCardColumnInput
+    payload: changeProjectCardColumnInput,
+    meta: meta
   };
 }
 

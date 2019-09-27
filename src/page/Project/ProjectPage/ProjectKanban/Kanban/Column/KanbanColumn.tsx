@@ -41,7 +41,6 @@ export class KanbanColumnComponent extends Component<
     super(props);
     this.columDataFetcher = new ColumnDataFetcher(this);
   }
-  
 
   componentWillMount() {
     this.columDataFetcher.fetchCards();
@@ -64,8 +63,8 @@ export class KanbanColumnComponent extends Component<
             {this.props.cards &&
               this.props
                 .cards!.sortBy((card: ProjectCardRecord) => card.get('order'))
-                .map((card: ProjectCardRecord) => {
-                  return <ProjectCard key={card.get('id')} card={card} />;
+                .map((card: ProjectCardRecord, index: number) => {
+                  return <ProjectCard key={card.get('id')} card={card} index={index} />;
                 })
                 .toArray()}
           </div>
@@ -89,6 +88,9 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
 
 const mapStateToProps = (state: RootState, props: InputProps) => {
   const cards = selectColumnCards(state, props.column.get('id'));
+
+  
+
   return {
     cards
   };

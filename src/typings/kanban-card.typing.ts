@@ -17,5 +17,6 @@ export interface CreateProjectCardInput {
 }
 
 export interface ChangeProjectCardColumnInput {
-  
+  selectCard: ProjectCardRecord;
+  targetOrder: number;
 }

@@ -6,10 +6,10 @@ import { ProjectCardRecord } from '../../../typings/kanban-card.typing';
 
 interface InputProps {
   card: ProjectCardRecord;
+  index: number;
 }
 
 interface DndProps {
-  index: number;
   moveCard: (dragIndex: number, hoverIndex: number) => void;
 
   isDragging: boolean;
@@ -44,9 +44,25 @@ const Card = React.forwardRef<HTMLDivElement, InputProps & DndProps>(
 export const ProjectCard = DropTarget(
   'CARD',
   {
+    hover(props: any, monitor: any, component: CardInstance) {
+      if (!component) {
+        return null;
+      }
+      // node = HTML Div element from imperative API
+      const node = component.getNode();
+      if (!node) {
+        return null;
+      }
+
+      const dragIndex = monitor.getItem().index;
+      const hoverIndex = props.index;
+
+      monitor.getItem().index = hoverIndex;
+
+     
+    },
     drop(props: any, monitor: any, component: CardComponent) {
-      console.log(monitor.getItem());
-      console.log(props.card);
+     
     },
     canDrop(props, monitor) {
       const item = monitor.getItem();
@@ -54,12 +70,7 @@ export const ProjectCard = DropTarget(
     }
   },
   (connect, monitor) => ({
-    connectDropTarget: connect.dropTarget(),
-    isOver: monitor.isOver(),
-    isOverCurrent: monitor.isOver({ shallow: true }),
-    canDrop: monitor.canDrop(),
-    itemType: monitor.getItemType(),
-    sourceItem: monitor.getItem()
+    connectDropTarget: connect.dropTarget()
   })
 )(
   DragSource(
@@ -73,7 +84,6 @@ export const ProjectCard = DropTarget(
     },
     (connect, monitor) => ({
       connectDragSource: connect.dragSource(),
-      connectDragPreview: connect.dragPreview(),
       isDragging: monitor.isDragging()
     })
   )(Card)

@@ -1,4 +1,7 @@
-import { GET_COLUMN_CARDS_SUCCESS } from '../actions/project/project-card.action';
+import {
+  GET_COLUMN_CARDS_SUCCESS,
+  RANK_PROJECT_CARD_COLUMN_REQUEST
+} from '../actions/project/project-card.action';
 import { Kanban, KanbanRecord } from './../typings/kanban.typing';
 import { FSAction } from './../actions/actions';
 import {
@@ -21,7 +24,7 @@ import {
   GET_PROJCET_KANBAN_DETAIL_SUCCESS
 } from '../actions/project/kanban.action';
 import { Column, KanbanColumnRecord } from '../typings/kanban-column.typing';
-import { ProjectCardRecord } from '../typings/kanban-card.typing';
+import { ProjectCardRecord, ChangeProjectCardColumnInput } from '../typings/kanban-card.typing';
 
 export type KanbanMap = Map<string, KanbanRecord>;
 export type ColumnMap = Map<string, KanbanColumnRecord>;
@@ -55,7 +58,7 @@ export function project(
     case GET_PROJCET_DETAIL_SUCCESS: {
       const normalizedAddBoard = normalize(action.payload, ProjectEntity);
       return state.update('projectMap', projectMap =>
-        projectMap.merge(fromJS(normalizedAddBoard.entities.Project))
+        projectMap.merge<ProjectRecord>(fromJS(normalizedAddBoard.entities.Project))
       );
     }
 
@@ -143,6 +146,18 @@ export function project(
           }, cardMap);
         });
     }
+
+    case RANK_PROJECT_CARD_COLUMN_REQUEST:
+      const changeProjectCardColumnInput: ChangeProjectCardColumnInput = action.payload;
+      if (action.meta.temporary) {
+        return state.updateIn(
+          ['cardMap', changeProjectCardColumnInput.selectCard.get('id'), 'order'],
+          (order: number) => {
+            return changeProjectCardColumnInput.targetOrder;
+          }
+        );
+      }
+      return state;
 
     default:
       return state;
