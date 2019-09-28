@@ -16,7 +16,9 @@ export interface CreateProjectCardInput {
   content: string;
 }
 
-export interface ChangeProjectCardColumnInput {
+export interface RankProjectCardInKanbanInput {
   selectCard: ProjectCardRecord;
+  targetCard: ProjectCardRecord;
+  isBefore: boolean;
   targetOrder: number;
 }

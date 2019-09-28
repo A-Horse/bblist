@@ -1,7 +1,7 @@
 import {
   Card,
   CreateProjectCardInput,
-  ChangeProjectCardColumnInput
+  RankProjectCardInKanbanInput
 } from '../../typings/kanban-card.typing';
 import { FSAction } from '../actions';
 
@@ -71,11 +71,11 @@ export const CHANGE_PROJECT_CARD_COLUMN_SUCCESS = 'CHANGE_PROJECT_CARD_COLUMN_SU
 export const CHANGE_PROJECT_CARD_COLUMN_FAILURE = 'CHANGE_PROJECT_CARD_COLUMN_FAILURE';
 
 export function changeProjectCardColumnRequest(
-  changeProjectCardColumnInput: ChangeProjectCardColumnInput
+  RankProjectCardInKanbanInput: RankProjectCardInKanbanInput
 ): FSAction {
   return {
     type: CHANGE_PROJECT_CARD_COLUMN_REQUEST,
-    payload: changeProjectCardColumnInput
+    payload: RankProjectCardInKanbanInput
   };
 }
 
@@ -98,14 +98,14 @@ export const RANK_PROJECT_CARD_IN_KANBAN_SUCCESS = 'RANK_PROJECT_CARD_IN_KANBAN_
 export const RANK_PROJECT_CARD_IN_KANBAN_FAILURE = 'RANK_PROJECT_CARD_IN_KANBAN_FAILURE';
 
 export function rankProjectCardInKanbanRequest(
-  changeProjectCardColumnInput: ChangeProjectCardColumnInput,
+  RankProjectCardInKanbanInput: RankProjectCardInKanbanInput,
   meta: {
     temporary: boolean;
   }
 ): FSAction {
   return {
     type: RANK_PROJECT_CARD_IN_KANBAN_REQUEST,
-    payload: changeProjectCardColumnInput,
+    payload: RankProjectCardInKanbanInput,
     meta: meta
   };
 }

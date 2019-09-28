@@ -1,18 +1,24 @@
 import './ProjectCard.scss';
 
 import React, { useImperativeHandle, useRef, RefForwardingComponent, useCallback } from 'react';
-import { DragSource, DropTarget, ConnectDragSource, ConnectDropTarget, XYCoord } from 'react-dnd';
+import {
+  DragSource,
+  DropTarget,
+  ConnectDragSource,
+  ConnectDropTarget,
+  XYCoord,
+  DropTargetMonitor
+} from 'react-dnd';
 import { ProjectCardRecord } from '../../../typings/kanban-card.typing';
 
 interface InputProps {
   card: ProjectCardRecord;
   rankProjectCardColumn: Function;
-  index: number;
+  kanbanId: string;
 }
 
 interface DndProps {
   moveCard: (dragIndex: number, hoverIndex: number) => void;
-
   isDragging: boolean;
   connectDragSource: ConnectDragSource;
   connectDropTarget: ConnectDropTarget;
@@ -34,9 +40,9 @@ const Card = React.forwardRef<HTMLDivElement, InputProps & DndProps>(
     useImperativeHandle<{}, CardInstance>(ref, () => ({
       getNode: () => elementRef.current
     }));
-    console.log('title', card.get('title'), card);
+
     return (
-      <div ref={elementRef} style={{ opacity }}>
+      <div className="ProjectCard" ref={elementRef} style={{ opacity }}>
         {card.get('title')} - {card.get('order')}
       </div>
     );
@@ -46,7 +52,7 @@ const Card = React.forwardRef<HTMLDivElement, InputProps & DndProps>(
 export const ProjectCard = DropTarget(
   'CARD',
   {
-    hover(props: InputProps, monitor: any, component: CardInstance) {
+    hover(props: InputProps, monitor: DropTargetMonitor, component: CardInstance) {
       if (!component) {
         return null;
       }
@@ -61,7 +67,7 @@ export const ProjectCard = DropTarget(
 
       const dragOrder = monitor.getItem().card.get('order');
       const hoverOrder = props.card.get('order');
-      
+
       // Don't replace items with themselves
       if (dragCardId === hoverCardId) {
         return;
@@ -96,20 +102,36 @@ export const ProjectCard = DropTarget(
       props.rankProjectCardColumn(
         {
           selectCard: monitor.getItem().card,
-          targetOrder: props.card.get('order') - 1
+          targetCard: props.card,
+          targetOrder: props.card.get('order') - 1,
+          isBefore: true,
+          kanbanId: props.kanbanId
         },
         {
           temporary: true
         }
       );
     },
-    drop(props: any, monitor: any, component: CardComponent) {},
-    canDrop(props, monitor) {
+    drop(props: InputProps, monitor: DropTargetMonitor, component: CardComponent) {
+      props.rankProjectCardColumn(
+        {
+          selectCard: monitor.getItem().card,
+          targetCard: props.card,
+          targetOrder: props.card.get('order') - 1,
+          isBefore: true,
+          kanbanId: props.kanbanId
+        },
+        {
+          temporary: false
+        }
+      );
+    },
+    canDrop(props, monitor: DropTargetMonitor) {
       const item = monitor.getItem();
       return item.card.get('id') !== props.card.get('id');
     }
   },
-  (connect, monitor) => ({
+  (connect, monitor: DropTargetMonitor) => ({
     connectDropTarget: connect.dropTarget()
   })
 )(

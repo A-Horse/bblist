@@ -1,3 +1,4 @@
+import { RankProjectCardInKanbanInput } from './../typings/kanban-card.typing';
 import { Card } from '../typings/kanban-card.typing';
 import { FSAction } from '../actions/actions';
 import { mergeMap, filter, tap, distinctUntilChanged } from 'rxjs/operators';
@@ -58,11 +59,12 @@ export const RANK_PROJECT_CARD_IN_KANBAN_REQUEST_FN = (action$: Observable<FSAct
     distinctUntilChanged<FSAction>(equals),
     filter(action => !action.meta.temporary),
     mergeMap((action: FSAction) => {
+      const payload: RankProjectCardInKanbanInput = action.payload;
       return axios
-        .post(makeApiUrl(`/kanban/${action.payload.kanbanId}/rank-card`), {
-          cardId: action.payload.cardId,
-          targetCardId: action.payload.targetCardId,
-          isBefore: action.payload.isBefore
+        .post(makeApiUrl(`/kanban/${action.payload.kanbanId}/card-rank`), {
+          cardId: payload.selectCard.get('id'),
+          targetCardId: payload.targetCard.get('id'),
+          isBefore: payload.isBefore
         })
         .then(() => rankProjectCardInKanbanSuccess())
         .catch(rankProjectCardInKanbanFailure);

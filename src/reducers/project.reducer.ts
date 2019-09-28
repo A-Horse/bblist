@@ -24,7 +24,7 @@ import {
   GET_PROJCET_KANBAN_DETAIL_SUCCESS
 } from '../actions/project/kanban.action';
 import { Column, KanbanColumnRecord } from '../typings/kanban-column.typing';
-import { ProjectCardRecord, ChangeProjectCardColumnInput } from '../typings/kanban-card.typing';
+import { ProjectCardRecord, RankProjectCardInKanbanInput } from '../typings/kanban-card.typing';
 
 export type KanbanMap = Map<string, KanbanRecord>;
 export type ColumnMap = Map<string, KanbanColumnRecord>;
@@ -148,12 +148,12 @@ export function project(
     }
 
     case RANK_PROJECT_CARD_IN_KANBAN_REQUEST:
-      const changeProjectCardColumnInput: ChangeProjectCardColumnInput = action.payload;
+      const RankProjectCardInKanbanInput: RankProjectCardInKanbanInput = action.payload;
       if (action.meta.temporary) {
         return state.updateIn(
-          ['cardMap', changeProjectCardColumnInput.selectCard.get('id'), 'order'],
+          ['cardMap', RankProjectCardInKanbanInput.selectCard.get('id'), 'order'],
           (order: number) => {
-            return changeProjectCardColumnInput.targetOrder;
+            return RankProjectCardInKanbanInput.targetOrder;
           }
         );
       }
