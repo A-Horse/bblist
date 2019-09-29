@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+
 import { AppButton } from '../../../../../components/widget/AppButton';
-import { KanbanCreator } from '../../../KanbanCreator/KanbanCreator';
 import { ProjectRecord } from '../../../../../typings/project.typing';
+import { KanbanCreator } from '../../../KanbanCreator/KanbanCreator';
 
 interface Props {
   project: ProjectRecord;

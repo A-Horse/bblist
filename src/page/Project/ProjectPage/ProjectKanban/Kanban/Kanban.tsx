@@ -7,16 +7,17 @@ import HTML5Backend from 'react-dnd-html5-backend';
 import { connect } from 'react-redux';
 import { Route, RouteComponentProps } from 'react-router';
 import { withRouter } from 'react-router-dom';
-import { bindActionCreators, AnyAction, Dispatch, ActionCreatorsMapObject } from 'redux';
-import { CardDetailContainer } from '../../../../Task/CardDetail/CardDetail.container';
-import { KanbanColumn } from './Column/KanbanColumn';
-import { ProjectRecord } from '../../../../../typings/project.typing';
-import { KanbanRecord } from '../../../../../typings/kanban.typing';
-import { KanbanColumnRecord } from '../../../../../typings/kanban-column.typing';
+import { ActionCreatorsMapObject, AnyAction, bindActionCreators, Dispatch } from 'redux';
+
+import { getProjectKanbanDetailRequest } from '../../../../../actions/project/kanban.action';
 import Loading from '../../../../../components/Loading';
 import { RootState } from '../../../../../reducers';
-import { getProjectKanbanDetailRequest } from '../../../../../actions/project/kanban.action';
 import { selectKanbanColumns } from '../../../../../reducers/selector/kanban.selector';
+import { KanbanColumnRecord } from '../../../../../typings/kanban-column.typing';
+import { KanbanRecord } from '../../../../../typings/kanban.typing';
+import { ProjectRecord } from '../../../../../typings/project.typing';
+import { CardDetailContainer } from '../../../../Task/CardDetail/CardDetail.container';
+import { KanbanColumn } from './Column/KanbanColumn';
 
 interface InputProps {
   kanbanId: string;

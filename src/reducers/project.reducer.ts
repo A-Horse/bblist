@@ -2,7 +2,7 @@ import {
   GET_COLUMN_CARDS_SUCCESS,
   RANK_PROJECT_CARD_IN_KANBAN_REQUEST,
   RANK_PROJECT_CARD_IN_KANBAN_SUCCESS
-} from '../actions/project/project-card.action';
+} from '../actions/project/project-issue.action';
 import { Kanban, KanbanRecord } from './../typings/kanban.typing';
 import { FSAction } from './../actions/actions';
 import {

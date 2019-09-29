@@ -1,26 +1,24 @@
 import './KanbanColumn.scss';
 
-import React, { Component } from 'react';
-
-import { withRouter, RouteComponentProps } from 'react-router';
-import { bindActionCreators, AnyAction, Dispatch, ActionCreatorsMapObject } from 'redux';
-import { connect } from 'react-redux';
-import { RootState } from '../../../../../../reducers';
-import { KanbanColumnRecord } from '../../../../../../typings/kanban-column.typing';
-import {
-  getColumnCardsRequest,
-  rankProjectCardInKanbanRequest
-} from '../../../../../../actions/project/project-card.action';
-import { ColumnDataFetcher } from './column-data-fetcher';
-import { ProjectCard } from '../../../../../../components/project/Card/ProjectCard';
-import { List } from 'immutable';
-import {
-  ProjectCardRecord,
-  RankProjectCardInKanbanInput
-} from '../../../../../../typings/kanban-card.typing';
-import { selectColumnCards } from '../../../../../../reducers/selector/card.selector';
-import isEqual from 'lodash/fp/isEqual';
 import Column from 'antd/lib/table/Column';
+import { List } from 'immutable';
+import isEqual from 'lodash/fp/isEqual';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { RouteComponentProps, withRouter } from 'react-router';
+import { ActionCreatorsMapObject, AnyAction, bindActionCreators, Dispatch } from 'redux';
+
+import {
+    getColumnCardsRequest, rankProjectCardInKanbanRequest
+} from '../../../../../../actions/project/project-issue.action';
+import { ProjectCard } from '../../../../../../components/project/Card/ProjectCard';
+import { RootState } from '../../../../../../reducers';
+import { selectColumnCards } from '../../../../../../reducers/selector/card.selector';
+import {
+    ProjectCardRecord, RankProjectCardInKanbanInput
+} from '../../../../../../typings/kanban-card.typing';
+import { KanbanColumnRecord } from '../../../../../../typings/kanban-column.typing';
+import { ColumnDataFetcher } from './column-data-fetcher';
 
 interface InputProps {
   column: KanbanColumnRecord;

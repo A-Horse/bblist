@@ -1,4 +1,4 @@
-import { KanbanColumnComponent } from "./KanbanColumn";
+import { KanbanColumnComponent } from './KanbanColumn';
 
 export class ColumnDataFetcher {
   private obsoleted = false;

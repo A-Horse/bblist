@@ -16,6 +16,7 @@ import { ProjectRecord } from '../../../typings/project.typing';
 import { History, Location } from 'history';
 import { ProjectAdmin } from './ProjectAdmin/ProjectAdmin';
 import { ProjectEpics } from './ProjectEpics/ProjectEpics';
+import { Issues } from './Issues/Issues';
 
 
 interface Props {
@@ -52,10 +53,9 @@ class ProjectPageComponent extends Component<Props> {
     }
 
     return (
-      <Layout className="board-container">
+      <div className="ProjectPage">
         
-
-        <div>
+        <div className="ProjectPage-main">
           <ProjectSideBar match={this.props.match} />
 
           <Switch>
@@ -64,11 +64,12 @@ class ProjectPageComponent extends Component<Props> {
               render={props => <BoardSetting {...this.props} {...props} />}
             />
             <Route path="/project/:projectId/kanban" render={props => <ProjectKanban />} />
-            <Route path="/project/:projectId/epic" render={props => <ProjectEpics />} />
+            <Route path="/project/:projectId/epic" render={props => <Issues />} />
+            <Route path="/project/:projectId/issues" render={props => <ProjectEpics />} />
             <Route path="/project/:projectId/admin" render={props => <ProjectAdmin />} />
           </Switch>
         </div>
-      </Layout>
+      </div>
     );
   }
 }

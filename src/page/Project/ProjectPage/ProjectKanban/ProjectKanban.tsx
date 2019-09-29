@@ -2,17 +2,20 @@ import './ProjectKanban.scss';
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withRouter, RouteComponentProps } from 'react-router-dom';
-import { bindActionCreators, AnyAction, Dispatch, ActionCreatorsMapObject } from 'redux';
-import { Kanban } from './Kanban/Kanban';
-import { ProjectRecord } from '../../../../typings/project.typing';
+import { RouteComponentProps, withRouter } from 'react-router-dom';
+import { ActionCreatorsMapObject, AnyAction, bindActionCreators, Dispatch } from 'redux';
+
 import { getProjectKanbansRequest } from '../../../../actions/project/kanban.action';
-import { NoKanbanGuide } from './NoKanbanGuide/NoKanbanGuide';
-import { RootState } from '../../../../reducers';
-import { KanbanSelect } from '../../../../components/stateful-component/KanbanSelect/KanbanSelect';
-import { SelectOption } from '../../../../typings/select.typing';
-import { CreateKanbanCardModalButton } from '../modals/CreateKanbanCardModal/CreateKanbanCardModalButton';
 import { setProjectDefaultKanbanRequest } from '../../../../actions/project/project-setting.action';
+import { KanbanSelect } from '../../../../components/stateful-component/KanbanSelect/KanbanSelect';
+import { RootState } from '../../../../reducers';
+import { ProjectRecord } from '../../../../typings/project.typing';
+import { SelectOption } from '../../../../typings/select.typing';
+import {
+    CreateKanbanCardModalButton
+} from '../modals/CreateKanbanCardModal/CreateKanbanCardModalButton';
+import { Kanban } from './Kanban/Kanban';
+import { NoKanbanGuide } from './NoKanbanGuide/NoKanbanGuide';
 
 interface Props {
   actions: ActionCreatorsMapObject;

@@ -3,7 +3,7 @@ import './TaskCreatorModal.scss';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { createProjectCardRequest } from '../../../actions/project/project-card.action';
+import { createProjectCardRequest } from '../../../actions/project/project-issue.action';
 import { KanbanRecord } from '../../../typings/kanban.typing';
 import { ProjectRecord } from '../../../typings/project.typing';
 import { KanbanSelect } from '../../stateful-component/KanbanSelect/KanbanSelect';

@@ -1,4 +1,4 @@
-import { RankProjectCardInKanbanInput } from './../typings/kanban-card.typing';
+import { RankProjectCardInKanbanInput } from '../typings/kanban-card.typing';
 import { Card } from '../typings/kanban-card.typing';
 import { FSAction } from '../actions/actions';
 import { mergeMap, filter, tap, distinctUntilChanged } from 'rxjs/operators';
@@ -13,7 +13,7 @@ import {
   RANK_PROJECT_CARD_IN_KANBAN_REQUEST,
   rankProjectCardInKanbanSuccess,
   rankProjectCardInKanbanFailure
-} from '../actions/project/project-card.action';
+} from '../actions/project/project-issue.action';
 import axios, { AxiosResponse } from 'axios';
 import { Observable } from 'rxjs';
 import { makeApiUrl } from '../utils/api';

@@ -41,6 +41,38 @@ export function getColumnCardsFailure(error: any): FSAction {
   };
 }
 
+export const GET_PROJECT_ISSUES_REQUEST = 'GET_PROJECT_ISSUES_REQUEST';
+export const GET_PROJECT_ISSUES_SUCCESS = 'GET_PROJECT_ISSUES_SUCCESS';
+export const GET_PROJECT_ISSUES_FAILURE = 'GET_PROJECT_ISSUES_FAILURE';
+
+export function getProjectIssuesRequest(
+  payload: { projectId: string; pageSize: number; pageNumber: number },
+  meta: {
+    requestDoneCallback: Function;
+  }
+): FSAction {
+  return {
+    type: GET_PROJECT_ISSUES_REQUEST,
+    payload,
+    meta
+  };
+}
+
+export function getProjectIssuesSuccess(payload: { cards: Card[]; projectId: string }): FSAction {
+  return {
+    type: GET_PROJECT_ISSUES_SUCCESS,
+    payload
+  };
+}
+
+export function getProjectIssuesFailure(error: any): FSAction {
+  return {
+    type: GET_PROJECT_ISSUES_FAILURE,
+    error: true,
+    payload: error
+  };
+}
+
 export const CREATAE_PROJECT_CARD_REQUEST = 'CREATAE_PROJECT_CARD_REQUEST';
 export const CREATAE_PROJECT_CARD_SUCCESS = 'CREATAE_PROJECT_CARD_SUCCESS';
 export const CREATAE_PROJECT_CARD_FAILURE = 'CREATAE_PROJECT_CARD_FAILURE';
