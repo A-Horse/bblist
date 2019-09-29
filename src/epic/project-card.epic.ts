@@ -66,7 +66,7 @@ export const RANK_PROJECT_CARD_IN_KANBAN_REQUEST_FN = (action$: Observable<FSAct
           targetCardId: payload.targetCard.get('id'),
           isBefore: payload.isBefore
         })
-        .then(() => rankProjectCardInKanbanSuccess())
+        .then((result: AxiosResponse<{cardId: string, order: number}[]>) => rankProjectCardInKanbanSuccess(result.data))
         .catch(rankProjectCardInKanbanFailure);
     })
   );

@@ -43,6 +43,7 @@ const Card = React.forwardRef<HTMLDivElement, InputProps & DndProps>(
 
     return (
       <div className="ProjectCard" ref={elementRef} style={{ opacity }}>
+        <div>{card.get('id')}</div>
         {card.get('title')} - {card.get('order')}
       </div>
     );

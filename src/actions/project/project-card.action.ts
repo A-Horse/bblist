@@ -110,9 +110,12 @@ export function rankProjectCardInKanbanRequest(
   };
 }
 
-export function rankProjectCardInKanbanSuccess(): FSAction {
+export function rankProjectCardInKanbanSuccess(
+  newOrders: { cardId: string; order: number }[]
+): FSAction {
   return {
-    type: RANK_PROJECT_CARD_IN_KANBAN_SUCCESS
+    type: RANK_PROJECT_CARD_IN_KANBAN_SUCCESS,
+    payload: newOrders
   };
 }
 

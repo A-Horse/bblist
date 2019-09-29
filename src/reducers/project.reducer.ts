@@ -1,6 +1,7 @@
 import {
   GET_COLUMN_CARDS_SUCCESS,
-  RANK_PROJECT_CARD_IN_KANBAN_REQUEST
+  RANK_PROJECT_CARD_IN_KANBAN_REQUEST,
+  RANK_PROJECT_CARD_IN_KANBAN_SUCCESS
 } from '../actions/project/project-card.action';
 import { Kanban, KanbanRecord } from './../typings/kanban.typing';
 import { FSAction } from './../actions/actions';
@@ -158,6 +159,19 @@ export function project(
         );
       }
       return state;
+
+    case RANK_PROJECT_CARD_IN_KANBAN_SUCCESS: {
+      return state.update('cardMap', (cardMap: CardMap) => {
+        return action.payload.reduce(
+          (innerCardMap: CardMap, newOrder: { cardId: string; order: number }) => {
+            return innerCardMap.update(newOrder.cardId, (card: ProjectCardRecord) => {
+              return card.update('order', () => newOrder.order);
+            });
+          },
+          cardMap
+        );
+      });
+    }
 
     default:
       return state;
