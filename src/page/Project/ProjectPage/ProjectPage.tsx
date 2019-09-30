@@ -64,8 +64,8 @@ class ProjectPageComponent extends Component<Props> {
               render={props => <BoardSetting {...this.props} {...props} />}
             />
             <Route path="/project/:projectId/kanban" render={props => <ProjectKanban />} />
-            <Route path="/project/:projectId/epic" render={props => <Issues />} />
-            <Route path="/project/:projectId/issues" render={props => <ProjectEpics />} />
+            <Route path="/project/:projectId/epic" render={props => <ProjectEpics />} />
+            <Route path="/project/:projectId/issues" render={props => <Issues />} />
             <Route path="/project/:projectId/admin" render={props => <ProjectAdmin />} />
           </Switch>
         </div>

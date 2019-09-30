@@ -1,5 +1,4 @@
 import { combineReducers, applyMiddleware } from 'redux';
-import thunkMiddleware from 'redux-thunk';
 import { createEpicMiddleware } from 'redux-observable';
 import * as reducers from '../reducers';
 import rootEpic from '../epic';
@@ -17,7 +16,7 @@ export const store = configureStore(
   combineReducers({
     ...reducers
   }),
-  applyMiddleware(thunkMiddleware, epicMiddleware),
+  applyMiddleware(epicMiddleware),
   () => {
     epicMiddleware.run(rootEpic);
   }

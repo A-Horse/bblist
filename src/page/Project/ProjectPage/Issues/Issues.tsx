@@ -1,5 +1,3 @@
-
-
 import './Issues.scss';
 
 import React, { Component } from 'react';
@@ -10,6 +8,9 @@ import { ProjectRecord } from '../../../../typings/project.typing';
 import { getProjectKanbansRequest } from '../../../../actions/project/kanban.action';
 import { CreateKanbanCardModalButton } from '../modals/CreateKanbanCardModal/CreateKanbanCardModalButton';
 import { getProjectIssuesRequest } from '../../../../actions/project/project-issue.action';
+
+
+
 
 interface Props {
   actions: ActionCreatorsMapObject;
@@ -29,9 +30,10 @@ export class IssuesComponent extends Component<
   render() {
     return (
       <div>
-        trackers
+        Issues
+        
+        <coke-pagination page-size={10} totoal={90}></coke-pagination>
       </div>
-      
     );
   }
 }

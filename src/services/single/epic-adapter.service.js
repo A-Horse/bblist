@@ -1,5 +1,4 @@
 
-import 'rxjs/add/operator/publish';
 
 export class EpicAdapterService {
   input(input$) {

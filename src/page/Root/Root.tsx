@@ -1,4 +1,4 @@
-let root;
+let root: any;
 
 if (process.env.NODE_ENV === 'production') {
   root = require('./Root.prod').default;
