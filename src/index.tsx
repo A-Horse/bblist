@@ -13,7 +13,8 @@ import Modal from 'react-modal';
 
 import { applyPolyfills, defineCustomElements } from 'coke-component/loader';
 
-import { JSX as LocalJSX } from 'coke-component/loader';
+import { JSX as LocalJSX } from '@stencil/core';
+// import { JSX as LocalJSX } from 'coke-component/loader';
 
 declare global {
   namespace JSX {

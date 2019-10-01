@@ -165,32 +165,21 @@ export class CardDetail extends Component<any, any> {
             <FormItem>
               <Row>
                 {this.props.card.get('type') === 'TODO' && (
-                  <Checkbox
-                    checked={this.props.card.get('status') === 'DONE'}
-                    onChange={this.handleUpdateDone}
-                  />
+                  <Checkbox checked={this.props.card.get('status') === 'DONE'} onChange={this.handleUpdateDone} />
                 )}
-                <Input
-                  className="title-input"
-                  value={this.props.card.get('title')}
-                  onChange={this.handleUpdateTitle}
-                />
+                <Input className="title-input" value={this.props.card.get('title')} onChange={this.handleUpdateTitle} />
               </Row>
             </FormItem>
 
             <FormItem label="Description:">
-              <TextArea
-                rows={8}
-                defaultValue={this.props.card.get('content')}
-                onChange={this.handleUpdateContent}
-              />
+              <TextArea rows={8} defaultValue={this.props.card.get('content')} onChange={this.handleUpdateContent} />
             </FormItem>
 
             <FormItem>
               <Select
                 defaultValue="STORY"
                 style={{ width: 120 }}
-                onChange={value => this.handleTaskTypeChange(value)}
+                onChange={(value: any) => this.handleTaskTypeChange(value)}
               >
                 <Option value="STORY">Story</Option>
                 <Option value="TODO">Todo</Option>

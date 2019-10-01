@@ -3,12 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@stencil/core": "^1.5.4",
     "@typescript-eslint/parser": "^2.3.1",
     "antd": "^3.11.6",
     "axios": "^0.18.1",
     "babel-plugin-import": "^1.11.0",
     "blueimp-md5": "^2.3.0",
-    "coke-component": "0.0.1",
+    "coke-component": "0.0.5",
     "es6-promise": "^4.2.5",
     "formik": "^1.5.8",
     "history": "^4.7.2",
@@ -43,7 +44,7 @@
     "redux-observable": "^1.0.0",
     "reselect": "^3.0.1",
     "rxjs": "^6.2.1",
-    "typescript": "^3.2.2"
+    "typescript": "^3.6.3"
   },
   "scripts": {
     "start": "react-scripts start",
