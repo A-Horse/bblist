@@ -11,9 +11,7 @@ class DashBoard extends Component {
 
   render() {
     return (
-      <PageContainer>
         <Building />
-      </PageContainer>
     );
   }
 }

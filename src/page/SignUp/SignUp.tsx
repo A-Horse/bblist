@@ -41,7 +41,6 @@ class SignUp extends Component<any, any> {
     const errorMessages = this.state.errorMessage;
 
     return (
-      <PageContainer className="signup-page">
         <div className="signup-main">
           <LogoBan />
           <form className="signup-form" onSubmit={this.signup}>
@@ -103,7 +102,6 @@ class SignUp extends Component<any, any> {
             </Link>
           </div>
         </div>
-      </PageContainer>
     );
   }
 
