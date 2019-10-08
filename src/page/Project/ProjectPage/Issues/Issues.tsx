@@ -7,28 +7,26 @@ import { bindActionCreators, AnyAction, Dispatch, ActionCreatorsMapObject } from
 import { ProjectRecord } from '../../../../typings/project.typing';
 import { getProjectIssuesRequest } from '../../../../actions/project/project-issue.action';
 import { AppPagination } from '../../../../components/widget/Pagination';
-import { RootState, project } from '../../../../reducers';
-import { ProjectCardRecord } from '../../../../typings/kanban-card.typing';
+import { RootState } from '../../../../reducers';
+import { ProjectIssueRecord } from '../../../../typings/kanban-card.typing';
+import { FlatIssue } from '../../../../components/project/issue/FlatIssue/FlatIssue';
 
-interface InputProps {
-
-}
+interface InputProps {}
 
 interface ReduxProps {
   actions: ActionCreatorsMapObject;
   project: ProjectRecord;
+  issues: ProjectIssueRecord[];
   pageNumber: number;
   pageSize: number;
   total?: number;
 }
 
 export class IssuesComponent extends Component<
-InputProps & ReduxProps & RouteComponentProps<{ projectId: string }>,
-  {
-  }
+  InputProps & ReduxProps & RouteComponentProps<{ projectId: string }>,
+  {}
 > {
-  state = {
-  };
+  state = {};
 
   componentWillMount() {
     this.props.actions.getProjectIssuesRequest({
@@ -46,6 +44,10 @@ InputProps & ReduxProps & RouteComponentProps<{ projectId: string }>,
     return (
       <div>
         Issues
+        
+        {this.props.issues.map((issue: ProjectIssueRecord) => {
+          return <FlatIssue issue={issue} />;
+        })}
         <AppPagination
           onPageChanged={this.onPagaChange}
           pageSize={this.props.pageSize}
@@ -75,14 +77,18 @@ const mapStateToProps = (state: RootState, props: any) => {
   let pageSize = 20;
   let total;
   let loading = true;
-  let issues: ProjectCardRecord[] = [];
+  let issues: ProjectIssueRecord[] = [];
   const issuePagitation = state.project.get('currentIssuePagitation');
 
   if (issuePagitation && issuePagitation!.projectId === projectId) {
     loading = issuePagitation.loading;
-    issues = issuePagitation.data.map((id: string): ProjectCardRecord => {
-      return state.project.get('cardMap').get(id)!;
-    }).filter(c => !!c);
+    issues = issuePagitation.data
+      .map(
+        (id: string): ProjectIssueRecord => {
+          return state.project.get('cardMap').get(id)!;
+        }
+      )
+      .filter(c => !!c);
     pageNumber = issuePagitation.pageNumber;
     pageSize = issuePagitation.pageSize;
     total = issuePagitation.total;

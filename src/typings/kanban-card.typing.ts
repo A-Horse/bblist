@@ -5,7 +5,7 @@ export interface Card {
   name: string;
 }
 
-export type ProjectCardRecord = Record<{
+export type ProjectIssueRecord = Record<{
   id: string;
   title: string;
   order: number;
@@ -17,8 +17,8 @@ export interface CreateProjectCardInput {
 }
 
 export interface RankProjectCardInKanbanInput {
-  selectCard: ProjectCardRecord;
-  targetCard: ProjectCardRecord;
+  selectCard: ProjectIssueRecord;
+  targetCard: ProjectIssueRecord;
   isBefore: boolean;
   targetOrder: number;
 }

@@ -9,10 +9,10 @@ import {
   XYCoord,
   DropTargetMonitor
 } from 'react-dnd';
-import { ProjectCardRecord } from '../../../typings/kanban-card.typing';
+import { ProjectIssueRecord } from '../../../typings/kanban-card.typing';
 
 interface InputProps {
-  card: ProjectCardRecord;
+  card: ProjectIssueRecord;
   rankProjectCardColumn: Function;
   kanbanId: string;
 }

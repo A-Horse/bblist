@@ -18,12 +18,12 @@ import { normalize } from 'normalizr';
 import { fromJS, Record, Map } from 'immutable';
 import { GET_PROJCET_KANBANS_SUCCESS, GET_PROJCET_KANBAN_DETAIL_SUCCESS } from '../actions/project/kanban.action';
 import { Column, KanbanColumnRecord } from '../typings/kanban-column.typing';
-import { ProjectCardRecord, RankProjectCardInKanbanInput } from '../typings/kanban-card.typing';
+import { ProjectIssueRecord, RankProjectCardInKanbanInput } from '../typings/kanban-card.typing';
 import { PagtiationList } from '../typings/pagtiation.typing';
 
 export type KanbanMap = Map<string, KanbanRecord>;
 export type ColumnMap = Map<string, KanbanColumnRecord>;
-export type CardMap = Map<string, ProjectCardRecord>;
+export type CardMap = Map<string, ProjectIssueRecord>;
 
 type IssuePagitation = PagtiationList<string> & { projectId: string, loading: boolean } | null;
 
@@ -132,7 +132,7 @@ export function project(
         })
         .update('cardMap', (cardMap: CardMap) => {
           return normalizedCards.result.reduce((cardMapResult: CardMap, cardId: string) => {
-            return cardMapResult.update(cardId, (card: ProjectCardRecord) => {
+            return cardMapResult.update(cardId, (card: ProjectIssueRecord) => {
               if (!card) {
                 return fromJS(normalizedCards.entities.ProjectCard[cardId]);
               }
@@ -157,7 +157,7 @@ export function project(
     case RANK_PROJECT_CARD_IN_KANBAN_SUCCESS: {
       return state.update('cardMap', (cardMap: CardMap) => {
         return action.payload.reduce((innerCardMap: CardMap, newOrder: { cardId: string; order: number }) => {
-          return innerCardMap.update(newOrder.cardId, (card: ProjectCardRecord) => {
+          return innerCardMap.update(newOrder.cardId, (card: ProjectIssueRecord) => {
             return card.update('order', () => newOrder.order);
           });
         }, cardMap);
@@ -191,7 +191,7 @@ export function project(
         })
         .update('cardMap', (cardMap: CardMap) => {
           return normalizedCards.result.reduce((cardMapResult: CardMap, cardId: string) => {
-            return cardMapResult.update(cardId, (card: ProjectCardRecord) => {
+            return cardMapResult.update(cardId, (card: ProjectIssueRecord) => {
               if (!card) {
                 return fromJS(normalizedCards.entities.ProjectCard[cardId]);
               }

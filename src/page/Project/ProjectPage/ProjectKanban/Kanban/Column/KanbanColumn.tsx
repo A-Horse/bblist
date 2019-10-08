@@ -15,7 +15,7 @@ import { ProjectCard } from '../../../../../../components/project/Card/ProjectCa
 import { RootState } from '../../../../../../reducers';
 import { selectColumnCards } from '../../../../../../reducers/selector/card.selector';
 import {
-    ProjectCardRecord, RankProjectCardInKanbanInput
+    ProjectIssueRecord, RankProjectCardInKanbanInput
 } from '../../../../../../typings/kanban-card.typing';
 import { KanbanColumnRecord } from '../../../../../../typings/kanban-column.typing';
 import { ColumnDataFetcher } from './column-data-fetcher';
@@ -26,7 +26,7 @@ interface InputProps {
 
 interface ReduxProps {
   actions: ActionCreatorsMapObject;
-  cards: List<ProjectCardRecord> | null;
+  cards: List<ProjectIssueRecord> | null;
   rankProjectCardInKanbanRequest: Function;
 }
 
@@ -71,9 +71,9 @@ export class KanbanColumnComponent extends Component<ComponentProps, State> {
           <div>
             {this.props.cards &&
               this.props
-                .cards!.sortBy((card: ProjectCardRecord) => card.get('order'))
+                .cards!.sortBy((card: ProjectIssueRecord) => card.get('order'))
                 .toArray()
-                .map((card: ProjectCardRecord, index: number) => {
+                .map((card: ProjectIssueRecord, index: number) => {
                   return (
                     <ProjectCard
                       key={card.get('id')}

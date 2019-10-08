@@ -1,4 +1,4 @@
-import { ProjectCardRecord } from './kanban-card.typing';
+import { ProjectIssueRecord } from './kanban-card.typing';
 import { Record, List } from 'immutable';
 
 export interface Column {
