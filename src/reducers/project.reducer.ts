@@ -1,17 +1,13 @@
 import {
   GET_COLUMN_CARDS_SUCCESS,
   RANK_PROJECT_CARD_IN_KANBAN_REQUEST,
-  RANK_PROJECT_CARD_IN_KANBAN_SUCCESS
+  RANK_PROJECT_CARD_IN_KANBAN_SUCCESS,
+  GET_PROJECT_ISSUES_SUCCESS,
+  GET_PROJECT_ISSUES_REQUEST
 } from '../actions/project/project-issue.action';
 import { Kanban, KanbanRecord } from './../typings/kanban.typing';
 import { FSAction } from './../actions/actions';
-import {
-  ProjectEntity,
-  ProjectEntityList,
-  KanbanEntityList,
-  KanbanDetailEntity,
-  ProjectCardList
-} from './../schema';
+import { ProjectEntity, ProjectEntityList, KanbanEntityList, KanbanDetailEntity, ProjectCardList } from './../schema';
 import { ProjectRecord } from '../typings/project.typing';
 import {
   GET_PROJCETS_SUCCESS,
@@ -20,22 +16,23 @@ import {
 } from './../actions/project/project.action';
 import { normalize } from 'normalizr';
 import { fromJS, Record, Map } from 'immutable';
-import {
-  GET_PROJCET_KANBANS_SUCCESS,
-  GET_PROJCET_KANBAN_DETAIL_SUCCESS
-} from '../actions/project/kanban.action';
+import { GET_PROJCET_KANBANS_SUCCESS, GET_PROJCET_KANBAN_DETAIL_SUCCESS } from '../actions/project/kanban.action';
 import { Column, KanbanColumnRecord } from '../typings/kanban-column.typing';
 import { ProjectCardRecord, RankProjectCardInKanbanInput } from '../typings/kanban-card.typing';
+import { PagtiationList } from '../typings/pagtiation.typing';
 
 export type KanbanMap = Map<string, KanbanRecord>;
 export type ColumnMap = Map<string, KanbanColumnRecord>;
 export type CardMap = Map<string, ProjectCardRecord>;
+
+type IssuePagitation = PagtiationList<string> & { projectId: string, loading: boolean } | null;
 
 export interface ProjectProp {
   projectMap: Map<string, ProjectRecord>;
   kanbanMap: KanbanMap;
   columnMap: ColumnMap;
   cardMap: CardMap;
+  currentIssuePagitation: IssuePagitation;
 }
 
 export function project(
@@ -111,17 +108,14 @@ export function project(
           return kanban.merge(fromJS(normalizedKanban));
         })
         .update('columnMap', (columnMap: ColumnMap) => {
-          return normalizedKanban.columns!.reduce(
-            (columnMapResult: ColumnMap, columnId: string) => {
-              return columnMapResult.update(columnId, (column: KanbanColumnRecord) => {
-                if (!column) {
-                  return fromJS(normalizedKanbanDetail.entities.KanbanColumn[columnId]);
-                }
-                return column.merge(fromJS(normalizedKanbanDetail.entities.KanbanColumn[columnId]));
-              });
-            },
-            columnMap
-          );
+          return normalizedKanban.columns!.reduce((columnMapResult: ColumnMap, columnId: string) => {
+            return columnMapResult.update(columnId, (column: KanbanColumnRecord) => {
+              if (!column) {
+                return fromJS(normalizedKanbanDetail.entities.KanbanColumn[columnId]);
+              }
+              return column.merge(fromJS(normalizedKanbanDetail.entities.KanbanColumn[columnId]));
+            });
+          }, columnMap);
         });
     }
 
@@ -162,15 +156,49 @@ export function project(
 
     case RANK_PROJECT_CARD_IN_KANBAN_SUCCESS: {
       return state.update('cardMap', (cardMap: CardMap) => {
-        return action.payload.reduce(
-          (innerCardMap: CardMap, newOrder: { cardId: string; order: number }) => {
-            return innerCardMap.update(newOrder.cardId, (card: ProjectCardRecord) => {
-              return card.update('order', () => newOrder.order);
-            });
-          },
-          cardMap
-        );
+        return action.payload.reduce((innerCardMap: CardMap, newOrder: { cardId: string; order: number }) => {
+          return innerCardMap.update(newOrder.cardId, (card: ProjectCardRecord) => {
+            return card.update('order', () => newOrder.order);
+          });
+        }, cardMap);
       });
+    }
+
+    case GET_PROJECT_ISSUES_REQUEST: {
+        return state.update('currentIssuePagitation', (pagitaion: IssuePagitation) => {
+          if (!pagitaion) {
+            return pagitaion
+          }
+          return {
+            ...pagitaion,
+            loading: true
+          }
+        })
+    }
+
+    case GET_PROJECT_ISSUES_SUCCESS: {
+      const normalizedCards = normalize(action.payload.cardPagtiton.data, ProjectCardList);
+      return state
+        .update('currentIssuePagitation', () => {
+          return {
+            data: normalizedCards.result,
+            pageNumber: action.payload.cardPagtiton.pageNumber,
+            pageSize: action.payload.cardPagtiton.pageSize,
+            total: action.payload.cardPagtiton.total,
+            loading: false,
+            projectId: action.payload.projectId
+          };
+        })
+        .update('cardMap', (cardMap: CardMap) => {
+          return normalizedCards.result.reduce((cardMapResult: CardMap, cardId: string) => {
+            return cardMapResult.update(cardId, (card: ProjectCardRecord) => {
+              if (!card) {
+                return fromJS(normalizedCards.entities.ProjectCard[cardId]);
+              }
+              return card.merge(fromJS(normalizedCards.entities.ProjectCard[cardId]));
+            });
+          }, cardMap);
+        });
     }
 
     default:

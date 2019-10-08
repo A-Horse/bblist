@@ -7,25 +7,34 @@ import { bindActionCreators, AnyAction, Dispatch, ActionCreatorsMapObject } from
 import { ProjectRecord } from '../../../../typings/project.typing';
 import { getProjectIssuesRequest } from '../../../../actions/project/project-issue.action';
 import { AppPagination } from '../../../../components/widget/Pagination';
+import { RootState, project } from '../../../../reducers';
+import { ProjectCardRecord } from '../../../../typings/kanban-card.typing';
 
-interface Props {
+interface InputProps {
+
+}
+
+interface ReduxProps {
   actions: ActionCreatorsMapObject;
   project: ProjectRecord;
+  pageNumber: number;
+  pageSize: number;
+  total?: number;
 }
 
 export class IssuesComponent extends Component<
-  Props & RouteComponentProps<{ projectId: string }>,
+InputProps & ReduxProps & RouteComponentProps<{ projectId: string }>,
   {
-    currentPageNumber: number;
   }
 > {
   state = {
-    currentPageNumber: 0
   };
 
   componentWillMount() {
     this.props.actions.getProjectIssuesRequest({
-      projectId: this.props.match.params.projectId
+      projectId: this.props.match.params.projectId,
+      pageSize: 20,
+      pageNumber: this.props.pageNumber
     });
   }
 
@@ -39,9 +48,9 @@ export class IssuesComponent extends Component<
         Issues
         <AppPagination
           onPageChanged={this.onPagaChange}
-          pageSize={10}
-          total={90}
-          currentPage={this.state.currentPageNumber}
+          pageSize={this.props.pageSize}
+          total={this.props.total!}
+          currentPage={this.props.pageNumber}
         />
       </div>
     );
@@ -59,11 +68,33 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
   };
 };
 
-const mapStateToProps = (state: any, props: any) => {
+const mapStateToProps = (state: RootState, props: any) => {
   const { projectId } = props.match.params;
 
+  let pageNumber = 0;
+  let pageSize = 20;
+  let total;
+  let loading = true;
+  let issues: ProjectCardRecord[] = [];
+  const issuePagitation = state.project.get('currentIssuePagitation');
+
+  if (issuePagitation && issuePagitation!.projectId === projectId) {
+    loading = issuePagitation.loading;
+    issues = issuePagitation.data.map((id: string): ProjectCardRecord => {
+      return state.project.get('cardMap').get(id)!;
+    }).filter(c => !!c);
+    pageNumber = issuePagitation.pageNumber;
+    pageSize = issuePagitation.pageSize;
+    total = issuePagitation.total;
+  }
+
   return {
-    project: state.project.get('projectMap').get(projectId) as ProjectRecord
+    project: state.project.get('projectMap').get(projectId) as ProjectRecord,
+    loading,
+    pageNumber,
+    pageSize,
+    total,
+    issues
   };
 };
 

@@ -4,6 +4,7 @@ import {
   RankProjectCardInKanbanInput
 } from '../../typings/kanban-card.typing';
 import { FSAction } from '../actions';
+import { PagtiationList } from '../../typings/pagtiation.typing';
 
 export const GET_COLUMN_CARDS_REQUEST = 'GET_COLUMN_CARDS_REQUEST';
 export const GET_COLUMN_CARDS_SUCCESS = 'GET_COLUMN_CARDS_SUCCESS';
@@ -44,6 +45,7 @@ export function getColumnCardsFailure(error: any): FSAction {
 export const GET_PROJECT_ISSUES_REQUEST = 'GET_PROJECT_ISSUES_REQUEST';
 export const GET_PROJECT_ISSUES_SUCCESS = 'GET_PROJECT_ISSUES_SUCCESS';
 export const GET_PROJECT_ISSUES_FAILURE = 'GET_PROJECT_ISSUES_FAILURE';
+export const GET_PROJECT_ISSUES_SUCCESS_IN_PROJECT_ISSUE = 'GET_PROJECT_ISSUES_SUCCESS_IN_PROJECT_ISSUE';
 
 export function getProjectIssuesRequest(
   payload: { projectId: string; pageSize: number; pageNumber: number },
@@ -58,9 +60,16 @@ export function getProjectIssuesRequest(
   };
 }
 
-export function getProjectIssuesSuccess(payload: { cards: Card[]; projectId: string }): FSAction {
+export function getProjectIssuesSuccess(payload: { cardPagtiton: PagtiationList<Card>; projectId: string }): FSAction {
   return {
     type: GET_PROJECT_ISSUES_SUCCESS,
+    payload
+  };
+}
+
+export function getProjectIssuesSuccessInProjectIssue(payload: { cardPagtiton: PagtiationList<Card>; projectId: string }): FSAction {
+  return {
+    type: GET_PROJECT_ISSUES_SUCCESS_IN_PROJECT_ISSUE,
     payload
   };
 }
