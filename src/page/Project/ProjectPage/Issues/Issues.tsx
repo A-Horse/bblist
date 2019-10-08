@@ -24,9 +24,9 @@ export class IssuesComponent extends Component<
   };
 
   componentWillMount() {
-    // this.props.actions.getProjectIssuesRequest({
-    //   projectId: this.props.match.params.projectId
-    // });
+    this.props.actions.getProjectIssuesRequest({
+      projectId: this.props.match.params.projectId
+    });
   }
 
   onPagaChange = (pageNumber: number) => {

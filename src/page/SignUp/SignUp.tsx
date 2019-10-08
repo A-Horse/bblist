@@ -8,7 +8,6 @@ import { LogoBan } from '../../components/commons/LogoBan/LogoBan';
 import { ErrorMsg } from '../../components/ErrorMsg/ErrorMsg';
 import { Button } from '../../components/widget/Button/Button';
 import { Input } from '../../components/widget/Input/Input';
-import { PageContainer } from '../../components/widget/PageContainer';
 import { updateTitle } from '../../services/title';
 import { validateFormValue } from '../../services/validate-strategy';
 

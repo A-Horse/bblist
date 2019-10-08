@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { PageContainer } from '../components/widget/PageContainer';
 import { SeaWaves } from 'effect/SeaWaves';
 import { Button } from '../components/widget/Button/Button';
 import { Link } from 'react-router-dom';
@@ -81,7 +80,7 @@ class IndexPage extends Component {
 
   render() {
     return (
-      <PageContainer className="index-page">
+      <div className="index-page">
         <LogoBan />
 
         <div className="image-container">
@@ -89,7 +88,7 @@ class IndexPage extends Component {
         </div>
 
         {this.renderLinkBar()}
-      </PageContainer>
+      </div>
     );
   }
 }
