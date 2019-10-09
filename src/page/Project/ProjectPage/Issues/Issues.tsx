@@ -2,7 +2,7 @@ import './Issues.scss';
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withRouter, RouteComponentProps } from 'react-router-dom';
+import { withRouter, RouteComponentProps, Route } from 'react-router-dom';
 import { bindActionCreators, AnyAction, Dispatch, ActionCreatorsMapObject } from 'redux';
 import { ProjectRecord } from '../../../../typings/project.typing';
 import { getProjectIssuesRequest } from '../../../../actions/project/project-issue.action';
@@ -10,6 +10,7 @@ import { AppPagination } from '../../../../components/widget/Pagination';
 import { RootState } from '../../../../reducers';
 import { ProjectIssueRecord } from '../../../../typings/kanban-card.typing';
 import { FlatIssue } from '../../../../components/project/issue/FlatIssue/FlatIssue';
+import { CardDetail } from '../../../../components/project/CardDetail/CardDetail';
 
 interface InputProps {}
 
@@ -42,18 +43,22 @@ export class IssuesComponent extends Component<
 
   render() {
     return (
-      <div>
-        Issues
-        
-        {this.props.issues.map((issue: ProjectIssueRecord) => {
-          return <FlatIssue issue={issue} />;
-        })}
-        <AppPagination
-          onPageChanged={this.onPagaChange}
-          pageSize={this.props.pageSize}
-          total={this.props.total!}
-          currentPage={this.props.pageNumber}
-        />
+      <div className="Issues">
+        <div>
+          {this.props.issues.map((issue: ProjectIssueRecord) => {
+            return <FlatIssue issue={issue} />;
+          })}
+          <AppPagination
+            onPageChanged={this.onPagaChange}
+            pageSize={this.props.pageSize}
+            total={this.props.total!}
+            currentPage={this.props.pageNumber}
+          />
+        </div>
+
+        <div>
+          <Route path="/project/:projectId/kanban/:kanbanId/card/:cardId" render={() => <CardDetailContainer />} />
+        </div>
       </div>
     );
   }

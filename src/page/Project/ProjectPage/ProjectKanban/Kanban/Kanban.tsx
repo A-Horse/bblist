@@ -16,7 +16,7 @@ import { selectKanbanColumns } from '../../../../../reducers/selector/kanban.sel
 import { KanbanColumnRecord } from '../../../../../typings/kanban-column.typing';
 import { KanbanRecord } from '../../../../../typings/kanban.typing';
 import { ProjectRecord } from '../../../../../typings/project.typing';
-import { CardDetailContainer } from '../../../../Task/CardDetail/CardDetail.container';
+import { CardDetailContainer } from '../../../../../components/project/CardDetail/CardDetail.container';
 import { KanbanColumn } from './Column/KanbanColumn';
 
 interface InputProps {
