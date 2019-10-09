@@ -1,15 +1,14 @@
 import { Record } from 'immutable';
 
-export interface Card {
-  id: string;
-  name: string;
-}
-
-export type ProjectIssueRecord = Record<{
+export interface Issue {
   id: string;
   title: string;
   order: number;
-}>;
+}
+
+export type ProjectIssueRecord = Record<Issue>;
+
+export type ProjectIssueRecordFiled =  keyof Issue;
 
 export interface CreateProjectCardInput {
   title: string;

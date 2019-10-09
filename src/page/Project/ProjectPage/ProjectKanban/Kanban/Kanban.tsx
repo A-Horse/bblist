@@ -16,7 +16,6 @@ import { selectKanbanColumns } from '../../../../../reducers/selector/kanban.sel
 import { KanbanColumnRecord } from '../../../../../typings/kanban-column.typing';
 import { KanbanRecord } from '../../../../../typings/kanban.typing';
 import { ProjectRecord } from '../../../../../typings/project.typing';
-import { CardDetailContainer } from '../../../../../components/project/CardDetail/CardDetail.container';
 import { KanbanColumn } from './Column/KanbanColumn';
 
 interface InputProps {
@@ -54,7 +53,7 @@ class KanbanComponent extends Component<
         <DndProvider backend={HTML5Backend}>
           <Route
             path="/project/:projectId/kanban/:kanbanId/card/:cardId"
-            render={() => <CardDetailContainer />}
+            render={() => <div>detail modal</div>}
           />
 
           <div className="Kanban-ColumnContainer">

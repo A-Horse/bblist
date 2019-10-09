@@ -1,5 +1,5 @@
 import {
-  Card,
+  Issue,
   CreateProjectCardInput,
   RankProjectCardInKanbanInput
 } from '../../typings/kanban-card.typing';
@@ -24,7 +24,7 @@ export function getColumnCardsRequest(
 }
 
 export function getColumnCardsSuccess(payload: {
-  cards: Card[];
+  cards: Issue[];
   kanbanId: string;
   columnId: string;
 }): FSAction {
@@ -60,14 +60,14 @@ export function getProjectIssuesRequest(
   };
 }
 
-export function getProjectIssuesSuccess(payload: { cardPagtiton: PagtiationList<Card>; projectId: string }): FSAction {
+export function getProjectIssuesSuccess(payload: { cardPagtiton: PagtiationList<Issue>; projectId: string }): FSAction {
   return {
     type: GET_PROJECT_ISSUES_SUCCESS,
     payload
   };
 }
 
-export function getProjectIssuesSuccessInProjectIssue(payload: { cardPagtiton: PagtiationList<Card>; projectId: string }): FSAction {
+export function getProjectIssuesSuccessInProjectIssue(payload: { cardPagtiton: PagtiationList<Issue>; projectId: string }): FSAction {
   return {
     type: GET_PROJECT_ISSUES_SUCCESS_IN_PROJECT_ISSUE,
     payload

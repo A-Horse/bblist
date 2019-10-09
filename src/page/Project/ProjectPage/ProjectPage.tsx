@@ -1,6 +1,5 @@
 import './ProjectPage.scss';
 
-import { Layout } from 'antd';
 import React, { Component } from 'react';
 import { match,  Route, Switch } from 'react-router';
 import { BoardSetting } from '../../Task/BoardSetting/BoardSetting';

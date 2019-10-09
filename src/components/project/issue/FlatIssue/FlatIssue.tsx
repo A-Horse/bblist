@@ -1,19 +1,20 @@
 import './FlatIssue.scss';
 
-import React, { useRef } from 'react';
+import React from 'react';
 import { ProjectIssueRecord } from '../../../../typings/kanban-card.typing';
 
 interface InputProps {
   issue: ProjectIssueRecord;
+  onClick: Function
 }
 
-export const FlatIssue = React.forwardRef<HTMLDivElement, InputProps>(({ issue }) => {
-  const elementRef = useRef(null);
-
+export const FlatIssue = ({ issue, onClick }: InputProps) => {
+  const clickHandle = () => onClick(issue);
+  
   return (
-    <div className="FlatIssue" ref={elementRef}>
+    <div className="FlatIssue" onClick={clickHandle}>
       <div>{issue.get('id')}</div>
-      {issue.get('title')} - {issue.get('order')}
+      {issue.get('title')}      
     </div>
   );
-});
+};

@@ -10,7 +10,7 @@ import { AppPagination } from '../../../../components/widget/Pagination';
 import { RootState } from '../../../../reducers';
 import { ProjectIssueRecord } from '../../../../typings/kanban-card.typing';
 import { FlatIssue } from '../../../../components/project/issue/FlatIssue/FlatIssue';
-import { CardDetail } from '../../../../components/project/CardDetail/CardDetail';
+import { IssueDetail } from '../../../../components/project/CardDetail/IssueDetail';
 
 interface InputProps {}
 
@@ -41,12 +41,16 @@ export class IssuesComponent extends Component<
     this.setState({ currentPageNumber: pageNumber });
   };
 
+  onFlatIssueClick = (issue: ProjectIssueRecord) => {
+    this.props.history.push(`/project/${this.props.project.get('id')}/issues/${issue.get('id')}`);
+  };
+
   render() {
     return (
       <div className="Issues">
         <div>
           {this.props.issues.map((issue: ProjectIssueRecord) => {
-            return <FlatIssue issue={issue} />;
+            return <FlatIssue key={issue.get('id')} issue={issue} onClick={this.onFlatIssueClick} />;
           })}
           <AppPagination
             onPageChanged={this.onPagaChange}
@@ -57,7 +61,12 @@ export class IssuesComponent extends Component<
         </div>
 
         <div>
-          <Route path="/project/:projectId/kanban/:kanbanId/card/:cardId" render={() => <CardDetailContainer />} />
+          <Route
+            path="/project/:projectId/issues/:issueId"
+            render={(props: RouteComponentProps<{ issueId: string }>) => (
+              <IssueDetail issueId={props.match.params.issueId} />
+            )}
+          />
         </div>
       </div>
     );
