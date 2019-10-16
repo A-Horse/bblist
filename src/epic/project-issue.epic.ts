@@ -1,5 +1,5 @@
 import { RankProjectCardInKanbanInput } from '../typings/kanban-card.typing';
-import { Card } from '../typings/kanban-card.typing';
+import { Issue } from '../typings/kanban-card.typing';
 import { FSAction } from '../actions/actions';
 import { mergeMap, filter, tap, distinctUntilChanged } from 'rxjs/operators';
 import { ofType } from 'redux-observable';
@@ -27,7 +27,7 @@ export const GET_COLUMN_CARDS_REQUEST_FN = (action$: Observable<FSAction>) =>
         .get(
           makeApiUrl(`/kanban/${action.payload.kanbanId}/column/${action.payload.columnId}/cards`)
         )
-        .then((result: AxiosResponse<Card[]>) => {
+        .then((result: AxiosResponse<Issue[]>) => {
           action.meta.requestDoneCallback();
           return getColumnCardsSuccess({
             kanbanId: action.payload.kanbanId,
