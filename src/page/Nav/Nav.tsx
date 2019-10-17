@@ -57,7 +57,7 @@ class Nav extends Component<any> {
         </Link>
         <div className="app-header-menu">
           <div className="app-header-menu--link-containner">
-            <NavLink to="/project" activeClassName="active">
+            <NavLink to="/projects" activeClassName="active">
               Project
             </NavLink>
 

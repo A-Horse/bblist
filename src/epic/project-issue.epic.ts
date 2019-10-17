@@ -19,28 +19,6 @@ import { Observable } from 'rxjs';
 import { makeApiUrl } from '../utils/api';
 import equals from 'ramda/es/equals';
 
-export const GET_COLUMN_CARDS_REQUEST_FN = (action$: Observable<FSAction>) =>
-  action$.pipe(
-    ofType(GET_COLUMN_CARDS_REQUEST),
-    mergeMap((action: FSAction) => {
-      return axios
-        .get(
-          makeApiUrl(`/kanban/${action.payload.kanbanId}/column/${action.payload.columnId}/cards`)
-        )
-        .then((result: AxiosResponse<Issue[]>) => {
-          action.meta.requestDoneCallback();
-          return getColumnCardsSuccess({
-            kanbanId: action.payload.kanbanId,
-            columnId: action.payload.columnId,
-            cards: result.data
-          });
-        })
-        .catch(error => {
-          action.meta.requestDoneCallback();
-          return getColumnCardsFailure(error);
-        });
-    })
-  );
 
 export const CREATAE_PROJECT_CARD_REQUEST_FN = (action$: Observable<FSAction>) =>
   action$.pipe(
@@ -52,6 +30,10 @@ export const CREATAE_PROJECT_CARD_REQUEST_FN = (action$: Observable<FSAction>) =
         .catch(createProjectCardFailure);
     })
   );
+
+export const GET_PROJECT_ISSUE_DETAIL_DEQUEST_FN = (action$: Observable<FSAction>) => {
+  
+}
 
 export const RANK_PROJECT_CARD_IN_KANBAN_REQUEST_FN = (action$: Observable<FSAction>) =>
   action$.pipe(

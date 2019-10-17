@@ -10,7 +10,7 @@ import { AppPagination } from '../../../../components/widget/Pagination';
 import { RootState } from '../../../../reducers';
 import { ProjectIssueRecord } from '../../../../typings/kanban-card.typing';
 import { FlatIssue } from '../../../../components/project/issue/FlatIssue/FlatIssue';
-import { IssueDetail } from '../../../../components/project/CardDetail/IssueDetail';
+import { IssueDetail } from '../../../../components/project/issue/IssueDetail/IssueDetail';
 
 interface InputProps {}
 

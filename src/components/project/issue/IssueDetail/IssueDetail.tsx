@@ -3,10 +3,11 @@ import './CardDetail.scss';
 import React, { Component } from 'react';
 import { withRouter, RouterProps, RouteComponentProps } from 'react-router';
 import { connect } from 'react-redux';
-import { RootState } from '../../../reducers';
+import { RootState } from '../../../../reducers';
 import { bindActionCreators, AnyAction, Dispatch, ActionCreatorsMapObject } from 'redux';
-import { ProjectIssueRecord, ProjectIssueRecordFiled } from '../../../typings/kanban-card.typing';
-import Input from '../../widget/Input/Input';
+import { ProjectIssueRecord, ProjectIssueRecordFiled } from '../../../../typings/kanban-card.typing';
+import Input from '../../../widget/Input/Input';
+import { getProjectIssueDetailRequest } from '../../../../actions/project/project-issue-detail.aciton';
 
 export interface InputProps {
   issueId: string;
@@ -14,11 +15,19 @@ export interface InputProps {
 
 export interface ReduxProps {
   issue?: ProjectIssueRecord;
+  actions: ActionCreatorsMapObject;
 }
 
 interface ComponentProps extends RouteComponentProps, InputProps {}
 
 class IssueDetailComponent extends Component<InputProps & ReduxProps> {
+
+  componentWillMount() {
+    this.props.actions.getProjectIssueDetailRequest({
+      issueId: this.props.issueId
+    });
+  }
+
   onFieldChange = (fieldName: ProjectIssueRecordFiled) => {
     return (value: any): void => {
       this.props.issue!.update(fieldName, () => value);
@@ -27,7 +36,6 @@ class IssueDetailComponent extends Component<InputProps & ReduxProps> {
 
   render() {
     const { issue } = this.props;
-    console.log('issue', issue);
     if (!issue) {
       return <div>loading</div>;
     }
@@ -35,6 +43,8 @@ class IssueDetailComponent extends Component<InputProps & ReduxProps> {
     return (
       <div>
         <Input value={issue.get('title')} onChange={this.onFieldChange('title')} />
+
+        
       </div>
     );
   }
@@ -42,7 +52,12 @@ class IssueDetailComponent extends Component<InputProps & ReduxProps> {
 
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
   return {
-    actions: bindActionCreators({}, dispatch)
+    actions: bindActionCreators(
+      {
+        getProjectIssueDetailRequest: getProjectIssueDetailRequest
+      },
+      dispatch
+    )
   };
 };
 

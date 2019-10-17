@@ -6,7 +6,6 @@ import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { bindActionCreators, AnyAction, Dispatch, ActionCreatorsMapObject } from 'redux';
 import { ProjectRecord } from '../../../../typings/project.typing';
 import { getProjectKanbansRequest } from '../../../../actions/project/kanban.action';
-import { CreateKanbanCardModalButton } from '../modals/CreateKanbanCardModal/CreateKanbanCardModalButton';
 
 interface Props {
   actions: ActionCreatorsMapObject;
