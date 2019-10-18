@@ -9,7 +9,7 @@ import {
   XYCoord,
   DropTargetMonitor
 } from 'react-dnd';
-import { ProjectIssueRecord } from '../../../typings/kanban-card.typing';
+import { ProjectIssueRecord } from '../../../typings/project-issue.typing';
 
 interface InputProps {
   card: ProjectIssueRecord;

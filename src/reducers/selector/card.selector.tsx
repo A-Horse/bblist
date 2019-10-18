@@ -1,5 +1,5 @@
 import { RootState } from "..";
-import { ProjectIssueRecord } from "../../typings/kanban-card.typing";
+import { ProjectIssueRecord } from "../../typings/project-issue.typing";
 import { List } from "immutable";
 
 export function selectColumnCards(

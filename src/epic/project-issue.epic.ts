@@ -1,5 +1,4 @@
-import { RankProjectCardInKanbanInput } from '../typings/kanban-card.typing';
-import { Issue } from '../typings/kanban-card.typing';
+import { RankProjectCardInKanbanInput, ProjectIssueRecord, ProjectIssue } from '../typings/project-issue.typing';
 import { FSAction } from '../actions/actions';
 import { mergeMap, filter, tap, distinctUntilChanged } from 'rxjs/operators';
 import { ofType } from 'redux-observable';
@@ -18,6 +17,7 @@ import axios, { AxiosResponse } from 'axios';
 import { Observable } from 'rxjs';
 import { makeApiUrl } from '../utils/api';
 import equals from 'ramda/es/equals';
+import { GET_PROJECT_ISSUE_DETAIL_DEQUEST, getProjectIssueDetailSuccess, getProjectIssueDetailFailure } from '../actions/project/project-issue-detail.aciton';
 
 
 export const CREATAE_PROJECT_CARD_REQUEST_FN = (action$: Observable<FSAction>) =>
@@ -32,7 +32,15 @@ export const CREATAE_PROJECT_CARD_REQUEST_FN = (action$: Observable<FSAction>) =
   );
 
 export const GET_PROJECT_ISSUE_DETAIL_DEQUEST_FN = (action$: Observable<FSAction>) => {
-  
+  return action$.pipe(
+    ofType(GET_PROJECT_ISSUE_DETAIL_DEQUEST),
+    mergeMap((action: FSAction) => {
+      return axios
+        .get(makeApiUrl(`/issue/${action.payload.issueId}`))
+        .then((result: AxiosResponse<ProjectIssue>) => getProjectIssueDetailSuccess(result.data))
+        .catch(getProjectIssueDetailFailure);
+    })
+  );
 }
 
 export const RANK_PROJECT_CARD_IN_KANBAN_REQUEST_FN = (action$: Observable<FSAction>) =>
@@ -48,7 +56,7 @@ export const RANK_PROJECT_CARD_IN_KANBAN_REQUEST_FN = (action$: Observable<FSAct
           targetCardId: payload.targetCard.get('id'),
           isBefore: payload.isBefore
         })
-        .then((result: AxiosResponse<{cardId: string, order: number}[]>) => rankProjectCardInKanbanSuccess(result.data))
+        .then((result: AxiosResponse<{ cardId: string, order: number }[]>) => rankProjectCardInKanbanSuccess(result.data))
         .catch(rankProjectCardInKanbanFailure);
     })
   );

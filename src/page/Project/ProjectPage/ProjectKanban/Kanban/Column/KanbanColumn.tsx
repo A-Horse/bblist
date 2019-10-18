@@ -16,7 +16,7 @@ import { RootState } from '../../../../../../reducers';
 import { selectColumnCards } from '../../../../../../reducers/selector/card.selector';
 import {
     ProjectIssueRecord, RankProjectCardInKanbanInput
-} from '../../../../../../typings/kanban-card.typing';
+} from '../../../../../../typings/project-issue.typing';
 import { KanbanColumnRecord } from '../../../../../../typings/kanban-column.typing';
 import { ColumnDataFetcher } from './column-data-fetcher';
 

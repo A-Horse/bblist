@@ -1,4 +1,5 @@
 import { FSAction } from './../actions';
+import { ProjectIssue } from '../../typings/project-issue.typing';
 
 export const GET_PROJECT_ISSUE_DETAIL_DEQUEST = 'GET_PROJECT_ISSUE_DETAIL_DEQUEST';
 export const GET_PROJECT_ISSUE_DETAIL_SUCCESS = 'GET_PROJECT_ISSUE_DETAIL_SUCCESS';
@@ -15,9 +16,10 @@ export function getProjectIssueDetailRequest(
   };
 }
 
-export function getProjectIssueDetailSuccess(): FSAction {
+export function getProjectIssueDetailSuccess(issue: ProjectIssue): FSAction {
   return {
-    type: GET_PROJECT_ISSUE_DETAIL_SUCCESS
+    type: GET_PROJECT_ISSUE_DETAIL_SUCCESS,
+    payload: issue
   };
 }
 

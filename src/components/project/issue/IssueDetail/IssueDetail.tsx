@@ -5,7 +5,7 @@ import { withRouter, RouterProps, RouteComponentProps } from 'react-router';
 import { connect } from 'react-redux';
 import { RootState } from '../../../../reducers';
 import { bindActionCreators, AnyAction, Dispatch, ActionCreatorsMapObject } from 'redux';
-import { ProjectIssueRecord, ProjectIssueRecordFiled } from '../../../../typings/kanban-card.typing';
+import { ProjectIssueRecord, ProjectIssueRecordFiled } from '../../../../typings/project-issue.typing';
 import Input from '../../../widget/Input/Input';
 import { getProjectIssueDetailRequest } from '../../../../actions/project/project-issue-detail.aciton';
 

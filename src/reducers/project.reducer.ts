@@ -18,7 +18,7 @@ import { normalize } from 'normalizr';
 import { fromJS, Record, Map } from 'immutable';
 import { GET_PROJCET_KANBANS_SUCCESS, GET_PROJCET_KANBAN_DETAIL_SUCCESS } from '../actions/project/kanban.action';
 import { Column, KanbanColumnRecord } from '../typings/kanban-column.typing';
-import { ProjectIssueRecord, RankProjectCardInKanbanInput } from '../typings/kanban-card.typing';
+import { ProjectIssueRecord, RankProjectCardInKanbanInput } from '../typings/project-issue.typing';
 import { PagtiationList } from '../typings/pagtiation.typing';
 
 export type KanbanMap = Map<string, KanbanRecord>;
