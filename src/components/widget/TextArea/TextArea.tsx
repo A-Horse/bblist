@@ -1,10 +1,6 @@
-
-
-import './Input.scss';
-
 import React, { ChangeEvent, Component } from 'react';
 
-export class TextArea extends Component<{
+export class AppTextArea extends Component<{
   value?: string;
   defaultValue?: string;
   onChange?: (value: string) => void;
@@ -38,4 +34,3 @@ export class TextArea extends Component<{
   }
 }
 
-export default TextArea;

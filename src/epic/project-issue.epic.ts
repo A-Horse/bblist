@@ -17,8 +17,14 @@ import axios, { AxiosResponse } from 'axios';
 import { Observable } from 'rxjs';
 import { makeApiUrl } from '../utils/api';
 import equals from 'ramda/es/equals';
-import { GET_PROJECT_ISSUE_DETAIL_DEQUEST, getProjectIssueDetailSuccess, getProjectIssueDetailFailure } from '../actions/project/project-issue-detail.aciton';
-
+import {
+  GET_PROJECT_ISSUE_DETAIL_DEQUEST,
+  getProjectIssueDetailSuccess,
+  getProjectIssueDetailFailure,
+  UPDATE_PROJECT_ISSUE_DETAIL_DEQUEST,
+  updateProjectIssueDetailSuccess,
+  updateProjectIssueDetailFailure
+} from '../actions/project/project-issue-detail.aciton';
 
 export const CREATAE_PROJECT_CARD_REQUEST_FN = (action$: Observable<FSAction>) =>
   action$.pipe(
@@ -28,6 +34,17 @@ export const CREATAE_PROJECT_CARD_REQUEST_FN = (action$: Observable<FSAction>) =
         .post(makeApiUrl(`/project/${action.payload.projectId}/issue`), action.payload)
         .then((result: AxiosResponse<string>) => createProjectCardSuccess(result.data))
         .catch(createProjectCardFailure);
+    })
+  );
+
+export const UPDATE_PROJECT_ISSUE_DETAIL_DEQUEST_FN = (action$: Observable<FSAction>) =>
+  action$.pipe(
+    ofType(UPDATE_PROJECT_ISSUE_DETAIL_DEQUEST),
+    mergeMap((action: FSAction) => {
+      return axios
+        .post(makeApiUrl(`/issue/${action.payload.issueId}`), action.payload)
+        .then((result: AxiosResponse<void>) => updateProjectIssueDetailSuccess())
+        .catch(updateProjectIssueDetailFailure);
     })
   );
 
@@ -41,7 +58,7 @@ export const GET_PROJECT_ISSUE_DETAIL_DEQUEST_FN = (action$: Observable<FSAction
         .catch(getProjectIssueDetailFailure);
     })
   );
-}
+};
 
 export const RANK_PROJECT_CARD_IN_KANBAN_REQUEST_FN = (action$: Observable<FSAction>) =>
   action$.pipe(
@@ -56,7 +73,9 @@ export const RANK_PROJECT_CARD_IN_KANBAN_REQUEST_FN = (action$: Observable<FSAct
           targetCardId: payload.targetCard.get('id'),
           isBefore: payload.isBefore
         })
-        .then((result: AxiosResponse<{ cardId: string, order: number }[]>) => rankProjectCardInKanbanSuccess(result.data))
+        .then((result: AxiosResponse<{ cardId: string; order: number }[]>) =>
+          rankProjectCardInKanbanSuccess(result.data)
+        )
         .catch(rankProjectCardInKanbanFailure);
     })
   );

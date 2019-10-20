@@ -20,12 +20,13 @@ import { GET_PROJCET_KANBANS_SUCCESS, GET_PROJCET_KANBAN_DETAIL_SUCCESS } from '
 import { Column, KanbanColumnRecord } from '../typings/kanban-column.typing';
 import { ProjectIssueRecord, RankProjectCardInKanbanInput } from '../typings/project-issue.typing';
 import { PagtiationList } from '../typings/pagtiation.typing';
+import { GET_PROJECT_ISSUE_DETAIL_SUCCESS } from '../actions/project/project-issue-detail.aciton';
 
 export type KanbanMap = Map<string, KanbanRecord>;
 export type ColumnMap = Map<string, KanbanColumnRecord>;
 export type CardMap = Map<string, ProjectIssueRecord>;
 
-type IssuePagitation = PagtiationList<string> & { projectId: string, loading: boolean } | null;
+type IssuePagitation = PagtiationList<string> & { projectId: string; loading: boolean } | null;
 
 export interface ProjectProp {
   projectMap: Map<string, ProjectRecord>;
@@ -165,15 +166,15 @@ export function project(
     }
 
     case GET_PROJECT_ISSUES_REQUEST: {
-        return state.update('currentIssuePagitation', (pagitaion: IssuePagitation) => {
-          if (!pagitaion) {
-            return pagitaion
-          }
-          return {
-            ...pagitaion,
-            loading: true
-          }
-        })
+      return state.update('currentIssuePagitation', (pagitaion: IssuePagitation) => {
+        if (!pagitaion) {
+          return pagitaion;
+        }
+        return {
+          ...pagitaion,
+          loading: true
+        };
+      });
     }
 
     case GET_PROJECT_ISSUES_SUCCESS: {
@@ -199,6 +200,16 @@ export function project(
             });
           }, cardMap);
         });
+    }
+
+    case GET_PROJECT_ISSUE_DETAIL_SUCCESS: {
+      const issue: ProjectIssueRecord = fromJS(action.payload);
+      return state.updateIn(['cardMap', issue.get('id')], innerIssue => {
+        if (!innerIssue) {
+          return innerIssue;
+        }
+        return innerIssue.merge(issue);
+      });
     }
 
     default:

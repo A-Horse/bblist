@@ -7,7 +7,12 @@ import { RootState } from '../../../../reducers';
 import { bindActionCreators, AnyAction, Dispatch, ActionCreatorsMapObject } from 'redux';
 import { ProjectIssueRecord, ProjectIssueRecordFiled } from '../../../../typings/project-issue.typing';
 import Input from '../../../widget/Input/Input';
-import { getProjectIssueDetailRequest } from '../../../../actions/project/project-issue-detail.aciton';
+import {
+  getProjectIssueDetailRequest,
+  updateProjectIssueDetailRequest
+} from '../../../../actions/project/project-issue-detail.aciton';
+import { AppTextArea } from '../../../widget/TextArea/TextArea';
+import { AppButton } from '../../../widget/Button';
 
 export interface InputProps {
   issueId: string;
@@ -21,6 +26,7 @@ export interface ReduxProps {
 interface ComponentProps extends RouteComponentProps, InputProps {}
 
 class IssueDetailComponent extends Component<InputProps & ReduxProps> {
+  changedPartialIssue: any = {};
 
   componentWillMount() {
     this.props.actions.getProjectIssueDetailRequest({
@@ -31,7 +37,16 @@ class IssueDetailComponent extends Component<InputProps & ReduxProps> {
   onFieldChange = (fieldName: ProjectIssueRecordFiled) => {
     return (value: any): void => {
       this.props.issue!.update(fieldName, () => value);
+      this.changedPartialIssue[fieldName] = value;
     };
+  };
+
+  onDone = () => {
+    this.props.actions.updateProjectIssueDetailRequest({
+      issueId: this.props.issueId,
+      partialIssue: this.changedPartialIssue
+    });
+    this.changedPartialIssue = {};
   };
 
   render() {
@@ -44,7 +59,9 @@ class IssueDetailComponent extends Component<InputProps & ReduxProps> {
       <div>
         <Input value={issue.get('title')} onChange={this.onFieldChange('title')} />
 
-        
+        <AppTextArea value={issue.get('content')} onChange={this.onFieldChange('content')} />
+
+        <AppButton onClick={this.onDone}>Done</AppButton>
       </div>
     );
   }
@@ -54,7 +71,8 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
   return {
     actions: bindActionCreators(
       {
-        getProjectIssueDetailRequest: getProjectIssueDetailRequest
+        getProjectIssueDetailRequest: getProjectIssueDetailRequest,
+        updateProjectIssueDetailRequest: updateProjectIssueDetailRequest
       },
       dispatch
     )
