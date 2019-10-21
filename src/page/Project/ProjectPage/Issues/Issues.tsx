@@ -48,6 +48,7 @@ export class IssuesComponent extends Component<
   render() {
     return (
       <div className="Issues">
+        
         <div>
           <ul className="Issues-list">
             {this.props.issues.map((issue: ProjectIssueRecord) => {

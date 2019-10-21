@@ -37,7 +37,6 @@ class ProjectPageComponent extends Component<Props> {
   }
 
   componentWillReceiveProps(nextProps: any) {
-  
   }
 
  
