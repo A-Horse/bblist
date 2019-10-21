@@ -13,7 +13,7 @@ export const FlatIssue = ({ issue, onClick }: InputProps) => {
 
   return (
     <div className="FlatIssue" onClick={clickHandle}>
-      <span>{issue.get('id')}</span>
+      <span className="FlatIssue--id">{issue.get('id')}</span>
       {issue.get('title')}
     </div>
   );

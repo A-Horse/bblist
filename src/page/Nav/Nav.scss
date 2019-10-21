@@ -1,7 +1,10 @@
+@import "../../style/variable";
+
 .app-header {
   background-color: #eb6668 !important;
   padding: 0 20px !important;
   letter-spacing: 1px;
+  height: $app-nav-height;
 
   .app-header-menu {
     padding-left: 30px;

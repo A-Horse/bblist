@@ -1,7 +1,7 @@
 import './ProjectPage.scss';
 
 import React, { Component } from 'react';
-import { match,  Route, Switch } from 'react-router';
+import { match, Route, Switch } from 'react-router';
 import { BoardSetting } from '../../Task/BoardSetting/BoardSetting';
 import { ProjectKanban } from './ProjectKanban/ProjectKanban';
 import { ProjectSideBar } from './ProjectSideBar/ProjectSideBar';
@@ -16,7 +16,6 @@ import { History, Location } from 'history';
 import { ProjectAdmin } from './ProjectAdmin/ProjectAdmin';
 import { ProjectEpics } from './ProjectEpics/ProjectEpics';
 import { Issues } from './Issues/Issues';
-
 
 interface Props {
   actions: {
@@ -36,10 +35,7 @@ class ProjectPageComponent extends Component<Props> {
     this.props.actions.getProjectDetailRequest(projectId);
   }
 
-  componentWillReceiveProps(nextProps: any) {
-  }
-
- 
+  componentWillReceiveProps(nextProps: any) {}
 
   render() {
     const { projectId } = this.props.match.params;
@@ -52,20 +48,18 @@ class ProjectPageComponent extends Component<Props> {
 
     return (
       <div className="ProjectPage">
-        
-        <div className="ProjectPage-main">
+        <div className="ProjectPage--main">
           <ProjectSideBar match={this.props.match} />
 
-          <Switch>
-            <Route
-              path="/project/:projectId/setting"
-              render={props => <BoardSetting {...this.props} {...props} />}
-            />
-            <Route path="/project/:projectId/kanban" render={props => <ProjectKanban />} />
-            <Route path="/project/:projectId/epics" render={props => <ProjectEpics />} />
-            <Route path="/project/:projectId/issues" render={props => <Issues />} />
-            <Route path="/project/:projectId/admin" render={props => <ProjectAdmin />} />
-          </Switch>
+          <div className="ProjectPage--right-content">
+            <Switch>
+              <Route path="/project/:projectId/setting" render={props => <BoardSetting {...this.props} {...props} />} />
+              <Route path="/project/:projectId/kanban" render={props => <ProjectKanban />} />
+              <Route path="/project/:projectId/epics" render={props => <ProjectEpics />} />
+              <Route path="/project/:projectId/issues" render={props => <Issues />} />
+              <Route path="/project/:projectId/admin" render={props => <ProjectAdmin />} />
+            </Switch>
+          </div>
         </div>
       </div>
     );

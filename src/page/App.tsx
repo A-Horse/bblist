@@ -6,6 +6,8 @@ import { NotFound } from '../page/NotFound';
 import { getUserData } from '../utils/auth';
 import Nav from './Nav/Nav';
 
+import './App.scss';
+
 const { Content } = Layout;
 
 const TodoPageContainer = React.lazy(() => import('./Todo/TodoPage.container'));
@@ -26,9 +28,7 @@ const SettingPage = () => {
   );
 };
 
-const ProjectWallPageContainer = React.lazy(() =>
-  import('./Project/ProjectWallPage/ProjectWall.container')
-);
+const ProjectWallPageContainer = React.lazy(() => import('./Project/ProjectWallPage/ProjectWall.container'));
 const ProjectWallPage = () => {
   return (
     <Suspense fallback={<div>Loading...</div>}>
@@ -73,10 +73,10 @@ export default class App extends Component<any> {
       return <Redirect to="/signin" />;
     }
     return (
-      <Layout>
+      <>
         <Nav user={this.state.userData} actions={this.props.actions} />
 
-        <Content>
+        <>
           <Switch>
             <Route
               path="/"
@@ -111,8 +111,8 @@ export default class App extends Component<any> {
 
             <Route path="*" component={NotFound} />
           </Switch>
-        </Content>
-      </Layout>
+        </>
+      </>
     );
   }
 }

@@ -1,7 +1,14 @@
 @import "../../../style/variable";
 
 .ProjectPage {
-  &-main {
+  height: calc(100% - #{$app-nav-height});
+
+  &--main {
     display: flex;
+    height: 100%;
+  }
+
+  &--right-content {
+    background-color: #e8e8e8;
   }
 }

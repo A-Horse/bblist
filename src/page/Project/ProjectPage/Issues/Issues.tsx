@@ -48,13 +48,13 @@ export class IssuesComponent extends Component<
   render() {
     return (
       <div className="Issues">
-        
-        <div>
-          <ul className="Issues-list">
+
+        <div className="Issues-list">
+          <ul>
             {this.props.issues.map((issue: ProjectIssueRecord) => {
               return (
-                <li>
-                  <FlatIssue key={issue.get('id')} issue={issue} onClick={this.onFlatIssueClick} />
+                <li key={issue.get('id')}>
+                  <FlatIssue issue={issue} onClick={this.onFlatIssueClick} />
                 </li>
               );
             })}
