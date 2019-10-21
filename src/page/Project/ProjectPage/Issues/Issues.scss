@@ -1,3 +1,13 @@
 .Issues {
   display: flex;
+
+  &-list {
+    li {
+      border-top: 1px solid #999;
+
+      &:first-child {
+        border-top: 0;
+      }
+    }
+  }
 }

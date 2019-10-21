@@ -49,9 +49,16 @@ export class IssuesComponent extends Component<
     return (
       <div className="Issues">
         <div>
-          {this.props.issues.map((issue: ProjectIssueRecord) => {
-            return <FlatIssue key={issue.get('id')} issue={issue} onClick={this.onFlatIssueClick} />;
-          })}
+          <ul className="Issues-list">
+            {this.props.issues.map((issue: ProjectIssueRecord) => {
+              return (
+                <li>
+                  <FlatIssue key={issue.get('id')} issue={issue} onClick={this.onFlatIssueClick} />
+                </li>
+              );
+            })}
+          </ul>
+
           <AppPagination
             onPageChanged={this.onPagaChange}
             pageSize={this.props.pageSize}

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import './Side.scss';
+
 export class Side extends Component<{
   width?: number;
 }> {

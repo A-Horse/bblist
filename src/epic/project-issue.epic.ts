@@ -42,7 +42,7 @@ export const UPDATE_PROJECT_ISSUE_DETAIL_DEQUEST_FN = (action$: Observable<FSAct
     ofType(UPDATE_PROJECT_ISSUE_DETAIL_DEQUEST),
     mergeMap((action: FSAction) => {
       return axios
-        .post(makeApiUrl(`/issue/${action.payload.issueId}`), action.payload)
+        .patch(makeApiUrl(`/issue/${action.payload.issueId}`), action.payload.partialIssue)
         .then((result: AxiosResponse<void>) => updateProjectIssueDetailSuccess())
         .catch(updateProjectIssueDetailFailure);
     })

@@ -9,7 +9,8 @@ import { ProjectIssueRecord, ProjectIssueRecordFiled } from '../../../../typings
 import Input from '../../../widget/Input/Input';
 import {
   getProjectIssueDetailRequest,
-  updateProjectIssueDetailRequest
+  updateProjectIssueDetailRequest,
+  changeIssueDirect
 } from '../../../../actions/project/project-issue-detail.aciton';
 import { AppTextArea } from '../../../widget/TextArea/TextArea';
 import { AppButton } from '../../../widget/Button';
@@ -25,18 +26,28 @@ export interface ReduxProps {
 
 interface ComponentProps extends RouteComponentProps, InputProps {}
 
-class IssueDetailComponent extends Component<InputProps & ReduxProps> {
+class IssueDetailComponent extends Component<ComponentProps & ReduxProps> {
   changedPartialIssue: any = {};
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.actions.getProjectIssueDetailRequest({
       issueId: this.props.issueId
     });
   }
 
+  componentDidUpdate(prevProps: ComponentProps) {
+    if (this.props.issueId !== prevProps.issueId) {
+      this.props.actions.getProjectIssueDetailRequest({
+        issueId: this.props.issueId
+      });
+    }
+  }
+
   onFieldChange = (fieldName: ProjectIssueRecordFiled) => {
     return (value: any): void => {
-      this.props.issue!.update(fieldName, () => value);
+      this.props.actions.changeIssueDirect(this.props.issueId, {
+        [fieldName]: value
+      });
       this.changedPartialIssue[fieldName] = value;
     };
   };
@@ -72,7 +83,8 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
     actions: bindActionCreators(
       {
         getProjectIssueDetailRequest: getProjectIssueDetailRequest,
-        updateProjectIssueDetailRequest: updateProjectIssueDetailRequest
+        updateProjectIssueDetailRequest: updateProjectIssueDetailRequest,
+        changeIssueDirect: changeIssueDirect
       },
       dispatch
     )

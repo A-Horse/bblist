@@ -12,11 +12,11 @@ export class ProjectSideBar extends Component<{
   render() {
     return (
       <Side>
-        <SideItemLink to={`${this.props.match.url}/kanban`} name="Kanban" />
-        <SideItemLink to={`${this.props.match.url}/epics`} name="Epics" />
-        <SideItemLink to={`${this.props.match.url}/issues`} name="Issues" />
-        <SideItemLink to={`${this.props.match.url}/setting`} name="Setting" />
-        <SideItemLink to={`${this.props.match.url}/admin`} name="Admin" />
+        <SideItemLink icon="list-alt" to={`${this.props.match.url}/kanban`} name="Kanban" />
+        <SideItemLink icon="vector-square" to={`${this.props.match.url}/epics`} name="Epics" />
+        <SideItemLink icon="list-ol" to={`${this.props.match.url}/issues`} name="Issues" />
+        <SideItemLink icon="cog" to={`${this.props.match.url}/setting`} name="Setting" />
+        <SideItemLink icon="user-cog" to={`${this.props.match.url}/admin`} name="Admin" />
       </Side>
     );
   }

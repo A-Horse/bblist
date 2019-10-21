@@ -20,7 +20,7 @@ import { GET_PROJCET_KANBANS_SUCCESS, GET_PROJCET_KANBAN_DETAIL_SUCCESS } from '
 import { Column, KanbanColumnRecord } from '../typings/kanban-column.typing';
 import { ProjectIssueRecord, RankProjectCardInKanbanInput } from '../typings/project-issue.typing';
 import { PagtiationList } from '../typings/pagtiation.typing';
-import { GET_PROJECT_ISSUE_DETAIL_SUCCESS } from '../actions/project/project-issue-detail.aciton';
+import { GET_PROJECT_ISSUE_DETAIL_SUCCESS, CHANGE_ISSUE_DIRECT } from '../actions/project/project-issue-detail.aciton';
 
 export type KanbanMap = Map<string, KanbanRecord>;
 export type ColumnMap = Map<string, KanbanColumnRecord>;
@@ -202,11 +202,20 @@ export function project(
         });
     }
 
+    case CHANGE_ISSUE_DIRECT: {
+      return state.updateIn(['cardMap', action.payload.issueId], innerIssue => {
+        if (!innerIssue) {
+          return innerIssue;
+        }
+        return innerIssue.merge(fromJS(action.payload.partialIssue));
+      });
+    }
+
     case GET_PROJECT_ISSUE_DETAIL_SUCCESS: {
       const issue: ProjectIssueRecord = fromJS(action.payload);
       return state.updateIn(['cardMap', issue.get('id')], innerIssue => {
         if (!innerIssue) {
-          return innerIssue;
+          return issue;
         }
         return innerIssue.merge(issue);
       });

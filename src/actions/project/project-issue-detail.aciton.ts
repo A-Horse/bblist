@@ -26,6 +26,18 @@ export function getProjectIssueDetailFailure(): FSAction {
   };
 }
 
+export const CHANGE_ISSUE_DIRECT = 'CHANGE_ISSUE_DIRECT';
+
+export function changeIssueDirect(issueId: string, partialIssue: any) {
+  return {
+    type: CHANGE_ISSUE_DIRECT,
+    payload: {
+      issueId,
+      partialIssue
+    }
+  }
+}
+
 export const UPDATE_PROJECT_ISSUE_DETAIL_DEQUEST = 'UPDATE_PROJECT_ISSUE_DETAIL_DEQUEST';
 export const UPDATE_PROJECT_ISSUE_DETAIL_SUCCESS = 'UPDATE_PROJECT_ISSUE_DETAIL_SUCCESS';
 export const UPDATE_PROJECT_ISSUE_DETAIL_FAILURE = 'UPDATE_PROJECT_ISSUE_DETAIL_FAILURE';
