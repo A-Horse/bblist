@@ -14,6 +14,7 @@ import {
 } from '../../../../actions/project/project-issue-detail.aciton';
 import { AppTextArea } from '../../../widget/TextArea/TextArea';
 import { AppButton } from '../../../widget/Button';
+import { FormField } from '../../../widget/FormField/FormField';
 
 export interface InputProps {
   issueId: string;
@@ -67,12 +68,18 @@ class IssueDetailComponent extends Component<ComponentProps & ReduxProps> {
     }
 
     return (
-      <div>
-        <Input value={issue.get('title')} onChange={this.onFieldChange('title')} />
+      <div className="IssueDetail">
+        <FormField>
+          <Input value={issue.get('title')} onChange={this.onFieldChange('title')} />
+        </FormField>
 
-        <AppTextArea value={issue.get('content')} onChange={this.onFieldChange('content')} />
+        <FormField name="描述">
+          <AppTextArea value={issue.get('content')} onChange={this.onFieldChange('content')} />
+        </FormField>
 
-        <AppButton onClick={this.onDone}>Done</AppButton>
+        <div>
+          <AppButton onClick={this.onDone}>Done</AppButton>
+        </div>
       </div>
     );
   }

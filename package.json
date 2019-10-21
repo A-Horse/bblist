@@ -9,7 +9,7 @@
     "axios": "^0.18.1",
     "babel-plugin-import": "^1.11.0",
     "blueimp-md5": "^2.3.0",
-    "coke-component": "0.0.5",
+    "coke-component": "0.0.6",
     "es6-promise": "^4.2.5",
     "formik": "^1.5.8",
     "history": "^4.7.2",

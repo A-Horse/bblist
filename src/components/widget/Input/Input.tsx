@@ -14,7 +14,9 @@ export class Input extends Component<{
   type?: string;
 }> {
 
-  componentDidMount(): void {}
+  componentDidMount(): void {
+    
+  }
 
   onChange = (event: ChangeEvent<HTMLInputElement>): void => {
     this.props.onChange && this.props.onChange(event.target.value);

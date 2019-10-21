@@ -11,7 +11,7 @@ export class ProjectSideBar extends Component<{
 }> {
   render() {
     return (
-      <Side>
+      <Side className="ProjectSideBar">
         <SideItemLink icon="list-alt" to={`${this.props.match.url}/kanban`} name="Kanban" />
         <SideItemLink icon="vector-square" to={`${this.props.match.url}/epics`} name="Epics" />
         <SideItemLink icon="list-ol" to={`${this.props.match.url}/issues`} name="Issues" />
