@@ -1,5 +1,7 @@
 import React, { ChangeEvent, Component } from 'react';
 
+import './TextArea.scss';
+
 export class AppTextArea extends Component<{
   value?: string;
   defaultValue?: string;
@@ -10,7 +12,6 @@ export class AppTextArea extends Component<{
   placeholder?: string;
   type?: string;
 }> {
-
   onChange = (event: ChangeEvent<HTMLTextAreaElement>): void => {
     this.props.onChange && this.props.onChange(event.target.value);
   };
@@ -33,4 +34,3 @@ export class AppTextArea extends Component<{
     );
   }
 }
-

@@ -24,7 +24,7 @@ interface ReduxProps {
 }
 
 export class IssuesComponent extends Component<
-  InputProps & ReduxProps & RouteComponentProps<{ projectId: string }>,
+  InputProps & ReduxProps & RouteComponentProps<{ projectId: string; issueId: string }>,
   {}
 > {
   state = {};
@@ -48,8 +48,7 @@ export class IssuesComponent extends Component<
   render() {
     return (
       <div className="Issues">
-
-        <div className="Issues-list">
+        <div className="Issues--list">
           <ul>
             {this.props.issues.map((issue: ProjectIssueRecord) => {
               return (
@@ -68,14 +67,14 @@ export class IssuesComponent extends Component<
           />
         </div>
 
-        <div>
-          <Route
-            path="/project/:projectId/issues/:issueId"
-            render={(props: RouteComponentProps<{ issueId: string }>) => (
+        <Route
+          path="/project/:projectId/issues/:issueId"
+          render={(props: RouteComponentProps<{ issueId: string }>) => (
+            <div className={`Issues--detail-container`}>
               <IssueDetail issueId={props.match.params.issueId} />
-            )}
-          />
-        </div>
+            </div>
+          )}
+        />
       </div>
     );
   }

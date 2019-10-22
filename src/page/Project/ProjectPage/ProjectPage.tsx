@@ -16,6 +16,7 @@ import { History, Location } from 'history';
 import { ProjectAdmin } from './ProjectAdmin/ProjectAdmin';
 import { ProjectEpics } from './ProjectEpics/ProjectEpics';
 import { Issues } from './Issues/Issues';
+import { ProjectHeaderBar } from './ProjectHeaderBar/ProjectHeaderBar';
 
 interface Props {
   actions: {
@@ -48,6 +49,9 @@ class ProjectPageComponent extends Component<Props> {
 
     return (
       <div className="ProjectPage">
+        
+        <ProjectHeaderBar projectId={this.props.match.params.projectId} />
+
         <div className="ProjectPage--main">
           <ProjectSideBar match={this.props.match} />
 

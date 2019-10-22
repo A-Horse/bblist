@@ -74,7 +74,7 @@ class IssueDetailComponent extends Component<ComponentProps & ReduxProps> {
         </FormField>
 
         <FormField name="描述">
-          <AppTextArea value={issue.get('content')} onChange={this.onFieldChange('content')} />
+          <AppTextArea value={issue.get('content') || ''} onChange={this.onFieldChange('content')} />
         </FormField>
 
         <div>
