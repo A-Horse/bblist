@@ -1,9 +1,13 @@
+$project-header-bar-height: 32px;
+
 .ProjectHeaderBar {
+  height: $project-header-bar-height;
   border-bottom: 1px solid #e8e8e8;
   padding: 3px 8px;
 
   &--project-name {
     font-size: 18px;
     font-size: bolder;
+    display: inline-block;
   }
 }

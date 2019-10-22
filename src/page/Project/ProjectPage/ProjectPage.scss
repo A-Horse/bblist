@@ -1,11 +1,13 @@
 @import "../../../style/variable";
+@import "./ProjectHeaderBar/ProjectHeaderBar.scss";
 
 .ProjectPage {
   height: calc(100% - #{$app-nav-height});
+  overflow: hidden;
 
   &--main {
     display: flex;
-    height: 100%;
+    height: calc(100% - #{$project-header-bar-height});
     width: 100%;
   }
 

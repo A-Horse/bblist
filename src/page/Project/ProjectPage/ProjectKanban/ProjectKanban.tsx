@@ -11,9 +11,7 @@ import { KanbanSelect } from '../../../../components/stateful-component/KanbanSe
 import { RootState } from '../../../../reducers';
 import { ProjectRecord } from '../../../../typings/project.typing';
 import { SelectOption } from '../../../../typings/select.typing';
-import {
-    CreateKanbanCardModalButton
-} from '../modals/CreateKanbanCardModal/CreateKanbanCardModalButton';
+
 import { Kanban } from './Kanban/Kanban';
 import { NoKanbanGuide } from './NoKanbanGuide/NoKanbanGuide';
 
@@ -63,12 +61,8 @@ export class ProjectKanbanComponent extends Component<
             onChange={this.onKanbanSelectChanged}
           />
 
-          <div>
-            <CreateKanbanCardModalButton />
-          </div>
-
           {selectedKanbanId && (
-            <div className="ProjectKanban--KanbanContainer">
+            <div className="ProjectKanban--kanban-container">
               <Kanban kanbanId={selectedKanbanId} projectId={this.props.project!.get('id')} />
             </div>
           )}

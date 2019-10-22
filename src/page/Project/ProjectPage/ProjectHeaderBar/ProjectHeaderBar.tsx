@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import React from 'react';
 
 import './ProjectHeaderBar.scss';
+import { ProjectAddButton } from './ProjectAddButton';
 
 interface InputProps {
   projectId: string;
@@ -21,6 +22,7 @@ export function ProjectHeaderBar({ projectId }: InputProps) {
   return (
     <div className="ProjectHeaderBar">
       <div className="ProjectHeaderBar--project-name">{project.get('name')}</div>
+      <ProjectAddButton />
     </div>
   );
 }
