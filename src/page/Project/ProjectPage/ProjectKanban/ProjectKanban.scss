@@ -1,5 +1,9 @@
 .ProjectKanban {
+  display: flex;
+  flex-direction: column;
   height: 100%;
+  padding: 12px;
+  box-sizing: border-box;
 
   .ProjectKanban--kanban-container {
     height: 100%;

@@ -1,4 +1,4 @@
-import './CardDetail.scss';
+import './IssueDetail.scss';
 
 import React, { Component } from 'react';
 import { withRouter, RouterProps, RouteComponentProps } from 'react-router';

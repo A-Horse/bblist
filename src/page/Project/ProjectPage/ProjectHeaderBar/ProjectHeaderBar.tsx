@@ -22,7 +22,10 @@ export function ProjectHeaderBar({ projectId }: InputProps) {
   return (
     <div className="ProjectHeaderBar">
       <div className="ProjectHeaderBar--project-name">{project.get('name')}</div>
-      <ProjectAddButton />
+
+      <div>
+        <ProjectAddButton />
+      </div>
     </div>
   );
 }
