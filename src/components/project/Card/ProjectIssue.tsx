@@ -1,4 +1,4 @@
-import './ProjectCard.scss';
+import './ProjectIssue.scss';
 
 import React, { useImperativeHandle, useRef, RefForwardingComponent, useCallback } from 'react';
 import {
@@ -42,7 +42,7 @@ const Card = React.forwardRef<HTMLDivElement, InputProps & DndProps>(
     }));
 
     return (
-      <div className="ProjectCard" ref={elementRef} style={{ opacity }}>
+      <div className="ProjectIssue" ref={elementRef} style={{ opacity }}>
         <div>{card.get('id')}</div>
         {card.get('title')} - {card.get('order')}
       </div>
@@ -50,7 +50,7 @@ const Card = React.forwardRef<HTMLDivElement, InputProps & DndProps>(
   }
 );
 
-export const ProjectCard = DropTarget(
+export const ProjectIssue = DropTarget(
   'CARD',
   {
     hover(props: InputProps, monitor: DropTargetMonitor, component: CardInstance) {

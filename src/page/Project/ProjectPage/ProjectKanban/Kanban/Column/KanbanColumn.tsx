@@ -11,7 +11,7 @@ import { ActionCreatorsMapObject, AnyAction, bindActionCreators, Dispatch } from
 import {
     getColumnCardsRequest, rankProjectCardInKanbanRequest
 } from '../../../../../../actions/project/project-issue.action';
-import { ProjectCard } from '../../../../../../components/project/Card/ProjectCard';
+import { ProjectIssue } from '../../../../../../components/project/Card/ProjectIssue';
 import { RootState } from '../../../../../../reducers';
 import { selectColumnCards } from '../../../../../../reducers/selector/card.selector';
 import {
@@ -75,7 +75,7 @@ export class KanbanColumnComponent extends Component<ComponentProps, State> {
                 .toArray()
                 .map((card: ProjectIssueRecord, index: number) => {
                   return (
-                    <ProjectCard
+                    <ProjectIssue
                       key={card.get('id')}
                       kanbanId={this.props.column.get('kanbanId')}
                       rankProjectCardColumn={this.props.rankProjectCardInKanbanRequest}

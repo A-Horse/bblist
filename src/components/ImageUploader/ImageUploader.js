@@ -1,4 +1,3 @@
-//
 import React, { Component } from 'react';
 import ReactCrop from 'react-image-crop';
 import { Button, Modal } from 'antd';
@@ -98,6 +97,7 @@ export class ImageUploader extends Component {
           accept="image/*"
           onChange={this.openModal}
         />
+
         <Modal
           title="裁剪您的新头像:"
           className="image-uploader-modal"

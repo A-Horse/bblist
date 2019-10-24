@@ -135,9 +135,9 @@ export function project(
           return normalizedCards.result.reduce((cardMapResult: CardMap, cardId: string) => {
             return cardMapResult.update(cardId, (card: ProjectIssueRecord) => {
               if (!card) {
-                return fromJS(normalizedCards.entities.ProjectCard[cardId]);
+                return fromJS(normalizedCards.entities.ProjectIssue[cardId]);
               }
-              return card.merge(fromJS(normalizedCards.entities.ProjectCard[cardId]));
+              return card.merge(fromJS(normalizedCards.entities.ProjectIssue[cardId]));
             });
           }, cardMap);
         });
@@ -194,9 +194,9 @@ export function project(
           return normalizedCards.result.reduce((cardMapResult: CardMap, cardId: string) => {
             return cardMapResult.update(cardId, (card: ProjectIssueRecord) => {
               if (!card) {
-                return fromJS(normalizedCards.entities.ProjectCard[cardId]);
+                return fromJS(normalizedCards.entities.ProjectIssue[cardId]);
               }
-              return card.merge(fromJS(normalizedCards.entities.ProjectCard[cardId]));
+              return card.merge(fromJS(normalizedCards.entities.ProjectIssue[cardId]));
             });
           }, cardMap);
         });
