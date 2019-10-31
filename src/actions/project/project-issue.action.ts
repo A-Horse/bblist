@@ -139,14 +139,14 @@ export const RANK_PROJECT_CARD_IN_KANBAN_SUCCESS = 'RANK_PROJECT_CARD_IN_KANBAN_
 export const RANK_PROJECT_CARD_IN_KANBAN_FAILURE = 'RANK_PROJECT_CARD_IN_KANBAN_FAILURE';
 
 export function rankProjectCardInKanbanRequest(
-  RankProjectCardInKanbanInput: RankProjectCardInKanbanInput,
+  rankProjectCardInKanbanInput: RankProjectCardInKanbanInput,
   meta: {
     temporary: boolean;
   }
 ): FSAction {
   return {
     type: RANK_PROJECT_CARD_IN_KANBAN_REQUEST,
-    payload: RankProjectCardInKanbanInput,
+    payload: rankProjectCardInKanbanInput,
     meta: meta
   };
 }
@@ -160,9 +160,10 @@ export function rankProjectCardInKanbanSuccess(
   };
 }
 
-export function rankProjectCardInKanbanFailure(): FSAction {
+export function rankProjectCardInKanbanFailure(error: Error): FSAction {
   return {
     type: RANK_PROJECT_CARD_IN_KANBAN_FAILURE,
-    error: true
+    error: true,
+    payload: error
   };
 }

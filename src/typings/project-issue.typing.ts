@@ -5,6 +5,7 @@ export interface ProjectIssue {
   title: string;
   order: number;
   content?: string;
+  columnId: string;
 }
 
 export type ProjectIssueRecord = Record<ProjectIssue>;

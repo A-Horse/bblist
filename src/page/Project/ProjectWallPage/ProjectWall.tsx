@@ -5,9 +5,9 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 import { DEFAULT_BOARD_COVER_SRC } from '../../../constants';
-import { ProjectRecord, ProjectSetting } from '../../../typings/project.typing';
-import { generateBoardCoverUrl } from '../../../utils/url';
+import { ProjectRecord } from '../../../typings/project.typing';
 import { BoardWallAside } from './BoardWallAside/BoardWallAside';
+import { generateProjectCoverUrl } from '../util/project-cover.util';
 
 const { Content } = Layout;
 
@@ -16,7 +16,7 @@ interface Props {
   boardMap: any;
   projects: ProjectRecord[];
 }
-
+  
 export class ProjectWall extends Component<Props> {
   componentWillMount() {
     return this.props.actions.getProjectsRequest();
@@ -38,7 +38,7 @@ export class ProjectWall extends Component<Props> {
                         className="taskboard-card"
                         style={{
                           backgroundImage: project.get('setting').get('coverUrl')
-                            ? `url(${generateBoardCoverUrl(project.get('setting').get('coverUrl'))})`
+                            ? `url(${generateProjectCoverUrl(project.get('setting').get('coverUrl'))})`
                             : `url(${DEFAULT_BOARD_COVER_SRC})`
                         }}
                         key={project.get('id')}

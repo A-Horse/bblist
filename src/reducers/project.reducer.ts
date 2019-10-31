@@ -144,12 +144,12 @@ export function project(
     }
 
     case RANK_PROJECT_CARD_IN_KANBAN_REQUEST:
-      const RankProjectCardInKanbanInput: RankProjectCardInKanbanInput = action.payload;
+      const rankProjectCardInKanbanInput: RankProjectCardInKanbanInput = action.payload;
       if (action.meta.temporary) {
         return state.updateIn(
-          ['cardMap', RankProjectCardInKanbanInput.selectCard.get('id'), 'order'],
+          ['cardMap', rankProjectCardInKanbanInput.selectCard.get('id'), 'order'],
           (order: number) => {
-            return RankProjectCardInKanbanInput.targetOrder;
+            return rankProjectCardInKanbanInput.targetOrder;
           }
         );
       }

@@ -1,6 +1,6 @@
 import { RankProjectCardInKanbanInput, ProjectIssueRecord, ProjectIssue } from '../typings/project-issue.typing';
 import { FSAction } from '../actions/actions';
-import { mergeMap, filter, tap, distinctUntilChanged } from 'rxjs/operators';
+import { mergeMap, filter, tap, distinctUntilChanged, catchError, take } from 'rxjs/operators';
 import { ofType } from 'redux-observable';
 import {
   GET_COLUMN_CARDS_REQUEST,
@@ -14,7 +14,7 @@ import {
   rankProjectCardInKanbanFailure
 } from '../actions/project/project-issue.action';
 import axios, { AxiosResponse } from 'axios';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { makeApiUrl } from '../utils/api';
 import equals from 'ramda/es/equals';
 import {
@@ -25,6 +25,8 @@ import {
   updateProjectIssueDetailSuccess,
   updateProjectIssueDetailFailure
 } from '../actions/project/project-issue-detail.aciton';
+import { RootState } from '../reducers';
+import { findIssuePositionInColumn } from '../reducers/util/issue.util';
 
 export const CREATAE_PROJECT_CARD_REQUEST_FN = (action$: Observable<FSAction>) =>
   action$.pipe(
@@ -60,22 +62,34 @@ export const GET_PROJECT_ISSUE_DETAIL_DEQUEST_FN = (action$: Observable<FSAction
   );
 };
 
-export const RANK_PROJECT_CARD_IN_KANBAN_REQUEST_FN = (action$: Observable<FSAction>) =>
+export const RANK_PROJECT_CARD_IN_KANBAN_REQUEST_FN = (action$: Observable<FSAction>, state$: Observable<RootState>) =>
   action$.pipe(
     ofType(RANK_PROJECT_CARD_IN_KANBAN_REQUEST),
     distinctUntilChanged<FSAction>(equals),
     filter(action => !action.meta.temporary),
     mergeMap((action: FSAction) => {
       const payload: RankProjectCardInKanbanInput = action.payload;
-      return axios
-        .post(makeApiUrl(`/kanban/${action.payload.kanbanId}/card-rank`), {
-          cardId: payload.selectCard.get('id'),
-          targetCardId: payload.targetCard.get('id'),
-          isBefore: payload.isBefore
+
+      return state$.pipe(
+        take(1),
+        mergeMap((state: RootState) => {
+          const freshSelectedIssue = state.project.get('cardMap').get(action.payload.selectCard.get('id'))!;
+          
+          const { targetIssue, isBefore } = findIssuePositionInColumn(state, freshSelectedIssue);
+          return axios
+            .post(makeApiUrl(`/kanban/${action.payload.kanbanId}/card-rank`), {
+              cardId: payload.selectCard.get('id'),
+              targetCardId: targetIssue.get('id'),
+              isBefore: isBefore
+            })
+            .then((result: AxiosResponse<{ cardId: string; order: number }[]>) =>
+              rankProjectCardInKanbanSuccess(result.data)
+            )
+            .catch(rankProjectCardInKanbanFailure);
         })
-        .then((result: AxiosResponse<{ cardId: string; order: number }[]>) =>
-          rankProjectCardInKanbanSuccess(result.data)
-        )
-        .catch(rankProjectCardInKanbanFailure);
+      );
+    }),
+    catchError((error: Error) => {
+      return of(rankProjectCardInKanbanFailure(error));
     })
   );

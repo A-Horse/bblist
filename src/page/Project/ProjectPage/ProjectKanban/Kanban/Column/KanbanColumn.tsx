@@ -22,11 +22,12 @@ import { ColumnDataFetcher } from './column-data-fetcher';
 
 interface InputProps {
   column: KanbanColumnRecord;
+  onIssueClick: Function;
 }
 
 interface ReduxProps {
   actions: ActionCreatorsMapObject;
-  cards: List<ProjectIssueRecord> | null;
+  issues: List<ProjectIssueRecord> | null;
   rankProjectCardInKanbanRequest: Function;
 }
 
@@ -69,17 +70,17 @@ export class KanbanColumnComponent extends Component<ComponentProps, State> {
 
         <div className="">
           <div>
-            {this.props.cards &&
+            {this.props.issues &&
               this.props
-                .cards!.sortBy((card: ProjectIssueRecord) => card.get('order'))
-                .toArray()
-                .map((card: ProjectIssueRecord, index: number) => {
+                .issues!.sortBy((issue: ProjectIssueRecord) => issue.get('order'))
+                .map((issue: ProjectIssueRecord, index: number) => {
                   return (
                     <ProjectIssue
-                      key={card.get('id')}
+                      key={issue.get('id')}
                       kanbanId={this.props.column.get('kanbanId')}
+                      onClick={this.props.onIssueClick}
                       rankProjectCardColumn={this.props.rankProjectCardInKanbanRequest}
-                      card={card}
+                      issue={issue}
                     />
                   );
                 })}
@@ -103,30 +104,31 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
       let lastMeta: any;
 
       return (
-        RankProjectCardInKanbanInput: RankProjectCardInKanbanInput,
+        rankProjectCardInKanbanInput: RankProjectCardInKanbanInput,
         meta: {
           temporary: boolean;
         }
       ) => {
         if (
-          isEqual(RankProjectCardInKanbanInput, lastRankProjectCardInKanbanInput) &&
+          isEqual(rankProjectCardInKanbanInput, lastRankProjectCardInKanbanInput) &&
           isEqual(meta, lastMeta)
         ) {
           return;
         }
-        lastRankProjectCardInKanbanInput = RankProjectCardInKanbanInput;
+        lastRankProjectCardInKanbanInput = rankProjectCardInKanbanInput;
         lastMeta = meta;
-        dispatch(rankProjectCardInKanbanRequest(RankProjectCardInKanbanInput, meta));
+
+        dispatch(rankProjectCardInKanbanRequest(rankProjectCardInKanbanInput, meta));
       };
     })()
   };
 };
 
 const mapStateToProps = (state: RootState, props: InputProps) => {
-  const cards = selectColumnCards(state, props.column.get('id'));
+  const issues = selectColumnCards(state, props.column.get('id'));
 
   return {
-    cards
+    issues
   };
 };
 

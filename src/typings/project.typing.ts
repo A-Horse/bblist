@@ -36,3 +36,8 @@ export interface SetProjectDefaultKanbanInput {
   projectId: string;
   kanbanId: string;
 }
+
+export interface UploadProjectCoverInput {
+  projectId: string;
+  coverBase64: string;
+}

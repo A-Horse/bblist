@@ -17,6 +17,8 @@ import { KanbanColumnRecord } from '../../../../../typings/kanban-column.typing'
 import { KanbanRecord } from '../../../../../typings/kanban.typing';
 import { ProjectRecord } from '../../../../../typings/project.typing';
 import { KanbanColumn } from './Column/KanbanColumn';
+import { parseQueryParams } from '../../../../../utils/url.util';
+import { IssueDetailModal } from '../../../../../components/project/issue/IssueDetail/IssueDetailModal';
 
 interface InputProps {
   kanbanId: string;
@@ -37,6 +39,10 @@ class KanbanComponent extends Component<
     this.props.actions.getProjectKanbanDetailRequest({ kanbanId: this.props.kanbanId });
   }
 
+  onIssueClick = (issueId: string) => {
+    this.props.history.push(this.props.match.url + `?issueId=${issueId}`);
+  };
+
   render() {
     if (!this.props.kanban) {
       return <Loading />;
@@ -52,19 +58,24 @@ class KanbanComponent extends Component<
       <div className="Kanban">
         <DndProvider backend={HTML5Backend}>
           <Route
-            path="/project/:projectId/kanban/:kanbanId/card/:cardId"
-            render={() => <div>detail modal</div>}
+            path="/project/:projectId/kanban/:kanbanId"
+            render={(props: RouteComponentProps<{ projectId: string; kanbanId: string; issueId: string }>) => {
+              const query = parseQueryParams(props.location.search);
+              if (query.issueId) {
+                console.log('detail modal');
+                return <IssueDetailModal issueId={query.issueId} />
+              }
+              return null;
+            }}
           />
 
           <div className="Kanban-ColumnContainer">
             {columns
-              .sort(
-                (a: KanbanColumnRecord, b: KanbanColumnRecord) => a.get('order') - b.get('order')
-              )
+              .sort((a: KanbanColumnRecord, b: KanbanColumnRecord) => a.get('order') - b.get('order'))
               .valueSeq()
               .toArray()
               .map((column: KanbanColumnRecord) => (
-                <KanbanColumn key={column.get('id')} column={column} />
+                <KanbanColumn key={column.get('id')} column={column} onIssueClick={this.onIssueClick} />
               ))}
           </div>
         </DndProvider>

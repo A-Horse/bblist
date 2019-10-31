@@ -2,7 +2,6 @@ import './ProjectPage.scss';
 
 import React, { Component } from 'react';
 import { match, Route, Switch } from 'react-router';
-import { BoardSetting } from '../../Task/BoardSetting/BoardSetting';
 import { ProjectKanban } from './ProjectKanban/ProjectKanban';
 import { ProjectSideBar } from './ProjectSideBar/ProjectSideBar';
 import { getProjectDetailRequest } from '../../../actions/project/project.action';
@@ -17,6 +16,7 @@ import { ProjectAdmin } from './ProjectAdmin/ProjectAdmin';
 import { ProjectEpics } from './ProjectEpics/ProjectEpics';
 import { Issues } from './Issues/Issues';
 import { ProjectHeaderBar } from './ProjectHeaderBar/ProjectHeaderBar';
+import { ProjectSetting } from './ProjectSetting/ProjectSetting';
 
 interface Props {
   actions: {
@@ -31,7 +31,7 @@ interface Props {
 }
 
 class ProjectPageComponent extends Component<Props> {
-  componentWillMount() {
+  componentDidMount() {
     const projectId = this.props.match.params.projectId;
     this.props.actions.getProjectDetailRequest(projectId);
   }
@@ -49,7 +49,6 @@ class ProjectPageComponent extends Component<Props> {
 
     return (
       <div className="ProjectPage">
-        
         <ProjectHeaderBar projectId={this.props.match.params.projectId} />
 
         <div className="ProjectPage--main">
@@ -57,8 +56,9 @@ class ProjectPageComponent extends Component<Props> {
 
           <div className="ProjectPage--right-content">
             <Switch>
-              <Route path="/project/:projectId/setting" render={props => <BoardSetting {...this.props} {...props} />} />
-              <Route path="/project/:projectId/kanban" render={props => <ProjectKanban />} />
+              <Route path="/project/:projectId/setting" render={props => <ProjectSetting />} />
+              <Route path="/project/:projectId/kanban/:kanbanId" render={props => <ProjectKanban />} />
+              <Route path="/project/:projectId/kanban" render={props => <ProjectKanban />} /> 
               <Route path="/project/:projectId/epics" render={props => <ProjectEpics />} />
               <Route path="/project/:projectId/issues" render={props => <Issues />} />
               <Route path="/project/:projectId/admin" render={props => <ProjectAdmin />} />
