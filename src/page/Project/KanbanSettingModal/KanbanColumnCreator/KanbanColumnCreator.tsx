@@ -50,7 +50,7 @@ export class KanbanColumnCreator extends Component<
                     </div>
                   )}
                 />
-                <AppButton type="submit">OK</AppButton>
+                <AppButton htmlType="submit">OK</AppButton>
               </Form>
             )}
           />

@@ -60,7 +60,7 @@ class TaskBoardCreaterBase extends Component<any, any> {
               </FormItem>
 
               <FormItem>
-                <AppButton type="submit">
+                <AppButton htmlType="submit">
                   Done
                 </AppButton>
               </FormItem>

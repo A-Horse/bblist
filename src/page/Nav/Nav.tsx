@@ -58,7 +58,7 @@ class Nav extends Component<any> {
         <div className="app-header-menu">
           <div className="app-header-menu--link-containner">
             <NavLink to="/projects" activeClassName="active">
-              Project
+              项目
             </NavLink>
 
             <NavLink to="/todo" activeClassName="active">
@@ -66,7 +66,7 @@ class Nav extends Component<any> {
             </NavLink>
 
             <NavLink to="/schedule" activeClassName="active">
-              Schedule
+              日程
             </NavLink>
 
             <NavAddOperation />

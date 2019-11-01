@@ -12,7 +12,10 @@ import {
   faVectorSquare,
   faListOl,
   faCog,
-  faUserCog
+  faUserCog,
+  faEllipsisH,
+  faTrash,
+  faPen
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -25,10 +28,13 @@ library.add(faCubes);
 library.add(faClipboardList);
 library.add(faCheckCircle);
 library.add(faListAlt);
-library.add(faVectorSquare)
+library.add(faVectorSquare);
 library.add(faListOl);
 library.add(faCog);
-library.add(faUserCog)
+library.add(faUserCog);
+library.add(faEllipsisH);
+library.add(faTrash);
+library.add(faPen);
 
 
 export const AppIcon = FontAwesomeIcon;

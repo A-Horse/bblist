@@ -52,7 +52,7 @@ class SignInForm extends Component<Props> {
           )}
         </Form.Item>
         <Form.Item>
-          <AppButton type="submit" className="login-form-button">
+          <AppButton htmlType="submit" className="login-form-button">
             Log in
           </AppButton>
         </Form.Item>

@@ -61,7 +61,7 @@ class CreateTodoTaskFormBase extends Component<
               Cancel
             </AppButton>
 
-            <AppButton type="submit">
+            <AppButton htmlType="submit">
               Done
             </AppButton>
           </div>

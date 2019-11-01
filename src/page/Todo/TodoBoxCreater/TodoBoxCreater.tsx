@@ -54,7 +54,7 @@ export class TodoBoxCreaterForm extends Component<any> {
             </FormItem>
 
             <FormItem>
-              <AppButton type="submit">
+              <AppButton htmlType="submit">
                 Done
               </AppButton>
             </FormItem>

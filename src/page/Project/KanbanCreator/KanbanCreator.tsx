@@ -64,7 +64,7 @@ class KanbanCreatorComponent extends Component<
             </FormItem>
 
             <FormItem>
-              <AppButton type="submit">
+              <AppButton htmlType="submit">
                 Done
               </AppButton>
             </FormItem>

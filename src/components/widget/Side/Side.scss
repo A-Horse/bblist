@@ -5,4 +5,9 @@
   &--icon {
     width: 28px !important;
   }
+
+  a.active {
+    font-weight: bolder;
+    text-decoration: none;
+  }
 }

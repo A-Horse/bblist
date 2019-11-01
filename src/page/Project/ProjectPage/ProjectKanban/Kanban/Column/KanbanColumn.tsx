@@ -19,6 +19,9 @@ import {
 } from '../../../../../../typings/project-issue.typing';
 import { KanbanColumnRecord } from '../../../../../../typings/kanban-column.typing';
 import { ColumnDataFetcher } from './column-data-fetcher';
+import { AppButton } from '../../../../../../components/widget/Button';
+import { AppIcon } from '../../../../../../components/widget/Icon';
+import { ColumnHeaderDropDown } from './ColumnHeaderDropDown/ColumnHeaderDropDown';
 
 interface InputProps {
   column: KanbanColumnRecord;
@@ -57,15 +60,15 @@ export class KanbanColumnComponent extends Component<ComponentProps, State> {
     this.columDataFetcher.obsolete();
   }
 
-  // shouldComponentUpdate(nextProps: ComponentProps, nextState: State) {
-  //   return !nextProps.column.equals(this.props.column) || !isEqual(nextState, this.state);
-  // }
 
   render() {
     return (
       <div className="KanbanColumn">
-        <div className="">
-          <div className="KanbanColumn-Name">{this.props.column.get('name')}</div>
+        <div className="KanbanColumn--header">
+          <span className="KanbanColumn-Name">{this.props.column.get('name')}</span>
+          <AppButton >
+           <ColumnHeaderDropDown columnId={this.props.column.get('id')} />
+          </AppButton>
         </div>
 
         <div className="">

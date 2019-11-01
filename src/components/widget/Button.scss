@@ -1,0 +1,13 @@
+.AppButton {
+  border-radius: 3px;
+  cursor: pointer;
+  transition: opacity 200ms ease-in-out;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &.dashed {
+    border: 1px solid #999;
+  }
+}
