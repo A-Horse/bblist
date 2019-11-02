@@ -53,7 +53,7 @@ class IssueDetailComponent extends Component<ComponentProps & ReduxProps> {
     };
   };
 
-  onDone = () => {
+  onUpdate = () => {
     this.props.actions.updateProjectIssueDetailRequest({
       issueId: this.props.issueId,
       partialIssue: this.changedPartialIssue
@@ -70,15 +70,15 @@ class IssueDetailComponent extends Component<ComponentProps & ReduxProps> {
     return (
       <div className="IssueDetail">
         <FormField>
-          <Input value={issue.get('title')} onChange={this.onFieldChange('title')} />
+          <Input size="large" value={issue.get('title')} onChange={this.onFieldChange('title')} />
         </FormField>
 
-        <FormField name="描述">
-          <AppTextArea value={issue.get('content') || ''} onChange={this.onFieldChange('content')} />
+        <FormField name="描述：">
+          <AppTextArea className="IssueDetail--content-textarea" value={issue.get('content') || ''} onChange={this.onFieldChange('content')} />
         </FormField>
 
         <div>
-          <AppButton onClick={this.onDone}>Done</AppButton>
+          <AppButton onClick={this.onUpdate} type="primary">更新</AppButton>
         </div>
       </div>
     );

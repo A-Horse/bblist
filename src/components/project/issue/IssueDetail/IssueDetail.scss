@@ -1,4 +1,8 @@
-
 .IssueDetail {
   background-color: white;
+  padding: 12px 18px;
+
+  &--content-textarea {
+    min-height: 200px;
+  }
 }

@@ -17,7 +17,7 @@ export class AppTextArea extends Component<{
   };
 
   buildClassName() {
-    return `app-textarea`;
+    return `AppTextArea ${this.props.className || ''}`;
   }
 
   render() {

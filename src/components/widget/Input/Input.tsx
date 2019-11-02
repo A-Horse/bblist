@@ -6,7 +6,7 @@ export class Input extends Component<{
   value?: string;
   defaultValue?: string;
   onChange?: (value: string) => void;
-  size?: string;
+  size?: 'middle' | 'large' | 'small';
   className?: string;
   required?: boolean;
   name?: string;

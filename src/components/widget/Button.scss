@@ -1,7 +1,13 @@
 .AppButton {
-  border-radius: 3px;
+  border-radius: 4px;
   cursor: pointer;
   transition: opacity 200ms ease-in-out;
+  padding: 3px 9px;
+
+  &.primary {
+    background-color: #eb6668;
+    color: white;
+  }
 
   &:hover {
     opacity: 0.8;
