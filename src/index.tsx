@@ -4,10 +4,13 @@ import { Provider } from 'react-redux';
 
 import './style/antd.css';
 
+
 import { store } from './store/store';
 import Root from './page/Root/Root';
 import { getJWT } from './utils/auth';
 import { setupAxiosJwtHeader, setupAxiosInterceptor } from './helper/http-intercetor';
+import { ToastProvider } from 'react-toast-notifications';
+
 
 import Modal from 'react-modal';
 
@@ -27,7 +30,9 @@ setupAxiosJwtHeader(getJWT());
 
 ReactDOM.render(
   <Provider store={store}>
-    <Root />
+    <ToastProvider autoDismissTimeout={6000}>
+      <Root />
+    </ToastProvider>
   </Provider>,
   document.getElementById('root')
 );

@@ -15,6 +15,11 @@
   &--header {
     display: flex;
     justify-content: space-between;
+
+    &-name {
+      display: inline-block;
+      line-height: 26px;
+      font-weight: bolder;
+    }
   }
 }
-

@@ -15,6 +15,8 @@ import {
 import { AppTextArea } from '../../../widget/TextArea/TextArea';
 import { AppButton } from '../../../widget/Button';
 import { FormField } from '../../../widget/FormField/FormField';
+import { withToastManager } from 'react-toast-notifications';
+import { AnyHTMLElement } from '@stencil/core/dist/declarations';
 
 export interface InputProps {
   issueId: string;
@@ -27,7 +29,18 @@ export interface ReduxProps {
 
 interface ComponentProps extends RouteComponentProps, InputProps {}
 
-class IssueDetailComponent extends Component<ComponentProps & ReduxProps> {
+class IssueDetailComponent extends Component<
+  ComponentProps &
+    ReduxProps & {
+      toastManager: AnyHTMLElement;
+    },
+  {
+    formDirty: boolean;
+  }
+> {
+  state = {
+    formDirty: false
+  };
   changedPartialIssue: any = {};
 
   componentDidMount() {
@@ -50,15 +63,24 @@ class IssueDetailComponent extends Component<ComponentProps & ReduxProps> {
         [fieldName]: value
       });
       this.changedPartialIssue[fieldName] = value;
+      this.setState({formDirty: true})
     };
   };
 
   onUpdate = () => {
+    this.props.toastManager.add('更新成功', {
+      appearance: 'success',
+      autoDismiss: true
+    });
+
     this.props.actions.updateProjectIssueDetailRequest({
       issueId: this.props.issueId,
       partialIssue: this.changedPartialIssue
     });
+
     this.changedPartialIssue = {};
+
+    this.setState({formDirty: false});
   };
 
   render() {
@@ -74,11 +96,17 @@ class IssueDetailComponent extends Component<ComponentProps & ReduxProps> {
         </FormField>
 
         <FormField name="描述：">
-          <AppTextArea className="IssueDetail--content-textarea" value={issue.get('content') || ''} onChange={this.onFieldChange('content')} />
+          <AppTextArea
+            className="IssueDetail--content-textarea"
+            value={issue.get('content') || ''}
+            onChange={this.onFieldChange('content')}
+          />
         </FormField>
 
         <div>
-          <AppButton onClick={this.onUpdate} type="primary">更新</AppButton>
+          <AppButton disabled={!this.state.formDirty} onClick={this.onUpdate} type="primary">
+            更新
+          </AppButton>
         </div>
       </div>
     );
@@ -108,5 +136,5 @@ export const IssueDetail = withRouter<ComponentProps>(
   connect(
     mapStateToProps,
     mapDispatchToProps
-  )(IssueDetailComponent)
+  )(withToastManager(IssueDetailComponent))
 );

@@ -9,14 +9,13 @@ import { RouteComponentProps, withRouter } from 'react-router';
 import { ActionCreatorsMapObject, AnyAction, bindActionCreators, Dispatch } from 'redux';
 
 import {
-    getColumnCardsRequest, rankProjectCardInKanbanRequest
+  getColumnCardsRequest,
+  rankProjectCardInKanbanRequest
 } from '../../../../../../actions/project/project-issue.action';
 import { ProjectIssue } from '../../../../../../components/project/Card/ProjectIssue';
 import { RootState } from '../../../../../../reducers';
 import { selectColumnCards } from '../../../../../../reducers/selector/card.selector';
-import {
-    ProjectIssueRecord, RankProjectCardInKanbanInput
-} from '../../../../../../typings/project-issue.typing';
+import { ProjectIssueRecord, RankProjectCardInKanbanInput } from '../../../../../../typings/project-issue.typing';
 import { KanbanColumnRecord } from '../../../../../../typings/kanban-column.typing';
 import { ColumnDataFetcher } from './column-data-fetcher';
 import { AppButton } from '../../../../../../components/widget/Button';
@@ -60,14 +59,13 @@ export class KanbanColumnComponent extends Component<ComponentProps, State> {
     this.columDataFetcher.obsolete();
   }
 
-
   render() {
     return (
       <div className="KanbanColumn">
         <div className="KanbanColumn--header">
-          <span className="KanbanColumn-Name">{this.props.column.get('name')}</span>
-          <AppButton >
-           <ColumnHeaderDropDown columnId={this.props.column.get('id')} />
+          <span className="KanbanColumn--header-name">{this.props.column.get('name')}</span>
+          <AppButton>
+            <ColumnHeaderDropDown columnId={this.props.column.get('id')} />
           </AppButton>
         </div>
 
@@ -112,10 +110,7 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
           temporary: boolean;
         }
       ) => {
-        if (
-          isEqual(rankProjectCardInKanbanInput, lastRankProjectCardInKanbanInput) &&
-          isEqual(meta, lastMeta)
-        ) {
+        if (isEqual(rankProjectCardInKanbanInput, lastRankProjectCardInKanbanInput) && isEqual(meta, lastMeta)) {
           return;
         }
         lastRankProjectCardInKanbanInput = rankProjectCardInKanbanInput;

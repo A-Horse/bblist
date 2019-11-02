@@ -2,16 +2,16 @@
 .ProjectSideBar {
   background-color: #fff;
   height: 100%;
-  width: 180px;
+  width: 160px;
   padding-left: 16px;
   flex-shrink: 0;
 
   .SideItemLink--icon {
-    color: #777;
+    color: #999;
   }
 
   a {
-    color: #777;
+    color: #555;
     font-weight: 400;
   }
 }

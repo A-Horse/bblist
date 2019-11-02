@@ -4,3 +4,9 @@ declare var process: {
     NODE_ENV: string;
   };
 };
+
+
+declare module 'react-toast-notifications' {
+  export const ToastProvider: any;
+  export const withToastManager: any;
+};

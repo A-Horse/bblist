@@ -1,7 +1,8 @@
 .Issues {
   display: flex;
   transition: width 100px ease-in-out;
-
+  height: 100%;
+  
   &--list {
     flex-grow: 1;
     width: 50%;

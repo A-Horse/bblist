@@ -17,7 +17,7 @@ export function ColumnHeaderDropDown({ columnId }: InputProps) {
       <div className="ColumnHeaderDropDown--overlay-header">
         <span className="ColumnHeaderDropDown--overlay-header-name">列表菜单</span>
       </div>
-      <ul className="">
+      <ul className="ColumnHeaderDropDown--overlay-menu-list">
         <li>
           <AppIcon icon="pen" />
           编辑列表

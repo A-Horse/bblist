@@ -6,11 +6,12 @@ export class AppButton extends PureComponent<{
   htmlType?: 'submit' | 'reset' | 'button';
   type?: 'primary' | 'dashed' | 'danger' | 'link';
   backgroundColor?: string;
+  disabled?: boolean;
   className?: string;
   onClick?: any;
 }> {
   buildClassName() {
-    return `AppButton ${this.props.type || ''} ${this.props.className || ''}`;
+    return `AppButton ${this.props.type || ''} ${this.props.className || ''} ${this.props.disabled ? 'disabled' : ''}`;
   }
 
   render() {

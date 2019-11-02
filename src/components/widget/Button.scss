@@ -4,6 +4,12 @@
   transition: opacity 200ms ease-in-out;
   padding: 3px 9px;
 
+  &.disabled {
+    background: #bbb !important;
+    color: white !important;
+    cursor: not-allowed !important;
+  }
+
   &.primary {
     background-color: #eb6668;
     color: white;
