@@ -7,7 +7,6 @@
   height: 100%;
   margin-left: 12px;
   border-radius: 6px;
-  
 
   &:first-child {
     margin-left: 0;
@@ -26,8 +25,10 @@
 
   &--content {
     overflow-y: auto;
+    height: calc(100% - 27px);
 
     .ProjectIssue {
+      
       &:first-child {
         margin-top: 0;
       }
