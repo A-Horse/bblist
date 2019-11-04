@@ -62,7 +62,6 @@ class KanbanComponent extends Component<
             render={(props: RouteComponentProps<{ projectId: string; kanbanId: string; issueId: string }>) => {
               const query = parseQueryParams(props.location.search);
               if (query.issueId) {
-                console.log('detail modal');
                 return <IssueDetailModal issueId={query.issueId} />
               }
               return null;

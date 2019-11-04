@@ -10,6 +10,8 @@ import { KanbanRecord } from '../../../../../typings/kanban.typing';
 import { AppIcon } from '../../../../../components/widget/Icon';
 import { RootState } from '../../../../../reducers';
 import { KanbanSettingModal } from '../../../KanbanSettingModal/KanbanSettingModal';
+import { SectionField } from '../../../../../components/widget/SectionField/SectionField';
+import { AppButton } from '../../../../../components/widget/Button';
 
 interface InputProps {}
 
@@ -47,18 +49,18 @@ class KanbanSettingPanelComponent extends Component<
 
   renderContent() {
     if (!this.props.kanbans.length) {
-      return <div>empty</div>;
+      return <div>暂无列表，请新建</div>;
     }
     return (
       <div>
         {this.props.kanbans.map((kanban: KanbanRecord) => {
           return (
-            <div key={kanban.get('id')}>
+            <div key={kanban.get('id')} className="KanbanSettingPanel--kanban-item">
               {kanban.get('name')}
 
-              <span onClick={() => this.openKanbanSettingModal(kanban.get('id'))}>
-                <AppIcon icon="cubes" />
-              </span>
+              <AppButton className="KanbanSettingPanel--item-edit-button" type="dashed" onClick={() => this.openKanbanSettingModal(kanban.get('id'))}>
+                <AppIcon icon="pen" /> 编辑
+              </AppButton>
             </div>
           );
         })}
@@ -68,9 +70,7 @@ class KanbanSettingPanelComponent extends Component<
 
   render() {
     return (
-      <div>
-        <div>Kanbans</div>
-
+      <SectionField name="看板" className="KanbanSettingPanel">
         {!!this.state.settingKanbanId && (
           <KanbanSettingModal
             kanbanId={this.state.settingKanbanId!}
@@ -80,7 +80,7 @@ class KanbanSettingPanelComponent extends Component<
         )}
 
         {this.renderContent()}
-      </div>
+      </SectionField>
     );
   }
 }

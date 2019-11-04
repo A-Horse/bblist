@@ -7,16 +7,14 @@ import { bindActionCreators, AnyAction, Dispatch, ActionCreatorsMapObject } from
 import { ProjectRecord } from '../../../../typings/project.typing';
 import { getProjectKanbansRequest } from '../../../../actions/project/kanban.action';
 import { KanbanSettingPanel } from './KanbanSettingPanel/KanbanSettingPanel';
+import { SectionField } from '../../../../components/widget/SectionField/SectionField';
 
 interface Props {
   actions: ActionCreatorsMapObject;
   project: ProjectRecord;
 }
 
-export class ProjectAdminComponent extends Component<
-  Props & RouteComponentProps<{ projectId: string }>,
-  {}
-> {
+export class ProjectAdminComponent extends Component<Props & RouteComponentProps<{ projectId: string }>, {}> {
   componentWillMount() {
     this.props.actions.getProjectKanbansRequest({
       projectId: this.props.match.params.projectId
@@ -25,9 +23,9 @@ export class ProjectAdminComponent extends Component<
 
   render() {
     return (
-      <div>
-        jhi
-        <KanbanSettingPanel />
+      <div className="ProjectAdmin">
+         <KanbanSettingPanel />
+     
       </div>
     );
   }

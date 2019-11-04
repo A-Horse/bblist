@@ -1,4 +1,4 @@
-import React, { Component, ChangeEvent } from 'react';
+import React, { Component } from 'react';
 import { KanbanColumnRecord } from '../../../../typings/kanban-column.typing';
 import { List } from 'immutable';
 

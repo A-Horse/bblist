@@ -9,4 +9,5 @@ declare var process: {
 declare module 'react-toast-notifications' {
   export const ToastProvider: any;
   export const withToastManager: any;
+  export const DefaultToastContainer: any;
 };

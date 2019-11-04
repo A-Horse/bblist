@@ -2,8 +2,8 @@ import './ProjectIssue.scss';
 
 import React, { useImperativeHandle, useRef, RefForwardingComponent } from 'react';
 import { DragSource, DropTarget, ConnectDragSource, ConnectDropTarget, XYCoord, DropTargetMonitor } from 'react-dnd';
-import { ProjectIssueRecord } from '../../../typings/project-issue.typing';
-import { findIssuePositionInColumn } from '../../../reducers/util/issue.util';
+import { ProjectIssueRecord, RankProjectCardInKanbanInput } from '../../../../typings/project-issue.typing';
+import { IssueId } from '../IssueId/IssueId';
 
 interface InputProps {
   issue: ProjectIssueRecord;
@@ -23,7 +23,7 @@ interface CardInstance {
   getNode(): HTMLDivElement | null;
 }
 
-type CardComponent = RefForwardingComponent<HTMLDivElement, InputProps & DndProps>;
+type IssueComponent = RefForwardingComponent<HTMLDivElement, InputProps & DndProps>;
 
 const Card = React.forwardRef<HTMLDivElement, InputProps & DndProps>(
   ({ issue, isDragging, onClick, connectDragSource, connectDropTarget }, ref) => {
@@ -42,8 +42,10 @@ const Card = React.forwardRef<HTMLDivElement, InputProps & DndProps>(
 
     return (
       <div onClick={innerOnClick} className="ProjectIssue" ref={elementRef} style={{ opacity }}>
-        <div>{issue.get('id')}</div>
-        {issue.get('title')}
+        <IssueId id={issue.get('id')} />
+        <div>
+          {issue.get('title')}-{issue.get('order')}
+        </div>
       </div>
     );
   }
@@ -106,59 +108,31 @@ export const ProjectIssue = DropTarget(
         return;
       }
 
-
       props.rankProjectCardColumn(
         {
           selectCard: monitor.getItem().issue,
           targetCard: props.issue,
-          targetOrder: props.issue.get('order') - (isBefore ? 0.0001 : -0.00001),
+          targetOrder: props.issue.get('order') - (isBefore ? 0.000001 : -0.0000001),
+          targetColumnId: props.issue.get('columnId'),
           isBefore: isBefore,
           kanbanId: props.kanbanId
-        },
+        } as RankProjectCardInKanbanInput,
         {
           temporary: true
         }
       );
     },
-    drop(props: InputProps, monitor: DropTargetMonitor, component: CardComponent) {
-      props.rankProjectCardColumn({
-        selectCard: monitor.getItem().issue,
-        kanbanId: props.kanbanId
-      }, {
-        temporary: false
-      });
-      // console.log((component as any).props.issue.get('id'));
-      // const dragCardId = monitor.getItem().issue.get('id');
-      // const hoverCardId = props.issue.get('id');
-      // console.log('dragCardId', dragCardId);
-      // console.log('hoverCardId', hoverCardId);
-      // const dragOrder = monitor.getItem().issue.get('order');
-      // const hoverOrder = props.issue.get('order');
-
-      // let isBefore;
-      // if (dragOrder > hoverOrder) {
-      //   isBefore = true;
-      // } else {
-      //   isBefore = false;
-      // }
-
-      // // Don't replace items with themselves
-      // if (dragCardId === hoverCardId) {
-      //   return;
-      // }
-
-      // props.rankProjectCardColumn(
-      //   {
-      //     selectCard: monitor.getItem().issue,
-      //     targetCard: props.issue,
-      //     targetOrder: props.issue.get('order') - (isBefore ? 1 : -1),
-      //     isBefore: isBefore,
-      //     kanbanId: props.kanbanId
-      //   },
-      //   {
-      //     temporary: false
-      //   }
-      // );
+    drop(props: InputProps, monitor: DropTargetMonitor, component: IssueComponent) {
+      props.rankProjectCardColumn(
+        {
+          selectCard: monitor.getItem().issue,
+          kanbanId: props.kanbanId,
+          targetColumnId: props.issue.get('columnId')
+        } as RankProjectCardInKanbanInput,
+        {
+          temporary: false
+        }
+      );
     }
   },
   (connect, monitor: DropTargetMonitor) => ({
@@ -168,7 +142,7 @@ export const ProjectIssue = DropTarget(
   DragSource(
     'CARD',
     {
-      beginDrag(props: any, monitor: any, component: CardComponent) {
+      beginDrag(props: any, monitor: any, component: IssueComponent) {
         return {
           issue: props.issue
         };

@@ -15,12 +15,13 @@ import {
   GET_PROJCET_DETAIL_SUCCESS
 } from './../actions/project/project.action';
 import { normalize } from 'normalizr';
-import { fromJS, Record, Map } from 'immutable';
+import { fromJS, Record, Map, List } from 'immutable';
 import { GET_PROJCET_KANBANS_SUCCESS, GET_PROJCET_KANBAN_DETAIL_SUCCESS } from '../actions/project/kanban.action';
 import { Column, KanbanColumnRecord } from '../typings/kanban-column.typing';
 import { ProjectIssueRecord, RankProjectCardInKanbanInput } from '../typings/project-issue.typing';
 import { PagtiationList } from '../typings/pagtiation.typing';
 import { GET_PROJECT_ISSUE_DETAIL_SUCCESS, CHANGE_ISSUE_DIRECT } from '../actions/project/project-issue-detail.aciton';
+import remove from 'ramda/es/remove';
 
 export type KanbanMap = Map<string, KanbanRecord>;
 export type ColumnMap = Map<string, KanbanColumnRecord>;
@@ -123,14 +124,6 @@ export function project(
     case GET_COLUMN_CARDS_SUCCESS: {
       const normalizedCards = normalize(action.payload.cards, ProjectCardList);
       return state
-        .updateIn(['columnMap', action.payload.columnId], (column: KanbanColumnRecord) => {
-          if (!column) {
-            return column;
-          }
-          return column.update('cards', () => {
-            return fromJS(normalizedCards.result);
-          });
-        })
         .update('cardMap', (cardMap: CardMap) => {
           return normalizedCards.result.reduce((cardMapResult: CardMap, cardId: string) => {
             return cardMapResult.update(cardId, (card: ProjectIssueRecord) => {
@@ -146,12 +139,13 @@ export function project(
     case RANK_PROJECT_CARD_IN_KANBAN_REQUEST:
       const rankProjectCardInKanbanInput: RankProjectCardInKanbanInput = action.payload;
       if (action.meta.temporary) {
-        return state.updateIn(
-          ['cardMap', rankProjectCardInKanbanInput.selectCard.get('id'), 'order'],
-          (order: number) => {
+        return state
+          .updateIn(['cardMap', rankProjectCardInKanbanInput.selectCard.get('id'), 'order'], (order: number) => {
             return rankProjectCardInKanbanInput.targetOrder;
-          }
-        );
+          })
+          .updateIn(['cardMap', rankProjectCardInKanbanInput.selectCard.get('id'), 'columnId'], (columnId: string) => {
+            return rankProjectCardInKanbanInput.targetColumnId;
+          });
       }
       return state;
 

@@ -28,7 +28,6 @@ class CreateProjectIssueFormComponent extends Component<
     project?: ProjectRecord;
   },
   {
-    selectedKanbanId?: string;
     name: any;
     errorMessages: any;
   }
@@ -36,17 +35,8 @@ class CreateProjectIssueFormComponent extends Component<
   state = {
     errorMessages: [],
     name: '',
-    selectedKanbanId: undefined
   };
 
-  onKanbanSelectChange = (seleced?: SelectOption) => {
-    if (!seleced) {
-      return;
-    }
-    this.setState({
-      selectedKanbanId: seleced.value
-    });
-  };
 
   createProjectCard(values: any) {
     this.props.actions.createProjectCardRequest({
@@ -77,8 +67,8 @@ class CreateProjectIssueFormComponent extends Component<
                         size="large"
                         value={form.values.title}
                         placeholder="标题"
-                        onChange={(selected: SelectOption) => {
-                          formikBag.setFieldValue('kanbanId', selected.value);
+                        onChange={(value) => {
+                          formikBag.setFieldValue('title', value);
                         }}
                       />
                       {form.touched.name && form.errors.name && form.errors.name}

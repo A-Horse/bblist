@@ -63,7 +63,7 @@ class IssueDetailComponent extends Component<
         [fieldName]: value
       });
       this.changedPartialIssue[fieldName] = value;
-      this.setState({formDirty: true})
+      this.setState({ formDirty: true });
     };
   };
 
@@ -80,13 +80,13 @@ class IssueDetailComponent extends Component<
 
     this.changedPartialIssue = {};
 
-    this.setState({formDirty: false});
+    this.setState({ formDirty: false });
   };
 
   render() {
     const { issue } = this.props;
     if (!issue) {
-      return <div>loading</div>;
+      return <div className="IssueDetail">loading</div>;
     }
 
     return (

@@ -20,7 +20,8 @@ export interface CreateProjectCardInput {
 
 export interface RankProjectCardInKanbanInput {
   selectCard: ProjectIssueRecord;
-  targetCard: ProjectIssueRecord;
-  isBefore: boolean;
-  targetOrder: number;
+  targetCard?: ProjectIssueRecord;
+  isBefore?: boolean;
+  targetOrder?: number;
+  targetColumnId: string;
 }

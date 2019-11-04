@@ -12,7 +12,7 @@ import {
   getColumnCardsRequest,
   rankProjectCardInKanbanRequest
 } from '../../../../../../actions/project/project-issue.action';
-import { ProjectIssue } from '../../../../../../components/project/Card/ProjectIssue';
+import { ProjectIssue } from '../../../../../../components/project/issue/ProjectIssue/ProjectIssue';
 import { RootState } from '../../../../../../reducers';
 import { selectColumnCards } from '../../../../../../reducers/selector/card.selector';
 import { ProjectIssueRecord, RankProjectCardInKanbanInput } from '../../../../../../typings/project-issue.typing';
@@ -69,23 +69,21 @@ export class KanbanColumnComponent extends Component<ComponentProps, State> {
           </AppButton>
         </div>
 
-        <div className="">
-          <div>
-            {this.props.issues &&
-              this.props
-                .issues!.sortBy((issue: ProjectIssueRecord) => issue.get('order'))
-                .map((issue: ProjectIssueRecord, index: number) => {
-                  return (
-                    <ProjectIssue
-                      key={issue.get('id')}
-                      kanbanId={this.props.column.get('kanbanId')}
-                      onClick={this.props.onIssueClick}
-                      rankProjectCardColumn={this.props.rankProjectCardInKanbanRequest}
-                      issue={issue}
-                    />
-                  );
-                })}
-          </div>
+        <div className="KanbanColumn--content">
+          {this.props.issues &&
+            this.props
+              .issues!.sortBy((issue: ProjectIssueRecord) => issue.get('order'))
+              .map((issue: ProjectIssueRecord, index: number) => {
+                return (
+                  <ProjectIssue
+                    key={issue.get('id')}
+                    kanbanId={this.props.column.get('kanbanId')}
+                    onClick={this.props.onIssueClick}
+                    rankProjectCardColumn={this.props.rankProjectCardInKanbanRequest}
+                    issue={issue}
+                  />
+                );
+              })}
         </div>
       </div>
     );

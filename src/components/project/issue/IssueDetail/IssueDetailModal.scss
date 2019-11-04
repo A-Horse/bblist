@@ -1,0 +1,18 @@
+.IssueDetailModal {
+  position: absolute;
+  top: 30px;
+  bottom: 40px;
+  width: 500px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  border: 1px solid rgba(204, 204, 204, 0.6);
+  background: rgb(255, 255, 255);
+  overflow: auto;
+  border-radius: 4px;
+  outline: none;
+  padding: 0;
+
+  .IssueDetail {
+    padding-top: 0;
+  }
+}

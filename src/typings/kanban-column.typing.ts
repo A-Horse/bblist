@@ -11,5 +11,4 @@ export type KanbanColumnRecord = Record<{
   name: string;
   order: number;
   kanbanId: string;
-  cards: List<string>;
 }>;

@@ -1,0 +1,13 @@
+.SectionField {
+  &--name {
+    margin-bottom: 8px;
+    margin-left: 6px;
+    color: #888;
+    font-size: 16px;
+  }
+  &--content {
+    background-color: white;
+    border-radius: 3px;
+    padding: 6px 12px;
+  }
+}
