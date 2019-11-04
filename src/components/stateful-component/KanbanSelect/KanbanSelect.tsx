@@ -18,6 +18,8 @@ interface InjectProps {
   options: SelectOption[];
 }
 
+const noOptionTip = () => '暂无看板';
+
 class KanbanSelectComponent extends Component<InputProps & InjectProps> {
   componentWillMount() {
     this.props.actions.getProjectKanbansRequest({
@@ -29,6 +31,8 @@ class KanbanSelectComponent extends Component<InputProps & InjectProps> {
     const selectedOption = this.props.options.find(option => option.value === this.props.selectedKanbanId);
     return (
       <AppSelect
+        noOptionsMessage={noOptionTip}
+        placeholder="选择看板"
         options={this.props.options}
         value={selectedOption}
         onChange={this.props.onChange as any}

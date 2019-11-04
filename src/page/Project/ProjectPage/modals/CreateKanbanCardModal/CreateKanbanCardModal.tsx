@@ -11,7 +11,7 @@ import { AppModal } from '../../../../../components/widget/AppModal';
 import { RootState } from '../../../../../reducers';
 import { KanbanRecord } from '../../../../../typings/kanban.typing';
 import { withRouter, RouteComponentProps } from 'react-router';
-import { CreateProjectTaskForm } from '../../../../../components/creators/TaskCreator/CreateProjecTaskForm';
+import { CreateProjectIssueForm } from '../../../../../components/creators/TaskCreator/CreateProjectIssueForm';
 import { ProjectRecord } from '../../../../../typings/project.typing';
 
 interface InputProps {
@@ -38,7 +38,7 @@ class CreateKanbanCardModalComoponent extends Component<
   render() {
     return (
       <AppModal isOpen={this.props.toggle} onRequestClose={this.closeModal}>
-        <CreateProjectTaskForm kanban={this.props.kanban} project={this.props.project} />
+        <CreateProjectIssueForm kanban={this.props.kanban} project={this.props.project} />
       </AppModal>
     );
   }

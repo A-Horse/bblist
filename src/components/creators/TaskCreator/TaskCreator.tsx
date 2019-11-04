@@ -1,9 +1,9 @@
-import './TaskCreatorModal.scss';
+import './IssueCreatorModal.scss';
 
 import React, { Component } from 'react';
 
 import { AppIcon } from '../../../components/widget/Icon';
-import { TaskCreatorModal } from './TaskCreatorModal';
+import { IssueCreatorModal } from './IssueCreatorModal';
 
 export class TaskCreator extends Component<{}, any> {
   state = {
@@ -26,7 +26,7 @@ export class TaskCreator extends Component<{}, any> {
           Task
         </div>
 
-        <TaskCreatorModal modalVisible={this.state.modalVisible} closeModal={this.handleCancel} />
+        <IssueCreatorModal modalVisible={this.state.modalVisible} closeModal={this.handleCancel} />
       </div>
     );
   }

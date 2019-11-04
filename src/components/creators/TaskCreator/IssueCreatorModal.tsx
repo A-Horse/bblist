@@ -1,4 +1,4 @@
-import './TaskCreatorModal.scss';
+import './IssueCreatorModal.scss';
 
 import { Button, Form, Input } from 'antd';
 import React, { Component } from 'react';
@@ -6,13 +6,13 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { makeActionRequestCollection } from '../../../actions/actions';
-import { AppIcon } from '../../../components/widget/Icon';
+import { AppIcon } from '../../widget/Icon';
 import { AppMenu } from '../../widget/Menu/Menu';
 import { AppModal } from '../../widget/Modal';
-import { CreateProjectTaskForm } from './CreateProjecTaskForm';
+import { CreateProjectIssueForm } from './CreateProjectIssueForm';
 import { CreateTodoTaskForm } from './CreateTodoTaskForm';
 
-class TaskCreaterModalBase extends Component<
+class IssueCreaterModalComponent extends Component<
   {
     modalVisible: boolean;
     actions: any;
@@ -55,7 +55,7 @@ class TaskCreaterModalBase extends Component<
             </AppMenu>
           </div>
           <div className="create-task-modal-right">
-             <CreateProjectTaskForm style={{display : this.state.selectedType === 'PROJECT' ? 'block' : 'none'}} />
+             <CreateProjectIssueForm style={{display : this.state.selectedType === 'PROJECT' ? 'block' : 'none'}} />
 
            <CreateTodoTaskForm 
            style={{display : this.state.selectedType === 'TODO' ? 'block' : 'none'}}
@@ -79,7 +79,7 @@ const mapDispatchToProps = (dispatch: any) => {
   };
 };
 
-export const TaskCreatorModal = connect(
+export const IssueCreatorModal = connect(
   mapStateToProps,
   mapDispatchToProps
-)(TaskCreaterModalBase);
+)(IssueCreaterModalComponent);

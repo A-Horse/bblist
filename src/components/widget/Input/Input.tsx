@@ -5,8 +5,9 @@ import React, { ChangeEvent, Component, ReactInstance } from 'react';
 export class Input extends Component<{
   value?: string;
   defaultValue?: string;
-  onChange?: (value: string) => void;
+  onChange?: (value: any) => void;
   size?: 'middle' | 'large' | 'small';
+  whiteHover?: boolean;
   className?: string;
   required?: boolean;
   name?: string;
@@ -24,7 +25,7 @@ export class Input extends Component<{
 
   buildClassName() {
     const { size = 'middle' } = this.props;
-    return `app-input ${size}  ${this.props.className ? ' ' + this.props.className : ''}`;
+    return `app-input ${size}  ${this.props.className ? ' ' + this.props.className : ''} ${this.props.whiteHover ? 'white-hover' : ''}`;
   }
 
   render() {

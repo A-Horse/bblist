@@ -2,10 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators, AnyAction, Dispatch, ActionCreatorsMapObject } from 'redux';
 import { RootState } from '../../../reducers';
-import {
-  getProjectKanbansRequest,
-  getProjectKanbanDetailRequest
-} from '../../../actions/project/kanban.action';
+import { getProjectKanbansRequest, getProjectKanbanDetailRequest } from '../../../actions/project/kanban.action';
 import { AppSelect } from '../../widget/AppSelect';
 import { getKanbanOptions, selectKanbanColumns } from '../../../reducers/selector/kanban.selector';
 import { SelectOption } from '../../../typings/select.typing';
@@ -14,13 +11,15 @@ import { generateColumnOptions } from '../../../utils/option';
 
 interface InputProps {
   kanbanId?: string;
-  onChange: any
+  onChange: any;
 }
 
 interface InjectProps {
   actions: ActionCreatorsMapObject;
   options: SelectOption[];
 }
+
+const noOptionTip = () => '暂无列表';
 
 class ColumnSelectComponent extends Component<InputProps & InjectProps> {
   componentWillMount() {
@@ -37,7 +36,14 @@ class ColumnSelectComponent extends Component<InputProps & InjectProps> {
   }
 
   render() {
-    return <AppSelect options={this.props.options} onChange={this.props.onChange} />;
+    return (
+      <AppSelect
+        placeholder="选择列表"
+        noOptionsMessage={noOptionTip}
+        options={this.props.options}
+        onChange={this.props.onChange}
+      />
+    );
   }
 }
 

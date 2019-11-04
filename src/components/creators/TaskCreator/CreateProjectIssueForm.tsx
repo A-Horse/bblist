@@ -1,5 +1,3 @@
-import './TaskCreatorModal.scss';
-
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -11,6 +9,9 @@ import { ColumnSelect } from '../../stateful-component/ColumnSelect/ColumnSelect
 import { SelectOption } from '../../../typings/select.typing';
 import { AppButton } from '../../widget/Button';
 import { Formik, Field, FormikActions, Form, FormikProps, FieldProps, FormikValues } from 'formik';
+import { FormField } from '../../widget/FormField/FormField';
+import { AppInput } from '../../widget/AppInput';
+import Input from '../../widget/Input/Input';
 
 interface FormValues {
   title: string;
@@ -18,7 +19,7 @@ interface FormValues {
   columnId: string | null;
 }
 
-class CreateProjectTaskFormComponent extends Component<
+class CreateProjectIssueFormComponent extends Component<
   {
     actions: any;
     style?: any;
@@ -70,16 +71,24 @@ class CreateProjectTaskFormComponent extends Component<
                 <Field
                   name="title"
                   render={({ field, form }: FieldProps<FormikValues>) => (
-                    <div>
-                      <input type="text" {...field} placeholder="title" />
+                    <FormField name="问题标题">
+                      <Input
+                        type="text"
+                        size="large"
+                        value={form.values.title}
+                        placeholder="标题"
+                        onChange={(selected: SelectOption) => {
+                          formikBag.setFieldValue('kanbanId', selected.value);
+                        }}
+                      />
                       {form.touched.name && form.errors.name && form.errors.name}
-                    </div>
+                    </FormField>
                   )}
                 />
                 <Field
                   name="kanbanId"
                   render={({ field, form }: FieldProps<FormikValues>) => (
-                    <div>
+                    <FormField name="所在看板">
                       <KanbanSelect
                         projectId={this.props.project!.get('id')}
                         onChange={(selected: SelectOption) => {
@@ -87,21 +96,19 @@ class CreateProjectTaskFormComponent extends Component<
                         }}
                       />
                       {form.touched.kanbanId && form.errors.kanbanId && form.errors.kanbanId}
-                    </div>
+                    </FormField>
                   )}
                 />
                 <Field
                   name="columnId"
                   render={({ field, form }: FieldProps<FormikValues>) => (
-                    <div>
+                    <FormField name="所在列表">
                       <ColumnSelect
                         kanbanId={form.values.kanbanId}
-                        onChange={(selected: SelectOption) =>
-                          formikBag.setFieldValue('columnId', selected.value)
-                        }
+                        onChange={(selected: SelectOption) => formikBag.setFieldValue('columnId', selected.value)}
                       />
                       {form.touched.name && form.errors.name && form.errors.name}
-                    </div>
+                    </FormField>
                   )}
                 />
                 <AppButton htmlType="submit">OK</AppButton>
@@ -109,7 +116,6 @@ class CreateProjectTaskFormComponent extends Component<
             );
           }}
         />
-
       </div>
     );
   }
@@ -130,7 +136,7 @@ const mapDispatchToProps = (dispatch: any) => {
   };
 };
 
-export const CreateProjectTaskForm = connect(
+export const CreateProjectIssueForm = connect(
   mapStateToProps,
   mapDispatchToProps
-)(CreateProjectTaskFormComponent);
+)(CreateProjectIssueFormComponent);

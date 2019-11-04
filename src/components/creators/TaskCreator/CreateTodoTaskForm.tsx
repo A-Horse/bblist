@@ -1,15 +1,13 @@
 import './CreateTodoTaskForm.scss';
 
-import { Button, Form, Input, Modal } from 'antd';
+import { Form, Input, Modal } from 'antd';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { makeActionRequestCollection } from '../../../actions/actions';
 import { AppButton } from '../../../components/widget/Button';
-import { AppIcon } from '../../../components/widget/Icon';
 import { AppRangePicker } from '../../widget/Datepicker/Datepicker';
-import { TaskCreatorModal } from './TaskCreatorModal';
 
 const FormItem = Form.Item;
 
@@ -18,7 +16,7 @@ class CreateTodoTaskFormBase extends Component<
     form: any;
     actions: any;
     style: any;
-    onCancel: () => void
+    onCancel: () => void;
   },
   any
 > {
@@ -33,7 +31,7 @@ class CreateTodoTaskFormBase extends Component<
     this.props.form.validateFieldsAndScroll((err: any, values: any) => {
       if (!err) {
         this.props.actions.ADD_TODO_REQUEST(values, {
-            closeFn: this.props.onCancel
+          closeFn: this.props.onCancel
         });
       }
     });
@@ -44,26 +42,22 @@ class CreateTodoTaskFormBase extends Component<
     return (
       <div style={this.props.style} className="CreateTodoTaskForm">
         <Form onSubmit={this.handleSubmit}>
-          <FormItem label="content" style={{width: '200px'}}>
+          <FormItem label="content" style={{ width: '200px' }}>
             {getFieldDecorator('content', {
               rules: [{ required: true, message: 'Please input todo task content.' }]
             })(<Input type="text" />)}
           </FormItem>
 
-          <FormItem label="start/end date" >
+          <FormItem label="start/end date">
             {getFieldDecorator('deadline', {
               rules: []
             })(<AppRangePicker />)}
           </FormItem>
 
           <div className="app-button-group">
-            <AppButton onClick={this.props.onCancel}>
-              Cancel
-            </AppButton>
+            <AppButton onClick={this.props.onCancel}>Cancel</AppButton>
 
-            <AppButton htmlType="submit">
-              Done
-            </AppButton>
+            <AppButton htmlType="submit">Done</AppButton>
           </div>
         </Form>
       </div>

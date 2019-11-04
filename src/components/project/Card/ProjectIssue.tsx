@@ -3,6 +3,7 @@ import './ProjectIssue.scss';
 import React, { useImperativeHandle, useRef, RefForwardingComponent } from 'react';
 import { DragSource, DropTarget, ConnectDragSource, ConnectDropTarget, XYCoord, DropTargetMonitor } from 'react-dnd';
 import { ProjectIssueRecord } from '../../../typings/project-issue.typing';
+import { findIssuePositionInColumn } from '../../../reducers/util/issue.util';
 
 interface InputProps {
   issue: ProjectIssueRecord;
@@ -42,7 +43,7 @@ const Card = React.forwardRef<HTMLDivElement, InputProps & DndProps>(
     return (
       <div onClick={innerOnClick} className="ProjectIssue" ref={elementRef} style={{ opacity }}>
         <div>{issue.get('id')}</div>
-        {issue.get('title')} - {issue.get('order')}
+        {issue.get('title')}
       </div>
     );
   }
@@ -105,11 +106,12 @@ export const ProjectIssue = DropTarget(
         return;
       }
 
+
       props.rankProjectCardColumn(
         {
           selectCard: monitor.getItem().issue,
           targetCard: props.issue,
-          targetOrder: props.issue.get('order') - (isBefore ? 0.1 : -0.1),
+          targetOrder: props.issue.get('order') - (isBefore ? 0.0001 : -0.00001),
           isBefore: isBefore,
           kanbanId: props.kanbanId
         },

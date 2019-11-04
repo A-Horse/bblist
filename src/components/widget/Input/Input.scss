@@ -7,14 +7,16 @@
   border-radius: 6px;
   overflow: hidden;
 
-  
-  &:focus, &:hover {
+  &:focus,
+  &:hover {
     background-color: #f8f8f8;
   }
 
   &.large {
     font-size: 18px;
   }
-
   
+  &.white-hover:hover {
+    background-color: #fff;
+  }
 }

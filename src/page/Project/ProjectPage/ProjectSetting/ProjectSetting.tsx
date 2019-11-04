@@ -10,6 +10,8 @@ import { ImageUploader } from '../../../../components/ImageUploader/ImageUploade
 import { DEFAULT_BOARD_COVER_SRC } from '../../../../constants';
 import { uploadProjectCoverRequest } from '../../../../actions/project/project.action';
 import { generateProjectCoverUrl } from '../../util/project-cover.util';
+import { FormField } from '../../../../components/widget/FormField/FormField';
+import Input from '../../../../components/widget/Input/Input';
 
 interface Props {
   actions: ActionCreatorsMapObject;
@@ -28,23 +30,29 @@ class ProjectSettingComponent extends Component<Props & RouteComponentProps<{ pr
 
   render() {
     return (
-      <div>
-        <ImageUploader
-          style={{
-            width: '250px',
-            height: '125px',
-            borderRadius: '6px',
-            display: 'block'
-          }}
-          source={
-            this.props.project.get('setting').get('coverUrl')
-              ? generateProjectCoverUrl(this.props.project.get('setting').get('coverUrl'))
-              : DEFAULT_BOARD_COVER_SRC
-          }
-          upload={this.onCoverUpload}
-        >
-          Upload new Cover
-        </ImageUploader>
+      <div className="ProjectSetting">
+        <FormField name="项目封面">
+          <ImageUploader
+            style={{
+              width: '250px',
+              height: '125px',
+              borderRadius: '6px',
+              display: 'block'
+            }}
+            source={
+              this.props.project.get('setting').get('coverUrl')
+                ? generateProjectCoverUrl(this.props.project.get('setting').get('coverUrl'))
+                : DEFAULT_BOARD_COVER_SRC
+            }
+            upload={this.onCoverUpload}
+          >
+            上传封面
+          </ImageUploader>
+        </FormField>
+
+        <FormField name="项目名称">
+          <Input className="ProjectSetting--project-name-input" defaultValue={this.props.project.get('name')} whiteHover={true} />
+        </FormField>
       </div>
     );
   }
