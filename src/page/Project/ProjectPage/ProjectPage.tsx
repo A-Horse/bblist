@@ -44,7 +44,6 @@ class ProjectPageComponent extends Component<Props> {
 
     if (!project) {
       return null;
-      // return <Redirect to="/task-board" />;
     }
 
     return (

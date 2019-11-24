@@ -13,20 +13,16 @@ interface InputProps {
   onChange: Function;
 }
 
-export function KanbanHeaderBar({ projectId, selectedKanbanId }: InputProps) {
+export function KanbanHeaderBar({ projectId, selectedKanbanId, onChange }: InputProps) {
   const kanban: KanbanRecord | undefined = useSelector((state: RootState) =>
     state.project.get('kanbanMap').get(selectedKanbanId)
   );
 
   const [selectKanbanToggle, setSelectKanbanToggle] = useState(false);
 
-  if (!kanban) {
-    return null;
-  }
-
   return (
     <div className="KanbanHeaderBar">
-      <span className="KanbanHeaderBar--kanban-name">{kanban.get('name')}</span>
+      {kanban && <span className="KanbanHeaderBar--kanban-name">{kanban.get('name')}</span>}
 
       <AppButton
         type="dashed"
@@ -40,6 +36,7 @@ export function KanbanHeaderBar({ projectId, selectedKanbanId }: InputProps) {
       </AppButton>
 
       <KanbanSelectorModal
+        onChange={onChange}
         toggle={selectKanbanToggle}
         projectId={projectId}
         onClose={() => setSelectKanbanToggle(false)}

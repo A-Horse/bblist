@@ -43,13 +43,13 @@ export class ProjectKanbanComponent extends Component<
     });
   }
 
-  onKanbanSelectChanged = (selected: SelectOption): void => {
-    this.props.history.push(`/project/${this.props.project!.get('id')}/kanban/${selected.value}`);
+  onKanbanSelectChanged = (kanbanId: string): void => {
+    this.props.history.push(`/project/${this.props.project!.get('id')}/kanban/${kanbanId}`);
 
     if (!this.props.project!.get('setting').get('defaultKanbanId')) {
       this.props.actions.setProjectDefaultKanbanRequest({
         projectId: this.props.project!.get('id'),
-        kanbanId: selected.value
+        kanbanId
       });
     }
   };
@@ -61,15 +61,17 @@ export class ProjectKanbanComponent extends Component<
       const selectedKanbanId: string =
         this.state.selectKanbanId || this.props.project!.get('setting').get('defaultKanbanId');
 
-      if (selectedKanbanId !== this.props.match.params.kanbanId) {
+      if (!!selectedKanbanId && selectedKanbanId !== this.props.match.params.kanbanId) {
         return <Redirect to={`/project/${this.props.project!.get('id')}/kanban/${selectedKanbanId}`} />;
       }
 
       return (
         <>
-          
-
-          <KanbanHeaderBar  projectId={this.props.project!.get('id')}  selectedKanbanId={selectedKanbanId}   onChange={this.onKanbanSelectChanged} />
+          <KanbanHeaderBar
+            projectId={this.props.project!.get('id')}
+            selectedKanbanId={selectedKanbanId}
+            onChange={this.onKanbanSelectChanged}
+          />
 
           <Route
             path="/project/:projectId/kanban/:kanbanId"
@@ -121,9 +123,4 @@ const mapStateToProps = (state: RootState, props: any) => {
   };
 };
 
-export const ProjectKanban = withRouter(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(ProjectKanbanComponent)
-);
+export const ProjectKanban = withRouter(connect(mapStateToProps, mapDispatchToProps)(ProjectKanbanComponent));
