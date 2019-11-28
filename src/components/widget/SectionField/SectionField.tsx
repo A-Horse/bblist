@@ -1,6 +1,6 @@
-import React, { ReactNode } from 'react';
-
 import './SectionField.scss';
+
+import React, { ReactNode } from 'react';
 
 interface InputProps {
   name: string;

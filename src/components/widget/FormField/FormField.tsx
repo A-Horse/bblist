@@ -1,6 +1,8 @@
-import { IconProp } from '@fortawesome/fontawesome-svg-core';
-import React, { ReactNode } from 'react';
 import './FormField.scss';
+
+import React, { ReactNode } from 'react';
+
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
 
 interface InputProps {
   name?: string;

@@ -1,7 +1,8 @@
 import './KanbanColumnCreator.scss';
 
-import React, { Component, ChangeEvent } from 'react';
-import { Formik, Field, FormikActions, Form, FormikProps, FieldProps } from 'formik';
+import { Field, FieldProps, Form, Formik, FormikActions, FormikProps } from 'formik';
+import React, { ChangeEvent, Component } from 'react';
+
 import { AppButton } from '../../../../components/widget/Button';
 
 interface FormValues {

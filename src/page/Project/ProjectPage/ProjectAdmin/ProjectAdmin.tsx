@@ -2,12 +2,13 @@ import './ProjectAdmin.scss';
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withRouter, RouteComponentProps } from 'react-router-dom';
-import { bindActionCreators, AnyAction, Dispatch, ActionCreatorsMapObject } from 'redux';
-import { ProjectRecord } from '../../../../typings/project.typing';
+import { RouteComponentProps, withRouter } from 'react-router-dom';
+import { ActionCreatorsMapObject, AnyAction, bindActionCreators, Dispatch } from 'redux';
+
 import { getProjectKanbansRequest } from '../../../../actions/project/kanban.action';
-import { KanbanSettingPanel } from './KanbanSettingPanel/KanbanSettingPanel';
 import { SectionField } from '../../../../components/widget/SectionField/SectionField';
+import { ProjectRecord } from '../../../../typings/project.typing';
+import { KanbanSettingPanel } from './KanbanSettingPanel/KanbanSettingPanel';
 
 interface Props {
   actions: ActionCreatorsMapObject;

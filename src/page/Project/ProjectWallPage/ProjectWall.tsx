@@ -6,8 +6,8 @@ import { Link } from 'react-router-dom';
 
 import { DEFAULT_BOARD_COVER_SRC } from '../../../constants';
 import { ProjectRecord } from '../../../typings/project.typing';
-import { BoardWallAside } from './BoardWallAside/BoardWallAside';
 import { generateProjectCoverUrl } from '../util/project-cover.util';
+import { BoardWallAside } from './BoardWallAside/BoardWallAside';
 
 const { Content } = Layout;
 

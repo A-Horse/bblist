@@ -1,7 +1,8 @@
 import './TodoBoxCreater.scss';
 
-import {  Form, Icon, Input, Modal } from 'antd';
+import { Form, Icon, Input, Modal } from 'antd';
 import React, { Component } from 'react';
+
 import { AppButton } from '../../../components/widget/Button';
 
 const FormItem = Form.Item;

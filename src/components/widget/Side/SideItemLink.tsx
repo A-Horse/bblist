@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
 
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 
 import { AppIcon } from '../Icon';
-import { NavLink } from 'react-router-dom';
 
 export class SideItemLink extends Component<{
   icon?: IconProp;

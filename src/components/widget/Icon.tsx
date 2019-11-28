@@ -1,22 +1,8 @@
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
-  faClipboardList,
-  faColumns,
-  faCube,
-  faCubes,
-  faDharmachakra,
-  faPlusCircle,
-  faStroopwafel,
-  faCheckCircle,
-  faListAlt,
-  faVectorSquare,
-  faListOl,
-  faCog,
-  faUserCog,
-  faEllipsisH,
-  faTrash,
-  faPen,
-  faTimes
+    faCheckCircle, faClipboardList, faCog, faColumns, faCube, faCubes, faDharmachakra, faEllipsisH,
+    faListAlt, faListOl, faPen, faPlusCircle, faStroopwafel, faTimes, faTrash, faUserCog,
+    faVectorSquare
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 

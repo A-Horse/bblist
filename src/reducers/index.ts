@@ -1,6 +1,7 @@
 import { Record } from 'immutable';
-import { TodoStateProp } from './todo.reducer';
+
 import { ProjectProp } from './project.reducer';
+import { TodoStateProp } from './todo.reducer';
 
 export interface RootState {
   todo: Record<TodoStateProp>;

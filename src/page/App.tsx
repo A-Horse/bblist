@@ -1,3 +1,5 @@
+import './App.scss';
+
 import { Layout } from 'antd';
 import React, { Component, Suspense } from 'react';
 import { Redirect, Route, Switch } from 'react-router';
@@ -5,8 +7,6 @@ import { Redirect, Route, Switch } from 'react-router';
 import { NotFound } from '../page/NotFound';
 import { getUserData } from '../utils/auth';
 import Nav from './Nav/Nav';
-
-import './App.scss';
 
 const { Content } = Layout;
 

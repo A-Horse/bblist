@@ -1,8 +1,9 @@
+import './ProjectAddButton.scss';
+
 import React, { useState } from 'react';
 
-import './ProjectAddButton.scss';
-import { CreateKanbanCardModal } from '../modals/CreateKanbanCardModal/CreateKanbanCardModal';
 import { AppIcon } from '../../../../components/widget/Icon';
+import { CreateKanbanCardModal } from '../modals/CreateKanbanCardModal/CreateKanbanCardModal';
 
 interface InputProps {}
 

@@ -1,10 +1,11 @@
 import './IssueDetailModal.scss';
 
 import React, { Component } from 'react';
+import { RouteComponentProps, RouterProps, withRouter } from 'react-router';
+
 import { AppModal } from '../../../widget/AppModal';
-import { IssueDetail } from './IssueDetail';
-import { withRouter, RouterProps, RouteComponentProps } from 'react-router';
 import { ModalHeader } from '../../../widget/ModalHeader/ModalHeader';
+import { IssueDetail } from './IssueDetail';
 
 interface InputProps {
   issueId: string;

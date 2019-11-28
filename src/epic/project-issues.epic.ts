@@ -1,19 +1,16 @@
-import { ProjectIssue } from '../typings/project-issue.typing';
-import { FSAction } from '../actions/actions';
-import { mergeMap } from 'rxjs/operators';
-import { ofType } from 'redux-observable';
-import {
-  GET_PROJECT_ISSUES_REQUEST,
-  getProjectIssuesSuccess,
-  getProjectIssuesFailure,
-  getColumnCardsSuccess,
-  getColumnCardsFailure,
-  GET_COLUMN_CARDS_REQUEST
-} from '../actions/project/project-issue.action';
 import axios, { AxiosResponse } from 'axios';
+import { ofType } from 'redux-observable';
 import { Observable } from 'rxjs';
-import { makeApiUrl } from '../utils/api';
+import { mergeMap } from 'rxjs/operators';
+
+import { FSAction } from '../actions/actions';
+import {
+    GET_COLUMN_CARDS_REQUEST, GET_PROJECT_ISSUES_REQUEST, getColumnCardsFailure,
+    getColumnCardsSuccess, getProjectIssuesFailure, getProjectIssuesSuccess
+} from '../actions/project/project-issue.action';
 import { PagtiationList } from '../typings/pagtiation.typing';
+import { ProjectIssue } from '../typings/project-issue.typing';
+import { makeApiUrl } from '../utils/api';
 
 export const GET_COLUMN_CARDS_REQUEST_FN = (action$: Observable<FSAction>) =>
   action$.pipe(

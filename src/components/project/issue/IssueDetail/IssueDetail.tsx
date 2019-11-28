@@ -1,22 +1,24 @@
 import './IssueDetail.scss';
 
 import React, { Component } from 'react';
-import { withRouter, RouterProps, RouteComponentProps } from 'react-router';
 import { connect } from 'react-redux';
-import { RootState } from '../../../../reducers';
-import { bindActionCreators, AnyAction, Dispatch, ActionCreatorsMapObject } from 'redux';
-import { ProjectIssueRecord, ProjectIssueRecordFiled } from '../../../../typings/project-issue.typing';
-import Input from '../../../widget/Input/Input';
+import { RouteComponentProps, RouterProps, withRouter } from 'react-router';
+import { withToastManager } from 'react-toast-notifications';
+import { ActionCreatorsMapObject, AnyAction, bindActionCreators, Dispatch } from 'redux';
+
+import { AnyHTMLElement } from '@stencil/core/dist/declarations';
+
 import {
-  getProjectIssueDetailRequest,
-  updateProjectIssueDetailRequest,
-  changeIssueDirect
+    changeIssueDirect, getProjectIssueDetailRequest, updateProjectIssueDetailRequest
 } from '../../../../actions/project/project-issue-detail.aciton';
-import { AppTextArea } from '../../../widget/TextArea/TextArea';
+import { RootState } from '../../../../reducers';
+import {
+    ProjectIssueRecord, ProjectIssueRecordFiled
+} from '../../../../typings/project-issue.typing';
 import { AppButton } from '../../../widget/Button';
 import { FormField } from '../../../widget/FormField/FormField';
-import { withToastManager } from 'react-toast-notifications';
-import { AnyHTMLElement } from '@stencil/core/dist/declarations';
+import Input from '../../../widget/Input/Input';
+import { AppTextArea } from '../../../widget/TextArea/TextArea';
 
 export interface InputProps {
   issueId: string;

@@ -1,7 +1,9 @@
-import React, { ReactNode } from 'react';
 import './ModalHeader.scss';
-import { AppIcon } from '../Icon';
+
+import React, { ReactNode } from 'react';
+
 import { AppButton } from '../Button';
+import { AppIcon } from '../Icon';
 
 interface InputProps {
   title?: string;

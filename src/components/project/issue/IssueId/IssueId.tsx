@@ -1,5 +1,6 @@
-import React from 'react';
 import './IssueId.scss';
+
+import React from 'react';
 
 interface InputProps {
   id: string;

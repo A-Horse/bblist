@@ -1,5 +1,6 @@
+import { List, Record } from 'immutable';
+
 import { ProjectIssueRecord } from './project-issue.typing';
-import { Record, List } from 'immutable';
 
 export interface Column {
     id: string;

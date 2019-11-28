@@ -1,6 +1,6 @@
-import React, { Component, ButtonHTMLAttributes, DetailedHTMLProps, PureComponent } from 'react';
-
 import './Button.scss';
+
+import React, { ButtonHTMLAttributes, Component, DetailedHTMLProps, PureComponent } from 'react';
 
 export class AppButton extends PureComponent<{
   htmlType?: 'submit' | 'reset' | 'button';

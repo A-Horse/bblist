@@ -2,7 +2,7 @@ import './ProjectKanban.scss';
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { RouteComponentProps, withRouter, Route, Redirect } from 'react-router-dom';
+import { Redirect, Route, RouteComponentProps, withRouter } from 'react-router-dom';
 import { ActionCreatorsMapObject, AnyAction, bindActionCreators, Dispatch } from 'redux';
 
 import { getProjectKanbansRequest } from '../../../../actions/project/kanban.action';
@@ -11,10 +11,9 @@ import { KanbanSelect } from '../../../../components/stateful-component/KanbanSe
 import { RootState } from '../../../../reducers';
 import { ProjectRecord } from '../../../../typings/project.typing';
 import { SelectOption } from '../../../../typings/select.typing';
-
 import { Kanban } from './Kanban/Kanban';
-import { NoKanbanGuide } from './NoKanbanGuide/NoKanbanGuide';
 import { KanbanHeaderBar } from './KanbanHeaderBar/KanbanHeaderBar';
+import { NoKanbanGuide } from './NoKanbanGuide/NoKanbanGuide';
 
 interface Props {
   actions: ActionCreatorsMapObject;

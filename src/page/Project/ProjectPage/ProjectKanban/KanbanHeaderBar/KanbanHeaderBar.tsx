@@ -1,10 +1,11 @@
-import { useSelector } from 'react-redux';
+import './KanbanHeaderBar.scss';
+
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+
+import { AppButton } from '../../../../../components/widget/Button';
 import { RootState } from '../../../../../reducers';
 import { KanbanRecord } from '../../../../../typings/kanban.typing';
-
-import './KanbanHeaderBar.scss';
-import { AppButton } from '../../../../../components/widget/Button';
 import { KanbanSelectorModal } from '../../modals/KanbanSelectorModal/KanbanSelectorModal';
 
 interface InputProps {

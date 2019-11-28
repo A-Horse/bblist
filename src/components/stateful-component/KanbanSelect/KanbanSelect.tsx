@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators, AnyAction, Dispatch, ActionCreatorsMapObject } from 'redux';
-import { RootState } from '../../../reducers';
+import { ActionCreatorsMapObject, AnyAction, bindActionCreators, Dispatch } from 'redux';
+
 import { getProjectKanbansRequest } from '../../../actions/project/kanban.action';
-import { AppSelect } from '../../widget/AppSelect';
+import { RootState } from '../../../reducers';
 import { getKanbanOptions } from '../../../reducers/selector/kanban.selector';
 import { SelectOption } from '../../../typings/select.typing';
+import { AppSelect } from '../../widget/AppSelect';
 
 interface InputProps {
   projectId: string;

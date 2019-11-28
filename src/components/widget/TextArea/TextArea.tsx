@@ -1,6 +1,6 @@
-import React, { ChangeEvent, Component } from 'react';
-
 import './TextArea.scss';
+
+import React, { ChangeEvent, Component } from 'react';
 
 export class AppTextArea extends Component<{
   value?: string;

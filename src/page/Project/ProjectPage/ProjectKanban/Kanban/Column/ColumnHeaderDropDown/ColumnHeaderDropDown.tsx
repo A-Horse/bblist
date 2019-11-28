@@ -1,11 +1,11 @@
-import { useSelector } from 'react-redux';
-import React, { useState } from 'react';
+import './ColumnHeaderDropDown.scss';
 
-import { AppMenu } from '../../../../../../../components/widget/Menu/Menu';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+
 import { AppDropdown } from '../../../../../../../components/widget/Dropdown';
 import { AppIcon } from '../../../../../../../components/widget/Icon';
-
-import './ColumnHeaderDropDown.scss';
+import { AppMenu } from '../../../../../../../components/widget/Menu/Menu';
 
 interface InputProps {
   columnId: string;

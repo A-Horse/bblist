@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
-import { KanbanColumnRecord } from '../../../../typings/kanban-column.typing';
 import { List } from 'immutable';
+import React, { Component } from 'react';
+
+import { KanbanColumnRecord } from '../../../../typings/kanban-column.typing';
 
 export class KanbanColumnPanel extends Component<{
   columns: List<KanbanColumnRecord> | null;

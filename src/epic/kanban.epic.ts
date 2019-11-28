@@ -1,25 +1,15 @@
-import {
-  GET_PROJCET_KANBAN_DETAIL_REQUEST,
-  getProjectKanbanDetailSuccess,
-  getProjectKanbanDetailFailure,
-  CREATAE_KANBAN_COLUMN_SUCCESS,
-  getProjectKanbanDetailRequest
-} from './../actions/project/kanban.action';
 import axios, { AxiosResponse } from 'axios';
 import { ofType } from 'redux-observable';
 import { Observable } from 'rxjs';
-import { mergeMap, map } from 'rxjs/operators';
+import { map, mergeMap } from 'rxjs/operators';
+
 import { FSAction } from '../actions/actions';
 import {
-  CREATAE_KANBAN_COLUMN_REQUEST,
-  CREATAE_KANBAN_REQUEST,
-  createKanbanFailure,
-  createKanbanSuccess,
-  GET_PROJCET_KANBANS_REQUEST,
-  getProjectKanbansFailure,
-  getProjectKanbansSuccess,
-  createKanbanColumnSuccess,
-  createKanbanColumnFailure
+    CREATAE_KANBAN_COLUMN_REQUEST, CREATAE_KANBAN_COLUMN_SUCCESS, CREATAE_KANBAN_REQUEST,
+    createKanbanColumnFailure, createKanbanColumnSuccess, createKanbanFailure, createKanbanSuccess,
+    GET_PROJCET_KANBAN_DETAIL_REQUEST, GET_PROJCET_KANBANS_REQUEST, getProjectKanbanDetailFailure,
+    getProjectKanbanDetailRequest, getProjectKanbanDetailSuccess, getProjectKanbansFailure,
+    getProjectKanbansSuccess
 } from '../actions/project/kanban.action';
 import { Kanban } from '../typings/kanban.typing';
 import { makeApiUrl } from '../utils/api';

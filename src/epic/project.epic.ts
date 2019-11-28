@@ -1,30 +1,21 @@
 import axios, { AxiosResponse } from 'axios';
 import { ofType } from 'redux-observable';
+import { Observable } from 'rxjs';
 import { mergeMap } from 'rxjs/operators';
 
 import { FSAction } from '../actions/actions';
 import {
-  CREATE_PROJCET_REQUEST,
-  createProjectFailure,
-  createProjectSuccess,
-  GET_PROJCET_DETAIL_REQUEST,
-  GET_PROJCETS_REQUEST,
-  getProjectDetailFailure,
-  getProjectDetailSuccess,
-  getProjectsFailure,
-  getProjectsSuccess,
-  UPLOAD_PROJCET_COVER_REQUEST,
-  uploadProjectCoverSuccess,
-  uploadProjectCoverFailure
+    SET_PROJECT_DEFAULT_KANBAN_REQUEST, setProjectDefaultKanbanFailure,
+    setProjectDefaultKanbanSuccess
+} from '../actions/project/project-setting.action';
+import {
+    CREATE_PROJCET_REQUEST, createProjectFailure, createProjectSuccess, GET_PROJCET_DETAIL_REQUEST,
+    GET_PROJCETS_REQUEST, getProjectDetailFailure, getProjectDetailSuccess, getProjectsFailure,
+    getProjectsSuccess, UPLOAD_PROJCET_COVER_REQUEST, uploadProjectCoverFailure,
+    uploadProjectCoverSuccess
 } from '../actions/project/project.action';
 import { Project, ProjectId, UploadProjectCoverInput } from '../typings/project.typing';
 import { makeApiUrl } from '../utils/api';
-import {
-  SET_PROJECT_DEFAULT_KANBAN_REQUEST,
-  setProjectDefaultKanbanSuccess,
-  setProjectDefaultKanbanFailure
-} from '../actions/project/project-setting.action';
-import { Observable } from 'rxjs';
 
 export const GET_PROJCETS_REQUEST_FN = (action$: Observable<FSAction>) =>
   action$.pipe(

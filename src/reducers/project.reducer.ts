@@ -1,27 +1,29 @@
-import {
-  GET_COLUMN_CARDS_SUCCESS,
-  RANK_PROJECT_CARD_IN_KANBAN_REQUEST,
-  RANK_PROJECT_CARD_IN_KANBAN_SUCCESS,
-  GET_PROJECT_ISSUES_SUCCESS,
-  GET_PROJECT_ISSUES_REQUEST
-} from '../actions/project/project-issue.action';
-import { Kanban, KanbanRecord } from './../typings/kanban.typing';
-import { FSAction } from './../actions/actions';
-import { ProjectEntity, ProjectEntityList, KanbanEntityList, KanbanDetailEntity, ProjectCardList } from './../schema';
-import { ProjectRecord } from '../typings/project.typing';
-import {
-  GET_PROJCETS_SUCCESS,
-  CREATE_PROJCET_SUCCESS,
-  GET_PROJCET_DETAIL_SUCCESS
-} from './../actions/project/project.action';
+import { fromJS, List, Map, Record } from 'immutable';
 import { normalize } from 'normalizr';
-import { fromJS, Record, Map, List } from 'immutable';
-import { GET_PROJCET_KANBANS_SUCCESS, GET_PROJCET_KANBAN_DETAIL_SUCCESS } from '../actions/project/kanban.action';
-import { Column, KanbanColumnRecord } from '../typings/kanban-column.typing';
-import { ProjectIssueRecord, RankProjectCardInKanbanInput } from '../typings/project-issue.typing';
-import { PagtiationList } from '../typings/pagtiation.typing';
-import { GET_PROJECT_ISSUE_DETAIL_SUCCESS, CHANGE_ISSUE_DIRECT } from '../actions/project/project-issue-detail.aciton';
 import remove from 'ramda/es/remove';
+
+import { FSAction } from '../actions/actions';
+import {
+    GET_PROJCET_KANBAN_DETAIL_SUCCESS, GET_PROJCET_KANBANS_SUCCESS
+} from '../actions/project/kanban.action';
+import {
+    CHANGE_ISSUE_DIRECT, GET_PROJECT_ISSUE_DETAIL_SUCCESS
+} from '../actions/project/project-issue-detail.aciton';
+import {
+    GET_COLUMN_CARDS_SUCCESS, GET_PROJECT_ISSUES_REQUEST, GET_PROJECT_ISSUES_SUCCESS,
+    RANK_PROJECT_CARD_IN_KANBAN_REQUEST, RANK_PROJECT_CARD_IN_KANBAN_SUCCESS
+} from '../actions/project/project-issue.action';
+import {
+    CREATE_PROJCET_SUCCESS, GET_PROJCET_DETAIL_SUCCESS, GET_PROJCETS_SUCCESS
+} from '../actions/project/project.action';
+import {
+    KanbanDetailEntity, KanbanEntityList, ProjectCardList, ProjectEntity, ProjectEntityList
+} from '../schema';
+import { Column, KanbanColumnRecord } from '../typings/kanban-column.typing';
+import { Kanban, KanbanRecord } from '../typings/kanban.typing';
+import { PagtiationList } from '../typings/pagtiation.typing';
+import { ProjectIssueRecord, RankProjectCardInKanbanInput } from '../typings/project-issue.typing';
+import { ProjectRecord } from '../typings/project.typing';
 
 export type KanbanMap = Map<string, KanbanRecord>;
 export type ColumnMap = Map<string, KanbanColumnRecord>;

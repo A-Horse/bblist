@@ -1,10 +1,8 @@
+import { PagtiationList } from '../../typings/pagtiation.typing';
 import {
-  ProjectIssue,
-  CreateProjectCardInput,
-  RankProjectCardInKanbanInput
+    CreateProjectCardInput, ProjectIssue, RankProjectCardInKanbanInput
 } from '../../typings/project-issue.typing';
 import { FSAction } from '../actions';
-import { PagtiationList } from '../../typings/pagtiation.typing';
 
 export const GET_COLUMN_CARDS_REQUEST = 'GET_COLUMN_CARDS_REQUEST';
 export const GET_COLUMN_CARDS_SUCCESS = 'GET_COLUMN_CARDS_SUCCESS';

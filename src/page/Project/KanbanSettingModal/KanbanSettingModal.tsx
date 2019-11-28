@@ -1,24 +1,22 @@
 import './KanbanSettingModal.scss';
 
+import { List } from 'immutable';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators, AnyAction, Dispatch, ActionCreatorsMapObject } from 'redux';
+import { RouteComponentProps, withRouter } from 'react-router';
+import { ActionCreatorsMapObject, AnyAction, bindActionCreators, Dispatch } from 'redux';
 
 import {
-  createKanbanRequest,
-  createKanbanColumnRequest,
-  getProjectKanbanDetailRequest
+    createKanbanColumnRequest, createKanbanRequest, getProjectKanbanDetailRequest
 } from '../../../actions/project/kanban.action';
-import { ProjectRecord } from '../../../typings/project.typing';
 import { AppModal } from '../../../components/widget/AppModal';
 import { RootState } from '../../../reducers';
+import { selectKanbanColumns } from '../../../reducers/selector/kanban.selector';
+import { KanbanColumnRecord } from '../../../typings/kanban-column.typing';
 import { KanbanRecord } from '../../../typings/kanban.typing';
-import { withRouter, RouteComponentProps } from 'react-router';
+import { ProjectRecord } from '../../../typings/project.typing';
 import { KanbanColumnCreator } from './KanbanColumnCreator/KanbanColumnCreator';
 import { KanbanColumnPanel } from './KanbanColumnPanel/KanbanColumnPanel';
-import { KanbanColumnRecord } from '../../../typings/kanban-column.typing';
-import { selectKanbanColumns } from '../../../reducers/selector/kanban.selector';
-import { List } from 'immutable';
 
 interface InputProps {
   toggle: boolean;

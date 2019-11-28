@@ -1,15 +1,15 @@
 import './KanbanCreator.scss';
 
 import { Button, Form, Input, Modal } from 'antd';
+import { FormComponentProps } from 'antd/lib/form';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators, AnyAction, Dispatch, ActionCreatorsMapObject } from 'redux';
+import { ActionCreatorsMapObject, AnyAction, bindActionCreators, Dispatch } from 'redux';
 
 import { createKanbanRequest } from '../../../actions/project/kanban.action';
-import { CreateKanbanInput } from '../../../typings/kanban.typing';
-import { FormComponentProps } from 'antd/lib/form';
-import { ProjectRecord } from '../../../typings/project.typing';
 import { AppButton } from '../../../components/widget/Button';
+import { CreateKanbanInput } from '../../../typings/kanban.typing';
+import { ProjectRecord } from '../../../typings/project.typing';
 
 const FormItem = Form.Item;
 

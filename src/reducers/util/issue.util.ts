@@ -1,4 +1,4 @@
-import { RootState } from '..';
+import { RootState } from '../';
 import { ProjectIssueRecord } from '../../typings/project-issue.typing';
 
 export function findIssuePositionInColumn(

@@ -1,8 +1,13 @@
 import './ProjectIssue.scss';
 
-import React, { useImperativeHandle, useRef, RefForwardingComponent } from 'react';
-import { DragSource, DropTarget, ConnectDragSource, ConnectDropTarget, XYCoord, DropTargetMonitor } from 'react-dnd';
-import { ProjectIssueRecord, RankProjectCardInKanbanInput } from '../../../../typings/project-issue.typing';
+import React, { RefForwardingComponent, useImperativeHandle, useRef } from 'react';
+import {
+    ConnectDragSource, ConnectDropTarget, DragSource, DropTarget, DropTargetMonitor, XYCoord
+} from 'react-dnd';
+
+import {
+    ProjectIssueRecord, RankProjectCardInKanbanInput
+} from '../../../../typings/project-issue.typing';
 import { IssueId } from '../IssueId/IssueId';
 
 interface InputProps {

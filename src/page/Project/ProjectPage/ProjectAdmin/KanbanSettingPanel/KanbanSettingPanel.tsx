@@ -4,14 +4,15 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router';
 import { withRouter } from 'react-router-dom';
-import { bindActionCreators, AnyAction, Dispatch, ActionCreatorsMapObject } from 'redux';
-import { ProjectRecord } from '../../../../../typings/project.typing';
-import { KanbanRecord } from '../../../../../typings/kanban.typing';
-import { AppIcon } from '../../../../../components/widget/Icon';
-import { RootState } from '../../../../../reducers';
-import { KanbanSettingModal } from '../../../KanbanSettingModal/KanbanSettingModal';
-import { SectionField } from '../../../../../components/widget/SectionField/SectionField';
+import { ActionCreatorsMapObject, AnyAction, bindActionCreators, Dispatch } from 'redux';
+
 import { AppButton } from '../../../../../components/widget/Button';
+import { AppIcon } from '../../../../../components/widget/Icon';
+import { SectionField } from '../../../../../components/widget/SectionField/SectionField';
+import { RootState } from '../../../../../reducers';
+import { KanbanRecord } from '../../../../../typings/kanban.typing';
+import { ProjectRecord } from '../../../../../typings/project.typing';
+import { KanbanSettingModal } from '../../../KanbanSettingModal/KanbanSettingModal';
 
 interface InputProps {}
 

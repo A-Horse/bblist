@@ -1,5 +1,7 @@
+import { List, Record } from 'immutable';
+
 import { KanbanRecord } from './kanban.typing';
-import { Record, List } from 'immutable';
+
 export type ProjectId = string;
 
 export interface ProjectSetting {

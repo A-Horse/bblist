@@ -1,9 +1,10 @@
-import { GET_PROJCETS_SUCCESS } from './../actions/project/project.action';
+import { fromJS, Map, Record } from 'immutable';
 import { normalize } from 'normalizr';
-import { fromJS, Record, Map } from 'immutable';
 import * as R from 'ramda';
+
 import Actions from '../actions/actions';
-import { TaskBoards, TaskBoard, TaskCard, TaskTrack } from '../schema';
+import { GET_PROJCETS_SUCCESS } from '../actions/project/project.action';
+import { TaskBoard, TaskBoards, TaskCard, TaskTrack } from '../schema';
 import { ITaskBoard, ITaskBoardSetting } from '../typings/task/task-board.typing';
 
 export interface TaskBoard {

@@ -11,14 +11,16 @@ import { ActionCreatorsMapObject, AnyAction, bindActionCreators, Dispatch } from
 
 import { getProjectKanbanDetailRequest } from '../../../../../actions/project/kanban.action';
 import Loading from '../../../../../components/Loading';
+import {
+    IssueDetailModal
+} from '../../../../../components/project/issue/IssueDetail/IssueDetailModal';
 import { RootState } from '../../../../../reducers';
 import { selectKanbanColumns } from '../../../../../reducers/selector/kanban.selector';
 import { KanbanColumnRecord } from '../../../../../typings/kanban-column.typing';
 import { KanbanRecord } from '../../../../../typings/kanban.typing';
 import { ProjectRecord } from '../../../../../typings/project.typing';
-import { KanbanColumn } from './Column/KanbanColumn';
 import { parseQueryParams } from '../../../../../utils/url.util';
-import { IssueDetailModal } from '../../../../../components/project/issue/IssueDetail/IssueDetailModal';
+import { KanbanColumn } from './Column/KanbanColumn';
 
 interface InputProps {
   kanbanId: string;

@@ -1,7 +1,8 @@
-import { TDBox, TDS, TDBoxs } from '../schema';
+import { fromJS, List, Map, Record } from 'immutable';
 import { normalize } from 'normalizr';
-import { List, Map, fromJS, Record } from 'immutable';
+
 import Actions from '../actions/actions';
+import { TDBox, TDBoxs, TDS } from '../schema';
 
 export interface Todo {
   id: string;

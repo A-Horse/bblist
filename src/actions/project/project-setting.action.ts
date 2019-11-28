@@ -1,5 +1,5 @@
-import { FSAction } from './../actions';
 import { SetProjectDefaultKanbanInput } from '../../typings/project.typing';
+import { FSAction } from '../actions';
 
 export const SET_PROJECT_DEFAULT_KANBAN_REQUEST = 'SET_PROJECT_DEFAULT_KANBAN_REQUEST';
 export const SET_PROJECT_DEFAULT_KANBAN_SUCCESS = 'SET_PROJECT_DEFAULT_KANBAN_SUCCESS';

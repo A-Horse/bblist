@@ -1,5 +1,5 @@
-import { FSAction } from './../actions';
 import { ProjectIssue } from '../../typings/project-issue.typing';
+import { FSAction } from '../actions';
 
 export const GET_PROJECT_ISSUE_DETAIL_DEQUEST = 'GET_PROJECT_ISSUE_DETAIL_DEQUEST';
 export const GET_PROJECT_ISSUE_DETAIL_SUCCESS = 'GET_PROJECT_ISSUE_DETAIL_SUCCESS';

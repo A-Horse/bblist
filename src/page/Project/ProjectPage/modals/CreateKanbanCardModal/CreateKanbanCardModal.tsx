@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators, AnyAction, Dispatch, ActionCreatorsMapObject } from 'redux';
+import { RouteComponentProps, withRouter } from 'react-router';
+import { ActionCreatorsMapObject, AnyAction, bindActionCreators, Dispatch } from 'redux';
 
 import {
-  createKanbanRequest,
-  createKanbanColumnRequest,
-  getProjectKanbanDetailRequest
+    createKanbanColumnRequest, createKanbanRequest, getProjectKanbanDetailRequest
 } from '../../../../../actions/project/kanban.action';
+import {
+    CreateProjectIssueForm
+} from '../../../../../components/creators/TaskCreator/CreateProjectIssueForm';
 import { AppModal } from '../../../../../components/widget/AppModal';
 import { RootState } from '../../../../../reducers';
 import { KanbanRecord } from '../../../../../typings/kanban.typing';
-import { withRouter, RouteComponentProps } from 'react-router';
-import { CreateProjectIssueForm } from '../../../../../components/creators/TaskCreator/CreateProjectIssueForm';
 import { ProjectRecord } from '../../../../../typings/project.typing';
 
 interface InputProps {

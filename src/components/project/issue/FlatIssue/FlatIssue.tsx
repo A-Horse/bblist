@@ -1,6 +1,7 @@
 import './FlatIssue.scss';
 
 import React from 'react';
+
 import { ProjectIssueRecord } from '../../../../typings/project-issue.typing';
 
 interface InputProps {

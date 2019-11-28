@@ -1,6 +1,5 @@
-import { CreateKanbanInput, CreateKanbanColumnInput } from './../../typings/kanban.typing';
-import { FSAction } from './../actions';
-import { Kanban } from '../../typings/kanban.typing';
+import { CreateKanbanColumnInput, CreateKanbanInput, Kanban } from '../../typings/kanban.typing';
+import { FSAction } from '../actions';
 
 export const GET_PROJCET_KANBANS_REQUEST = 'GET_PROJCET_KANBANS_REQUEST';
 export const GET_PROJCET_KANBANS_SUCCESS = 'GET_PROJCET_KANBANS_SUCCESS';

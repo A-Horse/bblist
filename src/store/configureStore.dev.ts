@@ -1,4 +1,5 @@
-import { createStore, compose } from 'redux';
+import { compose, createStore } from 'redux';
+
 import { DevTools } from '../tool/DevTools';
 
 export default function configureStore(rootReducer: any, middle: any, cb: any) {

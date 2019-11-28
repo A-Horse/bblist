@@ -1,22 +1,22 @@
 import './ProjectPage.scss';
 
+import { History, Location } from 'history';
 import React, { Component } from 'react';
-import { match, Route, Switch } from 'react-router';
-import { ProjectKanban } from './ProjectKanban/ProjectKanban';
-import { ProjectSideBar } from './ProjectSideBar/ProjectSideBar';
-import { getProjectDetailRequest } from '../../../actions/project/project.action';
-
 import { connect } from 'react-redux';
+import { match, Route, Switch } from 'react-router';
 import { withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
+
+import { getProjectDetailRequest } from '../../../actions/project/project.action';
 import { RootState } from '../../../reducers';
 import { ProjectRecord } from '../../../typings/project.typing';
-import { History, Location } from 'history';
+import { Issues } from './Issues/Issues';
 import { ProjectAdmin } from './ProjectAdmin/ProjectAdmin';
 import { ProjectEpics } from './ProjectEpics/ProjectEpics';
-import { Issues } from './Issues/Issues';
 import { ProjectHeaderBar } from './ProjectHeaderBar/ProjectHeaderBar';
+import { ProjectKanban } from './ProjectKanban/ProjectKanban';
 import { ProjectSetting } from './ProjectSetting/ProjectSetting';
+import { ProjectSideBar } from './ProjectSideBar/ProjectSideBar';
 
 interface Props {
   actions: {

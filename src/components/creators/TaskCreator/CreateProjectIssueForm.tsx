@@ -1,16 +1,17 @@
+import { Field, FieldProps, Form, Formik, FormikActions, FormikProps, FormikValues } from 'formik';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+
 import { createProjectCardRequest } from '../../../actions/project/project-issue.action';
 import { KanbanRecord } from '../../../typings/kanban.typing';
 import { ProjectRecord } from '../../../typings/project.typing';
-import { KanbanSelect } from '../../stateful-component/KanbanSelect/KanbanSelect';
-import { ColumnSelect } from '../../stateful-component/ColumnSelect/ColumnSelect';
 import { SelectOption } from '../../../typings/select.typing';
-import { AppButton } from '../../widget/Button';
-import { Formik, Field, FormikActions, Form, FormikProps, FieldProps, FormikValues } from 'formik';
-import { FormField } from '../../widget/FormField/FormField';
+import { ColumnSelect } from '../../stateful-component/ColumnSelect/ColumnSelect';
+import { KanbanSelect } from '../../stateful-component/KanbanSelect/KanbanSelect';
 import { AppInput } from '../../widget/AppInput';
+import { AppButton } from '../../widget/Button';
+import { FormField } from '../../widget/FormField/FormField';
 import Input from '../../widget/Input/Input';
 
 interface FormValues {

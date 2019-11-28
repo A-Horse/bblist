@@ -1,10 +1,11 @@
-import { ProjectRecord } from '../../typings/project.typing';
+import { List } from 'immutable';
+
+import { RootState } from '../';
+import { KanbanColumnRecord } from '../../typings/kanban-column.typing';
 import { KanbanRecord } from '../../typings/kanban.typing';
+import { ProjectRecord } from '../../typings/project.typing';
 import { SelectOption } from '../../typings/select.typing';
 import { KanbanMap } from '../project.reducer';
-import { RootState } from '..';
-import { List } from 'immutable';
-import { KanbanColumnRecord } from '../../typings/kanban-column.typing';
 
 export function getKanbanOptions(project: ProjectRecord, kanbanMap: KanbanMap): SelectOption[] {
   return getKanbans(project, kanbanMap).map((kanban: KanbanRecord) => {

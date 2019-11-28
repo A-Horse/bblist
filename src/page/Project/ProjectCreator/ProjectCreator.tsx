@@ -6,8 +6,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { createProjectRequest } from '../../../actions/project/project.action';
-import { AppIcon } from '../../../components/widget/Icon';
 import { AppButton } from '../../../components/widget/Button';
+import { AppIcon } from '../../../components/widget/Icon';
 
 const FormItem = Form.Item;
 

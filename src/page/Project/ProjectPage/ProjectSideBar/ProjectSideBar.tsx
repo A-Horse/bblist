@@ -1,10 +1,10 @@
 import './ProjectSideBar.scss';
 
 import React, { Component } from 'react';
+import { match } from 'react-router';
 
 import { Side } from '../../../../components/widget/Side/Side';
 import { SideItemLink } from '../../../../components/widget/Side/SideItemLink';
-import { match } from 'react-router';
 
 export class ProjectSideBar extends Component<{
   match: match<any>;

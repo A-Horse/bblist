@@ -1,4 +1,4 @@
-import { Record, List } from 'immutable';
+import { List, Record } from 'immutable';
 
 export interface Kanban {
   id: string;

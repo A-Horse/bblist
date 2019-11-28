@@ -1,5 +1,6 @@
-import { KanbanColumnRecord } from './../typings/kanban-column.typing';
 import { List } from 'immutable';
+
+import { KanbanColumnRecord } from '../typings/kanban-column.typing';
 import { SelectOption } from '../typings/select.typing';
 
 export function generateColumnOptions(colunms: List<KanbanColumnRecord>): SelectOption[] {

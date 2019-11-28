@@ -1,9 +1,10 @@
+import './ProjectHeaderBar.scss';
+
+import React from 'react';
+import { useSelector } from 'react-redux';
+
 import { RootState } from '../../../../reducers';
 import { ProjectRecord } from '../../../../typings/project.typing';
-import { useSelector } from 'react-redux';
-import React from 'react';
-
-import './ProjectHeaderBar.scss';
 import { ProjectAddButton } from './ProjectAddButton';
 
 interface InputProps {

@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-
 import './Side.scss';
+
+import React, { Component } from 'react';
 
 export class Side extends Component<{
   className?: string;

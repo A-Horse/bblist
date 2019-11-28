@@ -1,11 +1,12 @@
-import { AppModal } from '../../../../../components/widget/AppModal';
-import { connect } from 'react-redux';
-import { withRouter, RouteComponentProps } from 'react-router';
-import { bindActionCreators, Dispatch, AnyAction, ActionCreatorsMapObject } from 'redux';
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { RouteComponentProps, withRouter } from 'react-router';
+import { ActionCreatorsMapObject, AnyAction, bindActionCreators, Dispatch } from 'redux';
+
+import { AppModal } from '../../../../../components/widget/AppModal';
 import { RootState } from '../../../../../reducers';
-import { KanbanRecord } from '../../../../../typings/kanban.typing';
 import { getKanbans } from '../../../../../reducers/selector/kanban.selector';
+import { KanbanRecord } from '../../../../../typings/kanban.typing';
 
 interface InputProps {
   toggle: boolean;

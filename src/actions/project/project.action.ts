@@ -1,6 +1,7 @@
-import { FSAction } from './../actions';
-import { CreateProjectInput, UploadProjectCoverInput } from '../../typings/project.typing';
-import { Project, ProjectId } from '../../typings/project.typing';
+import {
+    CreateProjectInput, Project, ProjectId, UploadProjectCoverInput
+} from '../../typings/project.typing';
+import { FSAction } from '../actions';
 
 export const GET_PROJCETS_REQUEST = 'GET_PROJCETS_REQUEST';
 export const GET_PROJCETS_SUCCESS = 'GET_PROJCETS_SUCCESS';

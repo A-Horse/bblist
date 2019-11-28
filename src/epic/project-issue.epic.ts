@@ -1,32 +1,27 @@
-import { RankProjectCardInKanbanInput, ProjectIssueRecord, ProjectIssue } from '../typings/project-issue.typing';
-import { FSAction } from '../actions/actions';
-import { mergeMap, filter, tap, distinctUntilChanged, catchError, take } from 'rxjs/operators';
-import { ofType } from 'redux-observable';
-import {
-  GET_COLUMN_CARDS_REQUEST,
-  getColumnCardsSuccess,
-  getColumnCardsFailure,
-  CREATAE_PROJECT_CARD_REQUEST,
-  createProjectCardFailure,
-  createProjectCardSuccess,
-  RANK_PROJECT_CARD_IN_KANBAN_REQUEST,
-  rankProjectCardInKanbanSuccess,
-  rankProjectCardInKanbanFailure
-} from '../actions/project/project-issue.action';
 import axios, { AxiosResponse } from 'axios';
-import { Observable, of } from 'rxjs';
-import { makeApiUrl } from '../utils/api';
 import equals from 'ramda/es/equals';
+import { ofType } from 'redux-observable';
+import { Observable, of } from 'rxjs';
+import { catchError, distinctUntilChanged, filter, mergeMap, take, tap } from 'rxjs/operators';
+
+import { FSAction } from '../actions/actions';
 import {
-  GET_PROJECT_ISSUE_DETAIL_DEQUEST,
-  getProjectIssueDetailSuccess,
-  getProjectIssueDetailFailure,
-  UPDATE_PROJECT_ISSUE_DETAIL_DEQUEST,
-  updateProjectIssueDetailSuccess,
-  updateProjectIssueDetailFailure
+    GET_PROJECT_ISSUE_DETAIL_DEQUEST, getProjectIssueDetailFailure, getProjectIssueDetailSuccess,
+    UPDATE_PROJECT_ISSUE_DETAIL_DEQUEST, updateProjectIssueDetailFailure,
+    updateProjectIssueDetailSuccess
 } from '../actions/project/project-issue-detail.aciton';
+import {
+    CREATAE_PROJECT_CARD_REQUEST, createProjectCardFailure, createProjectCardSuccess,
+    GET_COLUMN_CARDS_REQUEST, getColumnCardsFailure, getColumnCardsSuccess,
+    RANK_PROJECT_CARD_IN_KANBAN_REQUEST, rankProjectCardInKanbanFailure,
+    rankProjectCardInKanbanSuccess
+} from '../actions/project/project-issue.action';
 import { RootState } from '../reducers';
 import { findIssuePositionInColumn } from '../reducers/util/issue.util';
+import {
+    ProjectIssue, ProjectIssueRecord, RankProjectCardInKanbanInput
+} from '../typings/project-issue.typing';
+import { makeApiUrl } from '../utils/api';
 
 export const CREATAE_PROJECT_CARD_REQUEST_FN = (action$: Observable<FSAction>) =>
   action$.pipe(

@@ -2,15 +2,16 @@ import './Issues.scss';
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withRouter, RouteComponentProps, Route } from 'react-router-dom';
-import { bindActionCreators, AnyAction, Dispatch, ActionCreatorsMapObject } from 'redux';
-import { ProjectRecord } from '../../../../typings/project.typing';
+import { Route, RouteComponentProps, withRouter } from 'react-router-dom';
+import { ActionCreatorsMapObject, AnyAction, bindActionCreators, Dispatch } from 'redux';
+
 import { getProjectIssuesRequest } from '../../../../actions/project/project-issue.action';
+import { FlatIssue } from '../../../../components/project/issue/FlatIssue/FlatIssue';
+import { IssueDetail } from '../../../../components/project/issue/IssueDetail/IssueDetail';
 import { AppPagination } from '../../../../components/widget/Pagination';
 import { RootState } from '../../../../reducers';
 import { ProjectIssueRecord } from '../../../../typings/project-issue.typing';
-import { FlatIssue } from '../../../../components/project/issue/FlatIssue/FlatIssue';
-import { IssueDetail } from '../../../../components/project/issue/IssueDetail/IssueDetail';
+import { ProjectRecord } from '../../../../typings/project.typing';
 
 interface InputProps {}
 
