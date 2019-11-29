@@ -61,10 +61,6 @@ class Nav extends Component<any> {
               项目
             </NavLink>
 
-            <NavLink to="/todo" activeClassName="active">
-              Todo
-            </NavLink>
-
             <NavLink to="/schedule" activeClassName="active">
               日程
             </NavLink>

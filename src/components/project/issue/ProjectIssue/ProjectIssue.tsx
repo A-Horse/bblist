@@ -49,7 +49,7 @@ const Card = React.forwardRef<HTMLDivElement, InputProps & DndProps>(
       <div onClick={innerOnClick} className="ProjectIssue" ref={elementRef} style={{ opacity }}>
         <IssueId id={issue.get('id')} />
         <div>
-          {issue.get('title')}-{issue.get('order')}
+          {issue.get('title')}
         </div>
       </div>
     );

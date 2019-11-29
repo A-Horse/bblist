@@ -1,7 +1,7 @@
-import { Icon } from 'antd';
 import React, { Component } from 'react';
-
-import { AppMenu } from '../../../../components/widget/Menu/Menu';
+import { Side } from '../../../../components/widget/Side/Side';
+import { SideItemLink } from '../../../../components/widget/Side/SideItemLink';
+import { SideGroup } from '../../../../components/widget/Side/SideGroup';
 
 interface Props {}
 
@@ -10,22 +10,11 @@ export class BoardWallAside extends Component<Props> {
 
   render() {
     return (
-      <AppMenu
-        style={{ width: 256, flexShrink: 0 }}
-        defaultSelectedKeys={['1']}
-        defaultOpenKeys={['sub1']}
-        mode={'vertical'}
-        theme={'light'}
-      >
-        <AppMenu.Item key="1">
-          <Icon type="mail" />
-          Navigation One
-        </AppMenu.Item>
-        <AppMenu.Item key="2">
-          <Icon type="calendar" />
-          Navigation Two
-        </AppMenu.Item>
-      </AppMenu>
+      <Side className="ProjectSideBar">
+        <SideGroup>
+          <SideItemLink icon="list-alt" to={``} name="Kanban" />
+        </SideGroup>
+      </Side>
     );
   }
 }
