@@ -23,7 +23,7 @@ import {
 } from '../typings/project-issue.typing';
 import { makeApiUrl } from '../utils/api';
 
-export const CREATAE_PROJECT_CARD_REQUEST_FN = (action$: Observable<FSAction>) =>
+export const CREATE_PROJECT_CARD_REQUEST_FN = (action$: Observable<FSAction>) =>
   action$.pipe(
     ofType(CREATAE_PROJECT_CARD_REQUEST),
     mergeMap((action: FSAction) => {
@@ -34,14 +34,20 @@ export const CREATAE_PROJECT_CARD_REQUEST_FN = (action$: Observable<FSAction>) =
     })
   );
 
-export const UPDATE_PROJECT_ISSUE_DETAIL_DEQUEST_FN = (action$: Observable<FSAction>) =>
+export const UPDATE_PROJECT_ISSUE_DETAIL_REQUEST_FN = (action$: Observable<FSAction>) =>
   action$.pipe(
     ofType(UPDATE_PROJECT_ISSUE_DETAIL_DEQUEST),
     mergeMap((action: FSAction) => {
       return axios
         .patch(makeApiUrl(`/issue/${action.payload.issueId}`), action.payload.partialIssue)
-        .then((result: AxiosResponse<void>) => updateProjectIssueDetailSuccess())
-        .catch(updateProjectIssueDetailFailure);
+        .then((result: AxiosResponse<void>) => {
+            action.meta.callback(null);
+            return updateProjectIssueDetailSuccess();
+        })
+        .catch((error) => {
+            action.meta.callback(error);
+            return updateProjectIssueDetailFailure();
+        });
     })
   );
 

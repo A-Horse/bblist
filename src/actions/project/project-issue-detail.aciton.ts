@@ -42,10 +42,11 @@ export const UPDATE_PROJECT_ISSUE_DETAIL_DEQUEST = 'UPDATE_PROJECT_ISSUE_DETAIL_
 export const UPDATE_PROJECT_ISSUE_DETAIL_SUCCESS = 'UPDATE_PROJECT_ISSUE_DETAIL_SUCCESS';
 export const UPDATE_PROJECT_ISSUE_DETAIL_FAILURE = 'UPDATE_PROJECT_ISSUE_DETAIL_FAILURE';
 
-export function updateProjectIssueDetailRequest(payload: { issueId: string, partialIssue: any }): FSAction {
+export function updateProjectIssueDetailRequest(payload: { issueId: string, partialIssue: any }, meta: {callback: Function}): FSAction {
   return {
     type: UPDATE_PROJECT_ISSUE_DETAIL_DEQUEST,
-    payload
+    payload,
+    meta
   };
 }
 

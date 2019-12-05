@@ -70,17 +70,28 @@ class IssueDetailComponent extends Component<
   };
 
   onUpdate = () => {
-    this.props.toastManager.add('更新成功', {
-      appearance: 'success',
-      autoDismiss: true
-    });
+
 
     this.props.actions.updateProjectIssueDetailRequest({
       issueId: this.props.issueId,
       partialIssue: this.changedPartialIssue
+    }, {
+      callback: (error: Error) => {
+        if (!error) {
+          this.changedPartialIssue = {};
+          this.props.toastManager.add('更新成功', {
+            appearance: 'success',
+            autoDismiss: true
+          });
+        } else {
+          this.props.toastManager.add('更新成功', {
+            appearance: 'error',
+            autoDismiss: true
+          });
+        }
+      }
     });
 
-    this.changedPartialIssue = {};
 
     this.setState({ formDirty: false });
   };

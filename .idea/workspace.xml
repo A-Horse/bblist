@@ -2,47 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8a388f91-03e5-4930-be99-236ae51594b3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/components/widget/Input/Input.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/widget/Input/Input.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/widget/Input/Input.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/widget/Input/Input.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/SignUp/SignUp.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/SignUp/SignUp.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/Task/BoardSetting/Infomation/Infomation.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/Task/BoardSetting/Infomation/Infomation.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/Task/BoardWall/BoardWall.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/Task/BoardWall/BoardWall.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/Task/BoardWall/BoardWall.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/Task/BoardWall/BoardWall.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/Task/Track/Track.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/Task/Track/Track.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/actions/project/project-issue-detail.aciton.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/actions/project/project-issue-detail.aciton.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/project/issue/IssueDetail/IssueDetail.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/project/issue/IssueDetail/IssueDetail.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/project/issue/IssueDetail/IssueDetailModal.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/project/issue/IssueDetail/IssueDetailModal.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/epic/project-issue.epic.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/epic/project-issue.epic.ts" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/page/Task/BoardWall/BoardWall.scss">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="23" selection-start-line="23" selection-end-line="23" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>taskboard-boards</find>
-    </findStrings>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/src/page/Task/BoardWall/BoardWall.scss" />
-      </list>
-    </option>
   </component>
   <component name="ProjectConfigurationFiles">
     <option name="files">
@@ -59,44 +31,28 @@
     <option name="width" value="2456" />
     <option name="height" value="1756" />
   </component>
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="web-octopus" type="b2602c69:ProjectViewProjectNode" />
-              <item name="web-octopus" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="web-octopus" type="b2602c69:ProjectViewProjectNode" />
-              <item name="web-octopus" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
-    </panes>
+  <component name="ProjectId" id="1UYAyxRTrzQrnZQY41ScOy7d3Dw" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+    <property name="ts.external.directory.path" value="C:\Users\chenf\workspace\web-octopus\node_modules\typescript\lib" />
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
+  <component name="ServiceViewManager">
+    <option name="viewStates">
       <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
       </list>
     </option>
   </component>
@@ -110,47 +66,22 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1558159391604</updated>
+      <workItem from="1575523418427" duration="611000" />
     </task>
     <servers />
   </component>
-  <component name="ToolWindowManager">
-    <frame x="350" y="70" width="1403" height="1003" extended-state="0" />
-    <layout>
-      <window_info id="Image Layers" />
-      <window_info id="Designer" />
-      <window_info id="UI Designer" />
-      <window_info id="Capture Tool" />
-      <window_info id="Favorites" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2494432" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Version Control" />
-      <window_info anchor="bottom" id="Terminal" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="Palette" />
-      <window_info anchor="right" id="Theme Preview" />
-      <window_info anchor="right" id="Capture Analysis" />
-      <window_info anchor="right" id="Palette&#9;" />
-      <window_info anchor="right" id="Maven" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-    </layout>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
   </component>
-  <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/page/Task/BoardWall/BoardWall.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="23" selection-start-line="23" selection-end-line="23" />
-        </state>
-      </provider>
-    </entry>
+  <component name="WindowStateProjectService">
+    <state x="766" y="180" width="662" height="834" key="find.popup" timestamp="1575523954597">
+      <screen x="0" y="0" width="2194" height="1194" />
+    </state>
+    <state x="766" y="180" width="662" height="834" key="find.popup/0.0.2194.1194@0.0.2194.1194" timestamp="1575523954597" />
+    <state x="760" y="316" width="672" height="678" key="search.everywhere.popup" timestamp="1575523937171">
+      <screen x="0" y="0" width="2194" height="1194" />
+    </state>
+    <state x="760" y="316" width="672" height="678" key="search.everywhere.popup/0.0.2194.1194@0.0.2194.1194" timestamp="1575523937171" />
   </component>
   <component name="masterDetails">
     <states>
