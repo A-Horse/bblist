@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../backend-octopus/backend-octopus.iml" filepath="$PROJECT_DIR$/../backend-octopus/backend-octopus.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/web-octopus.iml" filepath="$PROJECT_DIR$/.idea/web-octopus.iml" />
     </modules>
   </component>

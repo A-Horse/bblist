@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="8a388f91-03e5-4930-be99-236ae51594b3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build-docker.sh" beforeDir="false" afterPath="$PROJECT_DIR$/build-docker.sh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -11,7 +10,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../backend-octopus" />
   </component>
   <component name="ProjectConfigurationFiles">
     <option name="files">
@@ -31,8 +30,8 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../backend-octopus" />
+    <property name="settings.editor.selected.configurable" value="terminal" />
     <property name="ts.external.directory.path" value="C:\Users\chenf\workspace\web-octopus\node_modules\typescript\lib" />
   </component>
   <component name="ServiceViewManager">
@@ -60,7 +59,7 @@
       <workItem from="1575523418427" duration="694000" />
       <workItem from="1575706132250" duration="19000" />
       <workItem from="1575721611025" duration="550000" />
-      <workItem from="1575728835213" duration="1118000" />
+      <workItem from="1575728835213" duration="1453000" />
     </task>
     <task id="LOCAL-00001" summary="feat: add callback wen update detail">
       <created>1575524065180</created>
@@ -76,7 +75,14 @@
       <option name="project" value="LOCAL" />
       <updated>1575730079355</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="chore:add docker file">
+      <created>1575730165065</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1575730165065</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -88,11 +94,19 @@
     <option name="LAST_COMMIT_MESSAGE" value="chore:add docker file" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="205" y="106" width="1783" height="982" key="CommitChangelistDialog2" timestamp="1575730078597">
+    <state x="205" y="106" width="1783" height="982" key="CommitChangelistDialog2" timestamp="1575730164352">
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
-    <state x="205" y="106" key="CommitChangelistDialog2/0.0.2194.1194/-1600.1080.1600.860@0.0.2194.1194" timestamp="1575730078597" />
+    <state x="205" y="106" key="CommitChangelistDialog2/0.0.2194.1194/-1600.1080.1600.860@0.0.2194.1194" timestamp="1575730164352" />
     <state x="205" y="106" width="1783" height="982" key="CommitChangelistDialog2/0.0.2194.1194@0.0.2194.1194" timestamp="1575524064540" />
+    <state x="878" y="352" key="FileChooserDialogImpl" timestamp="1575730485709">
+      <screen x="0" y="0" width="2194" height="1194" />
+    </state>
+    <state x="878" y="352" key="FileChooserDialogImpl/0.0.2194.1194/-1600.1080.1600.860@0.0.2194.1194" timestamp="1575730485709" />
+    <state x="599" y="239" key="SettingsEditor" timestamp="1575730415704">
+      <screen x="0" y="0" width="2194" height="1194" />
+    </state>
+    <state x="599" y="239" key="SettingsEditor/0.0.2194.1194/-1600.1080.1600.860@0.0.2194.1194" timestamp="1575730415704" />
     <state x="766" y="180" width="662" height="834" key="find.popup" timestamp="1575523954597">
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
