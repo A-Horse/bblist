@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8a388f91-03e5-4930-be99-236ae51594b3" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/build-docker.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/actions/project/project-issue-detail.aciton.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/actions/project/project-issue-detail.aciton.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/project/issue/IssueDetail/IssueDetail.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/project/issue/IssueDetail/IssueDetail.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/project/issue/IssueDetail/IssueDetailModal.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/project/issue/IssueDetail/IssueDetailModal.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/epic/project-issue.epic.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/epic/project-issue.epic.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,12 +21,6 @@
         <option value="$PROJECT_DIR$/.idea/vcs.xml" />
       </list>
     </option>
-  </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="612" />
-    <option name="y" value="122" />
-    <option name="width" value="2456" />
-    <option name="height" value="1756" />
   </component>
   <component name="ProjectId" id="1UYAyxRTrzQrnZQY41ScOy7d3Dw" />
   <component name="ProjectViewState">
@@ -66,14 +57,33 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1558159391604</updated>
-      <workItem from="1575523418427" duration="611000" />
+      <workItem from="1575523418427" duration="694000" />
+      <workItem from="1575706132250" duration="19000" />
+      <workItem from="1575721611025" duration="550000" />
+      <workItem from="1575728835213" duration="1013000" />
     </task>
+    <task id="LOCAL-00001" summary="feat: add callback wen update detail">
+      <created>1575524065180</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1575524065180</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="feat: add callback wen update detail" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: add callback wen update detail" />
+  </component>
   <component name="WindowStateProjectService">
+    <state x="205" y="106" width="1783" height="982" key="CommitChangelistDialog2" timestamp="1575524064540">
+      <screen x="0" y="0" width="2194" height="1194" />
+    </state>
+    <state x="205" y="106" width="1783" height="982" key="CommitChangelistDialog2/0.0.2194.1194@0.0.2194.1194" timestamp="1575524064540" />
     <state x="766" y="180" width="662" height="834" key="find.popup" timestamp="1575523954597">
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
