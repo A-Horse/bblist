@@ -1,1 +1,1 @@
-docker build . -t fwchen/octopus-web:lates
+docker build . -t fwchen/octopus-web:latest
