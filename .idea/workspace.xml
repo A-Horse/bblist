@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8a388f91-03e5-4930-be99-236ae51594b3" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/components/project/issue/IssueDetail/IssueDetailBread/IssueDetailBread.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/reducers/util/project.util.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/project/issue/IssueDetail/IssueDetail.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/project/issue/IssueDetail/IssueDetail.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -10,7 +13,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../backend-octopus" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectConfigurationFiles">
     <option name="files">
@@ -31,8 +34,8 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../backend-octopus" />
-    <property name="settings.editor.selected.configurable" value="terminal" />
-    <property name="ts.external.directory.path" value="C:\Users\chenf\workspace\web-octopus\node_modules\typescript\lib" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+    <property name="ts.external.directory.path" value="C:\Users\chenf\workspace\backend-octopus\node_modules\typescript\lib" />
   </component>
   <component name="ServiceViewManager">
     <option name="viewStates">
@@ -59,7 +62,8 @@
       <workItem from="1575523418427" duration="694000" />
       <workItem from="1575706132250" duration="19000" />
       <workItem from="1575721611025" duration="550000" />
-      <workItem from="1575728835213" duration="1453000" />
+      <workItem from="1575728835213" duration="7140000" />
+      <workItem from="1575811737922" duration="755000" />
     </task>
     <task id="LOCAL-00001" summary="feat: add callback wen update detail">
       <created>1575524065180</created>
@@ -103,17 +107,18 @@
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
     <state x="878" y="352" key="FileChooserDialogImpl/0.0.2194.1194/-1600.1080.1600.860@0.0.2194.1194" timestamp="1575730485709" />
-    <state x="599" y="239" key="SettingsEditor" timestamp="1575730415704">
+    <state x="599" y="239" key="SettingsEditor" timestamp="1575737395220">
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
-    <state x="599" y="239" key="SettingsEditor/0.0.2194.1194/-1600.1080.1600.860@0.0.2194.1194" timestamp="1575730415704" />
-    <state x="766" y="180" width="662" height="834" key="find.popup" timestamp="1575523954597">
+    <state x="599" y="239" key="SettingsEditor/0.0.2194.1194/-1600.1080.1600.860@0.0.2194.1194" timestamp="1575737395220" />
+    <state x="766" y="180" width="720" height="834" key="find.popup" timestamp="1575739364429">
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
-    <state x="766" y="180" width="662" height="834" key="find.popup/0.0.2194.1194@0.0.2194.1194" timestamp="1575523954597" />
-    <state x="760" y="316" width="672" height="678" key="search.everywhere.popup" timestamp="1575523937171">
+    <state x="766" y="180" width="720" height="834" key="find.popup/0.0.2194.1194@0.0.2194.1194" timestamp="1575739364429" />
+    <state x="760" y="316" width="672" height="678" key="search.everywhere.popup" timestamp="1575737079862">
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
+    <state x="760" y="316" width="672" height="678" key="search.everywhere.popup/0.0.2194.1194/-1600.1080.1600.860@0.0.2194.1194" timestamp="1575737079862" />
     <state x="760" y="316" width="672" height="678" key="search.everywhere.popup/0.0.2194.1194@0.0.2194.1194" timestamp="1575523937171" />
   </component>
   <component name="masterDetails">

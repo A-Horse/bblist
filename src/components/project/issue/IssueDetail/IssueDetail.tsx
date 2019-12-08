@@ -19,6 +19,7 @@ import { AppButton } from '../../../widget/Button';
 import { FormField } from '../../../widget/FormField/FormField';
 import Input from '../../../widget/Input/Input';
 import { AppTextArea } from '../../../widget/TextArea/TextArea';
+import {IssueDetailBread} from './IssueDetailBread/IssueDetailBread'
 
 export interface InputProps {
   issueId: string;
@@ -104,6 +105,8 @@ class IssueDetailComponent extends Component<
 
     return (
       <div className="IssueDetail">
+
+        <IssueDetailBread issueId={props.issueId} />
         <FormField>
           <Input size="large" value={issue.get('title')} onChange={this.onFieldChange('title')} />
         </FormField>
