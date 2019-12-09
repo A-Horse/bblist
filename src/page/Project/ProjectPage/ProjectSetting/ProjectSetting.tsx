@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { ActionCreatorsMapObject, AnyAction, bindActionCreators, Dispatch } from 'redux';
 
-import { getProjectKanbansRequest } from '../../../../actions/project/kanban.action';
 import { uploadProjectCoverRequest } from '../../../../actions/project/project.action';
 import { ImageUploader } from '../../../../components/ImageUploader/ImageUploader';
 import { FormField } from '../../../../components/widget/FormField/FormField';
@@ -52,7 +51,11 @@ class ProjectSettingComponent extends Component<Props & RouteComponentProps<{ pr
         </FormField>
 
         <FormField name="项目名称">
-          <Input className="ProjectSetting--project-name-input" defaultValue={this.props.project.get('name')} whiteHover={true} />
+          <Input
+            className="ProjectSetting--project-name-input"
+            defaultValue={this.props.project.get('name')}
+            whiteHover={true}
+          />
         </FormField>
       </div>
     );
@@ -78,9 +81,4 @@ const mapStateToProps = (state: any, props: any) => {
   };
 };
 
-export const ProjectSetting = withRouter(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(ProjectSettingComponent)
-);
+export const ProjectSetting = withRouter(connect(mapStateToProps, mapDispatchToProps)(ProjectSettingComponent));

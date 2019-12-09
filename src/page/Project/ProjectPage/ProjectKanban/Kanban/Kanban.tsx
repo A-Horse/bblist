@@ -11,9 +11,7 @@ import { ActionCreatorsMapObject, AnyAction, bindActionCreators, Dispatch } from
 
 import { getProjectKanbanDetailRequest } from '../../../../../actions/project/kanban.action';
 import Loading from '../../../../../components/Loading';
-import {
-    IssueDetailModal
-} from '../../../../../components/project/issue/IssueDetail/IssueDetailModal';
+import { IssueDetailModal } from '../../../../../components/project/issue/IssueDetail/IssueDetailModal';
 import { RootState } from '../../../../../reducers';
 import { selectKanbanColumns } from '../../../../../reducers/selector/kanban.selector';
 import { KanbanColumnRecord } from '../../../../../typings/kanban-column.typing';
@@ -60,11 +58,11 @@ class KanbanComponent extends Component<
       <div className="Kanban">
         <DndProvider backend={HTML5Backend}>
           <Route
-            path="/project/:projectId/kanban/:kanbanId"
-            render={(props: RouteComponentProps<{ projectId: string; kanbanId: string; issueId: string }>) => {
+            path="/project/:projectID/kanban/:kanbanId"
+            render={(props: RouteComponentProps<{ projectID: string; kanbanId: string; issueId: string }>) => {
               const query = parseQueryParams(props.location.search);
               if (query.issueId) {
-                return <IssueDetailModal issueId={query.issueId} />
+                return <IssueDetailModal issueId={query.issueId} projectID={props.match.params.projectID} />;
               }
               return null;
             }}
@@ -115,9 +113,4 @@ const mapStateToProps = (state: RootState, props: ComponentProps) => {
   };
 };
 
-export const Kanban = withRouter<ComponentProps>(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(KanbanComponent)
-);
+export const Kanban = withRouter<ComponentProps>(connect(mapStateToProps, mapDispatchToProps)(KanbanComponent));

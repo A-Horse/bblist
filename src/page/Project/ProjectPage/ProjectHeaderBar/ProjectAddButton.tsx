@@ -7,7 +7,7 @@ import { CreateKanbanCardModal } from '../modals/CreateKanbanCardModal/CreateKan
 
 interface InputProps {}
 
-export function ProjectAddButton({  }: InputProps) {
+export function ProjectAddButton({}: InputProps) {
   const [toggle, setToggle] = useState(false);
 
   return (

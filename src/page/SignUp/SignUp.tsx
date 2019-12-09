@@ -40,67 +40,67 @@ class SignUp extends Component<any, any> {
     const errorMessages = this.state.errorMessage;
 
     return (
-        <div className="signup-main">
-          <LogoBan />
-          <form className="signup-form" onSubmit={this.signup}>
-            <div>
-              <Input
-                value={this.state.email}
-                onChange={value => this.setState({email: value})}
-                type="text"
-                name="octopus-email"
-                required
-                placeholder="Email"
-              />
-            </div>
-
-            <div>
-              <Input
-                value={this.state.username}
-                onChange={value => this.setState({username: value})}
-                type="text"
-                name="octopus-username"
-                required
-                placeholder="Name"
-              />
-            </div>
-
-            <div>
-              <Input
-                value={this.state.password}
-                onChange={value => this.setState({password: value})}
-                type="password"
-                name="octopus-password"
-                required
-                placeholder="Password"
-              />
-            </div>
-
-            <div>
-              <Input
-                value={this.state.passwordConfirm}
-                onChange={value => this.setState({passwordConfirm: value})}
-                type="password"
-                name="octopus-confirm-password"
-                required
-                placeholder="Confirm Password"
-              />
-            </div>
-
-            <ErrorMsg messages={R.values(errorMessages)} />
-
-            <Button className="signup-button" type="submit" styleType="primary" size="large">
-              Sign Up
-            </Button>
-          </form>
-
-          <div className="signin-tip">
-            Already has an Account?
-            <Link className="signin-link" to="/signin">
-              Sign In
-            </Link>
+      <div className="signup-main">
+        <LogoBan />
+        <form className="signup-form" onSubmit={this.signup}>
+          <div>
+            <Input
+              value={this.state.email}
+              onChange={value => this.setState({ email: value })}
+              type="text"
+              name="octopus-email"
+              required
+              placeholder="Email"
+            />
           </div>
+
+          <div>
+            <Input
+              value={this.state.username}
+              onChange={value => this.setState({ username: value })}
+              type="text"
+              name="octopus-username"
+              required
+              placeholder="Name"
+            />
+          </div>
+
+          <div>
+            <Input
+              value={this.state.password}
+              onChange={value => this.setState({ password: value })}
+              type="password"
+              name="octopus-password"
+              required
+              placeholder="Password"
+            />
+          </div>
+
+          <div>
+            <Input
+              value={this.state.passwordConfirm}
+              onChange={value => this.setState({ passwordConfirm: value })}
+              type="password"
+              name="octopus-confirm-password"
+              required
+              placeholder="Confirm Password"
+            />
+          </div>
+
+          <ErrorMsg messages={R.values(errorMessages)} />
+
+          <Button className="signup-button" type="submit" styleType="primary" size="large">
+            Sign Up
+          </Button>
+        </form>
+
+        <div className="signin-tip">
+          Already has an Account?
+          <Link className="signin-link" to="/signin">
+            Sign In
+          </Link>
         </div>
+      </div>
     );
   }
 
@@ -110,14 +110,11 @@ class SignUp extends Component<any, any> {
     const signUpData = {
       username: this.state.username,
       email: this.state.email,
-      password: this.state.password  
+      password: this.state.password
     };
 
     const errorMessages = validateFormValue(signUpData, {
-      name: [
-        'max@100#Name Up to 100 characters ',
-        'min@3#The name must be a minimum of three characters'
-      ],
+      name: ['max@100#Name Up to 100 characters ', 'min@3#The name must be a minimum of three characters'],
       password: ['max@100#Password Up to 100 characters', 'min@6#password min 6'],
       confirmPassword: [`eqTo@${signUpData.password}#password don't match`],
       email: ['email#email express wrong', 'max@150#max 150']
@@ -125,7 +122,6 @@ class SignUp extends Component<any, any> {
 
     this.setState({ errorMessages: errorMessages });
 
-    
     this.props.actions.SIGNUP_REQUEST(signUpData);
   }
 }

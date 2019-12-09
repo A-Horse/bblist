@@ -24,7 +24,6 @@ declare global {
 setupAxiosInterceptor();
 setupAxiosJwtHeader(getJWT());
 
-
 // TODO extract
 export const MyCustomToastContainer = (props: any) => <DefaultToastContainer {...props} style={{ zIndex: 9999999 }} />;
 

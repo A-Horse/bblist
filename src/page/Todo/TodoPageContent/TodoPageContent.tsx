@@ -37,10 +37,7 @@ export class TodoPageContent extends Component<any> {
           />
         )}
 
-        <span
-          className="remain-todo-toggle"
-          onClick={() => this.setState({ toggleAll: !this.state.toggleAll })}
-        >
+        <span className="remain-todo-toggle" onClick={() => this.setState({ toggleAll: !this.state.toggleAll })}>
           <i className="fa fa-check-circle" aria-hidden="true" />
           {!this.state.toggleAll ? 'show all' : 'hide done'}
         </span>

@@ -1,13 +1,9 @@
 import './ProjectIssue.scss';
 
 import React, { RefForwardingComponent, useImperativeHandle, useRef } from 'react';
-import {
-    ConnectDragSource, ConnectDropTarget, DragSource, DropTarget, DropTargetMonitor, XYCoord
-} from 'react-dnd';
+import { ConnectDragSource, ConnectDropTarget, DragSource, DropTarget, DropTargetMonitor, XYCoord } from 'react-dnd';
 
-import {
-    ProjectIssueRecord, RankProjectCardInKanbanInput
-} from '../../../../typings/project-issue.typing';
+import { ProjectIssueRecord, RankProjectCardInKanbanInput } from '../../../../typings/project-issue.typing';
 import { IssueId } from '../IssueId/IssueId';
 
 interface InputProps {
@@ -48,9 +44,7 @@ const Card = React.forwardRef<HTMLDivElement, InputProps & DndProps>(
     return (
       <div onClick={innerOnClick} className="ProjectIssue" ref={elementRef} style={{ opacity }}>
         <IssueId id={issue.get('id')} />
-        <div>
-          {issue.get('title')}
-        </div>
+        <div>{issue.get('title')}</div>
       </div>
     );
   }

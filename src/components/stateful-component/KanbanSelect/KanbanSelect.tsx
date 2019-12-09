@@ -67,7 +67,4 @@ const mapStateToProps = (state: RootState, props: InputProps) => {
   };
 };
 
-export const KanbanSelect = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(KanbanSelectComponent);
+export const KanbanSelect = connect(mapStateToProps, mapDispatchToProps)(KanbanSelectComponent);

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+
 import { Side } from '../../../../components/widget/Side/Side';
-import { SideItemLink } from '../../../../components/widget/Side/SideItemLink';
 import { SideGroup } from '../../../../components/widget/Side/SideGroup';
+import { SideItemLink } from '../../../../components/widget/Side/SideItemLink';
 
 interface Props {}
 

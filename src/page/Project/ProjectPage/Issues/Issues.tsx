@@ -38,7 +38,7 @@ export class IssuesComponent extends Component<
     });
   }
 
-  onPagaChange = (pageNumber: number) => {
+  onPageChange = (pageNumber: number) => {
     this.setState({ currentPageNumber: pageNumber });
   };
 
@@ -61,7 +61,7 @@ export class IssuesComponent extends Component<
           </ul>
 
           <AppPagination
-            onPageChanged={this.onPagaChange}
+            onPageChanged={this.onPageChange}
             pageSize={this.props.pageSize}
             total={this.props.total!}
             currentPage={this.props.pageNumber}
@@ -70,9 +70,9 @@ export class IssuesComponent extends Component<
 
         <Route
           path="/project/:projectId/issues/:issueId"
-          render={(props: RouteComponentProps<{ issueId: string }>) => (
+          render={(props: RouteComponentProps<{ issueId: string; projectID: string }>) => (
             <div className={`Issues--detail-container`}>
-              <IssueDetail issueId={props.match.params.issueId} />
+              <IssueDetail issueID={props.match.params.issueId} projectID={props.match.params.projectID} />
             </div>
           )}
         />
@@ -126,9 +126,4 @@ const mapStateToProps = (state: RootState, props: any) => {
   };
 };
 
-export const Issues = withRouter(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(IssuesComponent)
-);
+export const Issues = withRouter(connect(mapStateToProps, mapDispatchToProps)(IssuesComponent));

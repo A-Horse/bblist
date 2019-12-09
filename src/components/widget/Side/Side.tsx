@@ -10,12 +10,6 @@ export class Side extends Component<{
   };
 
   render() {
-    return (
-      <div
-        className={this.buildClassName()}
-      >
-        {this.props.children}
-      </div>
-    );
+    return <div className={this.buildClassName()}>{this.props.children}</div>;
   }
 }

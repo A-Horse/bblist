@@ -9,6 +9,7 @@ import { IssueDetail } from './IssueDetail';
 
 interface InputProps {
   issueId: string;
+  projectID: string;
 }
 
 type Props = InputProps & RouteComponentProps;
@@ -22,7 +23,7 @@ class IssueDetailModalComponent extends Component<Props> {
     return (
       <AppModal className="IssueDetailModal" isOpen={true} onRequestClose={this.closeModal}>
         <ModalHeader onClose={this.closeModal} />
-        <IssueDetail issueId={this.props.issueId} />
+        <IssueDetail issueID={this.props.issueId} projectID={this.props.projectID} />
       </AppModal>
     );
   }

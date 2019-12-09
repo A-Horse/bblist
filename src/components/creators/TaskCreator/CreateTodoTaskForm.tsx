@@ -77,7 +77,4 @@ const mapDispatchToProps = (dispatch: any) => {
   };
 };
 
-export const CreateTodoTaskForm = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(CreateTodoTaskFormWrapper);
+export const CreateTodoTaskForm = connect(mapStateToProps, mapDispatchToProps)(CreateTodoTaskFormWrapper);

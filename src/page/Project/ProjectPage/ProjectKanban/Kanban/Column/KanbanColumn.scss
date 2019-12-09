@@ -28,10 +28,11 @@
     height: calc(100% - 27px);
 
     .ProjectIssue {
-      
+
       &:first-child {
         margin-top: 0;
       }
+
       &:last-child {
         margin-bottom: 0;
       }

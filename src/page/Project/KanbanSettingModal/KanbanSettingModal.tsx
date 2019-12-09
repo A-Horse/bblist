@@ -7,7 +7,9 @@ import { RouteComponentProps, withRouter } from 'react-router';
 import { ActionCreatorsMapObject, AnyAction, bindActionCreators, Dispatch } from 'redux';
 
 import {
-    createKanbanColumnRequest, createKanbanRequest, getProjectKanbanDetailRequest
+  createKanbanColumnRequest,
+  createKanbanRequest,
+  getProjectKanbanDetailRequest
 } from '../../../actions/project/kanban.action';
 import { AppModal } from '../../../components/widget/AppModal';
 import { RootState } from '../../../reducers';
@@ -24,9 +26,7 @@ interface InputProps {
   kanbanId: string;
 }
 
-interface InputRouterProps
-  extends InputProps,
-    RouteComponentProps<{ projectId: string; kanbanId: string }> {}
+interface InputRouterProps extends InputProps, RouteComponentProps<{ projectId: string; kanbanId: string }> {}
 
 class KanbanSettingModalComponent extends Component<
   InputRouterProps & {
@@ -61,7 +61,7 @@ class KanbanSettingModalComponent extends Component<
       <div>
         {this.props.kanban!.get('name')}
 
-        <KanbanColumnPanel columns={this.props.columns}/>
+        <KanbanColumnPanel columns={this.props.columns} />
 
         <KanbanColumnCreator createKanbanColumn={this.createKanbanColumn} />
       </div>
@@ -85,7 +85,7 @@ const mapStateToProps = (state: RootState, props: InputRouterProps) => {
 
   let columns: List<KanbanColumnRecord> | null = null;
   if (!!kanban && !!kanban.get('columns')) {
-    columns = selectKanbanColumns(state, kanban.get('id'))
+    columns = selectKanbanColumns(state, kanban.get('id'));
   }
 
   return {
@@ -109,8 +109,5 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
 };
 
 export const KanbanSettingModal = withRouter<InputRouterProps>(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(KanbanSettingModalComponent)
+  connect(mapStateToProps, mapDispatchToProps)(KanbanSettingModalComponent)
 );

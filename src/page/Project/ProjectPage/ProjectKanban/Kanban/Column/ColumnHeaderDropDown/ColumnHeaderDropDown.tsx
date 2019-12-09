@@ -1,11 +1,9 @@
 import './ColumnHeaderDropDown.scss';
 
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import React from 'react';
 
 import { AppDropdown } from '../../../../../../../components/widget/Dropdown';
 import { AppIcon } from '../../../../../../../components/widget/Icon';
-import { AppMenu } from '../../../../../../../components/widget/Menu/Menu';
 
 interface InputProps {
   columnId: string;

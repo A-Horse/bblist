@@ -12,7 +12,7 @@ interface InputProps {
   toggle: boolean;
   onClose: Function;
   projectId: string;
-  onChange: Function
+  onChange: Function;
 }
 
 interface RouterProps extends RouteComponentProps<{ projectId: string }> {}
@@ -36,10 +36,17 @@ class KanbanSelectorModalComponent extends Component<ComponentProps> {
       <AppModal isOpen={this.props.toggle} onRequestClose={this.closeModal}>
         <ul>
           {this.props.kanbans.map((kanban: KanbanRecord) => {
-            return <li key={kanban.get('id')} onClick={() => {
-              this.props.onChange(kanban.get('id'))
-              this.props.onClose()
-            }}>{kanban.get('name')}</li>;
+            return (
+              <li
+                key={kanban.get('id')}
+                onClick={() => {
+                  this.props.onChange(kanban.get('id'));
+                  this.props.onClose();
+                }}
+              >
+                {kanban.get('name')}
+              </li>
+            );
           })}
         </ul>
       </AppModal>
@@ -64,8 +71,5 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
 };
 
 export const KanbanSelectorModal = withRouter<InputProps & RouterProps>(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(KanbanSelectorModalComponent)
+  connect(mapStateToProps, mapDispatchToProps)(KanbanSelectorModalComponent)
 );

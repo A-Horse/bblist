@@ -59,7 +59,11 @@ class KanbanSettingPanelComponent extends Component<
             <div key={kanban.get('id')} className="KanbanSettingPanel--kanban-item">
               {kanban.get('name')}
 
-              <AppButton className="KanbanSettingPanel--item-edit-button" type="dashed" onClick={() => this.openKanbanSettingModal(kanban.get('id'))}>
+              <AppButton
+                className="KanbanSettingPanel--item-edit-button"
+                type="dashed"
+                onClick={() => this.openKanbanSettingModal(kanban.get('id'))}
+              >
                 <AppIcon icon="pen" /> 编辑
               </AppButton>
             </div>
@@ -107,8 +111,5 @@ const mapStateToProps = (state: RootState, props: ComponentProps) => {
 };
 
 export const KanbanSettingPanel = withRouter<ComponentProps>(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(KanbanSettingPanelComponent)
+  connect(mapStateToProps, mapDispatchToProps)(KanbanSettingPanelComponent)
 );

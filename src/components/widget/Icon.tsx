@@ -1,8 +1,22 @@
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
-    faCheckCircle, faClipboardList, faCog, faColumns, faCube, faCubes, faDharmachakra, faEllipsisH,
-    faListAlt, faListOl, faPen, faPlusCircle, faStroopwafel, faTimes, faTrash, faUserCog,
-    faVectorSquare
+  faCheckCircle,
+  faClipboardList,
+  faCog,
+  faColumns,
+  faCube,
+  faCubes,
+  faDharmachakra,
+  faEllipsisH,
+  faListAlt,
+  faListOl,
+  faPen,
+  faPlusCircle,
+  faStroopwafel,
+  faTimes,
+  faTrash,
+  faUserCog,
+  faVectorSquare
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -23,6 +37,5 @@ library.add(faEllipsisH);
 library.add(faTrash);
 library.add(faPen);
 library.add(faTimes);
-
 
 export const AppIcon = FontAwesomeIcon;

@@ -1,7 +1,7 @@
 import './KanbanColumnCreator.scss';
 
 import { Field, FieldProps, Form, Formik, FormikActions, FormikProps } from 'formik';
-import React, { ChangeEvent, Component } from 'react';
+import React, { Component } from 'react';
 
 import { AppButton } from '../../../../components/widget/Button';
 
@@ -11,7 +11,7 @@ interface FormValues {
 
 export class KanbanColumnCreator extends Component<
   {
-      createKanbanColumn: Function
+    createKanbanColumn: Function;
   },
   {
     creating: boolean;
@@ -23,14 +23,10 @@ export class KanbanColumnCreator extends Component<
     name: ''
   };
 
-
-
   render() {
     return (
       <div>
-        {!this.state.creating && (
-          <AppButton onClick={() => this.setState({ creating: true })}>Create Column</AppButton>
-        )}
+        {!this.state.creating && <AppButton onClick={() => this.setState({ creating: true })}>Create Column</AppButton>}
 
         {this.state.creating && (
           <Formik

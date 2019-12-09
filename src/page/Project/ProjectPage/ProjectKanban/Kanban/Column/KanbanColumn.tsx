@@ -8,16 +8,15 @@ import { RouteComponentProps, withRouter } from 'react-router';
 import { ActionCreatorsMapObject, AnyAction, bindActionCreators, Dispatch } from 'redux';
 
 import {
-    getColumnCardsRequest, rankProjectCardInKanbanRequest
+  getColumnCardsRequest,
+  rankProjectCardInKanbanRequest
 } from '../../../../../../actions/project/project-issue.action';
 import { ProjectIssue } from '../../../../../../components/project/issue/ProjectIssue/ProjectIssue';
 import { AppButton } from '../../../../../../components/widget/Button';
 import { RootState } from '../../../../../../reducers';
 import { selectColumnCards } from '../../../../../../reducers/selector/card.selector';
 import { KanbanColumnRecord } from '../../../../../../typings/kanban-column.typing';
-import {
-    ProjectIssueRecord, RankProjectCardInKanbanInput
-} from '../../../../../../typings/project-issue.typing';
+import { ProjectIssueRecord, RankProjectCardInKanbanInput } from '../../../../../../typings/project-issue.typing';
 import { ColumnDataFetcher } from './column-data-fetcher';
 import { ColumnHeaderDropDown } from './ColumnHeaderDropDown/ColumnHeaderDropDown';
 
@@ -128,8 +127,5 @@ const mapStateToProps = (state: RootState, props: InputProps) => {
 };
 
 export const KanbanColumn = withRouter<InputProps & RouteComponentProps>(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(KanbanColumnComponent)
+  connect(mapStateToProps, mapDispatchToProps)(KanbanColumnComponent)
 );

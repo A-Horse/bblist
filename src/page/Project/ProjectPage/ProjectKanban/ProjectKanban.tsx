@@ -7,10 +7,8 @@ import { ActionCreatorsMapObject, AnyAction, bindActionCreators, Dispatch } from
 
 import { getProjectKanbansRequest } from '../../../../actions/project/kanban.action';
 import { setProjectDefaultKanbanRequest } from '../../../../actions/project/project-setting.action';
-import { KanbanSelect } from '../../../../components/stateful-component/KanbanSelect/KanbanSelect';
 import { RootState } from '../../../../reducers';
 import { ProjectRecord } from '../../../../typings/project.typing';
-import { SelectOption } from '../../../../typings/select.typing';
 import { Kanban } from './Kanban/Kanban';
 import { KanbanHeaderBar } from './KanbanHeaderBar/KanbanHeaderBar';
 import { NoKanbanGuide } from './NoKanbanGuide/NoKanbanGuide';

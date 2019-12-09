@@ -57,7 +57,7 @@ class ProjectPageComponent extends Component<Props> {
             <Switch>
               <Route path="/project/:projectId/setting" render={props => <ProjectSetting />} />
               <Route path="/project/:projectId/kanban/:kanbanId" render={props => <ProjectKanban />} />
-              <Route path="/project/:projectId/kanban" render={props => <ProjectKanban />} /> 
+              <Route path="/project/:projectId/kanban" render={props => <ProjectKanban />} />
               <Route path="/project/:projectId/epics" render={props => <ProjectEpics />} />
               <Route path="/project/:projectId/issues" render={props => <Issues />} />
               <Route path="/project/:projectId/admin" render={props => <ProjectAdmin />} />
@@ -89,11 +89,6 @@ const mapStateToProps = (state: RootState, props: Props) => {
 };
 
 // TODO
-export const ProjectPage: any = withRouter(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(ProjectPageComponent)
-);
+export const ProjectPage: any = withRouter(connect(mapStateToProps, mapDispatchToProps)(ProjectPageComponent));
 
 export default ProjectPage;

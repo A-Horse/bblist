@@ -9,20 +9,21 @@ import { ActionCreatorsMapObject, AnyAction, bindActionCreators, Dispatch } from
 import { AnyHTMLElement } from '@stencil/core/dist/declarations';
 
 import {
-    changeIssueDirect, getProjectIssueDetailRequest, updateProjectIssueDetailRequest
+  changeIssueDirect,
+  getProjectIssueDetailRequest,
+  updateProjectIssueDetailRequest
 } from '../../../../actions/project/project-issue-detail.aciton';
 import { RootState } from '../../../../reducers';
-import {
-    ProjectIssueRecord, ProjectIssueRecordFiled
-} from '../../../../typings/project-issue.typing';
+import { ProjectIssueRecord, ProjectIssueRecordFiled } from '../../../../typings/project-issue.typing';
 import { AppButton } from '../../../widget/Button';
 import { FormField } from '../../../widget/FormField/FormField';
 import Input from '../../../widget/Input/Input';
 import { AppTextArea } from '../../../widget/TextArea/TextArea';
-import {IssueDetailBread} from './IssueDetailBread/IssueDetailBread'
+import { IssueDetailBread } from './IssueDetailBread/IssueDetailBread';
 
 export interface InputProps {
-  issueId: string;
+  issueID: string;
+  projectID: string;
 }
 
 export interface ReduxProps {
@@ -48,21 +49,21 @@ class IssueDetailComponent extends Component<
 
   componentDidMount() {
     this.props.actions.getProjectIssueDetailRequest({
-      issueId: this.props.issueId
+      issueId: this.props.issueID
     });
   }
 
   componentDidUpdate(prevProps: ComponentProps) {
-    if (this.props.issueId !== prevProps.issueId) {
+    if (this.props.issueID !== prevProps.issueID) {
       this.props.actions.getProjectIssueDetailRequest({
-        issueId: this.props.issueId
+        issueId: this.props.issueID
       });
     }
   }
 
   onFieldChange = (fieldName: ProjectIssueRecordFiled) => {
     return (value: any): void => {
-      this.props.actions.changeIssueDirect(this.props.issueId, {
+      this.props.actions.changeIssueDirect(this.props.issueID, {
         [fieldName]: value
       });
       this.changedPartialIssue[fieldName] = value;
@@ -71,28 +72,28 @@ class IssueDetailComponent extends Component<
   };
 
   onUpdate = () => {
-
-
-    this.props.actions.updateProjectIssueDetailRequest({
-      issueId: this.props.issueId,
-      partialIssue: this.changedPartialIssue
-    }, {
-      callback: (error: Error) => {
-        if (!error) {
-          this.changedPartialIssue = {};
-          this.props.toastManager.add('更新成功', {
-            appearance: 'success',
-            autoDismiss: true
-          });
-        } else {
-          this.props.toastManager.add('更新成功', {
-            appearance: 'error',
-            autoDismiss: true
-          });
+    this.props.actions.updateProjectIssueDetailRequest(
+      {
+        issueId: this.props.issueID,
+        partialIssue: this.changedPartialIssue
+      },
+      {
+        callback: (error: Error) => {
+          if (!error) {
+            this.changedPartialIssue = {};
+            this.props.toastManager.add('更新成功', {
+              appearance: 'success',
+              autoDismiss: true
+            });
+          } else {
+            this.props.toastManager.add('更新成功', {
+              appearance: 'error',
+              autoDismiss: true
+            });
+          }
         }
       }
-    });
-
+    );
 
     this.setState({ formDirty: false });
   };
@@ -105,8 +106,7 @@ class IssueDetailComponent extends Component<
 
     return (
       <div className="IssueDetail">
-
-        <IssueDetailBread issueId={props.issueId} />
+        <IssueDetailBread projectID={this.props.projectID} issueID={this.props.issueID} />
         <FormField>
           <Input size="large" value={issue.get('title')} onChange={this.onFieldChange('title')} />
         </FormField>
@@ -144,13 +144,10 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
 
 const mapStateToProps = (state: RootState, props: InputProps) => {
   return {
-    issue: state.project.get('cardMap').get(props.issueId)
+    issue: state.project.get('cardMap').get(props.issueID)
   };
 };
 
 export const IssueDetail = withRouter<ComponentProps>(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(withToastManager(IssueDetailComponent))
+  connect(mapStateToProps, mapDispatchToProps)(withToastManager(IssueDetailComponent))
 );

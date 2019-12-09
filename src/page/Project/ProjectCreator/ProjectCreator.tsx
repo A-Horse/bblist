@@ -1,6 +1,6 @@
 import './ProjectCreator.scss';
 
-import { Button, Form, Input, Modal } from 'antd';
+import { Form, Input, Modal } from 'antd';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -43,12 +43,7 @@ class TaskBoardCreaterBase extends Component<any, any> {
           Project
         </div>
 
-        <Modal
-          title="Create Project"
-          onCancel={this.handleCancel}
-          visible={this.state.modalVisible}
-          footer={null}
-        >
+        <Modal title="Create Project" onCancel={this.handleCancel} visible={this.state.modalVisible} footer={null}>
           <div>
             <img className="taskboard-creater--illustration" src="/assets/images/work.png" />
 
@@ -60,9 +55,7 @@ class TaskBoardCreaterBase extends Component<any, any> {
               </FormItem>
 
               <FormItem>
-                <AppButton htmlType="submit">
-                  Done
-                </AppButton>
+                <AppButton htmlType="submit">Done</AppButton>
               </FormItem>
             </Form>
           </div>
@@ -80,13 +73,13 @@ const mapStateToProps = (state: any) => {
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    actions: bindActionCreators({
-      createProjectRequest
-    }, dispatch)
+    actions: bindActionCreators(
+      {
+        createProjectRequest
+      },
+      dispatch
+    )
   };
 };
 
-export const ProjectCreator = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(TaskBoardCreaterWithForm);
+export const ProjectCreator = connect(mapStateToProps, mapDispatchToProps)(TaskBoardCreaterWithForm);

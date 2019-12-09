@@ -17,24 +17,20 @@ const getAllTodos = (state: RootState, props: any) => {
     .filter((todo: any) => todo.get('todoBoxId') === props.match.params.boxId);
 };
 
-const getUnDoneTodos = createSelector(
-  [getAllTodos],
-  todos =>
-    todos
-      .filter((todo: Record<Todo>) => todo.get('status') !== 'DONE')
-      .sort((a: Record<Todo>, b: Record<Todo>) => {
-        return new Date(a.get('createdAt')).getTime() > new Date(b.get('createdAt')).getTime();
-      })
+const getUnDoneTodos = createSelector([getAllTodos], todos =>
+  todos
+    .filter((todo: Record<Todo>) => todo.get('status') !== 'DONE')
+    .sort((a: Record<Todo>, b: Record<Todo>) => {
+      return new Date(a.get('createdAt')).getTime() > new Date(b.get('createdAt')).getTime();
+    })
 );
 
-const getDoneTodos = createSelector(
-  [getAllTodos],
-  todos =>
-    todos
-      .filter((todo: Record<Todo>) => todo.get('status') === 'DONE')
-      .sort((a: Record<Todo>, b: Record<Todo>) => {
-        return new Date(a.get('createdAt')).getTime() > new Date(b.get('createdAt')).getTime();
-      })
+const getDoneTodos = createSelector([getAllTodos], todos =>
+  todos
+    .filter((todo: Record<Todo>) => todo.get('status') === 'DONE')
+    .sort((a: Record<Todo>, b: Record<Todo>) => {
+      return new Date(a.get('createdAt')).getTime() > new Date(b.get('createdAt')).getTime();
+    })
 );
 
 const mapStateToProps = (state: RootState, props: any) => {
@@ -51,9 +47,4 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
   };
 };
 
-export const TodoPageContentContainer = withRouter(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(TodoPageContent)
-);
+export const TodoPageContentContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(TodoPageContent));

@@ -2,6 +2,7 @@ import { KanbanColumnComponent } from './KanbanColumn';
 
 export class ColumnDataFetcher {
   private obsoleted = false;
+
   constructor(private component: KanbanColumnComponent) {}
 
   public fetchCards() {

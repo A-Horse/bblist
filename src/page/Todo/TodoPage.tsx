@@ -20,7 +20,7 @@ export class TodoPage extends Component<any> {
         <Sider className="todo-page--sider" width="280px">
           <TodoBoxs todoBoxs={this.props.todoBoxs} actions={this.props.actions} />
         </Sider>
-        <Content  className="todo-page--main" style={{ height: 'calc(100vh - 42px)' }}>
+        <Content className="todo-page--main" style={{ height: 'calc(100vh - 42px)' }}>
           <TodoPageContentContainer />
         </Content>
       </Layout>

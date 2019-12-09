@@ -6,7 +6,6 @@ import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { ActionCreatorsMapObject, AnyAction, bindActionCreators, Dispatch } from 'redux';
 
 import { getProjectKanbansRequest } from '../../../../actions/project/kanban.action';
-import { SectionField } from '../../../../components/widget/SectionField/SectionField';
 import { ProjectRecord } from '../../../../typings/project.typing';
 import { KanbanSettingPanel } from './KanbanSettingPanel/KanbanSettingPanel';
 
@@ -25,8 +24,7 @@ export class ProjectAdminComponent extends Component<Props & RouteComponentProps
   render() {
     return (
       <div className="ProjectAdmin">
-         <KanbanSettingPanel />
-     
+        <KanbanSettingPanel />
       </div>
     );
   }
@@ -51,9 +49,4 @@ const mapStateToProps = (state: any, props: any) => {
   };
 };
 
-export const ProjectAdmin = withRouter(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(ProjectAdminComponent)
-);
+export const ProjectAdmin = withRouter(connect(mapStateToProps, mapDispatchToProps)(ProjectAdminComponent));

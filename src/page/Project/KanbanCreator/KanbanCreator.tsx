@@ -1,6 +1,6 @@
 import './KanbanCreator.scss';
 
-import { Button, Form, Input, Modal } from 'antd';
+import { Form, Input, Modal } from 'antd';
 import { FormComponentProps } from 'antd/lib/form';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
@@ -47,12 +47,7 @@ class KanbanCreatorComponent extends Component<
   render() {
     const { getFieldDecorator } = this.props.form;
     return (
-      <Modal
-        title="Create Kanban"
-        onCancel={this.handleCancel}
-        visible={this.props.toggle}
-        footer={null}
-      >
+      <Modal title="Create Kanban" onCancel={this.handleCancel} visible={this.props.toggle} footer={null}>
         <div>
           <img className="taskboard-creater--illustration" src="/assets/images/work.png" />
 
@@ -64,9 +59,7 @@ class KanbanCreatorComponent extends Component<
             </FormItem>
 
             <FormItem>
-              <AppButton htmlType="submit">
-                Done
-              </AppButton>
+              <AppButton htmlType="submit">Done</AppButton>
             </FormItem>
           </Form>
         </div>
@@ -92,7 +85,4 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
   };
 };
 
-export const KanbanCreator = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(KanbanCreatorComponentFormWrapper);
+export const KanbanCreator = connect(mapStateToProps, mapDispatchToProps)(KanbanCreatorComponentFormWrapper);

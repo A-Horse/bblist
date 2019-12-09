@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 
-interface Props {
-    
-}
+interface Props {}
 
 class SchedulePage extends Component<Props> {
-    
-    render() {
-        return null;
-    }
+  render() {
+    return null;
+  }
 }

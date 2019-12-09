@@ -46,20 +46,22 @@ class IssueCreaterModalComponent extends Component<
           <div className="create-task-modal-left">
             <AppMenu defaultSelectedKeys={['PROJECT']} onClick={this.handleMenuClick}>
               <AppMenu.Item key="PROJECT">
-              <AppIcon icon="columns" />
-              Task</AppMenu.Item>
+                <AppIcon icon="columns" />
+                Task
+              </AppMenu.Item>
 
               <AppMenu.Item key="TODO">
-              <AppIcon icon="cube" />
-              Todo</AppMenu.Item>
+                <AppIcon icon="cube" />
+                Todo
+              </AppMenu.Item>
             </AppMenu>
           </div>
           <div className="create-task-modal-right">
-             <CreateProjectIssueForm style={{display : this.state.selectedType === 'PROJECT' ? 'block' : 'none'}} />
+            <CreateProjectIssueForm style={{ display: this.state.selectedType === 'PROJECT' ? 'block' : 'none' }} />
 
-           <CreateTodoTaskForm 
-           style={{display : this.state.selectedType === 'TODO' ? 'block' : 'none'}}
-           onCancel={this.props.closeModal}
+            <CreateTodoTaskForm
+              style={{ display: this.state.selectedType === 'TODO' ? 'block' : 'none' }}
+              onCancel={this.props.closeModal}
             />
           </div>
         </div>
@@ -67,7 +69,6 @@ class IssueCreaterModalComponent extends Component<
     );
   }
 }
-
 
 const mapStateToProps = (state: any) => {
   return {};
@@ -79,7 +80,4 @@ const mapDispatchToProps = (dispatch: any) => {
   };
 };
 
-export const IssueCreatorModal = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(IssueCreaterModalComponent);
+export const IssueCreatorModal = connect(mapStateToProps, mapDispatchToProps)(IssueCreaterModalComponent);

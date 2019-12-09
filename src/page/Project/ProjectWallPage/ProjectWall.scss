@@ -61,7 +61,7 @@ $board-card-height: 125px;
   height: $board-card-height;
   cursor: pointer;
   transition: box-shadow 218ms ease-in-out, transform 218ms ease-in-out,
-    -webkit-transform 218ms ease-in-out;
+  -webkit-transform 218ms ease-in-out;
   box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.0470588);
   background-size: cover;
   border-radius: $radius-middle;
@@ -81,9 +81,9 @@ $board-card-height: 125px;
 
   .taskboard-card-info {
     background-image: linear-gradient(
-      180deg,
-      rgba(0, 0, 0, 0.3) 0,
-      transparent
+                    180deg,
+                    rgba(0, 0, 0, 0.3) 0,
+                    transparent
     );
     border-radius: $radius-middle;
     height: 50%;

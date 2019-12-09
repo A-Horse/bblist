@@ -14,10 +14,7 @@ export class Input extends Component<{
   placeholder?: string;
   type?: string;
 }> {
-
-  componentDidMount(): void {
-    
-  }
+  componentDidMount(): void {}
 
   onChange = (event: ChangeEvent<HTMLInputElement>): void => {
     this.props.onChange && this.props.onChange(event.target.value);
@@ -25,7 +22,9 @@ export class Input extends Component<{
 
   buildClassName() {
     const { size = 'middle' } = this.props;
-    return `app-input ${size}  ${this.props.className ? ' ' + this.props.className : ''} ${this.props.whiteHover ? 'white-hover' : ''}`;
+    return `app-input ${size}  ${this.props.className ? ' ' + this.props.className : ''} ${
+      this.props.whiteHover ? 'white-hover' : ''
+    }`;
   }
 
   render() {

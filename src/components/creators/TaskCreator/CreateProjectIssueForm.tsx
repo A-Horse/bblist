@@ -35,9 +35,8 @@ class CreateProjectIssueFormComponent extends Component<
 > {
   state = {
     errorMessages: [],
-    name: '',
+    name: ''
   };
-
 
   createProjectCard(values: any) {
     this.props.actions.createProjectCardRequest({
@@ -68,7 +67,7 @@ class CreateProjectIssueFormComponent extends Component<
                         size="large"
                         value={form.values.title}
                         placeholder="标题"
-                        onChange={(value) => {
+                        onChange={value => {
                           formikBag.setFieldValue('title', value);
                         }}
                       />
@@ -127,7 +126,4 @@ const mapDispatchToProps = (dispatch: any) => {
   };
 };
 
-export const CreateProjectIssueForm = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(CreateProjectIssueFormComponent);
+export const CreateProjectIssueForm = connect(mapStateToProps, mapDispatchToProps)(CreateProjectIssueFormComponent);

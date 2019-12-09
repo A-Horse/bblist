@@ -16,7 +16,7 @@ interface Props {
   boardMap: any;
   projects: ProjectRecord[];
 }
-  
+
 export class ProjectWall extends Component<Props> {
   componentWillMount() {
     return this.props.actions.getProjectsRequest();

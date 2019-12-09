@@ -13,10 +13,7 @@ interface Props {
   project: ProjectRecord;
 }
 
-export class ProjectEpicsComponent extends Component<
-  Props & RouteComponentProps<{ projectId: string }>,
-  {}
-> {
+export class ProjectEpicsComponent extends Component<Props & RouteComponentProps<{ projectId: string }>, {}> {
   componentWillMount() {
     this.props.actions.getProjectKanbansRequest({
       projectId: this.props.match.params.projectId
@@ -24,11 +21,7 @@ export class ProjectEpicsComponent extends Component<
   }
 
   render() {
-    return (
-      <div>
-        trackers
-      </div>
-    );
+    return <div>trackers</div>;
   }
 }
 
@@ -51,9 +44,4 @@ const mapStateToProps = (state: any, props: any) => {
   };
 };
 
-export const ProjectEpics = withRouter(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(ProjectEpicsComponent)
-);
+export const ProjectEpics = withRouter(connect(mapStateToProps, mapDispatchToProps)(ProjectEpicsComponent));

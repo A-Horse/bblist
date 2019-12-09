@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { ActionCreatorsMapObject, AnyAction, bindActionCreators, Dispatch } from 'redux';
 
-import {
-    getProjectKanbanDetailRequest, getProjectKanbansRequest
-} from '../../../actions/project/kanban.action';
+import { getProjectKanbanDetailRequest, getProjectKanbansRequest } from '../../../actions/project/kanban.action';
 import { RootState } from '../../../reducers';
 import { getKanbanOptions, selectKanbanColumns } from '../../../reducers/selector/kanban.selector';
 import { KanbanRecord } from '../../../typings/kanban.typing';
@@ -73,7 +71,4 @@ const mapStateToProps = (state: RootState, props: InputProps) => {
   };
 };
 
-export const ColumnSelect = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ColumnSelectComponent);
+export const ColumnSelect = connect(mapStateToProps, mapDispatchToProps)(ColumnSelectComponent);

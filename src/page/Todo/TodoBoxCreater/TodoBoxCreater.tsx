@@ -33,13 +33,14 @@ export class TodoBoxCreaterForm extends Component<any> {
   render() {
     const { getFieldDecorator } = this.props.form;
     return (
-      <div onClick={(event: any) => {
-        event.stopPropagation();
-        this.setState({ toggle: true });
-      }}>
+      <div
+        onClick={(event: any) => {
+          event.stopPropagation();
+          this.setState({ toggle: true });
+        }}
+      >
         <Icon type="folder-add" />
-          Add Todo Box
-
+        Add Todo Box
         <Modal
           className="todo-box-creater-modal"
           title="Create Todo Box:"
@@ -55,9 +56,7 @@ export class TodoBoxCreaterForm extends Component<any> {
             </FormItem>
 
             <FormItem>
-              <AppButton htmlType="submit">
-                Done
-              </AppButton>
+              <AppButton htmlType="submit">Done</AppButton>
             </FormItem>
           </Form>
         </Modal>
