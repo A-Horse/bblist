@@ -17,11 +17,11 @@ import {
     rankProjectCardInKanbanSuccess
 } from '../actions/project/project-issue.action';
 import { RootState } from '../reducers';
-import { findIssuePositionInColumn } from '../reducers/util/issue.util';
 import {
     ProjectIssue, ProjectIssueRecord, RankProjectCardInKanbanInput
 } from '../typings/project-issue.typing';
 import { makeApiUrl } from '../utils/api';
+import {findIssuePositionInColumn} from "../reducers/selector/card.selector";
 
 export const CREATE_PROJECT_CARD_REQUEST_FN = (action$: Observable<FSAction>) =>
   action$.pipe(

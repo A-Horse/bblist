@@ -26,20 +26,20 @@ interface Props {
   history: History;
   location: Location;
   match: match<{
-    projectId: string;
+    projectID: string;
   }>;
 }
 
 class ProjectPageComponent extends Component<Props> {
   componentDidMount() {
-    const projectId = this.props.match.params.projectId;
+    const projectId = this.props.match.params.projectID;
     this.props.actions.getProjectDetailRequest(projectId);
   }
 
   componentWillReceiveProps(nextProps: any) {}
 
   render() {
-    const { projectId } = this.props.match.params;
+    const { projectID } = this.props.match.params;
     const { project } = this.props;
 
     if (!project) {
@@ -48,19 +48,19 @@ class ProjectPageComponent extends Component<Props> {
 
     return (
       <div className="ProjectPage">
-        <ProjectHeaderBar projectId={this.props.match.params.projectId} />
+        <ProjectHeaderBar projectId={projectID} />
 
         <div className="ProjectPage--main">
           <ProjectSideBar match={this.props.match} />
 
           <div className="ProjectPage--right-content">
             <Switch>
-              <Route path="/project/:projectId/setting" render={props => <ProjectSetting />} />
-              <Route path="/project/:projectId/kanban/:kanbanId" render={props => <ProjectKanban />} />
-              <Route path="/project/:projectId/kanban" render={props => <ProjectKanban />} />
-              <Route path="/project/:projectId/epics" render={props => <ProjectEpics />} />
-              <Route path="/project/:projectId/issues" render={props => <Issues />} />
-              <Route path="/project/:projectId/admin" render={props => <ProjectAdmin />} />
+              <Route path="/project/:projectId/setting" render={() => <ProjectSetting />} />
+              <Route path="/project/:projectId/kanban/:kanbanId" render={()  => <ProjectKanban />} />
+              <Route path="/project/:projectId/kanban" render={()  => <ProjectKanban />} />
+              <Route path="/project/:projectId/epics" render={()  => <ProjectEpics />} />
+              <Route path="/project/:projectId/issues" render={()  => <Issues />} />
+              <Route path="/project/:projectId/admin" render={()  => <ProjectAdmin />} />
             </Switch>
           </div>
         </div>
@@ -81,14 +81,13 @@ const mapDispatchToProps = (dispatch: any) => {
 };
 
 const mapStateToProps = (state: RootState, props: Props) => {
-  const { projectId } = props.match.params;
+  const { projectID } = props.match.params;
 
   return {
-    project: state.project.get('projectMap').get(projectId) as ProjectRecord
+    project: state.project.get('projectMap').get(projectID) as ProjectRecord
   };
 };
 
-// TODO
 export const ProjectPage: any = withRouter(connect(mapStateToProps, mapDispatchToProps)(ProjectPageComponent));
 
 export default ProjectPage;

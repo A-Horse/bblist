@@ -2,43 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8a388f91-03e5-4930-be99-236ae51594b3" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/components/project/column/KanbanColumnSelector/KanbanColumnSelector.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/chenf.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/chenf.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/project/issue/IssueDetail/IssueDetail.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/project/issue/IssueDetail/IssueDetail.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/project/issue/IssueDetail/IssueDetailBread/IssueDetailBread.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/project/issue/IssueDetail/IssueDetailBread/IssueDetailBread.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/project/issue/IssueDetail/IssueDetailModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/project/issue/IssueDetail/IssueDetailModal.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/Project/KanbanCreator/KanbanCreator.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/Project/KanbanCreator/KanbanCreator.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/Project/KanbanSettingModal/KanbanColumnCreator/KanbanColumnCreator.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/Project/KanbanSettingModal/KanbanColumnCreator/KanbanColumnCreator.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/Project/KanbanSettingModal/KanbanColumnPanel/KanbanColumnPanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/Project/KanbanSettingModal/KanbanColumnPanel/KanbanColumnPanel.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/Project/KanbanSettingModal/KanbanSettingModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/Project/KanbanSettingModal/KanbanSettingModal.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/Project/ProjectCreator/ProjectCreator.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/Project/ProjectCreator/ProjectCreator.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/Project/ProjectPage/Issues/Issues.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/Project/ProjectPage/Issues/Issues.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/Project/ProjectPage/Issues/Issues.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/Project/ProjectPage/Issues/Issues.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/Project/ProjectPage/ProjectAdmin/KanbanSettingPanel/KanbanSettingPanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/Project/ProjectPage/ProjectAdmin/KanbanSettingPanel/KanbanSettingPanel.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/Project/ProjectPage/ProjectAdmin/ProjectAdmin.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/Project/ProjectPage/ProjectAdmin/ProjectAdmin.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/Project/ProjectPage/ProjectEpics/ProjectEpics.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/Project/ProjectPage/ProjectEpics/ProjectEpics.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/Project/ProjectPage/ProjectHeaderBar/ProjectAddButton.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/Project/ProjectPage/ProjectHeaderBar/ProjectAddButton.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/Project/ProjectPage/ProjectHeaderBar/ProjectAddButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/Project/ProjectPage/ProjectHeaderBar/ProjectAddButton.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/Project/ProjectPage/ProjectHeaderBar/ProjectHeaderBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/Project/ProjectPage/ProjectHeaderBar/ProjectHeaderBar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/Project/ProjectPage/ProjectKanban/Kanban/Column/ColumnHeaderDropDown/ColumnHeaderDropDown.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/Project/ProjectPage/ProjectKanban/Kanban/Column/ColumnHeaderDropDown/ColumnHeaderDropDown.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/Project/ProjectPage/ProjectKanban/Kanban/Column/ColumnHeaderDropDown/ColumnHeaderDropDown.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/Project/ProjectPage/ProjectKanban/Kanban/Column/ColumnHeaderDropDown/ColumnHeaderDropDown.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/Project/ProjectPage/ProjectKanban/Kanban/Column/KanbanColumn.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/Project/ProjectPage/ProjectKanban/Kanban/Column/KanbanColumn.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/Project/ProjectPage/ProjectKanban/Kanban/Column/KanbanColumn.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/Project/ProjectPage/ProjectKanban/Kanban/Column/KanbanColumn.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/Project/ProjectPage/ProjectKanban/Kanban/Column/column-data-fetcher.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/Project/ProjectPage/ProjectKanban/Kanban/Column/column-data-fetcher.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/Project/ProjectPage/ProjectKanban/Kanban/Kanban.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/Project/ProjectPage/ProjectKanban/Kanban/Kanban.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/Project/ProjectPage/ProjectKanban/KanbanHeaderBar/KanbanHeaderBar.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/Project/ProjectPage/ProjectKanban/KanbanHeaderBar/KanbanHeaderBar.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/Project/ProjectPage/ProjectKanban/KanbanHeaderBar/KanbanHeaderBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/Project/ProjectPage/ProjectKanban/KanbanHeaderBar/KanbanHeaderBar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/Project/ProjectPage/ProjectKanban/NoKanbanGuide/NoKanbanGuide.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/Project/ProjectPage/ProjectKanban/NoKanbanGuide/NoKanbanGuide.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/Project/ProjectPage/ProjectKanban/ProjectKanban.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/Project/ProjectPage/ProjectKanban/ProjectKanban.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/epic/project-issue.epic.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/epic/project-issue.epic.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/page/Project/ProjectPage/ProjectPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/Project/ProjectPage/ProjectPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/Project/ProjectPage/ProjectSetting/ProjectSetting.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/Project/ProjectPage/ProjectSetting/ProjectSetting.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/Project/ProjectPage/ProjectSideBar/ProjectSideBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/Project/ProjectPage/ProjectSideBar/ProjectSideBar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/Project/ProjectPage/modals/CreateKanbanCardModal/CreateKanbanCardModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/Project/ProjectPage/modals/CreateKanbanCardModal/CreateKanbanCardModal.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/Project/ProjectPage/modals/KanbanSelectorModal/KanbanSelectorModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/Project/ProjectPage/modals/KanbanSelectorModal/KanbanSelectorModal.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/Project/ProjectWallPage/BoardWallAside/BoardWallAside.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/Project/ProjectWallPage/BoardWallAside/BoardWallAside.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/Project/ProjectWallPage/ProjectWall.container.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/Project/ProjectWallPage/ProjectWall.container.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/Project/ProjectWallPage/ProjectWall.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/Project/ProjectWallPage/ProjectWall.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/Project/ProjectWallPage/ProjectWall.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/Project/ProjectWallPage/ProjectWall.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/Project/util/project-cover.util.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/Project/util/project-cover.util.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/reducers/selector/card.selector.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/reducers/selector/card.selector.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/reducers/selector/kanban.selector.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/reducers/selector/kanban.selector.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/reducers/util/issue.util.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/reducers/util/project.util.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/reducers/selector/project.selector.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,8 +40,13 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../backend-octopus" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+    <property name="settings.editor.selected.configurable" value="watcher.settings" />
     <property name="ts.external.directory.path" value="C:\Users\chenf\workspace\backend-octopus\node_modules\typescript\lib" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\chenf\workspace\web-octopus\src\reducers\selector" />
+    </key>
   </component>
   <component name="ServiceViewManager">
     <option name="viewStates">
@@ -99,6 +77,7 @@
       <workItem from="1575811737922" duration="755000" />
       <workItem from="1575901676199" duration="408000" />
       <workItem from="1575902380487" duration="1438000" />
+      <workItem from="1575908331859" duration="1081000" />
     </task>
     <task id="LOCAL-00001" summary="feat: add callback wen update detail">
       <created>1575524065180</created>
@@ -133,29 +112,45 @@
     <option name="LAST_COMMIT_MESSAGE" value="chore:add docker file" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="841" y="387" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1575909313507">
+      <screen x="0" y="0" width="2194" height="1194" />
+    </state>
+    <state x="841" y="387" key="#com.intellij.fileTypes.FileTypeChooser/0.0.2194.1194@0.0.2194.1194" timestamp="1575909313507" />
+    <state x="828" y="344" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1575908808139">
+      <screen x="0" y="0" width="2194" height="1194" />
+    </state>
+    <state x="828" y="344" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.2194.1194@0.0.2194.1194" timestamp="1575908808139" />
     <state x="205" y="106" width="1783" height="982" key="CommitChangelistDialog2" timestamp="1575813021691">
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
     <state x="205" y="106" key="CommitChangelistDialog2/0.0.2194.1194/-1600.1080.1600.860@0.0.2194.1194" timestamp="1575813021691" />
     <state x="205" y="106" width="1783" height="982" key="CommitChangelistDialog2/0.0.2194.1194@0.0.2194.1194" timestamp="1575524064540" />
+    <state x="726" y="367" key="EditFileWatcherDialog" timestamp="1575908451932">
+      <screen x="0" y="0" width="2194" height="1194" />
+    </state>
+    <state x="726" y="367" key="EditFileWatcherDialog/0.0.2194.1194@0.0.2194.1194" timestamp="1575908451932" />
     <state x="878" y="352" key="FileChooserDialogImpl" timestamp="1575730485709">
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
     <state x="878" y="352" key="FileChooserDialogImpl/0.0.2194.1194/-1600.1080.1600.860@0.0.2194.1194" timestamp="1575730485709" />
-    <state x="599" y="239" key="SettingsEditor" timestamp="1575902531512">
+    <state x="599" y="239" key="SettingsEditor" timestamp="1575908452473">
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
     <state x="599" y="239" key="SettingsEditor/0.0.2194.1194/-1600.1080.1600.860@0.0.2194.1194" timestamp="1575737395220" />
-    <state x="599" y="239" key="SettingsEditor/0.0.2194.1194@0.0.2194.1194" timestamp="1575902531512" />
-    <state x="766" y="180" width="720" height="834" key="find.popup" timestamp="1575739364429">
+    <state x="599" y="239" key="SettingsEditor/0.0.2194.1194@0.0.2194.1194" timestamp="1575908452473" />
+    <state x="766" y="180" width="720" height="834" key="find.popup" timestamp="1575908664575">
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
-    <state x="766" y="180" width="720" height="834" key="find.popup/0.0.2194.1194@0.0.2194.1194" timestamp="1575739364429" />
-    <state x="760" y="316" width="672" height="678" key="search.everywhere.popup" timestamp="1575907252641">
+    <state x="766" y="180" width="720" height="834" key="find.popup/0.0.2194.1194@0.0.2194.1194" timestamp="1575908664575" />
+    <state x="754" y="279" key="run.anything.popup" timestamp="1575908671062">
+      <screen x="0" y="0" width="2194" height="1194" />
+    </state>
+    <state x="754" y="279" key="run.anything.popup/0.0.2194.1194@0.0.2194.1194" timestamp="1575908671062" />
+    <state x="760" y="316" width="672" height="678" key="search.everywhere.popup" timestamp="1575909283025">
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
     <state x="760" y="316" width="672" height="678" key="search.everywhere.popup/0.0.2194.1194/-1600.1080.1600.860@0.0.2194.1194" timestamp="1575737079862" />
-    <state x="760" y="316" width="672" height="678" key="search.everywhere.popup/0.0.2194.1194@0.0.2194.1194" timestamp="1575907252641" />
+    <state x="760" y="316" width="672" height="678" key="search.everywhere.popup/0.0.2194.1194@0.0.2194.1194" timestamp="1575909283025" />
   </component>
   <component name="masterDetails">
     <states>

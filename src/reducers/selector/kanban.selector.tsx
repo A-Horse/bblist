@@ -28,8 +28,8 @@ export function getKanbans(project: ProjectRecord | undefined, kanbanMap: Kanban
     .filter(kanban => !!kanban);
 }
 
-export function selectKanbanColumns(state: RootState, kanbanId: string): List<KanbanColumnRecord> | null {
-  const kanban = state.project.get('kanbanMap').get(kanbanId);
+export function selectKanbanColumns(state: RootState, kanbanID: string): List<KanbanColumnRecord> | null {
+  const kanban = state.project.get('kanbanMap').get(kanbanID);
 
   if (!kanban || !kanban.get('columns')) {
     return null;
