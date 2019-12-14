@@ -23,6 +23,7 @@ import { IssueDetailBread } from './IssueDetailBread/IssueDetailBread';
 
 export interface InputProps {
   issueID: string;
+  kanbanID?: string;
   projectID: string;
 }
 
@@ -106,7 +107,7 @@ class IssueDetailComponent extends Component<
 
     return (
       <div className="IssueDetail">
-        <IssueDetailBread projectID={this.props.projectID} issueID={this.props.issueID} />
+        <IssueDetailBread kanbanID={this.props.kanbanID} projectID={this.props.projectID} issueID={this.props.issueID} />
         <FormField>
           <Input size="large" value={issue.get('title')} onChange={this.onFieldChange('title')} />
         </FormField>

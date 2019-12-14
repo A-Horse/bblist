@@ -3,12 +3,11 @@ import { useSelector } from 'react-redux';
 
 import { RootState } from '../../../../../reducers';
 import { getProjectFromState } from '../../../../../reducers/selector/project.selector';
-import {selectKanbanColumns} from "../../../../../reducers/selector/kanban.selector";
 import { ColumnSelect } from '../../../ColumnSelect/ColumnSelect';
 
 interface InputProp {
   projectID: string;
-  kanbanID: string;
+  kanbanID?: string;
   issueID: string;
 }
 

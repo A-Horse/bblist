@@ -59,10 +59,10 @@ class KanbanComponent extends Component<
         <DndProvider backend={HTML5Backend}>
           <Route
             path="/project/:projectID/kanban/:kanbanId"
-            render={(props: RouteComponentProps<{ projectID: string; kanbanId: string; issueId: string }>) => {
+            render={(props: RouteComponentProps<{ projectID: string; kanbanID: string; issueId: string }>) => {
               const query = parseQueryParams(props.location.search);
               if (query.issueId) {
-                return <IssueDetailModal issueId={query.issueId} projectID={props.match.params.projectID} />;
+                return <IssueDetailModal kanbanID={query.kanbanID} issueId={query.issueId} projectID={props.match.params.projectID} />;
               }
               return null;
             }}

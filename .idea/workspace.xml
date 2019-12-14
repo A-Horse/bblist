@@ -3,11 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="8a388f91-03e5-4930-be99-236ae51594b3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/creators/TaskCreator/CreateProjectIssueForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/creators/TaskCreator/CreateProjectIssueForm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/project/column/KanbanColumnSelector/KanbanColumnSelector.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/project/issue/IssueDetail/IssueDetailBread/IssueDetailBread.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/project/issue/IssueDetail/IssueDetailBread/IssueDetailBread.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/stateful-component/ColumnSelect/ColumnSelect.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/project/ColumnSelect/ColumnSelect.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/stateful-component/KanbanSelect/KanbanSelect.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/project/KanbanSelect/KanbanSelect.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,6 +71,7 @@
       <workItem from="1575902380487" duration="1438000" />
       <workItem from="1575908331859" duration="1460000" />
       <workItem from="1576288559645" duration="1366000" />
+      <workItem from="1576318671344" duration="235000" />
     </task>
     <task id="LOCAL-00001" summary="feat: add callback wen update detail">
       <created>1575524065180</created>
