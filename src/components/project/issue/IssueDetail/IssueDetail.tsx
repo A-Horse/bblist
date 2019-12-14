@@ -5,9 +5,7 @@ import { connect } from 'react-redux';
 import { RouteComponentProps, RouterProps, withRouter } from 'react-router';
 import { withToastManager } from 'react-toast-notifications';
 import { ActionCreatorsMapObject, AnyAction, bindActionCreators, Dispatch } from 'redux';
-
 import { AnyHTMLElement } from '@stencil/core/dist/declarations';
-
 import {
   changeIssueDirect,
   getProjectIssueDetailRequest,
@@ -20,6 +18,7 @@ import { FormField } from '../../../widget/FormField/FormField';
 import Input from '../../../widget/Input/Input';
 import { AppTextArea } from '../../../widget/TextArea/TextArea';
 import { IssueDetailBread } from './IssueDetailBread/IssueDetailBread';
+import { IssueDetailLeft } from './IssueDetailLeft/IssueDetailLeft';
 
 export interface InputProps {
   issueID: string;
@@ -119,6 +118,8 @@ class IssueDetailComponent extends Component<
             onChange={this.onFieldChange('content')}
           />
         </FormField>
+
+        <IssueDetailLeft />
 
         <div>
           <AppButton disabled={!this.state.formDirty} onClick={this.onUpdate} type="primary">

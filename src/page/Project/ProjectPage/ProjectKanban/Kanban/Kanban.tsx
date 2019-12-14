@@ -11,7 +11,7 @@ import { ActionCreatorsMapObject, AnyAction, bindActionCreators, Dispatch } from
 
 import { getProjectKanbanDetailRequest } from '../../../../../actions/project/kanban.action';
 import Loading from '../../../../../components/Loading';
-import { IssueDetailModal } from '../../../../../components/project/issue/IssueDetail/IssueDetailModal';
+import { IssueDetailModal } from '../../../../../components/project/Issue/IssueDetail/IssueDetailModal';
 import { RootState } from '../../../../../reducers';
 import { selectKanbanColumns } from '../../../../../reducers/selector/kanban.selector';
 import { KanbanColumnRecord } from '../../../../../typings/kanban-column.typing';

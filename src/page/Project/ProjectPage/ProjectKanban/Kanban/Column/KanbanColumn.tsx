@@ -11,7 +11,7 @@ import {
   getColumnCardsRequest,
   rankProjectCardInKanbanRequest
 } from '../../../../../../actions/project/project-issue.action';
-import { ProjectIssue } from '../../../../../../components/project/issue/ProjectIssue/ProjectIssue';
+import { ProjectIssue } from '../../../../../../components/project/Issue/ProjectIssue/ProjectIssue';
 import { AppButton } from '../../../../../../components/widget/Button';
 import { RootState } from '../../../../../../reducers';
 import { selectColumnCards } from '../../../../../../reducers/selector/card.selector';
