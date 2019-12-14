@@ -2,16 +2,15 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { ActionCreatorsMapObject, AnyAction, bindActionCreators, Dispatch } from 'redux';
 
-import { getProjectKanbanDetailRequest, getProjectKanbansRequest } from '../../../actions/project/kanban.action';
+import { getProjectKanbanDetailRequest } from '../../../actions/project/kanban.action';
 import { RootState } from '../../../reducers';
-import { getKanbanOptions, selectKanbanColumns } from '../../../reducers/selector/kanban.selector';
-import { KanbanRecord } from '../../../typings/kanban.typing';
+import { selectKanbanColumns } from '../../../reducers/selector/kanban.selector';
 import { SelectOption } from '../../../typings/select.typing';
 import { generateColumnOptions } from '../../../utils/option';
 import { AppSelect } from '../../widget/AppSelect';
 
 interface InputProps {
-  kanbanId?: string;
+  kanbanID?: string;
   onChange: any;
 }
 
@@ -28,11 +27,11 @@ class ColumnSelectComponent extends Component<InputProps & InjectProps> {
   }
 
   fetchColumns() {
-    if (!this.props.kanbanId) {
+    if (!this.props.kanbanID) {
       return;
     }
     this.props.actions.getProjectKanbanDetailRequest({
-      kanbanId: this.props.kanbanId
+      kanbanId: this.props.kanbanID
     });
   }
 
@@ -61,8 +60,8 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
 
 const mapStateToProps = (state: RootState, props: InputProps) => {
   let columnOptions: SelectOption[] = [];
-  if (props.kanbanId) {
-    const columns = selectKanbanColumns(state, props.kanbanId);
+  if (props.kanbanID) {
+    const columns = selectKanbanColumns(state, props.kanbanID);
     columnOptions = columns ? generateColumnOptions(columns) : [];
   }
 

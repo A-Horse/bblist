@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../../../../reducers';
 import { getProjectFromState } from '../../../../../reducers/selector/project.selector';
 import {selectKanbanColumns} from "../../../../../reducers/selector/kanban.selector";
+import { ColumnSelect } from '../../../ColumnSelect/ColumnSelect';
 
 interface InputProp {
   projectID: string;
@@ -16,11 +17,11 @@ export function IssueDetailBread(props: InputProp) {
     return getProjectFromState(state, props.projectID);
   });
 
-  const columns =  useSelector((state: RootState) => selectKanbanColumns(state, props.kanbanID))
-
   if (!project) {
     return null;
   }
 
-  return <div>{project.get('name')}</div>;
+  return <div>{project.get('name')}
+    <ColumnSelect kanbanID={props.kanbanID} />
+  </div>;
 }

@@ -7,8 +7,8 @@ import { createProjectCardRequest } from '../../../actions/project/project-issue
 import { KanbanRecord } from '../../../typings/kanban.typing';
 import { ProjectRecord } from '../../../typings/project.typing';
 import { SelectOption } from '../../../typings/select.typing';
-import { ColumnSelect } from '../../stateful-component/ColumnSelect/ColumnSelect';
-import { KanbanSelect } from '../../stateful-component/KanbanSelect/KanbanSelect';
+import { ColumnSelect } from '../../project/ColumnSelect/ColumnSelect';
+import { KanbanSelect } from '../../project/KanbanSelect/KanbanSelect';
 import { AppInput } from '../../widget/AppInput';
 import { AppButton } from '../../widget/Button';
 import { FormField } from '../../widget/FormField/FormField';
@@ -94,7 +94,7 @@ class CreateProjectIssueFormComponent extends Component<
                   render={({ field, form }: FieldProps<FormikValues>) => (
                     <FormField name="所在列表">
                       <ColumnSelect
-                        kanbanId={form.values.kanbanId}
+                        kanbanID={form.values.kanbanId}
                         onChange={(selected: SelectOption) => formikBag.setFieldValue('columnId', selected.value)}
                       />
                       {form.touched.name && form.errors.name && form.errors.name}

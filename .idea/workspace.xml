@@ -2,16 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8a388f91-03e5-4930-be99-236ae51594b3" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/project/column/KanbanColumnSelector/KanbanColumnSelector.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/chenf.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/chenf.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/creators/TaskCreator/CreateProjectIssueForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/creators/TaskCreator/CreateProjectIssueForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/project/column/KanbanColumnSelector/KanbanColumnSelector.tsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/project/issue/IssueDetail/IssueDetailBread/IssueDetailBread.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/project/issue/IssueDetail/IssueDetailBread/IssueDetailBread.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/epic/project-issue.epic.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/epic/project-issue.epic.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/Project/ProjectPage/ProjectPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/Project/ProjectPage/ProjectPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/reducers/selector/card.selector.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/reducers/selector/card.selector.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/reducers/selector/kanban.selector.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/reducers/selector/kanban.selector.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/reducers/util/issue.util.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/reducers/util/project.util.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/reducers/selector/project.selector.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/stateful-component/ColumnSelect/ColumnSelect.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/project/ColumnSelect/ColumnSelect.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/stateful-component/KanbanSelect/KanbanSelect.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/project/KanbanSelect/KanbanSelect.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,11 +36,12 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../backend-octopus" />
-    <property name="settings.editor.selected.configurable" value="watcher.settings" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="ts.external.directory.path" value="C:\Users\chenf\workspace\backend-octopus\node_modules\typescript\lib" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\chenf\workspace\web-octopus\src\components\project" />
       <recent name="C:\Users\chenf\workspace\web-octopus\src\reducers\selector" />
     </key>
   </component>
@@ -77,7 +74,8 @@
       <workItem from="1575811737922" duration="755000" />
       <workItem from="1575901676199" duration="408000" />
       <workItem from="1575902380487" duration="1438000" />
-      <workItem from="1575908331859" duration="1081000" />
+      <workItem from="1575908331859" duration="1460000" />
+      <workItem from="1576288559645" duration="1366000" />
     </task>
     <task id="LOCAL-00001" summary="feat: add callback wen update detail">
       <created>1575524065180</created>
@@ -100,7 +98,14 @@
       <option name="project" value="LOCAL" />
       <updated>1575730165065</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="chore: refactor code">
+      <created>1575909440376</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1575909440376</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -109,7 +114,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="feat: add callback wen update detail" />
     <MESSAGE value="chore:add docker file" />
-    <option name="LAST_COMMIT_MESSAGE" value="chore:add docker file" />
+    <MESSAGE value="chore: refactor code" />
+    <option name="LAST_COMMIT_MESSAGE" value="chore: refactor code" />
   </component>
   <component name="WindowStateProjectService">
     <state x="841" y="387" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1575909313507">
@@ -120,11 +126,11 @@
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
     <state x="828" y="344" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.2194.1194@0.0.2194.1194" timestamp="1575908808139" />
-    <state x="205" y="106" width="1783" height="982" key="CommitChangelistDialog2" timestamp="1575813021691">
+    <state x="205" y="106" width="1783" height="982" key="CommitChangelistDialog2" timestamp="1575909439599">
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
     <state x="205" y="106" key="CommitChangelistDialog2/0.0.2194.1194/-1600.1080.1600.860@0.0.2194.1194" timestamp="1575813021691" />
-    <state x="205" y="106" width="1783" height="982" key="CommitChangelistDialog2/0.0.2194.1194@0.0.2194.1194" timestamp="1575524064540" />
+    <state x="205" y="106" width="1783" height="982" key="CommitChangelistDialog2/0.0.2194.1194@0.0.2194.1194" timestamp="1575909439599" />
     <state x="726" y="367" key="EditFileWatcherDialog" timestamp="1575908451932">
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
@@ -133,24 +139,24 @@
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
     <state x="878" y="352" key="FileChooserDialogImpl/0.0.2194.1194/-1600.1080.1600.860@0.0.2194.1194" timestamp="1575730485709" />
-    <state x="599" y="239" key="SettingsEditor" timestamp="1575908452473">
+    <state x="599" y="239" key="SettingsEditor" timestamp="1576290655261">
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
     <state x="599" y="239" key="SettingsEditor/0.0.2194.1194/-1600.1080.1600.860@0.0.2194.1194" timestamp="1575737395220" />
-    <state x="599" y="239" key="SettingsEditor/0.0.2194.1194@0.0.2194.1194" timestamp="1575908452473" />
-    <state x="766" y="180" width="720" height="834" key="find.popup" timestamp="1575908664575">
+    <state x="599" y="239" key="SettingsEditor/0.0.2194.1194@0.0.2194.1194" timestamp="1576290655261" />
+    <state x="766" y="180" width="720" height="834" key="find.popup" timestamp="1576290500187">
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
-    <state x="766" y="180" width="720" height="834" key="find.popup/0.0.2194.1194@0.0.2194.1194" timestamp="1575908664575" />
+    <state x="766" y="180" width="720" height="834" key="find.popup/0.0.2194.1194@0.0.2194.1194" timestamp="1576290500187" />
     <state x="754" y="279" key="run.anything.popup" timestamp="1575908671062">
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
     <state x="754" y="279" key="run.anything.popup/0.0.2194.1194@0.0.2194.1194" timestamp="1575908671062" />
-    <state x="760" y="316" width="672" height="678" key="search.everywhere.popup" timestamp="1575909283025">
+    <state x="760" y="316" width="672" height="678" key="search.everywhere.popup" timestamp="1576290653131">
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
     <state x="760" y="316" width="672" height="678" key="search.everywhere.popup/0.0.2194.1194/-1600.1080.1600.860@0.0.2194.1194" timestamp="1575737079862" />
-    <state x="760" y="316" width="672" height="678" key="search.everywhere.popup/0.0.2194.1194@0.0.2194.1194" timestamp="1575909283025" />
+    <state x="760" y="316" width="672" height="678" key="search.everywhere.popup/0.0.2194.1194@0.0.2194.1194" timestamp="1576290653131" />
   </component>
   <component name="masterDetails">
     <states>
