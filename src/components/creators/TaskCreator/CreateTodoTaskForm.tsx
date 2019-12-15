@@ -1,15 +1,13 @@
 import './CreateTodoTaskForm.scss';
 
-import { Form, Input, Modal } from 'antd';
+import { Form } from 'antd';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { makeActionRequestCollection } from '../../../actions/actions';
 import { AppButton } from '../../../components/widget/Button';
-import { AppRangePicker } from '../../widget/DatePicker/DatePicker';
 
-const FormItem = Form.Item;
 
 class CreateTodoTaskFormBase extends Component<
   {
@@ -38,7 +36,6 @@ class CreateTodoTaskFormBase extends Component<
   };
 
   render() {
-    const { getFieldDecorator } = this.props.form;
     return (
       <div style={this.props.style} className="CreateTodoTaskForm">
         <Form onSubmit={this.handleSubmit}>
