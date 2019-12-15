@@ -6,10 +6,10 @@ import { Link } from 'react-router-dom';
 
 import { LogoBan } from '../../components/commons/LogoBan/LogoBan';
 import { ErrorMsg } from '../../components/ErrorMsg/ErrorMsg';
-import { Button } from '../../components/widget/Button/Button';
 import { Input } from '../../components/widget/Input/Input';
 import { updateTitle } from '../../services/title';
 import { validateFormValue } from '../../services/validate-strategy';
+import { AppButton } from '../../components/widget/AppButton';
 
 class SignUp extends Component<any, any> {
   state = {
@@ -89,9 +89,9 @@ class SignUp extends Component<any, any> {
 
           <ErrorMsg messages={R.values(errorMessages)} />
 
-          <Button className="signup-button" type="submit" styleType="primary" size="large">
+          <AppButton className="signup-button" htmlType="submit">
             Sign Up
-          </Button>
+          </AppButton>
         </form>
 
         <div className="signin-tip">

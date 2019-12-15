@@ -7,7 +7,7 @@ import { bindActionCreators } from 'redux';
 
 import { makeActionRequestCollection } from '../../../actions/actions';
 import { AppButton } from '../../../components/widget/Button';
-import { AppRangePicker } from '../../widget/Datepicker/Datepicker';
+import { AppRangePicker } from '../../widget/DatePicker/DatePicker';
 
 const FormItem = Form.Item;
 
@@ -42,18 +42,7 @@ class CreateTodoTaskFormBase extends Component<
     return (
       <div style={this.props.style} className="CreateTodoTaskForm">
         <Form onSubmit={this.handleSubmit}>
-          <FormItem label="content" style={{ width: '200px' }}>
-            {getFieldDecorator('content', {
-              rules: [{ required: true, message: 'Please input todo task content.' }]
-            })(<Input type="text" />)}
-          </FormItem>
-
-          <FormItem label="start/end date">
-            {getFieldDecorator('deadline', {
-              rules: []
-            })(<AppRangePicker />)}
-          </FormItem>
-
+          
           <div className="app-button-group">
             <AppButton onClick={this.props.onCancel}>Cancel</AppButton>
 

@@ -8,9 +8,9 @@ import { bindActionCreators } from 'redux';
 import { makeActionRequestCollection } from '../../../actions/actions';
 import { AppIcon } from '../../widget/Icon';
 import { AppMenu } from '../../widget/Menu/Menu';
-import { AppModal } from '../../widget/Modal';
 import { CreateProjectIssueForm } from './CreateProjectIssueForm';
 import { CreateTodoTaskForm } from './CreateTodoTaskForm';
+import { AppModal } from '../../widget/AppModal';
 
 class IssueCreaterModalComponent extends Component<
   {
@@ -35,12 +35,8 @@ class IssueCreaterModalComponent extends Component<
   render() {
     return (
       <AppModal
-        title="Create Task"
-        maskClosable={false}
-        onCancel={this.props.closeModal}
-        visible={this.props.modalVisible}
-        footer={null}
-        closable={false}
+        onRequestClose={this.props.closeModal}
+        isOpen={this.props.modalVisible}
       >
         <div className="create-task-modal-content">
           <div className="create-task-modal-left">

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Input from '../../../components/widget/Input/Input';
-import { Button } from '../../../components/widget/Button/Button';
 import PropTypes from 'prop-types';
 
 import '../../../style/page/setting/profile.scss';
@@ -35,21 +34,7 @@ export default class Profile extends Component {
               name="profile-username"
               className="input"
             />
-            <Button
-              className="update-button"
-              styleType="primary"
-              onClick={() => {
-                this.props.actions.UPDATE_USER_REQUEST({
-                  username: this.state.username
-                });
-              }}
-              size="middle"
-              disable={
-                !this.state.username || this.state.username === this.props.user.get('username')
-              }
-            >
-              Update
-            </Button>
+           
           </div>
         </section>
       </section>

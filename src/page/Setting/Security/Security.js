@@ -1,7 +1,5 @@
-//
 import React, { Component } from 'react';
 import Input from '../../../components/widget/Input/Input';
-import { Button } from '../../../components/widget/Button/Button';
 import { bindActionCreators } from 'redux';
 import { makeActionRequestCollection } from '../../../actions/actions';
 import { connect } from 'react-redux';
@@ -55,14 +53,7 @@ class SettingSecurity extends Component {
             />
           </div>
 
-          <Button
-            className="signin-button"
-            styleType="primary"
-            onClick={this.updatePassword}
-            size="middle"
-          >
-            Update Passoword
-          </Button>
+          
         </section>
       </section>
     );

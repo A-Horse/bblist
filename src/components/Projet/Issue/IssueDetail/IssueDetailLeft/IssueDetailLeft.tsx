@@ -1,4 +1,3 @@
-import './IssueDetail.scss';
 
 import React, { Component } from 'react';
 import { AppButton } from '../../../../widget/AppButton';

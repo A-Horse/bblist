@@ -1,5 +1,13 @@
-import { DatePicker } from 'antd';
+import React, { Component } from 'react';
+import DateTimePicker from 'react-datetime-picker';
 
-const { RangePicker } = DatePicker;
+interface InputProps {
+  onChange: Function;
+  value: any | null;
+}
 
-export const AppRangePicker = RangePicker;
+export class AppDateTimePicker extends Component<InputProps> {
+  render() {
+    return <DateTimePicker onChange={this.props.onChange} value={this.props.value} />;
+  }
+}

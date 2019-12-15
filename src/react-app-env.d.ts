@@ -1,4 +1,7 @@
 /// <reference types="react-scripts" />
+
+import any from "react-time-picker";
+
 declare var process: {
   env: {
     NODE_ENV: string;
