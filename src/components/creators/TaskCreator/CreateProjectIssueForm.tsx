@@ -7,8 +7,8 @@ import { createProjectCardRequest } from '../../../actions/project/project-issue
 import { KanbanRecord } from '../../../typings/kanban.typing';
 import { ProjectRecord } from '../../../typings/project.typing';
 import { SelectOption } from '../../../typings/select.typing';
-import { ColumnSelect } from '../../project/ColumnSelect/ColumnSelect';
-import { KanbanSelect } from '../../project/KanbanSelect/KanbanSelect';
+import { ColumnSelect } from '../../Projet/ColumnSelect/ColumnSelect';
+import { KanbanSelect } from '../../Projet/KanbanSelect/KanbanSelect';
 import { AppInput } from '../../widget/AppInput';
 import { AppButton } from '../../widget/Button';
 import { FormField } from '../../widget/FormField/FormField';
