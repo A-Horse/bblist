@@ -6,8 +6,8 @@ import { Route, RouteComponentProps, withRouter } from 'react-router-dom';
 import { ActionCreatorsMapObject, AnyAction, bindActionCreators, Dispatch } from 'redux';
 
 import { getProjectIssuesRequest } from '../../../../actions/project/project-issue.action';
-import { FlatIssue } from '../../../../components/Projet/Issue/FlatIssue/FlatIssue';
-import { IssueDetail } from '../../../../components/Projet/Issue/IssueDetail/IssueDetail';
+import { FlatIssue } from '../../../../components/Project/Issue/FlatIssue/FlatIssue';
+import { IssueDetail } from '../../../../components/Project/Issue/IssueDetail/IssueDetail';
 import { AppPagination } from '../../../../components/widget/Pagination';
 import { RootState } from '../../../../reducers';
 import { ProjectIssueRecord } from '../../../../typings/project-issue.typing';
