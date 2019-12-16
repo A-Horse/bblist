@@ -91,7 +91,7 @@ export default class App extends Component<any> {
             />
 
             <Route exact path="/projects" component={ProjectWallPage} />
-            <Route path="/project/:projectId" component={ProjectPage} />
+            <Route path="/project/:projectID" component={ProjectPage} />
 
             <Route path="/todo/:boxId" component={TodoPage} />
             <Route

@@ -1,44 +1,42 @@
-import './IssueDetailModal.scss';
-
 import React, { Component } from 'react';
-import { RouteComponentProps, RouterProps, withRouter } from 'react-router';
 import { ModalHeader } from '../widget/ModalHeader/ModalHeader';
 import { AppModal } from '../widget/AppModal';
 import { AppDateTimePicker } from '../widget/DatePicker/DatePicker';
+import { AppButton } from '../widget/AppButton';
 
 interface InputProps {
-  issueId: string;
-  projectID: string;
-  kanbanID: string;
+  onConfirm: Function;
+  isOpen: boolean;
 }
 
 interface State {
-  date: Date | null
+  value: Date | undefined;
 }
 
-
-export class DeadlineSelectDialog extends Component<InputProps, State> {
-
+export class DateTimeSelectDialog extends Component<InputProps, State> {
   state = {
-    date: null
+    value: undefined
+  };
+
+  closeModal = () => {};
+
+  onChange = (date: Date) => {
+    this.setState({ value: date });
+  };
+
+  onConfirm = () => {
+    this.props.onConfirm(this.state.value);
   }
-
-  closeModal = () => {
-  };
-
-  onChange = () => {
-
-  };
 
   render() {
     return (
-      <AppModal className="DeadlineSelectDialog" isOpen={true} onRequestClose={this.closeModal}>
+      <AppModal className="DeadlineSelectDialog" isOpen={this.props.isOpen} onRequestClose={this.closeModal}>
         <ModalHeader onClose={this.closeModal} />
 
-        <AppDateTimePicker value={this.state.date} onChange={this.onChange} />
+        <AppDateTimePicker value={this.state.value} onChange={this.onChange} />
 
+        <AppButton onClick={this.onConfirm}>OK</AppButton>
       </AppModal>
     );
   }
 }
-

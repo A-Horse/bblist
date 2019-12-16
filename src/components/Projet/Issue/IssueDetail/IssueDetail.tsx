@@ -6,11 +6,7 @@ import { RouteComponentProps, RouterProps, withRouter } from 'react-router';
 import { withToastManager } from 'react-toast-notifications';
 import { ActionCreatorsMapObject, AnyAction, bindActionCreators, Dispatch } from 'redux';
 import { AnyHTMLElement } from '@stencil/core/dist/declarations';
-import {
-  changeIssueDirect,
-  getProjectIssueDetailRequest,
-  updateProjectIssueDetailRequest
-} from '../../../../actions/project/project-issue-detail.aciton';
+import { changeIssueDirect, getProjectIssueDetailRequest, updateProjectIssueDetailRequest } from '../../../../actions/project/project-issue-detail.aciton';
 import { RootState } from '../../../../reducers';
 import { ProjectIssueRecord, ProjectIssueRecordFiled } from '../../../../typings/project-issue.typing';
 import { AppButton } from '../../../widget/Button';
@@ -71,31 +67,35 @@ class IssueDetailComponent extends Component<
     };
   };
 
+  onFieldBlur = (fieldName: ProjectIssueRecordFiled) => {
+    return (value: any): void => {
+      this.updateIssue({
+        [fieldName]: value
+      });
+    };
+  };
+
   onUpdate = () => {
+    this.updateIssue(this.changedPartialIssue);
+    this.setState({ formDirty: false });
+    this.changedPartialIssue = {};
+  };
+
+  updateIssue = (changedPartialIssue: any) => {
     this.props.actions.updateProjectIssueDetailRequest(
       {
         issueId: this.props.issueID,
-        partialIssue: this.changedPartialIssue
+        partialIssue: changedPartialIssue
       },
       {
         callback: (error: Error) => {
           if (!error) {
-            this.changedPartialIssue = {};
-            this.props.toastManager.add('更新成功', {
-              appearance: 'success',
-              autoDismiss: true
-            });
-          } else {
-            this.props.toastManager.add('更新成功', {
-              appearance: 'error',
-              autoDismiss: true
-            });
+            return this.props.toastManager.add('更新成功', { appearance: 'success', autoDismiss: true });
           }
+          this.props.toastManager.add('更新失败', { appearance: 'error', autoDismiss: true });
         }
       }
     );
-
-    this.setState({ formDirty: false });
   };
 
   render() {
@@ -108,15 +108,11 @@ class IssueDetailComponent extends Component<
       <div className="IssueDetail">
         <IssueDetailBread kanbanID={this.props.kanbanID} projectID={this.props.projectID} issueID={this.props.issueID} />
         <FormField>
-          <Input size="large" value={issue.get('title')} onChange={this.onFieldChange('title')} />
+          <Input size="large" value={issue.get('title')} onBlur={this.onFieldBlur('title')} />
         </FormField>
 
         <FormField name="描述：">
-          <AppTextArea
-            className="IssueDetail--content-textarea"
-            value={issue.get('content') || ''}
-            onChange={this.onFieldChange('content')}
-          />
+          <AppTextArea className="IssueDetail--content-textarea" value={issue.get('content') || ''} onChange={this.onFieldChange('content')} />
         </FormField>
 
         <IssueDetailLeft />
@@ -150,6 +146,4 @@ const mapStateToProps = (state: RootState, props: InputProps) => {
   };
 };
 
-export const IssueDetail = withRouter<ComponentProps>(
-  connect(mapStateToProps, mapDispatchToProps)(withToastManager(IssueDetailComponent))
-);
+export const IssueDetail = withRouter<ComponentProps>(connect(mapStateToProps, mapDispatchToProps)(withToastManager(IssueDetailComponent)));
