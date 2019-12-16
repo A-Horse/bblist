@@ -35,13 +35,7 @@ export class ImageUploader extends Component {
     if (!pixelCrop) {
       return;
     }
-    const cropedimageDataUrl = await imageCrop(
-      this.state.imageDataURL,
-      pixelCrop.width,
-      pixelCrop.height,
-      pixelCrop.x,
-      pixelCrop.y
-    );
+    const cropedimageDataUrl = await imageCrop(this.state.imageDataURL, pixelCrop.width, pixelCrop.height, pixelCrop.x, pixelCrop.y);
     this.setState({ cropedimageDataUrl });
     this.setState({ crop });
   };
@@ -91,12 +85,7 @@ export class ImageUploader extends Component {
           src={this.props.source}
           onClick={this.openFilePicker}
         />
-        <input
-          ref={ref => (this.fileInput = ref)}
-          type="file"
-          accept="image/*"
-          onChange={this.openModal}
-        />
+        <input ref={ref => (this.fileInput = ref)} type="file" accept="image/*" onChange={this.openModal} />
 
         <Modal
           title="裁剪您的新头像:"
@@ -110,14 +99,7 @@ export class ImageUploader extends Component {
           ]}
         >
           <div className="crop-image-container">
-            <ReactCrop
-              style={{ maxHeight: '60vh' }}
-              crop={this.state.crop}
-              onChange={this.onCropChange}
-              onComplete={this.onCropComplete}
-              onImageLoaded={this.onImageLoaded}
-              src={this.state.imageDataURL}
-            />
+            <ReactCrop style={{ maxHeight: '60vh' }} crop={this.state.crop} onChange={this.onCropChange} onComplete={this.onCropComplete} onImageLoaded={this.onImageLoaded} src={this.state.imageDataURL} />
           </div>
         </Modal>
       </div>

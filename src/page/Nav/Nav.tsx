@@ -19,11 +19,7 @@ class Nav extends Component<any> {
 
   avator: any;
 
-  links = [
-    { name: 'Dash', url: '/home' },
-    { name: 'Task', url: '/task-board' },
-    { name: 'Todo', url: '/todo' }
-  ];
+  links = [{ name: 'Dash', url: '/home' }, { name: 'Task', url: '/task-board' }, { name: 'Todo', url: '/todo' }];
 
   onNewAvatarImageLoaded = (event: any) => {
     storageImage('avator', event.nativeEvent.target);
@@ -71,21 +67,9 @@ class Nav extends Component<any> {
           <div style={{ display: 'inline-block' }}>
             <Dropdown overlay={menu} placement="bottomRight">
               {avatarData ? (
-                <img
-                  alt=""
-                  ref={ref => (this.avator = ref)}
-                  className="nav-avatar"
-                  src={`data:image/png;base64,${avatarData}`}
-                />
+                <img alt="" ref={ref => (this.avator = ref)} className="nav-avatar" src={`data:image/png;base64,${avatarData}`} />
               ) : (
-                <img
-                  alt=""
-                  ref={ref => (this.avator = ref)}
-                  className="nav-avatar"
-                  crossOrigin="anonymous"
-                  onLoad={this.onNewAvatarImageLoaded}
-                  src={makeGravatarUrl(user.email)}
-                />
+                <img alt="" ref={ref => (this.avator = ref)} className="nav-avatar" crossOrigin="anonymous" onLoad={this.onNewAvatarImageLoaded} src={makeGravatarUrl(user.email)} />
               )}
             </Dropdown>
           </div>

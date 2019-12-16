@@ -1,5 +1,3 @@
-
-
 export class EpicAdapterService {
   input(input$) {
     this.input$ = input$.publish();

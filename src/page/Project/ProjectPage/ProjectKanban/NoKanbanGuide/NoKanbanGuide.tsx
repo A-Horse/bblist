@@ -31,11 +31,7 @@ export class NoKanbanGuide extends Component<
       <div>
         This project has not seen a kanban yet.
         <AppButton onClick={this.onAddKanbanClick}>Add a kanban</AppButton>
-        <KanbanCreator
-          project={this.props.project}
-          toggle={this.state.kanbanCreatorToggle}
-          onClose={this.closeCreateKanban}
-        />
+        <KanbanCreator project={this.props.project} toggle={this.state.kanbanCreatorToggle} onClose={this.closeCreateKanban} />
       </div>
     );
   }

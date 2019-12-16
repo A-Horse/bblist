@@ -1,7 +1,5 @@
 import { PagtiationList } from '../../typings/pagtiation.typing';
-import {
-    CreateProjectCardInput, ProjectIssue, RankProjectCardInKanbanInput
-} from '../../typings/project-issue.typing';
+import { CreateProjectCardInput, ProjectIssue, RankProjectCardInKanbanInput } from '../../typings/project-issue.typing';
 import { FSAction } from '../actions';
 
 export const GET_COLUMN_CARDS_REQUEST = 'GET_COLUMN_CARDS_REQUEST';
@@ -21,11 +19,7 @@ export function getColumnCardsRequest(
   };
 }
 
-export function getColumnCardsSuccess(payload: {
-  cards: ProjectIssue[];
-  kanbanId: string;
-  columnId: string;
-}): FSAction {
+export function getColumnCardsSuccess(payload: { cards: ProjectIssue[]; kanbanId: string; columnId: string }): FSAction {
   return {
     type: GET_COLUMN_CARDS_SUCCESS,
     payload
@@ -109,9 +103,7 @@ export const CHANGE_PROJECT_CARD_COLUMN_REQUEST = 'CHANGE_PROJECT_CARD_COLUMN_RE
 export const CHANGE_PROJECT_CARD_COLUMN_SUCCESS = 'CHANGE_PROJECT_CARD_COLUMN_SUCCESS';
 export const CHANGE_PROJECT_CARD_COLUMN_FAILURE = 'CHANGE_PROJECT_CARD_COLUMN_FAILURE';
 
-export function changeProjectCardColumnRequest(
-  RankProjectCardInKanbanInput: RankProjectCardInKanbanInput
-): FSAction {
+export function changeProjectCardColumnRequest(RankProjectCardInKanbanInput: RankProjectCardInKanbanInput): FSAction {
   return {
     type: CHANGE_PROJECT_CARD_COLUMN_REQUEST,
     payload: RankProjectCardInKanbanInput
@@ -149,9 +141,7 @@ export function rankProjectCardInKanbanRequest(
   };
 }
 
-export function rankProjectCardInKanbanSuccess(
-  newOrders: { cardId: string; order: number }[]
-): FSAction {
+export function rankProjectCardInKanbanSuccess(newOrders: { cardId: string; order: number }[]): FSAction {
   return {
     type: RANK_PROJECT_CARD_IN_KANBAN_SUCCESS,
     payload: newOrders

@@ -19,22 +19,21 @@ export function selectColumnCards(state: RootState, columnId: string): List<Proj
     .toList();
 }
 
-
 export function findIssuePositionInColumn(
-    state: RootState,
-    issue: ProjectIssueRecord
+  state: RootState,
+  issue: ProjectIssueRecord
 ): {
   targetIssue: ProjectIssueRecord;
   isBefore: boolean;
 } {
   const sortedIssueMap = state.project
-      .get('cardMap')
-      .filter((value: ProjectIssueRecord, key: string) => {
-        return value.get('columnId') === issue.get('columnId');
-      })
-      .sort((value1: ProjectIssueRecord, value2: ProjectIssueRecord) => {
-        return value1.get('order') - value2.get('order');
-      });
+    .get('cardMap')
+    .filter((value: ProjectIssueRecord, key: string) => {
+      return value.get('columnId') === issue.get('columnId');
+    })
+    .sort((value1: ProjectIssueRecord, value2: ProjectIssueRecord) => {
+      return value1.get('order') - value2.get('order');
+    });
 
   const nextIssue = sortedIssueMap.find((value: ProjectIssueRecord) => {
     return value.get('order') > issue.get('order');
@@ -57,4 +56,3 @@ export function findIssuePositionInColumn(
   }
   throw new Error('Rank in valid issue seq');
 }
-

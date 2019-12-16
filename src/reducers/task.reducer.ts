@@ -46,9 +46,7 @@ export function task2(
       // TODO 把 card 和 track 用 board id 索引
       return state
         .update('boardFetching', R.F)
-        .update('currentBoard', () =>
-          fromJS(normalizedBoard.entities.TaskBoard[normalizedBoard.result])
-        )
+        .update('currentBoard', () => fromJS(normalizedBoard.entities.TaskBoard[normalizedBoard.result]))
         .update('trackMap', () =>
           fromJS(normalizedBoard.entities.TaskTrack || {}).sort((a: any, b: any) => {
             return a.get('order') < b.get('order') ? -1 : 1;
@@ -58,8 +56,6 @@ export function task2(
 
     case Actions.GET_TASK_BOARD.FAILURE:
       return state.update('currentBoard', () => null).update('boardFetching', R.F);
-
-  
 
     case Actions.GET_TASK_BOARD_SETTING.REQUEST:
       return state;
@@ -108,9 +104,7 @@ export function task2(
 
       return state
         .update('cardMap', cardMap => {
-          return cardMap
-            ? cardMap.merge(fromJS(normalizedAddedCard.entities.TaskCard))
-            : fromJS(normalizedAddedCard.entities.TaskCard);
+          return cardMap ? cardMap.merge(fromJS(normalizedAddedCard.entities.TaskCard)) : fromJS(normalizedAddedCard.entities.TaskCard);
         })
         .updateIn(['trackMap', action.meta.trackId], trackMap =>
           trackMap.update(
@@ -121,9 +115,7 @@ export function task2(
 
     case Actions.UPDATE_TASK_CARD.REQUEST:
     case Actions.UPDATE_TASK_CARD.SUCCESS:
-      return state.updateIn(['cardMap', String(action.payload.id)], card =>
-        card.merge(fromJS(action.payload))
-      );
+      return state.updateIn(['cardMap', String(action.payload.id)], card => card.merge(fromJS(action.payload)));
 
     case Actions.GET_CARD_DETAIL.SUCCESS:
       const normalizedCardDetail = normalize(action.payload, TaskCard);
@@ -133,17 +125,13 @@ export function task2(
 
     case Actions.ADD_TASK_TRACK.SUCCESS:
       const normalizedAddedTrack = normalize(action.payload, TaskTrack);
-      return state.update('trackMap', trackMap =>
-        trackMap.merge(fromJS(normalizedAddedTrack.entities.TaskTrack))
-      );
+      return state.update('trackMap', trackMap => trackMap.merge(fromJS(normalizedAddedTrack.entities.TaskTrack)));
 
     case Actions.DESTORY_TASK_TRACK.SUCCESS:
       return state.deleteIn(['trackMap', String(action.meta.trackId)]);
 
     case Actions.UPDATE_TASK_TRACK.SUCCESS:
-      return state.updateIn(['trackMap', String(action.payload.id)], track =>
-        track.merge(fromJS(action.payload))
-      );
+      return state.updateIn(['trackMap', String(action.payload.id)], track => track.merge(fromJS(action.payload)));
 
     case Actions.GET_TASK_BOARD_PARTICIPANT.REQUEST:
       return state.delete('boardParticipant');

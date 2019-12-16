@@ -22,6 +22,9 @@ const mapDispatchToProps = (dispatch: any) => {
   };
 };
 
-const TodoPageContainer = connect(mapStateToProps, mapDispatchToProps)(withRouter(TodoPage));
+const TodoPageContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(TodoPage));
 
 export default TodoPageContainer;

@@ -22,20 +22,17 @@ export class Input extends Component<{
   };
 
   onBlur = (event: ChangeEvent<HTMLInputElement>): void => {
-    this.props.onBlur && this.props.onBlur(event.target.value)
-  }
+    this.props.onBlur && this.props.onBlur(event.target.value);
+  };
 
   buildClassName() {
     const { size = 'middle' } = this.props;
-    return `app-input ${size}  ${this.props.className ? ' ' + this.props.className : ''} ${
-      this.props.whiteHover ? 'white-hover' : ''
-    }`;
+    return `app-input ${size}  ${this.props.className ? ' ' + this.props.className : ''} ${this.props.whiteHover ? 'white-hover' : ''}`;
   }
 
   render() {
     return (
       <input
-        onBlur={this.onBlur}
         value={this.props.value}
         defaultValue={this.props.defaultValue}
         placeholder={this.props.placeholder}
@@ -44,6 +41,7 @@ export class Input extends Component<{
         type={this.props.type || 'text'}
         className={this.buildClassName()}
         onChange={this.onChange}
+        onBlur={this.onBlur}
       />
     );
   }

@@ -44,47 +44,19 @@ class SignUp extends Component<any, any> {
         <LogoBan />
         <form className="signup-form" onSubmit={this.signup}>
           <div>
-            <Input
-              value={this.state.email}
-              onChange={value => this.setState({ email: value })}
-              type="text"
-              name="octopus-email"
-              required
-              placeholder="Email"
-            />
+            <Input value={this.state.email} onChange={value => this.setState({ email: value })} type="text" name="octopus-email" required placeholder="Email" />
           </div>
 
           <div>
-            <Input
-              value={this.state.username}
-              onChange={value => this.setState({ username: value })}
-              type="text"
-              name="octopus-username"
-              required
-              placeholder="Name"
-            />
+            <Input value={this.state.username} onChange={value => this.setState({ username: value })} type="text" name="octopus-username" required placeholder="Name" />
           </div>
 
           <div>
-            <Input
-              value={this.state.password}
-              onChange={value => this.setState({ password: value })}
-              type="password"
-              name="octopus-password"
-              required
-              placeholder="Password"
-            />
+            <Input value={this.state.password} onChange={value => this.setState({ password: value })} type="password" name="octopus-password" required placeholder="Password" />
           </div>
 
           <div>
-            <Input
-              value={this.state.passwordConfirm}
-              onChange={value => this.setState({ passwordConfirm: value })}
-              type="password"
-              name="octopus-confirm-password"
-              required
-              placeholder="Confirm Password"
-            />
+            <Input value={this.state.passwordConfirm} onChange={value => this.setState({ passwordConfirm: value })} type="password" name="octopus-confirm-password" required placeholder="Confirm Password" />
           </div>
 
           <ErrorMsg messages={R.values(errorMessages)} />

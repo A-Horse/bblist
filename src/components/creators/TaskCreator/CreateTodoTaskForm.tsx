@@ -8,7 +8,6 @@ import { bindActionCreators } from 'redux';
 import { makeActionRequestCollection } from '../../../actions/actions';
 import { AppButton } from '../../../components/widget/Button';
 
-
 class CreateTodoTaskFormBase extends Component<
   {
     form: any;
@@ -39,7 +38,6 @@ class CreateTodoTaskFormBase extends Component<
     return (
       <div style={this.props.style} className="CreateTodoTaskForm">
         <Form onSubmit={this.handleSubmit}>
-          
           <div className="app-button-group">
             <AppButton onClick={this.props.onCancel}>Cancel</AppButton>
 
@@ -63,4 +61,7 @@ const mapDispatchToProps = (dispatch: any) => {
   };
 };
 
-export const CreateTodoTaskForm = connect(mapStateToProps, mapDispatchToProps)(CreateTodoTaskFormWrapper);
+export const CreateTodoTaskForm = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CreateTodoTaskFormWrapper);

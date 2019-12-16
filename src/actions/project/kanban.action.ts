@@ -12,10 +12,7 @@ export function getProjectKanbansRequest(payload: { projectId: string }): FSActi
   };
 }
 
-export function getProjectKanbansSuccess(payload: {
-  projectId: string;
-  kanbans: Kanban[];
-}): FSAction {
+export function getProjectKanbansSuccess(payload: { projectId: string; kanbans: Kanban[] }): FSAction {
   return {
     type: GET_PROJCET_KANBANS_SUCCESS,
     payload
@@ -83,18 +80,19 @@ export const CREATAE_KANBAN_COLUMN_REQUEST = 'CREATAE_KANBAN_COLUMN_REQUEST';
 export const CREATAE_KANBAN_COLUMN_SUCCESS = 'CREATAE_KANBAN_COLUMN_SUCCESS';
 export const CREATAE_KANBAN_COLUMN_FAILURE = 'CREATAE_KANBAN_COLUMN_FAILURE';
 
-export function createKanbanColumnRequest(
-  createKanbanColumnInput: CreateKanbanColumnInput
-): FSAction {
+export function createKanbanColumnRequest(createKanbanColumnInput: CreateKanbanColumnInput): FSAction {
   return {
     type: CREATAE_KANBAN_COLUMN_REQUEST,
     payload: createKanbanColumnInput
   };
 }
 
-export function createKanbanColumnSuccess(id: string, meta: {
-  kanbanId: string
-}): FSAction {
+export function createKanbanColumnSuccess(
+  id: string,
+  meta: {
+    kanbanId: string;
+  }
+): FSAction {
   return {
     type: CREATAE_KANBAN_COLUMN_SUCCESS,
     payload: id,

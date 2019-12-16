@@ -36,14 +36,7 @@ class ColumnSelectComponent extends Component<InputProps & InjectProps> {
   }
 
   render() {
-    return (
-      <AppSelect
-        placeholder="选择列表"
-        noOptionsMessage={noOptionTip}
-        options={this.props.options}
-        onChange={this.props.onChange}
-      />
-    );
+    return <AppSelect placeholder="选择列表" noOptionsMessage={noOptionTip} options={this.props.options} onChange={this.props.onChange} />;
   }
 }
 
@@ -70,4 +63,7 @@ const mapStateToProps = (state: RootState, props: InputProps) => {
   };
 };
 
-export const ColumnSelect = connect(mapStateToProps, mapDispatchToProps)(ColumnSelectComponent);
+export const ColumnSelect = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ColumnSelectComponent);

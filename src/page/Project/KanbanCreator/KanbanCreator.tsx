@@ -85,4 +85,7 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
   };
 };
 
-export const KanbanCreator = connect(mapStateToProps, mapDispatchToProps)(KanbanCreatorComponentFormWrapper);
+export const KanbanCreator = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(KanbanCreatorComponentFormWrapper);

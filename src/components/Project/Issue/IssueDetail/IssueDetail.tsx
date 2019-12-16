@@ -34,14 +34,9 @@ class IssueDetailComponent extends Component<
     ReduxProps & {
       toastManager: AnyHTMLElement;
     },
-  {
-    formDirty: boolean;
-  }
+  {}
 > {
-  state = {
-    formDirty: false
-  };
-  changedPartialIssue: any = {};
+  state = {};
 
   componentDidMount() {
     this.props.actions.getProjectIssueDetailRequest({
@@ -62,8 +57,6 @@ class IssueDetailComponent extends Component<
       this.props.actions.changeIssueDirect(this.props.issueID, {
         [fieldName]: value
       });
-      this.changedPartialIssue[fieldName] = value;
-      this.setState({ formDirty: true });
     };
   };
 
@@ -73,12 +66,6 @@ class IssueDetailComponent extends Component<
         [fieldName]: value
       });
     };
-  };
-
-  onUpdate = () => {
-    this.updateIssue(this.changedPartialIssue);
-    this.setState({ formDirty: false });
-    this.changedPartialIssue = {};
   };
 
   updateIssue = (changedPartialIssue: any) => {
@@ -108,20 +95,14 @@ class IssueDetailComponent extends Component<
       <div className="IssueDetail">
         <IssueDetailBread kanbanID={this.props.kanbanID} projectID={this.props.projectID} issueID={this.props.issueID} />
         <FormField>
-          <Input size="large" value={issue.get('title')} onBlur={this.onFieldBlur('title')} />
+          <Input size="large" value={issue.get('title')} onChange={this.onFieldChange('title')} onBlur={this.onFieldBlur('title')} />
         </FormField>
 
         <FormField name="描述：">
-          <AppTextArea className="IssueDetail--content-textarea" value={issue.get('content') || ''} onChange={this.onFieldChange('content')} />
+          <AppTextArea className="IssueDetail--content-textarea" value={issue.get('content') || ''} onChange={this.onFieldChange('content')} onBlur={this.onFieldBlur('content')} />
         </FormField>
 
         <IssueDetailLeft />
-
-        <div>
-          <AppButton disabled={!this.state.formDirty} onClick={this.onUpdate} type="primary">
-            更新
-          </AppButton>
-        </div>
       </div>
     );
   }
@@ -146,4 +127,9 @@ const mapStateToProps = (state: RootState, props: InputProps) => {
   };
 };
 
-export const IssueDetail = withRouter<ComponentProps>(connect(mapStateToProps, mapDispatchToProps)(withToastManager(IssueDetailComponent)));
+export const IssueDetail = withRouter<ComponentProps>(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(withToastManager(IssueDetailComponent))
+);

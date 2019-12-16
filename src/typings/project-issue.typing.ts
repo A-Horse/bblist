@@ -10,8 +10,7 @@ export interface ProjectIssue {
 
 export type ProjectIssueRecord = Record<ProjectIssue>;
 
-
-export type ProjectIssueRecordFiled =  keyof ProjectIssue;
+export type ProjectIssueRecordFiled = keyof ProjectIssue;
 
 export interface CreateProjectCardInput {
   title: string;

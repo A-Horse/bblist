@@ -24,10 +24,7 @@ interface ReduxProps {
   total?: number;
 }
 
-export class IssuesComponent extends Component<
-  InputProps & ReduxProps & RouteComponentProps<{ projectId: string; issueId: string }>,
-  {}
-> {
+export class IssuesComponent extends Component<InputProps & ReduxProps & RouteComponentProps<{ projectId: string; issueId: string }>, {}> {
   state = {};
 
   componentWillMount() {
@@ -60,12 +57,7 @@ export class IssuesComponent extends Component<
             })}
           </ul>
 
-          <AppPagination
-            onPageChanged={this.onPageChange}
-            pageSize={this.props.pageSize}
-            total={this.props.total!}
-            currentPage={this.props.pageNumber}
-          />
+          <AppPagination onPageChanged={this.onPageChange} pageSize={this.props.pageSize} total={this.props.total!} currentPage={this.props.pageNumber} />
         </div>
 
         <Route
@@ -126,4 +118,9 @@ const mapStateToProps = (state: RootState, props: any) => {
   };
 };
 
-export const Issues = withRouter(connect(mapStateToProps, mapDispatchToProps)(IssuesComponent));
+export const Issues = withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(IssuesComponent)
+);

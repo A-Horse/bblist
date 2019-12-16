@@ -5,11 +5,20 @@ import { map, mergeMap } from 'rxjs/operators';
 
 import { FSAction } from '../actions/actions';
 import {
-    CREATAE_KANBAN_COLUMN_REQUEST, CREATAE_KANBAN_COLUMN_SUCCESS, CREATAE_KANBAN_REQUEST,
-    createKanbanColumnFailure, createKanbanColumnSuccess, createKanbanFailure, createKanbanSuccess,
-    GET_PROJCET_KANBAN_DETAIL_REQUEST, GET_PROJCET_KANBANS_REQUEST, getProjectKanbanDetailFailure,
-    getProjectKanbanDetailRequest, getProjectKanbanDetailSuccess, getProjectKanbansFailure,
-    getProjectKanbansSuccess
+  CREATAE_KANBAN_COLUMN_REQUEST,
+  CREATAE_KANBAN_COLUMN_SUCCESS,
+  CREATAE_KANBAN_REQUEST,
+  createKanbanColumnFailure,
+  createKanbanColumnSuccess,
+  createKanbanFailure,
+  createKanbanSuccess,
+  GET_PROJCET_KANBAN_DETAIL_REQUEST,
+  GET_PROJCET_KANBANS_REQUEST,
+  getProjectKanbanDetailFailure,
+  getProjectKanbanDetailRequest,
+  getProjectKanbanDetailSuccess,
+  getProjectKanbansFailure,
+  getProjectKanbansSuccess
 } from '../actions/project/kanban.action';
 import { Kanban } from '../typings/kanban.typing';
 import { makeApiUrl } from '../utils/api';

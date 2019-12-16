@@ -24,13 +24,6 @@ export class AppPagination extends PureComponent<{
   };
 
   render() {
-    return (
-      <coke-pagination
-        pagesize={this.props.pageSize}
-        total={this.props.total}
-        ref={this.setRef}
-        currentpage={this.props.currentPage}
-      ></coke-pagination>
-    );
+    return <coke-pagination pagesize={this.props.pageSize} total={this.props.total} ref={this.setRef} currentpage={this.props.currentPage} />;
   }
 }

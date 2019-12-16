@@ -55,8 +55,7 @@ export class ProjectKanbanComponent extends Component<
     if (!this.props.project!.get('kanbans')!.length) {
       return <NoKanbanGuide project={this.props.project!} />;
     } else {
-      const selectedKanbanId: string =
-        this.state.selectKanbanId || this.props.project!.get('setting').get('defaultKanbanId');
+      const selectedKanbanId: string = this.state.selectKanbanId || this.props.project!.get('setting').get('defaultKanbanId');
 
       if (!!selectedKanbanId && selectedKanbanId !== this.props.match.params.kanbanId) {
         return <Redirect to={`/project/${this.props.project!.get('id')}/kanban/${selectedKanbanId}`} />;
@@ -64,11 +63,7 @@ export class ProjectKanbanComponent extends Component<
 
       return (
         <>
-          <KanbanHeaderBar
-            projectId={this.props.project!.get('id')}
-            selectedKanbanId={selectedKanbanId}
-            onChange={this.onKanbanSelectChanged}
-          />
+          <KanbanHeaderBar projectId={this.props.project!.get('id')} selectedKanbanId={selectedKanbanId} onChange={this.onKanbanSelectChanged} />
 
           <Route
             path="/project/:projectId/kanban/:kanbanId"
@@ -120,4 +115,9 @@ const mapStateToProps = (state: RootState, props: any) => {
   };
 };
 
-export const ProjectKanban = withRouter(connect(mapStateToProps, mapDispatchToProps)(ProjectKanbanComponent));
+export const ProjectKanban = withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(ProjectKanbanComponent)
+);

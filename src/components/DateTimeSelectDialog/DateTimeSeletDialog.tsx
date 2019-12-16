@@ -26,7 +26,7 @@ export class DateTimeSelectDialog extends Component<InputProps, State> {
 
   onConfirm = () => {
     this.props.onConfirm(this.state.value);
-  }
+  };
 
   render() {
     return (

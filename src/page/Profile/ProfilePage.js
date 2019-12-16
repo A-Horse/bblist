@@ -13,12 +13,7 @@ export class Profile extends Component {
         <div className="profile-infomation">
           <div>{user.get('email')}</div>
           <div>{user.get('username')}</div>
-          <img
-            alt=""
-            className="profile-avatar"
-            crossOrigin="Anonymous"
-            src={makeGravatarUrl(user.get('email'), 200)}
-          />
+          <img alt="" className="profile-avatar" crossOrigin="Anonymous" src={makeGravatarUrl(user.get('email'), 200)} />
           <p>
             We use{' '}
             <a rel="noopener noreferrer" target="_blank" href="https://www.gravatar.com/">

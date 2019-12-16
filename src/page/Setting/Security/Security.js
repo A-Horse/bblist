@@ -45,15 +45,8 @@ class SettingSecurity extends Component {
 
           <div className="heading">Confirm new password</div>
           <div>
-            <Input
-              type="password"
-              ref="confirmPassword"
-              className="input"
-              name="update-password-confirm"
-            />
+            <Input type="password" ref="confirmPassword" className="input" name="update-password-confirm" />
           </div>
-
-          
         </section>
       </section>
     );

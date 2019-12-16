@@ -6,6 +6,7 @@ export class AppTextArea extends Component<{
   value?: string;
   defaultValue?: string;
   onChange?: (value: string) => void;
+  onBlur?: (value: string) => void;
   className?: string;
   required?: boolean;
   name?: string;
@@ -16,6 +17,10 @@ export class AppTextArea extends Component<{
     this.props.onChange && this.props.onChange(event.target.value);
   };
 
+  onBlur = (event: ChangeEvent<HTMLTextAreaElement>): void => {
+    this.props.onBlur && this.props.onBlur(event.target.value);
+  };
+
   buildClassName() {
     return `AppTextArea ${this.props.className || ''}`;
   }
@@ -23,6 +28,7 @@ export class AppTextArea extends Component<{
   render() {
     return (
       <textarea
+        onBlur={this.onBlur}
         value={this.props.value}
         defaultValue={this.props.defaultValue}
         placeholder={this.props.placeholder}

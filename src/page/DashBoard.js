@@ -4,11 +4,8 @@ import { connect } from 'react-redux';
 import Building from 'page/Building';
 
 class DashBoard extends Component {
-
   render() {
-    return (
-        <Building />
-    );
+    return <Building />;
   }
 }
 

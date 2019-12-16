@@ -3,22 +3,11 @@ import { normalize } from 'normalizr';
 import remove from 'ramda/es/remove';
 
 import { FSAction } from '../actions/actions';
-import {
-    GET_PROJCET_KANBAN_DETAIL_SUCCESS, GET_PROJCET_KANBANS_SUCCESS
-} from '../actions/project/kanban.action';
-import {
-    CHANGE_ISSUE_DIRECT, GET_PROJECT_ISSUE_DETAIL_SUCCESS
-} from '../actions/project/project-issue-detail.aciton';
-import {
-    GET_COLUMN_CARDS_SUCCESS, GET_PROJECT_ISSUES_REQUEST, GET_PROJECT_ISSUES_SUCCESS,
-    RANK_PROJECT_CARD_IN_KANBAN_REQUEST, RANK_PROJECT_CARD_IN_KANBAN_SUCCESS
-} from '../actions/project/project-issue.action';
-import {
-    CREATE_PROJCET_SUCCESS, GET_PROJCET_DETAIL_SUCCESS, GET_PROJCETS_SUCCESS
-} from '../actions/project/project.action';
-import {
-    KanbanDetailEntity, KanbanEntityList, ProjectCardList, ProjectEntity, ProjectEntityList
-} from '../schema';
+import { GET_PROJCET_KANBAN_DETAIL_SUCCESS, GET_PROJCET_KANBANS_SUCCESS } from '../actions/project/kanban.action';
+import { CHANGE_ISSUE_DIRECT, GET_PROJECT_ISSUE_DETAIL_SUCCESS } from '../actions/project/project-issue-detail.aciton';
+import { GET_COLUMN_CARDS_SUCCESS, GET_PROJECT_ISSUES_REQUEST, GET_PROJECT_ISSUES_SUCCESS, RANK_PROJECT_CARD_IN_KANBAN_REQUEST, RANK_PROJECT_CARD_IN_KANBAN_SUCCESS } from '../actions/project/project-issue.action';
+import { CREATE_PROJCET_SUCCESS, GET_PROJCET_DETAIL_SUCCESS, GET_PROJCETS_SUCCESS } from '../actions/project/project.action';
+import { KanbanDetailEntity, KanbanEntityList, ProjectCardList, ProjectEntity, ProjectEntityList } from '../schema';
 import { Column, KanbanColumnRecord } from '../typings/kanban-column.typing';
 import { Kanban, KanbanRecord } from '../typings/kanban.typing';
 import { PagtiationList } from '../typings/pagtiation.typing';
@@ -59,9 +48,7 @@ export function project(
 
     case GET_PROJCET_DETAIL_SUCCESS: {
       const normalizedAddBoard = normalize(action.payload, ProjectEntity);
-      return state.update('projectMap', projectMap =>
-        projectMap.merge<ProjectRecord>(fromJS(normalizedAddBoard.entities.Project))
-      );
+      return state.update('projectMap', projectMap => projectMap.merge<ProjectRecord>(fromJS(normalizedAddBoard.entities.Project)));
     }
 
     case GET_PROJCET_KANBANS_SUCCESS: {
@@ -125,17 +112,16 @@ export function project(
 
     case GET_COLUMN_CARDS_SUCCESS: {
       const normalizedCards = normalize(action.payload.cards, ProjectCardList);
-      return state
-        .update('cardMap', (cardMap: CardMap) => {
-          return normalizedCards.result.reduce((cardMapResult: CardMap, cardId: string) => {
-            return cardMapResult.update(cardId, (card: ProjectIssueRecord) => {
-              if (!card) {
-                return fromJS(normalizedCards.entities.ProjectIssue[cardId]);
-              }
-              return card.merge(fromJS(normalizedCards.entities.ProjectIssue[cardId]));
-            });
-          }, cardMap);
-        });
+      return state.update('cardMap', (cardMap: CardMap) => {
+        return normalizedCards.result.reduce((cardMapResult: CardMap, cardId: string) => {
+          return cardMapResult.update(cardId, (card: ProjectIssueRecord) => {
+            if (!card) {
+              return fromJS(normalizedCards.entities.ProjectIssue[cardId]);
+            }
+            return card.merge(fromJS(normalizedCards.entities.ProjectIssue[cardId]));
+          });
+        }, cardMap);
+      });
     }
 
     case RANK_PROJECT_CARD_IN_KANBAN_REQUEST:

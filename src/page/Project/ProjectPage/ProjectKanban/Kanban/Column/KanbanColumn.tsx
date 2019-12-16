@@ -7,10 +7,7 @@ import { connect } from 'react-redux';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { ActionCreatorsMapObject, AnyAction, bindActionCreators, Dispatch } from 'redux';
 
-import {
-  getColumnCardsRequest,
-  rankProjectCardInKanbanRequest
-} from '../../../../../../actions/project/project-issue.action';
+import { getColumnCardsRequest, rankProjectCardInKanbanRequest } from '../../../../../../actions/project/project-issue.action';
 import { ProjectIssue } from '../../../../../../components/Project/Issue/ProjectIssue/ProjectIssue';
 import { AppButton } from '../../../../../../components/widget/Button';
 import { RootState } from '../../../../../../reducers';
@@ -72,15 +69,7 @@ export class KanbanColumnComponent extends Component<ComponentProps, State> {
             this.props
               .issues!.sortBy((issue: ProjectIssueRecord) => issue.get('order'))
               .map((issue: ProjectIssueRecord, index: number) => {
-                return (
-                  <ProjectIssue
-                    key={issue.get('id')}
-                    kanbanId={this.props.column.get('kanbanId')}
-                    onClick={this.props.onIssueClick}
-                    rankProjectCardColumn={this.props.rankProjectCardInKanbanRequest}
-                    issue={issue}
-                  />
-                );
+                return <ProjectIssue key={issue.get('id')} kanbanId={this.props.column.get('kanbanId')} onClick={this.props.onIssueClick} rankProjectCardColumn={this.props.rankProjectCardInKanbanRequest} issue={issue} />;
               })}
         </div>
       </div>
@@ -127,5 +116,8 @@ const mapStateToProps = (state: RootState, props: InputProps) => {
 };
 
 export const KanbanColumn = withRouter<InputProps & RouteComponentProps>(
-  connect(mapStateToProps, mapDispatchToProps)(KanbanColumnComponent)
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(KanbanColumnComponent)
 );

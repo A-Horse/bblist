@@ -41,13 +41,7 @@ export class TodoBoxCreaterForm extends Component<any> {
       >
         <Icon type="folder-add" />
         Add Todo Box
-        <Modal
-          className="todo-box-creater-modal"
-          title="Create Todo Box:"
-          onCancel={this.handleCancel}
-          visible={this.state.toggle}
-          footer={null}
-        >
+        <Modal className="todo-box-creater-modal" title="Create Todo Box:" onCancel={this.handleCancel} visible={this.state.toggle} footer={null}>
           <Form onSubmit={this.handleSubmit}>
             <FormItem>
               {getFieldDecorator('name', {

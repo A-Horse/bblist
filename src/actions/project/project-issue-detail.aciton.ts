@@ -35,14 +35,14 @@ export function changeIssueDirect(issueId: string, partialIssue: any) {
       issueId,
       partialIssue
     }
-  }
+  };
 }
 
 export const UPDATE_PROJECT_ISSUE_DETAIL_DEQUEST = 'UPDATE_PROJECT_ISSUE_DETAIL_DEQUEST';
 export const UPDATE_PROJECT_ISSUE_DETAIL_SUCCESS = 'UPDATE_PROJECT_ISSUE_DETAIL_SUCCESS';
 export const UPDATE_PROJECT_ISSUE_DETAIL_FAILURE = 'UPDATE_PROJECT_ISSUE_DETAIL_FAILURE';
 
-export function updateProjectIssueDetailRequest(payload: { issueId: string, partialIssue: any }, meta: {callback: Function}): FSAction {
+export function updateProjectIssueDetailRequest(payload: { issueId: string; partialIssue: any }, meta: { callback: Function }): FSAction {
   return {
     type: UPDATE_PROJECT_ISSUE_DETAIL_DEQUEST,
     payload,

@@ -28,9 +28,7 @@ test('http get query', () => {
   nock('http://ocotpus.xyz')
     .get('/api/test?a=b&date=zero')
     .reply(200, { foo: 'bar' });
-  return expect(http.get('http://ocotpus.xyz/api/test', { a: 'b', date: 'zero' })).resolves.toEqual(
-    { foo: 'bar' }
-  );
+  return expect(http.get('http://ocotpus.xyz/api/test', { a: 'b', date: 'zero' })).resolves.toEqual({ foo: 'bar' });
 });
 
 test('http post', () => {

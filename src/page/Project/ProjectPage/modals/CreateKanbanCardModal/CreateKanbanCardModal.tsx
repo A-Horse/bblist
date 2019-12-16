@@ -3,11 +3,7 @@ import { connect } from 'react-redux';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { ActionCreatorsMapObject, AnyAction, bindActionCreators, Dispatch } from 'redux';
 
-import {
-  createKanbanColumnRequest,
-  createKanbanRequest,
-  getProjectKanbanDetailRequest
-} from '../../../../../actions/project/kanban.action';
+import { createKanbanColumnRequest, createKanbanRequest, getProjectKanbanDetailRequest } from '../../../../../actions/project/kanban.action';
 import { CreateProjectIssueForm } from '../../../../../components/creators/TaskCreator/CreateProjectIssueForm';
 import { AppModal } from '../../../../../components/widget/AppModal';
 import { RootState } from '../../../../../reducers';
@@ -72,5 +68,8 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
 };
 
 export const CreateKanbanCardModal = withRouter<InputProps & RouterProps>(
-  connect(mapStateToProps, mapDispatchToProps)(CreateKanbanCardModalComoponent)
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(CreateKanbanCardModalComoponent)
 );

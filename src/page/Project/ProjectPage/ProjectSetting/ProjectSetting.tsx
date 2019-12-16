@@ -39,11 +39,7 @@ class ProjectSettingComponent extends Component<Props & RouteComponentProps<{ pr
               borderRadius: '6px',
               display: 'block'
             }}
-            source={
-              this.props.project.get('setting').get('coverUrl')
-                ? generateProjectCoverUrl(this.props.project.get('setting').get('coverUrl'))
-                : DEFAULT_BOARD_COVER_SRC
-            }
+            source={this.props.project.get('setting').get('coverUrl') ? generateProjectCoverUrl(this.props.project.get('setting').get('coverUrl')) : DEFAULT_BOARD_COVER_SRC}
             upload={this.onCoverUpload}
           >
             上传封面
@@ -51,11 +47,7 @@ class ProjectSettingComponent extends Component<Props & RouteComponentProps<{ pr
         </FormField>
 
         <FormField name="项目名称">
-          <Input
-            className="ProjectSetting--project-name-input"
-            defaultValue={this.props.project.get('name')}
-            whiteHover={true}
-          />
+          <Input className="ProjectSetting--project-name-input" defaultValue={this.props.project.get('name')} whiteHover={true} />
         </FormField>
       </div>
     );
@@ -81,4 +73,9 @@ const mapStateToProps = (state: any, props: any) => {
   };
 };
 
-export const ProjectSetting = withRouter(connect(mapStateToProps, mapDispatchToProps)(ProjectSettingComponent));
+export const ProjectSetting = withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(ProjectSettingComponent)
+);

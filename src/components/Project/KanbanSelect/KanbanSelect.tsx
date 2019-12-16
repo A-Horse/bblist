@@ -30,15 +30,7 @@ class KanbanSelectComponent extends Component<InputProps & InjectProps> {
 
   render() {
     const selectedOption = this.props.options.find(option => option.value === this.props.selectedKanbanId);
-    return (
-      <AppSelect
-        noOptionsMessage={noOptionTip}
-        placeholder="选择看板"
-        options={this.props.options}
-        value={selectedOption}
-        onChange={this.props.onChange as any}
-      />
-    );
+    return <AppSelect noOptionsMessage={noOptionTip} placeholder="选择看板" options={this.props.options} value={selectedOption} onChange={this.props.onChange as any} />;
   }
 }
 
@@ -67,4 +59,7 @@ const mapStateToProps = (state: RootState, props: InputProps) => {
   };
 };
 
-export const KanbanSelect = connect(mapStateToProps, mapDispatchToProps)(KanbanSelectComponent);
+export const KanbanSelect = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(KanbanSelectComponent);

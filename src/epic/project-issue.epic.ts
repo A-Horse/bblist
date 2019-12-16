@@ -6,22 +6,28 @@ import { catchError, distinctUntilChanged, filter, mergeMap, take, tap } from 'r
 
 import { FSAction } from '../actions/actions';
 import {
-    GET_PROJECT_ISSUE_DETAIL_DEQUEST, getProjectIssueDetailFailure, getProjectIssueDetailSuccess,
-    UPDATE_PROJECT_ISSUE_DETAIL_DEQUEST, updateProjectIssueDetailFailure,
-    updateProjectIssueDetailSuccess
+  GET_PROJECT_ISSUE_DETAIL_DEQUEST,
+  getProjectIssueDetailFailure,
+  getProjectIssueDetailSuccess,
+  UPDATE_PROJECT_ISSUE_DETAIL_DEQUEST,
+  updateProjectIssueDetailFailure,
+  updateProjectIssueDetailSuccess
 } from '../actions/project/project-issue-detail.aciton';
 import {
-    CREATAE_PROJECT_CARD_REQUEST, createProjectCardFailure, createProjectCardSuccess,
-    GET_COLUMN_CARDS_REQUEST, getColumnCardsFailure, getColumnCardsSuccess,
-    RANK_PROJECT_CARD_IN_KANBAN_REQUEST, rankProjectCardInKanbanFailure,
-    rankProjectCardInKanbanSuccess
+  CREATAE_PROJECT_CARD_REQUEST,
+  createProjectCardFailure,
+  createProjectCardSuccess,
+  GET_COLUMN_CARDS_REQUEST,
+  getColumnCardsFailure,
+  getColumnCardsSuccess,
+  RANK_PROJECT_CARD_IN_KANBAN_REQUEST,
+  rankProjectCardInKanbanFailure,
+  rankProjectCardInKanbanSuccess
 } from '../actions/project/project-issue.action';
 import { RootState } from '../reducers';
-import {
-    ProjectIssue, ProjectIssueRecord, RankProjectCardInKanbanInput
-} from '../typings/project-issue.typing';
+import { ProjectIssue, ProjectIssueRecord, RankProjectCardInKanbanInput } from '../typings/project-issue.typing';
 import { makeApiUrl } from '../utils/api';
-import {findIssuePositionInColumn} from "../reducers/selector/card.selector";
+import { findIssuePositionInColumn } from '../reducers/selector/card.selector';
 
 export const CREATE_PROJECT_CARD_REQUEST_FN = (action$: Observable<FSAction>) =>
   action$.pipe(
@@ -41,12 +47,12 @@ export const UPDATE_PROJECT_ISSUE_DETAIL_REQUEST_FN = (action$: Observable<FSAct
       return axios
         .patch(makeApiUrl(`/issue/${action.payload.issueId}`), action.payload.partialIssue)
         .then((result: AxiosResponse<void>) => {
-            action.meta.callback(null);
-            return updateProjectIssueDetailSuccess();
+          action.meta.callback(null);
+          return updateProjectIssueDetailSuccess();
         })
-        .catch((error) => {
-            action.meta.callback(error);
-            return updateProjectIssueDetailFailure();
+        .catch(error => {
+          action.meta.callback(error);
+          return updateProjectIssueDetailFailure();
         });
     })
   );
@@ -75,7 +81,7 @@ export const RANK_PROJECT_CARD_IN_KANBAN_REQUEST_FN = (action$: Observable<FSAct
         take(1),
         mergeMap((state: RootState) => {
           const freshSelectedIssue = state.project.get('cardMap').get(action.payload.selectCard.get('id'))!;
-          
+
           const { targetIssue, isBefore } = findIssuePositionInColumn(state, freshSelectedIssue);
           return axios
             .post(makeApiUrl(`/kanban/${action.payload.kanbanId}/card-rank`), {
@@ -83,9 +89,7 @@ export const RANK_PROJECT_CARD_IN_KANBAN_REQUEST_FN = (action$: Observable<FSAct
               targetCardId: targetIssue.get('id'),
               isBefore: isBefore
             })
-            .then((result: AxiosResponse<{ cardId: string; order: number }[]>) =>
-              rankProjectCardInKanbanSuccess(result.data)
-            )
+            .then((result: AxiosResponse<{ cardId: string; order: number }[]>) => rankProjectCardInKanbanSuccess(result.data))
             .catch(rankProjectCardInKanbanFailure);
         })
       );

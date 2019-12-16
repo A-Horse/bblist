@@ -9,7 +9,6 @@ import { ProjectRecord } from '../../../typings/project.typing';
 import { SelectOption } from '../../../typings/select.typing';
 import { ColumnSelect } from '../../Project/ColumnSelect/ColumnSelect';
 import { KanbanSelect } from '../../Project/KanbanSelect/KanbanSelect';
-import { AppInput } from '../../widget/AppInput';
 import { AppButton } from '../../widget/Button';
 import { FormField } from '../../widget/FormField/FormField';
 import Input from '../../widget/Input/Input';
@@ -93,10 +92,7 @@ class CreateProjectIssueFormComponent extends Component<
                   name="columnId"
                   render={({ field, form }: FieldProps<FormikValues>) => (
                     <FormField name="所在列表">
-                      <ColumnSelect
-                        kanbanID={form.values.kanbanId}
-                        onChange={(selected: SelectOption) => formikBag.setFieldValue('columnId', selected.value)}
-                      />
+                      <ColumnSelect kanbanID={form.values.kanbanId} onChange={(selected: SelectOption) => formikBag.setFieldValue('columnId', selected.value)} />
                       {form.touched.name && form.errors.name && form.errors.name}
                     </FormField>
                   )}
@@ -126,4 +122,7 @@ const mapDispatchToProps = (dispatch: any) => {
   };
 };
 
-export const CreateProjectIssueForm = connect(mapStateToProps, mapDispatchToProps)(CreateProjectIssueFormComponent);
+export const CreateProjectIssueForm = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CreateProjectIssueFormComponent);

@@ -1,5 +1,5 @@
 import './Kanban.scss';
-import DatePicker from 'react-datepicker'
+import DatePicker from 'react-datepicker';
 
 import { List } from 'immutable';
 import React, { Component } from 'react';
@@ -114,4 +114,9 @@ const mapStateToProps = (state: RootState, props: ComponentProps) => {
   };
 };
 
-export const Kanban = withRouter<ComponentProps>(connect(mapStateToProps, mapDispatchToProps)(KanbanComponent));
+export const Kanban = withRouter<ComponentProps>(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(KanbanComponent)
+);

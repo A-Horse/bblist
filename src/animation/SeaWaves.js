@@ -126,15 +126,7 @@ class CircleContainer {
    */
   initializeCircles() {
     for (let i = 0; i < this.numberOfCircles; i++) {
-      this.circles.push(
-        new Circle(
-          this.position.x,
-          this.position.y + Math.random(),
-          this.baseRadius,
-          this.bounceRadius,
-          i * this.singleSlice
-        )
-      );
+      this.circles.push(new Circle(this.position.x, this.position.y + Math.random(), this.baseRadius, this.bounceRadius, i * this.singleSlice));
     }
   }
 
@@ -188,14 +180,8 @@ class Circle {
    * @return void
    */
   update() {
-    this.position.x =
-      this.basePosition.x +
-      Math.cos(this.angleCircle) *
-        (Math.sin(this.angle + this.angleCircle) * this.bounceRadius + this.baseRadius);
-    this.position.y =
-      this.basePosition.y +
-      Math.sin(this.angleCircle) *
-        (Math.sin(this.angle + this.angleCircle) * this.bounceRadius + this.baseRadius);
+    this.position.x = this.basePosition.x + Math.cos(this.angleCircle) * (Math.sin(this.angle + this.angleCircle) * this.bounceRadius + this.baseRadius);
+    this.position.y = this.basePosition.y + Math.sin(this.angleCircle) * (Math.sin(this.angle + this.angleCircle) * this.bounceRadius + this.baseRadius);
     this.size = Math.cos(this.angle) * 8 + this.baseSize;
 
     this.angle += this.speed;

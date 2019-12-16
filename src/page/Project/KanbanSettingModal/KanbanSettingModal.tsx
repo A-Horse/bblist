@@ -6,11 +6,7 @@ import { connect } from 'react-redux';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { ActionCreatorsMapObject, AnyAction, bindActionCreators, Dispatch } from 'redux';
 
-import {
-  createKanbanColumnRequest,
-  createKanbanRequest,
-  getProjectKanbanDetailRequest
-} from '../../../actions/project/kanban.action';
+import { createKanbanColumnRequest, createKanbanRequest, getProjectKanbanDetailRequest } from '../../../actions/project/kanban.action';
 import { AppModal } from '../../../components/widget/AppModal';
 import { RootState } from '../../../reducers';
 import { selectKanbanColumns } from '../../../reducers/selector/kanban.selector';
@@ -109,5 +105,8 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
 };
 
 export const KanbanSettingModal = withRouter<InputRouterProps>(
-  connect(mapStateToProps, mapDispatchToProps)(KanbanSettingModalComponent)
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(KanbanSettingModalComponent)
 );

@@ -25,11 +25,7 @@ export class Todo extends Component<any> {
 
     return (
       <div className="todo-item">
-        <Checkbox
-          className="todo-done-checkbox"
-          onChange={this.updateDone}
-          defaultChecked={todo.get('status') === 'DONE'}
-        />
+        <Checkbox className="todo-done-checkbox" onChange={this.updateDone} defaultChecked={todo.get('status') === 'DONE'} />
         <div className="todo-item-main">
           {todo.get('content')}
           {todo.get('deadline') && (

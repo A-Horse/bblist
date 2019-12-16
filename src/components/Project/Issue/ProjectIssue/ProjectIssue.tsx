@@ -26,29 +26,27 @@ interface CardInstance {
 
 type IssueComponent = RefForwardingComponent<HTMLDivElement, InputProps & DndProps>;
 
-const Card = React.forwardRef<HTMLDivElement, InputProps & DndProps>(
-  ({ issue, isDragging, onClick, connectDragSource, connectDropTarget }, ref) => {
-    const elementRef = useRef(null);
-    connectDragSource(elementRef);
-    connectDropTarget(elementRef);
+const Card = React.forwardRef<HTMLDivElement, InputProps & DndProps>(({ issue, isDragging, onClick, connectDragSource, connectDropTarget }, ref) => {
+  const elementRef = useRef(null);
+  connectDragSource(elementRef);
+  connectDropTarget(elementRef);
 
-    const opacity = isDragging ? 0.2 : 1;
-    useImperativeHandle<{}, CardInstance>(ref, () => ({
-      getNode: () => elementRef.current
-    }));
+  const opacity = isDragging ? 0.2 : 1;
+  useImperativeHandle<{}, CardInstance>(ref, () => ({
+    getNode: () => elementRef.current
+  }));
 
-    const innerOnClick = () => {
-      onClick && onClick(issue.get('id'));
-    };
+  const innerOnClick = () => {
+    onClick && onClick(issue.get('id'));
+  };
 
-    return (
-      <div onClick={innerOnClick} className="ProjectIssue" ref={elementRef} style={{ opacity }}>
-        <IssueId id={issue.get('id')} />
-        <div>{issue.get('title')}</div>
-      </div>
-    );
-  }
-);
+  return (
+    <div onClick={innerOnClick} className="ProjectIssue" ref={elementRef} style={{ opacity }}>
+      <IssueId id={issue.get('id')} />
+      <div>{issue.get('title')}</div>
+    </div>
+  );
+});
 
 export const ProjectIssue = DropTarget(
   'CARD',

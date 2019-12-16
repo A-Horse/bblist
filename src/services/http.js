@@ -23,9 +23,7 @@ function f(method) {
     } else {
       createConfigFn = createConfigWithAuth;
     }
-    return fetch(generateUri(url, query), createConfigFn(method, body)).then(
-      R.partialRight(handleResponse, [options.withHeader])
-    );
+    return fetch(generateUri(url, query), createConfigFn(method, body)).then(R.partialRight(handleResponse, [options.withHeader]));
   };
 }
 

@@ -44,4 +44,9 @@ const mapStateToProps = (state: any, props: any) => {
   };
 };
 
-export const ProjectEpics = withRouter(connect(mapStateToProps, mapDispatchToProps)(ProjectEpicsComponent));
+export const ProjectEpics = withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(ProjectEpicsComponent)
+);

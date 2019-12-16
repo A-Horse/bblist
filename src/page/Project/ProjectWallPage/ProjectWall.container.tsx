@@ -25,6 +25,9 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
   };
 };
 
-const ProjectWallContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(ProjectWall) as any);
+const ProjectWallContainer = withRouter(connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ProjectWall) as any);
 
 export default ProjectWallContainer;

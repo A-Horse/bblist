@@ -20,7 +20,10 @@ export function IssueDetailBread(props: InputProp) {
     return null;
   }
 
-  return <div>{project.get('name')}
-    <ColumnSelect kanbanID={props.kanbanID} />
-  </div>;
+  return (
+    <div>
+      {project.get('name')}
+      <ColumnSelect kanbanID={props.kanbanID} />
+    </div>
+  );
 }

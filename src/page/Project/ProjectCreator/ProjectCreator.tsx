@@ -82,4 +82,7 @@ const mapDispatchToProps = (dispatch: any) => {
   };
 };
 
-export const ProjectCreator = connect(mapStateToProps, mapDispatchToProps)(TaskBoardCreaterWithForm);
+export const ProjectCreator = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(TaskBoardCreaterWithForm);

@@ -49,4 +49,9 @@ const mapStateToProps = (state: any, props: any) => {
   };
 };
 
-export const ProjectAdmin = withRouter(connect(mapStateToProps, mapDispatchToProps)(ProjectAdminComponent));
+export const ProjectAdmin = withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(ProjectAdminComponent)
+);

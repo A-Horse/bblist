@@ -19,10 +19,7 @@ export class IssueDetailLeft extends Component<InputProps, State> {
     console.log(value);
   };
 
-  
-  updateIssue = () => {
-   
-  };
+  updateIssue = () => {};
 
   render() {
     return (

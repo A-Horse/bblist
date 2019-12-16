@@ -71,5 +71,8 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
 };
 
 export const KanbanSelectorModal = withRouter<InputProps & RouterProps>(
-  connect(mapStateToProps, mapDispatchToProps)(KanbanSelectorModalComponent)
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(KanbanSelectorModalComponent)
 );
