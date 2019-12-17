@@ -1,5 +1,4 @@
 import './Kanban.scss';
-import DatePicker from 'react-datepicker';
 
 import { List } from 'immutable';
 import React, { Component } from 'react';

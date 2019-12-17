@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import { AppButton } from '../../../../widget/AppButton';
 import { DateTimeSelectDialog } from '../../../../DateTimeSelectDialog/DateTimeSeletDialog';
+import { ProjectIssueRecord } from '../../../../../typings/project-issue.typing';
 
-interface InputProps {}
+interface InputProps {
+  issue: ProjectIssueRecord;
+  updateIssue: Function;
+}
 
 interface State {
   deadlineSelectOpen: boolean;
@@ -16,10 +20,8 @@ export class IssueDetailLeft extends Component<InputProps, State> {
   componentDidMount() {}
 
   onDeadlineOnclick = (value: Date) => {
-    console.log(value);
+    this.props.updateIssue({deadline: value});
   };
-
-  updateIssue = () => {};
 
   render() {
     return (
@@ -28,7 +30,13 @@ export class IssueDetailLeft extends Component<InputProps, State> {
           <AppButton onClick={() => this.setState({ deadlineSelectOpen: true })}>到期时间</AppButton>
         </div>
 
-        <DateTimeSelectDialog isOpen={this.state.deadlineSelectOpen} onConfirm={this.onDeadlineOnclick} />
+        <DateTimeSelectDialog
+          isOpen={this.state.deadlineSelectOpen}
+          onConfirm={this.onDeadlineOnclick}
+          onCancel={() => {
+            this.setState({ deadlineSelectOpen: false });
+          }}
+        />
       </>
     );
   }

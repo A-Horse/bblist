@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { ModalHeader } from '../widget/ModalHeader/ModalHeader';
 import { AppModal } from '../widget/AppModal';
-import { AppDateTimePicker } from '../widget/DatePicker/DatePicker';
+import { AppDateTimePicker } from '../widget/DatePicker/Datepicker';
 import { AppButton } from '../widget/AppButton';
 
 interface InputProps {
   onConfirm: Function;
+  onCancel: Function;
   isOpen: boolean;
 }
 
@@ -18,7 +19,9 @@ export class DateTimeSelectDialog extends Component<InputProps, State> {
     value: undefined
   };
 
-  closeModal = () => {};
+  closeModal = () => {
+    this.props.onCancel && this.props.onCancel();
+  };
 
   onChange = (date: Date) => {
     this.setState({ value: date });

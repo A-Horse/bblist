@@ -94,6 +94,7 @@ class IssueDetailComponent extends Component<
     return (
       <div className="IssueDetail">
         <IssueDetailBread kanbanID={this.props.kanbanID} projectID={this.props.projectID} issueID={this.props.issueID} />
+        
         <FormField>
           <Input size="large" value={issue.get('title')} onChange={this.onFieldChange('title')} onBlur={this.onFieldBlur('title')} />
         </FormField>
@@ -102,7 +103,7 @@ class IssueDetailComponent extends Component<
           <AppTextArea className="IssueDetail--content-textarea" value={issue.get('content') || ''} onChange={this.onFieldChange('content')} onBlur={this.onFieldBlur('content')} />
         </FormField>
 
-        <IssueDetailLeft />
+        <IssueDetailLeft issue={issue} updateIssue={this.updateIssue}  />
       </div>
     );
   }
