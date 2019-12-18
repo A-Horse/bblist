@@ -2,7 +2,7 @@ import './LogoBan.scss';
 
 import React, { Component } from 'react';
 
-import octopusImage from '../../../assets/octopus.png';
+import octopusImage from '../../assets/octopus.png';
 import { TextLogo } from '../TextLogo';
 
 export class LogoBan extends Component<{
@@ -12,6 +12,7 @@ export class LogoBan extends Component<{
     return (
       <div className="logoban">
         <img
+          alt=""
           src={octopusImage}
           style={{
             width: '30px',

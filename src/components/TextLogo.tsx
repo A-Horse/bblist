@@ -1,7 +1,7 @@
 import React, { Component, CSSProperties } from 'react';
 
-import textLogoWhite from '../../assets/text-logo-white.svg';
-import textLogo from '../../assets/text-logo.svg';
+import textLogoWhite from '../assets/text-logo-white.svg';
+import textLogo from '../assets/text-logo.svg';
 
 export class TextLogo extends Component<{
   white?: boolean;

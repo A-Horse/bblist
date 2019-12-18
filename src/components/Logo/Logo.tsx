@@ -1,6 +1,6 @@
 import React, { Component, CSSProperties } from 'react';
 
-import octopusImage from '../../../assets/octopus.png';
+import octopusImage from '../../assets/octopus.png';
 
 export class Logo extends Component<{
   style?: CSSProperties;
@@ -9,6 +9,7 @@ export class Logo extends Component<{
     return (
       <img
         src={octopusImage}
+        alt=""
         style={{
           width: 30,
           ...this.props.style

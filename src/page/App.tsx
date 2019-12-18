@@ -84,7 +84,7 @@ export default class App extends Component<any> {
               render={() => (
                 <Redirect
                   to={{
-                    pathname: '/project'
+                    pathname: '/projects'
                   }}
                 />
               )}

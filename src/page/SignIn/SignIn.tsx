@@ -3,8 +3,8 @@ import './SignIn.scss';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-import { Logo } from '../../components/commons/Logo/Logo';
-import { TextLogo } from '../../components/commons/TextLogo';
+import { Logo } from '../../components/Logo/Logo';
+import { TextLogo } from '../../components/TextLogo';
 import { updateTitle } from '../../services/title';
 import { WrappedSignInForm } from './SignInForm';
 

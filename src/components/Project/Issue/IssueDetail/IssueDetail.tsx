@@ -15,6 +15,7 @@ import Input from '../../../widget/Input/Input';
 import { AppTextArea } from '../../../widget/TextArea/TextArea';
 import { IssueDetailBread } from './IssueDetailBread/IssueDetailBread';
 import { IssueDetailLeft } from './IssueDetailLeft/IssueDetailLeft';
+import { Deadline } from '../../../Deadline/Deadline';
 
 export interface InputProps {
   issueID: string;
@@ -94,7 +95,9 @@ class IssueDetailComponent extends Component<
     return (
       <div className="IssueDetail">
         <IssueDetailBread kanbanID={this.props.kanbanID} projectID={this.props.projectID} issueID={this.props.issueID} />
-        
+
+        <div>{issue.get('deadline') && <Deadline deadline={issue.get('deadline')} />}</div>
+
         <FormField>
           <Input size="large" value={issue.get('title')} onChange={this.onFieldChange('title')} onBlur={this.onFieldBlur('title')} />
         </FormField>
@@ -103,7 +106,7 @@ class IssueDetailComponent extends Component<
           <AppTextArea className="IssueDetail--content-textarea" value={issue.get('content') || ''} onChange={this.onFieldChange('content')} onBlur={this.onFieldBlur('content')} />
         </FormField>
 
-        <IssueDetailLeft issue={issue} updateIssue={this.updateIssue}  />
+        <IssueDetailLeft issue={issue} updateIssue={this.updateIssue} />
       </div>
     );
   }
@@ -128,9 +131,4 @@ const mapStateToProps = (state: RootState, props: InputProps) => {
   };
 };
 
-export const IssueDetail = withRouter<ComponentProps>(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(withToastManager(IssueDetailComponent))
-);
+export const IssueDetail = withRouter<ComponentProps>(connect(mapStateToProps, mapDispatchToProps)(withToastManager(IssueDetailComponent)));

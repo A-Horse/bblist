@@ -4,7 +4,7 @@ import * as R from 'ramda';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-import { LogoBan } from '../../components/commons/LogoBan/LogoBan';
+import { LogoBan } from '../../components/LogoBan/LogoBan';
 import { ErrorMsg } from '../../components/ErrorMsg/ErrorMsg';
 import { Input } from '../../components/widget/Input/Input';
 import { updateTitle } from '../../services/title';
