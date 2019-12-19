@@ -1,0 +1,17 @@
+.Deadline {
+  display: flex;
+  align-items: center;
+
+  .app-checkbox {
+    margin-right: 16px;
+  }
+
+  svg {
+    font-size: 18px;
+    margin-right: 8px;
+  }
+
+  &--text {
+    font-size: 16px;
+  }
+}

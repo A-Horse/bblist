@@ -6,7 +6,7 @@ import { FSAction } from '../actions/actions';
 import { GET_PROJCET_KANBAN_DETAIL_SUCCESS, GET_PROJCET_KANBANS_SUCCESS } from '../actions/project/kanban.action';
 import { CHANGE_ISSUE_DIRECT, GET_PROJECT_ISSUE_DETAIL_SUCCESS } from '../actions/project/project-issue-detail.aciton';
 import { GET_COLUMN_CARDS_SUCCESS, GET_PROJECT_ISSUES_REQUEST, GET_PROJECT_ISSUES_SUCCESS, RANK_PROJECT_CARD_IN_KANBAN_REQUEST, RANK_PROJECT_CARD_IN_KANBAN_SUCCESS } from '../actions/project/project-issue.action';
-import { CREATE_PROJCET_SUCCESS, GET_PROJCET_DETAIL_SUCCESS, GET_PROJCETS_SUCCESS } from '../actions/project/project.action';
+import { CREATE_PROJCET_SUCCESS, GET_PROJCET_DETAIL_SUCCESS, GET_PROJECT_SUCCESS } from '../actions/project/project.action';
 import { KanbanDetailEntity, KanbanEntityList, ProjectCardList, ProjectEntity, ProjectEntityList } from '../schema';
 import { Column, KanbanColumnRecord } from '../typings/kanban-column.typing';
 import { Kanban, KanbanRecord } from '../typings/kanban.typing';
@@ -38,7 +38,7 @@ export function project(
   action: FSAction
 ) {
   switch (action.type) {
-    case GET_PROJCETS_SUCCESS: {
+    case GET_PROJECT_SUCCESS: {
       const normalizedAllProject = normalize(action.payload, ProjectEntityList);
       return state.update('projectMap', () => fromJS(normalizedAllProject.entities.Project || {}));
     }

@@ -3,7 +3,7 @@ import { normalize } from 'normalizr';
 import * as R from 'ramda';
 
 import Actions from '../actions/actions';
-import { GET_PROJCETS_SUCCESS } from '../actions/project/project.action';
+import { GET_PROJECT_SUCCESS } from '../actions/project/project.action';
 import { TaskBoard, TaskBoards, TaskCard, TaskTrack } from '../schema';
 import { ITaskBoard, ITaskBoardSetting } from '../typings/task/task-board.typing';
 

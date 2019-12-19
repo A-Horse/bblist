@@ -1,26 +1,26 @@
 import { CreateProjectInput, Project, ProjectId, UploadProjectCoverInput } from '../../typings/project.typing';
 import { FSAction } from '../actions';
 
-export const GET_PROJCETS_REQUEST = 'GET_PROJCETS_REQUEST';
-export const GET_PROJCETS_SUCCESS = 'GET_PROJCETS_SUCCESS';
-export const GET_PROJCETS_FAILURE = 'GET_PROJCETS_FAILURE';
+export const GET_PROJECT_REQUEST = 'GET_PROJECT_REQUEST';
+export const GET_PROJECT_SUCCESS = 'GET_PROJECT_SUCCESS';
+export const GET_PROJECT_FAILURE = 'GET_PROJECT_FAILURE';
 
 export function getProjectsRequest(): FSAction {
   return {
-    type: GET_PROJCETS_REQUEST
+    type: GET_PROJECT_REQUEST
   };
 }
 
 export function getProjectsSuccess(projects: Project[]): FSAction {
   return {
-    type: GET_PROJCETS_SUCCESS,
+    type: GET_PROJECT_SUCCESS,
     payload: projects
   };
 }
 
 export function getProjectsFailure(): FSAction {
   return {
-    type: GET_PROJCETS_FAILURE,
+    type: GET_PROJECT_FAILURE,
     error: true
   };
 }

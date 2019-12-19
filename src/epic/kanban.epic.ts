@@ -54,7 +54,7 @@ export const GET_PROJCET_KANBAN_DETAIL_REQUEST_FN = (action$: Observable<FSActio
     })
   );
 
-export const CREATAE_KANBAN_REQUEST_FN = (action$: Observable<FSAction>) =>
+export const CREATE_KANBAN_REQUEST_FN = (action$: Observable<FSAction>) =>
   action$.pipe(
     ofType(CREATAE_KANBAN_REQUEST),
     mergeMap((action: FSAction) => {
@@ -65,7 +65,7 @@ export const CREATAE_KANBAN_REQUEST_FN = (action$: Observable<FSAction>) =>
     })
   );
 
-export const CREATAE_KANBAN_COLUMN_REQUEST_FN = (action$: Observable<FSAction>) =>
+export const CREATE_KANBAN_COLUMN_REQUEST_FN = (action$: Observable<FSAction>) =>
   action$.pipe(
     ofType(CREATAE_KANBAN_COLUMN_REQUEST),
     mergeMap((action: FSAction) => {
@@ -80,7 +80,7 @@ export const CREATAE_KANBAN_COLUMN_REQUEST_FN = (action$: Observable<FSAction>) 
     })
   );
 
-export const CREATAE_KANBAN_COLUMN_SUCCESS_FN = (action$: Observable<FSAction>) =>
+export const CREATE_KANBAN_COLUMN_SUCCESS_FN = (action$: Observable<FSAction>) =>
   action$.pipe(
     ofType(CREATAE_KANBAN_COLUMN_SUCCESS),
     map((action: FSAction) => {

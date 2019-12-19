@@ -148,4 +148,9 @@ const mapStateToProps = (state: RootState, props: InputProps) => {
   };
 };
 
-export const IssueDetail = withRouter<ComponentProps>(connect(mapStateToProps, mapDispatchToProps)(withToastManager(IssueDetailComponent)));
+export const IssueDetail = withRouter<ComponentProps>(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(withToastManager(IssueDetailComponent))
+);

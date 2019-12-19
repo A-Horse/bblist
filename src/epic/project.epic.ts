@@ -10,7 +10,7 @@ import {
   createProjectFailure,
   createProjectSuccess,
   GET_PROJCET_DETAIL_REQUEST,
-  GET_PROJCETS_REQUEST,
+  GET_PROJECT_REQUEST,
   getProjectDetailFailure,
   getProjectDetailSuccess,
   getProjectsFailure,
@@ -24,7 +24,7 @@ import { makeApiUrl } from '../utils/api';
 
 export const GET_PROJCETS_REQUEST_FN = (action$: Observable<FSAction>) =>
   action$.pipe(
-    ofType(GET_PROJCETS_REQUEST),
+    ofType(GET_PROJECT_REQUEST),
     mergeMap(() => {
       return axios
         .get(makeApiUrl(`/projects`))
