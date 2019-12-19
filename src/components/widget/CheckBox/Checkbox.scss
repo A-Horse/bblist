@@ -1,42 +1,49 @@
-@import "../../../style/variable";
-@import "../../../style/mixin";
-
-.checkbox {
-  position: relative;
+.app-checkbox {
   display: inline-block;
-  vertical-align: middle;
+}
 
-  .checkbox--mock {
-    display: block;
-    height: 0;
-    width: 0;
-    height: 100%;
-    width: 100%;
-  }
+.app-rounded-checkbox {
+  width: 50px;
+  height: 30px;
+  position: relative;
+  margin: 20px auto;
+  border-radius: 50px;
+}
 
-  input {
-    visibility: hidden;
-    position: absolute;
-    height: 0;
-    width: 0;
-    height: 100%;
-    width: 100%;
-    z-index: 10;
-  }
+.app-rounded-checkbox .label {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  cursor: pointer;
+  background: white;
+  border-radius: 50px;
+}
 
-  .fa {
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    font-size: 25px;
-    vertical-align: middle;
+.app-rounded-checkbox .label::after {
+  content: "";
+  width: 13px;
+  height: 8px;
+  position: absolute;
+  top: 7px;
+  left: 5.5px;
+  border: 3.5px solid #28bbff;
+  border-top: none;
+  border-right: none;
+  background: transparent;
+  opacity: 0;
+  transform: rotate(-45deg);
+}
 
-    &.fa-check-square-o {
-      color: #4caf50;
-    }
+.app-rounded-checkbox .label:after:hover::after {
+  opacity: 0.3;
+}
 
-    &.fa-square-o {
-      color: #999;
-    }
-  }
+.app-rounded-checkbox input[type="checkbox"] {
+  visibility: hidden;
+}
+
+.app-rounded-checkbox input[type="checkbox"]:checked + .label::after {
+  opacity: 1;
 }

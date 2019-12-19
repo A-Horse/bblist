@@ -2,14 +2,13 @@ import './IssueDetail.scss';
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { RouteComponentProps, RouterProps, withRouter } from 'react-router';
+import { RouteComponentProps, withRouter } from 'react-router';
 import { withToastManager } from 'react-toast-notifications';
 import { ActionCreatorsMapObject, AnyAction, bindActionCreators, Dispatch } from 'redux';
 import { AnyHTMLElement } from '@stencil/core/dist/declarations';
 import { changeIssueDirect, getProjectIssueDetailRequest, updateProjectIssueDetailRequest } from '../../../../actions/project/project-issue-detail.aciton';
 import { RootState } from '../../../../reducers';
 import { ProjectIssueRecord, ProjectIssueRecordFiled } from '../../../../typings/project-issue.typing';
-import { AppButton } from '../../../widget/Button';
 import { FormField } from '../../../widget/FormField/FormField';
 import Input from '../../../widget/Input/Input';
 import { AppTextArea } from '../../../widget/TextArea/TextArea';
@@ -38,6 +37,7 @@ class IssueDetailComponent extends Component<
   {}
 > {
   state = {};
+  changedFields = {};
 
   componentDidMount() {
     this.props.actions.getProjectIssueDetailRequest({
@@ -54,7 +54,12 @@ class IssueDetailComponent extends Component<
   }
 
   onFieldChange = (fieldName: ProjectIssueRecordFiled) => {
+    const issue = this.props.issue;
+    const changedFields = this.changedFields;
     return (value: any): void => {
+      if (value !== issue!.get(fieldName)) {
+        changedFields[fieldName] = true;
+      }
       this.props.actions.changeIssueDirect(this.props.issueID, {
         [fieldName]: value
       });
@@ -70,6 +75,15 @@ class IssueDetailComponent extends Component<
   };
 
   updateIssue = (changedPartialIssue: any) => {
+    const didChangedPartialIssue = Object.keys(changedPartialIssue).reduce((result: any, key: string) => {
+      if (this.changedFields[key]) {
+        result[key] = changedPartialIssue[key];
+      }
+      return result;
+    }, {});
+    if (Object.keys(didChangedPartialIssue).length === 0) {
+      return;
+    }
     this.props.actions.updateProjectIssueDetailRequest(
       {
         issueId: this.props.issueID,
@@ -81,6 +95,9 @@ class IssueDetailComponent extends Component<
             return this.props.toastManager.add('更新成功', { appearance: 'success', autoDismiss: true });
           }
           this.props.toastManager.add('更新失败', { appearance: 'error', autoDismiss: true });
+          Object.keys(didChangedPartialIssue).forEach((k: string) => {
+            this.changedFields[k] = false;
+          });
         }
       }
     );

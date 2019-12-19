@@ -8,16 +8,6 @@ import { NotFound } from '../page/NotFound';
 import { getUserData } from '../utils/auth';
 import Nav from './Nav/Nav';
 
-const { Content } = Layout;
-
-const TodoPageContainer = React.lazy(() => import('./Todo/TodoPage.container'));
-const TodoPage = () => {
-  return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <TodoPageContainer />
-    </Suspense>
-  );
-};
 
 const SettingPageContainer = React.lazy(() => import('./Setting/SettingPage.container'));
 const SettingPage = () => {
@@ -92,19 +82,6 @@ export default class App extends Component<any> {
 
             <Route exact path="/projects" component={ProjectWallPage} />
             <Route path="/project/:projectID" component={ProjectPage} />
-
-            <Route path="/todo/:boxId" component={TodoPage} />
-            <Route
-              exact
-              path="/todo"
-              render={() => (
-                <Redirect
-                  to={{
-                    pathname: '/todo/@all'
-                  }}
-                />
-              )}
-            />
 
             <Route path="/setting" component={SettingPage} />
             <Route path="/profile" component={ProfilePage} />
