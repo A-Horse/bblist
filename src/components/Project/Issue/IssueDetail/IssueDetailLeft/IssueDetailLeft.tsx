@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { AppButton } from '../../../../widget/AppButton';
 import { DateTimeSelectDialog } from '../../../../DateTimeSelectDialog/DateTimeSeletDialog';
 import { ProjectIssueRecord } from '../../../../../typings/project-issue.typing';
+import {AssigneeSelector} from "../../../../AssigneeSelector/AssigneeSelector";
 
 interface InputProps {
   issue: ProjectIssueRecord;
@@ -37,6 +38,8 @@ export class IssueDetailLeft extends Component<InputProps, State> {
             this.setState({ deadlineSelectOpen: false });
           }}
         />
+
+        <AssigneeSelector />
       </>
     );
   }

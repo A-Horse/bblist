@@ -124,6 +124,8 @@ class IssueDetailComponent extends Component<
         </FormField>
 
         <IssueDetailLeft issue={issue} updateIssue={this.updateIssue} />
+
+
       </div>
     );
   }

@@ -1,5 +1,6 @@
 import { FSAction } from '../actions';
 import { Project } from '../../typings/project.typing';
+import {UserShow} from "../../typings/user/user.typing";
 
 export const GET_ALL_USERS_REQUEST = 'GET_ALL_USERS_REQUEST';
 export const GET_ALL_USERS_SUCCESS = 'GET_ALL_USERS_SUCCESS';
@@ -11,9 +12,10 @@ export function getAllUsersRequest(): FSAction {
   };
 }
 
-export function getAllUsersSuccess(): FSAction {
+export function getAllUsersSuccess(users: UserShow[]): FSAction {
   return {
-    type: GET_ALL_USERS_SUCCESS
+    type: GET_ALL_USERS_SUCCESS,
+    payload: users
   };
 }
 

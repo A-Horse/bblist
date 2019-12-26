@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { ModalHeader } from '../widget/ModalHeader/ModalHeader';
 import { AppModal } from '../widget/AppModal';
-import { AppDateTimePicker } from '../widget/DatePicker/Datepicker';
+import { AppDateTimePicker } from '../widget/Datepicker/Datepicker';
 import { AppButton } from '../widget/AppButton';
 
 interface InputProps {

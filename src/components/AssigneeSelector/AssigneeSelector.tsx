@@ -1,8 +1,18 @@
 import React from 'react';
+import { AppSelect } from '../widget/AppSelect';
+import { UserAvatar } from '../UserAvatar/UserAvatar';
 
 interface InputProps {
-  selectedUserId: string;
+  selectedUserId?: string;
 }
+
 export function AssigneeSelector(input: InputProps) {
-  return <div className="AssigneeSelector">hi</div>;
+  const onChange = () => {};
+
+  return (
+    <div className="AssigneeSelector">
+      <UserAvatar />
+      <AppSelect placeholder="分配用户" options={[]} onChange={onChange} />
+    </div>
+  );
 }
