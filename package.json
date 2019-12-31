@@ -28,7 +28,7 @@
     "react-datepicker": "^2.10.1",
     "react-dnd": "^9.3.4",
     "react-dnd-html5-backend": "^9.3.4",
-    "react-dom": "^16.7.0",
+    "react-dom": "^16.8.3",
     "react-image-crop": "^6.0.9",
     "react-modal": "^3.9.1",
     "react-redux": "^7.1.1",
@@ -78,7 +78,7 @@
     "@types/react-router-dom": "^4.3.1",
     "@types/react-select": "^3.0.2",
     "bundle-loader": "^0.5.6",
-    "react-test-renderer": "^16.12.0",
+    "react-test-renderer": "^16.8.3",
     "ts-jest": "^24.2.0"
   }
 }
