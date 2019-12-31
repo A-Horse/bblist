@@ -7,7 +7,12 @@ import HTML5Backend from 'react-dnd-html5-backend';
 import { connect } from 'react-redux';
 import { Route, RouteComponentProps } from 'react-router';
 import { withRouter } from 'react-router-dom';
-import { ActionCreatorsMapObject, AnyAction, bindActionCreators, Dispatch } from 'redux';
+import {
+  ActionCreatorsMapObject,
+  AnyAction,
+  bindActionCreators,
+  Dispatch
+} from 'redux';
 
 import { getProjectKanbanDetailRequest } from '../../../../../actions/project/kanban.action';
 import Loading from '../../../../../components/Loading';
@@ -36,7 +41,9 @@ class KanbanComponent extends Component<
   } & ComponentProps
 > {
   componentWillMount() {
-    this.props.actions.getProjectKanbanDetailRequest({ kanbanId: this.props.kanbanId });
+    this.props.actions.getProjectKanbanDetailRequest({
+      kanbanId: this.props.kanbanId
+    });
   }
 
   onIssueClick = (issueId: string) => {
@@ -59,10 +66,22 @@ class KanbanComponent extends Component<
         <DndProvider backend={HTML5Backend}>
           <Route
             path="/project/:projectID/kanban/:kanbanId"
-            render={(props: RouteComponentProps<{ projectID: string; kanbanID: string; issueId: string }>) => {
+            render={(
+              props: RouteComponentProps<{
+                projectID: string;
+                kanbanID: string;
+                issueId: string;
+              }>
+            ) => {
               const query = parseQueryParams(props.location.search);
               if (query.issueId) {
-                return <IssueDetailModal kanbanID={query.kanbanID} issueId={query.issueId} projectID={props.match.params.projectID} />;
+                return (
+                  <IssueDetailModal
+                    kanbanID={query.kanbanID}
+                    issueId={query.issueId}
+                    projectID={props.match.params.projectID}
+                  />
+                );
               }
               return null;
             }}
@@ -70,11 +89,18 @@ class KanbanComponent extends Component<
 
           <div className="Kanban-ColumnContainer">
             {columns
-              .sort((a: KanbanColumnRecord, b: KanbanColumnRecord) => a.get('order') - b.get('order'))
+              .sort(
+                (a: KanbanColumnRecord, b: KanbanColumnRecord) =>
+                  a.get('order') - b.get('order')
+              )
               .valueSeq()
               .toArray()
               .map((column: KanbanColumnRecord) => (
-                <KanbanColumn key={column.get('id')} column={column} onIssueClick={this.onIssueClick} />
+                <KanbanColumn
+                  key={column.get('id')}
+                  column={column}
+                  onIssueClick={this.onIssueClick}
+                />
               ))}
           </div>
         </DndProvider>
@@ -97,7 +123,9 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
 const mapStateToProps = (state: RootState, props: ComponentProps) => {
   const { projectId } = props;
 
-  const project = state.project.get('projectMap').get(projectId) as ProjectRecord;
+  const project = state.project
+    .get('projectMap')
+    .get(projectId) as ProjectRecord;
 
   const kanban = state.project.get('kanbanMap').get(props.kanbanId);
 

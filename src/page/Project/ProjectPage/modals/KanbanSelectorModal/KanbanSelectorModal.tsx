@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { RouteComponentProps, withRouter } from 'react-router';
-import { ActionCreatorsMapObject, AnyAction, bindActionCreators, Dispatch } from 'redux';
+import {
+  ActionCreatorsMapObject,
+  AnyAction,
+  bindActionCreators,
+  Dispatch
+} from 'redux';
 
 import { AppModal } from '../../../../../components/widget/AppModal';
 import { RootState } from '../../../../../reducers';
@@ -57,7 +62,10 @@ class KanbanSelectorModalComponent extends Component<ComponentProps> {
 const mapStateToProps = (state: RootState, props: InputProps & RouterProps) => {
   const project = state.project.get('projectMap').get(props.projectId);
 
-  const kanbans: KanbanRecord[] = getKanbans(project, state.project.get('kanbanMap'));
+  const kanbans: KanbanRecord[] = getKanbans(
+    project,
+    state.project.get('kanbanMap')
+  );
 
   return {
     kanbans: kanbans

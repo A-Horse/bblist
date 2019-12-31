@@ -14,14 +14,24 @@ interface InputProps {
   onChange: Function;
 }
 
-export function KanbanHeaderBar({ projectId, selectedKanbanId, onChange }: InputProps) {
-  const kanban: KanbanRecord | undefined = useSelector((state: RootState) => state.project.get('kanbanMap').get(selectedKanbanId));
+export function KanbanHeaderBar({
+  projectId,
+  selectedKanbanId,
+  onChange
+}: InputProps) {
+  const kanban: KanbanRecord | undefined = useSelector((state: RootState) =>
+    state.project.get('kanbanMap').get(selectedKanbanId)
+  );
 
   const [selectKanbanToggle, setSelectKanbanToggle] = useState(false);
 
   return (
     <div className="KanbanHeaderBar">
-      {kanban && <span className="KanbanHeaderBar--kanban-name">{kanban.get('name')}</span>}
+      {kanban && (
+        <span className="KanbanHeaderBar--kanban-name">
+          {kanban.get('name')}
+        </span>
+      )}
 
       <AppButton
         type="dashed"
@@ -34,7 +44,12 @@ export function KanbanHeaderBar({ projectId, selectedKanbanId, onChange }: Input
         选择看板
       </AppButton>
 
-      <KanbanSelectorModal onChange={onChange} toggle={selectKanbanToggle} projectId={projectId} onClose={() => setSelectKanbanToggle(false)} />
+      <KanbanSelectorModal
+        onChange={onChange}
+        toggle={selectKanbanToggle}
+        projectId={projectId}
+        onClose={() => setSelectKanbanToggle(false)}
+      />
     </div>
   );
 }

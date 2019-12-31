@@ -1,4 +1,12 @@
-import { Field, FieldProps, Form, Formik, FormikActions, FormikProps, FormikValues } from 'formik';
+import {
+  Field,
+  FieldProps,
+  Form,
+  Formik,
+  FormikActions,
+  FormikProps,
+  FormikValues
+} from 'formik';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -49,7 +57,10 @@ class CreateProjectIssueFormComponent extends Component<
       <div style={this.props.style} className="taskboard-creater">
         <Formik
           initialValues={{ title: '', kanbanId: null, columnId: null }}
-          onSubmit={(values: FormValues, actions: FormikActions<FormValues>) => {
+          onSubmit={(
+            values: FormValues,
+            actions: FormikActions<FormValues>
+          ) => {
             console.log({ values, actions });
             this.createProjectCard(values);
             actions.setSubmitting(false);
@@ -70,7 +81,9 @@ class CreateProjectIssueFormComponent extends Component<
                           formikBag.setFieldValue('title', value);
                         }}
                       />
-                      {form.touched.name && form.errors.name && form.errors.name}
+                      {form.touched.name &&
+                        form.errors.name &&
+                        form.errors.name}
                     </FormField>
                   )}
                 />
@@ -84,7 +97,9 @@ class CreateProjectIssueFormComponent extends Component<
                           formikBag.setFieldValue('kanbanId', selected.value);
                         }}
                       />
-                      {form.touched.kanbanId && form.errors.kanbanId && form.errors.kanbanId}
+                      {form.touched.kanbanId &&
+                        form.errors.kanbanId &&
+                        form.errors.kanbanId}
                     </FormField>
                   )}
                 />
@@ -92,8 +107,15 @@ class CreateProjectIssueFormComponent extends Component<
                   name="columnId"
                   render={({ field, form }: FieldProps<FormikValues>) => (
                     <FormField name="所在列表">
-                      <ColumnSelect kanbanID={form.values.kanbanId} onChange={(selected: SelectOption) => formikBag.setFieldValue('columnId', selected.value)} />
-                      {form.touched.name && form.errors.name && form.errors.name}
+                      <ColumnSelect
+                        kanbanID={form.values.kanbanId}
+                        onChange={(selected: SelectOption) =>
+                          formikBag.setFieldValue('columnId', selected.value)
+                        }
+                      />
+                      {form.touched.name &&
+                        form.errors.name &&
+                        form.errors.name}
                     </FormField>
                   )}
                 />

@@ -26,7 +26,10 @@ export class TaskCreator extends Component<{}, any> {
           Task
         </div>
 
-        <IssueCreatorModal modalVisible={this.state.modalVisible} closeModal={this.handleCancel} />
+        <IssueCreatorModal
+          modalVisible={this.state.modalVisible}
+          closeModal={this.handleCancel}
+        />
       </div>
     );
   }

@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { ActionCreatorsMapObject, AnyAction, bindActionCreators, Dispatch } from 'redux';
+import {
+  ActionCreatorsMapObject,
+  AnyAction,
+  bindActionCreators,
+  Dispatch
+} from 'redux';
 import { getProjectKanbanDetailRequest } from '../../../actions/project/kanban.action';
 import { RootState } from '../../../reducers';
 import { selectKanbanColumns } from '../../../reducers/selector/kanban.selector';
@@ -35,7 +40,14 @@ class ColumnSelectComponent extends Component<InputProps & InjectProps> {
   }
 
   render() {
-    return <AppSelect placeholder="选择列表" noOptionsMessage={noOptionTip} options={this.props.options} onChange={this.props.onChange} />;
+    return (
+      <AppSelect
+        placeholder="选择列表"
+        noOptionsMessage={noOptionTip}
+        options={this.props.options}
+        onChange={this.props.onChange}
+      />
+    );
   }
 }
 

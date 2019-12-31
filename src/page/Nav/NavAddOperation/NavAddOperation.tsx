@@ -26,7 +26,12 @@ export class NavAddOperation extends Component<any> {
       </AppMenu>
     );
     return (
-      <AppDropdown className="nav-operation-dropdown" overlay={menu} placement="bottomCenter" trigger={['click']}>
+      <AppDropdown
+        className="nav-operation-dropdown"
+        overlay={menu}
+        placement="bottomCenter"
+        trigger={['click']}
+      >
         <AppIcon icon="plus-circle" color="white" size="lg" />
       </AppDropdown>
     );

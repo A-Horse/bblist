@@ -6,13 +6,14 @@ import { getAllUsersRequest } from '../../actions/user/user.action';
 
 interface InputProps {
   selectedUserId?: string;
+  projectID: string;
 }
 
-export function AssigneeSelector(input: InputProps) {
+export function AssigneeSelector(props: InputProps) {
   const dispatch = useDispatch();
   const onChange = () => {};
   const onMenuOpen = () => {
-    dispatch(getAllUsersRequest());
+    dispatch(getAllUsersRequest(props.projectID));
   };
 
   // useSelector
@@ -20,7 +21,12 @@ export function AssigneeSelector(input: InputProps) {
   return (
     <div className="AssigneeSelector">
       <UserAvatar />
-      <AppSelect onMenuOpen={onMenuOpen} placeholder="分配用户" options={[]} onChange={onChange} />
+      <AppSelect
+        onMenuOpen={onMenuOpen}
+        placeholder="分配用户"
+        options={[]}
+        onChange={onChange}
+      />
     </div>
   );
 }

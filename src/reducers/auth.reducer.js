@@ -15,7 +15,9 @@ export function auth(state = Map({}), action) {
       return state.update('signInAuthenticated', R.T);
 
     case Actions.LOGIN.FAILURE:
-      return state.update('signInAuthenticated', R.F).update('signInErrorMessage', () => action.payload);
+      return state
+        .update('signInAuthenticated', R.F)
+        .update('signInErrorMessage', () => action.payload);
 
     case Actions.LOGIN.FINISH:
       return state.delete('signInAuthenticated').delete('signInErrorMessage');
@@ -33,7 +35,9 @@ export function auth(state = Map({}), action) {
       return state;
 
     case Actions.UPDATE_USER.SUCCESS:
-      return state.update('loginedUser', loginedUser => loginedUser.merge(fromJS(action.payload)));
+      return state.update('loginedUser', loginedUser =>
+        loginedUser.merge(fromJS(action.payload))
+      );
 
     default:
       return state;

@@ -43,14 +43,24 @@ class TaskBoardCreaterBase extends Component<any, any> {
           Project
         </div>
 
-        <Modal title="Create Project" onCancel={this.handleCancel} visible={this.state.modalVisible} footer={null}>
+        <Modal
+          title="Create Project"
+          onCancel={this.handleCancel}
+          visible={this.state.modalVisible}
+          footer={null}
+        >
           <div>
-            <img className="taskboard-creater--illustration" src="/assets/images/work.png" />
+            <img
+              className="taskboard-creater--illustration"
+              src="/assets/images/work.png"
+            />
 
             <Form onSubmit={this.handleSubmit}>
               <FormItem>
                 {getFieldDecorator('name', {
-                  rules: [{ required: true, message: 'Please input task board name' }]
+                  rules: [
+                    { required: true, message: 'Please input task board name' }
+                  ]
                 })(<Input type="text" placeholder="Board Name" />)}
               </FormItem>
 

@@ -1,4 +1,9 @@
-import { CreateProjectInput, Project, ProjectId, UploadProjectCoverInput } from '../../typings/project.typing';
+import {
+  CreateProjectInput,
+  Project,
+  ProjectId,
+  UploadProjectCoverInput
+} from '../../typings/project.typing';
 import { FSAction } from '../actions';
 
 export const GET_PROJECT_REQUEST = 'GET_PROJECT_REQUEST';
@@ -54,7 +59,9 @@ export const CREATE_PROJECT_REQUEST = 'CREATE_PROJCETS_REQUEST';
 export const CREATE_PROJCET_SUCCESS = 'CREATE_PROJCETS_SUCCESS';
 export const CREATE_PROJCET_FAILURE = 'CREATE_PROJCETS_FAILURE';
 
-export function createProjectRequest(createProjectInput: CreateProjectInput): FSAction {
+export function createProjectRequest(
+  createProjectInput: CreateProjectInput
+): FSAction {
   return {
     type: CREATE_PROJECT_REQUEST,
     payload: createProjectInput
@@ -81,7 +88,9 @@ export const UPLOAD_PROJCET_COVER_REQUEST = 'UPLOAD_PROJCET_COVER_REQUEST';
 export const UPLOAD_PROJCET_COVER_SUCCESS = 'UPLOAD_PROJCET_COVER_SUCCESS';
 export const UPLOAD_PROJCET_COVER_FAILURE = 'UPLOAD_PROJCET_COVER_FAILURE';
 
-export function uploadProjectCoverRequest(uploadProjectCoverInput: UploadProjectCoverInput): FSAction {
+export function uploadProjectCoverRequest(
+  uploadProjectCoverInput: UploadProjectCoverInput
+): FSAction {
   return {
     type: UPLOAD_PROJCET_COVER_REQUEST,
     payload: uploadProjectCoverInput

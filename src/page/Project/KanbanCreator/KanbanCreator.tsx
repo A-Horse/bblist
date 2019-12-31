@@ -4,7 +4,12 @@ import { Form, Input, Modal } from 'antd';
 import { FormComponentProps } from 'antd/lib/form';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { ActionCreatorsMapObject, AnyAction, bindActionCreators, Dispatch } from 'redux';
+import {
+  ActionCreatorsMapObject,
+  AnyAction,
+  bindActionCreators,
+  Dispatch
+} from 'redux';
 
 import { createKanbanRequest } from '../../../actions/project/kanban.action';
 import { AppButton } from '../../../components/widget/Button';
@@ -33,28 +38,40 @@ class KanbanCreatorComponent extends Component<
 
   handleSubmit = (event: any) => {
     event.preventDefault();
-    this.props.form.validateFieldsAndScroll((err: any, values: CreateKanbanInput) => {
-      if (!err) {
-        this.props.actions.createKanbanRequest({
-          ...values,
-          projectId: this.props.project.get('id')
-        });
-        this.handleCancel();
+    this.props.form.validateFieldsAndScroll(
+      (err: any, values: CreateKanbanInput) => {
+        if (!err) {
+          this.props.actions.createKanbanRequest({
+            ...values,
+            projectId: this.props.project.get('id')
+          });
+          this.handleCancel();
+        }
       }
-    });
+    );
   };
 
   render() {
     const { getFieldDecorator } = this.props.form;
     return (
-      <Modal title="Create Kanban" onCancel={this.handleCancel} visible={this.props.toggle} footer={null}>
+      <Modal
+        title="Create Kanban"
+        onCancel={this.handleCancel}
+        visible={this.props.toggle}
+        footer={null}
+      >
         <div>
-          <img className="taskboard-creater--illustration" src="/assets/images/work.png" />
+          <img
+            className="taskboard-creater--illustration"
+            src="/assets/images/work.png"
+          />
 
           <Form onSubmit={this.handleSubmit}>
             <FormItem>
               {getFieldDecorator('name', {
-                rules: [{ required: true, message: 'Please input task board name' }]
+                rules: [
+                  { required: true, message: 'Please input task board name' }
+                ]
               })(<Input type="text" placeholder="Board Name" />)}
             </FormItem>
 
@@ -68,7 +85,9 @@ class KanbanCreatorComponent extends Component<
   }
 }
 
-export const KanbanCreatorComponentFormWrapper = Form.create()(KanbanCreatorComponent);
+export const KanbanCreatorComponentFormWrapper = Form.create()(
+  KanbanCreatorComponent
+);
 
 const mapStateToProps = (state: any) => {
   return {};

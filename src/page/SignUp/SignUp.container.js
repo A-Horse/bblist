@@ -6,7 +6,10 @@ import SignUp from './SignUp';
 
 const mapDispatchToProps = dispatch => {
   return {
-    actions: bindActionCreators(makeActionRequestCollection([Actions.SIGNUP]), dispatch)
+    actions: bindActionCreators(
+      makeActionRequestCollection([Actions.SIGNUP]),
+      dispatch
+    )
   };
 };
 

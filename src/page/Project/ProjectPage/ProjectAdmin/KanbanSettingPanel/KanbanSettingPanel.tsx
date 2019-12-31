@@ -4,7 +4,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router';
 import { withRouter } from 'react-router-dom';
-import { ActionCreatorsMapObject, AnyAction, bindActionCreators, Dispatch } from 'redux';
+import {
+  ActionCreatorsMapObject,
+  AnyAction,
+  bindActionCreators,
+  Dispatch
+} from 'redux';
 
 import { AppButton } from '../../../../../components/widget/Button';
 import { AppIcon } from '../../../../../components/widget/Icon';
@@ -16,7 +21,9 @@ import { KanbanSettingModal } from '../../../KanbanSettingModal/KanbanSettingMod
 
 interface InputProps {}
 
-interface ComponentProps extends RouteComponentProps<{ projectId: string }>, InputProps {}
+interface ComponentProps
+  extends RouteComponentProps<{ projectId: string }>,
+    InputProps {}
 
 class KanbanSettingPanelComponent extends Component<
   {
@@ -56,10 +63,17 @@ class KanbanSettingPanelComponent extends Component<
       <div>
         {this.props.kanbans.map((kanban: KanbanRecord) => {
           return (
-            <div key={kanban.get('id')} className="KanbanSettingPanel--kanban-item">
+            <div
+              key={kanban.get('id')}
+              className="KanbanSettingPanel--kanban-item"
+            >
               {kanban.get('name')}
 
-              <AppButton className="KanbanSettingPanel--item-edit-button" type="dashed" onClick={() => this.openKanbanSettingModal(kanban.get('id'))}>
+              <AppButton
+                className="KanbanSettingPanel--item-edit-button"
+                type="dashed"
+                onClick={() => this.openKanbanSettingModal(kanban.get('id'))}
+              >
                 <AppIcon icon="pen" /> 编辑
               </AppButton>
             </div>
@@ -72,7 +86,13 @@ class KanbanSettingPanelComponent extends Component<
   render() {
     return (
       <SectionField name="看板" className="KanbanSettingPanel">
-        {!!this.state.settingKanbanId && <KanbanSettingModal kanbanId={this.state.settingKanbanId!} toggle={this.state.settingModalToggle} onClose={this.closeKanbanSettingModal} />}
+        {!!this.state.settingKanbanId && (
+          <KanbanSettingModal
+            kanbanId={this.state.settingKanbanId!}
+            toggle={this.state.settingModalToggle}
+            onClose={this.closeKanbanSettingModal}
+          />
+        )}
 
         {this.renderContent()}
       </SectionField>
@@ -88,7 +108,9 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
 
 const mapStateToProps = (state: RootState, props: ComponentProps) => {
   const projectId = props.match.params.projectId;
-  const project = state.project.get('projectMap').get(projectId) as ProjectRecord;
+  const project = state.project
+    .get('projectMap')
+    .get(projectId) as ProjectRecord;
 
   return {
     project,

@@ -2,8 +2,18 @@ import './ProjectKanban.scss';
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Redirect, Route, RouteComponentProps, withRouter } from 'react-router-dom';
-import { ActionCreatorsMapObject, AnyAction, bindActionCreators, Dispatch } from 'redux';
+import {
+  Redirect,
+  Route,
+  RouteComponentProps,
+  withRouter
+} from 'react-router-dom';
+import {
+  ActionCreatorsMapObject,
+  AnyAction,
+  bindActionCreators,
+  Dispatch
+} from 'redux';
 
 import { getProjectKanbansRequest } from '../../../../actions/project/kanban.action';
 import { setProjectDefaultKanbanRequest } from '../../../../actions/project/project-setting.action';
@@ -41,7 +51,9 @@ export class ProjectKanbanComponent extends Component<
   }
 
   onKanbanSelectChanged = (kanbanId: string): void => {
-    this.props.history.push(`/project/${this.props.project!.get('id')}/kanban/${kanbanId}`);
+    this.props.history.push(
+      `/project/${this.props.project!.get('id')}/kanban/${kanbanId}`
+    );
 
     if (!this.props.project!.get('setting').get('defaultKanbanId')) {
       this.props.actions.setProjectDefaultKanbanRequest({
@@ -55,22 +67,40 @@ export class ProjectKanbanComponent extends Component<
     if (!this.props.project!.get('kanbans')!.length) {
       return <NoKanbanGuide project={this.props.project!} />;
     } else {
-      const selectedKanbanId: string = this.state.selectKanbanId || this.props.project!.get('setting').get('defaultKanbanId');
+      const selectedKanbanId: string =
+        this.state.selectKanbanId ||
+        this.props.project!.get('setting').get('defaultKanbanId');
 
-      if (!!selectedKanbanId && selectedKanbanId !== this.props.match.params.kanbanId) {
-        return <Redirect to={`/project/${this.props.project!.get('id')}/kanban/${selectedKanbanId}`} />;
+      if (
+        !!selectedKanbanId &&
+        selectedKanbanId !== this.props.match.params.kanbanId
+      ) {
+        return (
+          <Redirect
+            to={`/project/${this.props.project!.get(
+              'id'
+            )}/kanban/${selectedKanbanId}`}
+          />
+        );
       }
 
       return (
         <>
-          <KanbanHeaderBar projectId={this.props.project!.get('id')} selectedKanbanId={selectedKanbanId} onChange={this.onKanbanSelectChanged} />
+          <KanbanHeaderBar
+            projectId={this.props.project!.get('id')}
+            selectedKanbanId={selectedKanbanId}
+            onChange={this.onKanbanSelectChanged}
+          />
 
           <Route
             path="/project/:projectId/kanban/:kanbanId"
             render={(props: RouteComponentProps<MatchParams>) => {
               return (
                 <div className="ProjectKanban--kanban-container">
-                  <Kanban kanbanId={selectedKanbanId} projectId={this.props.project!.get('id')} />
+                  <Kanban
+                    kanbanId={selectedKanbanId}
+                    projectId={this.props.project!.get('id')}
+                  />
                 </div>
               );
             }}

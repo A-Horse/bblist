@@ -34,10 +34,16 @@ class IssueCreaterModalComponent extends Component<
 
   render() {
     return (
-      <AppModal onRequestClose={this.props.closeModal} isOpen={this.props.modalVisible}>
+      <AppModal
+        onRequestClose={this.props.closeModal}
+        isOpen={this.props.modalVisible}
+      >
         <div className="create-task-modal-content">
           <div className="create-task-modal-left">
-            <AppMenu defaultSelectedKeys={['PROJECT']} onClick={this.handleMenuClick}>
+            <AppMenu
+              defaultSelectedKeys={['PROJECT']}
+              onClick={this.handleMenuClick}
+            >
               <AppMenu.Item key="PROJECT">
                 <AppIcon icon="columns" />
                 Task
@@ -50,9 +56,19 @@ class IssueCreaterModalComponent extends Component<
             </AppMenu>
           </div>
           <div className="create-task-modal-right">
-            <CreateProjectIssueForm style={{ display: this.state.selectedType === 'PROJECT' ? 'block' : 'none' }} />
+            <CreateProjectIssueForm
+              style={{
+                display:
+                  this.state.selectedType === 'PROJECT' ? 'block' : 'none'
+              }}
+            />
 
-            <CreateTodoTaskForm style={{ display: this.state.selectedType === 'TODO' ? 'block' : 'none' }} onCancel={this.props.closeModal} />
+            <CreateTodoTaskForm
+              style={{
+                display: this.state.selectedType === 'TODO' ? 'block' : 'none'
+              }}
+              onCancel={this.props.closeModal}
+            />
           </div>
         </div>
       </AppModal>

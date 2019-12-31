@@ -1,9 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { RouteComponentProps, withRouter } from 'react-router';
-import { ActionCreatorsMapObject, AnyAction, bindActionCreators, Dispatch } from 'redux';
+import {
+  ActionCreatorsMapObject,
+  AnyAction,
+  bindActionCreators,
+  Dispatch
+} from 'redux';
 
-import { createKanbanColumnRequest, createKanbanRequest, getProjectKanbanDetailRequest } from '../../../../../actions/project/kanban.action';
+import {
+  createKanbanColumnRequest,
+  createKanbanRequest,
+  getProjectKanbanDetailRequest
+} from '../../../../../actions/project/kanban.action';
 import { CreateProjectIssueForm } from '../../../../../components/creators/TaskCreator/CreateProjectIssueForm';
 import { AppModal } from '../../../../../components/widget/AppModal';
 import { RootState } from '../../../../../reducers';
@@ -17,7 +26,8 @@ interface InputProps {
   project?: ProjectRecord;
 }
 
-interface RouterProps extends RouteComponentProps<{ projectId: string; kanbanId: string }> {}
+interface RouterProps
+  extends RouteComponentProps<{ projectId: string; kanbanId: string }> {}
 
 class CreateKanbanCardModalComoponent extends Component<
   InputProps &
@@ -34,7 +44,10 @@ class CreateKanbanCardModalComoponent extends Component<
   render() {
     return (
       <AppModal isOpen={this.props.toggle} onRequestClose={this.closeModal}>
-        <CreateProjectIssueForm kanban={this.props.kanban} project={this.props.project} />
+        <CreateProjectIssueForm
+          kanban={this.props.kanban}
+          project={this.props.project}
+        />
       </AppModal>
     );
   }
@@ -44,7 +57,9 @@ const mapStateToProps = (state: RootState, props: InputProps & RouterProps) => {
   const projectId = props.match.params.projectId;
   const kanbanId = props.match.params.kanbanId;
 
-  const project = state.project.get('projectMap').get(projectId) as ProjectRecord;
+  const project = state.project
+    .get('projectMap')
+    .get(projectId) as ProjectRecord;
 
   const kanban = state.project.get('kanbanMap').get(kanbanId);
 

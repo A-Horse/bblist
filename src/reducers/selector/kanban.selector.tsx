@@ -7,7 +7,10 @@ import { ProjectRecord } from '../../typings/project.typing';
 import { SelectOption } from '../../typings/select.typing';
 import { KanbanMap } from '../project.reducer';
 
-export function getKanbanOptions(project: ProjectRecord, kanbanMap: KanbanMap): SelectOption[] {
+export function getKanbanOptions(
+  project: ProjectRecord,
+  kanbanMap: KanbanMap
+): SelectOption[] {
   return getKanbans(project, kanbanMap).map((kanban: KanbanRecord) => {
     return {
       value: kanban.get('id'),
@@ -16,7 +19,10 @@ export function getKanbanOptions(project: ProjectRecord, kanbanMap: KanbanMap): 
   });
 }
 
-export function getKanbans(project: ProjectRecord | undefined, kanbanMap: KanbanMap): KanbanRecord[] {
+export function getKanbans(
+  project: ProjectRecord | undefined,
+  kanbanMap: KanbanMap
+): KanbanRecord[] {
   if (!project || !project.get('kanbans')) {
     return [];
   }
@@ -28,7 +34,10 @@ export function getKanbans(project: ProjectRecord | undefined, kanbanMap: Kanban
     .filter(kanban => !!kanban);
 }
 
-export function selectKanbanColumns(state: RootState, kanbanID: string): List<KanbanColumnRecord> | null {
+export function selectKanbanColumns(
+  state: RootState,
+  kanbanID: string
+): List<KanbanColumnRecord> | null {
   const kanban = state.project.get('kanbanMap').get(kanbanID);
 
   if (!kanban || !kanban.get('columns')) {

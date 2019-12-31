@@ -4,11 +4,23 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { withToastManager } from 'react-toast-notifications';
-import { ActionCreatorsMapObject, AnyAction, bindActionCreators, Dispatch } from 'redux';
+import {
+  ActionCreatorsMapObject,
+  AnyAction,
+  bindActionCreators,
+  Dispatch
+} from 'redux';
 import { AnyHTMLElement } from '@stencil/core/dist/declarations';
-import { changeIssueDirect, getProjectIssueDetailRequest, updateProjectIssueDetailRequest } from '../../../../actions/project/project-issue-detail.aciton';
+import {
+  changeIssueDirect,
+  getProjectIssueDetailRequest,
+  updateProjectIssueDetailRequest
+} from '../../../../actions/project/project-issue-detail.aciton';
 import { RootState } from '../../../../reducers';
-import { ProjectIssueRecord, ProjectIssueRecordFiled } from '../../../../typings/project-issue.typing';
+import {
+  ProjectIssueRecord,
+  ProjectIssueRecordFiled
+} from '../../../../typings/project-issue.typing';
 import { FormField } from '../../../widget/FormField/FormField';
 import Input from '../../../widget/Input/Input';
 import { AppTextArea } from '../../../widget/TextArea/TextArea';
@@ -75,12 +87,15 @@ class IssueDetailComponent extends Component<
   };
 
   updateIssue = (changedPartialIssue: any) => {
-    const didChangedPartialIssue = Object.keys(changedPartialIssue).reduce((result: any, key: string) => {
-      if (this.changedFields[key]) {
-        result[key] = changedPartialIssue[key];
-      }
-      return result;
-    }, {});
+    const didChangedPartialIssue = Object.keys(changedPartialIssue).reduce(
+      (result: any, key: string) => {
+        if (this.changedFields[key]) {
+          result[key] = changedPartialIssue[key];
+        }
+        return result;
+      },
+      {}
+    );
     if (Object.keys(didChangedPartialIssue).length === 0) {
       return;
     }
@@ -92,9 +107,15 @@ class IssueDetailComponent extends Component<
       {
         callback: (error: Error) => {
           if (!error) {
-            return this.props.toastManager.add('更新成功', { appearance: 'success', autoDismiss: true });
+            return this.props.toastManager.add('更新成功', {
+              appearance: 'success',
+              autoDismiss: true
+            });
           }
-          this.props.toastManager.add('更新失败', { appearance: 'error', autoDismiss: true });
+          this.props.toastManager.add('更新失败', {
+            appearance: 'error',
+            autoDismiss: true
+          });
           Object.keys(didChangedPartialIssue).forEach((k: string) => {
             this.changedFields[k] = false;
           });
@@ -111,21 +132,41 @@ class IssueDetailComponent extends Component<
 
     return (
       <div className="IssueDetail">
-        <IssueDetailBread kanbanID={this.props.kanbanID} projectID={this.props.projectID} issueID={this.props.issueID} />
+        <IssueDetailBread
+          kanbanID={this.props.kanbanID}
+          projectID={this.props.projectID}
+          issueID={this.props.issueID}
+        />
 
-        <div>{issue.get('deadline') && <Deadline deadline={issue.get('deadline')} />}</div>
+        <div>
+          {issue.get('deadline') && (
+            <Deadline deadline={issue.get('deadline')} />
+          )}
+        </div>
 
         <FormField>
-          <Input size="large" value={issue.get('title')} onChange={this.onFieldChange('title')} onBlur={this.onFieldBlur('title')} />
+          <Input
+            size="large"
+            value={issue.get('title')}
+            onChange={this.onFieldChange('title')}
+            onBlur={this.onFieldBlur('title')}
+          />
         </FormField>
 
         <FormField name="描述：">
-          <AppTextArea className="IssueDetail--content-textarea" value={issue.get('content') || ''} onChange={this.onFieldChange('content')} onBlur={this.onFieldBlur('content')} />
+          <AppTextArea
+            className="IssueDetail--content-textarea"
+            value={issue.get('content') || ''}
+            onChange={this.onFieldChange('content')}
+            onBlur={this.onFieldBlur('content')}
+          />
         </FormField>
 
-        <IssueDetailLeft issue={issue} updateIssue={this.updateIssue} />
-
-
+        <IssueDetailLeft
+          projectID={this.props.projectID}
+          issue={issue}
+          updateIssue={this.updateIssue}
+        />
       </div>
     );
   }

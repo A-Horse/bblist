@@ -12,7 +12,9 @@ interface InputProps {
 }
 
 export function ProjectHeaderBar({ projectId }: InputProps) {
-  const project: ProjectRecord | undefined = useSelector((state: RootState) => state.project.get('projectMap').get(projectId));
+  const project: ProjectRecord | undefined = useSelector((state: RootState) =>
+    state.project.get('projectMap').get(projectId)
+  );
 
   if (!project) {
     return null;
@@ -20,7 +22,9 @@ export function ProjectHeaderBar({ projectId }: InputProps) {
 
   return (
     <div className="ProjectHeaderBar">
-      <div className="ProjectHeaderBar--project-name">{project.get('name')}</div>
+      <div className="ProjectHeaderBar--project-name">
+        {project.get('name')}
+      </div>
 
       <div>
         <ProjectAddButton />

@@ -5,7 +5,6 @@ import { mergeMap } from 'rxjs/operators';
 
 import Actions from '../actions/actions';
 import { setupAxiosJwtHeader } from '../helper/http-intercetor';
-import { http } from '../services/http';
 import { Storage } from '../services/storage';
 import { makeApiUrl } from '../utils/api';
 import { saveAuthData } from '../utils/auth';
@@ -34,21 +33,10 @@ export const SIGNUP_REQUEST = (action$: Observable<any>) =>
   action$.pipe(
     ofType(Actions.SIGNUP.REQUEST),
     mergeMap(action =>
-      http
-        .post(makeApiUrl('/user/signup'), null, action.payload)
+      axios
+        .post(makeApiUrl('/user/signup'), action.payload)
         .then(Actions.SIGNUP.success)
         .catch(Actions.SIGNUP.failure)
-    )
-  );
-
-export const LOGOUT_REQUEST = (action$: Observable<any>) =>
-  action$.pipe(
-    ofType(Actions.LOGOUT.REQUEST),
-    mergeMap(() =>
-      http
-        .post(makeApiUrl('/user/logout'))
-        .then(Actions.LOGOUT.success)
-        .catch(Actions.LOGOUT.failure)
     )
   );
 

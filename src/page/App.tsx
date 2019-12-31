@@ -8,8 +8,9 @@ import { NotFound } from '../page/NotFound';
 import { getUserData } from '../utils/auth';
 import Nav from './Nav/Nav';
 
-
-const SettingPageContainer = React.lazy(() => import('./Setting/SettingPage.container'));
+const SettingPageContainer = React.lazy(() =>
+  import('./Setting/SettingPage.container')
+);
 const SettingPage = () => {
   return (
     <Suspense fallback={<div>Loading...</div>}>
@@ -18,7 +19,9 @@ const SettingPage = () => {
   );
 };
 
-const ProjectWallPageContainer = React.lazy(() => import('./Project/ProjectWallPage/ProjectWall.container'));
+const ProjectWallPageContainer = React.lazy(() =>
+  import('./Project/ProjectWallPage/ProjectWall.container')
+);
 const ProjectWallPage = () => {
   return (
     <Suspense fallback={<div>Loading...</div>}>
@@ -27,7 +30,9 @@ const ProjectWallPage = () => {
   );
 };
 
-const ProjectPageContainer = React.lazy(() => import('./Project/ProjectPage/ProjectPage'));
+const ProjectPageContainer = React.lazy(() =>
+  import('./Project/ProjectPage/ProjectPage')
+);
 const ProjectPage = () => {
   return (
     <Suspense fallback={<div>Loading...</div>}>
@@ -36,7 +41,9 @@ const ProjectPage = () => {
   );
 };
 
-const ProfilePageContainer = React.lazy(() => import('../page/Profile/ProfilePage.container'));
+const ProfilePageContainer = React.lazy(() =>
+  import('../page/Profile/ProfilePage.container')
+);
 const ProfilePage = () => {
   return (
     <Suspense fallback={<div>Loading...</div>}>

@@ -29,9 +29,16 @@ export default class Setting extends Component<any> {
 
         <div className="setting-panel">
           <Switch>
-            <Route exact path="/setting" render={() => <Redirect to="/setting/profile" />} />
+            <Route
+              exact
+              path="/setting"
+              render={() => <Redirect to="/setting/profile" />}
+            />
             <Route path="/setting/profile" component={Profile} />
-            <Route path="/setting/security" component={SettingSecurityContainer} />
+            <Route
+              path="/setting/security"
+              component={SettingSecurityContainer}
+            />
           </Switch>
         </div>
       </section>

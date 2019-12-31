@@ -3,7 +3,12 @@ import './Issues.scss';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Route, RouteComponentProps, withRouter } from 'react-router-dom';
-import { ActionCreatorsMapObject, AnyAction, bindActionCreators, Dispatch } from 'redux';
+import {
+  ActionCreatorsMapObject,
+  AnyAction,
+  bindActionCreators,
+  Dispatch
+} from 'redux';
 
 import { getProjectIssuesRequest } from '../../../../actions/project/project-issue.action';
 import { FlatIssue } from '../../../../components/Project/Issue/FlatIssue/FlatIssue';
@@ -24,7 +29,12 @@ interface ReduxProps {
   total?: number;
 }
 
-export class IssuesComponent extends Component<InputProps & ReduxProps & RouteComponentProps<{ projectId: string; issueId: string }>, {}> {
+export class IssuesComponent extends Component<
+  InputProps &
+    ReduxProps &
+    RouteComponentProps<{ projectId: string; issueId: string }>,
+  {}
+> {
   state = {};
 
   componentWillMount() {
@@ -40,7 +50,9 @@ export class IssuesComponent extends Component<InputProps & ReduxProps & RouteCo
   };
 
   onFlatIssueClick = (issue: ProjectIssueRecord) => {
-    this.props.history.push(`/project/${this.props.project.get('id')}/issues/${issue.get('id')}`);
+    this.props.history.push(
+      `/project/${this.props.project.get('id')}/issues/${issue.get('id')}`
+    );
   };
 
   render() {
@@ -57,14 +69,24 @@ export class IssuesComponent extends Component<InputProps & ReduxProps & RouteCo
             })}
           </ul>
 
-          <AppPagination onPageChanged={this.onPageChange} pageSize={this.props.pageSize} total={this.props.total!} currentPage={this.props.pageNumber} />
+          <AppPagination
+            onPageChanged={this.onPageChange}
+            pageSize={this.props.pageSize}
+            total={this.props.total!}
+            currentPage={this.props.pageNumber}
+          />
         </div>
 
         <Route
           path="/project/:projectId/issues/:issueId"
-          render={(props: RouteComponentProps<{ issueId: string; projectID: string }>) => (
+          render={(
+            props: RouteComponentProps<{ issueId: string; projectID: string }>
+          ) => (
             <div className={`Issues--detail-container`}>
-              <IssueDetail issueID={props.match.params.issueId} projectID={props.match.params.projectID} />
+              <IssueDetail
+                issueID={props.match.params.issueId}
+                projectID={props.match.params.projectID}
+              />
             </div>
           )}
         />

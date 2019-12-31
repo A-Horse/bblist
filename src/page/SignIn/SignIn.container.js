@@ -6,7 +6,10 @@ import Actions, { makeActionRequestCollection } from '../../actions/actions';
 
 const mapDispatchToProps = dispatch => {
   return {
-    actions: bindActionCreators(makeActionRequestCollection([Actions.LOGIN]), dispatch)
+    actions: bindActionCreators(
+      makeActionRequestCollection([Actions.LOGIN]),
+      dispatch
+    )
   };
 };
 

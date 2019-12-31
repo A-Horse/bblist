@@ -55,12 +55,30 @@ class ProjectPageComponent extends Component<Props> {
 
           <div className="ProjectPage--right-content">
             <Switch>
-              <Route path="/project/:projectId/setting" render={() => <ProjectSetting />} />
-              <Route path="/project/:projectId/kanban/:kanbanId" render={() => <ProjectKanban />} />
-              <Route path="/project/:projectId/kanban" render={() => <ProjectKanban />} />
-              <Route path="/project/:projectId/epics" render={() => <ProjectEpics />} />
-              <Route path="/project/:projectId/issues" render={() => <Issues />} />
-              <Route path="/project/:projectId/admin" render={() => <ProjectAdmin />} />
+              <Route
+                path="/project/:projectId/setting"
+                render={() => <ProjectSetting />}
+              />
+              <Route
+                path="/project/:projectId/kanban/:kanbanId"
+                render={() => <ProjectKanban />}
+              />
+              <Route
+                path="/project/:projectId/kanban"
+                render={() => <ProjectKanban />}
+              />
+              <Route
+                path="/project/:projectId/epics"
+                render={() => <ProjectEpics />}
+              />
+              <Route
+                path="/project/:projectId/issues"
+                render={() => <Issues />}
+              />
+              <Route
+                path="/project/:projectId/admin"
+                render={() => <ProjectAdmin />}
+              />
             </Switch>
           </div>
         </div>

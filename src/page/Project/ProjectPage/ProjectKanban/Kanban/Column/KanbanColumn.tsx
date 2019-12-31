@@ -5,15 +5,26 @@ import isEqual from 'lodash/fp/isEqual';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { RouteComponentProps, withRouter } from 'react-router';
-import { ActionCreatorsMapObject, AnyAction, bindActionCreators, Dispatch } from 'redux';
+import {
+  ActionCreatorsMapObject,
+  AnyAction,
+  bindActionCreators,
+  Dispatch
+} from 'redux';
 
-import { getColumnCardsRequest, rankProjectCardInKanbanRequest } from '../../../../../../actions/project/project-issue.action';
+import {
+  getColumnCardsRequest,
+  rankProjectCardInKanbanRequest
+} from '../../../../../../actions/project/project-issue.action';
 import { ProjectIssue } from '../../../../../../components/Project/Issue/ProjectIssue/ProjectIssue';
 import { AppButton } from '../../../../../../components/widget/Button';
 import { RootState } from '../../../../../../reducers';
 import { selectColumnCards } from '../../../../../../reducers/selector/card.selector';
 import { KanbanColumnRecord } from '../../../../../../typings/kanban-column.typing';
-import { ProjectIssueRecord, RankProjectCardInKanbanInput } from '../../../../../../typings/project-issue.typing';
+import {
+  ProjectIssueRecord,
+  RankProjectCardInKanbanInput
+} from '../../../../../../typings/project-issue.typing';
 import { ColumnDataFetcher } from './column-data-fetcher';
 import { ColumnHeaderDropDown } from './ColumnHeaderDropDown/ColumnHeaderDropDown';
 
@@ -58,7 +69,9 @@ export class KanbanColumnComponent extends Component<ComponentProps, State> {
     return (
       <div className="KanbanColumn">
         <div className="KanbanColumn--header">
-          <span className="KanbanColumn--header-name">{this.props.column.get('name')}</span>
+          <span className="KanbanColumn--header-name">
+            {this.props.column.get('name')}
+          </span>
           <AppButton>
             <ColumnHeaderDropDown columnId={this.props.column.get('id')} />
           </AppButton>
@@ -69,7 +82,17 @@ export class KanbanColumnComponent extends Component<ComponentProps, State> {
             this.props
               .issues!.sortBy((issue: ProjectIssueRecord) => issue.get('order'))
               .map((issue: ProjectIssueRecord, index: number) => {
-                return <ProjectIssue key={issue.get('id')} kanbanId={this.props.column.get('kanbanId')} onClick={this.props.onIssueClick} rankProjectCardColumn={this.props.rankProjectCardInKanbanRequest} issue={issue} />;
+                return (
+                  <ProjectIssue
+                    key={issue.get('id')}
+                    kanbanId={this.props.column.get('kanbanId')}
+                    onClick={this.props.onIssueClick}
+                    rankProjectCardColumn={
+                      this.props.rankProjectCardInKanbanRequest
+                    }
+                    issue={issue}
+                  />
+                );
               })}
         </div>
       </div>
@@ -95,13 +118,21 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
           temporary: boolean;
         }
       ) => {
-        if (isEqual(rankProjectCardInKanbanInput, lastRankProjectCardInKanbanInput) && isEqual(meta, lastMeta)) {
+        if (
+          isEqual(
+            rankProjectCardInKanbanInput,
+            lastRankProjectCardInKanbanInput
+          ) &&
+          isEqual(meta, lastMeta)
+        ) {
           return;
         }
         lastRankProjectCardInKanbanInput = rankProjectCardInKanbanInput;
         lastMeta = meta;
 
-        dispatch(rankProjectCardInKanbanRequest(rankProjectCardInKanbanInput, meta));
+        dispatch(
+          rankProjectCardInKanbanRequest(rankProjectCardInKanbanInput, meta)
+        );
       };
     })()
   };

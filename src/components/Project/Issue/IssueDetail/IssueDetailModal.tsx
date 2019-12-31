@@ -22,9 +22,17 @@ class IssueDetailModalComponent extends Component<Props> {
 
   render() {
     return (
-      <AppModal className="IssueDetailModal" isOpen={true} onRequestClose={this.closeModal}>
+      <AppModal
+        className="IssueDetailModal"
+        isOpen={true}
+        onRequestClose={this.closeModal}
+      >
         <ModalHeader onClose={this.closeModal} />
-        <IssueDetail issueID={this.props.issueId} kanbanID={this.props.kanbanID} projectID={this.props.projectID} />
+        <IssueDetail
+          issueID={this.props.issueId}
+          kanbanID={this.props.kanbanID}
+          projectID={this.props.projectID}
+        />
       </AppModal>
     );
   }

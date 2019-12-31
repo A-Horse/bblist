@@ -3,7 +3,12 @@ import './ProjectSetting.scss';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
-import { ActionCreatorsMapObject, AnyAction, bindActionCreators, Dispatch } from 'redux';
+import {
+  ActionCreatorsMapObject,
+  AnyAction,
+  bindActionCreators,
+  Dispatch
+} from 'redux';
 
 import { uploadProjectCoverRequest } from '../../../../actions/project/project.action';
 import { ImageUploader } from '../../../../components/ImageUploader/ImageUploader';
@@ -18,7 +23,10 @@ interface Props {
   project: ProjectRecord;
 }
 
-class ProjectSettingComponent extends Component<Props & RouteComponentProps<{ projectId: string }>, {}> {
+class ProjectSettingComponent extends Component<
+  Props & RouteComponentProps<{ projectId: string }>,
+  {}
+> {
   componentDidMount() {}
 
   onCoverUpload = (coverBase64: string) => {
@@ -39,7 +47,13 @@ class ProjectSettingComponent extends Component<Props & RouteComponentProps<{ pr
               borderRadius: '6px',
               display: 'block'
             }}
-            source={this.props.project.get('setting').get('coverUrl') ? generateProjectCoverUrl(this.props.project.get('setting').get('coverUrl')) : DEFAULT_BOARD_COVER_SRC}
+            source={
+              this.props.project.get('setting').get('coverUrl')
+                ? generateProjectCoverUrl(
+                    this.props.project.get('setting').get('coverUrl')
+                  )
+                : DEFAULT_BOARD_COVER_SRC
+            }
             upload={this.onCoverUpload}
           >
             上传封面
@@ -47,7 +61,11 @@ class ProjectSettingComponent extends Component<Props & RouteComponentProps<{ pr
         </FormField>
 
         <FormField name="项目名称">
-          <Input className="ProjectSetting--project-name-input" defaultValue={this.props.project.get('name')} whiteHover={true} />
+          <Input
+            className="ProjectSetting--project-name-input"
+            defaultValue={this.props.project.get('name')}
+            whiteHover={true}
+          />
         </FormField>
       </div>
     );

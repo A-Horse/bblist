@@ -39,7 +39,9 @@ export const GET_PROJCET_KANBANS_REQUEST_FN = (action$: Observable<FSAction>) =>
     })
   );
 
-export const GET_PROJCET_KANBAN_DETAIL_REQUEST_FN = (action$: Observable<FSAction>) =>
+export const GET_PROJCET_KANBAN_DETAIL_REQUEST_FN = (
+  action$: Observable<FSAction>
+) =>
   action$.pipe(
     ofType(GET_PROJCET_KANBAN_DETAIL_REQUEST),
     mergeMap((action: FSAction) => {
@@ -59,18 +61,28 @@ export const CREATE_KANBAN_REQUEST_FN = (action$: Observable<FSAction>) =>
     ofType(CREATAE_KANBAN_REQUEST),
     mergeMap((action: FSAction) => {
       return axios
-        .post(makeApiUrl(`/project/${action.payload.projectId}/kanban`), action.payload)
-        .then((result: AxiosResponse<string>) => createKanbanSuccess(result.data))
+        .post(
+          makeApiUrl(`/project/${action.payload.projectId}/kanban`),
+          action.payload
+        )
+        .then((result: AxiosResponse<string>) =>
+          createKanbanSuccess(result.data)
+        )
         .catch(createKanbanFailure);
     })
   );
 
-export const CREATE_KANBAN_COLUMN_REQUEST_FN = (action$: Observable<FSAction>) =>
+export const CREATE_KANBAN_COLUMN_REQUEST_FN = (
+  action$: Observable<FSAction>
+) =>
   action$.pipe(
     ofType(CREATAE_KANBAN_COLUMN_REQUEST),
     mergeMap((action: FSAction) => {
       return axios
-        .post(makeApiUrl(`/kanban/${action.payload.kanbanId}/column`), action.payload)
+        .post(
+          makeApiUrl(`/kanban/${action.payload.kanbanId}/column`),
+          action.payload
+        )
         .then((result: AxiosResponse<string>) =>
           createKanbanColumnSuccess(result.data, {
             kanbanId: action.payload.kanbanId
@@ -80,7 +92,9 @@ export const CREATE_KANBAN_COLUMN_REQUEST_FN = (action$: Observable<FSAction>) =
     })
   );
 
-export const CREATE_KANBAN_COLUMN_SUCCESS_FN = (action$: Observable<FSAction>) =>
+export const CREATE_KANBAN_COLUMN_SUCCESS_FN = (
+  action$: Observable<FSAction>
+) =>
   action$.pipe(
     ofType(CREATAE_KANBAN_COLUMN_SUCCESS),
     map((action: FSAction) => {

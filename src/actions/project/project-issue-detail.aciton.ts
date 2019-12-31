@@ -1,11 +1,16 @@
 import { ProjectIssue } from '../../typings/project-issue.typing';
 import { FSAction } from '../actions';
 
-export const GET_PROJECT_ISSUE_DETAIL_DEQUEST = 'GET_PROJECT_ISSUE_DETAIL_DEQUEST';
-export const GET_PROJECT_ISSUE_DETAIL_SUCCESS = 'GET_PROJECT_ISSUE_DETAIL_SUCCESS';
-export const GET_PROJECT_ISSUE_DETAIL_FAILURE = 'GET_PROJECT_ISSUE_DETAIL_FAILURE';
+export const GET_PROJECT_ISSUE_DETAIL_DEQUEST =
+  'GET_PROJECT_ISSUE_DETAIL_DEQUEST';
+export const GET_PROJECT_ISSUE_DETAIL_SUCCESS =
+  'GET_PROJECT_ISSUE_DETAIL_SUCCESS';
+export const GET_PROJECT_ISSUE_DETAIL_FAILURE =
+  'GET_PROJECT_ISSUE_DETAIL_FAILURE';
 
-export function getProjectIssueDetailRequest(payload: { issueId: string }): FSAction {
+export function getProjectIssueDetailRequest(payload: {
+  issueId: string;
+}): FSAction {
   return {
     type: GET_PROJECT_ISSUE_DETAIL_DEQUEST,
     payload
@@ -38,11 +43,17 @@ export function changeIssueDirect(issueId: string, partialIssue: any) {
   };
 }
 
-export const UPDATE_PROJECT_ISSUE_DETAIL_DEQUEST = 'UPDATE_PROJECT_ISSUE_DETAIL_DEQUEST';
-export const UPDATE_PROJECT_ISSUE_DETAIL_SUCCESS = 'UPDATE_PROJECT_ISSUE_DETAIL_SUCCESS';
-export const UPDATE_PROJECT_ISSUE_DETAIL_FAILURE = 'UPDATE_PROJECT_ISSUE_DETAIL_FAILURE';
+export const UPDATE_PROJECT_ISSUE_DETAIL_DEQUEST =
+  'UPDATE_PROJECT_ISSUE_DETAIL_DEQUEST';
+export const UPDATE_PROJECT_ISSUE_DETAIL_SUCCESS =
+  'UPDATE_PROJECT_ISSUE_DETAIL_SUCCESS';
+export const UPDATE_PROJECT_ISSUE_DETAIL_FAILURE =
+  'UPDATE_PROJECT_ISSUE_DETAIL_FAILURE';
 
-export function updateProjectIssueDetailRequest(payload: { issueId: string; partialIssue: any }, meta: { callback: Function }): FSAction {
+export function updateProjectIssueDetailRequest(
+  payload: { issueId: string; partialIssue: any },
+  meta: { callback: Function }
+): FSAction {
   return {
     type: UPDATE_PROJECT_ISSUE_DETAIL_DEQUEST,
     payload,

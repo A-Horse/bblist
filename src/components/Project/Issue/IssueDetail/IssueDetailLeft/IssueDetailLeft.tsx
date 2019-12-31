@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import { AppButton } from '../../../../widget/AppButton';
 import { DateTimeSelectDialog } from '../../../../DateTimeSelectDialog/DateTimeSeletDialog';
 import { ProjectIssueRecord } from '../../../../../typings/project-issue.typing';
-import {AssigneeSelector} from "../../../../AssigneeSelector/AssigneeSelector";
+import { AssigneeSelector } from '../../../../AssigneeSelector/AssigneeSelector';
 
 interface InputProps {
+  projectID: string;
   issue: ProjectIssueRecord;
   updateIssue: Function;
 }
@@ -18,17 +19,19 @@ export class IssueDetailLeft extends Component<InputProps, State> {
     deadlineSelectOpen: false
   };
 
-  componentDidMount() {}
-
   onDeadlineOnclick = (value: Date) => {
-    this.props.updateIssue({deadline: value});
+    this.props.updateIssue({ deadline: value });
   };
 
   render() {
     return (
       <>
         <div className="IssueDetailLeft">
-          <AppButton onClick={() => this.setState({ deadlineSelectOpen: true })}>到期时间</AppButton>
+          <AppButton
+            onClick={() => this.setState({ deadlineSelectOpen: true })}
+          >
+            到期时间
+          </AppButton>
         </div>
 
         <DateTimeSelectDialog
@@ -39,7 +42,7 @@ export class IssueDetailLeft extends Component<InputProps, State> {
           }}
         />
 
-        <AssigneeSelector />
+        <AssigneeSelector projectID={this.props.projectID} />
       </>
     );
   }
