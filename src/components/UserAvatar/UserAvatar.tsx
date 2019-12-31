@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { makeGravatarUrl, getUserGravatorFromStorge } from '../../services/gravatar';
-import { UserShow } from '../../typings/user/user.typing';
+import { AppUserInfo } from '../../typings/user/user.typing';
 
 import './UserAvatar.scss';
 
 interface InputProps {
-  user?: UserShow;
+  user?: AppUserInfo;
 }
 
 export class UserAvatar extends Component<InputProps> {

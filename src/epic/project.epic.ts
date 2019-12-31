@@ -6,10 +6,10 @@ import { mergeMap } from 'rxjs/operators';
 import { FSAction } from '../actions/actions';
 import { SET_PROJECT_DEFAULT_KANBAN_REQUEST, setProjectDefaultKanbanFailure, setProjectDefaultKanbanSuccess } from '../actions/project/project-setting.action';
 import {
-  CREATE_PROJCET_REQUEST,
+  CREATE_PROJECT_REQUEST,
   createProjectFailure,
   createProjectSuccess,
-  GET_PROJCET_DETAIL_REQUEST,
+  GET_PROJECT_DETAIL_REQUEST,
   GET_PROJECT_REQUEST,
   getProjectDetailFailure,
   getProjectDetailSuccess,
@@ -22,7 +22,7 @@ import {
 import { Project, ProjectId, UploadProjectCoverInput } from '../typings/project.typing';
 import { makeApiUrl } from '../utils/api';
 
-export const GET_PROJCETS_REQUEST_FN = (action$: Observable<FSAction>) =>
+export const GET_PROJECTS_REQUEST_FN = (action$: Observable<FSAction>) =>
   action$.pipe(
     ofType(GET_PROJECT_REQUEST),
     mergeMap(() => {
@@ -33,9 +33,9 @@ export const GET_PROJCETS_REQUEST_FN = (action$: Observable<FSAction>) =>
     })
   );
 
-export const GET_PROJCET_DETAIL_REQUEST_FN = (action$: Observable<FSAction>) =>
+export const GET_PROJECT_DETAIL_REQUEST_FN = (action$: Observable<FSAction>) =>
   action$.pipe(
-    ofType(GET_PROJCET_DETAIL_REQUEST),
+    ofType(GET_PROJECT_DETAIL_REQUEST),
     mergeMap((action: FSAction) => {
       return axios
         .get(makeApiUrl(`/project/${action.payload}`))
@@ -44,9 +44,9 @@ export const GET_PROJCET_DETAIL_REQUEST_FN = (action$: Observable<FSAction>) =>
     })
   );
 
-export const CREATE_PROJCET_REQUEST_FN = (action$: Observable<FSAction>) =>
+export const CREATE_PROJECT_REQUEST_FN = (action$: Observable<FSAction>) =>
   action$.pipe(
-    ofType(CREATE_PROJCET_REQUEST),
+    ofType(CREATE_PROJECT_REQUEST),
     mergeMap((action: FSAction) => {
       return axios
         .post(makeApiUrl(`/project`), action.payload)

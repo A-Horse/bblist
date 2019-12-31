@@ -92,7 +92,7 @@ const mapStateToProps = (state: RootState, props: any) => {
   let total;
   let loading = true;
   let issues: ProjectIssueRecord[] = [];
-  const issuePagitation = state.project.get('currentIssuePagitation');
+  const issuePagitation = state.project.get('currentIssuePagination');
 
   if (issuePagitation && issuePagitation!.projectId === projectId) {
     loading = issuePagitation.loading;

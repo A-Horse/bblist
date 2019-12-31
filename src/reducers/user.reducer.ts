@@ -1,35 +1,39 @@
-import { fromJS } from 'immutable';
+import { fromJS, List, Record, Map } from 'immutable';
+import { AppUserInfoRecord } from '../typings/user/user.typing';
+import { FSAction } from '../actions/actions';
+import { GET_ALL_USERS_SUCCESS } from '../actions/user/user.action';
+import { normalize } from 'normalizr';
+import { ProjectEntity } from '../schema';
 
-import Actions from '../actions/actions';
+type UserMap = Map<string, AppUserInfoRecord>;
+type ProjectUserIdMap = Map<string, List<string>>;
 
-export function user(state = fromJS({}), action: any) {
+export interface UserReducerState {
+  userMap: UserMap;
+  projectUsersID: ProjectUserIdMap;
+}
+
+export function user(
+  state: Record<UserReducerState> = fromJS({
+    users: {},
+    projectUsersID: {}
+  }),
+  action: FSAction
+) {
   switch (action.type) {
-    case Actions.QUERY_USER_INFOMATION_WITH_EMAIL.REQUEST:
-    case Actions.QUERY_USER_INFOMATION_WITH_EMAIL.FINISH:
-      return state.delete('inviteParticipant');
-    case Actions.QUERY_USER_INFOMATION_WITH_EMAIL.SUCCESS:
-      return state.set('inviteParticipant', fromJS(action.payload));
-
-    case Actions.CHANGE_PASSWORD.REQUEST:
-      return {
-        ...state,
-        changePasswordFetching: true
-      };
-
-    case Actions.CHANGE_PASSWORD.SUCCESS:
-      return {
-        ...state,
-        changePasswordFetching: false,
-        changePasswordSuccess: true
-      };
-
-    case Actions.CHANGE_PASSWORD.FAILURE:
-      return {
-        ...state,
-        changePasswordFetching: false,
-        changePasswordSuccess: false
-      };
-
+    case GET_ALL_USERS_SUCCESS: {
+      const normalized = normalize(action.payload.users, ProjectEntity);
+      return state
+        .updateIn(['userMap'], (userMap: UserMap) => {
+          return userMap.merge(fromJS(normalized.entities.User));
+        })
+        .updateIn(
+          ['projectUsersID', action.payload.projectID],
+          (usersID: List<string>) => {
+            return List(normalized.result);
+          }
+        );
+    }
     default:
       return state;
   }

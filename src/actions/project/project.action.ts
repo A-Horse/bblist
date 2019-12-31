@@ -25,13 +25,13 @@ export function getProjectsFailure(): FSAction {
   };
 }
 
-export const GET_PROJCET_DETAIL_REQUEST = 'GET_PROJCET_DETAIL_REQUEST';
+export const GET_PROJECT_DETAIL_REQUEST = 'GET_PROJECT_DETAIL_REQUEST';
 export const GET_PROJCET_DETAIL_SUCCESS = 'GET_PROJCET_DETAIL_SUCCESS';
 export const GET_PROJCET_DETAIL_FAILURE = 'GET_PROJCET_DETAIL_FAILURE';
 
 export function getProjectDetailRequest(projectId: string): FSAction {
   return {
-    type: GET_PROJCET_DETAIL_REQUEST,
+    type: GET_PROJECT_DETAIL_REQUEST,
     payload: projectId
   };
 }
@@ -50,13 +50,13 @@ export function getProjectDetailFailure(): FSAction {
   };
 }
 
-export const CREATE_PROJCET_REQUEST = 'CREATE_PROJCETS_REQUEST';
+export const CREATE_PROJECT_REQUEST = 'CREATE_PROJCETS_REQUEST';
 export const CREATE_PROJCET_SUCCESS = 'CREATE_PROJCETS_SUCCESS';
 export const CREATE_PROJCET_FAILURE = 'CREATE_PROJCETS_FAILURE';
 
 export function createProjectRequest(createProjectInput: CreateProjectInput): FSAction {
   return {
-    type: CREATE_PROJCET_REQUEST,
+    type: CREATE_PROJECT_REQUEST,
     payload: createProjectInput
   };
 }

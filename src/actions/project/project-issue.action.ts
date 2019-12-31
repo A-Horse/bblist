@@ -1,4 +1,4 @@
-import { PagtiationList } from '../../typings/pagtiation.typing';
+import { PaginationList } from '../../typings/pagtiation.typing';
 import { CreateProjectCardInput, ProjectIssue, RankProjectCardInKanbanInput } from '../../typings/project-issue.typing';
 import { FSAction } from '../actions';
 
@@ -52,14 +52,14 @@ export function getProjectIssuesRequest(
   };
 }
 
-export function getProjectIssuesSuccess(payload: { cardPagtiton: PagtiationList<ProjectIssue>; projectId: string }): FSAction {
+export function getProjectIssuesSuccess(payload: { cardPagtiton: PaginationList<ProjectIssue>; projectId: string }): FSAction {
   return {
     type: GET_PROJECT_ISSUES_SUCCESS,
     payload
   };
 }
 
-export function getProjectIssuesSuccessInProjectIssue(payload: { cardPagtiton: PagtiationList<ProjectIssue>; projectId: string }): FSAction {
+export function getProjectIssuesSuccessInProjectIssue(payload: { cardPagtiton: PaginationList<ProjectIssue>; projectId: string }): FSAction {
   return {
     type: GET_PROJECT_ISSUES_SUCCESS_IN_PROJECT_ISSUE,
     payload
