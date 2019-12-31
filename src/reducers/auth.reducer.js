@@ -1,4 +1,3 @@
-//
 import * as R from 'ramda';
 import Actions from '../actions/actions';
 import { Map, fromJS } from 'immutable';

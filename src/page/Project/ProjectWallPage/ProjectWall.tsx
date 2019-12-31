@@ -37,13 +37,21 @@ export class ProjectWall extends Component<Props> {
                       <Link
                         className="taskboard-card"
                         style={{
-                          backgroundImage: project.get('setting').get('coverUrl') ? `url(${generateProjectCoverUrl(project.get('setting').get('coverUrl'))})` : `url(${DEFAULT_BOARD_COVER_SRC})`
+                          backgroundImage: project
+                            .get('setting')
+                            .get('coverUrl')
+                            ? `url(${generateProjectCoverUrl(
+                                project.get('setting').get('coverUrl')
+                              )})`
+                            : `url(${DEFAULT_BOARD_COVER_SRC})`
                         }}
                         key={project.get('id')}
                         to={`/project/${project.get('id')}`}
                       >
                         <div className="taskboard-card-info">
-                          <div className="taskboard-card-info--name">{project.get('name')}</div>
+                          <div className="taskboard-card-info--name">
+                            {project.get('name')}
+                          </div>
                         </div>
                       </Link>
                     );

@@ -3,7 +3,7 @@ import { AppUserInfoRecord } from '../typings/user/user.typing';
 import { FSAction } from '../actions/actions';
 import { GET_ALL_USERS_SUCCESS } from '../actions/user/user.action';
 import { normalize } from 'normalizr';
-import { ProjectEntity } from '../schema';
+import { ProjectEntity, UserEntity, UserEntityList } from '../schema';
 
 type UserMap = Map<string, AppUserInfoRecord>;
 type ProjectUserIdMap = Map<string, List<string>>;
@@ -15,14 +15,14 @@ export interface UserReducerState {
 
 export function user(
   state: Record<UserReducerState> = fromJS({
-    users: {},
+    userMap: {},
     projectUsersID: {}
   }),
   action: FSAction
-) {
+): Record<UserReducerState> {
   switch (action.type) {
     case GET_ALL_USERS_SUCCESS: {
-      const normalized = normalize(action.payload.users, ProjectEntity);
+      const normalized = normalize(action.payload.users, UserEntityList);
       return state
         .updateIn(['userMap'], (userMap: UserMap) => {
           return userMap.merge(fromJS(normalized.entities.User));

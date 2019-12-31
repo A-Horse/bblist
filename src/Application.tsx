@@ -6,7 +6,9 @@ import App from './page/App.container';
 import './style/normalize.css';
 import './style/app.scss';
 
-const SignInContainer = React.lazy(() => import('./page/SignIn/SignIn.container'));
+const SignInContainer = React.lazy(() =>
+  import('./page/SignIn/SignIn.container')
+);
 const SignIn = () => {
   return (
     <Suspense fallback={<div>Loading...</div>}>
@@ -15,7 +17,9 @@ const SignIn = () => {
   );
 };
 
-const SignUpContainer = React.lazy(() => import('./page/SignUp/SignUp.container'));
+const SignUpContainer = React.lazy(() =>
+  import('./page/SignUp/SignUp.container')
+);
 const SignUp = () => {
   return (
     <Suspense fallback={<div>Loading...</div>}>

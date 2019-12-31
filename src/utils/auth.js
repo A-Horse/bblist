@@ -1,4 +1,9 @@
-import { JWT_STORAGE_KEY, CACHED_USERNAME, CACHED_USERID, CACHED_USEREMAIL } from '../constants';
+import {
+  JWT_STORAGE_KEY,
+  CACHED_USERNAME,
+  CACHED_USERID,
+  CACHED_USEREMAIL
+} from '../constants';
 import { Storage } from '../services/storage';
 
 export function getJWT() {
