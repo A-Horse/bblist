@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-import { makeGravatarUrl, getUserGravatorFromStorge } from '../../services/gravatar';
+import {
+  makeGravatarUrl,
+  getUserGravatorFromStorge
+} from '../../services/gravatar';
 import { AppUserInfo } from '../../typings/user/user.typing';
 
 import './UserAvatar.scss';
@@ -18,8 +21,19 @@ export class UserAvatar extends Component<InputProps> {
 
     const storgeData = getUserGravatorFromStorge(user.id);
     if (storgeData) {
-      return <img src={`data:image/png;base64,${storgeData}`} className="useravatar" />;
+      return (
+        <img
+          src={`data:image/png;base64,${storgeData}`}
+          className="useravatar"
+        />
+      );
     }
-    return <img src={makeGravatarUrl(user.email)} className="useravatar" crossOrigin="anonymous" />;
+    return (
+      <img
+        src={makeGravatarUrl(user.email)}
+        className="useravatar"
+        crossOrigin="anonymous"
+      />
+    );
   }
 }
