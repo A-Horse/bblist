@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SectionHeading snapshot 1`] = `
+<div
+  className="SessionHeading"
+  style={
+    Object {
+      "fontSize": 13,
+    }
+  }
+>
+  星球杯
+</div>
+`;
