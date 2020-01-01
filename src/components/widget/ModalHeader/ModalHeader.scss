@@ -2,6 +2,12 @@
   padding: 6px 12px;
   overflow: hidden;
 
+  &.cover {
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+
   &--buttons {
     float: right;
   }

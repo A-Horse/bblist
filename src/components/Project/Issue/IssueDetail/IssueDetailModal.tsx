@@ -1,7 +1,7 @@
 import './IssueDetailModal.scss';
 
 import React, { Component } from 'react';
-import { RouteComponentProps, RouterProps, withRouter } from 'react-router';
+import { RouteComponentProps, withRouter } from 'react-router';
 
 import { AppModal } from '../../../widget/AppModal';
 import { ModalHeader } from '../../../widget/ModalHeader/ModalHeader';
@@ -27,7 +27,7 @@ class IssueDetailModalComponent extends Component<Props> {
         isOpen={true}
         onRequestClose={this.closeModal}
       >
-        <ModalHeader onClose={this.closeModal} />
+        <ModalHeader onClose={this.closeModal} cover={true} />
         <IssueDetail
           issueID={this.props.issueId}
           kanbanID={this.props.kanbanID}

@@ -10,12 +10,14 @@ import { getProjectKanbanDetailRequest } from '../../../actions/project/kanban.a
 import { RootState } from '../../../reducers';
 import { selectKanbanColumns } from '../../../reducers/selector/kanban.selector';
 import { SelectOption } from '../../../typings/select.typing';
-import { generateColumnOptions } from '../../../utils/option';
 import { AppSelect } from '../../widget/AppSelect';
+import { List } from 'immutable';
+import { KanbanColumnRecord } from '../../../typings/kanban-column.typing';
 
 interface InputProps {
   kanbanID?: string;
   onChange: any;
+  customSelect?: any;
 }
 
 interface InjectProps {
@@ -25,8 +27,21 @@ interface InjectProps {
 
 const noOptionTip = () => '暂无列表';
 
+function generateColumnOptions(
+  columns: List<KanbanColumnRecord>
+): SelectOption[] {
+  return columns
+    .map(column => {
+      return {
+        value: column.get('id'),
+        label: column.get('name')
+      };
+    })
+    .toArray();
+}
+
 class ColumnSelectComponent extends Component<InputProps & InjectProps> {
-  componentWillMount() {
+  componentDidMount() {
     this.fetchColumns();
   }
 
@@ -40,9 +55,13 @@ class ColumnSelectComponent extends Component<InputProps & InjectProps> {
   }
 
   render() {
+    const Select = this.props.customSelect
+      ? this.props.customSelect
+      : AppSelect;
     return (
-      <AppSelect
-        placeholder="选择列表"
+      <Select
+        isSearchable={false}
+        placeholder="选择价值列"
         noOptionsMessage={noOptionTip}
         options={this.props.options}
         onChange={this.props.onChange}

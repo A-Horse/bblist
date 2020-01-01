@@ -33,7 +33,11 @@ export class DateTimeSelectDialog extends Component<InputProps, State> {
 
   render() {
     return (
-      <AppModal className="DeadlineSelectDialog" isOpen={this.props.isOpen} onRequestClose={this.closeModal}>
+      <AppModal
+        className="DeadlineSelectDialog"
+        isOpen={this.props.isOpen}
+        onRequestClose={this.closeModal}
+      >
         <ModalHeader onClose={this.closeModal} />
 
         <AppDateTimePicker value={this.state.value} onChange={this.onChange} />

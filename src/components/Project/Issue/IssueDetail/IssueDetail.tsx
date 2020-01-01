@@ -86,6 +86,7 @@ class IssueDetailComponent extends Component<
     };
   };
 
+  // TODO extract
   updateIssue = (changedPartialIssue: any) => {
     const didChangedPartialIssue = Object.keys(changedPartialIssue).reduce(
       (result: any, key: string) => {

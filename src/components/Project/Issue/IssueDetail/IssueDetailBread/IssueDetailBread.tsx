@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../../../../reducers';
 import { getProjectFromState } from '../../../../../reducers/selector/project.selector';
 import { ColumnSelect } from '../../../ColumnSelect/ColumnSelect';
+import { BorderlessSelector } from '../../../../widget/BorderlessSelect/BorderlessSelect';
 
 interface InputProp {
   projectID: string;
@@ -23,7 +24,12 @@ export function IssueDetailBread(props: InputProp) {
   return (
     <div>
       {project.get('name')}
-      <ColumnSelect kanbanID={props.kanbanID} />
+
+      <ColumnSelect
+        onChange={() => {}}
+        customSelect={props => <BorderlessSelector width={100} {...props} />}
+        kanbanID={props.kanbanID}
+      />
     </div>
   );
 }
