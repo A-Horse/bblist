@@ -22,6 +22,9 @@ pipeline {
             }
         }
         stage('Build') {
+            environment {
+                CI = 'false'
+            }
             steps {
                 sh 'npm run build'
             }
