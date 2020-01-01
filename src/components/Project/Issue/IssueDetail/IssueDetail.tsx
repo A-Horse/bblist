@@ -25,7 +25,7 @@ import { FormField } from '../../../widget/FormField/FormField';
 import Input from '../../../widget/Input/Input';
 import { AppTextArea } from '../../../widget/TextArea/TextArea';
 import { IssueDetailBread } from './IssueDetailBread/IssueDetailBread';
-import { IssueDetailLeft } from './IssueDetailLeft/IssueDetailLeft';
+import { IssueDetailRight } from './IssueDetailRight/IssueDetailRight';
 import { Deadline } from '../../../Deadline/Deadline';
 
 export interface InputProps {
@@ -138,35 +138,39 @@ class IssueDetailComponent extends Component<
           issueID={this.props.issueID}
         />
 
-        <div>
-          {issue.get('deadline') && (
-            <Deadline deadline={issue.get('deadline')} />
-          )}
+        <div className="IssueDetail--content">
+          <div className="IssueDetail--left">
+            <div>
+              {issue.get('deadline') && (
+                <Deadline deadline={issue.get('deadline')} />
+              )}
+            </div>
+
+            <FormField>
+              <Input
+                size="large"
+                value={issue.get('title')}
+                onChange={this.onFieldChange('title')}
+                onBlur={this.onFieldBlur('title')}
+              />
+            </FormField>
+
+            <FormField name="描述：">
+              <AppTextArea
+                className="IssueDetail--content-textarea"
+                value={issue.get('content') || ''}
+                onChange={this.onFieldChange('content')}
+                onBlur={this.onFieldBlur('content')}
+              />
+            </FormField>
+          </div>
+
+          <IssueDetailRight
+            projectID={this.props.projectID}
+            issue={issue}
+            updateIssue={this.updateIssue}
+          />
         </div>
-
-        <FormField>
-          <Input
-            size="large"
-            value={issue.get('title')}
-            onChange={this.onFieldChange('title')}
-            onBlur={this.onFieldBlur('title')}
-          />
-        </FormField>
-
-        <FormField name="描述：">
-          <AppTextArea
-            className="IssueDetail--content-textarea"
-            value={issue.get('content') || ''}
-            onChange={this.onFieldChange('content')}
-            onBlur={this.onFieldBlur('content')}
-          />
-        </FormField>
-
-        <IssueDetailLeft
-          projectID={this.props.projectID}
-          issue={issue}
-          updateIssue={this.updateIssue}
-        />
       </div>
     );
   }

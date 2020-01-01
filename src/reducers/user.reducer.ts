@@ -3,7 +3,7 @@ import { AppUserInfoRecord } from '../typings/user/user.typing';
 import { FSAction } from '../actions/actions';
 import { GET_ALL_USERS_SUCCESS } from '../actions/user/user.action';
 import { normalize } from 'normalizr';
-import { ProjectEntity, UserEntity, UserEntityList } from '../schema';
+import { UserEntityList } from '../schema';
 
 type UserMap = Map<string, AppUserInfoRecord>;
 type ProjectUserIdMap = Map<string, List<string>>;
@@ -25,12 +25,21 @@ export function user(
       const normalized = normalize(action.payload.users, UserEntityList);
       return state
         .updateIn(['userMap'], (userMap: UserMap) => {
-          return userMap.merge(fromJS(normalized.entities.User));
+          return userMap.mergeWith((oldRecord, newRecord) => {
+            if (oldRecord.equals(newRecord)) {
+              return oldRecord;
+            }
+            return newRecord;
+          }, fromJS(normalized.entities.User));
         })
         .updateIn(
           ['projectUsersID', action.payload.projectID],
           (usersID: List<string>) => {
-            return List(normalized.result);
+            const newList = List(normalized.result);
+            if (newList.equals(usersID)) {
+              return usersID;
+            }
+            return newList;
           }
         );
     }

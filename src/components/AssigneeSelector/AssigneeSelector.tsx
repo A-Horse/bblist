@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { AppSelect } from '../widget/AppSelect';
 import { UserAvatar } from '../UserAvatar/UserAvatar';
 import { useDispatch, useSelector } from 'react-redux';
@@ -7,38 +7,53 @@ import { RootState } from '../../reducers';
 import { findProjectAllUsers } from '../../reducers/selector/user.selector';
 import { AppUserInfoRecord } from '../../typings/user/user.typing';
 import { SelectOption } from '../../typings/select.typing';
+import { AssigneeSelectorOption } from './AssigneeSelectorOption';
 
 interface InputProps {
-  selectedUserId?: string;
+  selectedUserId?: number;
   projectID: string;
+  onChange?: Function;
 }
 
 function mapUserToSelectOption(user: AppUserInfoRecord): SelectOption {
   return {
     value: user.get('id'),
-    label: user.get('username')
+    label: user.get('username'),
+    meta: user
   };
 }
 
 export function AssigneeSelector(props: InputProps) {
   const dispatch = useDispatch();
-  const onChange = () => {};
-  const onMenuOpen = () => {
-    dispatch(getAllUsersRequest(props.projectID));
+  const onChange = option => {
+    props.onChange && props.onChange(option);
   };
 
-  const userOptions = useSelector((state: RootState) =>
+  const users = useSelector((state: RootState) =>
     findProjectAllUsers(state, props.projectID)
-  )
-    .map(mapUserToSelectOption)
-    .toArray();
+  );
+
+  const userOptions = users.map(mapUserToSelectOption).toArray();
+
+  useEffect(() => {
+    dispatch(getAllUsersRequest(props.projectID));
+  }, []);
+
+  const selectedOption = userOptions.find(
+    o => o.value === props.selectedUserId
+  );
 
   return (
     <div className="AssigneeSelector">
       <UserAvatar />
       <AppSelect
-        onMenuOpen={onMenuOpen}
+        components={{
+          Option: AssigneeSelectorOption,
+          SingleValue: AssigneeSelectorOption
+        }}
+        isSearchable={true}
         placeholder="分配用户"
+        value={selectedOption}
         options={userOptions}
         onChange={onChange}
       />

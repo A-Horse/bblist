@@ -1,14 +1,12 @@
-import React, { Component } from 'react';
-import {
-  makeGravatarUrl,
-  getUserGravatorFromStorge
-} from '../../services/gravatar';
+import React, { Component, CSSProperties } from 'react';
+import { makeGravatarUrl } from '../../services/gravatar';
 import { AppUserInfo } from '../../typings/user/user.typing';
 
 import './UserAvatar.scss';
 
 interface InputProps {
   user?: AppUserInfo;
+  style?: CSSProperties;
 }
 
 export class UserAvatar extends Component<InputProps> {
@@ -19,20 +17,16 @@ export class UserAvatar extends Component<InputProps> {
       return null;
     }
 
-    const storgeData = getUserGravatorFromStorge(user.id);
-    if (storgeData) {
-      return (
-        <img
-          src={`data:image/png;base64,${storgeData}`}
-          className="useravatar"
-        />
-      );
-    }
     return (
       <img
+        alt="user-avatar"
         src={makeGravatarUrl(user.email)}
-        className="useravatar"
-        crossOrigin="anonymous"
+        style={{
+          width: 30,
+          height: 30,
+          borderRadius: 3,
+          ...this.props.style
+        }}
       />
     );
   }

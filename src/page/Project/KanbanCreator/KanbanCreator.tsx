@@ -61,11 +61,6 @@ class KanbanCreatorComponent extends Component<
         footer={null}
       >
         <div>
-          <img
-            className="taskboard-creater--illustration"
-            src="/assets/images/work.png"
-          />
-
           <Form onSubmit={this.handleSubmit}>
             <FormItem>
               {getFieldDecorator('name', {

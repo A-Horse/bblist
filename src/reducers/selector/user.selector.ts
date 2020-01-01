@@ -1,5 +1,5 @@
 import { RootState } from '../index';
-import { AppUserInfo, AppUserInfoRecord } from '../../typings/user/user.typing';
+import { AppUserInfoRecord } from '../../typings/user/user.typing';
 import { List } from 'immutable';
 
 export function findProjectAllUsers(
@@ -15,7 +15,7 @@ export function findProjectAllUsers(
 
   return projectUsersID
     .map(ID => {
-      return state.user.get('userMap').get(ID)!;
+      return state.user.get('userMap').get(ID.toString())!;
     })
     .filter(u => u);
 }

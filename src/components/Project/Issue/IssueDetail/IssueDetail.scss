@@ -6,4 +6,17 @@
   &--content-textarea {
     min-height: 200px;
   }
+
+  &--content {
+    display: flex;
+    flex-direction: row;
+  }
+
+  &--left {
+    width: 70%;
+  }
+
+  .IssueDetailRight {
+    width: 30%;
+  }
 }

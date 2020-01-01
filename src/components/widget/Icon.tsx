@@ -2,6 +2,7 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import {
   faCheckCircle,
   faClipboardList,
+  faClock,
   faCog,
   faColumns,
   faCube,
@@ -16,8 +17,7 @@ import {
   faTimes,
   faTrash,
   faUserCog,
-  faVectorSquare,
-  faClock
+  faVectorSquare
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -38,6 +38,6 @@ library.add(faEllipsisH);
 library.add(faTrash);
 library.add(faPen);
 library.add(faTimes);
-library.add(faClock)
+library.add(faClock);
 
 export const AppIcon = FontAwesomeIcon;

@@ -9,6 +9,8 @@ interface InputProps {
 
 export class AppDateTimePicker extends Component<InputProps> {
   render() {
-    return <DatePicker selected={this.props.value} onChange={this.props.onChange} />;
+    return (
+      <DatePicker selected={this.props.value} onChange={this.props.onChange} />
+    );
   }
 }

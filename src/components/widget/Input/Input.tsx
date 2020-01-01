@@ -1,6 +1,6 @@
 import './Input.scss';
 
-import React, { ChangeEvent, Component, ReactInstance } from 'react';
+import React, { ChangeEvent, Component } from 'react';
 
 export class Input extends Component<{
   value?: string;
@@ -27,7 +27,9 @@ export class Input extends Component<{
 
   buildClassName() {
     const { size = 'middle' } = this.props;
-    return `app-input ${size}  ${this.props.className ? ' ' + this.props.className : ''} ${this.props.whiteHover ? 'white-hover' : ''}`;
+    return `app-input ${size}  ${
+      this.props.className ? ' ' + this.props.className : ''
+    } ${this.props.whiteHover ? 'white-hover' : ''}`;
   }
 
   render() {

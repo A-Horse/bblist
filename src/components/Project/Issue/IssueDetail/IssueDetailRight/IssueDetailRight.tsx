@@ -3,6 +3,10 @@ import { AppButton } from '../../../../widget/AppButton';
 import { DateTimeSelectDialog } from '../../../../DateTimeSelectDialog/DateTimeSeletDialog';
 import { ProjectIssueRecord } from '../../../../../typings/project-issue.typing';
 import { AssigneeSelector } from '../../../../AssigneeSelector/AssigneeSelector';
+import { SelectOption } from '../../../../../typings/select.typing';
+import { SectionHeading } from '../../../../widget/SectionHeading/SectionHeading';
+
+import './IssueDetailRight.scss';
 
 interface InputProps {
   projectID: string;
@@ -12,11 +16,13 @@ interface InputProps {
 
 interface State {
   deadlineSelectOpen: boolean;
+  assigneeUserID: number | undefined;
 }
 
-export class IssueDetailLeft extends Component<InputProps, State> {
+export class IssueDetailRight extends Component<InputProps, State> {
   state = {
-    deadlineSelectOpen: false
+    deadlineSelectOpen: false,
+    assigneeUserID: 1
   };
 
   onDeadlineOnclick = (value: Date) => {
@@ -26,7 +32,18 @@ export class IssueDetailLeft extends Component<InputProps, State> {
   render() {
     return (
       <>
-        <div className="IssueDetailLeft">
+        <div className="IssueDetailRight">
+          <div>
+            <SectionHeading size="sm">经办人</SectionHeading>
+            <AssigneeSelector
+              projectID={this.props.projectID}
+              selectedUserId={this.state.assigneeUserID}
+              onChange={(option: SelectOption) =>
+                this.setState({ assigneeUserID: option.value })
+              }
+            />
+          </div>
+
           <AppButton
             onClick={() => this.setState({ deadlineSelectOpen: true })}
           >
@@ -41,8 +58,6 @@ export class IssueDetailLeft extends Component<InputProps, State> {
             this.setState({ deadlineSelectOpen: false });
           }}
         />
-
-        <AssigneeSelector projectID={this.props.projectID} />
       </>
     );
   }

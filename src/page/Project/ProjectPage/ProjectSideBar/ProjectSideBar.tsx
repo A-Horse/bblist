@@ -12,11 +12,31 @@ export class ProjectSideBar extends Component<{
   render() {
     return (
       <Side className="ProjectSideBar">
-        <SideItemLink icon="list-alt" to={`${this.props.match.url}/kanban`} name="Kanban" />
-        <SideItemLink icon="vector-square" to={`${this.props.match.url}/epics`} name="Epics" />
-        <SideItemLink icon="list-ol" to={`${this.props.match.url}/issues`} name="Issues" />
-        <SideItemLink icon="cog" to={`${this.props.match.url}/setting`} name="Setting" />
-        <SideItemLink icon="user-cog" to={`${this.props.match.url}/admin`} name="Admin" />
+        <SideItemLink
+          icon="list-alt"
+          to={`${this.props.match.url}/kanban`}
+          name="看板"
+        />
+        <SideItemLink
+          icon="vector-square"
+          to={`${this.props.match.url}/epics`}
+          name="史诗"
+        />
+        <SideItemLink
+          icon="list-ol"
+          to={`${this.props.match.url}/issues`}
+          name="问题"
+        />
+        <SideItemLink
+          icon="cog"
+          to={`${this.props.match.url}/setting`}
+          name="设置"
+        />
+        <SideItemLink
+          icon="user-cog"
+          to={`${this.props.match.url}/admin`}
+          name="Admin（待合并）"
+        />
       </Side>
     );
   }

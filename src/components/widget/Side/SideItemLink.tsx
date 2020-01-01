@@ -13,7 +13,9 @@ export class SideItemLink extends Component<{
   render() {
     return (
       <div className="SideItemLink">
-        {this.props.icon ? <AppIcon className="SideItemLink--icon" icon={this.props.icon} /> : null}
+        {this.props.icon ? (
+          <AppIcon className="SideItemLink--icon" icon={this.props.icon} />
+        ) : null}
 
         <NavLink to={this.props.to} activeClassName="active">
           {this.props.name}

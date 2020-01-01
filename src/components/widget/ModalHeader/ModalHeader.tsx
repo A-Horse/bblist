@@ -1,6 +1,6 @@
 import './ModalHeader.scss';
 
-import React, { ReactNode } from 'react';
+import React from 'react';
 
 import { AppButton } from '../Button';
 import { AppIcon } from '../Icon';
@@ -13,6 +13,7 @@ interface InputProps {
 export const ModalHeader = ({ title, onClose }: InputProps) => {
   return (
     <div className="ModalHeader">
+      {title}
       <div className="ModalHeader--buttons">
         <AppButton onClick={onClose}>
           <AppIcon icon="times" size="lg" />

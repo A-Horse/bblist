@@ -9,7 +9,8 @@ export class AppPagination extends PureComponent<{
   ref: HTMLCokePaginationElement | undefined = undefined;
 
   componentDidMount() {
-    this.ref!.addEventListener('pageChanged', this.onPageChanged as EventListener);
+    this.ref!.addEventListener('pageChanged', this
+      .onPageChanged as EventListener);
   }
 
   onPageChanged = (event: CustomEvent<any>) => {
@@ -24,6 +25,13 @@ export class AppPagination extends PureComponent<{
   };
 
   render() {
-    return <coke-pagination pagesize={this.props.pageSize} total={this.props.total} ref={this.setRef} currentpage={this.props.currentPage} />;
+    return (
+      <coke-pagination
+        pagesize={this.props.pageSize}
+        total={this.props.total}
+        ref={this.setRef}
+        currentpage={this.props.currentPage}
+      />
+    );
   }
 }

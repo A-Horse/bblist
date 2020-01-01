@@ -5,9 +5,7 @@ import React, { useState } from 'react';
 import { AppIcon } from '../../../../components/widget/Icon';
 import { CreateKanbanCardModal } from '../modals/CreateKanbanCardModal/CreateKanbanCardModal';
 
-interface InputProps {}
-
-export function ProjectAddButton({  }: InputProps) {
+export function ProjectAddButton() {
   const [toggle, setToggle] = useState(false);
 
   return (

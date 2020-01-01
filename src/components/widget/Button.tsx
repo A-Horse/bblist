@@ -1,6 +1,6 @@
 import './Button.scss';
 
-import React, { ButtonHTMLAttributes, Component, DetailedHTMLProps, PureComponent } from 'react';
+import React, { PureComponent } from 'react';
 
 export class AppButton extends PureComponent<{
   htmlType?: 'submit' | 'reset' | 'button';
@@ -11,7 +11,9 @@ export class AppButton extends PureComponent<{
   onClick?: any;
 }> {
   buildClassName() {
-    return `AppButton ${this.props.type || ''} ${this.props.className || ''} ${this.props.disabled ? 'disabled' : ''}`;
+    return `AppButton ${this.props.type || ''} ${this.props.className || ''} ${
+      this.props.disabled ? 'disabled' : ''
+    }`;
   }
 
   render() {
