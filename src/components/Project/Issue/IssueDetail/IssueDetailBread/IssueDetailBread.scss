@@ -1,5 +1,7 @@
 .IssueDetailBread {
   display: flex;
+  position: relative;
+  z-index: 100;
   align-items: center;
   padding-bottom: 18px;
   margin-bottom: 18px;
