@@ -108,17 +108,18 @@ class IssueDetailComponent extends Component<
       {
         callback: (error: Error) => {
           if (!error) {
-            return this.props.toastManager.add('更新成功', {
+            this.props.toastManager.add('更新成功', {
               appearance: 'success',
               autoDismiss: true
             });
+            Object.keys(didChangedPartialIssue).forEach((k: string) => {
+              this.changedFields[k] = false;
+            });
+            return;
           }
           this.props.toastManager.add('更新失败', {
             appearance: 'error',
             autoDismiss: true
-          });
-          Object.keys(didChangedPartialIssue).forEach((k: string) => {
-            this.changedFields[k] = false;
           });
         }
       }
@@ -139,23 +140,23 @@ class IssueDetailComponent extends Component<
           issueID={this.props.issueID}
         />
 
+        <FormField>
+          <Input
+            size="large"
+            value={issue.get('title')}
+            onChange={this.onFieldChange('title')}
+            onBlur={this.onFieldBlur('title')}
+          />
+        </FormField>
+
+        <div>
+          {issue.get('deadline') && (
+            <Deadline deadline={issue.get('deadline')} />
+          )}
+        </div>
+
         <div className="IssueDetail--content">
           <div className="IssueDetail--left">
-            <div>
-              {issue.get('deadline') && (
-                <Deadline deadline={issue.get('deadline')} />
-              )}
-            </div>
-
-            <FormField>
-              <Input
-                size="large"
-                value={issue.get('title')}
-                onChange={this.onFieldChange('title')}
-                onBlur={this.onFieldBlur('title')}
-              />
-            </FormField>
-
             <FormField name="描述：">
               <AppTextArea
                 className="IssueDetail--content-textarea"

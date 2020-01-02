@@ -1,0 +1,11 @@
+.IssueDetailBread {
+  display: flex;
+  align-items: center;
+  padding-bottom: 18px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid #e8e8e8;
+
+  .IssueType {
+    margin-right: 8px;
+  }
+}

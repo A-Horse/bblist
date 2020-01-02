@@ -7,11 +7,12 @@
   width: 700px;
   left: 50%;
   transform: translate(-50%, 0);
-  border: 1px solid rgba(204, 204, 204, 0.6);
+  border: 1px solid rgba(204, 204, 204, 0.3);
+  box-shadow: 1px 2px 5px #e8e8e8;
   background: rgb(255, 255, 255);
-  border-radius: 4px;
+  border-radius: 6px;
   outline: none;
-  padding: 0;
+  padding: 20px 6px;
 
   .IssueDetail {
     padding-top: 0;

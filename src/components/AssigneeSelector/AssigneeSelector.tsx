@@ -9,6 +9,8 @@ import { AppUserInfoRecord } from '../../typings/user/user.typing';
 import { SelectOption } from '../../typings/select.typing';
 import { AssigneeSelectorOption } from './AssigneeSelectorOption';
 
+import './AssigneeSelector.scss';
+
 interface InputProps {
   selectedUserId?: number;
   projectID: string;
