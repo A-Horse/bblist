@@ -1,11 +1,12 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-
 import { RootState } from '../../../../../reducers';
 import { getProjectFromState } from '../../../../../reducers/selector/project.selector';
 import { ColumnSelect } from '../../../ColumnSelect/ColumnSelect';
 import { BorderlessSelector } from '../../../../widget/BorderlessSelect/BorderlessSelect';
 import { IssueType } from '../../../IssueType/IssueType';
+import { AppIcon } from '../../../../widget/Icon';
+import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
 import './IssueDetailBread.scss';
 
@@ -28,7 +29,11 @@ export function IssueDetailBread(props: InputProps) {
     <div className="IssueDetailBread">
       <IssueType />
 
-      {project.get('name')}
+      <div className="IssueDetailBread--project-name">
+        {project.get('name')}
+      </div>
+
+      <AppIcon className="IssueDetailBread--right-icon" icon={faChevronRight} />
 
       <ColumnSelect
         onChange={() => {}}

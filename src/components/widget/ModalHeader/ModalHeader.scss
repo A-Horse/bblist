@@ -1,5 +1,6 @@
 .ModalHeader {
-  padding: 6px 12px;
+  padding: 12px 12px;
+  position: relative;
   overflow: hidden;
 
   &.cover {
@@ -10,7 +11,14 @@
     z-index: 0;
   }
 
+  &--title {
+    font-size: 17px;
+  }
+
   &--buttons {
-    float: right;
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translate(0, -50%);
   }
 }

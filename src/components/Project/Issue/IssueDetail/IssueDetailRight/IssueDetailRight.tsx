@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppButton } from '../../../../widget/AppButton';
+import { AppButton } from '../../../../widget/Button';
 import { DateTimeSelectDialog } from '../../../../DateTimeSelectDialog/DateTimeSeletDialog';
 import { ProjectIssueRecord } from '../../../../../typings/project-issue.typing';
 import { AssigneeSelector } from '../../../../AssigneeSelector/AssigneeSelector';
@@ -26,7 +26,10 @@ export class IssueDetailRight extends Component<InputProps, State> {
   };
 
   onDeadlineOnclick = (value: Date) => {
-    this.props.updateIssue({ deadline: value });
+    this.setState({ deadlineSelectOpen: false });
+    this.props.updateIssue({ deadline: value }, {
+      force: true
+    });
   };
 
   render() {

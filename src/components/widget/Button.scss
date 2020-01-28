@@ -6,11 +6,13 @@
 
   &.disabled {
     background: #bbb !important;
+    border: 1px solid #bbb !important;
     color: white !important;
     cursor: not-allowed !important;
   }
 
   &.primary {
+    border: 1px solid #eb6668;
     background-color: #eb6668;
     color: white;
   }

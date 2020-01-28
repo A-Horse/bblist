@@ -1,0 +1,19 @@
+.DateTimeSelectDialog {
+  border-radius: 3px;
+  width: 300px;
+  margin: auto;
+  background-color: white;
+  box-shadow: 0 0 5px #eee;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -100%);
+}
+
+.DateTimeSelectDialog--main {
+  padding: 12px;
+
+  .ConfirmButtonGroup {
+    float: right;
+  }
+}

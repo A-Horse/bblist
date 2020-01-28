@@ -1,0 +1,10 @@
+.ConfirmButtonGroup {
+    margin-top: 12px;
+  .AppButton {
+    margin-right: 12px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}

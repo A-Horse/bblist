@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
-import DatePicker from 'react-datepicker';
+import DatePicker, { registerLocale, setDefaultLocale } from 'react-datepicker';
+import zh from 'date-fns/locale/zh-CN';
+
 import 'react-datepicker/dist/react-datepicker.css';
+
+registerLocale('zh', zh)
+setDefaultLocale('zh');
+
 
 interface InputProps {
   onChange: Function;
@@ -10,7 +16,12 @@ interface InputProps {
 export class AppDateTimePicker extends Component<InputProps> {
   render() {
     return (
-      <DatePicker selected={this.props.value} onChange={this.props.onChange} />
+      <DatePicker
+      dateFormat="yyyy年MM月dd日"
+        locale="zh"
+        selected={this.props.value}
+        onChange={this.props.onChange}
+      />
     );
   }
 }
