@@ -6,9 +6,10 @@ import { RouteComponentProps, withRouter } from 'react-router';
 import { AppModal } from '../../../widget/AppModal';
 import { ModalHeader } from '../../../widget/ModalHeader/ModalHeader';
 import { IssueDetail } from './IssueDetail';
+import { IssueDetailBread } from './IssueDetailBread/IssueDetailBread';
 
 interface InputProps {
-  issueId: string;
+  issueID: string;
   projectID: string;
   kanbanID: string;
 }
@@ -28,8 +29,15 @@ class IssueDetailModalComponent extends Component<Props> {
         onRequestClose={this.closeModal}
       >
         <ModalHeader onClose={this.closeModal} cover={true} />
+
+        <IssueDetailBread
+          kanbanID={this.props.kanbanID}
+          projectID={this.props.projectID}
+          issueID={this.props.issueID}
+        />
+        
         <IssueDetail
-          issueID={this.props.issueId}
+          issueID={this.props.issueID}
           kanbanID={this.props.kanbanID}
           projectID={this.props.projectID}
         />

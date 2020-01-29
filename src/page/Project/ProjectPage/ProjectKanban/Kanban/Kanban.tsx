@@ -1,5 +1,3 @@
-import './Kanban.scss';
-
 import { List } from 'immutable';
 import React, { Component } from 'react';
 import { DndProvider } from 'react-dnd';
@@ -24,6 +22,8 @@ import { KanbanRecord } from '../../../../../typings/kanban.typing';
 import { ProjectRecord } from '../../../../../typings/project.typing';
 import { parseQueryParams } from '../../../../../utils/url.util';
 import { KanbanColumn } from './Column/KanbanColumn';
+
+import './Kanban.scss';
 
 interface InputProps {
   kanbanId: string;
@@ -75,7 +75,7 @@ class KanbanComponent extends Component<
                 <IssueDetailModal
                   kanbanID={props.match.params.kanbanID}
                   projectID={props.match.params.projectID}
-                  issueId={query.issueId}
+                  issueID={query.issueId}
                 />
               );
             }}
@@ -136,8 +136,5 @@ const mapStateToProps = (state: RootState, props: ComponentProps) => {
 };
 
 export const Kanban = withRouter<ComponentProps>(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(KanbanComponent)
+  connect(mapStateToProps, mapDispatchToProps)(KanbanComponent)
 );

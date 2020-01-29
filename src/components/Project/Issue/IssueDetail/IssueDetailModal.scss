@@ -1,4 +1,6 @@
 .IssueDetailModal {
+  display: flex;
+  flex-direction: column;
   position: absolute;
   top: 30px;
   bottom: 40px;
@@ -12,9 +14,10 @@
   background: rgb(255, 255, 255);
   border-radius: 6px;
   outline: none;
-  padding: 20px 6px;
+  padding: 20px 0;
 
   .IssueDetail {
     padding-top: 0;
+    overflow: scroll;
   }
 }

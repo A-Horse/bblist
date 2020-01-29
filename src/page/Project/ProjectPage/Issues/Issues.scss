@@ -28,3 +28,12 @@
     height: 100%;
   }
 }
+
+.Issues--detail-container {
+  overflow: scroll;
+
+  .IssueDetail {
+    min-width: 526px;
+    min-height: 100%;
+  }
+}

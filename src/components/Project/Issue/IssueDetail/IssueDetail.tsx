@@ -76,11 +76,7 @@ export class IssueDetailComponent extends Component<
 
     return (
       <div className="IssueDetail">
-        <IssueDetailBread
-          kanbanID={this.props.kanbanID}
-          projectID={this.props.projectID}
-          issueID={this.props.issueID}
-        />
+       
 
         <FormField>
           <Input

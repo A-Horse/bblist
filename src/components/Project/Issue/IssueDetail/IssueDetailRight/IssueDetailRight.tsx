@@ -7,6 +7,8 @@ import { SelectOption } from '../../../../../typings/select.typing';
 import { SectionHeading } from '../../../../widget/SectionHeading/SectionHeading';
 
 import './IssueDetailRight.scss';
+import { DetailRightField } from './DetailField/DetailField';
+import { faClock } from '@fortawesome/free-solid-svg-icons';
 
 interface InputProps {
   projectID: string;
@@ -27,9 +29,12 @@ export class IssueDetailRight extends Component<InputProps, State> {
 
   onDeadlineOnclick = (value: Date) => {
     this.setState({ deadlineSelectOpen: false });
-    this.props.updateIssue({ deadline: value }, {
-      force: true
-    });
+    this.props.updateIssue(
+      { deadline: value },
+      {
+        force: true
+      }
+    );
   };
 
   render() {
@@ -47,11 +52,12 @@ export class IssueDetailRight extends Component<InputProps, State> {
             />
           </div>
 
-          <AppButton
+          <DetailRightField
+            bgColor="#dcf2ff"
+            icon={faClock}
+            title="到期时间"
             onClick={() => this.setState({ deadlineSelectOpen: true })}
-          >
-            到期时间
-          </AppButton>
+          ></DetailRightField>
         </div>
 
         <DateTimeSelectDialog

@@ -72,10 +72,10 @@ export class IssueDetailState {
       {
         callback: (error: Error) => {
           if (!error) {
-            this.detailComponent.props.toastManager.add('更新成功', {
-              appearance: 'success',
-              autoDismiss: true
-            });
+            // this.detailComponent.props.toastManager.add('更新成功', {
+            //   appearance: 'success',
+            //   autoDismiss: true
+            // });
             Object.keys(didChangedPartialIssue).forEach((k: string) => {
               this.changedFields[k] = false;
             });
