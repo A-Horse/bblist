@@ -2,6 +2,11 @@
   background-color: white;
   padding: 12px 18px;
 
+  &--title {
+    margin-top: 12px;
+    padding-left: 2px;
+  }
+
   &--content-textarea {
     min-height: 200px;
     resize: none;

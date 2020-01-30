@@ -69,7 +69,10 @@ export const UPDATE_PROJECT_ISSUE_DETAIL_REQUEST_FN = (
         )
         .then((result: AxiosResponse<void>) => {
           action.meta.callback(null);
-          return updateProjectIssueDetailSuccess();
+          return updateProjectIssueDetailSuccess({
+            ...action.payload.partialIssue,
+            id: action.payload.issueId
+          });
         })
         .catch(error => {
           action.meta.callback(error);

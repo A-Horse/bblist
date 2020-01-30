@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { AppButton } from '../../../../widget/Button';
 import { DateTimeSelectDialog } from '../../../../DateTimeSelectDialog/DateTimeSeletDialog';
 import { ProjectIssueRecord } from '../../../../../typings/project-issue.typing';
 import { AssigneeSelector } from '../../../../AssigneeSelector/AssigneeSelector';
@@ -8,7 +7,7 @@ import { SectionHeading } from '../../../../widget/SectionHeading/SectionHeading
 
 import './IssueDetailRight.scss';
 import { DetailRightField } from './DetailField/DetailField';
-import { faClock } from '@fortawesome/free-solid-svg-icons';
+import { faClock } from '@fortawesome/free-regular-svg-icons';
 
 interface InputProps {
   projectID: string;
@@ -53,7 +52,7 @@ export class IssueDetailRight extends Component<InputProps, State> {
           </div>
 
           <DetailRightField
-            bgColor="#dcf2ff"
+            active={!!this.props.issue.get('deadline')}
             icon={faClock}
             title="到期时间"
             onClick={() => this.setState({ deadlineSelectOpen: true })}
@@ -61,6 +60,7 @@ export class IssueDetailRight extends Component<InputProps, State> {
         </div>
 
         <DateTimeSelectDialog
+          deadline={this.props.issue.get('deadline')}
           isOpen={this.state.deadlineSelectOpen}
           onConfirm={this.onDeadlineOnclick}
           onCancel={() => {

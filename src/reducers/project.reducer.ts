@@ -9,7 +9,9 @@ import {
 } from '../actions/project/kanban.action';
 import {
   CHANGE_ISSUE_DIRECT,
-  GET_PROJECT_ISSUE_DETAIL_SUCCESS
+  GET_PROJECT_ISSUE_DETAIL_SUCCESS,
+  UPDATE_PROJECT_ISSUE_DETAIL_DEQUEST,
+  UPDATE_PROJECT_ISSUE_DETAIL_SUCCESS
 } from '../actions/project/project-issue-detail.aciton';
 import {
   GET_COLUMN_CARDS_SUCCESS,
@@ -81,6 +83,18 @@ export function project(
         projectMap.merge<ProjectRecord>(
           fromJS(normalizedAddBoard.entities.Project)
         )
+      );
+    }
+
+    case UPDATE_PROJECT_ISSUE_DETAIL_SUCCESS: {
+      return state.updateIn(
+        ['cardMap', action.payload.id],
+        (issue: ProjectIssueRecord) => {
+          if (!issue) {
+            return issue;
+          }
+          return issue.merge(fromJS(action.payload));
+        }
       );
     }
 

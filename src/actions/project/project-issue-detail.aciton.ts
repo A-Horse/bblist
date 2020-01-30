@@ -61,9 +61,10 @@ export function updateProjectIssueDetailRequest(
   };
 }
 
-export function updateProjectIssueDetailSuccess(): FSAction {
+export function updateProjectIssueDetailSuccess(payload): FSAction {
   return {
-    type: UPDATE_PROJECT_ISSUE_DETAIL_SUCCESS
+    type: UPDATE_PROJECT_ISSUE_DETAIL_SUCCESS,
+    payload
   };
 }
 

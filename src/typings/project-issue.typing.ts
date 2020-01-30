@@ -6,7 +6,8 @@ export interface ProjectIssue {
   order: number;
   content?: string;
   columnId: string;
-  deadline: Date;
+  deadline?: string;
+  deadlineDone?: boolean
 }
 
 export type ProjectIssueRecord = Record<ProjectIssue>;

@@ -1,12 +1,22 @@
 .DetailRightField {
   border-radius: 3px;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
-  padding: 4px 12px;
+  padding: 6px 12px;
   margin-top: 12px;
+  cursor: pointer;
+  background-color: #f8f8f8;
+  color: #666;
+
+  &.active {
+    background-color: #e8e8e8;
+  }
 
   svg {
+    display: inline-block;
     font-size: 18px;
+    width: 30px !important;
+    margin-left: -8px;
   }
 }

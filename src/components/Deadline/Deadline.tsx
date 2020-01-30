@@ -4,22 +4,28 @@ import { Checkbox } from '../widget/CheckBox/CheckBox';
 import moment from 'moment';
 
 import './Deadline.scss';
+import { faClock } from '@fortawesome/free-regular-svg-icons';
 
 interface InputProps {
-  deadline: Date;
+  deadline: string;
+  done: boolean;
+  onChange: any;
 }
 
 export function Deadline(props: InputProps) {
   const isLate = moment(props.deadline).isBefore(new Date());
   const color = isLate ? '#FF5050E6' : '#888';
-  const timeStr = moment(props.deadline).format('YYYY-MM-D, h:mm:ss a');
+  const timeStr = moment(props.deadline).format('YYYY-MM-D');
   return (
     <div className="Deadline">
-      <Checkbox defaultChecked={true} />
-      <AppIcon color={color} icon="clock" />
-      <span className="Deadline--text" style={{ color: color }}>
-        {timeStr}
-      </span>
+      <Checkbox defaultChecked={props.done} onChange={props.onChange} />
+
+      <div className="Deadline--main">
+        <AppIcon color={color} icon={faClock} />
+        <span className="Deadline--text" style={{ color: color }}>
+          {timeStr}
+        </span>
+      </div>  
     </div>
   );
 }

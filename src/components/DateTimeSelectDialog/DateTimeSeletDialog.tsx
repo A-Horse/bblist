@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { ModalHeader } from '../widget/ModalHeader/ModalHeader';
 import { AppModal } from '../widget/AppModal';
 import { AppDateTimePicker } from '../widget/Datepicker/Datepicker';
-import { AppButton } from '../widget/Button';
 
 import './DateTimeSeletDialog.scss';
 import { ConfirmButtonGroup } from '../widget/ButtonGroup/ConfirmGroup/ConfirmGroup';
@@ -11,16 +10,23 @@ interface InputProps {
   onConfirm: Function;
   onCancel: Function;
   isOpen: boolean;
+  deadline?: string;
 }
 
 interface State {
-  value: Date;
+  value: Date | null;
 }
 
 export class DateTimeSelectDialog extends Component<InputProps, State> {
   state = {
-    value: new Date()
+    value: null
   };
+
+  componentDidMount() {
+    if (this.props.deadline) {
+      this.setState({ value: new Date(this.props.deadline) });
+    }
+  }
 
   closeModal = () => {
     this.props.onCancel && this.props.onCancel();
@@ -37,6 +43,7 @@ export class DateTimeSelectDialog extends Component<InputProps, State> {
   render() {
     return (
       <AppModal
+        overlayClassName="DateTimeSelectDialog--overlay"
         className="DateTimeSelectDialog"
         isOpen={this.props.isOpen}
         onRequestClose={this.closeModal}
@@ -46,12 +53,13 @@ export class DateTimeSelectDialog extends Component<InputProps, State> {
         <div className="DateTimeSelectDialog--main">
           <div>
             <AppDateTimePicker
+              placeholder="选择到期日"
               value={this.state.value}
               onChange={this.onChange}
             />
           </div>
 
-          <ConfirmButtonGroup onConfirm={this.onConfirm} onCancel={() => {}} />
+          <ConfirmButtonGroup onConfirm={this.onConfirm} onCancel={this.closeModal} />
         </div>
       </AppModal>
     );

@@ -2,8 +2,11 @@
   display: flex;
   align-items: center;
 
+  &--main {
+  }
+
   .app-checkbox {
-    margin-right: 16px;
+    margin-right: 10px;
   }
 
   svg {

@@ -1,6 +1,6 @@
 .DateTimeSelectDialog {
   border-radius: 3px;
-  width: 300px;
+  width: 230px;
   margin: auto;
   background-color: white;
   box-shadow: 0 0 5px #eee;
@@ -12,8 +12,27 @@
 
 .DateTimeSelectDialog--main {
   padding: 12px;
+  overflow: hidden;
+
+  .react-datepicker-wrapper {
+    width: 100%;
+    margin-bottom: 8px;
+
+    input {
+      width: 100%;
+    }
+  }
 
   .ConfirmButtonGroup {
     float: right;
   }
+}
+
+.DateTimeSelectDialog--overlay {
+  background-color: rgba(0, 0, 0, 0.45);
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
 }

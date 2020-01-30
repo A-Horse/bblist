@@ -5,25 +5,18 @@ import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { AppIcon } from '../../../../../widget/Icon';
 
 interface InputProps {
+  active?: boolean;
   title: string;
   icon: IconProp;
   onClick: any;
-  bgColor: string;
 }
 
-export function DetailRightField({
-  title,
-  icon,
-  onClick,
-  bgColor
-}: InputProps) {
+export function DetailRightField({ active, title, icon, onClick }: InputProps) {
   return (
     <div
-      className="DetailRightField"
+      className={`DetailRightField${active ? ' active' : ''}`}
       onClick={onClick}
-      style={{
-        background: bgColor
-      }}
+      style={{}}
     >
       <AppIcon icon={icon} />
       {title}

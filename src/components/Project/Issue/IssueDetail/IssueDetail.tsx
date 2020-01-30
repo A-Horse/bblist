@@ -73,13 +73,11 @@ export class IssueDetailComponent extends Component<
     if (!issue) {
       return <div className="IssueDetail">loading</div>;
     }
-
     return (
       <div className="IssueDetail">
-       
-
         <FormField>
           <Input
+            className="IssueDetail--title"
             size="large"
             value={issue.get('title')}
             onChange={this.detailState.onFieldChange('title')}
@@ -87,14 +85,27 @@ export class IssueDetailComponent extends Component<
           />
         </FormField>
 
-        <div>
-          {issue.get('deadline') && (
-            <Deadline deadline={issue.get('deadline')} />
-          )}
-        </div>
-
         <div className="IssueDetail--content">
           <div className="IssueDetail--left">
+            {issue.get('deadline') && (
+              <FormField name="到期日">
+                <Deadline
+                  deadline={issue.get('deadline')!}
+                  done={!!issue.get('deadlineDone')}
+                  onChange={checked =>
+                    this.detailState.updateIssue(
+                      {
+                        deadlineDone: checked
+                      },
+                      {
+                        force: true
+                      }
+                    )
+                  }
+                />
+              </FormField>
+            )}
+
             <FormField name="描述：">
               <AppTextArea
                 className="IssueDetail--content-textarea"

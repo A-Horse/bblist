@@ -11,6 +11,7 @@ export class Checkbox extends Component<{
       return;
     }
     this.props.onChange(event.target.checked);
+    event.stopPropagation();
   };
 
   render() {
