@@ -5,13 +5,16 @@ import { match } from 'react-router';
 
 import { Side } from '../../../../components/widget/Side/Side';
 import { SideItemLink } from '../../../../components/widget/Side/SideItemLink';
+import { ProjectInfoSection } from './ProjectInfoSection/ProjectInfoSection';
 
 export class ProjectSideBar extends Component<{
+  projectID: string;
   match: match<any>;
 }> {
   render() {
     return (
       <Side className="ProjectSideBar">
+        <ProjectInfoSection projectID={this.props.projectID} />
         <SideItemLink
           icon="list-alt"
           to={`${this.props.match.url}/kanban`}

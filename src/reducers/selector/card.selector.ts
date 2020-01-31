@@ -12,7 +12,7 @@ export function selectColumnCards(state: RootState, columnId: string): List<Proj
   }
 
   return state.project
-    .get('cardMap')
+    .get('issueMap')
     .filter((value: ProjectIssueRecord) => {
       return value.get('columnId') === column!.get('id');
     })
@@ -27,7 +27,7 @@ export function findIssuePositionInColumn(
   isBefore: boolean;
 } {
   const sortedIssueMap = state.project
-    .get('cardMap')
+    .get('issueMap')
     .filter((value: ProjectIssueRecord, key: string) => {
       return value.get('columnId') === issue.get('columnId');
     })

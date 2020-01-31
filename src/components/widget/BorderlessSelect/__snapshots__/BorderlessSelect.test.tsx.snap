@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`BorderlessSelector 1`] = `
+exports[`BorderLessSelector 1`] = `
 <div
-  className="BorderlessSelector"
+  className="BorderLessSelector"
   style={
     Object {
       "width": 100,

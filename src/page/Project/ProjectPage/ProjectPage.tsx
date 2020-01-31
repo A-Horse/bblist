@@ -13,7 +13,6 @@ import { ProjectRecord } from '../../../typings/project.typing';
 import { Issues } from './Issues/Issues';
 import { ProjectAdmin } from './ProjectAdmin/ProjectAdmin';
 import { ProjectEpics } from './ProjectEpics/ProjectEpics';
-import { ProjectHeaderBar } from './ProjectHeaderBar/ProjectHeaderBar';
 import { ProjectKanban } from './ProjectKanban/ProjectKanban';
 import { ProjectSetting } from './ProjectSetting/ProjectSetting';
 import { ProjectSideBar } from './ProjectSideBar/ProjectSideBar';
@@ -48,10 +47,8 @@ class ProjectPageComponent extends Component<Props> {
 
     return (
       <div className="ProjectPage">
-        <ProjectHeaderBar projectId={projectID} />
-
         <div className="ProjectPage--main">
-          <ProjectSideBar match={this.props.match} />
+          <ProjectSideBar match={this.props.match} projectID={projectID} />
 
           <div className="ProjectPage--right-content">
             <Switch>
@@ -107,10 +104,7 @@ const mapStateToProps = (state: RootState, props: Props) => {
 };
 
 export const ProjectPage: any = withRouter(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(ProjectPageComponent)
+  connect(mapStateToProps, mapDispatchToProps)(ProjectPageComponent)
 );
 
 export default ProjectPage;

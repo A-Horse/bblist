@@ -121,7 +121,7 @@ const mapStateToProps = (state: RootState, props: any) => {
     issues = issuePagitation.data
       .map(
         (id: string): ProjectIssueRecord => {
-          return state.project.get('cardMap').get(id)!;
+          return state.project.get('issueMap').get(id)!;
         }
       )
       .filter(c => !!c);

@@ -20,11 +20,11 @@ function CustomIndicator({}) {
   return null;
 }
 
-export function BorderlessSelector(
+export function BorderLessSelector(
   props: SelectProps<SelectOption> & { width: number }
 ) {
   return (
-    <div className="BorderlessSelector" style={{ width: props.width }}>
+    <div className="BorderLessSelector" style={{ width: props.width }}>
       <AppSelect
         {...props}
         styles={{

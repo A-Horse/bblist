@@ -6,6 +6,7 @@
   box-sizing: border-box;
 
   .ProjectKanban--kanban-container {
+    width: max-content;
     height: 100%;
   }
 }

@@ -18,6 +18,7 @@ interface InputProps {
   kanbanID?: string;
   onChange: any;
   customSelect?: any;
+  selectedColumnID?: string;
 }
 
 interface InjectProps {
@@ -58,8 +59,13 @@ class ColumnSelectComponent extends Component<InputProps & InjectProps> {
     const Select = this.props.customSelect
       ? this.props.customSelect
       : AppSelect;
+
+    const selectedOption = this.props.options.find(
+      o => o.value === this.props.selectedColumnID
+    );
     return (
       <Select
+        value={selectedOption}
         isSearchable={false}
         placeholder="选择价值列"
         noOptionsMessage={noOptionTip}

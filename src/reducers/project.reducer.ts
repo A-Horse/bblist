@@ -53,7 +53,7 @@ export interface ProjectProp {
   projectMap: Map<string, ProjectRecord>;
   kanbanMap: KanbanMap;
   columnMap: ColumnMap;
-  cardMap: CardMap;
+  issueMap: CardMap;
   currentIssuePagination: IssuePagination;
 }
 
@@ -62,7 +62,7 @@ export function project(
     projectMap: {},
     kanbanMap: {},
     columnMap: {},
-    cardMap: {}
+    issueMap: {}
   }),
   action: FSAction
 ) {
@@ -88,7 +88,7 @@ export function project(
 
     case UPDATE_PROJECT_ISSUE_DETAIL_SUCCESS: {
       return state.updateIn(
-        ['cardMap', action.payload.id],
+        ['issueMap', action.payload.id],
         (issue: ProjectIssueRecord) => {
           if (!issue) {
             return issue;
@@ -186,10 +186,10 @@ export function project(
 
     case GET_COLUMN_CARDS_SUCCESS: {
       const normalizedCards = normalize(action.payload.cards, ProjectCardList);
-      return state.update('cardMap', (cardMap: CardMap) => {
+      return state.update('issueMap', (issueMap: CardMap) => {
         return normalizedCards.result.reduce(
-          (cardMapResult: CardMap, cardId: string) => {
-            return cardMapResult.update(cardId, (card: ProjectIssueRecord) => {
+          (issueMapResult: CardMap, cardId: string) => {
+            return issueMapResult.update(cardId, (card: ProjectIssueRecord) => {
               if (!card) {
                 return fromJS(normalizedCards.entities.ProjectIssue[cardId]);
               }
@@ -198,7 +198,7 @@ export function project(
               );
             });
           },
-          cardMap
+          issueMap
         );
       });
     }
@@ -210,7 +210,7 @@ export function project(
         return state
           .updateIn(
             [
-              'cardMap',
+              'issueMap',
               rankProjectCardInKanbanInput.selectCard.get('id'),
               'order'
             ],
@@ -220,7 +220,7 @@ export function project(
           )
           .updateIn(
             [
-              'cardMap',
+              'issueMap',
               rankProjectCardInKanbanInput.selectCard.get('id'),
               'columnId'
             ],
@@ -232,7 +232,7 @@ export function project(
       return state;
 
     case RANK_PROJECT_CARD_IN_KANBAN_SUCCESS: {
-      return state.update('cardMap', (cardMap: CardMap) => {
+      return state.update('issueMap', (issueMap: CardMap) => {
         return action.payload.reduce(
           (
             innerCardMap: CardMap,
@@ -245,7 +245,7 @@ export function project(
               }
             );
           },
-          cardMap
+          issueMap
         );
       });
     }
@@ -281,10 +281,10 @@ export function project(
             projectId: action.payload.projectId
           };
         })
-        .update('cardMap', (cardMap: CardMap) => {
+        .update('issueMap', (issueMap: CardMap) => {
           return normalizedCards.result.reduce(
-            (cardMapResult: CardMap, cardId: string) => {
-              return cardMapResult.update(
+            (issueMapResult: CardMap, cardId: string) => {
+              return issueMapResult.update(
                 cardId,
                 (card: ProjectIssueRecord) => {
                   if (!card) {
@@ -298,13 +298,13 @@ export function project(
                 }
               );
             },
-            cardMap
+            issueMap
           );
         });
     }
 
     case CHANGE_ISSUE_DIRECT: {
-      return state.updateIn(['cardMap', action.payload.issueId], innerIssue => {
+      return state.updateIn(['issueMap', action.payload.issueId], innerIssue => {
         if (!innerIssue) {
           return innerIssue;
         }
@@ -314,7 +314,7 @@ export function project(
 
     case GET_PROJECT_ISSUE_DETAIL_SUCCESS: {
       const issue: ProjectIssueRecord = fromJS(action.payload);
-      return state.updateIn(['cardMap', issue.get('id')], innerIssue => {
+      return state.updateIn(['issueMap', issue.get('id')], innerIssue => {
         if (!innerIssue) {
           return issue;
         }

@@ -112,7 +112,7 @@ export const RANK_PROJECT_CARD_IN_KANBAN_REQUEST_FN = (
         take(1),
         mergeMap((state: RootState) => {
           const freshSelectedIssue = state.project
-            .get('cardMap')
+            .get('issueMap')
             .get(action.payload.selectCard.get('id'))!;
 
           const { targetIssue, isBefore } = findIssuePositionInColumn(

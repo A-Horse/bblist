@@ -142,7 +142,7 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
 
 const mapStateToProps = (state: RootState, props: InputProps) => {
   return {
-    issue: state.project.get('cardMap').get(props.issueID)
+    issue: state.project.get('issueMap').get(props.issueID)
   };
 };
 

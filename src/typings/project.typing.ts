@@ -6,7 +6,7 @@ export type ProjectId = string;
 
 export interface ProjectSetting {
   id: string;
-  coverUrl: string;
+  coverFileName: string;
   isStar: boolean;
   defaultKanbanId: string;
 }

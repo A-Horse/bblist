@@ -8,13 +8,27 @@ interface InputProps {
   name?: string;
   icon?: IconProp;
   children: ReactNode;
+  theme?: 'dark' | 'light';
 }
 
-export const FormField = ({ name, icon, children }: InputProps) => {
+export const FormField = ({
+  name,
+  icon,
+  children,
+  theme = 'light'
+}: InputProps) => {
   return (
     <div className="FormField">
-      {name ? <div className="FormField--name">{name}</div> : null}
-
+      {name ? (
+        <div
+          style={{
+            color: theme === 'light' ? '#888' : '#fff'
+          }}
+          className="FormField--name"
+        >
+          {name}
+        </div>
+      ) : null}
       <div>{children}</div>
     </div>
   );

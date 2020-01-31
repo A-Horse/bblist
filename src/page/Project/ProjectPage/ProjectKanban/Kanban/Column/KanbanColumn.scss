@@ -5,11 +5,17 @@
   flex-shrink: 0;
   width: 180px;
   height: 100%;
-  margin-left: 36px;
+  margin-left: 20px;
   border-radius: 6px;
+  padding: 0 4px;
+  background-color: #e8e8e8;
 
   &:first-child {
     margin-left: 0;
+  }
+
+  &:last-child {
+    margin-right: 12px;
   }
 
   &--header {
