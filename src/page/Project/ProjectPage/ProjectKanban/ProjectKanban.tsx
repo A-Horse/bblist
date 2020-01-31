@@ -146,8 +146,5 @@ const mapStateToProps = (state: RootState, props: any) => {
 };
 
 export const ProjectKanban = withRouter(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(ProjectKanbanComponent)
+  connect(mapStateToProps, mapDispatchToProps)(ProjectKanbanComponent)
 );

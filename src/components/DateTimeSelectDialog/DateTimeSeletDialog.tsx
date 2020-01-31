@@ -59,7 +59,10 @@ export class DateTimeSelectDialog extends Component<InputProps, State> {
             />
           </div>
 
-          <ConfirmButtonGroup onConfirm={this.onConfirm} onCancel={this.closeModal} />
+          <ConfirmButtonGroup
+            onConfirm={this.onConfirm}
+            onCancel={this.closeModal}
+          />
         </div>
       </AppModal>
     );

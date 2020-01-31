@@ -15,8 +15,9 @@
   &.large {
     font-size: 18px;
   }
-  
-  &.white-hover:hover,&.white-hover:focus {
+
+  &.white-hover:hover,
+  &.white-hover:focus {
     background-color: #fff;
   }
 }

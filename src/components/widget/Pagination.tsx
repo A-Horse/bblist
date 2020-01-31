@@ -9,8 +9,10 @@ export class AppPagination extends PureComponent<{
   ref: HTMLCokePaginationElement | undefined = undefined;
 
   componentDidMount() {
-    this.ref!.addEventListener('pageChanged', this
-      .onPageChanged as EventListener);
+    this.ref!.addEventListener(
+      'pageChanged',
+      this.onPageChanged as EventListener
+    );
   }
 
   onPageChanged = (event: CustomEvent<any>) => {

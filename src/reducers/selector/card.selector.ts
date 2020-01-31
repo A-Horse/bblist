@@ -4,8 +4,13 @@ import { RootState } from '../';
 import { KanbanColumnRecord } from '../../typings/kanban-column.typing';
 import { ProjectIssueRecord } from '../../typings/project-issue.typing';
 
-export function selectColumnCards(state: RootState, columnId: string): List<ProjectIssueRecord> | null {
-  const column: KanbanColumnRecord | undefined = state.project.get('columnMap').get(columnId);
+export function selectColumnCards(
+  state: RootState,
+  columnId: string
+): List<ProjectIssueRecord> | null {
+  const column: KanbanColumnRecord | undefined = state.project
+    .get('columnMap')
+    .get(columnId);
 
   if (!column) {
     return null;
@@ -45,9 +50,11 @@ export function findIssuePositionInColumn(
       isBefore: true
     };
   }
-  const beforeIssue = sortedIssueMap.reverse().find((value: ProjectIssueRecord) => {
-    return value.get('order') < issue.get('order');
-  });
+  const beforeIssue = sortedIssueMap
+    .reverse()
+    .find((value: ProjectIssueRecord) => {
+      return value.get('order') < issue.get('order');
+    });
   if (beforeIssue) {
     return {
       targetIssue: beforeIssue,

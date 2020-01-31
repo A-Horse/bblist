@@ -83,8 +83,5 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
 };
 
 export const CreateKanbanCardModal = withRouter<InputProps & RouterProps>(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(CreateKanbanCardModalComoponent)
+  connect(mapStateToProps, mapDispatchToProps)(CreateKanbanCardModalComoponent)
 );

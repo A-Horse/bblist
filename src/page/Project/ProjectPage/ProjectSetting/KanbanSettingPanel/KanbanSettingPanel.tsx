@@ -115,7 +115,7 @@ const mapStateToProps = (state: RootState, props: ComponentProps) => {
   return {
     project,
     kanbans: (project.get('kanbans') || [])
-    .map((kanbanId: string) => {
+      .map((kanbanId: string) => {
         return state.project.get('kanbanMap').get(kanbanId) as KanbanRecord;
       })
       .filter(k => !!k)
@@ -123,8 +123,5 @@ const mapStateToProps = (state: RootState, props: ComponentProps) => {
 };
 
 export const KanbanSettingPanel = withRouter<ComponentProps>(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(KanbanSettingPanelComponent)
+  connect(mapStateToProps, mapDispatchToProps)(KanbanSettingPanelComponent)
 );

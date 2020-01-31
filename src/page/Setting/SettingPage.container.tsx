@@ -12,10 +12,7 @@ const mapStateToProps = (state: any) => {
 };
 
 const SettingPageContainer = withRouter(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(SettingPage)
+  connect(mapStateToProps, mapDispatchToProps)(SettingPage)
 );
 
 export default SettingPageContainer;

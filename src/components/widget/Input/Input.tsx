@@ -29,7 +29,7 @@ export class Input extends Component<{
     const { size = 'middle' } = this.props;
     return `app-input ${size}${
       this.props.className ? ' ' + this.props.className : ''
-    }${this.props.whiteHover ?  'white-hover' : ''}`;
+    }${this.props.whiteHover ? 'white-hover' : ''}`;
   }
 
   render() {

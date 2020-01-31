@@ -147,8 +147,5 @@ const mapStateToProps = (state: RootState, props: InputProps) => {
 };
 
 export const KanbanColumn = withRouter<InputProps & RouteComponentProps>(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(KanbanColumnComponent)
+  connect(mapStateToProps, mapDispatchToProps)(KanbanColumnComponent)
 );

@@ -25,7 +25,7 @@ export function Deadline(props: InputProps) {
         <span className="Deadline--text" style={{ color: color }}>
           {timeStr}
         </span>
-      </div>  
+      </div>
     </div>
   );
 }

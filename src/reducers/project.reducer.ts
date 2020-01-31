@@ -304,12 +304,15 @@ export function project(
     }
 
     case CHANGE_ISSUE_DIRECT: {
-      return state.updateIn(['issueMap', action.payload.issueId], innerIssue => {
-        if (!innerIssue) {
-          return innerIssue;
+      return state.updateIn(
+        ['issueMap', action.payload.issueId],
+        innerIssue => {
+          if (!innerIssue) {
+            return innerIssue;
+          }
+          return innerIssue.merge(fromJS(action.payload.partialIssue));
         }
-        return innerIssue.merge(fromJS(action.payload.partialIssue));
-      });
+      );
     }
 
     case GET_PROJECT_ISSUE_DETAIL_SUCCESS: {

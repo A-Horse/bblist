@@ -1,9 +1,23 @@
 import './ProjectIssue.scss';
 
-import React, { RefForwardingComponent, useImperativeHandle, useRef } from 'react';
-import { ConnectDragSource, ConnectDropTarget, DragSource, DropTarget, DropTargetMonitor, XYCoord } from 'react-dnd';
+import React, {
+  RefForwardingComponent,
+  useImperativeHandle,
+  useRef
+} from 'react';
+import {
+  ConnectDragSource,
+  ConnectDropTarget,
+  DragSource,
+  DropTarget,
+  DropTargetMonitor,
+  XYCoord
+} from 'react-dnd';
 
-import { ProjectIssueRecord, RankProjectCardInKanbanInput } from '../../../../typings/project-issue.typing';
+import {
+  ProjectIssueRecord,
+  RankProjectCardInKanbanInput
+} from '../../../../typings/project-issue.typing';
 import { IssueId } from '../IssueId/IssueId';
 
 interface InputProps {
@@ -24,34 +38,51 @@ interface CardInstance {
   getNode(): HTMLDivElement | null;
 }
 
-type IssueComponent = RefForwardingComponent<HTMLDivElement, InputProps & DndProps>;
+type IssueComponent = RefForwardingComponent<
+  HTMLDivElement,
+  InputProps & DndProps
+>;
 
-const Card = React.forwardRef<HTMLDivElement, InputProps & DndProps>(({ issue, isDragging, onClick, connectDragSource, connectDropTarget }, ref) => {
-  const elementRef = useRef(null);
-  connectDragSource(elementRef);
-  connectDropTarget(elementRef);
+const Card = React.forwardRef<HTMLDivElement, InputProps & DndProps>(
+  (
+    { issue, isDragging, onClick, connectDragSource, connectDropTarget },
+    ref
+  ) => {
+    const elementRef = useRef(null);
+    connectDragSource(elementRef);
+    connectDropTarget(elementRef);
 
-  const opacity = isDragging ? 0.2 : 1;
-  useImperativeHandle<{}, CardInstance>(ref, () => ({
-    getNode: () => elementRef.current
-  }));
+    const opacity = isDragging ? 0.2 : 1;
+    useImperativeHandle<{}, CardInstance>(ref, () => ({
+      getNode: () => elementRef.current
+    }));
 
-  const innerOnClick = () => {
-    onClick && onClick(issue.get('id'));
-  };
+    const innerOnClick = () => {
+      onClick && onClick(issue.get('id'));
+    };
 
-  return (
-    <div onClick={innerOnClick} className="ProjectIssue" ref={elementRef} style={{ opacity }}>
-      <IssueId id={issue.get('id')} />
-      <div>{issue.get('title')}</div>
-    </div>
-  );
-});
+    return (
+      <div
+        onClick={innerOnClick}
+        className="ProjectIssue"
+        ref={elementRef}
+        style={{ opacity }}
+      >
+        <IssueId id={issue.get('id')} />
+        <div>{issue.get('title')}</div>
+      </div>
+    );
+  }
+);
 
 export const ProjectIssue = DropTarget(
   'CARD',
   {
-    hover(props: InputProps, monitor: DropTargetMonitor, component: CardInstance) {
+    hover(
+      props: InputProps,
+      monitor: DropTargetMonitor,
+      component: CardInstance
+    ) {
       if (!component) {
         return null;
       }
@@ -83,7 +114,8 @@ export const ProjectIssue = DropTarget(
       const hoverBoundingRect = node.getBoundingClientRect();
 
       // Get vertical middle
-      const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
+      const hoverMiddleY =
+        (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
 
       // Determine mouse position
       const clientOffset = monitor.getClientOffset();
@@ -109,7 +141,8 @@ export const ProjectIssue = DropTarget(
         {
           selectCard: monitor.getItem().issue,
           targetCard: props.issue,
-          targetOrder: props.issue.get('order') - (isBefore ? 0.000001 : -0.0000001),
+          targetOrder:
+            props.issue.get('order') - (isBefore ? 0.000001 : -0.0000001),
           targetColumnId: props.issue.get('columnId'),
           isBefore: isBefore,
           kanbanId: props.kanbanId
@@ -119,7 +152,11 @@ export const ProjectIssue = DropTarget(
         }
       );
     },
-    drop(props: InputProps, monitor: DropTargetMonitor, component: IssueComponent) {
+    drop(
+      props: InputProps,
+      monitor: DropTargetMonitor,
+      component: IssueComponent
+    ) {
       props.rankProjectCardColumn(
         {
           selectCard: monitor.getItem().issue,

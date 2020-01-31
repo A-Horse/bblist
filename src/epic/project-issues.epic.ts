@@ -23,9 +23,7 @@ export const GET_COLUMN_CARDS_REQUEST_FN = (action$: Observable<FSAction>) =>
       return axios
         .get(
           makeApiUrl(
-            `/kanban/${action.payload.kanbanId}/column/${
-              action.payload.columnId
-            }/cards`
+            `/kanban/${action.payload.kanbanId}/column/${action.payload.columnId}/cards`
           )
         )
         .then((result: AxiosResponse<ProjectIssue[]>) => {
@@ -50,9 +48,7 @@ export const GET_PROJECT_ISSUES_REQUEST_FN = (action$: Observable<FSAction>) =>
       return axios
         .get(
           makeApiUrl(
-            `/project/${action.payload.projectId}/issues?pageNumber=${
-              action.payload.pageNumber
-            }&pageSize=${action.payload.pageSize}`
+            `/project/${action.payload.projectId}/issues?pageNumber=${action.payload.pageNumber}&pageSize=${action.payload.pageSize}`
           )
         )
         .then((result: AxiosResponse<PaginationList<ProjectIssue>>) => {

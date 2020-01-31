@@ -1,6 +1,13 @@
 import './KanbanColumnCreator.scss';
 
-import { Field, FieldProps, Form, Formik, FormikActions, FormikProps } from 'formik';
+import {
+  Field,
+  FieldProps,
+  Form,
+  Formik,
+  FormikActions,
+  FormikProps
+} from 'formik';
 import React, { Component } from 'react';
 
 import { AppButton } from '../../../../components/widget/Button';
@@ -26,12 +33,19 @@ export class KanbanColumnCreator extends Component<
   render() {
     return (
       <div>
-        {!this.state.creating && <AppButton onClick={() => this.setState({ creating: true })}>Create Column</AppButton>}
+        {!this.state.creating && (
+          <AppButton onClick={() => this.setState({ creating: true })}>
+            Create Column
+          </AppButton>
+        )}
 
         {this.state.creating && (
           <Formik
             initialValues={{ name: '' }}
-            onSubmit={(values: FormValues, actions: FormikActions<FormValues>) => {
+            onSubmit={(
+              values: FormValues,
+              actions: FormikActions<FormValues>
+            ) => {
               console.log({ values, actions });
               this.props.createKanbanColumn(values);
               actions.setSubmitting(false);
@@ -43,7 +57,9 @@ export class KanbanColumnCreator extends Component<
                   render={({ field, form }: FieldProps<FormValues>) => (
                     <div>
                       <input type="text" {...field} placeholder="First Name" />
-                      {form.touched.name && form.errors.name && form.errors.name}
+                      {form.touched.name &&
+                        form.errors.name &&
+                        form.errors.name}
                     </div>
                   )}
                 />

@@ -78,9 +78,7 @@ export const SET_PROJECT_DEFAULT_KANBAN_REQUEST_FN = (
       return axios
         .post(
           makeApiUrl(
-            `/project/${action.payload.projectId}/setting/default-kanban/${
-              action.payload.kanbanId
-            }`
+            `/project/${action.payload.projectId}/setting/default-kanban/${action.payload.kanbanId}`
           )
         )
         .then(() => setProjectDefaultKanbanSuccess())

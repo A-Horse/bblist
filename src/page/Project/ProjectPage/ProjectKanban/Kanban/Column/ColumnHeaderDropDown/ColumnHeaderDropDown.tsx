@@ -13,7 +13,9 @@ export function ColumnHeaderDropDown({ columnId }: InputProps) {
   const menu = (
     <div className="ColumnHeaderDropDown--overlay">
       <div className="ColumnHeaderDropDown--overlay-header">
-        <span className="ColumnHeaderDropDown--overlay-header-name">列表菜单</span>
+        <span className="ColumnHeaderDropDown--overlay-header-name">
+          列表菜单
+        </span>
       </div>
       <ul className="ColumnHeaderDropDown--overlay-menu-list">
         <li>
@@ -28,7 +30,12 @@ export function ColumnHeaderDropDown({ columnId }: InputProps) {
     </div>
   );
   return (
-    <AppDropdown className="ColumnHeaderDropDown" overlay={menu} placement="bottomCenter" trigger={['click']}>
+    <AppDropdown
+      className="ColumnHeaderDropDown"
+      overlay={menu}
+      placement="bottomCenter"
+      trigger={['click']}
+    >
       <AppIcon icon="ellipsis-h" />
     </AppDropdown>
   );

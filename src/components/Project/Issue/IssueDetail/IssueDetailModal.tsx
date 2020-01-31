@@ -35,7 +35,7 @@ class IssueDetailModalComponent extends Component<Props> {
           projectID={this.props.projectID}
           issueID={this.props.issueID}
         />
-        
+
         <IssueDetail
           issueID={this.props.issueID}
           kanbanID={this.props.kanbanID}

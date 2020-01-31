@@ -7,7 +7,7 @@ export interface ProjectIssue {
   content?: string;
   columnId: string;
   deadline?: string;
-  deadlineDone?: boolean
+  deadlineDone?: boolean;
 }
 
 export type ProjectIssueRecord = Record<ProjectIssue>;

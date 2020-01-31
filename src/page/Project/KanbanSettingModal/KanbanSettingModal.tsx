@@ -118,8 +118,5 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
 };
 
 export const KanbanSettingModal = withRouter<InputRouterProps>(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(KanbanSettingModalComponent)
+  connect(mapStateToProps, mapDispatchToProps)(KanbanSettingModalComponent)
 );

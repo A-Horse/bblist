@@ -141,8 +141,5 @@ const mapStateToProps = (state: RootState, props: any) => {
 };
 
 export const Issues = withRouter(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(IssuesComponent)
+  connect(mapStateToProps, mapDispatchToProps)(IssuesComponent)
 );
