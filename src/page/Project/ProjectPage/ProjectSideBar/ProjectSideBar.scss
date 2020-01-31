@@ -1,18 +1,34 @@
 .ProjectSideBar {
-  background-color: #fff;
+  background-color: #f8f8f8;
   height: 100%;
   width: 240px;
-  padding: 16px 16px;
   flex-shrink: 0;
   position: relative;
-  box-shadow: 0 0 1px #fff;
+  box-shadow: 0 0 1px #f8f8f8;
+  display: flex;
+  flex-direction: column;
 
-  .SideItemLink--icon {
-    color: #999;
+  .ProjectSideBar--main {
+    overflow: scroll;
+    padding: 16px 16px;
   }
 
-  a {
-    color: #555;
-    font-weight: 400;
+  footer {
+    width: 100%;
+    padding: 6px 16px;
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    background-color: #f8f8f8;
+    align-items: center;
+    justify-content: space-between;
+
+    .shrink-button {
+      font-size: 18px;
+
+      &:hover {
+        background-color: #e8e8e8;
+      }
+    }
   }
 }

@@ -1,15 +1,30 @@
 .SideItemLink {
   font-size: 16px;
-  padding: 6px 0;
+  color: #42526e;
 
   &--icon {
     width: 28px !important;
     text-align: left;
-    margin-right: 6px;
+    margin-right: 2px;
+    margin-left: -6px;
+  }
+
+  a {
+    padding: 6px 10px 6px 8px;
+    display: inline-block;
+    width: 100%;
+    border-radius: 3px;
+    color: #42526e;
+    font-size: 15px;
+
+    &:hover {
+      background-color: #e8e8e8;
+    }
   }
 
   a.active {
     font-weight: bolder;
     text-decoration: none;
+    background-color: #e8e8e8;
   }
 }
