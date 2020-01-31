@@ -11,7 +11,6 @@ import { getProjectDetailRequest } from '../../../actions/project/project.action
 import { RootState } from '../../../reducers';
 import { ProjectRecord } from '../../../typings/project.typing';
 import { Issues } from './Issues/Issues';
-import { ProjectAdmin } from './ProjectAdmin/ProjectAdmin';
 import { ProjectEpics } from './ProjectEpics/ProjectEpics';
 import { ProjectKanban } from './ProjectKanban/ProjectKanban';
 import { ProjectSetting } from './ProjectSetting/ProjectSetting';
@@ -71,10 +70,6 @@ class ProjectPageComponent extends Component<Props> {
               <Route
                 path="/project/:projectId/issues"
                 render={() => <Issues />}
-              />
-              <Route
-                path="/project/:projectId/admin"
-                render={() => <ProjectAdmin />}
               />
             </Switch>
           </div>

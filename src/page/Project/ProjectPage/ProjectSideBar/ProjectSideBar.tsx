@@ -35,11 +35,6 @@ export class ProjectSideBar extends Component<{
           to={`${this.props.match.url}/setting`}
           name="设置"
         />
-        <SideItemLink
-          icon="user-cog"
-          to={`${this.props.match.url}/admin`}
-          name="Admin（待合并）"
-        />
       </Side>
     );
   }

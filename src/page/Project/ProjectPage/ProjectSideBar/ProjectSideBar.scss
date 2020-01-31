@@ -1,9 +1,11 @@
 .ProjectSideBar {
   background-color: #fff;
   height: 100%;
-  width: 160px;
-  padding-left: 16px;
+  width: 240px;
+  padding: 16px 16px;
   flex-shrink: 0;
+  position: relative;
+  box-shadow: 0 0 1px #fff;
 
   .SideItemLink--icon {
     color: #999;

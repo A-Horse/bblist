@@ -6,6 +6,8 @@
     { "language": "typescriptreact", "autoFix": true }
   ],
   "cSpell.words": [
+    "Kanbans",
+    "Uploader",
     "kanban"
   ]
 }

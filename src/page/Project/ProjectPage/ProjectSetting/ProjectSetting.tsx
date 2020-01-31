@@ -14,9 +14,10 @@ import { uploadProjectCoverRequest } from '../../../../actions/project/project.a
 import { ImageUploader } from '../../../../components/ImageUploader/ImageUploader';
 import { FormField } from '../../../../components/widget/FormField/FormField';
 import Input from '../../../../components/widget/Input/Input';
-import { DEFAULT_BOARD_COVER_SRC } from '../../../../constants';
 import { ProjectRecord } from '../../../../typings/project.typing';
 import { generateProjectCoverUrl } from '../../util/project-cover.util';
+import { KanbanSettingPanel } from './KanbanSettingPanel/KanbanSettingPanel';
+import { getProjectKanbansRequest } from '../../../../actions/project/kanban.action';
 
 interface Props {
   actions: ActionCreatorsMapObject;
@@ -27,7 +28,11 @@ class ProjectSettingComponent extends Component<
   Props & RouteComponentProps<{ projectId: string }>,
   {}
 > {
-  componentDidMount() {}
+  componentDidMount() {
+    this.props.actions.getProjectKanbansRequest({
+      projectId: this.props.match.params.projectId
+    });
+  }
 
   onCoverUpload = (coverBase64: string) => {
     this.props.actions.uploadProjectCoverRequest({
@@ -63,6 +68,8 @@ class ProjectSettingComponent extends Component<
             whiteHover={true}
           />
         </FormField>
+
+        <KanbanSettingPanel />
       </div>
     );
   }
@@ -72,7 +79,8 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
   return {
     actions: bindActionCreators(
       {
-        uploadProjectCoverRequest: uploadProjectCoverRequest
+        uploadProjectCoverRequest: uploadProjectCoverRequest,
+        getProjectKanbansRequest: getProjectKanbansRequest
       },
       dispatch
     )
