@@ -21,12 +21,9 @@ import {
   updateProjectIssueDetailSuccess
 } from '../actions/project/project-issue-detail.action';
 import {
-  CREATAE_PROJECT_CARD_REQUEST,
+  CREATE_PROJECT_CARD_REQUEST,
   createProjectCardFailure,
   createProjectCardSuccess,
-  GET_COLUMN_CARDS_REQUEST,
-  getColumnCardsFailure,
-  getColumnCardsSuccess,
   RANK_PROJECT_CARD_IN_KANBAN_REQUEST,
   rankProjectCardInKanbanFailure,
   rankProjectCardInKanbanSuccess
@@ -34,7 +31,6 @@ import {
 import { RootState } from '../reducers';
 import {
   ProjectIssue,
-  ProjectIssueRecord,
   RankProjectCardInKanbanInput
 } from '../typings/project-issue.typing';
 import { makeApiUrl } from '../utils/api';
@@ -42,17 +38,21 @@ import { findIssuePositionInColumn } from '../reducers/selector/card.selector';
 
 export const CREATE_PROJECT_CARD_REQUEST_FN = (action$: Observable<FSAction>) =>
   action$.pipe(
-    ofType(CREATAE_PROJECT_CARD_REQUEST),
+    ofType(CREATE_PROJECT_CARD_REQUEST),
     mergeMap((action: FSAction) => {
       return axios
         .post(
           makeApiUrl(`/project/${action.payload.projectId}/issue`),
           action.payload
         )
-        .then((result: AxiosResponse<string>) =>
-          createProjectCardSuccess(result.data)
-        )
-        .catch(createProjectCardFailure);
+        .then((result: AxiosResponse<string>) => {
+          action.meta.callback && action.meta.callback(null, result.data);
+          return createProjectCardSuccess(result.data);
+        })
+        .catch(error => {
+          action.meta.callback && action.meta.callback(error);
+          return createProjectCardFailure(error);
+        });
     })
   );
 

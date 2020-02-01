@@ -67,42 +67,42 @@ export function getProjectKanbanDetailFailure(): FSAction {
   };
 }
 
-export const CREATAE_KANBAN_REQUEST = 'CREATAE_KANBAN_REQUEST';
-export const CREATAE_KANBAN_SUCCESS = 'CREATAE_KANBAN_SUCCESS';
-export const CREATAE_KANBAN_FAILURE = 'CREATAE_KANBAN_FAILURE';
+export const CREATE_KANBAN_REQUEST = 'CREATE_KANBAN_REQUEST';
+export const CREATE_KANBAN_SUCCESS = 'CREATE_KANBAN_SUCCESS';
+export const CREATE_KANBAN_FAILURE = 'CREATE_KANBAN_FAILURE';
 
 export function createKanbanRequest(
   createKanbanInput: CreateKanbanInput
 ): FSAction {
   return {
-    type: CREATAE_KANBAN_REQUEST,
+    type: CREATE_KANBAN_REQUEST,
     payload: createKanbanInput
   };
 }
 
 export function createKanbanSuccess(id: string): FSAction {
   return {
-    type: CREATAE_KANBAN_SUCCESS,
+    type: CREATE_KANBAN_SUCCESS,
     payload: id
   };
 }
 
 export function createKanbanFailure(): FSAction {
   return {
-    type: CREATAE_KANBAN_FAILURE,
+    type: CREATE_KANBAN_FAILURE,
     error: true
   };
 }
 
-export const CREATAE_KANBAN_COLUMN_REQUEST = 'CREATAE_KANBAN_COLUMN_REQUEST';
-export const CREATAE_KANBAN_COLUMN_SUCCESS = 'CREATAE_KANBAN_COLUMN_SUCCESS';
-export const CREATAE_KANBAN_COLUMN_FAILURE = 'CREATAE_KANBAN_COLUMN_FAILURE';
+export const CREATE_KANBAN_COLUMN_REQUEST = 'CREATE_KANBAN_COLUMN_REQUEST';
+export const CREATE_KANBAN_COLUMN_SUCCESS = 'CREATE_KANBAN_COLUMN_SUCCESS';
+export const CREATE_KANBAN_COLUMN_FAILURE = 'CREATE_KANBAN_COLUMN_FAILURE';
 
 export function createKanbanColumnRequest(
   createKanbanColumnInput: CreateKanbanColumnInput
 ): FSAction {
   return {
-    type: CREATAE_KANBAN_COLUMN_REQUEST,
+    type: CREATE_KANBAN_COLUMN_REQUEST,
     payload: createKanbanColumnInput
   };
 }
@@ -114,7 +114,7 @@ export function createKanbanColumnSuccess(
   }
 ): FSAction {
   return {
-    type: CREATAE_KANBAN_COLUMN_SUCCESS,
+    type: CREATE_KANBAN_COLUMN_SUCCESS,
     payload: id,
     meta
   };
@@ -122,7 +122,7 @@ export function createKanbanColumnSuccess(
 
 export function createKanbanColumnFailure(): FSAction {
   return {
-    type: CREATAE_KANBAN_COLUMN_FAILURE,
+    type: CREATE_KANBAN_COLUMN_FAILURE,
     error: true
   };
 }

@@ -14,9 +14,12 @@ export type ProjectIssueRecord = Record<ProjectIssue>;
 
 export type ProjectIssueRecordFiled = keyof ProjectIssue;
 
-export interface CreateProjectCardInput {
+export interface CreateProjectIssueInput {
+  projectID: string;
+  kanbanID?: string;
+  columnID?: string;
   title: string;
-  content: string;
+  content?: string;
 }
 
 export interface RankProjectCardInKanbanInput {

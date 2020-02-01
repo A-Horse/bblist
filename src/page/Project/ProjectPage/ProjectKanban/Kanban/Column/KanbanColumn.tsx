@@ -27,9 +27,12 @@ import {
 } from '../../../../../../typings/project-issue.typing';
 import { ColumnDataFetcher } from './column-data-fetcher';
 import { ColumnHeaderDropDown } from './ColumnHeaderDropDown/ColumnHeaderDropDown';
+import { ColumnIssueCreator } from './ColumnIssueCreator/ColumnIssueCreator';
 
 interface InputProps {
   column: KanbanColumnRecord;
+  projectID: string;
+  kanbanID: string;
   onIssueClick: Function;
 }
 
@@ -68,32 +71,42 @@ export class KanbanColumnComponent extends Component<ComponentProps, State> {
   render() {
     return (
       <div className="KanbanColumn">
-        <div className="KanbanColumn--header">
-          <span className="KanbanColumn--header-name">
-            {this.props.column.get('name')}
-          </span>
-          <AppButton>
-            <ColumnHeaderDropDown columnId={this.props.column.get('id')} />
-          </AppButton>
-        </div>
+        <div className="KanbanColumn--main">
+          <div className="KanbanColumn--header">
+            <span className="KanbanColumn--header-name">
+              {this.props.column.get('name')}
+            </span>
+            <AppButton>
+              <ColumnHeaderDropDown columnId={this.props.column.get('id')} />
+            </AppButton>
+          </div>
 
-        <div className="KanbanColumn--content">
-          {this.props.issues &&
-            this.props
-              .issues!.sortBy((issue: ProjectIssueRecord) => issue.get('order'))
-              .map((issue: ProjectIssueRecord, index: number) => {
-                return (
-                  <ProjectIssue
-                    key={issue.get('id')}
-                    kanbanId={this.props.column.get('kanbanId')}
-                    onClick={this.props.onIssueClick}
-                    rankProjectCardColumn={
-                      this.props.rankProjectCardInKanbanRequest
-                    }
-                    issue={issue}
-                  />
-                );
-              })}
+          <div className="KanbanColumn--content">
+            {this.props.issues &&
+              this.props
+                .issues!.sortBy((issue: ProjectIssueRecord) =>
+                  issue.get('order')
+                )
+                .map((issue: ProjectIssueRecord, index: number) => {
+                  return (
+                    <ProjectIssue
+                      key={issue.get('id')}
+                      kanbanId={this.props.column.get('kanbanId')}
+                      onClick={this.props.onIssueClick}
+                      rankProjectCardColumn={
+                        this.props.rankProjectCardInKanbanRequest
+                      }
+                      issue={issue}
+                    />
+                  );
+                })}
+          </div>
+
+          <ColumnIssueCreator
+            projectID={this.props.projectID}
+            kanbanID={this.props.kanbanID}
+            columnID={this.props.column.get('id')}
+          />
         </div>
       </div>
     );

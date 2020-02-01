@@ -5,9 +5,9 @@ import { map, mergeMap } from 'rxjs/operators';
 
 import { FSAction } from '../actions/actions';
 import {
-  CREATAE_KANBAN_COLUMN_REQUEST,
-  CREATAE_KANBAN_COLUMN_SUCCESS,
-  CREATAE_KANBAN_REQUEST,
+  CREATE_KANBAN_COLUMN_REQUEST,
+  CREATE_KANBAN_COLUMN_SUCCESS,
+  CREATE_KANBAN_REQUEST,
   createKanbanColumnFailure,
   createKanbanColumnSuccess,
   createKanbanFailure,
@@ -58,7 +58,7 @@ export const GET_PROJECT_KANBAN_DETAIL_REQUEST_FN = (
 
 export const CREATE_KANBAN_REQUEST_FN = (action$: Observable<FSAction>) =>
   action$.pipe(
-    ofType(CREATAE_KANBAN_REQUEST),
+    ofType(CREATE_KANBAN_REQUEST),
     mergeMap((action: FSAction) => {
       return axios
         .post(
@@ -76,7 +76,7 @@ export const CREATE_KANBAN_COLUMN_REQUEST_FN = (
   action$: Observable<FSAction>
 ) =>
   action$.pipe(
-    ofType(CREATAE_KANBAN_COLUMN_REQUEST),
+    ofType(CREATE_KANBAN_COLUMN_REQUEST),
     mergeMap((action: FSAction) => {
       return axios
         .post(
@@ -96,7 +96,7 @@ export const CREATE_KANBAN_COLUMN_SUCCESS_FN = (
   action$: Observable<FSAction>
 ) =>
   action$.pipe(
-    ofType(CREATAE_KANBAN_COLUMN_SUCCESS),
+    ofType(CREATE_KANBAN_COLUMN_SUCCESS),
     map((action: FSAction) => {
       return getProjectKanbanDetailRequest({
         kanbanId: action.meta.kanbanId

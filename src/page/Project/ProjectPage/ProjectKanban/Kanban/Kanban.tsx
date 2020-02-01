@@ -93,6 +93,8 @@ class KanbanComponent extends Component<
                 <KanbanColumn
                   key={column.get('id')}
                   column={column}
+                  kanbanID={this.props.kanbanId}
+                  projectID={this.props.projectId}
                   onIssueClick={this.onIssueClick}
                 />
               ))}

@@ -1,6 +1,6 @@
-import { PaginationList } from '../../typings/pagtiation.typing';
+import { PaginationList } from '../../typings/pagination.typing';
 import {
-  CreateProjectCardInput,
+  CreateProjectIssueInput,
   ProjectIssue,
   RankProjectCardInKanbanInput
 } from '../../typings/project-issue.typing';
@@ -89,29 +89,32 @@ export function getProjectIssuesFailure(error: any): FSAction {
   };
 }
 
-export const CREATAE_PROJECT_CARD_REQUEST = 'CREATAE_PROJECT_CARD_REQUEST';
-export const CREATAE_PROJECT_CARD_SUCCESS = 'CREATAE_PROJECT_CARD_SUCCESS';
-export const CREATAE_PROJECT_CARD_FAILURE = 'CREATAE_PROJECT_CARD_FAILURE';
+export const CREATE_PROJECT_CARD_REQUEST = 'CREATE_PROJECT_CARD_REQUEST';
+export const CREATE_PROJECT_CARD_SUCCESS = 'CREATE_PROJECT_CARD_SUCCESS';
+export const CREATE_PROJECT_CARD_FAILURE = 'CREATE_PROJECT_CARD_FAILURE';
 
 export function createProjectCardRequest(
-  createKanbanCardInput: CreateProjectCardInput
+  createKanbanCardInput: CreateProjectIssueInput,
+  meta: {callback}
 ): FSAction {
   return {
-    type: CREATAE_PROJECT_CARD_REQUEST,
-    payload: createKanbanCardInput
+    type: CREATE_PROJECT_CARD_REQUEST,
+    payload: createKanbanCardInput,
+    meta
   };
 }
 
 export function createProjectCardSuccess(id: string): FSAction {
   return {
-    type: CREATAE_PROJECT_CARD_SUCCESS,
+    type: CREATE_PROJECT_CARD_SUCCESS,
     payload: id
   };
 }
 
-export function createProjectCardFailure(): FSAction {
+export function createProjectCardFailure(error): FSAction {
   return {
-    type: CREATAE_PROJECT_CARD_FAILURE,
+    type: CREATE_PROJECT_CARD_FAILURE,
+    payload: error,
     error: true
   };
 }

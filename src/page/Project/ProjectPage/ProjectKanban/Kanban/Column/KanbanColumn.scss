@@ -3,12 +3,8 @@
 .KanbanColumn {
   display: block;
   flex-shrink: 0;
-  width: 180px;
-  height: 100%;
+  width: 200px;
   margin-left: 20px;
-  border-radius: 6px;
-  padding: 0 4px;
-  background-color: #e8e8e8cc;
 
   &:first-child {
     margin-left: 0;
@@ -16,6 +12,12 @@
 
   &:last-child {
     margin-right: 12px;
+  }
+
+  &--main {
+    background-color: #e8e8e8cc;
+    border-radius: 3px;
+    padding: 0 4px;
   }
 
   &--header {
@@ -32,7 +34,6 @@
 
   &--content {
     overflow-y: auto;
-    height: calc(100% - 27px);
 
     .ProjectIssue {
       &:first-child {

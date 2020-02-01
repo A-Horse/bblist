@@ -12,7 +12,7 @@ import {
   getProjectIssuesFailure,
   getProjectIssuesSuccess
 } from '../actions/project/project-issue.action';
-import { PaginationList } from '../typings/pagtiation.typing';
+import { PaginationList } from '../typings/pagination.typing';
 import { ProjectIssue } from '../typings/project-issue.typing';
 import { makeApiUrl } from '../utils/api';
 
@@ -23,7 +23,7 @@ export const GET_COLUMN_CARDS_REQUEST_FN = (action$: Observable<FSAction>) =>
       return axios
         .get(
           makeApiUrl(
-            `/kanban/${action.payload.kanbanId}/column/${action.payload.columnId}/cards`
+            `/kanban/${action.payload.kanbanId}/column/${action.payload.columnId}/issues`
           )
         )
         .then((result: AxiosResponse<ProjectIssue[]>) => {

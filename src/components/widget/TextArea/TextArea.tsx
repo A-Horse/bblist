@@ -1,6 +1,6 @@
 import './TextArea.scss';
 
-import React, { ChangeEvent, Component } from 'react';
+import React, { ChangeEvent, Component, KeyboardEventHandler } from 'react';
 
 export class AppTextArea extends Component<{
   value?: string;
@@ -12,6 +12,7 @@ export class AppTextArea extends Component<{
   name?: string;
   placeholder?: string;
   type?: string;
+  onKeyDown?: KeyboardEventHandler
 }> {
   onChange = (event: ChangeEvent<HTMLTextAreaElement>): void => {
     this.props.onChange && this.props.onChange(event.target.value);
@@ -28,6 +29,7 @@ export class AppTextArea extends Component<{
   render() {
     return (
       <textarea
+        onKeyDown={this.props.onKeyDown}
         onBlur={this.onBlur}
         value={this.props.value}
         defaultValue={this.props.defaultValue}

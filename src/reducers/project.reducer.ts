@@ -31,7 +31,7 @@ import {
 } from '../schema';
 import { Column, KanbanColumnRecord } from '../typings/kanban-column.typing';
 import { Kanban, KanbanRecord } from '../typings/kanban.typing';
-import { PaginationList } from '../typings/pagtiation.typing';
+import { PaginationList } from '../typings/pagination.typing';
 import {
   ProjectIssueRecord,
   RankProjectCardInKanbanInput
