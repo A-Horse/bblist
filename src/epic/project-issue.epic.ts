@@ -13,13 +13,13 @@ import {
 
 import { FSAction } from '../actions/actions';
 import {
-  GET_PROJECT_ISSUE_DETAIL_DEQUEST,
+  GET_PROJECT_ISSUE_DETAIL_REQUEST,
   getProjectIssueDetailFailure,
   getProjectIssueDetailSuccess,
-  UPDATE_PROJECT_ISSUE_DETAIL_DEQUEST,
+  UPDATE_PROJECT_ISSUE_DETAIL_REQUEST,
   updateProjectIssueDetailFailure,
   updateProjectIssueDetailSuccess
-} from '../actions/project/project-issue-detail.aciton';
+} from '../actions/project/project-issue-detail.action';
 import {
   CREATAE_PROJECT_CARD_REQUEST,
   createProjectCardFailure,
@@ -60,7 +60,7 @@ export const UPDATE_PROJECT_ISSUE_DETAIL_REQUEST_FN = (
   action$: Observable<FSAction>
 ) =>
   action$.pipe(
-    ofType(UPDATE_PROJECT_ISSUE_DETAIL_DEQUEST),
+    ofType(UPDATE_PROJECT_ISSUE_DETAIL_REQUEST),
     mergeMap((action: FSAction) => {
       return axios
         .patch(
@@ -81,11 +81,11 @@ export const UPDATE_PROJECT_ISSUE_DETAIL_REQUEST_FN = (
     })
   );
 
-export const GET_PROJECT_ISSUE_DETAIL_DEQUEST_FN = (
+export const GET_PROJECT_ISSUE_DETAIL_REQUEST_FN = (
   action$: Observable<FSAction>
 ) => {
   return action$.pipe(
-    ofType(GET_PROJECT_ISSUE_DETAIL_DEQUEST),
+    ofType(GET_PROJECT_ISSUE_DETAIL_REQUEST),
     mergeMap((action: FSAction) => {
       return axios
         .get(makeApiUrl(`/issue/${action.payload.issueId}`))

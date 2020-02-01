@@ -10,7 +10,6 @@ import {
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-
 import { createProjectCardRequest } from '../../../actions/project/project-issue.action';
 import { KanbanRecord } from '../../../typings/kanban.typing';
 import { ProjectRecord } from '../../../typings/project.typing';
@@ -92,7 +91,11 @@ class CreateProjectIssueFormComponent extends Component<
                   render={({ field, form }: FieldProps<FormikValues>) => (
                     <FormField name="所在看板">
                       <KanbanSelect
-                        projectId={this.props.project!.get('id')}
+                        projectId={
+                          this.props.project
+                            ? this.props.project.get('id')
+                            : null
+                        }
                         onChange={(selected: SelectOption) => {
                           formikBag.setFieldValue('kanbanId', selected.value);
                         }}

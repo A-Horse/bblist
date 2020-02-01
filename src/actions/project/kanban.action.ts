@@ -5,15 +5,15 @@ import {
 } from '../../typings/kanban.typing';
 import { FSAction } from '../actions';
 
-export const GET_PROJCET_KANBANS_REQUEST = 'GET_PROJCET_KANBANS_REQUEST';
-export const GET_PROJCET_KANBANS_SUCCESS = 'GET_PROJCET_KANBANS_SUCCESS';
-export const GET_PROJCET_KANBANS_FAILURE = 'GET_PROJCET_KANBANS_FAILURE';
+export const GET_PROJECT_KANBANS_REQUEST = 'GET_PROJECT_KANBANS_REQUEST';
+export const GET_PROJECT_KANBANS_SUCCESS = 'GET_PROJECT_KANBANS_SUCCESS';
+export const GET_PROJECT_KANBANS_FAILURE = 'GET_PROJECT_KANBANS_FAILURE';
 
 export function getProjectKanbansRequest(payload: {
   projectId: string;
 }): FSAction {
   return {
-    type: GET_PROJCET_KANBANS_REQUEST,
+    type: GET_PROJECT_KANBANS_REQUEST,
     payload
   };
 }
@@ -23,30 +23,30 @@ export function getProjectKanbansSuccess(payload: {
   kanbans: Kanban[];
 }): FSAction {
   return {
-    type: GET_PROJCET_KANBANS_SUCCESS,
+    type: GET_PROJECT_KANBANS_SUCCESS,
     payload
   };
 }
 
 export function getProjectKanbansFailure(): FSAction {
   return {
-    type: GET_PROJCET_KANBANS_FAILURE,
+    type: GET_PROJECT_KANBANS_FAILURE,
     error: true
   };
 }
 
-export const GET_PROJCET_KANBAN_DETAIL_REQUEST =
-  'GET_PROJCET_KANBAN_DETAIL_REQUEST';
-export const GET_PROJCET_KANBAN_DETAIL_SUCCESS =
-  'GET_PROJCET_KANBAN_DETAIL_SUCCESS';
-export const GET_PROJCET_KANBAN_DETAIL_FAILURE =
-  'GET_PROJCET_KANBAN_DETAIL_FAILURE';
+export const GET_PROJECT_KANBAN_DETAIL_REQUEST =
+  'GET_PROJECT_KANBAN_DETAIL_REQUEST';
+export const GET_PROJECT_KANBAN_DETAIL_SUCCESS =
+  'GET_PROJECT_KANBAN_DETAIL_SUCCESS';
+export const GET_PROJECT_KANBAN_DETAIL_FAILURE =
+  'GET_PROJECT_KANBAN_DETAIL_FAILURE';
 
 export function getProjectKanbanDetailRequest(payload: {
   kanbanId: string;
 }): FSAction {
   return {
-    type: GET_PROJCET_KANBAN_DETAIL_REQUEST,
+    type: GET_PROJECT_KANBAN_DETAIL_REQUEST,
     payload
   };
 }
@@ -55,14 +55,14 @@ export function getProjectKanbanDetailSuccess(payload: {
   kanban: Kanban;
 }): FSAction {
   return {
-    type: GET_PROJCET_KANBAN_DETAIL_SUCCESS,
+    type: GET_PROJECT_KANBAN_DETAIL_SUCCESS,
     payload
   };
 }
 
 export function getProjectKanbanDetailFailure(): FSAction {
   return {
-    type: GET_PROJCET_KANBAN_DETAIL_FAILURE,
+    type: GET_PROJECT_KANBAN_DETAIL_FAILURE,
     error: true
   };
 }

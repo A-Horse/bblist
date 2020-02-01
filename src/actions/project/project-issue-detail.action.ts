@@ -1,8 +1,8 @@
 import { ProjectIssue } from '../../typings/project-issue.typing';
 import { FSAction } from '../actions';
 
-export const GET_PROJECT_ISSUE_DETAIL_DEQUEST =
-  'GET_PROJECT_ISSUE_DETAIL_DEQUEST';
+export const GET_PROJECT_ISSUE_DETAIL_REQUEST =
+  'GET_PROJECT_ISSUE_DETAIL_REQUEST';
 export const GET_PROJECT_ISSUE_DETAIL_SUCCESS =
   'GET_PROJECT_ISSUE_DETAIL_SUCCESS';
 export const GET_PROJECT_ISSUE_DETAIL_FAILURE =
@@ -12,7 +12,7 @@ export function getProjectIssueDetailRequest(payload: {
   issueId: string;
 }): FSAction {
   return {
-    type: GET_PROJECT_ISSUE_DETAIL_DEQUEST,
+    type: GET_PROJECT_ISSUE_DETAIL_REQUEST,
     payload
   };
 }
@@ -43,8 +43,8 @@ export function changeIssueDirect(issueId: string, partialIssue: any) {
   };
 }
 
-export const UPDATE_PROJECT_ISSUE_DETAIL_DEQUEST =
-  'UPDATE_PROJECT_ISSUE_DETAIL_DEQUEST';
+export const UPDATE_PROJECT_ISSUE_DETAIL_REQUEST =
+  'UPDATE_PROJECT_ISSUE_DETAIL_REQUEST';
 export const UPDATE_PROJECT_ISSUE_DETAIL_SUCCESS =
   'UPDATE_PROJECT_ISSUE_DETAIL_SUCCESS';
 export const UPDATE_PROJECT_ISSUE_DETAIL_FAILURE =
@@ -55,7 +55,7 @@ export function updateProjectIssueDetailRequest(
   meta: { callback: Function }
 ): FSAction {
   return {
-    type: UPDATE_PROJECT_ISSUE_DETAIL_DEQUEST,
+    type: UPDATE_PROJECT_ISSUE_DETAIL_REQUEST,
     payload,
     meta
   };

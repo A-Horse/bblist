@@ -12,8 +12,8 @@ import {
   createKanbanColumnSuccess,
   createKanbanFailure,
   createKanbanSuccess,
-  GET_PROJCET_KANBAN_DETAIL_REQUEST,
-  GET_PROJCET_KANBANS_REQUEST,
+  GET_PROJECT_KANBAN_DETAIL_REQUEST,
+  GET_PROJECT_KANBANS_REQUEST,
   getProjectKanbanDetailFailure,
   getProjectKanbanDetailRequest,
   getProjectKanbanDetailSuccess,
@@ -23,9 +23,9 @@ import {
 import { Kanban } from '../typings/kanban.typing';
 import { makeApiUrl } from '../utils/api';
 
-export const GET_PROJCET_KANBANS_REQUEST_FN = (action$: Observable<FSAction>) =>
+export const GET_PROJECT_KANBANS_REQUEST_FN = (action$: Observable<FSAction>) =>
   action$.pipe(
-    ofType(GET_PROJCET_KANBANS_REQUEST),
+    ofType(GET_PROJECT_KANBANS_REQUEST),
     mergeMap((action: FSAction) => {
       return axios
         .get(makeApiUrl(`/project/${action.payload.projectId}/kanbans`))
@@ -39,11 +39,11 @@ export const GET_PROJCET_KANBANS_REQUEST_FN = (action$: Observable<FSAction>) =>
     })
   );
 
-export const GET_PROJCET_KANBAN_DETAIL_REQUEST_FN = (
+export const GET_PROJECT_KANBAN_DETAIL_REQUEST_FN = (
   action$: Observable<FSAction>
 ) =>
   action$.pipe(
-    ofType(GET_PROJCET_KANBAN_DETAIL_REQUEST),
+    ofType(GET_PROJECT_KANBAN_DETAIL_REQUEST),
     mergeMap((action: FSAction) => {
       return axios
         .get(makeApiUrl(`/kanban/${action.payload.kanbanId}/detail`))

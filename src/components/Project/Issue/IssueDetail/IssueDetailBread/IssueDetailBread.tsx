@@ -9,7 +9,7 @@ import { AppIcon } from '../../../../widget/Icon';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { useToasts } from 'react-toast-notifications';
 import './IssueDetailBread.scss';
-import { updateProjectIssueDetailRequest } from '../../../../../actions/project/project-issue-detail.aciton';
+import { updateProjectIssueDetailRequest } from '../../../../../actions/project/project-issue-detail.action';
 
 interface InputProps {
   projectID: string;

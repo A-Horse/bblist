@@ -8,7 +8,7 @@
   margin-left: 20px;
   border-radius: 6px;
   padding: 0 4px;
-  background-color: #e8e8e8;
+  background-color: #e8e8e8cc;
 
   &:first-child {
     margin-left: 0;
@@ -21,6 +21,7 @@
   &--header {
     display: flex;
     justify-content: space-between;
+    padding: 2px 0px 2px 6px;
 
     &-name {
       display: inline-block;

@@ -3,27 +3,9 @@
   align-items: flex-start;
   justify-content: flex-start;
 
-  .create-task-modal-left {
-    padding-right: 18px;
-    border-right: 1px solid #ccc;
-    width: 123px;
-    flex-shrink: 0;
-  }
-
   .create-task-modal-right {
     padding-top: 6px;
     padding-left: 28px;
     width: 100%;
-  }
-
-  .ant-menu-item {
-    .svg-inline--fa {
-      margin-right: 8px;
-    }
-  }
-
-  .ant-menu-item-selected {
-    font-weight: bolder;
-    color: #eb6668;
   }
 }

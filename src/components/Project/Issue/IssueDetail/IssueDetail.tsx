@@ -15,7 +15,7 @@ import {
   changeIssueDirect,
   getProjectIssueDetailRequest,
   updateProjectIssueDetailRequest
-} from '../../../../actions/project/project-issue-detail.aciton';
+} from '../../../../actions/project/project-issue-detail.action';
 import { RootState } from '../../../../reducers';
 import { ProjectIssueRecord } from '../../../../typings/project-issue.typing';
 import { FormField } from '../../../widget/FormField/FormField';

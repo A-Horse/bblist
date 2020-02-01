@@ -9,7 +9,6 @@ import { makeActionRequestCollection } from '../../../actions/actions';
 import { AppIcon } from '../../widget/Icon';
 import { AppMenu } from '../../widget/Menu/Menu';
 import { CreateProjectIssueForm } from './CreateProjectIssueForm';
-import { CreateTodoTaskForm } from './CreateTodoTaskForm';
 import { AppModal } from '../../widget/AppModal';
 
 class IssueCreaterModalComponent extends Component<
@@ -39,22 +38,7 @@ class IssueCreaterModalComponent extends Component<
         isOpen={this.props.modalVisible}
       >
         <div className="create-task-modal-content">
-          <div className="create-task-modal-left">
-            <AppMenu
-              defaultSelectedKeys={['PROJECT']}
-              onClick={this.handleMenuClick}
-            >
-              <AppMenu.Item key="PROJECT">
-                <AppIcon icon="columns" />
-                Task
-              </AppMenu.Item>
-
-              <AppMenu.Item key="TODO">
-                <AppIcon icon="cube" />
-                Todo
-              </AppMenu.Item>
-            </AppMenu>
-          </div>
+         
           <div className="create-task-modal-right">
             <CreateProjectIssueForm
               style={{
@@ -63,12 +47,7 @@ class IssueCreaterModalComponent extends Component<
               }}
             />
 
-            <CreateTodoTaskForm
-              style={{
-                display: this.state.selectedType === 'TODO' ? 'block' : 'none'
-              }}
-              onCancel={this.props.closeModal}
-            />
+           
           </div>
         </div>
       </AppModal>

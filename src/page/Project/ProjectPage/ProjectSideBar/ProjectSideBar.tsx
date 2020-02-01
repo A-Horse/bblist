@@ -11,13 +11,38 @@ import { faCog } from '@fortawesome/free-solid-svg-icons';
 import { faCaretSquareLeft } from '@fortawesome/free-regular-svg-icons';
 import { AppButton } from '../../../../components/widget/Button';
 
-export class ProjectSideBar extends Component<{
-  projectID: string;
-  match: match<any>;
-}> {
+const localStorageShrinkToggleName = 'project-side-shrink';
+
+export class ProjectSideBar extends Component<
+  {
+    projectID: string;
+    match: match<any>;
+  },
+  {
+    shrink: boolean;
+  }
+> {
+  state = {
+    shrink: false
+  };
+
+  componentDidMount() {
+    this.setState({
+      shrink: !!window.localStorage.getItem(localStorageShrinkToggleName)
+    });
+  }
+
+  onExpandButtonClick = () => {
+    window.localStorage.setItem(
+      localStorageShrinkToggleName,
+      !this.state.shrink ? 'true' : ''
+    );
+    this.setState({ shrink: !this.state.shrink });
+  };
+
   render() {
     return (
-      <Side className="ProjectSideBar">
+      <Side className={`ProjectSideBar${this.state.shrink ? ' shrink' : ''}`}>
         <div className="ProjectSideBar--main">
           <ProjectInfoSection projectID={this.props.projectID} />
           <SideItemLink
@@ -42,11 +67,14 @@ export class ProjectSideBar extends Component<{
             <SideItemLink
               icon={faCog}
               to={`${this.props.match.url}/setting`}
-              name="设置"
+              name="项目设置"
             />
           </div>
 
-          <AppButton className="shrink-button">
+          <AppButton
+            className="shrink-button"
+            onClick={this.onExpandButtonClick}
+          >
             <AppIcon icon={faCaretSquareLeft} />
           </AppButton>
         </footer>

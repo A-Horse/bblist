@@ -1,18 +1,15 @@
 import { fromJS, List, Map, Record } from 'immutable';
 import { normalize } from 'normalizr';
-import remove from 'ramda/es/remove';
-
 import { FSAction } from '../actions/actions';
 import {
-  GET_PROJCET_KANBAN_DETAIL_SUCCESS,
-  GET_PROJCET_KANBANS_SUCCESS
+  GET_PROJECT_KANBAN_DETAIL_SUCCESS,
+  GET_PROJECT_KANBANS_SUCCESS
 } from '../actions/project/kanban.action';
 import {
   CHANGE_ISSUE_DIRECT,
   GET_PROJECT_ISSUE_DETAIL_SUCCESS,
-  UPDATE_PROJECT_ISSUE_DETAIL_DEQUEST,
   UPDATE_PROJECT_ISSUE_DETAIL_SUCCESS
-} from '../actions/project/project-issue-detail.aciton';
+} from '../actions/project/project-issue-detail.action';
 import {
   GET_COLUMN_CARDS_SUCCESS,
   GET_PROJECT_ISSUES_REQUEST,
@@ -21,8 +18,8 @@ import {
   RANK_PROJECT_CARD_IN_KANBAN_SUCCESS
 } from '../actions/project/project-issue.action';
 import {
-  CREATE_PROJCET_SUCCESS,
-  GET_PROJCET_DETAIL_SUCCESS,
+  CREATE_PROJECT_SUCCESS,
+  GET_PROJECT_DETAIL_SUCCESS,
   GET_PROJECT_SUCCESS
 } from '../actions/project/project.action';
 import {
@@ -74,10 +71,10 @@ export function project(
       );
     }
 
-    case CREATE_PROJCET_SUCCESS:
+    case CREATE_PROJECT_SUCCESS:
       return state;
 
-    case GET_PROJCET_DETAIL_SUCCESS: {
+    case GET_PROJECT_DETAIL_SUCCESS: {
       const normalizedAddBoard = normalize(action.payload, ProjectEntity);
       return state.update('projectMap', projectMap =>
         projectMap.merge<ProjectRecord>(
@@ -98,7 +95,7 @@ export function project(
       );
     }
 
-    case GET_PROJCET_KANBANS_SUCCESS: {
+    case GET_PROJECT_KANBANS_SUCCESS: {
       const normalizedKanbans: {
         entities: {
           Kanban: {
@@ -112,6 +109,9 @@ export function project(
         .updateIn(
           ['projectMap', action.payload.projectId],
           (project: ProjectRecord) => {
+            if (!project) {
+              return project;
+            }
             return project.set('kanbans', normalizedKanbans.result);
           }
         )
@@ -135,7 +135,7 @@ export function project(
         });
     }
 
-    case GET_PROJCET_KANBAN_DETAIL_SUCCESS: {
+    case GET_PROJECT_KANBAN_DETAIL_SUCCESS: {
       const normalizedKanbanDetail: {
         entities: {
           Kanban: {

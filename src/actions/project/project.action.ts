@@ -31,8 +31,8 @@ export function getProjectsFailure(): FSAction {
 }
 
 export const GET_PROJECT_DETAIL_REQUEST = 'GET_PROJECT_DETAIL_REQUEST';
-export const GET_PROJCET_DETAIL_SUCCESS = 'GET_PROJCET_DETAIL_SUCCESS';
-export const GET_PROJCET_DETAIL_FAILURE = 'GET_PROJCET_DETAIL_FAILURE';
+export const GET_PROJECT_DETAIL_SUCCESS = 'GET_PROJECT_DETAIL_SUCCESS';
+export const GET_PROJECT_DETAIL_FAILURE = 'GET_PROJECT_DETAIL_FAILURE';
 
 export function getProjectDetailRequest(projectId: string): FSAction {
   return {
@@ -43,21 +43,21 @@ export function getProjectDetailRequest(projectId: string): FSAction {
 
 export function getProjectDetailSuccess(project: Project): FSAction {
   return {
-    type: GET_PROJCET_DETAIL_SUCCESS,
+    type: GET_PROJECT_DETAIL_SUCCESS,
     payload: project
   };
 }
 
 export function getProjectDetailFailure(): FSAction {
   return {
-    type: GET_PROJCET_DETAIL_FAILURE,
+    type: GET_PROJECT_DETAIL_FAILURE,
     error: true
   };
 }
 
-export const CREATE_PROJECT_REQUEST = 'CREATE_PROJCETS_REQUEST';
-export const CREATE_PROJCET_SUCCESS = 'CREATE_PROJCETS_SUCCESS';
-export const CREATE_PROJCET_FAILURE = 'CREATE_PROJCETS_FAILURE';
+export const CREATE_PROJECT_REQUEST = 'CREATE_PROJECTS_REQUEST';
+export const CREATE_PROJECT_SUCCESS = 'CREATE_PROJECTS_SUCCESS';
+export const CREATE_PROJECT_FAILURE = 'CREATE_PROJECTS_FAILURE';
 
 export function createProjectRequest(
   createProjectInput: CreateProjectInput
@@ -70,7 +70,7 @@ export function createProjectRequest(
 
 export function createProjectSuccess(projectId: ProjectId): FSAction {
   return {
-    type: CREATE_PROJCET_SUCCESS,
+    type: CREATE_PROJECT_SUCCESS,
     payload: {
       projectId
     }
@@ -79,33 +79,33 @@ export function createProjectSuccess(projectId: ProjectId): FSAction {
 
 export function createProjectFailure(): FSAction {
   return {
-    type: CREATE_PROJCET_FAILURE,
+    type: CREATE_PROJECT_FAILURE,
     error: true
   };
 }
 
-export const UPLOAD_PROJCET_COVER_REQUEST = 'UPLOAD_PROJCET_COVER_REQUEST';
-export const UPLOAD_PROJCET_COVER_SUCCESS = 'UPLOAD_PROJCET_COVER_SUCCESS';
-export const UPLOAD_PROJCET_COVER_FAILURE = 'UPLOAD_PROJCET_COVER_FAILURE';
+export const UPLOAD_PROJECT_COVER_REQUEST = 'UPLOAD_PROJECT_COVER_REQUEST';
+export const UPLOAD_PROJECT_COVER_SUCCESS = 'UPLOAD_PROJECT_COVER_SUCCESS';
+export const UPLOAD_PROJECT_COVER_FAILURE = 'UPLOAD_PROJECT_COVER_FAILURE';
 
 export function uploadProjectCoverRequest(
   uploadProjectCoverInput: UploadProjectCoverInput
 ): FSAction {
   return {
-    type: UPLOAD_PROJCET_COVER_REQUEST,
+    type: UPLOAD_PROJECT_COVER_REQUEST,
     payload: uploadProjectCoverInput
   };
 }
 
 export function uploadProjectCoverSuccess(): FSAction {
   return {
-    type: UPLOAD_PROJCET_COVER_SUCCESS
+    type: UPLOAD_PROJECT_COVER_SUCCESS
   };
 }
 
 export function uploadProjectCoverFailure(): FSAction {
   return {
-    type: UPLOAD_PROJCET_COVER_FAILURE,
+    type: UPLOAD_PROJECT_COVER_FAILURE,
     error: true
   };
 }

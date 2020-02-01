@@ -19,7 +19,7 @@ import {
   getProjectDetailSuccess,
   getProjectsFailure,
   getProjectsSuccess,
-  UPLOAD_PROJCET_COVER_REQUEST,
+  UPLOAD_PROJECT_COVER_REQUEST,
   uploadProjectCoverFailure,
   uploadProjectCoverSuccess
 } from '../actions/project/project.action';
@@ -86,11 +86,11 @@ export const SET_PROJECT_DEFAULT_KANBAN_REQUEST_FN = (
     })
   );
 
-export const UPLOAD_PROJCET_COVER_REQUEST_FN = (
+export const UPLOAD_PROJECT_COVER_REQUEST_FN = (
   action$: Observable<FSAction>
 ) =>
   action$.pipe(
-    ofType(UPLOAD_PROJCET_COVER_REQUEST),
+    ofType(UPLOAD_PROJECT_COVER_REQUEST),
     mergeMap((action: FSAction) => {
       const uploadProjectCoverInput: UploadProjectCoverInput = action.payload;
 
