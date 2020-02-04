@@ -1,0 +1,26 @@
+.ColumnIssueCreator {
+  margin-top: 8px;
+
+  &--toggle {
+    color: #777;
+    .AppButton {
+      &:hover {
+        background-color: #d8d8d8;
+      }
+      svg {
+        margin-right: 6px;
+      }
+    }
+  }
+
+  &--operation {
+    margin-top: 4px;
+    .cancel-button {
+      margin-left: 6px;
+
+      &:hover {
+        background-color: #d8d8d8;
+      }
+    }
+  }
+}

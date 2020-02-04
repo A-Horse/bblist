@@ -20,11 +20,13 @@ export function ColumnIssueCreator({
   columnID
 }: InputProps) {
   const dispatch = useDispatch();
-  const [title, setTitle] = useState('');
+  const [title, setTitle] = useState<string>('');
+  const [showInput, setShowInput] = useState<boolean>(false);
   const { addToast } = useToasts();
 
   const clearState = () => {
     setTitle('');
+    setShowInput(false);
   };
 
   const createIssue = () => {
@@ -62,19 +64,37 @@ export function ColumnIssueCreator({
   };
 
   return (
-    <div>
-      <div>
-        <AppIcon icon={faPlusCircle} />
-
-        <AppTextArea value={title} onChange={setTitle} onKeyDown={onKeyDown} />
-
-        <div>
-          <AppButton onClick={createIssue}>添加卡片</AppButton>
-          <AppButton>
-            <AppIcon icon={faTimes} />
+    <div className="ColumnIssueCreator">
+      {!showInput && (
+        <div className="ColumnIssueCreator--toggle">
+          <AppButton onClick={() => setShowInput(true)}>
+            <AppIcon icon={faPlusCircle} />
+            添加另一张卡片
           </AppButton>
         </div>
-      </div>
+      )}
+
+      {showInput && (
+        <>
+          <AppTextArea
+            value={title}
+            onChange={setTitle}
+            onKeyDown={onKeyDown}
+          />
+
+          <div className="ColumnIssueCreator--operation">
+            <AppButton type="primary" onClick={createIssue}>
+              添加卡片
+            </AppButton>
+            <AppButton
+              className="cancel-button"
+              onClick={() => setShowInput(false)}
+            >
+              <AppIcon icon={faTimes} />
+            </AppButton>
+          </div>
+        </>
+      )}
     </div>
   );
 }

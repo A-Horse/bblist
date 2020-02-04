@@ -50,7 +50,6 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "compile-less": "lessc --js ./src/style/index.less ./src/style/antd.css",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",

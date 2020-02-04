@@ -1,3 +1,19 @@
-import { Menu } from 'antd';
+import React, { ReactNode } from 'react';
+import './Menu.scss';
 
-export const AppMenu = Menu;
+export function AppMenuItem({ children }) {
+  return <li className="AppMenuItem">{children}</li>;
+}
+
+interface AppMenuProps {
+  children: ReactNode;
+  className?: string;
+  style?: any;
+}
+export function AppMenu({ children, className = '', style }: AppMenuProps) {
+  return (
+    <ul className={`AppMenu ${className}`} style={{ ...style }}>
+      {children}
+    </ul>
+  );
+}

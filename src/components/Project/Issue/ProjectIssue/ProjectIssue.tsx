@@ -69,7 +69,7 @@ const Card = React.forwardRef<HTMLDivElement, InputProps & DndProps>(
         style={{ opacity }}
       >
         <IssueId id={issue.get('id')} />
-        <div>{issue.get('title')}</div>
+        <div className="ProjectIssue--title">{issue.get('title')}</div>
       </div>
     );
   }

@@ -1,0 +1,17 @@
+@import "../../../style/app_variable";
+
+.AppMenu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  .AppMenuItem {
+    padding: 8px;
+    color: #555;
+
+    &:hover {
+      color: white;
+      background-color: $color-primary;
+    }
+  }
+}

@@ -7,6 +7,9 @@ import { AppButton } from '../../../../../components/widget/Button';
 import { RootState } from '../../../../../reducers';
 import { KanbanRecord } from '../../../../../typings/kanban.typing';
 import { KanbanSelectorModal } from '../../modals/KanbanSelectorModal/KanbanSelectorModal';
+import { AppIcon } from '../../../../../components/widget/Icon';
+import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+import { IssueCreatorModal } from '../../../../../components/creators/TaskCreator/IssueCreatorModal';
 
 interface InputProps {
   selectedKanbanId: string;
@@ -24,6 +27,7 @@ export function KanbanHeaderBar({
   );
 
   const [selectKanbanToggle, setSelectKanbanToggle] = useState(false);
+  const [issueCreatorToggle, setIssueCreatorToggle] = useState(false);
 
   return (
     <div className="KanbanHeaderBar">
@@ -33,16 +37,27 @@ export function KanbanHeaderBar({
         </span>
       )}
 
-      <AppButton
-        type="dashed"
-        className="KanbanHeaderBar--kanban-select-button"
-        backgroundColor="white"
-        onClick={() => {
-          setSelectKanbanToggle(true);
-        }}
-      >
-        选择看板
-      </AppButton>
+      <div  className="KanbanHeaderBar--operation">
+        <AppButton
+          backgroundColor="white"
+          onClick={() => {
+            setIssueCreatorToggle(true);
+          }}
+        >
+          <AppIcon icon={faPlusCircle} />
+          新建卡片
+        </AppButton>
+
+        <AppButton
+          className="KanbanHeaderBar--kanban-select-button"
+          backgroundColor="white"
+          onClick={() => {
+            setSelectKanbanToggle(true);
+          }}
+        >
+          选择看板
+        </AppButton>
+      </div>
 
       <KanbanSelectorModal
         onChange={onChange}
@@ -50,6 +65,8 @@ export function KanbanHeaderBar({
         projectId={projectId}
         onClose={() => setSelectKanbanToggle(false)}
       />
+
+      <IssueCreatorModal modalVisible={issueCreatorToggle} closeModal={() => setIssueCreatorToggle(false)} />
     </div>
   );
 }

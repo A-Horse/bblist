@@ -7,7 +7,7 @@ import { Link, NavLink } from 'react-router-dom';
 import { TaskCreator } from '../../../components/creators/TaskCreator/TaskCreator';
 import { AppDropdown } from '../../../components/widget/Dropdown';
 import { AppIcon } from '../../../components/widget/Icon';
-import { AppMenu } from '../../../components/widget/Menu/Menu';
+import { AppMenu, AppMenuItem } from '../../../components/widget/Menu/Menu';
 import { ProjectCreator } from '../../Project/ProjectCreator/ProjectCreator';
 
 export class NavAddOperation extends Component<any> {
@@ -16,13 +16,13 @@ export class NavAddOperation extends Component<any> {
   render() {
     const menu = (
       <AppMenu className="nav-add-operation-menu" style={{ width: '156px' }}>
-        <AppMenu.Item>
+        <AppMenuItem>
           <ProjectCreator />
-        </AppMenu.Item>
+        </AppMenuItem>
 
-        <AppMenu.Item>
+        <AppMenuItem>
           <TaskCreator />
-        </AppMenu.Item>
+        </AppMenuItem>
       </AppMenu>
     );
     return (

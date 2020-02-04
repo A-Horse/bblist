@@ -1,6 +1,18 @@
 .KanbanHeaderBar {
-  padding: 8px;
+  padding: 8px 12px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
 
+  .KanbanHeaderBar--kanban-name {
+    font-size: 22px;
+    font-weight: 500;
+  }
+
+  .KanbanHeaderBar--operation {
+    color: #555;
+  }
+  
   &--kanban-select-button {
     margin-left: 8px;
   }

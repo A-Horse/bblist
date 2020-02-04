@@ -3,7 +3,7 @@ import './ProjectPage.scss';
 import { History, Location } from 'history';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { match, Route, Switch } from 'react-router';
+import { match, Route, Switch, Redirect } from 'react-router';
 import { withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 
@@ -70,6 +70,10 @@ class ProjectPageComponent extends Component<Props> {
               <Route
                 path="/project/:projectId/issues"
                 render={() => <Issues />}
+              />
+              <Route
+                path="*"
+                render={() => <Redirect to={`/project/${projectID}/kanban`} />}
               />
             </Switch>
           </div>

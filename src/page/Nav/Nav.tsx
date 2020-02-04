@@ -1,6 +1,6 @@
 import './Nav.scss';
 
-import { Dropdown, Icon, Layout, Menu } from 'antd';
+import { Dropdown, Menu } from 'antd';
 import React, { Component } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 
@@ -8,11 +8,13 @@ import { LogoBan } from '../../components/LogoBan/LogoBan';
 import { makeGravatarUrl } from '../../services/gravatar';
 import { Storage, storageImage } from '../../services/storage';
 import { NavAddOperation } from './NavAddOperation/NavAddOperation';
-
-const { Header } = Layout;
-
-// TODO remove
-export const navHeight = 42;
+import { Logo } from '../../components/Logo/Logo';
+import { TextLogo } from '../../components/TextLogo';
+import { AppDropDown } from '../../components/widget/DropDown/AppDropDown';
+import { UserAvatar } from '../../components/UserAvatar/UserAvatar';
+import { AppMenu, AppMenuItem } from '../../components/widget/Menu/Menu';
+import { AppButton } from '../../components/widget/Button';
+import { AppLink } from '../../components/widget/Link/AppLink';
 
 class Nav extends Component<any> {
   state = {};
@@ -34,29 +36,14 @@ class Nav extends Component<any> {
     const { user } = this.props;
     const avatarData = Storage.get('avator');
 
-    const menu = (
-      <Menu>
-        <Menu.Item>
-          <Link to="/profile">
-            Signed in as <strong>{userName}</strong>
-          </Link>
-        </Menu.Item>
-        <Menu.Item>
-          <Link to="/setting">Setting</Link>
-        </Menu.Item>
-
-        <Menu.Item>
-          <span onClick={this.props.actions.LOGOUT_REQUEST}>Logout</span>
-        </Menu.Item>
-      </Menu>
-    );
     return (
-      <Header className="app-header">
-        <Link to="/task-board">
-          <LogoBan white={true} />
+      <header className="AppNav">
+        <Link className="AppNav--ban" to="/">
+          <Logo />
+          <TextLogo white={true} />
         </Link>
-        <div className="app-header-menu">
-          <div className="app-header-menu--link-containner">
+        <div className="AppNav--menu">
+          <div className="app-header-menu--link-container">
             <NavLink to="/projects" activeClassName="active">
               项目
             </NavLink>
@@ -67,30 +54,35 @@ class Nav extends Component<any> {
 
             <NavAddOperation />
           </div>
-
-          <div style={{ display: 'inline-block' }}>
-            <Dropdown overlay={menu} placement="bottomRight">
-              {avatarData ? (
-                <img
-                  alt=""
-                  ref={ref => (this.avator = ref)}
-                  className="nav-avatar"
-                  src={`data:image/png;base64,${avatarData}`}
-                />
-              ) : (
-                <img
-                  alt=""
-                  ref={ref => (this.avator = ref)}
-                  className="nav-avatar"
-                  crossOrigin="anonymous"
-                  onLoad={this.onNewAvatarImageLoaded}
-                  src={makeGravatarUrl(user.email)}
-                />
-              )}
-            </Dropdown>
-          </div>
         </div>
-      </Header>
+
+        <div className="AppNav--Avatar">
+          <AppDropDown
+            position="right"
+            toggle={
+              <AppButton>
+                <UserAvatar user={user} />
+              </AppButton>
+            }
+            overlay={
+              <AppMenu>
+                <AppMenuItem>
+                  <AppLink to="/profile">
+                    Signed in as <strong>{userName}</strong>
+                  </AppLink>
+                </AppMenuItem>
+                <AppMenuItem>
+                  <AppLink to="/setting">Setting</AppLink>
+                </AppMenuItem>
+
+                <AppMenuItem>
+                  <span>Logout</span>
+                </AppMenuItem>
+              </AppMenu>
+            }
+          />
+        </div>
+      </header>
     );
   }
 }

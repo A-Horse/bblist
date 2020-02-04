@@ -76,30 +76,30 @@ export class KanbanColumnComponent extends Component<ComponentProps, State> {
             <span className="KanbanColumn--header-name">
               {this.props.column.get('name')}
             </span>
-            <AppButton>
-              <ColumnHeaderDropDown columnId={this.props.column.get('id')} />
-            </AppButton>
+            <ColumnHeaderDropDown columnId={this.props.column.get('id')} />
           </div>
 
           <div className="KanbanColumn--content">
-            {this.props.issues &&
-              this.props
-                .issues!.sortBy((issue: ProjectIssueRecord) =>
-                  issue.get('order')
-                )
-                .map((issue: ProjectIssueRecord, index: number) => {
-                  return (
-                    <ProjectIssue
-                      key={issue.get('id')}
-                      kanbanId={this.props.column.get('kanbanId')}
-                      onClick={this.props.onIssueClick}
-                      rankProjectCardColumn={
-                        this.props.rankProjectCardInKanbanRequest
-                      }
-                      issue={issue}
-                    />
-                  );
-                })}
+            <div>
+              {this.props.issues &&
+                this.props
+                  .issues!.sortBy((issue: ProjectIssueRecord) =>
+                    issue.get('order')
+                  )
+                  .map((issue: ProjectIssueRecord, index: number) => {
+                    return (
+                      <ProjectIssue
+                        key={issue.get('id')}
+                        kanbanId={this.props.column.get('kanbanId')}
+                        onClick={this.props.onIssueClick}
+                        rankProjectCardColumn={
+                          this.props.rankProjectCardInKanbanRequest
+                        }
+                        issue={issue}
+                      />
+                    );
+                  })}
+            </div>
           </div>
 
           <ColumnIssueCreator

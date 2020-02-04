@@ -11,6 +11,17 @@
   &.shrink {
     width: 68px;
 
+    .ProjectInfoSection {
+      .ProjectInfoSection--project-name {
+        display: none;
+      }
+
+      img {
+        min-height: 20px;
+        margin-bottom: 12px;
+      }
+    }
+
     .SideItemLink {
       a {
         padding: 8px;
@@ -34,8 +45,7 @@
         svg {
           transform: rotate(180deg);
         }
-       }
-
+      }
     }
   }
 

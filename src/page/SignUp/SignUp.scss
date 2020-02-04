@@ -1,5 +1,4 @@
 @import "../../style/variable";
-@import "../../style/mixin";
 
 // TODO refactor with signin
 .signup-page {
@@ -33,7 +32,6 @@
     align-self: center;
 
     input {
-      @include form-input;
     }
 
     .error-msg {

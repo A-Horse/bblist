@@ -12,7 +12,7 @@ export class AppTextArea extends Component<{
   name?: string;
   placeholder?: string;
   type?: string;
-  onKeyDown?: KeyboardEventHandler
+  onKeyDown?: KeyboardEventHandler;
 }> {
   onChange = (event: ChangeEvent<HTMLTextAreaElement>): void => {
     this.props.onChange && this.props.onChange(event.target.value);

@@ -1,17 +1,37 @@
 @import "../../style/variable";
 
-.app-header {
-  background-color: #eb6668 !important;
-  padding: 0 20px !important;
-  letter-spacing: 1px;
-  height: $app-nav-height;
+.AppNav {
+  display: flex;
+  align-items: center;
+  background-color: #eb6668;
+  height: 42px;
+  padding: 0 12px;
+  position: relative;
+  z-index: 10;
 
-  .app-header-menu {
-    padding-left: 30px;
+  &--ban {
+    color: white;
+    align-items: center;
+    display: flex;
+    flex: 0;
+
+    .Logo {
+      border-radius: 50%;
+    }
+
+    .TextLogo {
+      color: white;
+      margin-left: 4px;
+    }
+  }
+
+  .AppNav--menu {
+    padding-left: 12px;
     display: flex;
     justify-content: space-between;
+    flex-grow: 100;
 
-    .app-header-menu--link-containner {
+    .app-header-menu--link-container {
       display: flex;
       justify-content: center;
       align-items: center;
@@ -28,7 +48,6 @@
       font-weight: 500;
       letter-spacing: 0.5px;
       text-align: center;
-      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
       border-radius: 6px;
 
       &:hover {
@@ -42,25 +61,23 @@
     }
   }
 
-  .nav-avatar {
-    width: 30px;
-    height: 30px;
-    border-radius: 5px;
-    cursor: pointer;
-  }
+  .AppNav--Avatar {
+    display: flex;
+    align-items: center;
+    flex: 0;
 
-  .logoban {
-    display: inline-block;
-    margin-top: -3px;
-    float: left;
-  }
-  .logo {
-    width: 20px;
-    height: 20px;
-  }
+    .AppButton {
+      padding: 0;
+      height: 32px;
 
-  .logo-text {
-    width: 80px;
-    margin: 8px 0 0 3px;
+      img {
+        background-color: white;
+        border-radius: 50% !important;
+      }
+
+      &:hover {
+        background-color: #f9bdbf;
+      }
+    }
   }
 }

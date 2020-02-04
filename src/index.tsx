@@ -1,4 +1,3 @@
-import './style/antd.css';
 
 import { applyPolyfills, defineCustomElements } from 'coke-component/loader';
 import React from 'react';

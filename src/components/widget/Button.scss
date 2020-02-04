@@ -1,8 +1,14 @@
 .AppButton {
   border-radius: 4px;
+  color: inherit;
   cursor: pointer;
-  transition: opacity 200ms ease-in-out;
+  transition: all 200ms ease-in-out;
   padding: 3px 9px;
+  background-color: transparent;
+  border: 1px solid transparent;
+  outline: none;
+  box-sizing: border-box;
+  height: 28px;
 
   &.disabled {
     background: #bbb !important;
@@ -12,8 +18,8 @@
   }
 
   &.primary {
-    border: 1px solid #eb6668;
-    background-color: #eb6668;
+    border: 1px solid #6094ff;
+    background-color: #6094ff;
     color: white;
   }
 
@@ -23,5 +29,9 @@
 
   &.dashed {
     border: 1px solid #999;
+  }
+
+  .svg-inline--fa {
+    margin-right: 6px;
   }
 }

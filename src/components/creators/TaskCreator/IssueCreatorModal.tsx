@@ -11,7 +11,7 @@ import { AppMenu } from '../../widget/Menu/Menu';
 import { CreateProjectIssueForm } from './CreateProjectIssueForm';
 import { AppModal } from '../../widget/AppModal';
 
-class IssueCreaterModalComponent extends Component<
+class IssueCreatorModalComponent extends Component<
   {
     modalVisible: boolean;
     actions: any;
@@ -68,4 +68,4 @@ const mapDispatchToProps = (dispatch: any) => {
 export const IssueCreatorModal = connect(
   mapStateToProps,
   mapDispatchToProps
-)(IssueCreaterModalComponent);
+)(IssueCreatorModalComponent);

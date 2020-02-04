@@ -8,7 +8,8 @@ import {
   filter,
   mergeMap,
   take,
-  tap
+  tap,
+  map
 } from 'rxjs/operators';
 
 import { FSAction } from '../actions/actions';
@@ -35,6 +36,8 @@ import {
 } from '../typings/project-issue.typing';
 import { makeApiUrl } from '../utils/api';
 import { findIssuePositionInColumn } from '../reducers/selector/card.selector';
+import { CREATE_PROJECT_CARD_SUCCESS } from '../actions/project/project-issue.action';
+import { getProjectIssueDetailRequest } from '../actions/project/project-issue-detail.action';
 
 export const CREATE_PROJECT_CARD_REQUEST_FN = (action$: Observable<FSAction>) =>
   action$.pipe(
@@ -54,6 +57,12 @@ export const CREATE_PROJECT_CARD_REQUEST_FN = (action$: Observable<FSAction>) =>
           return createProjectCardFailure(error);
         });
     })
+  );
+
+export const CREATE_PROJECT_CARD_SUCCESS_FN = (action$: Observable<FSAction>) =>
+  action$.pipe(
+    ofType(CREATE_PROJECT_CARD_SUCCESS),
+    map(action => getProjectIssueDetailRequest({ issueId: action.payload }))
   );
 
 export const UPDATE_PROJECT_ISSUE_DETAIL_REQUEST_FN = (
