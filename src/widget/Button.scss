@@ -9,6 +9,7 @@
   outline: none;
   box-sizing: border-box;
   height: 28px;
+  line-height: 20px;
 
   &.disabled {
     background: #bbb !important;
@@ -29,9 +30,5 @@
 
   &.dashed {
     border: 1px solid #999;
-  }
-
-  .svg-inline--fa {
-    margin-right: 6px;
   }
 }

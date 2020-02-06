@@ -1,3 +1,5 @@
+@import "../../style/app_variable";
+
 .AppTextArea {
   width: 100%;
   padding: 8px 8px;
@@ -7,4 +9,9 @@
   overflow: hidden;
   resize: none;
   outline: none;
+  border: 2px solid transparent;
+
+  &:focus {
+    border: 2px solid $color-primary;
+  }
 }

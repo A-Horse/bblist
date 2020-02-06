@@ -11,8 +11,14 @@
 
   .KanbanHeaderBar--operation {
     color: #555;
+
+    .AppButton {
+      svg {
+        margin-right: 6px;
+      }
+    }
   }
-  
+
   &--kanban-select-button {
     margin-left: 8px;
   }

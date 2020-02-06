@@ -11,7 +11,7 @@ import { getProjectKanbansRequest } from '../../../actions/project/kanban.action
 import { RootState } from '../../../reducers';
 import { getKanbanOptions } from '../../../reducers/selector/kanban.selector';
 import { SelectOption } from '../../../typings/select.typing';
-import { AppSelect } from '../../widget/AppSelect';
+import { AppSelect } from '../../../widget/AppSelect';
 
 interface InputProps {
   projectId: string;
@@ -39,6 +39,7 @@ class KanbanSelectComponent extends Component<InputProps & InjectProps> {
     );
     return (
       <AppSelect
+        className="KanbanSelect"
         noOptionsMessage={noOptionTip}
         placeholder="选择看板"
         options={this.props.options}

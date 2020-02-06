@@ -95,8 +95,8 @@ export const CREATE_PROJECT_CARD_FAILURE = 'CREATE_PROJECT_CARD_FAILURE';
 
 export function createProjectCardRequest(
   createKanbanCardInput: CreateProjectIssueInput,
-  meta: {callback}
-): FSAction {
+  meta: { callback? } = {}
+) {
   return {
     type: CREATE_PROJECT_CARD_REQUEST,
     payload: createKanbanCardInput,

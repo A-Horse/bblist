@@ -1,0 +1,21 @@
+.DetailSection {
+  width: 100%;
+  padding-top: 8px;
+  display: flex;
+  align-items: flex-start;
+
+  &--left {
+    flex: 0 0 auto;
+    padding-top: 6px;
+    width: 30px;
+
+    svg {
+      font-size: 20px;
+      color: #666;
+    }
+  }
+
+  &--right {
+    width: 100%;
+  }
+}

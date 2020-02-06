@@ -3,7 +3,7 @@ import { DateTimeSelectDialog } from '../../../../DateTimeSelectDialog/DateTimeS
 import { ProjectIssueRecord } from '../../../../../typings/project-issue.typing';
 import { AssigneeSelector } from '../../../../AssigneeSelector/AssigneeSelector';
 import { SelectOption } from '../../../../../typings/select.typing';
-import { SectionHeading } from '../../../../widget/SectionHeading/SectionHeading';
+import { SectionHeading } from '../../../../../widget/SectionHeading/SectionHeading';
 
 import './IssueDetailRight.scss';
 import { DetailRightField } from './DetailField/DetailField';

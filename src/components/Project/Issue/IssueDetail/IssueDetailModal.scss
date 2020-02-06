@@ -1,20 +1,12 @@
 .IssueDetailModal {
   display: flex;
   flex-direction: column;
-  position: absolute;
-  top: 30px;
-  bottom: 40px;
-  overflow: hidden;
   max-height: 95%;
+  min-height: 600px;
   width: 700px;
-  left: 50%;
-  transform: translate(-50%, 0);
-  border: 1px solid rgba(204, 204, 204, 0.3);
-  box-shadow: 1px 2px 5px #e8e8e8;
-  background: rgb(255, 255, 255);
-  border-radius: 6px;
-  outline: none;
-  padding: 20px 0;
+
+  .ModalHeader--buttons {
+  }
 
   .IssueDetail {
     padding-top: 0;

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Input from '../../../components/widget/Input/Input';
+import Input from '../../../widget/Input/Input';
 import { bindActionCreators } from 'redux';
 import { makeActionRequestCollection } from '../../../actions/actions';
 import { connect } from 'react-redux';

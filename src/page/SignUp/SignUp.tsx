@@ -6,10 +6,10 @@ import { Link } from 'react-router-dom';
 
 import { LogoBan } from '../../components/LogoBan/LogoBan';
 import { ErrorMsg } from '../../components/ErrorMsg/ErrorMsg';
-import { Input } from '../../components/widget/Input/Input';
+import { Input } from '../../widget/Input/Input';
 import { updateTitle } from '../../services/title';
 import { validateFormValue } from '../../services/validate-strategy';
-import { AppButton } from '../../components/widget/Button';
+import { AppButton } from '../../widget/Button';
 
 class SignUp extends Component<any, any> {
   state = {

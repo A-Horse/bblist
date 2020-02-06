@@ -10,7 +10,7 @@ import {
 } from 'formik';
 import React, { Component } from 'react';
 
-import { AppButton } from '../../../../components/widget/Button';
+import { AppButton } from '../../../../widget/Button';
 
 interface FormValues {
   name: string;

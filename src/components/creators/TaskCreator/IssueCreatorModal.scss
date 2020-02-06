@@ -1,11 +1,4 @@
-.create-task-modal-content {
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-
-  .create-task-modal-right {
-    padding-top: 6px;
-    padding-left: 28px;
-    width: 100%;
-  }
+.IssueCreatorModal {
+  width: 520px;
+  top: 30% !important;
 }

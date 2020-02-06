@@ -1,7 +1,7 @@
 import React from 'react';
 import { AppSelect } from '../AppSelect';
 import { Props as SelectProps } from 'react-select/src/Select';
-import { SelectOption } from '../../../typings/select.typing';
+import { SelectOption } from '../../typings/select.typing';
 import './BorderlessSelect.scss';
 
 function CustomSingleValue({ data, innerProps }) {

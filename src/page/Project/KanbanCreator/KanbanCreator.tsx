@@ -12,7 +12,7 @@ import {
 } from 'redux';
 
 import { createKanbanRequest } from '../../../actions/project/kanban.action';
-import { AppButton } from '../../../components/widget/Button';
+import { AppButton } from '../../../widget/Button';
 import { CreateKanbanInput } from '../../../typings/kanban.typing';
 import { ProjectRecord } from '../../../typings/project.typing';
 

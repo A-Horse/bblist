@@ -1,0 +1,17 @@
+.AppSelect {
+  font-size: 14px;
+
+  .App-select__control {
+    min-height: auto;
+  }
+
+  .App-select__input {
+      height: 18px;
+  }
+
+  .App-select__indicators {
+    .App-select__indicator {
+      padding: 0 8px;
+    }
+  }
+}

@@ -3,22 +3,22 @@ import './KanbanHeaderBar.scss';
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 
-import { AppButton } from '../../../../../components/widget/Button';
+import { AppButton } from '../../../../../widget/Button';
 import { RootState } from '../../../../../reducers';
 import { KanbanRecord } from '../../../../../typings/kanban.typing';
 import { KanbanSelectorModal } from '../../modals/KanbanSelectorModal/KanbanSelectorModal';
-import { AppIcon } from '../../../../../components/widget/Icon';
+import { AppIcon } from '../../../../../widget/Icon';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import { IssueCreatorModal } from '../../../../../components/creators/TaskCreator/IssueCreatorModal';
 
 interface InputProps {
   selectedKanbanId: string;
-  projectId: string;
+  projectID: string;
   onChange: Function;
 }
 
 export function KanbanHeaderBar({
-  projectId,
+  projectID,
   selectedKanbanId,
   onChange
 }: InputProps) {
@@ -37,7 +37,7 @@ export function KanbanHeaderBar({
         </span>
       )}
 
-      <div  className="KanbanHeaderBar--operation">
+      <div className="KanbanHeaderBar--operation">
         <AppButton
           backgroundColor="white"
           onClick={() => {
@@ -45,7 +45,7 @@ export function KanbanHeaderBar({
           }}
         >
           <AppIcon icon={faPlusCircle} />
-          新建卡片
+          新建问题
         </AppButton>
 
         <AppButton
@@ -62,11 +62,15 @@ export function KanbanHeaderBar({
       <KanbanSelectorModal
         onChange={onChange}
         toggle={selectKanbanToggle}
-        projectId={projectId}
+        projectId={projectID}
         onClose={() => setSelectKanbanToggle(false)}
       />
 
-      <IssueCreatorModal modalVisible={issueCreatorToggle} closeModal={() => setIssueCreatorToggle(false)} />
+      <IssueCreatorModal
+        projectID={projectID}
+        modalVisible={issueCreatorToggle}
+        closeModal={() => setIssueCreatorToggle(false)}
+      />
     </div>
   );
 }

@@ -12,27 +12,29 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { createProjectCardRequest } from '../../../actions/project/project-issue.action';
 import { KanbanRecord } from '../../../typings/kanban.typing';
-import { ProjectRecord } from '../../../typings/project.typing';
 import { SelectOption } from '../../../typings/select.typing';
 import { ColumnSelect } from '../../Project/ColumnSelect/ColumnSelect';
 import { KanbanSelect } from '../../Project/KanbanSelect/KanbanSelect';
-import { AppButton } from '../../widget/Button';
-import { FormField } from '../../widget/FormField/FormField';
-import Input from '../../widget/Input/Input';
+import { AppButton } from '../../../widget/Button';
+import { FormField } from '../../../widget/FormField/FormField';
+import Input from '../../../widget/Input/Input';
+import { Divider } from '../../../widget/Divider';
+
+import './CreateProjectIssueForm.scss';
 
 interface FormValues {
   title: string;
-  kanbanId: string | null;
-  columnId: string | null;
+  kanbanID: string | null;
+  columnID: string | null;
 }
 
 class CreateProjectIssueFormComponent extends Component<
   {
+    projectID: string;
     actions: any;
     style?: any;
     onCancel?: () => void;
     kanban?: KanbanRecord;
-    project?: ProjectRecord;
   },
   {
     name: any;
@@ -46,27 +48,60 @@ class CreateProjectIssueFormComponent extends Component<
 
   createProjectCard(values: any) {
     this.props.actions.createProjectCardRequest({
-      projectId: this.props.project!.get('id'),
+      projectID: this.props.projectID,
       ...values
     });
   }
 
   render() {
     return (
-      <div style={this.props.style} className="taskboard-creater">
-        <Formik
-          initialValues={{ title: '', kanbanId: null, columnId: null }}
-          onSubmit={(
-            values: FormValues,
-            actions: FormikActions<FormValues>
-          ) => {
-            console.log({ values, actions });
-            this.createProjectCard(values);
-            actions.setSubmitting(false);
-          }}
-          render={(formikBag: FormikProps<FormValues>) => {
-            return (
-              <Form>
+      <Formik
+        initialValues={{ title: '', kanbanID: null, columnID: null }}
+        onSubmit={(values: FormValues, actions: FormikActions<FormValues>) => {
+          this.createProjectCard(values);
+          actions.setSubmitting(false);
+        }}
+        render={(formikBag: FormikProps<FormValues>) => {
+          return (
+            <Form className="CreateProjectIssueForm">
+              <div className="CreateProjectIssueForm--section">
+                <Field
+                  name="kanbanID"
+                  render={({ field, form }: FieldProps<FormikValues>) => (
+                    <FormField name="所在看板">
+                      <KanbanSelect
+                        projectId={this.props.projectID}
+                        onChange={(selected: SelectOption) => {
+                          formikBag.setFieldValue('kanbanID', selected.value);
+                        }}
+                      />
+                      {form.touched.kanbanID &&
+                        form.errors.kanbanID &&
+                        form.errors.kanbanID}
+                    </FormField>
+                  )}
+                />
+                <Field
+                  name="columnID"
+                  render={({ field, form }: FieldProps<FormikValues>) => (
+                    <FormField name="所在价值列">
+                      <ColumnSelect
+                        kanbanID={form.values.kanbanID}
+                        onChange={(selected: SelectOption) =>
+                          formikBag.setFieldValue('columnID', selected.value)
+                        }
+                      />
+                      {form.touched.name &&
+                        form.errors.name &&
+                        form.errors.name}
+                    </FormField>
+                  )}
+                />
+              </div>
+
+              <Divider />
+
+              <div className="CreateProjectIssueForm--section">
                 <Field
                   name="title"
                   render={({ field, form }: FieldProps<FormikValues>) => (
@@ -86,48 +121,17 @@ class CreateProjectIssueFormComponent extends Component<
                     </FormField>
                   )}
                 />
-                <Field
-                  name="kanbanId"
-                  render={({ field, form }: FieldProps<FormikValues>) => (
-                    <FormField name="所在看板">
-                      <KanbanSelect
-                        projectId={
-                          this.props.project
-                            ? this.props.project.get('id')
-                            : null
-                        }
-                        onChange={(selected: SelectOption) => {
-                          formikBag.setFieldValue('kanbanId', selected.value);
-                        }}
-                      />
-                      {form.touched.kanbanId &&
-                        form.errors.kanbanId &&
-                        form.errors.kanbanId}
-                    </FormField>
-                  )}
-                />
-                <Field
-                  name="columnId"
-                  render={({ field, form }: FieldProps<FormikValues>) => (
-                    <FormField name="所在列表">
-                      <ColumnSelect
-                        kanbanID={form.values.kanbanId}
-                        onChange={(selected: SelectOption) =>
-                          formikBag.setFieldValue('columnId', selected.value)
-                        }
-                      />
-                      {form.touched.name &&
-                        form.errors.name &&
-                        form.errors.name}
-                    </FormField>
-                  )}
-                />
-                <AppButton htmlType="submit">OK</AppButton>
-              </Form>
-            );
-          }}
-        />
-      </div>
+
+                <AppButton type="primary" htmlType="submit">
+                  新建
+                </AppButton>
+
+              
+              </div>
+            </Form>
+          );
+        }}
+      />
     );
   }
 }

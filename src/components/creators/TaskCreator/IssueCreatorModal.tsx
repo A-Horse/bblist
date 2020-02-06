@@ -1,21 +1,21 @@
-import './IssueCreatorModal.scss';
-
-import { Button, Form, Input } from 'antd';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { makeActionRequestCollection } from '../../../actions/actions';
-import { AppIcon } from '../../widget/Icon';
-import { AppMenu } from '../../widget/Menu/Menu';
 import { CreateProjectIssueForm } from './CreateProjectIssueForm';
-import { AppModal } from '../../widget/AppModal';
+import { AppModal } from '../../../widget/AppModal';
+
+import './IssueCreatorModal.scss';
+import { ModalHeader } from '../../../widget/ModalHeader/ModalHeader';
+import { Divider } from '../../../widget/Divider';
 
 class IssueCreatorModalComponent extends Component<
   {
     modalVisible: boolean;
     actions: any;
     closeModal: any;
+    projectID: string;
   },
   {
     selectedType: string;
@@ -34,22 +34,21 @@ class IssueCreatorModalComponent extends Component<
   render() {
     return (
       <AppModal
+        className="IssueCreatorModal"
         onRequestClose={this.props.closeModal}
         isOpen={this.props.modalVisible}
       >
-        <div className="create-task-modal-content">
-         
-          <div className="create-task-modal-right">
-            <CreateProjectIssueForm
-              style={{
-                display:
-                  this.state.selectedType === 'PROJECT' ? 'block' : 'none'
-              }}
-            />
-
-           
-          </div>
+        <ModalHeader title="新建问题" onClose={this.props.closeModal} />
+        <div>
+          <CreateProjectIssueForm
+            projectID={this.props.projectID}
+            style={{
+              display: this.state.selectedType === 'PROJECT' ? 'block' : 'none'
+            }}
+          />
         </div>
+
+      
       </AppModal>
     );
   }

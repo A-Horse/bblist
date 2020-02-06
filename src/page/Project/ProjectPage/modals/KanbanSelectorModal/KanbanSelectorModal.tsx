@@ -8,7 +8,7 @@ import {
   Dispatch
 } from 'redux';
 
-import { AppModal } from '../../../../../components/widget/AppModal';
+import { AppModal } from '../../../../../widget/AppModal';
 import { RootState } from '../../../../../reducers';
 import { getKanbans } from '../../../../../reducers/selector/kanban.selector';
 import { KanbanRecord } from '../../../../../typings/kanban.typing';
@@ -38,7 +38,11 @@ class KanbanSelectorModalComponent extends Component<ComponentProps> {
 
   render() {
     return (
-      <AppModal isOpen={this.props.toggle} onRequestClose={this.closeModal}>
+      <AppModal
+        className="KanbanSelectorModal"
+        isOpen={this.props.toggle}
+        onRequestClose={this.closeModal}
+      >
         <ul>
           {this.props.kanbans.map((kanban: KanbanRecord) => {
             return (

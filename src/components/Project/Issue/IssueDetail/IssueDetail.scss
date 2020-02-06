@@ -2,9 +2,12 @@
   background-color: white;
   padding: 12px 18px;
 
+  .IssueDetail--title-field {
+    margin-bottom: 2px;
+  }
+
   &--title {
-    margin-top: 12px;
-    padding-left: 2px;
+    margin-left: -6px;
   }
 
   &--content-textarea {

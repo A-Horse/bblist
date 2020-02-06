@@ -10,7 +10,7 @@ import { getProjectKanbanDetailRequest } from '../../../actions/project/kanban.a
 import { RootState } from '../../../reducers';
 import { selectKanbanColumns } from '../../../reducers/selector/kanban.selector';
 import { SelectOption } from '../../../typings/select.typing';
-import { AppSelect } from '../../widget/AppSelect';
+import { AppSelect } from '../../../widget/AppSelect';
 import { List } from 'immutable';
 import { KanbanColumnRecord } from '../../../typings/kanban-column.typing';
 
@@ -66,7 +66,6 @@ class ColumnSelectComponent extends Component<InputProps & InjectProps> {
     return (
       <Select
         value={selectedOption}
-        isSearchable={false}
         placeholder="选择价值列"
         noOptionsMessage={noOptionTip}
         options={this.props.options}

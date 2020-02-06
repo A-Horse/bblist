@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { AppButton } from '../../../../../components/widget/Button';
+import { AppButton } from '../../../../../widget/Button';
 import { ProjectRecord } from '../../../../../typings/project.typing';
 import { KanbanCreator } from '../../../KanbanCreator/KanbanCreator';
 

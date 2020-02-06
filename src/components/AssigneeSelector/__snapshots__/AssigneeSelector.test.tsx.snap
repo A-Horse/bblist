@@ -5,19 +5,19 @@ exports[`AssigneeSelector snapshot 1`] = `
   className="AssigneeSelector"
 >
   <div
-    className=" css-2b097c-container"
+    className="AppSelect css-2b097c-container"
     onKeyDown={[Function]}
   >
     <div
-      className=" css-yk16xz-control"
+      className="App-select__control css-yk16xz-control"
       onMouseDown={[Function]}
       onTouchEnd={[Function]}
     >
       <div
-        className=" css-1hwfws3"
+        className="App-select__value-container css-1hwfws3"
       >
         <div
-          className=" css-1wa3eu0-placeholder"
+          className="App-select__placeholder css-1wa3eu0-placeholder"
         >
           分配用户
         </div>
@@ -25,7 +25,7 @@ exports[`AssigneeSelector snapshot 1`] = `
           className="css-w8afj7-Input"
         >
           <div
-            className=""
+            className="App-select__input"
             style={
               Object {
                 "display": "inline-block",
@@ -80,14 +80,14 @@ exports[`AssigneeSelector snapshot 1`] = `
         </div>
       </div>
       <div
-        className=" css-1g48xl4-IndicatorsContainer"
+        className="App-select__indicators css-1g48xl4-IndicatorsContainer"
       >
         <span
-          className=" css-1okebmr-indicatorSeparator"
+          className="App-select__indicator-separator css-1okebmr-indicatorSeparator"
         />
         <div
           aria-hidden="true"
-          className=" css-tlfecz-indicatorContainer"
+          className="App-select__indicator App-select__dropdown-indicator css-tlfecz-indicatorContainer"
           onMouseDown={[Function]}
           onTouchEnd={[Function]}
         >

@@ -12,8 +12,8 @@ import {
 
 import { uploadProjectCoverRequest } from '../../../../actions/project/project.action';
 import { ImageUploader } from '../../../../components/ImageUploader/ImageUploader';
-import { FormField } from '../../../../components/widget/FormField/FormField';
-import Input from '../../../../components/widget/Input/Input';
+import { FormField } from '../../../../widget/FormField/FormField';
+import Input from '../../../../widget/Input/Input';
 import { ProjectRecord } from '../../../../typings/project.typing';
 import { generateProjectCoverUrl } from '../../util/project-cover.util';
 import { KanbanSettingPanel } from './KanbanSettingPanel/KanbanSettingPanel';

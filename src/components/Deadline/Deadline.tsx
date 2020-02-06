@@ -1,6 +1,6 @@
 import React from 'react';
-import { AppIcon } from '../widget/Icon';
-import { Checkbox } from '../widget/CheckBox/CheckBox';
+import { AppIcon } from '../../widget/Icon';
+import { Checkbox } from '../../widget/CheckBox/CheckBox';
 import moment from 'moment';
 
 import './Deadline.scss';

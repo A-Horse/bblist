@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { ModalHeader } from '../widget/ModalHeader/ModalHeader';
-import { AppModal } from '../widget/AppModal';
-import { AppDateTimePicker } from '../widget/Datepicker/Datepicker';
+import { ModalHeader } from '../../widget/ModalHeader/ModalHeader';
+import { AppModal } from '../../widget/AppModal';
+import { AppDateTimePicker } from '../../widget/Datepicker/Datepicker';
 
 import './DateTimeSeletDialog.scss';
-import { ConfirmButtonGroup } from '../widget/ButtonGroup/ConfirmGroup/ConfirmGroup';
+import { ConfirmButtonGroup } from '../../widget/ButtonGroup/ConfirmGroup/ConfirmGroup';
 
 interface InputProps {
   onConfirm: Function;

@@ -11,9 +11,9 @@ import {
   Dispatch
 } from 'redux';
 
-import { AppButton } from '../../../../../components/widget/Button';
-import { AppIcon } from '../../../../../components/widget/Icon';
-import { SectionField } from '../../../../../components/widget/SectionField/SectionField';
+import { AppButton } from '../../../../../widget/Button';
+import { AppIcon } from '../../../../../widget/Icon';
+import { SectionField } from '../../../../../widget/SectionField/SectionField';
 import { RootState } from '../../../../../reducers';
 import { KanbanRecord } from '../../../../../typings/kanban.typing';
 import { ProjectRecord } from '../../../../../typings/project.typing';

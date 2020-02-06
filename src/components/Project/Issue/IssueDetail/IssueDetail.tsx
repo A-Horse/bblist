@@ -18,13 +18,16 @@ import {
 } from '../../../../actions/project/project-issue-detail.action';
 import { RootState } from '../../../../reducers';
 import { ProjectIssueRecord } from '../../../../typings/project-issue.typing';
-import { FormField } from '../../../widget/FormField/FormField';
-import Input from '../../../widget/Input/Input';
-import { AppTextArea } from '../../../widget/TextArea/TextArea';
+import { FormField } from '../../../../widget/FormField/FormField';
+import Input from '../../../../widget/Input/Input';
+import { AppTextArea } from '../../../../widget/TextArea/TextArea';
 import { IssueDetailBread } from './IssueDetailBread/IssueDetailBread';
 import { IssueDetailRight } from './IssueDetailRight/IssueDetailRight';
 import { Deadline } from '../../../Deadline/Deadline';
 import { IssueDetailState } from './issue-detail-state';
+import { DetailSection } from './DetailSection/DetailSection';
+import { faCreditCard } from '@fortawesome/free-regular-svg-icons';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 export interface InputProps {
   issueID: string;
@@ -75,45 +78,51 @@ export class IssueDetailComponent extends Component<
     }
     return (
       <div className="IssueDetail">
-        <FormField>
-          <Input
-            className="IssueDetail--title"
-            size="large"
-            value={issue.get('title')}
-            onChange={this.detailState.onFieldChange('title')}
-            onBlur={this.detailState.onFieldBlur('title')}
-          />
-        </FormField>
+        <DetailSection icon={faCreditCard}>
+          <FormField className="IssueDetail--title-field">
+            <Input
+              className="IssueDetail--title"
+              size="large"
+              value={issue.get('title')}
+              onChange={this.detailState.onFieldChange('title')}
+              onBlur={this.detailState.onFieldBlur('title')}
+            />
+          </FormField>
+        </DetailSection>
 
         <div className="IssueDetail--content">
           <div className="IssueDetail--left">
-            {issue.get('deadline') && (
-              <FormField name="到期日">
-                <Deadline
-                  deadline={issue.get('deadline')!}
-                  done={!!issue.get('deadlineDone')}
-                  onChange={checked =>
-                    this.detailState.updateIssue(
-                      {
-                        deadlineDone: checked
-                      },
-                      {
-                        force: true
-                      }
-                    )
-                  }
+            <DetailSection>
+              {issue.get('deadline') && (
+                <FormField name="到期日">
+                  <Deadline
+                    deadline={issue.get('deadline')!}
+                    done={!!issue.get('deadlineDone')}
+                    onChange={checked =>
+                      this.detailState.updateIssue(
+                        {
+                          deadlineDone: checked
+                        },
+                        {
+                          force: true
+                        }
+                      )
+                    }
+                  />
+                </FormField>
+              )}
+            </DetailSection>
+
+            <DetailSection icon={faBars}>
+              <FormField name="描述：" type="major">
+                <AppTextArea
+                  className="IssueDetail--content-textarea"
+                  value={issue.get('content') || ''}
+                  onChange={this.detailState.onFieldChange('content')}
+                  onBlur={this.detailState.onFieldBlur('content')}
                 />
               </FormField>
-            )}
-
-            <FormField name="描述：">
-              <AppTextArea
-                className="IssueDetail--content-textarea"
-                value={issue.get('content') || ''}
-                onChange={this.detailState.onFieldChange('content')}
-                onBlur={this.detailState.onFieldBlur('content')}
-              />
-            </FormField>
+            </DetailSection>
           </div>
 
           <IssueDetailRight

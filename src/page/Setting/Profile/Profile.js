@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Input from '../../../components/widget/Input/Input';
+import Input from '../../../widget/Input/Input';
 import PropTypes from 'prop-types';
 
 import '../../../style/page/setting/profile.scss';

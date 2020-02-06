@@ -10,11 +10,11 @@ import { Storage, storageImage } from '../../services/storage';
 import { NavAddOperation } from './NavAddOperation/NavAddOperation';
 import { Logo } from '../../components/Logo/Logo';
 import { TextLogo } from '../../components/TextLogo';
-import { AppDropDown } from '../../components/widget/DropDown/AppDropDown';
+import { AppDropDown } from '../../widget/DropDown/AppDropDown';
 import { UserAvatar } from '../../components/UserAvatar/UserAvatar';
-import { AppMenu, AppMenuItem } from '../../components/widget/Menu/Menu';
-import { AppButton } from '../../components/widget/Button';
-import { AppLink } from '../../components/widget/Link/AppLink';
+import { AppMenu, AppMenuItem } from '../../widget/Menu/Menu';
+import { AppButton } from '../../widget/Button';
+import { AppLink } from '../../widget/Link/AppLink';
 
 class Nav extends Component<any> {
   state = {};

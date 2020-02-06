@@ -1,6 +1,14 @@
 .FormField {
   margin-bottom: 12px;
 
+  &.major {
+    padding-top: 6px;
+    .FormField--name {
+      font-size: 17px;
+      font-weight: bold;
+    }
+  }
+
   &--name {
     font-size: 12px;
     padding-left: 2px;

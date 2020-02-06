@@ -2,7 +2,7 @@ import { Button, Form, Icon, Input } from 'antd';
 import { WrappedFormUtils } from 'antd/lib/form/Form';
 import React, { Component, FormEvent } from 'react';
 
-import { AppButton } from '../../components/widget/Button';
+import { AppButton } from '../../widget/Button';
 
 interface Props {
   form: WrappedFormUtils;

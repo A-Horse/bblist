@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { AppSelect } from '../widget/AppSelect';
+import { AppSelect } from '../../widget/AppSelect';
 import { UserAvatar } from '../UserAvatar/UserAvatar';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllUsersRequest } from '../../actions/user/user.action';

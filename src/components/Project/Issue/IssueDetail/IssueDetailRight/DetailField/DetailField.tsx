@@ -2,7 +2,7 @@ import React from 'react';
 
 import './DetailField.scss';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
-import { AppIcon } from '../../../../../widget/Icon';
+import { AppIcon } from '../../../../../../widget/Icon';
 
 interface InputProps {
   active?: boolean;

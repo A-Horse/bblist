@@ -1,9 +1,9 @@
 import React, { useState, KeyboardEvent, KeyboardEventHandler } from 'react';
 import './ColumnIssueCreator.scss';
-import { AppIcon } from '../../../../../../../components/widget/Icon';
+import { AppIcon } from '../../../../../../../widget/Icon';
 import { faPlusCircle, faTimes } from '@fortawesome/free-solid-svg-icons';
-import { AppTextArea } from '../../../../../../../components/widget/TextArea/TextArea';
-import { AppButton } from '../../../../../../../components/widget/Button';
+import { AppTextArea } from '../../../../../../../widget/TextArea/TextArea';
+import { AppButton } from '../../../../../../../widget/Button';
 import { useDispatch } from 'react-redux';
 import { createProjectCardRequest } from '../../../../../../../actions/project/project-issue.action';
 import { useToasts } from 'react-toast-notifications';

@@ -10,7 +10,7 @@ exports[`BorderLessSelector 1`] = `
   }
 >
   <div
-    className=" css-2b097c-container"
+    className="AppSelect css-2b097c-container"
     onKeyDown={[Function]}
   >
     <div
@@ -24,10 +24,10 @@ exports[`BorderLessSelector 1`] = `
       }
     >
       <div
-        className=" css-1hwfws3"
+        className="App-select__value-container css-1hwfws3"
       >
         <div
-          className=" css-1wa3eu0-placeholder"
+          className="App-select__placeholder css-1wa3eu0-placeholder"
         >
           Select...
         </div>
@@ -35,7 +35,7 @@ exports[`BorderLessSelector 1`] = `
           className="css-w8afj7-Input"
         >
           <div
-            className=""
+            className="App-select__input"
             style={
               Object {
                 "display": "inline-block",
@@ -90,10 +90,10 @@ exports[`BorderLessSelector 1`] = `
         </div>
       </div>
       <div
-        className=" css-9y64sj-IndicatorsContainer"
+        className="App-select__indicators css-9y64sj-IndicatorsContainer"
       >
         <span
-          className=" css-1okebmr-indicatorSeparator"
+          className="App-select__indicator-separator css-1okebmr-indicatorSeparator"
         />
       </div>
     </div>

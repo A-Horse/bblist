@@ -8,9 +8,10 @@
   cursor: pointer;
   background-color: #f8f8f8;
   color: #666;
+  font-size: 14px;
 
   &.active {
-    background-color: #e8e8e8;
+    background-color: #6094ff24;
   }
 
   svg {

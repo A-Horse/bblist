@@ -3,13 +3,13 @@ import './ProjectSideBar.scss';
 import React, { Component } from 'react';
 import { match } from 'react-router';
 
-import { Side } from '../../../../components/widget/Side/Side';
-import { SideItemLink } from '../../../../components/widget/Side/SideItemLink';
+import { Side } from '../../../../widget/Side/Side';
+import { SideItemLink } from '../../../../widget/Side/SideItemLink';
 import { ProjectInfoSection } from './ProjectInfoSection/ProjectInfoSection';
-import { AppIcon } from '../../../../components/widget/Icon';
+import { AppIcon } from '../../../../widget/Icon';
 import { faCog } from '@fortawesome/free-solid-svg-icons';
 import { faCaretSquareLeft } from '@fortawesome/free-regular-svg-icons';
-import { AppButton } from '../../../../components/widget/Button';
+import { AppButton } from '../../../../widget/Button';
 
 const localStorageShrinkToggleName = 'project-side-shrink';
 

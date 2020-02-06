@@ -5,9 +5,9 @@ import React, { Component } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 
 import { TaskCreator } from '../../../components/creators/TaskCreator/TaskCreator';
-import { AppDropdown } from '../../../components/widget/Dropdown';
-import { AppIcon } from '../../../components/widget/Icon';
-import { AppMenu, AppMenuItem } from '../../../components/widget/Menu/Menu';
+import { AppDropdown } from '../../../widget/Dropdown';
+import { AppIcon } from '../../../widget/Icon';
+import { AppMenu, AppMenuItem } from '../../../widget/Menu/Menu';
 import { ProjectCreator } from '../../Project/ProjectCreator/ProjectCreator';
 
 export class NavAddOperation extends Component<any> {

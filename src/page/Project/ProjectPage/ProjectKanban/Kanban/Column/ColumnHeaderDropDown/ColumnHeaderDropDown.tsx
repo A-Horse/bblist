@@ -1,14 +1,14 @@
 import React from 'react';
 
-import { AppDropDown } from '../../../../../../../components/widget/DropDown/AppDropDown';
-import { AppIcon } from '../../../../../../../components/widget/Icon';
-import { AppButton } from '../../../../../../../components/widget/Button';
+import { AppDropDown } from '../../../../../../../widget/DropDown/AppDropDown';
+import { AppIcon } from '../../../../../../../widget/Icon';
+import { AppButton } from '../../../../../../../widget/Button';
 
 import './ColumnHeaderDropDown.scss';
 import {
   AppMenu,
   AppMenuItem
-} from '../../../../../../../components/widget/Menu/Menu';
+} from '../../../../../../../widget/Menu/Menu';
 
 interface InputProps {
   columnId: string;

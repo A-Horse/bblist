@@ -2,7 +2,7 @@ import './IssueCreatorModal.scss';
 
 import React, { Component } from 'react';
 
-import { AppIcon } from '../../../components/widget/Icon';
+import { AppIcon } from '../../../widget/Icon';
 import { IssueCreatorModal } from './IssueCreatorModal';
 
 export class TaskCreator extends Component<{}, any> {

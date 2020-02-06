@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppIcon } from '../../widget/Icon';
+import { AppIcon } from '../../../widget/Icon';
 
 import './IssueType.scss';
 

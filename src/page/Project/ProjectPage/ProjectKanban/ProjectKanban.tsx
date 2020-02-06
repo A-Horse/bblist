@@ -87,7 +87,7 @@ export class ProjectKanbanComponent extends Component<
       return (
         <>
           <KanbanHeaderBar
-            projectId={this.props.project!.get('id')}
+            projectID={this.props.project!.get('id')}
             selectedKanbanId={selectedKanbanId}
             onChange={this.onKanbanSelectChanged}
           />

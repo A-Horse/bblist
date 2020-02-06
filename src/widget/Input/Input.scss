@@ -1,15 +1,21 @@
+@import "../../style/app_variable";
+
 .app-input {
   outline: none;
   border: 0;
   width: 100%;
-  box-sizing: border-box;
   padding: 4px 8px;
   border-radius: 6px;
   overflow: hidden;
+  border: 2px solid transparent;
 
   &:focus,
   &:hover {
     background-color: #f8f8f8;
+  }
+
+  &:focus {
+    border: 2px solid $color-primary;
   }
 
   &.large {
