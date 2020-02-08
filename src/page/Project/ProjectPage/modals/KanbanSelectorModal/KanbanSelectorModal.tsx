@@ -7,11 +7,12 @@ import {
   bindActionCreators,
   Dispatch
 } from 'redux';
-
 import { AppModal } from '../../../../../widget/Modal/AppModal';
 import { RootState } from '../../../../../reducers';
 import { getKanbans } from '../../../../../reducers/selector/kanban.selector';
 import { KanbanRecord } from '../../../../../typings/kanban.typing';
+
+import './KanbanSelectorModal.scss';
 
 interface InputProps {
   toggle: boolean;

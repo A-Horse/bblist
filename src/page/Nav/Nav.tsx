@@ -1,11 +1,7 @@
 import './Nav.scss';
 
-import { Dropdown, Menu } from 'antd';
 import React, { Component } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-
-import { LogoBan } from '../../components/LogoBan/LogoBan';
-import { makeGravatarUrl } from '../../services/gravatar';
 import { Storage, storageImage } from '../../services/storage';
 import { NavAddOperation } from './NavAddOperation/NavAddOperation';
 import { Logo } from '../../components/Logo/Logo';

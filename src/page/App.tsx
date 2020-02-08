@@ -1,6 +1,5 @@
 import './App.scss';
 
-import { Layout } from 'antd';
 import React, { Component, Suspense } from 'react';
 import { Redirect, Route, Switch } from 'react-router';
 

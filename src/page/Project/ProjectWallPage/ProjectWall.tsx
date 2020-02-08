@@ -1,63 +1,40 @@
 import './ProjectWall.scss';
 
-import { Layout } from 'antd';
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-
-import { DEFAULT_BOARD_COVER_SRC } from '../../../constants';
 import { ProjectRecord } from '../../../typings/project.typing';
-import { generateProjectCoverUrl } from '../util/project-cover.util';
-import { BoardWallAside } from './BoardWallAside/BoardWallAside';
-
-const { Content } = Layout;
+import { BoardWallAside } from './ProjectWallAside/ProjectWallAside';
+import { ProjectOverItem } from './ProjectCoverItem/ProjectOverItem';
+import { match } from 'react-router';
 
 interface Props {
   actions: any;
   boardMap: any;
+  match: match<any>;
   projects: ProjectRecord[];
 }
 
-export class ProjectWall extends Component<Props> {
+export class ProjectWallPage extends Component<Props> {
   componentWillMount() {
     return this.props.actions.getProjectsRequest();
   }
 
   render() {
     return (
-      <Content className="board-wall-page-content">
-        <div className="board-wall-page-content--inner-container">
-          <div className="board-wall-page-content--inner-content">
-            <BoardWallAside />
+      <div className="ProjectWallPage">
+        <BoardWallAside match={this.props.match} />
 
-            <div className="taskboard-boards">
-              <div className="board-group">
-                <div className="board-card-container">
-                  {this.props.projects.map((project: ProjectRecord) => {
-                    return (
-                      <Link
-                        className="taskboard-card"
-                        style={{
-                          backgroundImage: `url(${generateProjectCoverUrl(
-                            project.get('setting').get('coverFileName')
-                          )})`
-                        }}
-                        key={project.get('id')}
-                        to={`/project/${project.get('id')}`}
-                      >
-                        <div className="taskboard-card-info">
-                          <div className="taskboard-card-info--name">
-                            {project.get('name')}
-                          </div>
-                        </div>
-                      </Link>
-                    );
-                  })}
-                </div>
-              </div>
+        <div className="ProjectWallPage--project-container">
+          <div className="board-group">
+            <div className="board-card-container">
+              {this.props.projects.map((project: ProjectRecord) => {
+                return (
+                  <ProjectOverItem key={project.get('id')} project={project} />
+                );
+              })}
             </div>
           </div>
         </div>
-      </Content>
+      </div>
     );
   }
 }

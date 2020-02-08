@@ -6,13 +6,15 @@ import { AppIcon } from '../Icon';
 
 export class SideItem extends Component<{
   icon?: IconProp;
-  name: string;
+  children;
 }> {
   render() {
     return (
-      <div style={{}}>
-        {this.props.icon ? <AppIcon icon={this.props.icon} /> : null}
-        <span>{this.props.name}</span>
+      <div className="SideItem">
+        {this.props.icon ? (
+          <AppIcon className="SideItem--icon" icon={this.props.icon} />
+        ) : null}
+        <span>{this.props.children}</span>
       </div>
     );
   }

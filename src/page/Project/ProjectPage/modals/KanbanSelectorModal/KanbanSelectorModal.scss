@@ -1,0 +1,18 @@
+.KanbanSelectorModal {
+  width: 300px;
+  height: 230px;
+
+  ul {
+    list-style: none;
+    padding: 0;
+    padding: 0 12px;
+
+    li {
+      cursor: pointer;
+      border-radius: 3px;
+      padding: 6px 12px;
+      background-color: #e8e8e8;
+      color: #333;
+    }
+  }
+}

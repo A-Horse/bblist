@@ -1,9 +1,8 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { AnyAction, bindActionCreators, Dispatch } from 'redux';
-
 import { getProjectsRequest } from '../../../actions/project/project.action';
-import { ProjectWall } from './ProjectWall';
+import { ProjectWallPage } from './ProjectWall';
 
 const mapStateToProps = (state: any) => {
   return {
@@ -26,7 +25,7 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
 };
 
 const ProjectWallContainer = withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(ProjectWall) as any
+  connect(mapStateToProps, mapDispatchToProps)(ProjectWallPage) as any
 );
 
 export default ProjectWallContainer;

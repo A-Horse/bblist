@@ -51,7 +51,11 @@ class ProjectSettingComponent extends Component<
           if (!error) {
             return;
           }
-          this.props.toastManager.add('上传失败', {
+          let errorDetail = '';
+          if (error.response!.status === 413) {
+            errorDetail = '，不能超过2M';
+          }
+          this.props.toastManager.add(`上传失败${errorDetail}`, {
             appearance: 'error',
             autoDismiss: true
           });

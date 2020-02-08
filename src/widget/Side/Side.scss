@@ -1,3 +1,22 @@
+.SideItem {
+  font-size: 16px;
+  color: #42526e;
+  cursor: pointer;
+  padding: 9px 10px 6px 8px;
+
+  &--icon {
+    width: 28px !important;
+    margin-right: 2px;
+    margin-left: -6px;
+  }
+
+  span {
+    padding: 9px 10px 6px 8px;
+    color: #42526e;
+    font-size: 15px;
+  }
+}
+
 .SideItemLink {
   font-size: 16px;
   color: #42526e;

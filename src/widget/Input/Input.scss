@@ -16,7 +16,7 @@
   }
 
   &:focus {
-    border: 2px solid $color-primary !important;
+    box-shadow: inset 0 0 0 2px $color-primary !important;
   }
 
   &.large {
@@ -24,7 +24,7 @@
   }
 
   &.border-less {
-    border: 2px solid transparent;
+    border: 1px solid transparent;
   }
 
   &.white-hover:hover,

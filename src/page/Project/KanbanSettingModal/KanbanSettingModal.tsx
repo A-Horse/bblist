@@ -60,25 +60,24 @@ class KanbanSettingModalComponent extends Component<
     });
   };
 
-  renderContent() {
-    if (!this.props.kanban) {
-      return <div>loading</div>;
-    }
-    return (
-      <div>
-        {this.props.kanban!.get('name')}
-
-        <KanbanColumnPanel columns={this.props.columns} />
-
-        <KanbanColumnCreator createKanbanColumn={this.createKanbanColumn} />
-      </div>
-    );
-  }
-
   render() {
     return (
-      <AppModal isOpen={this.props.toggle} onRequestClose={this.closeModal}>
-        {this.renderContent()}
+      <AppModal
+        className="KanbanSettingModal"
+        isOpen={this.props.toggle}
+        onRequestClose={this.closeModal}
+      >
+        {!this.props.kanban ? (
+          <div>loading</div>
+        ) : (
+          <div>
+            {this.props.kanban!.get('name')}
+
+            <KanbanColumnPanel columns={this.props.columns} />
+
+            <KanbanColumnCreator createKanbanColumn={this.createKanbanColumn} />
+          </div>
+        )}
       </AppModal>
     );
   }

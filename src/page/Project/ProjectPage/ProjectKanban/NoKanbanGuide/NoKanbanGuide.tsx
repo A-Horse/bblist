@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { AppButton } from '../../../../../widget/Button';
 import { ProjectRecord } from '../../../../../typings/project.typing';
-import { KanbanCreator } from '../../../KanbanCreator/KanbanCreator';
+import { KanbanCreator } from '../../../KanbanCreator/KanbanCreatorModal';
 
 interface Props {
   project: ProjectRecord;

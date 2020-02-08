@@ -1,4 +1,4 @@
-import './KanbanCreator.scss';
+import './KanbanCreatorModal.scss';
 
 import { Form, Input, Modal } from 'antd';
 import { FormComponentProps } from 'antd/lib/form';
@@ -10,7 +10,6 @@ import {
   bindActionCreators,
   Dispatch
 } from 'redux';
-
 import { createKanbanRequest } from '../../../actions/project/kanban.action';
 import { AppButton } from '../../../widget/Button';
 import { CreateKanbanInput } from '../../../typings/kanban.typing';

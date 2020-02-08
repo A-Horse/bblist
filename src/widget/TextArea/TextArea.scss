@@ -9,7 +9,8 @@
   overflow: hidden;
   resize: none;
   outline: none;
-  border: 2px solid transparent;
+  border: 1px solid transparent;
+  position: relative;
 
   &.border {
     background-color: white;
@@ -17,6 +18,6 @@
   }
 
   &:focus {
-    border: 2px solid $color-primary;
+    box-shadow: inset 0 0 0 2px $color-primary;
   }
 }

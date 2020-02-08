@@ -10,7 +10,6 @@ import {
   bindActionCreators,
   Dispatch
 } from 'redux';
-
 import { AppButton } from '../../../../../widget/Button';
 import { AppIcon } from '../../../../../widget/Icon';
 import { SectionField } from '../../../../../widget/SectionField/SectionField';
