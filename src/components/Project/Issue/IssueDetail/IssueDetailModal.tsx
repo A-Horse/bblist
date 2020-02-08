@@ -3,8 +3,8 @@ import './IssueDetailModal.scss';
 import React, { Component } from 'react';
 import { RouteComponentProps, withRouter } from 'react-router';
 
-import { AppModal } from '../../../../widget/AppModal';
-import { ModalHeader } from '../../../../widget/ModalHeader/ModalHeader';
+import { AppModal } from '../../../../widget/Modal/AppModal';
+import { ModalHeader } from '../../../../widget/Modal/ModalHeader/ModalHeader';
 import { IssueDetail } from './IssueDetail';
 import { IssueDetailBread } from './IssueDetailBread/IssueDetailBread';
 

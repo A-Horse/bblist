@@ -2,8 +2,8 @@ export function imageCrop(src, width, height, startX, startY) {
   return new Promise(resolve => {
     const img = new Image();
     img.onload = () => {
-      const cropedimageDataUrl = getImagePortion(img, width, height, startX, startY, 1);
-      resolve(cropedimageDataUrl);
+      const cropedImageDataUrl = getImagePortion(img, width, height, startX, startY, 1);
+      resolve(cropedImageDataUrl);
     };
     img.src = src;
   });

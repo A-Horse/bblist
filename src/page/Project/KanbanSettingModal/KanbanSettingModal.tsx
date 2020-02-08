@@ -16,7 +16,7 @@ import {
   createKanbanRequest,
   getProjectKanbanDetailRequest
 } from '../../../actions/project/kanban.action';
-import { AppModal } from '../../../widget/AppModal';
+import { AppModal } from '../../../widget/Modal/AppModal';
 import { RootState } from '../../../reducers';
 import { selectKanbanColumns } from '../../../reducers/selector/kanban.selector';
 import { KanbanColumnRecord } from '../../../typings/kanban-column.typing';

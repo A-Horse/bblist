@@ -8,9 +8,11 @@ export class AppTextArea extends Component<{
   onChange?: (value: string) => void;
   onBlur?: (value: string) => void;
   className?: string;
+  border?: boolean;
   required?: boolean;
   name?: string;
   placeholder?: string;
+  rows?: number;
   type?: string;
   onKeyDown?: KeyboardEventHandler;
 }> {
@@ -23,12 +25,13 @@ export class AppTextArea extends Component<{
   };
 
   buildClassName() {
-    return `AppTextArea ${this.props.className || ''}`;
+    return `AppTextArea ${this.props.className || ''}${this.props.border ? ' border' : ''}`;
   }
 
   render() {
     return (
       <textarea
+        rows={this.props.rows || 3}
         onKeyDown={this.props.onKeyDown}
         onBlur={this.onBlur}
         value={this.props.value}

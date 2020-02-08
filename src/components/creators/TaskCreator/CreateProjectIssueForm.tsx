@@ -5,36 +5,38 @@ import {
   Formik,
   FormikActions,
   FormikProps,
-  FormikValues
+  FormikValues,
+  ErrorMessage
 } from 'formik';
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { createProjectCardRequest } from '../../../actions/project/project-issue.action';
-import { KanbanRecord } from '../../../typings/kanban.typing';
+import React, { Component, RefObject } from 'react';
 import { SelectOption } from '../../../typings/select.typing';
 import { ColumnSelect } from '../../Project/ColumnSelect/ColumnSelect';
 import { KanbanSelect } from '../../Project/KanbanSelect/KanbanSelect';
-import { AppButton } from '../../../widget/Button';
 import { FormField } from '../../../widget/FormField/FormField';
 import Input from '../../../widget/Input/Input';
+import * as Yup from 'yup';
 import { Divider } from '../../../widget/Divider';
-
 import './CreateProjectIssueForm.scss';
+import { AppTextArea } from '../../../widget/TextArea/TextArea';
+
+const FormSchema = Yup.object().shape({
+  title: Yup.string().required('标题为必填项')
+});
 
 interface FormValues {
   title: string;
-  kanbanID: string | null;
-  columnID: string | null;
+  content?: string;
+  kanbanID?: string;
+  columnID?: string;
 }
 
-class CreateProjectIssueFormComponent extends Component<
+export class CreateProjectIssueForm extends Component<
   {
     projectID: string;
-    actions: any;
     style?: any;
     onCancel?: () => void;
-    kanban?: KanbanRecord;
+    kanbanID?: string;
+    createProjectCard: Function;
   },
   {
     name: any;
@@ -46,19 +48,33 @@ class CreateProjectIssueFormComponent extends Component<
     name: ''
   };
 
-  createProjectCard(values: any) {
-    this.props.actions.createProjectCardRequest({
-      projectID: this.props.projectID,
-      ...values
-    });
+  private formRef: RefObject<any>;
+
+  constructor(props) {
+    super(props);
+    this.formRef = React.createRef();
+  }
+
+  public submitForm() {
+    // if (!this.formRef.current!.touched) {
+    //   return;
+    // }
+    this.formRef.current!.submitForm();
   }
 
   render() {
     return (
       <Formik
-        initialValues={{ title: '', kanbanID: null, columnID: null }}
+        ref={this.formRef}
+        validationSchema={FormSchema}
+        initialValues={{
+          title: '',
+          content: undefined,
+          kanbanID: undefined,
+          columnID: undefined
+        }}
         onSubmit={(values: FormValues, actions: FormikActions<FormValues>) => {
-          this.createProjectCard(values);
+          this.props.createProjectCard(values);
           actions.setSubmitting(false);
         }}
         render={(formikBag: FormikProps<FormValues>) => {
@@ -71,6 +87,7 @@ class CreateProjectIssueFormComponent extends Component<
                     <FormField name="所在看板">
                       <KanbanSelect
                         projectId={this.props.projectID}
+                        selectedKanbanId={this.props.kanbanID}
                         onChange={(selected: SelectOption) => {
                           formikBag.setFieldValue('kanbanID', selected.value);
                         }}
@@ -104,29 +121,41 @@ class CreateProjectIssueFormComponent extends Component<
               <div className="CreateProjectIssueForm--section">
                 <Field
                   name="title"
+                  required
                   render={({ field, form }: FieldProps<FormikValues>) => (
-                    <FormField name="问题标题">
+                    <FormField
+                      require={true}
+                      name="问题标题"
+                      errorMessage={<ErrorMessage name="title" />}
+                    >
                       <Input
                         type="text"
-                        size="large"
+                        size="middle"
                         value={form.values.title}
-                        placeholder="标题"
+                        placeholder=""
                         onChange={value => {
                           formikBag.setFieldValue('title', value);
                         }}
                       />
-                      {form.touched.name &&
-                        form.errors.name &&
-                        form.errors.name}
                     </FormField>
                   )}
                 />
 
-                <AppButton type="primary" htmlType="submit">
-                  新建
-                </AppButton>
-
-              
+                <Field
+                  name="content"
+                  render={({ field, form }: FieldProps<FormikValues>) => (
+                    <FormField name="描述">
+                      <AppTextArea
+                        border={true}
+                        value={form.values.content}
+                        placeholder=""
+                        onChange={value => {
+                          formikBag.setFieldValue('content', value);
+                        }}
+                      />
+                    </FormField>
+                  )}
+                />
               </div>
             </Form>
           );
@@ -135,23 +164,3 @@ class CreateProjectIssueFormComponent extends Component<
     );
   }
 }
-
-const mapStateToProps = (state: any) => {
-  return {};
-};
-
-const mapDispatchToProps = (dispatch: any) => {
-  return {
-    actions: bindActionCreators(
-      {
-        createProjectCardRequest: createProjectCardRequest
-      },
-      dispatch
-    )
-  };
-};
-
-export const CreateProjectIssueForm = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(CreateProjectIssueFormComponent);

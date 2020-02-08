@@ -68,6 +68,7 @@ export function KanbanHeaderBar({
 
       <IssueCreatorModal
         projectID={projectID}
+        kanbanID={selectedKanbanId}
         modalVisible={issueCreatorToggle}
         closeModal={() => setIssueCreatorToggle(false)}
       />

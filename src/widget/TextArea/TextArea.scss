@@ -11,6 +11,11 @@
   outline: none;
   border: 2px solid transparent;
 
+  &.border {
+    background-color: white;
+    border: 1px solid #e8e8e8;
+  }
+
   &:focus {
     border: 2px solid $color-primary;
   }

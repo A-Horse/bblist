@@ -1,4 +1,17 @@
 .IssueCreatorModal {
   width: 520px;
-  top: 30% !important;
+  top: 45% !important;
+  max-height: 80%;
+  display: flex;
+  flex-direction: column;
+
+  .IssueCreatorModal--main {
+    overflow-y: auto;
+  }  
+
+  .ModalFooter {
+    flex: 0;
+    display: flex;
+    justify-content: flex-end;
+  }
 }

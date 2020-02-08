@@ -3,7 +3,6 @@
   width: 230px;
   margin: auto;
   background-color: white;
-  box-shadow: 0 0 5px #eee;
   position: absolute;
   left: 50%;
   top: 50%;
@@ -30,7 +29,7 @@
 }
 
 .DateTimeSelectDialog--overlay {
-  background-color: rgba(0, 0, 0, 0.45);
+  background-color: rgba(0, 0, 0, 0.25) !important;
   position: fixed;
   top: 0px;
   left: 0px;

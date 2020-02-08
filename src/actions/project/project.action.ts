@@ -89,23 +89,29 @@ export const UPLOAD_PROJECT_COVER_SUCCESS = 'UPLOAD_PROJECT_COVER_SUCCESS';
 export const UPLOAD_PROJECT_COVER_FAILURE = 'UPLOAD_PROJECT_COVER_FAILURE';
 
 export function uploadProjectCoverRequest(
-  uploadProjectCoverInput: UploadProjectCoverInput
+  uploadProjectCoverInput: UploadProjectCoverInput,
+  meta: { callback }
 ): FSAction {
   return {
     type: UPLOAD_PROJECT_COVER_REQUEST,
-    payload: uploadProjectCoverInput
+    payload: uploadProjectCoverInput,
+    meta
   };
 }
 
-export function uploadProjectCoverSuccess(): FSAction {
+export function uploadProjectCoverSuccess(projectID: string): FSAction {
   return {
-    type: UPLOAD_PROJECT_COVER_SUCCESS
+    type: UPLOAD_PROJECT_COVER_SUCCESS,
+    payload: {
+      projectID
+    }
   };
 }
 
-export function uploadProjectCoverFailure(): FSAction {
+export function uploadProjectCoverFailure(error): FSAction {
   return {
     type: UPLOAD_PROJECT_COVER_FAILURE,
+    payload: error,
     error: true
   };
 }

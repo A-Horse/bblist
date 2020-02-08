@@ -18,6 +18,8 @@ import { ProjectRecord } from '../../../../typings/project.typing';
 import { generateProjectCoverUrl } from '../../util/project-cover.util';
 import { KanbanSettingPanel } from './KanbanSettingPanel/KanbanSettingPanel';
 import { getProjectKanbansRequest } from '../../../../actions/project/kanban.action';
+import { withToastManager } from 'react-toast-notifications';
+import { AxiosError } from 'axios';
 
 interface Props {
   actions: ActionCreatorsMapObject;
@@ -25,7 +27,10 @@ interface Props {
 }
 
 class ProjectSettingComponent extends Component<
-  Props & RouteComponentProps<{ projectId: string }>,
+  Props &
+    RouteComponentProps<{ projectId: string }> & {
+      toastManager: any;
+    },
   {}
 > {
   componentDidMount() {
@@ -35,23 +40,38 @@ class ProjectSettingComponent extends Component<
   }
 
   onCoverUpload = (coverBase64: string) => {
-    this.props.actions.uploadProjectCoverRequest({
-      projectId: this.props.project.get('id'),
-      coverBase64
-    });
+    this.props.actions.uploadProjectCoverRequest(
+      {
+        projectId: this.props.project.get('id'),
+        coverBase64
+      },
+      {
+        callback: (error: AxiosError) => {
+          console.log('error', error);
+          if (!error) {
+            return;
+          }
+          this.props.toastManager.add('上传失败', {
+            appearance: 'error',
+            autoDismiss: true
+          });
+        }
+      }
+    );
   };
 
   render() {
     return (
       <div className="ProjectSetting">
-        <FormField name="项目封面" theme="dark">
+        <FormField name="项目封面">
           <ImageUploader
             style={{
-              width: '250px',
-              height: '125px',
+              width: '256px',
+              height: '144px',
               borderRadius: '6px',
               display: 'block'
             }}
+            modalTitle="裁剪项目封面"
             source={generateProjectCoverUrl(
               this.props.project.get('setting').get('coverFileName')
             )}
@@ -61,11 +81,10 @@ class ProjectSettingComponent extends Component<
           </ImageUploader>
         </FormField>
 
-        <FormField name="项目名称" theme="dark">
+        <FormField name="项目名称">
           <Input
             className="ProjectSetting--project-name-input"
             defaultValue={this.props.project.get('name')}
-            whiteHover={true}
           />
         </FormField>
 
@@ -96,5 +115,8 @@ const mapStateToProps = (state: any, props: any) => {
 };
 
 export const ProjectSetting = withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(ProjectSettingComponent)
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(withToastManager(ProjectSettingComponent))
 );

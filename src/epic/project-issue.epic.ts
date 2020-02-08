@@ -22,7 +22,7 @@ import {
   updateProjectIssueDetailSuccess
 } from '../actions/project/project-issue-detail.action';
 import {
-  CREATE_PROJECT_CARD_REQUEST,
+  CREATE_PROJECT_ISSUE_REQUEST,
   createProjectCardFailure,
   createProjectCardSuccess,
   RANK_PROJECT_CARD_IN_KANBAN_REQUEST,
@@ -36,12 +36,12 @@ import {
 } from '../typings/project-issue.typing';
 import { makeApiUrl } from '../utils/api';
 import { findIssuePositionInColumn } from '../reducers/selector/card.selector';
-import { CREATE_PROJECT_CARD_SUCCESS } from '../actions/project/project-issue.action';
+import { CREATE_PROJECT_ISSUE_SUCCESS } from '../actions/project/project-issue.action';
 import { getProjectIssueDetailRequest } from '../actions/project/project-issue-detail.action';
 
-export const CREATE_PROJECT_CARD_REQUEST_FN = (action$: Observable<FSAction>) =>
+export const CREATE_PROJECT_ISSUE_REQUEST_FN = (action$: Observable<FSAction>) =>
   action$.pipe(
-    ofType(CREATE_PROJECT_CARD_REQUEST),
+    ofType(CREATE_PROJECT_ISSUE_REQUEST),
     mergeMap((action: FSAction) => {
       return axios
         .post(
@@ -59,9 +59,9 @@ export const CREATE_PROJECT_CARD_REQUEST_FN = (action$: Observable<FSAction>) =>
     })
   );
 
-export const CREATE_PROJECT_CARD_SUCCESS_FN = (action$: Observable<FSAction>) =>
+export const CREATE_PROJECT_ISSUE_SUCCESS_FN = (action$: Observable<FSAction>) =>
   action$.pipe(
-    ofType(CREATE_PROJECT_CARD_SUCCESS),
+    ofType(CREATE_PROJECT_ISSUE_SUCCESS),
     map(action => getProjectIssueDetailRequest({ issueId: action.payload }))
   );
 

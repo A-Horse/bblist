@@ -5,7 +5,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 import { LogoBan } from '../../components/LogoBan/LogoBan';
-import { ErrorMsg } from '../../components/ErrorMsg/ErrorMsg';
 import { Input } from '../../widget/Input/Input';
 import { updateTitle } from '../../services/title';
 import { validateFormValue } from '../../services/validate-strategy';
@@ -87,7 +86,6 @@ class SignUp extends Component<any, any> {
             />
           </div>
 
-          <ErrorMsg messages={R.values(errorMessages)} />
 
           <AppButton className="signup-button" htmlType="submit">
             Sign Up

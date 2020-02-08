@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Input from '../../../widget/Input/Input';
 import PropTypes from 'prop-types';
 
-import '../../../style/page/setting/profile.scss';
 
 export default class Profile extends Component {
   static propTypes = {

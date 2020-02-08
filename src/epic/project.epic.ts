@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from 'axios';
 import { ofType } from 'redux-observable';
 import { Observable } from 'rxjs';
-import { mergeMap } from 'rxjs/operators';
+import { mergeMap, map } from 'rxjs/operators';
 
 import { FSAction } from '../actions/actions';
 import {
@@ -29,6 +29,10 @@ import {
   UploadProjectCoverInput
 } from '../typings/project.typing';
 import { makeApiUrl } from '../utils/api';
+import {
+  UPLOAD_PROJECT_COVER_SUCCESS,
+  getProjectDetailRequest
+} from '../actions/project/project.action';
 
 export const GET_PROJECTS_REQUEST_FN = (action$: Observable<FSAction>) =>
   action$.pipe(
@@ -102,7 +106,22 @@ export const UPLOAD_PROJECT_COVER_REQUEST_FN = (
           makeApiUrl(`/project/${uploadProjectCoverInput.projectId}/cover`),
           data
         )
-        .then(() => uploadProjectCoverSuccess())
-        .catch(uploadProjectCoverFailure);
+        .then(() => {
+          action.meta.callback && action.meta.callback();
+          uploadProjectCoverSuccess(uploadProjectCoverInput.projectId);
+          return;
+        })
+        .catch(error => {
+          action.meta.callback && action.meta.callback(error);
+          return uploadProjectCoverFailure(error);
+        });
     })
+  );
+
+export const UPLOAD_PROJECT_COVER_SUCCESS_FN = (
+  action$: Observable<FSAction>
+) =>
+  action$.pipe(
+    ofType(UPLOAD_PROJECT_COVER_SUCCESS),
+    map(action => getProjectDetailRequest(action.payload.projectID))
   );

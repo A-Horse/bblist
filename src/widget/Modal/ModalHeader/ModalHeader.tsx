@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
-import { AppButton } from '../Button';
-import { AppIcon } from '../Icon';
+import { AppButton } from '../../Button';
+import { AppIcon } from '../../Icon';
 
 import './ModalHeader.scss';
 

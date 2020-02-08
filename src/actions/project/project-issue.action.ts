@@ -89,16 +89,16 @@ export function getProjectIssuesFailure(error: any): FSAction {
   };
 }
 
-export const CREATE_PROJECT_CARD_REQUEST = 'CREATE_PROJECT_CARD_REQUEST';
-export const CREATE_PROJECT_CARD_SUCCESS = 'CREATE_PROJECT_CARD_SUCCESS';
-export const CREATE_PROJECT_CARD_FAILURE = 'CREATE_PROJECT_CARD_FAILURE';
+export const CREATE_PROJECT_ISSUE_REQUEST = 'CREATE_PROJECT_ISSUE_REQUEST';
+export const CREATE_PROJECT_ISSUE_SUCCESS = 'CREATE_PROJECT_ISSUE_SUCCESS';
+export const CREATE_PROJECT_ISSUE_FAILURE = 'CREATE_PROJECT_ISSUE_FAILURE';
 
 export function createProjectCardRequest(
   createKanbanCardInput: CreateProjectIssueInput,
   meta: { callback? } = {}
 ) {
   return {
-    type: CREATE_PROJECT_CARD_REQUEST,
+    type: CREATE_PROJECT_ISSUE_REQUEST,
     payload: createKanbanCardInput,
     meta
   };
@@ -106,14 +106,14 @@ export function createProjectCardRequest(
 
 export function createProjectCardSuccess(id: string): FSAction {
   return {
-    type: CREATE_PROJECT_CARD_SUCCESS,
+    type: CREATE_PROJECT_ISSUE_SUCCESS,
     payload: id
   };
 }
 
 export function createProjectCardFailure(error): FSAction {
   return {
-    type: CREATE_PROJECT_CARD_FAILURE,
+    type: CREATE_PROJECT_ISSUE_FAILURE,
     payload: error,
     error: true
   };

@@ -3,11 +3,15 @@ import { AppButton } from '../../Button';
 
 import './ConfirmButtonGroup.scss';
 
-export function ConfirmButtonGroup({ onConfirm, onCancel }) {
+export function ConfirmButtonGroup({
+  onConfirm,
+  onCancel,
+  confirmText = '确认'
+}) {
   return (
     <div className="ConfirmButtonGroup">
       <AppButton type="primary" onClick={onConfirm}>
-        确认
+        {confirmText}
       </AppButton>
       <AppButton type="dashed" onClick={onCancel}>
         取消

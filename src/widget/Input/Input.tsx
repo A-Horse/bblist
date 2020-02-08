@@ -8,11 +8,11 @@ export class Input extends Component<{
   onChange?: (value: any) => void;
   onBlur?: (value: any) => void;
   size?: 'middle' | 'large' | 'small';
-  whiteHover?: boolean;
   className?: string;
   required?: boolean;
   name?: string;
   placeholder?: string;
+  borderLess?: boolean;
   type?: string;
 }> {
   componentDidMount(): void {}
@@ -29,7 +29,7 @@ export class Input extends Component<{
     const { size = 'middle' } = this.props;
     return `app-input ${size}${
       this.props.className ? ' ' + this.props.className : ''
-    }${this.props.whiteHover ? 'white-hover' : ''}`;
+    }${this.props.borderLess ? ' border-less' : ''}`;
   }
 
   render() {

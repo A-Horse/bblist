@@ -83,6 +83,7 @@ export class IssueDetailComponent extends Component<
             <Input
               className="IssueDetail--title"
               size="large"
+              borderLess={true}
               value={issue.get('title')}
               onChange={this.detailState.onFieldChange('title')}
               onBlur={this.detailState.onFieldBlur('title')}
