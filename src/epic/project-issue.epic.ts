@@ -8,7 +8,6 @@ import {
   filter,
   mergeMap,
   take,
-  tap,
   map
 } from 'rxjs/operators';
 

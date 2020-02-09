@@ -1,13 +1,9 @@
 import './SignUp.scss';
-
-import * as R from 'ramda';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-
 import { LogoBan } from '../../components/LogoBan/LogoBan';
 import { Input } from '../../widget/Input/Input';
 import { updateTitle } from '../../services/title';
-import { validateFormValue } from '../../services/validate-strategy';
 import { AppButton } from '../../widget/Button';
 
 class SignUp extends Component<any, any> {
@@ -36,8 +32,6 @@ class SignUp extends Component<any, any> {
   }
 
   render() {
-    const errorMessages = this.state.errorMessage;
-
     return (
       <div className="signup-main">
         <LogoBan />
@@ -110,21 +104,6 @@ class SignUp extends Component<any, any> {
       email: this.state.email,
       password: this.state.password
     };
-
-    const errorMessages = validateFormValue(signUpData, {
-      name: [
-        'max@100#Name Up to 100 characters ',
-        'min@3#The name must be a minimum of three characters'
-      ],
-      password: [
-        'max@100#Password Up to 100 characters',
-        'min@6#password min 6'
-      ],
-      confirmPassword: [`eqTo@${signUpData.password}#password don't match`],
-      email: ['email#email express wrong', 'max@150#max 150']
-    });
-
-    this.setState({ errorMessages: errorMessages });
 
     this.props.actions.SIGNUP_REQUEST(signUpData);
   }

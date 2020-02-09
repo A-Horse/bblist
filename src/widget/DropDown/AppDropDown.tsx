@@ -1,8 +1,6 @@
 import React, {
   useEffect,
   useState,
-  useRef,
-  useContext,
   ReactNode
 } from 'react';
 import './AppDropDown.scss';

@@ -1,42 +1,38 @@
-import React, { Component, RefObject } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { CreateProjectIssueForm } from './CreateProjectIssueForm';
 import { AppModal } from '../../../widget/Modal/AppModal';
-
-import './IssueCreatorModal.scss';
+import { Formik, FormikHelpers, FormikProps } from 'formik';
 import { ModalHeader } from '../../../widget/Modal/ModalHeader/ModalHeader';
 import { ModalFooter } from '../../../widget/Modal/ModalFooter/ModalFooter';
 import { ConfirmButtonGroup } from '../../../widget/ButtonGroup/ConfirmGroup/ConfirmGroup';
 import { createProjectCardRequest } from '../../../actions/project/project-issue.action';
 
-class IssueCreatorModalComponent extends Component<
-  {
-    modalVisible: boolean;
-    actions: any;
-    closeModal: any;
-    projectID: string;
-    kanbanID?: string;
-  },
-  {}
-> {
-  state = {};
+import './IssueCreatorModal.scss';
 
-  private formRef: RefObject<any>;
+import * as Yup from 'yup';
 
-  constructor(props) {
-    super(props);
-    this.formRef = React.createRef();
-  }
+export interface FormValues {
+  title: string;
+  content?: string;
+  kanbanID?: string;
+  columnID?: string;
+}
 
-  handleMenuClick = (event: { key: string }): void => {
-    this.setState({
-      selectedType: event.key
-    });
-  };
+const FormSchema = Yup.object().shape({
+  title: Yup.string().required('标题为必填项')
+});
 
-  private createProjectCard = (values: any) => {
+class IssueCreatorModalComponent extends Component<{
+  modalVisible: boolean;
+  actions: any;
+  closeModal: any;
+  projectID: string;
+  kanbanID?: string;
+}> {
+  private createProjectCard = (values: FormValues) => {
     this.props.actions.createProjectCardRequest(
       {
         projectID: this.props.projectID,
@@ -58,24 +54,49 @@ class IssueCreatorModalComponent extends Component<
         isOpen={this.props.modalVisible}
       >
         <ModalHeader title="新建问题" onClose={this.props.closeModal} />
-        <div className="IssueCreatorModal--main">
-          <CreateProjectIssueForm
-            kanbanID={this.props.kanbanID}
-            ref={this.formRef}
-            createProjectCard={this.createProjectCard}
-            projectID={this.props.projectID}
-          />
-        </div>
-        <ModalFooter>
-          <ConfirmButtonGroup
-            onConfirm={() => {
-              this.formRef.current.submitForm();
-            }}
-            onCancel={() => {
-              this.props.closeModal();
-            }}
-          />
-        </ModalFooter>
+
+        <Formik
+          validationSchema={FormSchema}
+          initialValues={
+            {
+              title: '',
+              content: undefined,
+              kanbanID: this.props.kanbanID,
+              columnID: undefined
+            } as FormValues
+          }
+          onSubmit={(
+            values: FormValues,
+            actions: FormikHelpers<FormValues>
+          ) => {
+            this.createProjectCard(values);
+            actions.setSubmitting(false);
+          }}
+          render={(formikBag: FormikProps<FormValues>) => {
+            return (
+              <>
+                <div className="IssueCreatorModal--main">
+                  <CreateProjectIssueForm
+                    kanbanID={this.props.kanbanID}
+                    projectID={this.props.projectID}
+                    formikBag={formikBag}
+                  />
+                </div>
+                <ModalFooter>
+                  <ConfirmButtonGroup
+                    confirmButtonType="submit"
+                    onConfirm={() => {
+                      formikBag.submitForm();
+                    }}
+                    onCancel={() => {
+                      this.props.closeModal();
+                    }}
+                  />
+                </ModalFooter>
+              </>
+            );
+          }}
+        />
       </AppModal>
     );
   }

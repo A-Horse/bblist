@@ -1,0 +1,22 @@
+.ProjectCreatorModal {
+  width: 330px;
+  top: 45% !important;
+
+  .ProjectCreatorModal-form {
+    padding: 12px;
+  }
+
+  .FormField {
+    margin: 0;
+    padding: 12px 0;
+
+    .ErrorMsg {
+      display: none;
+    }
+  }
+
+  .ModalFooter {
+    display: flex;
+    justify-content: flex-end;
+  }
+}

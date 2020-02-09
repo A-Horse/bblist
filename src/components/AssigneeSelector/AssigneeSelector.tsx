@@ -39,7 +39,7 @@ export function AssigneeSelector(props: InputProps) {
 
   useEffect(() => {
     dispatch(getAllUsersRequest(props.projectID));
-  }, []);
+  }, [dispatch, props.projectID]);
 
   const selectedOption = userOptions.find(
     o => o.value === props.selectedUserId

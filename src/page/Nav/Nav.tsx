@@ -2,8 +2,7 @@ import './Nav.scss';
 
 import React, { Component } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { Storage, storageImage } from '../../services/storage';
-import { NavAddOperation } from './NavAddOperation/NavAddOperation';
+import { storageImage } from '../../services/storage';
 import { Logo } from '../../components/Logo/Logo';
 import { TextLogo } from '../../components/TextLogo';
 import { AppDropDown } from '../../widget/DropDown/AppDropDown';
@@ -30,7 +29,6 @@ class Nav extends Component<any> {
   render() {
     const userName = this.props.user.username;
     const { user } = this.props;
-    const avatarData = Storage.get('avator');
 
     return (
       <header className="AppNav">
@@ -47,8 +45,6 @@ class Nav extends Component<any> {
             <NavLink to="/schedule" activeClassName="active">
               日程
             </NavLink>
-
-            <NavAddOperation />
           </div>
         </div>
 

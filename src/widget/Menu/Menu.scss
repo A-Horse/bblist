@@ -3,11 +3,12 @@
 .AppMenu {
   list-style: none;
   margin: 0;
-  padding: 0;
+  padding: 8px 0;
 
   .AppMenuItem {
     padding: 8px;
     color: #555;
+    cursor: pointer;
 
     &:hover {
       color: white;

@@ -15,7 +15,6 @@ import {
   Dispatch
 } from 'redux';
 
-import { getProjectKanbansRequest } from '../../../../actions/project/kanban.action';
 import { setProjectDefaultKanbanRequest } from '../../../../actions/project/project-setting.action';
 import { RootState } from '../../../../reducers';
 import { ProjectRecord } from '../../../../typings/project.typing';
@@ -44,12 +43,6 @@ export class ProjectKanbanComponent extends Component<
     selectKanbanId: null
   };
 
-  componentDidMount() {
-    this.props.actions.getProjectKanbansRequest({
-      projectId: this.props.match.params.projectId
-    });
-  }
-
   onKanbanSelectChanged = (kanbanId: string): void => {
     this.props.history.push(
       `/project/${this.props.project!.get('id')}/kanban/${kanbanId}`
@@ -63,71 +56,68 @@ export class ProjectKanbanComponent extends Component<
     }
   };
 
-  renderKanbanArea() {
-    if (!this.props.project!.get('kanbans')!.length) {
-      return <NoKanbanGuide project={this.props.project!} />;
-    } else {
-      const selectedKanbanId: string =
-        this.state.selectKanbanId ||
-        this.props.project!.get('setting').get('defaultKanbanId');
-
-      if (
-        !!selectedKanbanId &&
-        selectedKanbanId !== this.props.match.params.kanbanId
-      ) {
-        return (
-          <Redirect
-            to={`/project/${this.props.project!.get(
-              'id'
-            )}/kanban/${selectedKanbanId}`}
-          />
-        );
-      }
-
-      return (
-        <>
-          <KanbanHeaderBar
-            projectID={this.props.project!.get('id')}
-            selectedKanbanId={selectedKanbanId}
-            onChange={this.onKanbanSelectChanged}
-          />
-
-          <Route
-            path="/project/:projectId/kanban/:kanbanId"
-            render={(props: RouteComponentProps<MatchParams>) => {
-              return (
-                <div className="ProjectKanban--kanban-container">
-                  <Kanban
-                    kanbanId={selectedKanbanId}
-                    projectId={this.props.project!.get('id')}
-                  />
-                </div>
-              );
-            }}
-          />
-        </>
-      );
-    }
-  }
-
   render() {
     if (!this.props.project) {
-      return null;
+      // TODO loading step1
+      return <div>loading</div>;
+    }
+
+    const selectedKanbanId: string =
+      this.state.selectKanbanId ||
+      this.props.project!.get('setting').get('defaultKanbanId');
+
+    if (
+      selectedKanbanId &&
+      selectedKanbanId !== this.props.match.params.kanbanId
+    ) {
+      return (
+        <Redirect
+          to={`/project/${this.props.project!.get(
+            'id'
+          )}/kanban/${selectedKanbanId}`}
+        />
+      );
     }
 
     if (!this.props.project.get('kanbans')) {
-      return null;
+      // TODO loading step2
+      return <div>loading</div>;
     }
 
-    return <div className="ProjectKanban">{this.renderKanbanArea()}</div>;
+    if (!this.props.project!.get('kanbans')!.length) {
+      return <NoKanbanGuide project={this.props.project!} />;
+    }
+
+    return (
+      <div className="ProjectKanban">
+        <KanbanHeaderBar
+          projectID={this.props.project!.get('id')}
+          selectedKanbanId={selectedKanbanId}
+          onChange={this.onKanbanSelectChanged}
+        />
+
+        <Route
+          path="/project/:projectId/kanban/:kanbanId"
+          render={(props: RouteComponentProps<MatchParams>) => {
+            return (
+              <div className="ProjectKanban--kanban-container">
+                <Kanban
+                  kanbanId={selectedKanbanId}
+                  projectId={this.props.project!.get('id')}
+                />
+              </div>
+            );
+          }}
+        />
+      </div>
+    );
   }
 }
 
-const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
+const mapDispatchToProps = (dispatch: Dispatch<AnyAction>, xx) => {
   return {
     actions: bindActionCreators(
       {
-        getProjectKanbansRequest: getProjectKanbansRequest,
         setProjectDefaultKanbanRequest: setProjectDefaultKanbanRequest
       },
       dispatch

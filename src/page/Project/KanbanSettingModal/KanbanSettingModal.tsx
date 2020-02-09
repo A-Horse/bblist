@@ -24,6 +24,7 @@ import { KanbanRecord } from '../../../typings/kanban.typing';
 import { ProjectRecord } from '../../../typings/project.typing';
 import { KanbanColumnCreator } from './KanbanColumnCreator/KanbanColumnCreator';
 import { KanbanColumnPanel } from './KanbanColumnPanel/KanbanColumnPanel';
+import { ModalHeader } from '../../../widget/Modal/ModalHeader/ModalHeader';
 
 interface InputProps {
   toggle: boolean;
@@ -71,7 +72,7 @@ class KanbanSettingModalComponent extends Component<
           <div>loading</div>
         ) : (
           <div>
-            {this.props.kanban!.get('name')}
+            <ModalHeader title={this.props.kanban!.get('name')} />
 
             <KanbanColumnPanel columns={this.props.columns} />
 

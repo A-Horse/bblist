@@ -1,9 +1,16 @@
-
 .ProjectWallPage {
   display: flex;
   height: calc(100% - 42px);
 
-  &--project-container {
+  .ProjectWallPage--content-container {
     padding: 12px;
+    width: 100%;
+    overflow-y: auto;
+
+    .project-cover-container {
+      overflow: hidden;
+      display: flex;
+      flex-wrap: wrap;
+    }
   }
 }

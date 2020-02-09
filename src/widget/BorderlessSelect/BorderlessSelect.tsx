@@ -16,7 +16,7 @@ function CustomControl({ children, innerProps }) {
   );
 }
 
-function CustomIndicator({}) {
+function CustomIndicator() {
   return null;
 }
 

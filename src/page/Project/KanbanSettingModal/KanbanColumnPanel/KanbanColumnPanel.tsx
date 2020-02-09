@@ -3,12 +3,14 @@ import React, { Component } from 'react';
 
 import { KanbanColumnRecord } from '../../../../typings/kanban-column.typing';
 
+import './KanbanColumnPanel.scss';
+
 export class KanbanColumnPanel extends Component<{
   columns: List<KanbanColumnRecord> | null;
 }> {
   render() {
     return (
-      <div>
+      <div className="KanbanColumnPanel">
         columns
         {this.props.columns &&
           this.props

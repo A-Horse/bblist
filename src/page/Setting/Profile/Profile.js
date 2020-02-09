@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import Input from '../../../widget/Input/Input';
+import { Input } from '../../../widget/Input/Input';
 import PropTypes from 'prop-types';
-
 
 export default class Profile extends Component {
   static propTypes = {
@@ -12,11 +11,6 @@ export default class Profile extends Component {
   state = {
     username: ''
   };
-
-  constructor(props) {
-    super(props);
-  }
-
   componentWillMount() {}
 
   render() {
@@ -25,7 +19,14 @@ export default class Profile extends Component {
         <section className="setting-profile-username">
           <div className="heading">Username:</div>
           <div>
-            <Input defaultValue={this.props.user.get('username')} type="text" ref={ref => (this.usernameInput = ref)} onChange={value => this.setState({ username: value })} name="profile-username" className="input" />
+            <Input
+              defaultValue={this.props.user.get('username')}
+              type="text"
+              ref={ref => (this.usernameInput = ref)}
+              onChange={value => this.setState({ username: value })}
+              name="profile-username"
+              className="input"
+            />
           </div>
         </section>
       </section>

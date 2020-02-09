@@ -9,6 +9,8 @@
     "Formik",
     "Kanbans",
     "Uploader",
+    "fontawesome",
+    "fortawesome",
     "kanban"
   ]
 }

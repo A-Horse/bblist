@@ -1,4 +1,4 @@
-import React, { useState, KeyboardEvent, KeyboardEventHandler } from 'react';
+import React, { useState, KeyboardEvent } from 'react';
 import './ColumnIssueCreator.scss';
 import { AppIcon } from '../../../../../../../widget/Icon';
 import { faPlusCircle, faTimes } from '@fortawesome/free-solid-svg-icons';

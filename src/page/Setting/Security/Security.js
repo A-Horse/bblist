@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Input from '../../../widget/Input/Input';
+import { Input } from '../../../widget/Input/Input';
 import { bindActionCreators } from 'redux';
 import { makeActionRequestCollection } from '../../../actions/actions';
 import { connect } from 'react-redux';
@@ -15,13 +15,7 @@ class SettingSecurity extends Component {
   updatePassword = event => {
     const oldPassword = this.refs.oldPassword.instance;
     const newPassword = this.refs.newPassword.instance;
-    const confirmPassword = this.refs.confirmPassword.instance;
 
-    const data = {
-      oldPassword: oldPassword.value,
-      newPassword: newPassword.value,
-      confirmPassword: confirmPassword.value
-    };
     this.props.actions.CHANGE_PASSWORD_REQUEST({
       oldPassword: oldPassword.value,
       newPassword: newPassword.value
@@ -35,17 +29,32 @@ class SettingSecurity extends Component {
           <div className="section-heading">Change Password</div>
           <div className="heading">Old password</div>
           <div>
-            <Input type="password" ref="oldPassword" name="update-password-old" className="input" />
+            <Input
+              type="password"
+              ref="oldPassword"
+              name="update-password-old"
+              className="input"
+            />
           </div>
 
           <div className="heading">New password</div>
           <div>
-            <Input type="password" ref="newPassword" className="input" name="update-password-new" />
+            <Input
+              type="password"
+              ref="newPassword"
+              className="input"
+              name="update-password-new"
+            />
           </div>
 
           <div className="heading">Confirm new password</div>
           <div>
-            <Input type="password" ref="confirmPassword" className="input" name="update-password-confirm" />
+            <Input
+              type="password"
+              ref="confirmPassword"
+              className="input"
+              name="update-password-confirm"
+            />
           </div>
         </section>
       </section>

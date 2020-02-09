@@ -6,6 +6,7 @@ export class Input extends Component<{
   value?: string;
   defaultValue?: string;
   onChange?: (value: any) => void;
+  onChangeEvent?: any;
   onBlur?: (value: any) => void;
   size?: 'middle' | 'large' | 'small';
   className?: string;
@@ -18,6 +19,7 @@ export class Input extends Component<{
   componentDidMount(): void {}
 
   onChange = (event: ChangeEvent<HTMLInputElement>): void => {
+    this.props.onChangeEvent && this.props.onChangeEvent(event);
     this.props.onChange && this.props.onChange(event.target.value);
   };
 
@@ -49,4 +51,3 @@ export class Input extends Component<{
   }
 }
 
-export default Input;

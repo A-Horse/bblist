@@ -1,16 +1,12 @@
 import './KanbanColumnCreator.scss';
 
-import {
-  Field,
-  FieldProps,
-  Form,
-  Formik,
-  FormikActions,
-  FormikProps
-} from 'formik';
+import { Field, Formik, FormikHelpers, FormikProps } from 'formik';
 import React, { Component } from 'react';
 
 import { AppButton } from '../../../../widget/Button';
+import { Input } from '../../../../widget/Input/Input';
+import { AppIcon } from '../../../../widget/Icon';
+import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 
 interface FormValues {
   name: string;
@@ -35,36 +31,50 @@ export class KanbanColumnCreator extends Component<
       <div>
         {!this.state.creating && (
           <AppButton onClick={() => this.setState({ creating: true })}>
-            Create Column
+            <AppIcon icon={faPlusCircle} /> 创建价值列
           </AppButton>
         )}
 
         {this.state.creating && (
           <Formik
-            initialValues={{ name: '' }}
+            initialValues={{ name: 'sss2' } as FormValues}
             onSubmit={(
               values: FormValues,
-              actions: FormikActions<FormValues>
+              actions: FormikHelpers<FormValues>
             ) => {
-              console.log({ values, actions });
+              console.log('values', values);
               this.props.createKanbanColumn(values);
               actions.setSubmitting(false);
             }}
             render={(formikBag: FormikProps<FormValues>) => (
-              <Form>
-                <Field
-                  name="name"
-                  render={({ field, form }: FieldProps<FormValues>) => (
-                    <div>
-                      <input type="text" {...field} placeholder="First Name" />
-                      {form.touched.name &&
-                        form.errors.name &&
-                        form.errors.name}
-                    </div>
-                  )}
-                />
+              <form onSubmit={formikBag.handleSubmit}>
+                <Field name="name">
+                  {({
+                    field, // { name, value, onChange, onBlur }
+                    form: { touched, errors }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
+                    meta
+                  }) => {
+                    console.log('field', field);
+                    console.log('form', touched, errors);
+                    console.log('meta', meta);
+
+                    return (
+                      <div>
+                        <Input
+                          name="name"
+                          value={field.value}
+                          onChangeEvent={field.onChange}
+                        />
+
+                        {meta.touched && meta.error && (
+                          <div className="error">{meta.error}</div>
+                        )}
+                      </div>
+                    );
+                  }}
+                </Field>
                 <AppButton htmlType="submit">OK</AppButton>
-              </Form>
+              </form>
             )}
           />
         )}

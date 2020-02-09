@@ -9,8 +9,3 @@ export const CACHED_USEREMAIL = 'CACHED_USEREMAIL';
 export const AUTH_DATA = 'AUTH_DATA';
 
 export const API_PREFIX = END_POINT;
-
-export const LOCAL_BACKUP_URL = 'LOCAL_BACKUP_URL';
-
-export const DEFAULT_BOARD_COVER_SRC =
-  '/static/image/board-cover/world-circle.png';

@@ -34,16 +34,8 @@ class ProjectPageComponent extends Component<Props> {
     this.props.actions.getProjectDetailRequest(projectId);
   }
 
-  componentWillReceiveProps(nextProps: any) {}
-
   render() {
     const { projectID } = this.props.match.params;
-    const { project } = this.props;
-
-    if (!project) {
-      return null;
-    }
-
     return (
       <div className="ProjectPage">
         <div className="ProjectPage--main">

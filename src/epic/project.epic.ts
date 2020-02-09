@@ -30,6 +30,12 @@ import {
 } from '../typings/project.typing';
 import { makeApiUrl } from '../utils/api';
 import {
+  GET_PROJECT_DETAIL_SUCCESS,
+  CREATE_PROJECT_SUCCESS,
+  getProjectsRequest
+} from '../actions/project/project.action';
+import { getProjectKanbansRequest } from '../actions/project/kanban.action';
+import {
   UPLOAD_PROJECT_COVER_SUCCESS,
   getProjectDetailRequest
 } from '../actions/project/project.action';
@@ -60,6 +66,12 @@ export const GET_PROJECT_DETAIL_REQUEST_FN = (action$: Observable<FSAction>) =>
     })
   );
 
+export const GET_PROJECT_DETAIL_SUCCESS_FN = (action$: Observable<FSAction>) =>
+  action$.pipe(
+    ofType(GET_PROJECT_DETAIL_SUCCESS),
+    map(action => getProjectKanbansRequest({ projectId: action.payload.id }))
+  );
+
 export const CREATE_PROJECT_REQUEST_FN = (action$: Observable<FSAction>) =>
   action$.pipe(
     ofType(CREATE_PROJECT_REQUEST),
@@ -71,6 +83,12 @@ export const CREATE_PROJECT_REQUEST_FN = (action$: Observable<FSAction>) =>
         )
         .catch(createProjectFailure);
     })
+  );
+
+export const CREATE_PROJECT_SUCCESS_FN = (action$: Observable<FSAction>) =>
+  action$.pipe(
+    ofType(CREATE_PROJECT_SUCCESS),
+    map(() => getProjectsRequest())
   );
 
 export const SET_PROJECT_DEFAULT_KANBAN_REQUEST_FN = (

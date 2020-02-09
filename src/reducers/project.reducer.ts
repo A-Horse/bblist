@@ -1,4 +1,4 @@
-import { fromJS, List, Map, Record } from 'immutable';
+import { fromJS, Map, Record } from 'immutable';
 import { normalize } from 'normalizr';
 import { FSAction } from '../actions/actions';
 import {
@@ -253,12 +253,12 @@ export function project(
     case GET_PROJECT_ISSUES_REQUEST: {
       return state.update(
         'currentIssuePagination',
-        (pagitaion: IssuePagination) => {
-          if (!pagitaion) {
-            return pagitaion;
+        (pagination: IssuePagination) => {
+          if (!pagination) {
+            return pagination;
           }
           return {
-            ...pagitaion,
+            ...pagination,
             loading: true
           };
         }

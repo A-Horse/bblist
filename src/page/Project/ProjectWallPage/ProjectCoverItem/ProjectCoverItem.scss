@@ -1,7 +1,7 @@
 $board-card-width: 250px;
 $board-card-height: 125px;
 
-.ProjectOverItem {
+.ProjectCoverItem {
   display: block;
   flex: 1 0 auto;
   width: $board-card-width;
@@ -15,6 +15,8 @@ $board-card-height: 125px;
   border-radius: 3px;
   cursor: pointer;
   text-decoration: none;
+  margin-bottom: 18px;
+  margin-right: 16px;
 
   &:hover {
     transform: translate3d(0, -5px, 0);
@@ -28,7 +30,7 @@ $board-card-height: 125px;
     }
   }
 
-  .ProjectOverItem--info {
+  .ProjectCoverItem--info {
     background-image: linear-gradient(
       180deg,
       rgba(0, 0, 0, 0.3) 0,
@@ -39,7 +41,7 @@ $board-card-height: 125px;
     color: white;
     overflow: hidden;
 
-    .ProjectOverItem--name {
+    .ProjectCoverItem--name {
       margin: 10px;
       font-weight: normal;
     }
