@@ -7,12 +7,12 @@ pipeline {
         CI = 'true'
     }
     stages {
-        agent {
-            docker {
-                image 'node:12.14.0-stretch'
-            }
-        }
         stage('AutoCheck') {
+            agent {
+                docker {
+                    image 'node:12.14.0-stretch'
+                }
+            }
             stages {
                 stage {
                     steps {
