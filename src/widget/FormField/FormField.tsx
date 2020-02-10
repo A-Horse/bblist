@@ -27,10 +27,9 @@ export const FormField = ({
   return (
     <div className={`FormField ${type ? type : ''} ${className}`}>
       {name ? (
-        <div
-          className={`FormField--name`}
-        >
-          {name}{require && <span className="require-flag">*</span>}
+        <div className={`FormField--name`}>
+          {name}
+          {require && <span className="require-flag">*</span>}
         </div>
       ) : null}
       <div>{children}</div>

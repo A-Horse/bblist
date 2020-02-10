@@ -50,4 +50,3 @@ export class Input extends Component<{
     );
   }
 }
-

@@ -10,11 +10,7 @@ interface InputProps {
   children?: ReactNode;
 }
 
-export const ModalHeader = ({
-  title,
-  onClose,
-  children
-}: InputProps) => {
+export const ModalHeader = ({ title, onClose, children }: InputProps) => {
   return (
     <div className={`ModalHeader`}>
       {children ? children : <div className="ModalHeader--title">{title}</div>}

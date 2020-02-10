@@ -25,7 +25,9 @@ export class AppTextArea extends Component<{
   };
 
   buildClassName() {
-    return `AppTextArea ${this.props.className || ''}${this.props.border ? ' border' : ''}`;
+    return `AppTextArea ${this.props.className || ''}${
+      this.props.border ? ' border' : ''
+    }`;
   }
 
   render() {

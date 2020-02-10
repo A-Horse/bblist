@@ -5,10 +5,7 @@ import { AppIcon } from '../../../../../../../widget/Icon';
 import { AppButton } from '../../../../../../../widget/Button';
 
 import './ColumnHeaderDropDown.scss';
-import {
-  AppMenu,
-  AppMenuItem
-} from '../../../../../../../widget/Menu/Menu';
+import { AppMenu, AppMenuItem } from '../../../../../../../widget/Menu/Menu';
 
 interface InputProps {
   columnId: string;

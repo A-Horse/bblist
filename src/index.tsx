@@ -1,4 +1,3 @@
-
 import { applyPolyfills, defineCustomElements } from 'coke-component/loader';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -14,7 +13,7 @@ import { JSX as LocalJSX } from '@stencil/core';
 import {
   setupAxiosInterceptor,
   setupAxiosJwtHeader
-} from './helper/http-intercetor';
+} from './helper/http-interceptor';
 import Root from './page/Root/Root';
 import { store } from './store/store';
 import { getJWT } from './utils/auth';

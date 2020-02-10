@@ -20,10 +20,7 @@ const mapStateToProps = state => {
 };
 
 const ProfileContainer = withRouter(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(Profile)
+  connect(mapStateToProps, mapDispatchToProps)(Profile)
 );
 
 export default ProfileContainer;

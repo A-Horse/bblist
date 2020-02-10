@@ -21,10 +21,7 @@ const mapStateToProps = state => {
 };
 
 export const SignInContainer = withRouter(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(SignIn)
+  connect(mapStateToProps, mapDispatchToProps)(SignIn)
 );
 
 export default SignInContainer;

@@ -7,7 +7,10 @@ export default class Building extends Component {
     return (
       <div className="building">
         <div>
-          <img className="building--illustration" src="/assets/images/octopus-building.png" />
+          <img
+            className="building--illustration"
+            src="/assets/images/octopus-building.png"
+          />
         </div>
 
         <div className="text">This page is under building</div>

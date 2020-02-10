@@ -4,7 +4,7 @@ import { Observable, of } from 'rxjs';
 import { mergeMap } from 'rxjs/operators';
 
 import Actions from '../actions/actions';
-import { setupAxiosJwtHeader } from '../helper/http-intercetor';
+import { setupAxiosJwtHeader } from '../helper/http-interceptor';
 import { Storage } from '../services/storage';
 import { makeApiUrl } from '../utils/api';
 import { saveAuthData } from '../utils/auth';

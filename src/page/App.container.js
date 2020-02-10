@@ -17,10 +17,7 @@ const mapStateToProps = state => {
 };
 
 const AppContainer = withRouter(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(App)
+  connect(mapStateToProps, mapDispatchToProps)(App)
 );
 
 export default AppContainer;

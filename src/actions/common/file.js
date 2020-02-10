@@ -1,5 +1,9 @@
 import fetch from 'isomorphic-fetch';
-import { createConfigWithAuth, createConfig, createFormDataConfigWithAuth } from 'utils/header';
+import {
+  createConfigWithAuth,
+  createConfig,
+  createFormDataConfigWithAuth
+} from 'utils/header';
 import { handleResponse } from '../utils/http-handle';
 import { makeApiUrl } from 'utils/api';
 

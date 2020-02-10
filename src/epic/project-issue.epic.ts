@@ -38,7 +38,9 @@ import { findIssuePositionInColumn } from '../reducers/selector/card.selector';
 import { CREATE_PROJECT_ISSUE_SUCCESS } from '../actions/project/project-issue.action';
 import { getProjectIssueDetailRequest } from '../actions/project/project-issue-detail.action';
 
-export const CREATE_PROJECT_ISSUE_REQUEST_FN = (action$: Observable<FSAction>) =>
+export const CREATE_PROJECT_ISSUE_REQUEST_FN = (
+  action$: Observable<FSAction>
+) =>
   action$.pipe(
     ofType(CREATE_PROJECT_ISSUE_REQUEST),
     mergeMap((action: FSAction) => {
@@ -58,7 +60,9 @@ export const CREATE_PROJECT_ISSUE_REQUEST_FN = (action$: Observable<FSAction>) =
     })
   );
 
-export const CREATE_PROJECT_ISSUE_SUCCESS_FN = (action$: Observable<FSAction>) =>
+export const CREATE_PROJECT_ISSUE_SUCCESS_FN = (
+  action$: Observable<FSAction>
+) =>
   action$.pipe(
     ofType(CREATE_PROJECT_ISSUE_SUCCESS),
     map(action => getProjectIssueDetailRequest({ issueId: action.payload }))

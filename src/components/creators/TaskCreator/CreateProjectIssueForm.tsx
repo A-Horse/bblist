@@ -10,7 +10,7 @@ import { SelectOption } from '../../../typings/select.typing';
 import { ColumnSelect } from '../../Project/ColumnSelect/ColumnSelect';
 import { KanbanSelect } from '../../Project/KanbanSelect/KanbanSelect';
 import { FormField } from '../../../widget/FormField/FormField';
-import {Input} from '../../../widget/Input/Input';
+import { Input } from '../../../widget/Input/Input';
 import { Divider } from '../../../widget/Divider';
 import { AppTextArea } from '../../../widget/TextArea/TextArea';
 import { FormValues } from './IssueCreatorModal';

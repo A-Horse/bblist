@@ -1,4 +1,11 @@
-import { NotAuthError, NotFoundError, RequestError, ServerError, UnprocessableError, TimeoutError } from './http-error';
+import {
+  NotAuthError,
+  NotFoundError,
+  RequestError,
+  ServerError,
+  UnprocessableError,
+  TimeoutError
+} from './http-error';
 
 function handleError(response) {
   switch (response.status) {

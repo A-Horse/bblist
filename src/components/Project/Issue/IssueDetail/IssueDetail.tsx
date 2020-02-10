@@ -19,7 +19,7 @@ import {
 import { RootState } from '../../../../reducers';
 import { ProjectIssueRecord } from '../../../../typings/project-issue.typing';
 import { FormField } from '../../../../widget/FormField/FormField';
-import {Input} from '../../../../widget/Input/Input';
+import { Input } from '../../../../widget/Input/Input';
 import { AppTextArea } from '../../../../widget/TextArea/TextArea';
 import { IssueDetailRight } from './IssueDetailRight/IssueDetailRight';
 import { Deadline } from '../../../Deadline/Deadline';

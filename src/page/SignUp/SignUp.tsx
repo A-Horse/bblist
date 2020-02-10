@@ -80,7 +80,6 @@ class SignUp extends Component<any, any> {
             />
           </div>
 
-
           <AppButton className="signup-button" htmlType="submit">
             Sign Up
           </AppButton>
