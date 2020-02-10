@@ -5,6 +5,8 @@ pipeline {
     }
     environment {
         CI = 'true'
+        docker_hub_username = credentials('docker_hub_username')
+        docker_hub_password = credentials('docker_hub_password')
     }
     stages {
         stage('AutoCheck') {
