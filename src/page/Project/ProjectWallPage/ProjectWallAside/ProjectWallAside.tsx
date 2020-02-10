@@ -7,6 +7,7 @@ import { SideItem } from '../../../../widget/Side/SideItem';
 import { match } from 'react-router';
 import './ProjectWallAside.scss';
 import { ProjectCreatorModal } from '../../ProjectCreator/ProjectCreatorModal';
+import { Divider } from '../../../../widget/Divider';
 
 interface Props {
   match: match<any>;
@@ -34,6 +35,8 @@ export class BoardWallAside extends Component<Props> {
               name="看板"
             />
           </SideGroup>
+
+          <Divider />
 
           <SideGroup>
             <SideItem onClick={this.onCreateProject} icon={faPlusCircle}>

@@ -115,10 +115,8 @@ export const UPLOAD_PROJECT_COVER_REQUEST_FN = (
     ofType(UPLOAD_PROJECT_COVER_REQUEST),
     mergeMap((action: FSAction) => {
       const uploadProjectCoverInput: UploadProjectCoverInput = action.payload;
-
       const data = new FormData();
       data.append('cover', uploadProjectCoverInput.coverBase64);
-
       return axios
         .post(
           makeApiUrl(`/project/${uploadProjectCoverInput.projectId}/cover`),
@@ -126,8 +124,7 @@ export const UPLOAD_PROJECT_COVER_REQUEST_FN = (
         )
         .then(() => {
           action.meta.callback && action.meta.callback();
-          uploadProjectCoverSuccess(uploadProjectCoverInput.projectId);
-          return;
+          return uploadProjectCoverSuccess(uploadProjectCoverInput.projectId);
         })
         .catch(error => {
           action.meta.callback && action.meta.callback(error);

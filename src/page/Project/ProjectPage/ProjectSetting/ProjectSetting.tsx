@@ -47,7 +47,6 @@ class ProjectSettingComponent extends Component<
       },
       {
         callback: (error: AxiosError) => {
-          console.log('error', error);
           if (!error) {
             return;
           }
@@ -65,6 +64,9 @@ class ProjectSettingComponent extends Component<
   };
 
   render() {
+    if (!this.props.project) {
+      return <div>loading</div>;
+    }
     return (
       <div className="ProjectSetting">
         <FormField name="项目封面">
