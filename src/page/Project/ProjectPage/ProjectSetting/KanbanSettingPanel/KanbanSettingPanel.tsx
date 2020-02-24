@@ -17,6 +17,9 @@ import { RootState } from '../../../../../reducers';
 import { KanbanRecord } from '../../../../../typings/kanban.typing';
 import { ProjectRecord } from '../../../../../typings/project.typing';
 import { KanbanSettingModal } from '../../../KanbanSettingModal/KanbanSettingModal';
+import { KanbanCreatorModal } from '../../../KanbanCreator/KanbanCreatorModal';
+import { project } from '../../../../../reducers/project.reducer';
+import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 
 interface InputProps {}
 
@@ -32,11 +35,13 @@ class KanbanSettingPanelComponent extends Component<
   } & ComponentProps,
   {
     settingModalToggle: boolean;
+    kanbanCreatorModalToggle: boolean;
     settingKanbanId: string | null;
   }
 > {
   state = {
     settingModalToggle: false,
+    kanbanCreatorModalToggle: false,
     settingKanbanId: null
   };
 
@@ -51,6 +56,18 @@ class KanbanSettingPanelComponent extends Component<
     this.setState({
       settingModalToggle: false,
       settingKanbanId: null
+    });
+  };
+
+  openKanbanCreatorModal = () => {
+    this.setState({
+      kanbanCreatorModalToggle: true
+    });
+  };
+
+  closeKanbanCreatorModal = () => {
+    this.setState({
+      kanbanCreatorModalToggle: false
     });
   };
 
@@ -84,7 +101,19 @@ class KanbanSettingPanelComponent extends Component<
 
   render() {
     return (
-      <SectionField name="看板" className="KanbanSettingPanel">
+      <SectionField
+        name="看板"
+        className="KanbanSettingPanel"
+        nameRight={
+          <AppButton
+            size="sm"
+            backgroundColor="#fff"
+            onClick={this.openKanbanCreatorModal}
+          >
+            <AppIcon icon={faPlusCircle} /> 新建看板
+          </AppButton>
+        }
+      >
         {!!this.state.settingKanbanId && (
           <KanbanSettingModal
             kanbanId={this.state.settingKanbanId!}
@@ -92,6 +121,12 @@ class KanbanSettingPanelComponent extends Component<
             onClose={this.closeKanbanSettingModal}
           />
         )}
+
+        <KanbanCreatorModal
+          project={this.props.project}
+          toggle={this.state.kanbanCreatorModalToggle}
+          onClose={this.closeKanbanCreatorModal}
+        />
 
         {this.renderContent()}
       </SectionField>

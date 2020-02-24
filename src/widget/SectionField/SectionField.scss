@@ -1,10 +1,25 @@
 .SectionField {
+  margin-bottom: 22px;
+
+  &.transform {
+    .SectionField--content {
+      background-color: transparent;
+      padding: 0;
+    }
+  }
+
   &--name {
     margin-bottom: 8px;
-    margin-left: 6px;
-    color: #888;
+    margin-left: 1px;
+    color: #333;
     font-size: 16px;
+
+    span {
+      font-weight: bold;
+      margin-right: 12px;
+    }
   }
+
   &--content {
     background-color: white;
     border-radius: 3px;

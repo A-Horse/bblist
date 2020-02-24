@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { AppButton } from '../../../../../widget/Button';
 import { ProjectRecord } from '../../../../../typings/project.typing';
-import { KanbanCreator } from '../../../KanbanCreator/KanbanCreatorModal';
+import { KanbanCreatorModal } from '../../../KanbanCreator/KanbanCreatorModal';
 
 interface Props {
   project: ProjectRecord;
@@ -31,7 +31,7 @@ export class NoKanbanGuide extends Component<
       <div>
         This project has not seen a kanban yet.
         <AppButton onClick={this.onAddKanbanClick}>Add a kanban</AppButton>
-        <KanbanCreator
+        <KanbanCreatorModal
           project={this.props.project}
           toggle={this.state.kanbanCreatorToggle}
           onClose={this.closeCreateKanban}

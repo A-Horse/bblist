@@ -5,6 +5,7 @@ import React, { PureComponent } from 'react';
 export class AppButton extends PureComponent<{
   htmlType?: 'submit' | 'reset' | 'button';
   type?: 'primary' | 'dashed' | 'danger' | 'link';
+  size?: 'sm' | 'md';
   backgroundColor?: string;
   disabled?: boolean;
   className?: string;
@@ -13,7 +14,7 @@ export class AppButton extends PureComponent<{
   buildClassName() {
     return `AppButton ${this.props.type || ''} ${this.props.className || ''} ${
       this.props.disabled ? 'disabled' : ''
-    }`;
+    } ${this.props.size || 'md'}`;
   }
 
   render() {

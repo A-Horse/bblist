@@ -14,7 +14,6 @@ import {
   bindActionCreators,
   Dispatch
 } from 'redux';
-
 import { setProjectDefaultKanbanRequest } from '../../../../actions/project/project-setting.action';
 import { RootState } from '../../../../reducers';
 import { ProjectRecord } from '../../../../typings/project.typing';

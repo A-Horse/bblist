@@ -3,13 +3,13 @@
   color: inherit;
   cursor: pointer;
   transition: all 200ms ease-in-out;
-  padding: 3px 9px;
+  padding: 0 9px;
   background-color: transparent;
   border: 1px solid transparent;
   outline: none;
   box-sizing: border-box;
   height: 28px;
-  line-height: 20px;
+  line-height: 26px;
 
   &.disabled {
     background: #bbb !important;
@@ -24,11 +24,18 @@
     color: white;
   }
 
-  &:hover {
-    opacity: 0.8;
-  }
-
   &.dashed {
     border: 1px solid #999;
+  }
+
+  &.sm {
+    height: 22px;
+    font-size: smaller;
+    padding: 0px 5px;
+    line-height: 20px;
+  }
+
+  &:hover {
+    opacity: 0.8;
   }
 }

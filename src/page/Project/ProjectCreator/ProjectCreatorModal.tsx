@@ -25,7 +25,7 @@ export function ProjectCreatorModal({ isOpen, onClose }) {
       isOpen={isOpen}
       onRequestClose={onClose}
     >
-      <ModalHeader title="新建项目" />
+      <ModalHeader title="新建项目" onClose={onClose} />
 
       <Formik
         initialValues={{ name: '' }}

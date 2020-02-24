@@ -20,6 +20,7 @@ import { KanbanSettingPanel } from './KanbanSettingPanel/KanbanSettingPanel';
 import { getProjectKanbansRequest } from '../../../../actions/project/kanban.action';
 import { withToastManager } from 'react-toast-notifications';
 import { AxiosError } from 'axios';
+import { SectionField } from '../../../../widget/SectionField/SectionField';
 
 interface Props {
   actions: ActionCreatorsMapObject;
@@ -69,7 +70,7 @@ class ProjectSettingComponent extends Component<
     }
     return (
       <div className="ProjectSetting">
-        <FormField name="项目封面">
+        <SectionField name="项目封面" transform={true}>
           <ImageUploader
             style={{
               width: '256px',
@@ -85,14 +86,14 @@ class ProjectSettingComponent extends Component<
           >
             上传封面
           </ImageUploader>
-        </FormField>
+        </SectionField>
 
-        <FormField name="项目名称">
+        <SectionField name="项目名称" transform={true}>
           <Input
             className="ProjectSetting--project-name-input"
             defaultValue={this.props.project.get('name')}
           />
-        </FormField>
+        </SectionField>
 
         <KanbanSettingPanel />
       </div>
