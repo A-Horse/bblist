@@ -5,8 +5,7 @@ pipeline {
     }
     environment {
         CI = 'true'
-        docker_hub_username = credentials('docker_hub_username')
-        docker_hub_password = credentials('docker_hub_password')
+        DOCKER_REGISTER = credentials('jenkins-blog-docker-register')
         REACT_APP_OCTOPUS_WEB_SENTRY_DSN = credentials('REACT_APP_OCTOPUS_WEB_SENTRY_DSN')
     }
     stages {
@@ -47,24 +46,19 @@ pipeline {
             stages {
                 stage('Build Image') {
                     steps {
-                        sh "docker build . -t fwchen/octopus-web:v0.0.$BUILD_NUMBER"
-                    }
-                }
-                stage('Registry Login') {
-                    steps {
-                        sh "echo $docker_hub_password | docker login -u $docker_hub_username --password-stdin"
+                        sh "docker build . -t $DOCKER_REGISTER/octopus-web:v0.0.$BUILD_NUMBER"
                     }
                 }
                 stage('Publish image') {
                     steps {
-                        sh 'docker push fwchen/octopus-web:v0.0.$BUILD_NUMBER'
-                        sh 'echo "fwchen/octopus-web:v0.0.$BUILD_NUMBER" > .artifacts'
+                        sh 'docker push $DOCKER_REGISTER/octopus-web:v0.0.$BUILD_NUMBER'
+                        sh 'echo "$DOCKER_REGISTER/octopus-web:v0.0.$BUILD_NUMBER" > .artifacts'
                         archiveArtifacts(artifacts: '.artifacts')
                     }
                 }
                 stage('Remove image') {
                     steps {
-                        sh "docker image rm fwchen/octopus-web:v0.0.$BUILD_NUMBER"
+                        sh "docker image rm $DOCKER_REGISTER/octopus-web:v0.0.$BUILD_NUMBER"
                     }
                 }
             }
