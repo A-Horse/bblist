@@ -1,4 +1,6 @@
 FROM node:8.15.0-jessie as build-deps
+ARG REACT_APP_OCTOPUS_WEB_SENTRY_DSN
+ENV REACT_APP_OCTOPUS_WEB_SENTRY_DSN=$REACT_APP_OCTOPUS_WEB_SENTRY_DSN
 WORKDIR /usr/src/app
 COPY package.json package-lock.json ./
 RUN npm install

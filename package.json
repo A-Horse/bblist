@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@sentry/browser": "^5.12.4",
     "@stencil/core": "^1.5.4",
     "@types/yup": "^0.26.30",
     "@typescript-eslint/parser": "^2.3.1",

@@ -7,9 +7,7 @@ import {
   DefaultToastContainer,
   ToastProvider
 } from 'react-toast-notifications';
-
 import { JSX as LocalJSX } from '@stencil/core';
-
 import {
   setupAxiosInterceptor,
   setupAxiosJwtHeader
@@ -18,10 +16,19 @@ import Root from './page/Root/Root';
 import { store } from './store/store';
 import { getJWT } from './utils/auth';
 
+// for stencil
 declare global {
   namespace JSX {
     interface IntrinsicElements extends LocalJSX.IntrinsicElements {}
   }
+}
+
+if (process.env.REACT_APP_OCTOPUS_WEB_SENTRY_DSN) {
+  console.log('OCTOPUS_WEB_SENTRY_DSN', process.env.REACT_APP_OCTOPUS_WEB_SENTRY_DSN);
+  const Sentry = require('@sentry/browser');
+  Sentry.init({
+    dsn: process.env.REACT_APP_OCTOPUS_WEB_SENTRY_DSN
+  });
 }
 
 // TODO 考虑在前端也通过时间判断自动登出

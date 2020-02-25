@@ -4,7 +4,8 @@
     {
       "files": ["**/*.ts?(x)"],
       "rules": {
-        "@typescript-eslint/no-namespace": "warn"
+        "@typescript-eslint/no-namespace": 0,
+        "@typescript-eslint/no-unused-vars": 0
       }
     }
   ]

@@ -18,7 +18,6 @@ import { KanbanRecord } from '../../../../../typings/kanban.typing';
 import { ProjectRecord } from '../../../../../typings/project.typing';
 import { KanbanSettingModal } from '../../../KanbanSettingModal/KanbanSettingModal';
 import { KanbanCreatorModal } from '../../../KanbanCreator/KanbanCreatorModal';
-import { project } from '../../../../../reducers/project.reducer';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 
 interface InputProps {}

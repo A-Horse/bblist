@@ -7,6 +7,7 @@ pipeline {
         CI = 'true'
         docker_hub_username = credentials('docker_hub_username')
         docker_hub_password = credentials('docker_hub_password')
+        REACT_APP_OCTOPUS_WEB_SENTRY_DSN = credentials('REACT_APP_OCTOPUS_WEB_SENTRY_DSN')
     }
     stages {
         stage('AutoCheck') {
