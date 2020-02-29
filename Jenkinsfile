@@ -46,19 +46,19 @@ pipeline {
             stages {
                 stage('Build Image') {
                     steps {
-                        sh "docker build . -t $DOCKER_REGISTER/octopus-web:v0.0.$BUILD_NUMBER"
+                        sh "docker build . -t $DOCKER_REGISTER/octopus-web:latest"
                     }
                 }
                 stage('Publish image') {
                     steps {
-                        sh 'docker push $DOCKER_REGISTER/octopus-web:v0.0.$BUILD_NUMBER'
-                        sh 'echo "$DOCKER_REGISTER/octopus-web:v0.0.$BUILD_NUMBER" > .artifacts'
+                        sh 'docker push $DOCKER_REGISTER/octopus-web:latest'
+                        sh 'echo "$DOCKER_REGISTER/octopus-web:latest" > .artifacts'
                         archiveArtifacts(artifacts: '.artifacts')
                     }
                 }
                 stage('Remove image') {
                     steps {
-                        sh "docker image rm $DOCKER_REGISTER/octopus-web:v0.0.$BUILD_NUMBER"
+                        sh "docker image rm $DOCKER_REGISTER/octopus-web:latest"
                     }
                 }
             }
