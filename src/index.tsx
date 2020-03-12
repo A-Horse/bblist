@@ -15,6 +15,7 @@ import {
 import Root from './page/Root/Root';
 import { store } from './store/store';
 import { getJWT } from './utils/auth';
+import * as serviceWorker from './serviceWorker';
 
 // for stencil
 declare global {
@@ -24,7 +25,10 @@ declare global {
 }
 
 if (process.env.REACT_APP_OCTOPUS_WEB_SENTRY_DSN) {
-  console.log('OCTOPUS_WEB_SENTRY_DSN', process.env.REACT_APP_OCTOPUS_WEB_SENTRY_DSN);
+  console.log(
+    'OCTOPUS_WEB_SENTRY_DSN',
+    process.env.REACT_APP_OCTOPUS_WEB_SENTRY_DSN
+  );
   const Sentry = require('@sentry/browser');
   Sentry.init({
     dsn: process.env.REACT_APP_OCTOPUS_WEB_SENTRY_DSN
@@ -57,3 +61,5 @@ Modal.setAppElement('#root');
 applyPolyfills().then(() => {
   defineCustomElements(window);
 });
+
+serviceWorker.register();
