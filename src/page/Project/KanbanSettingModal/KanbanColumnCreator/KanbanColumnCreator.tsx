@@ -37,12 +37,11 @@ export class KanbanColumnCreator extends Component<
 
         {this.state.creating && (
           <Formik
-            initialValues={{ name: 'sss2' } as FormValues}
+            initialValues={{ name: '' } as FormValues}
             onSubmit={(
               values: FormValues,
               actions: FormikHelpers<FormValues>
             ) => {
-              console.log('values', values);
               this.props.createKanbanColumn(values);
               actions.setSubmitting(false);
             }}
