@@ -5,6 +5,7 @@ pipeline {
     }
     environment {
         CI = 'true'
+        HOME = '.'
         DOCKER_REGISTER = credentials('octopus-docker-register')
         REACT_APP_OCTOPUS_WEB_SENTRY_DSN = credentials('REACT_APP_OCTOPUS_WEB_SENTRY_DSN')
     }
