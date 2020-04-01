@@ -30,23 +30,23 @@ export class Input extends Component<{
   buildClassName() {
     const { size = 'middle' } = this.props;
     return `app-input ${size}${
-        this.props.className ? ' ' + this.props.className : ''
+      this.props.className ? ' ' + this.props.className : ''
     }${this.props.borderLess ? ' border-less' : ''}`;
   }
 
   render() {
     return (
-        <input
-            value={this.props.value}
-            defaultValue={this.props.defaultValue}
-            placeholder={this.props.placeholder}
-            required={this.props.required}
-            name={this.props.name}
-            type={this.props.type || 'text'}
-            className={this.buildClassName()}
-            onChange={this.onChange}
-            onBlur={this.onBlur}
-        />
+      <input
+        value={this.props.value}
+        defaultValue={this.props.defaultValue}
+        placeholder={this.props.placeholder}
+        required={this.props.required}
+        name={this.props.name}
+        type={this.props.type || 'text'}
+        className={this.buildClassName()}
+        onChange={this.onChange}
+        onBlur={this.onBlur}
+      />
     );
   }
 }
