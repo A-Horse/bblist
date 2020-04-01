@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { DndProvider } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import { connect } from 'react-redux';
-import { Route, RouteComponentProps } from 'react-router';
+import { Route, RouteComponentProps } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 import {
   ActionCreatorsMapObject,

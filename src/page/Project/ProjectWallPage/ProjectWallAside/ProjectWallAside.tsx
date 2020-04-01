@@ -4,7 +4,7 @@ import { Side } from '../../../../widget/Side/Side';
 import { SideGroup } from '../../../../widget/Side/SideGroup';
 import { SideItemLink } from '../../../../widget/Side/SideItemLink';
 import { SideItem } from '../../../../widget/Side/SideItem';
-import { match } from 'react-router';
+import { match } from 'react-router-dom';
 import './ProjectWallAside.scss';
 import { ProjectCreatorModal } from '../../ProjectCreator/ProjectCreatorModal';
 import { Divider } from '../../../../widget/Divider';

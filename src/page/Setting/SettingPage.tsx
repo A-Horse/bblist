@@ -1,7 +1,7 @@
 import './SettingPage.scss';
 
 import React, { Component } from 'react';
-import { Redirect, Route, Switch } from 'react-router';
+import { Redirect, Route, Switch } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 import { updateTitle } from '../../services/title';

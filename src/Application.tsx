@@ -31,7 +31,7 @@ export class Application extends Component {
     return (
       <Router>
         <Switch>
-          <Route exact path="/signin" component={LoginPageSuspense} />
+          <Route exact path="/login" component={LoginPageSuspense} />
           <Route exact path="/signup" component={SignUpPageSuspense} />
           <Route path="/" component={App} />
         </Switch>

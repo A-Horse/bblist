@@ -1,7 +1,7 @@
 import './ProjectSideBar.scss';
 
 import React, { Component } from 'react';
-import { match } from 'react-router';
+import { match } from 'react-router-dom';
 
 import { Side } from '../../../../widget/Side/Side';
 import { SideItemLink } from '../../../../widget/Side/SideItemLink';

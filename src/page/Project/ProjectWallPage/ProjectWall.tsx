@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import { ProjectRecord } from '../../../typings/project.typing';
 import { BoardWallAside } from './ProjectWallAside/ProjectWallAside';
 import { ProjectCoverItem } from './ProjectCoverItem/ProjectCoverItem';
-import { match } from 'react-router';
+import { match } from 'react-router-dom';
 
 interface Props {
   actions: any;

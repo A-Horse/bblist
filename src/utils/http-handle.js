@@ -13,7 +13,7 @@ function handleError(response) {
       throw new NotFoundError();
     case 401:
       // TODO 简单处理，以后这个文件删掉
-      window.location.href = 'signin';
+      window.location.href = 'login';
       throw new NotAuthError();
     case 400:
       throw new RequestError();

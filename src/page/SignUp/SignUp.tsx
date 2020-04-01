@@ -27,7 +27,7 @@ class SignUp extends Component<any, any> {
   componentWillReceiveProps(newProps: any) {
     if (newProps.signUpSuccess) {
       this.props.actions.SIGNUP_FINISH();
-      this.props.history.push('/signin');
+      this.props.history.push('/login');
     }
   }
 
