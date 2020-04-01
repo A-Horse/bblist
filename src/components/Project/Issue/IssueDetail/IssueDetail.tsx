@@ -155,7 +155,7 @@ const mapStateToProps = (state: RootState, props: InputProps) => {
   };
 };
 
-export const IssueDetail = withRouter<ComponentProps>(
+export const IssueDetail = withRouter<ComponentProps, any>(
   connect(
     mapStateToProps,
     mapDispatchToProps

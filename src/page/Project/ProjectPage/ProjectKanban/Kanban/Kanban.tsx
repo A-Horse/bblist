@@ -137,6 +137,6 @@ const mapStateToProps = (state: RootState, props: ComponentProps) => {
   };
 };
 
-export const Kanban = withRouter<ComponentProps>(
+export const Kanban = withRouter<ComponentProps, any>(
   connect(mapStateToProps, mapDispatchToProps)(KanbanComponent)
 );

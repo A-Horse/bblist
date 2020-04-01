@@ -122,7 +122,7 @@ class KanbanSettingPanelComponent extends Component<
         )}
 
         <KanbanCreatorModal
-          project={this.props.project}
+          project={this.props.project as any}
           toggle={this.state.kanbanCreatorModalToggle}
           onClose={this.closeKanbanCreatorModal}
         />
@@ -155,6 +155,6 @@ const mapStateToProps = (state: RootState, props: ComponentProps) => {
   };
 };
 
-export const KanbanSettingPanel = withRouter<ComponentProps>(
+export const KanbanSettingPanel = withRouter<ComponentProps, any>(
   connect(mapStateToProps, mapDispatchToProps)(KanbanSettingPanelComponent)
 );

@@ -1,21 +1,8 @@
 import './Input.scss';
 
-import React, { ChangeEvent, Component } from 'react';
+import React, { ChangeEvent, Component, DetailedHTMLProps } from 'react';
 
-export class Input extends Component<{
-  value?: string;
-  defaultValue?: string;
-  onChange?: (value: any) => void;
-  onChangeEvent?: any;
-  onBlur?: (value: any) => void;
-  size?: 'middle' | 'large' | 'small';
-  className?: string;
-  required?: boolean;
-  name?: string;
-  placeholder?: string;
-  borderLess?: boolean;
-  type?: string;
-}> {
+export class Input extends Component<any> {
   componentDidMount(): void {}
 
   onChange = (event: ChangeEvent<HTMLInputElement>): void => {
@@ -37,12 +24,7 @@ export class Input extends Component<{
   render() {
     return (
       <input
-        value={this.props.value}
-        defaultValue={this.props.defaultValue}
-        placeholder={this.props.placeholder}
-        required={this.props.required}
-        name={this.props.name}
-        type={this.props.type || 'text'}
+        {...this.props}
         className={this.buildClassName()}
         onChange={this.onChange}
         onBlur={this.onBlur}

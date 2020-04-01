@@ -11,7 +11,7 @@ const mapStateToProps = (state: any) => {
   return {};
 };
 
-const SettingPageContainer = withRouter(
+const SettingPageContainer = withRouter<any, any>(
   connect(mapStateToProps, mapDispatchToProps)(SettingPage)
 );
 

@@ -1,32 +1,38 @@
 import axios from 'axios';
 import { ofType } from 'redux-observable';
 import { Observable, of } from 'rxjs';
-import { mergeMap } from 'rxjs/operators';
+import { mergeMap, tap } from 'rxjs/operators';
 
 import Actions from '../actions/actions';
 import { setupAxiosJwtHeader } from '../helper/http-interceptor';
 import { Storage } from '../services/storage';
 import { makeApiUrl } from '../utils/api';
 import { saveAuthData } from '../utils/auth';
+import {
+  ActionLoginRequest,
+  LOGIN_REQUEST,
+  loginFailure,
+  loginSuccess
+} from '../actions/login.action';
 
-export const LOGIN_REQUEST = (action$: Observable<any>) =>
+export const LOGIN_REQUEST_FN = (action$: Observable<any>) =>
   action$.pipe(
-    ofType(Actions.LOGIN.REQUEST),
-    mergeMap(action =>
-      axios
+    ofType(LOGIN_REQUEST),
+    mergeMap((action: ActionLoginRequest) => {
+      return axios
         .post(makeApiUrl('/user/signin'), action.payload)
         .then(response => {
           saveAuthData(response.data);
           setupAxiosJwtHeader(response.data.token);
-          return Actions.LOGIN.success(response);
+          action.meta.onSuccess();
+          return loginSuccess();
         })
         .catch(error => {
-          if (error.response && error.response.code === 401) {
-            return Actions.LOGIN.failure('email and password not matched');
-          }
-          return Actions.LOGIN.failure('Login fail');
-        })
-    )
+          console.log(error);
+          action.meta.onError(error.response);
+          return loginFailure(error.response);
+        });
+    })
   );
 
 export const SIGNUP_REQUEST = (action$: Observable<any>) =>

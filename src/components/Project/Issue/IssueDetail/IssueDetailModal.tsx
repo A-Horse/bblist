@@ -46,4 +46,6 @@ class IssueDetailModalComponent extends Component<Props> {
   }
 }
 
-export const IssueDetailModal = withRouter<Props>(IssueDetailModalComponent);
+export const IssueDetailModal = withRouter<Props, any>(
+  IssueDetailModalComponent
+);

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-
 import { CreateProjectIssueForm } from './CreateProjectIssueForm';
 import { AppModal } from '../../../widget/Modal/AppModal';
 import { Formik, FormikHelpers, FormikProps } from 'formik';

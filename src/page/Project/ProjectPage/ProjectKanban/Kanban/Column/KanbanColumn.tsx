@@ -95,6 +95,7 @@ export class KanbanColumnComponent extends Component<ComponentProps, State> {
                           this.props.rankProjectCardInKanbanRequest
                         }
                         issue={issue}
+                        moveCard={() => {}}
                       />
                     );
                   })}
@@ -158,6 +159,6 @@ const mapStateToProps = (state: RootState, props: InputProps) => {
   };
 };
 
-export const KanbanColumn = withRouter<InputProps & RouteComponentProps>(
+export const KanbanColumn = withRouter<InputProps & RouteComponentProps, any>(
   connect(mapStateToProps, mapDispatchToProps)(KanbanColumnComponent)
 );

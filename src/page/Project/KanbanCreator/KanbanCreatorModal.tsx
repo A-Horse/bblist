@@ -1,6 +1,4 @@
 import './KanbanCreatorModal.scss';
-
-import { FormComponentProps } from 'antd/lib/form';
 import { Field, Formik, ErrorMessage } from 'formik';
 import { FormField } from '../../../widget/FormField/FormField';
 import { Input } from '../../../widget/Input/Input';
@@ -24,14 +22,12 @@ const FormSchema = Yup.object().shape({
   name: Yup.string().required('看板名称为必填项')
 });
 
-class KanbanCreatorComponent extends Component<
-  {
-    toggle: boolean;
-    onClose: () => void;
-    project: ProjectRecord;
-    actions: ActionCreatorsMapObject;
-  } & FormComponentProps
-> {
+class KanbanCreatorComponent extends Component<{
+  toggle: boolean;
+  onClose: () => void;
+  project: ProjectRecord;
+  actions: ActionCreatorsMapObject;
+}> {
   handleCancel = () => {
     this.props.onClose();
   };

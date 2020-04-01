@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { makeGravatarUrl } from '../../services/gravatar';
 
 import './ProfilePage.scss';
 

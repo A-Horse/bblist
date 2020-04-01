@@ -3,7 +3,7 @@ import './ProjectPage.scss';
 import { History, Location } from 'history';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { match, Route, Switch, Redirect } from 'react-router';
+import { match, Route, Switch, Redirect } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 

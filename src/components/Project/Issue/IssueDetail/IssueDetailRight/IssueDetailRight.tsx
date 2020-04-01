@@ -56,7 +56,7 @@ export class IssueDetailRight extends Component<InputProps, State> {
             icon={faClock}
             title="到期时间"
             onClick={() => this.setState({ deadlineSelectOpen: true })}
-          ></DetailRightField>
+          />
         </div>
 
         <DateTimeSelectDialog
