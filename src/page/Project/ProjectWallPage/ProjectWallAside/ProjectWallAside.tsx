@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+import { faPlusCircle, faTachometerAlt, faColumns } from '@fortawesome/free-solid-svg-icons';
 import { Side } from '../../../../widget/Side/Side';
 import { SideGroup } from '../../../../widget/Side/SideGroup';
 import { SideItemLink } from '../../../../widget/Side/SideItemLink';
@@ -27,10 +27,10 @@ export class BoardWallAside extends Component<Props> {
       <>
         <Side className="ProjectWallAside">
           <SideGroup>
-            <SideItemLink icon="list-alt" to={`/projects`} name="主页" />
+            <SideItemLink icon={faTachometerAlt} to={`/projects`} name="主页" />
             <SideItemLink icon="list-alt" to={`/projects/p`} name="项目" />
             <SideItemLink
-              icon="list-alt"
+              icon={faColumns}
               to={`/projects/kanbans`}
               name="看板"
             />

@@ -1,9 +1,9 @@
 import axios from 'axios';
 import { ofType } from 'redux-observable';
 import { Observable, of } from 'rxjs';
-import { mergeMap, tap } from 'rxjs/operators';
+import { mergeMap, tap, ignoreElements } from 'rxjs/operators';
 
-import Actions from '../actions/actions';
+import Actions, { FSAction } from '../actions/actions';
 import { setupAxiosJwtHeader } from '../helper/http-interceptor';
 import { Storage } from '../services/storage';
 import { makeApiUrl } from '../utils/api';
@@ -12,7 +12,7 @@ import {
   ActionLoginRequest,
   LOGIN_REQUEST,
   loginFailure,
-  loginSuccess
+  loginSuccess,
 } from '../actions/login.action';
 
 export const LOGIN_REQUEST_FN = (action$: Observable<any>) =>
@@ -21,13 +21,13 @@ export const LOGIN_REQUEST_FN = (action$: Observable<any>) =>
     mergeMap((action: ActionLoginRequest) => {
       return axios
         .post(makeApiUrl('/user/signin'), action.payload)
-        .then(response => {
+        .then((response) => {
           saveAuthData(response.data);
           setupAxiosJwtHeader(response.data.token);
           action.meta.onSuccess();
           return loginSuccess();
         })
-        .catch(error => {
+        .catch((error) => {
           console.log(error);
           action.meta.onError(error.response);
           return loginFailure(error.response);
@@ -38,7 +38,7 @@ export const LOGIN_REQUEST_FN = (action$: Observable<any>) =>
 export const SIGNUP_REQUEST = (action$: Observable<any>) =>
   action$.pipe(
     ofType(Actions.SIGNUP.REQUEST),
-    mergeMap(action =>
+    mergeMap((action) =>
       axios
         .post(makeApiUrl('/user/signup'), action.payload)
         .then(Actions.SIGNUP.success)
@@ -46,12 +46,13 @@ export const SIGNUP_REQUEST = (action$: Observable<any>) =>
     )
   );
 
-export const LOGOUT_SUCCESS = (action$: Observable<any>) =>
+export const APP_LOGOUT_FN = (action$: Observable<FSAction>) =>
   action$.pipe(
-    ofType(Actions.LOGOUT.SUCCESS),
-    mergeMap(() => {
+    ofType('APP_LOGOUT'),
+    tap(() => {
+      console.log('hihi')
       Storage.clear();
       window.location.pathname = '/';
-      return of(Actions.LOGOUT.finish);
-    })
+    }),
+    ignoreElements()
   );

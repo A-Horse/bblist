@@ -27,6 +27,7 @@ class KanbanCreatorComponent extends Component<{
   onClose: () => void;
   project: ProjectRecord;
   actions: ActionCreatorsMapObject;
+  noKanbanExist?: boolean
 }> {
   handleCancel = () => {
     this.props.onClose();
@@ -36,6 +37,8 @@ class KanbanCreatorComponent extends Component<{
     this.props.actions.createKanbanRequest({
       ...values,
       projectId: this.props.project.get('id')
+    }, {
+      noKanbanExist: this.props.noKanbanExist
     });
   };
 

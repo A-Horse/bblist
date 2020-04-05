@@ -57,7 +57,6 @@ export class ProjectKanbanComponent extends Component<
 
   render() {
     if (!this.props.project) {
-      // TODO loading step1
       return <div>loading</div>;
     }
 

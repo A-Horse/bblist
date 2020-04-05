@@ -5,7 +5,7 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 
 import { NotFound } from '../page/NotFound';
 import { getUserData } from '../utils/auth';
-import Nav from './Nav/Nav';
+import { Nav } from './Nav/Nav';
 
 const SettingPageContainer = React.lazy(() =>
   import('./Setting/SettingPage.container')
@@ -53,7 +53,7 @@ const ProfilePage = () => {
 };
 
 export default class App extends Component<any> {
-  state = { userData: null };
+  state = { userData: undefined };
 
   componentWillMount() {
     const userData = getUserData();
@@ -67,11 +67,11 @@ export default class App extends Component<any> {
 
   render() {
     if (!this.state.userData) {
-      return <Redirect to="/signin" />;
+      return <Redirect to="/login" />;
     }
     return (
       <>
-        <Nav user={this.state.userData} actions={this.props.actions} />
+        <Nav user={this.state.userData} />
 
         <>
           <Switch>
@@ -81,7 +81,7 @@ export default class App extends Component<any> {
               render={() => (
                 <Redirect
                   to={{
-                    pathname: '/projects'
+                    pathname: '/projects',
                   }}
                 />
               )}

@@ -1,20 +1,22 @@
 import './Button.scss';
 
-import React, { PureComponent } from 'react';
+import React, { PureComponent, CSSProperties } from 'react';
 
 export class AppButton extends PureComponent<{
   htmlType?: 'submit' | 'reset' | 'button';
   type?: 'primary' | 'dashed' | 'danger' | 'link';
-  size?: 'sm' | 'md';
+  size?: 'sm' | 'md' | 'lg';
+  style?: CSSProperties;
   backgroundColor?: string;
   disabled?: boolean;
+  noOpacity?: boolean;
   className?: string;
   onClick?: any;
 }> {
   buildClassName() {
     return `AppButton ${this.props.type || ''} ${this.props.className || ''} ${
       this.props.disabled ? 'disabled' : ''
-    } ${this.props.size || 'md'}`;
+    } ${this.props.size || 'md'} ${this.props.noOpacity ? 'no-opacity' : ''}`;
   }
 
   render() {
@@ -22,7 +24,8 @@ export class AppButton extends PureComponent<{
       <button
         onClick={this.props.onClick}
         style={{
-          backgroundColor: this.props.backgroundColor
+          backgroundColor: this.props.backgroundColor,
+          ...this.props.style
         }}
         className={this.buildClassName()}
         type={this.props.htmlType}

@@ -1,5 +1,3 @@
-@import "../../style/variable";
-
 .AppNav {
   display: flex;
   align-items: center;
@@ -76,7 +74,7 @@
       }
 
       &:hover {
-        background-color: #f9bdbf;
+        background-color: white;
       }
     }
   }

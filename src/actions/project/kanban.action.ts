@@ -72,18 +72,26 @@ export const CREATE_KANBAN_SUCCESS = 'CREATE_KANBAN_SUCCESS';
 export const CREATE_KANBAN_FAILURE = 'CREATE_KANBAN_FAILURE';
 
 export function createKanbanRequest(
-  createKanbanInput: CreateKanbanInput
-): FSAction {
+  createKanbanInput: CreateKanbanInput,
+  meta: {
+    noKanbanExist?: boolean
+  }
+) {
   return {
     type: CREATE_KANBAN_REQUEST,
-    payload: createKanbanInput
+    payload: createKanbanInput,
+    meta
   };
 }
 
-export function createKanbanSuccess(id: string): FSAction {
+export function createKanbanSuccess(id: string, projectID: string, noKanbanExist: boolean): FSAction {
   return {
     type: CREATE_KANBAN_SUCCESS,
-    payload: id
+    payload: id,
+    meta: {
+      projectID,
+      noKanbanExist
+    }
   };
 }
 

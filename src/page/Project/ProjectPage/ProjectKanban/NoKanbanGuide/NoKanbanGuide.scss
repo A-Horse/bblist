@@ -1,0 +1,17 @@
+.NoKanbanGuide {
+  text-align: center;
+
+  &--box {
+    margin-top: 50px;
+    border-radius: 6px;
+    padding: 30px 60px;
+    display: inline-block;
+    background-color: #f8f8f8;
+  }
+
+  &--text {
+    font-size: 18px;
+    margin-top: 12px;
+    margin-bottom: 12px;
+  }
+}

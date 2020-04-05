@@ -42,15 +42,15 @@ class IndexPage extends Component {
   renderSignBar() {
     return (
       <div className="sign-bar">
-        <Link to="/signin">
-          <Button className="signin-button" styleType="primary" size="middle">
-            Sign In
+        <Link to="/login">
+          <Button styleType="primary" size="middle">
+            登录
           </Button>
         </Link>
 
         <Link to="/signup">
           <Button className="signup-button" styleType="default" size="middle">
-            Sign Up
+            注册
           </Button>
         </Link>
       </div>

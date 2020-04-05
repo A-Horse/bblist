@@ -10,7 +10,7 @@ function DropDownOverlay({ children }) {
 }
 
 interface DropDownProps {
-  toggle: ReactNode;
+  toggle: (show: boolean) => ReactNode;
   overlay: ReactNode;
   className?: string;
   position?: 'center' | 'right';
@@ -20,14 +20,16 @@ export function AppDropDown({
   toggle,
   overlay,
   className = '',
-  position = 'center'
+  position = 'center',
 }: DropDownProps) {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
     const onClickOutSide = () => {
       if (show) {
-        setShow(false);
+        setTimeout(() => {
+          setShow(false);
+        });
       }
     };
     window.document.body.addEventListener('click', onClickOutSide);
@@ -38,7 +40,9 @@ export function AppDropDown({
 
   return (
     <div className={`AppDropDown ${className} ${position}`}>
-      <DropDownToggle onClick={() => setShow(true)}>{toggle}</DropDownToggle>
+      <DropDownToggle onClick={() => setShow(true)}>
+        {toggle(show)}
+      </DropDownToggle>
 
       {show && <DropDownOverlay>{overlay}</DropDownOverlay>}
     </div>

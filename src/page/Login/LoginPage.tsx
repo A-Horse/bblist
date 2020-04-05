@@ -22,10 +22,10 @@ export function LoginPage() {
         email,
         password,
         onSuccess: () => {
-          history.push('/home');
+          history.push('/projects');
           return addToast('登录成功', {
             appearance: 'success',
-            autoDismiss: true
+            autoDismiss: true,
           });
         },
         onError: (response: AxiosResponse) => {
@@ -35,10 +35,10 @@ export function LoginPage() {
               : '登录失败',
             {
               appearance: 'error',
-              autoDismiss: true
+              autoDismiss: true,
             }
           );
-        }
+        },
       })
     );
   };
@@ -48,12 +48,12 @@ export function LoginPage() {
   }, []);
 
   return (
-    <div className="signin-page">
-      <div className="signin-main">
-        <div className="signin-main--logo-container">
+    <div className="login-page">
+      <div className="login-main">
+        <div className="login-main--logo-container">
           <Logo
             style={{
-              width: 45
+              width: 45,
             }}
           />
           <TextLogo />
@@ -61,7 +61,7 @@ export function LoginPage() {
 
         <LoginForm onSubmit={login} />
 
-        <div className="signup-tip">
+        <div style={{ textAlign: 'center', marginTop: 12 }}>
           还没有账户?
           <Link className="signup-link" to="/signup">
             注册
