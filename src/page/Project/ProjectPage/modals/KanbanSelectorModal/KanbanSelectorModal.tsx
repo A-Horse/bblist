@@ -50,4 +50,3 @@ export function KanbanSelectorModal(props: InputProps) {
     </AppModal>
   );
 }
-

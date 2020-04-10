@@ -3,7 +3,7 @@ import {
   Project,
   ProjectId,
   UploadProjectCoverInput,
-  UpdateProjectRequest,
+  UpdateProjectRequest
 } from '../../typings/project.typing';
 import { FSAction } from '../actions';
 
@@ -13,21 +13,21 @@ export const GET_PROJECT_FAILURE = 'GET_PROJECT_FAILURE';
 
 export function getProjectsRequest(): FSAction {
   return {
-    type: GET_PROJECT_REQUEST,
+    type: GET_PROJECT_REQUEST
   };
 }
 
 export function getProjectsSuccess(projects: Project[]): FSAction {
   return {
     type: GET_PROJECT_SUCCESS,
-    payload: projects,
+    payload: projects
   };
 }
 
 export function getProjectsFailure(): FSAction {
   return {
     type: GET_PROJECT_FAILURE,
-    error: true,
+    error: true
   };
 }
 
@@ -38,21 +38,21 @@ export const GET_PROJECT_DETAIL_FAILURE = 'GET_PROJECT_DETAIL_FAILURE';
 export function getProjectDetailRequest(projectId: string): FSAction {
   return {
     type: GET_PROJECT_DETAIL_REQUEST,
-    payload: projectId,
+    payload: projectId
   };
 }
 
 export function getProjectDetailSuccess(project: Project): FSAction {
   return {
     type: GET_PROJECT_DETAIL_SUCCESS,
-    payload: project,
+    payload: project
   };
 }
 
 export function getProjectDetailFailure(): FSAction {
   return {
     type: GET_PROJECT_DETAIL_FAILURE,
-    error: true,
+    error: true
   };
 }
 
@@ -65,7 +65,7 @@ export function createProjectRequest(
 ): FSAction {
   return {
     type: CREATE_PROJECT_REQUEST,
-    payload: createProjectInput,
+    payload: createProjectInput
   };
 }
 
@@ -73,15 +73,15 @@ export function createProjectSuccess(projectId: ProjectId): FSAction {
   return {
     type: CREATE_PROJECT_SUCCESS,
     payload: {
-      projectId,
-    },
+      projectId
+    }
   };
 }
 
 export function createProjectFailure(): FSAction {
   return {
     type: CREATE_PROJECT_FAILURE,
-    error: true,
+    error: true
   };
 }
 
@@ -96,7 +96,7 @@ export function uploadProjectCoverRequest(
   return {
     type: UPLOAD_PROJECT_COVER_REQUEST,
     payload: uploadProjectCoverInput,
-    meta,
+    meta
   };
 }
 
@@ -104,8 +104,8 @@ export function uploadProjectCoverSuccess(projectID: string): FSAction {
   return {
     type: UPLOAD_PROJECT_COVER_SUCCESS,
     payload: {
-      projectID,
-    },
+      projectID
+    }
   };
 }
 
@@ -113,7 +113,7 @@ export function uploadProjectCoverFailure(error): FSAction {
   return {
     type: UPLOAD_PROJECT_COVER_FAILURE,
     payload: error,
-    error: true,
+    error: true
   };
 }
 
@@ -126,19 +126,19 @@ export function updateProjectsRequest(
 ): FSAction & { payload: UpdateProjectRequest } {
   return {
     type: UPDATE_PROJECT_REQUEST,
-    payload: request,
+    payload: request
   };
 }
 
 export function updateProjectsSuccess(): FSAction {
   return {
-    type: UPDATE_PROJECT_SUCCESS,
+    type: UPDATE_PROJECT_SUCCESS
   };
 }
 
 export function updateProjectsFailure(): FSAction {
   return {
     type: UPDATE_PROJECT_FAILURE,
-    error: true,
+    error: true
   };
 }

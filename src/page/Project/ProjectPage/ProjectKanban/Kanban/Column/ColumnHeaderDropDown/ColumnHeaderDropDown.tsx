@@ -35,11 +35,11 @@ export function ColumnHeaderDropDown({ columnId }: InputProps) {
           </AppMenu>
         </div>
       }
-      toggle={ () =>
+      toggle={() => (
         <AppButton>
           <AppIcon icon="ellipsis-h" />
         </AppButton>
-      }
+      )}
     />
   );
 }

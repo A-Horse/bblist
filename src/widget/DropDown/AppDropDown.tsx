@@ -20,7 +20,7 @@ export function AppDropDown({
   toggle,
   overlay,
   className = '',
-  position = 'center',
+  position = 'center'
 }: DropDownProps) {
   const [show, setShow] = useState(false);
 

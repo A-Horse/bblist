@@ -1,7 +1,5 @@
-@import "../../../style/variable";
-
 .ProjectPage {
-  height: calc(100% - #{$app-nav-height});
+  height: calc(100% - 42px);
   overflow: hidden;
 
   &--main {

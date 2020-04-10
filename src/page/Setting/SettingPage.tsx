@@ -1,5 +1,3 @@
-import './SettingPage.scss';
-
 import React, { Component } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { Link } from 'react-router-dom';

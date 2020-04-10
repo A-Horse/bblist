@@ -8,7 +8,7 @@ import {
   Formik,
   FormikHelpers,
   FormikProps,
-  FormikValues,
+  FormikValues
 } from 'formik';
 import * as Yup from 'yup';
 import { FormField } from '../../widget/FormField/FormField';
@@ -24,7 +24,7 @@ export interface FormValues {
 
 const FormSchema = Yup.object().shape({
   email: Yup.string().required('邮箱为必填项'),
-  password: Yup.string().required('密码为必填项'),
+  password: Yup.string().required('密码为必填项')
 });
 
 export class LoginForm extends Component<Props> {
@@ -35,7 +35,7 @@ export class LoginForm extends Component<Props> {
         initialValues={
           {
             email: '',
-            password: '',
+            password: ''
           } as FormValues
         }
         onSubmit={(values: FormValues, actions: FormikHelpers<FormValues>) => {
@@ -59,7 +59,7 @@ export class LoginForm extends Component<Props> {
                         size="middle"
                         value={form.values.title}
                         placeholder=""
-                        onChange={(value) => {
+                        onChange={value => {
                           formikBag.setFieldValue('email', value);
                         }}
                       />
@@ -79,7 +79,7 @@ export class LoginForm extends Component<Props> {
                         size="middle"
                         value={form.values.title}
                         placeholder=""
-                        onChange={(value) => {
+                        onChange={value => {
                           formikBag.setFieldValue('password', value);
                         }}
                       />

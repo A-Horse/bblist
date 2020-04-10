@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-import './ProfilePage.scss';
-
 export class Profile extends Component {
   componentWillMount() {}
 

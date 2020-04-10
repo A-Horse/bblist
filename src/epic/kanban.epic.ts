@@ -20,7 +20,7 @@ import {
   getProjectKanbansFailure,
   getProjectKanbansSuccess,
   CREATE_KANBAN_SUCCESS,
-  getProjectKanbansRequest,
+  getProjectKanbansRequest
 } from '../actions/project/kanban.action';
 import { Kanban } from '../typings/kanban.typing';
 import { makeApiUrl } from '../utils/api';
@@ -36,7 +36,7 @@ export const GET_PROJECT_KANBANS_REQUEST_FN = (action$: Observable<FSAction>) =>
         .then((result: AxiosResponse<Kanban[]>) =>
           getProjectKanbansSuccess({
             projectId: action.payload.projectId,
-            kanbans: result.data,
+            kanbans: result.data
           })
         )
         .catch(getProjectKanbansFailure);
@@ -53,7 +53,7 @@ export const GET_PROJECT_KANBAN_DETAIL_REQUEST_FN = (
         .get(makeApiUrl(`/kanban/${action.payload.kanbanId}/detail`))
         .then((result: AxiosResponse<Kanban>) =>
           getProjectKanbanDetailSuccess({
-            kanban: result.data,
+            kanban: result.data
           })
         )
         .catch(getProjectKanbanDetailFailure);
@@ -86,17 +86,17 @@ export const CREATE_KANBAN_SUCCESS_FN = (action$: Observable<FSAction>) =>
     mergeMap((action: FSAction) =>
       from([
         getProjectKanbansRequest({
-          projectId: action.meta.projectID,
+          projectId: action.meta.projectID
         }),
         ...(action.meta.noKanbanExist
           ? [
               setProjectDefaultKanbanRequest({
                 projectId: action.meta.projectID,
-                kanbanId: action.payload,
+                kanbanId: action.payload
               }),
-              getProjectDetailRequest(action.meta.projectID),
+              getProjectDetailRequest(action.meta.projectID)
             ]
-          : []),
+          : [])
       ])
     )
   );
@@ -114,7 +114,7 @@ export const CREATE_KANBAN_COLUMN_REQUEST_FN = (
         )
         .then((result: AxiosResponse<string>) =>
           createKanbanColumnSuccess(result.data, {
-            kanbanId: action.payload.kanbanId,
+            kanbanId: action.payload.kanbanId
           })
         )
         .catch(createKanbanColumnFailure);
@@ -128,7 +128,7 @@ export const CREATE_KANBAN_COLUMN_SUCCESS_FN = (
     ofType(CREATE_KANBAN_COLUMN_SUCCESS),
     map((action: FSAction) => {
       return getProjectKanbanDetailRequest({
-        kanbanId: action.meta.kanbanId,
+        kanbanId: action.meta.kanbanId
       });
     })
   );

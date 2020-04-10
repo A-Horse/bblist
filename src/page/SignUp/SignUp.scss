@@ -1,6 +1,3 @@
-@import "../../style/variable";
-
-// TODO refactor with signin
 .signup-page {
   position: absolute;
   left: 0;
@@ -19,7 +16,7 @@
     margin-top: 18px;
     display: flex;
     justify-content: space-between;
-    color: $black-light;
+    color: #999;
 
     .signin-link {
       font-weight: bolder;

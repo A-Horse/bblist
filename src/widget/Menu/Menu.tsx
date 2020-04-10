@@ -1,8 +1,15 @@
 import React, { ReactNode, MouseEvent } from 'react';
 import './Menu.scss';
 
-export function AppMenuItem(props: { children: ReactNode, onClick?: (event: MouseEvent<HTMLLIElement>) => void }) {
-  return <li className="AppMenuItem" onClick={props.onClick}>{props.children}</li>;
+export function AppMenuItem(props: {
+  children: ReactNode;
+  onClick?: (event: MouseEvent<HTMLLIElement>) => void;
+}) {
+  return (
+    <li className="AppMenuItem" onClick={props.onClick}>
+      {props.children}
+    </li>
+  );
 }
 
 interface AppMenuProps {

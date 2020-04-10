@@ -12,7 +12,7 @@ import {
   ActionLoginRequest,
   LOGIN_REQUEST,
   loginFailure,
-  loginSuccess,
+  loginSuccess
 } from '../actions/login.action';
 
 export const LOGIN_REQUEST_FN = (action$: Observable<any>) =>
@@ -21,13 +21,13 @@ export const LOGIN_REQUEST_FN = (action$: Observable<any>) =>
     mergeMap((action: ActionLoginRequest) => {
       return axios
         .post(makeApiUrl('/user/signin'), action.payload)
-        .then((response) => {
+        .then(response => {
           saveAuthData(response.data);
           setupAxiosJwtHeader(response.data.token);
           action.meta.onSuccess();
           return loginSuccess();
         })
-        .catch((error) => {
+        .catch(error => {
           console.log(error);
           action.meta.onError(error.response);
           return loginFailure(error.response);
@@ -38,7 +38,7 @@ export const LOGIN_REQUEST_FN = (action$: Observable<any>) =>
 export const SIGNUP_REQUEST = (action$: Observable<any>) =>
   action$.pipe(
     ofType(Actions.SIGNUP.REQUEST),
-    mergeMap((action) =>
+    mergeMap(action =>
       axios
         .post(makeApiUrl('/user/signup'), action.payload)
         .then(Actions.SIGNUP.success)
@@ -50,7 +50,7 @@ export const APP_LOGOUT_FN = (action$: Observable<FSAction>) =>
   action$.pipe(
     ofType('APP_LOGOUT'),
     tap(() => {
-      console.log('hihi')
+      console.log('hihi');
       Storage.clear();
       window.location.pathname = '/';
     }),
