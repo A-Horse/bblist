@@ -18,6 +18,11 @@ export interface Project {
   setting: ProjectSetting;
 }
 
+export interface UpdateProjectRequest {
+  projectID: string;
+  name?: string;
+}
+
 export type ProjectRecord = Record<{
   id: string;
   name: string;

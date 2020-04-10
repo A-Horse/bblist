@@ -2,12 +2,11 @@ import axios, { AxiosResponse } from 'axios';
 import { ofType } from 'redux-observable';
 import { Observable } from 'rxjs';
 import { mergeMap, map } from 'rxjs/operators';
-
 import { FSAction } from '../actions/actions';
 import {
   SET_PROJECT_DEFAULT_KANBAN_REQUEST,
   setProjectDefaultKanbanFailure,
-  setProjectDefaultKanbanSuccess
+  setProjectDefaultKanbanSuccess,
 } from '../actions/project/project-setting.action';
 import {
   CREATE_PROJECT_REQUEST,
@@ -21,23 +20,31 @@ import {
   getProjectsSuccess,
   UPLOAD_PROJECT_COVER_REQUEST,
   uploadProjectCoverFailure,
-  uploadProjectCoverSuccess
+  uploadProjectCoverSuccess,
 } from '../actions/project/project.action';
 import {
   Project,
   ProjectId,
-  UploadProjectCoverInput
+  UploadProjectCoverInput,
 } from '../typings/project.typing';
 import { makeApiUrl } from '../utils/api';
 import {
   GET_PROJECT_DETAIL_SUCCESS,
   CREATE_PROJECT_SUCCESS,
-  getProjectsRequest
+  getProjectsRequest,
 } from '../actions/project/project.action';
 import { getProjectKanbansRequest } from '../actions/project/kanban.action';
 import {
+  updateProjectsSuccess,
+  updateProjectsFailure,
+} from '../actions/project/project.action';
+import {
+  UPDATE_PROJECT_REQUEST,
+  updateProjectsRequest,
+} from '../actions/project/project.action';
+import {
   UPLOAD_PROJECT_COVER_SUCCESS,
-  getProjectDetailRequest
+  getProjectDetailRequest,
 } from '../actions/project/project.action';
 
 export const GET_PROJECTS_REQUEST_FN = (action$: Observable<FSAction>) =>
@@ -50,6 +57,22 @@ export const GET_PROJECTS_REQUEST_FN = (action$: Observable<FSAction>) =>
           getProjectsSuccess(result.data)
         )
         .catch(getProjectsFailure);
+    })
+  );
+
+export const UPDATE_PROJECT_REQUEST_FN = (
+  action$: Observable<ReturnType<typeof updateProjectsRequest>>
+) =>
+  action$.pipe(
+    ofType(UPDATE_PROJECT_REQUEST),
+    mergeMap((action) => {
+      return axios
+        .patch(
+          makeApiUrl(`/project/${action.payload.projectID}`),
+          action.payload
+        )
+        .then(() => updateProjectsSuccess())
+        .catch(() => updateProjectsFailure());
     })
   );
 
@@ -69,7 +92,7 @@ export const GET_PROJECT_DETAIL_REQUEST_FN = (action$: Observable<FSAction>) =>
 export const GET_PROJECT_DETAIL_SUCCESS_FN = (action$: Observable<FSAction>) =>
   action$.pipe(
     ofType(GET_PROJECT_DETAIL_SUCCESS),
-    map(action => getProjectKanbansRequest({ projectId: action.payload.id }))
+    map((action) => getProjectKanbansRequest({ projectId: action.payload.id }))
   );
 
 export const CREATE_PROJECT_REQUEST_FN = (action$: Observable<FSAction>) =>
@@ -126,7 +149,7 @@ export const UPLOAD_PROJECT_COVER_REQUEST_FN = (
           action.meta.callback && action.meta.callback();
           return uploadProjectCoverSuccess(uploadProjectCoverInput.projectId);
         })
-        .catch(error => {
+        .catch((error) => {
           action.meta.callback && action.meta.callback(error);
           return uploadProjectCoverFailure(error);
         });
@@ -138,5 +161,5 @@ export const UPLOAD_PROJECT_COVER_SUCCESS_FN = (
 ) =>
   action$.pipe(
     ofType(UPLOAD_PROJECT_COVER_SUCCESS),
-    map(action => getProjectDetailRequest(action.payload.projectID))
+    map((action) => getProjectDetailRequest(action.payload.projectID))
   );
