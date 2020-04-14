@@ -7,7 +7,7 @@ import { Side } from '../../../../widget/Side/Side';
 import { SideItemLink } from '../../../../widget/Side/SideItemLink';
 import { ProjectInfoSection } from './ProjectInfoSection/ProjectInfoSection';
 import { AppIcon } from '../../../../widget/Icon';
-import { faCog } from '@fortawesome/free-solid-svg-icons';
+import { faCog, faPeopleCarry } from '@fortawesome/free-solid-svg-icons';
 import { faCaretSquareLeft } from '@fortawesome/free-regular-svg-icons';
 import { AppButton } from '../../../../widget/Button';
 
@@ -54,6 +54,11 @@ export class ProjectSideBar extends Component<
             icon="vector-square"
             to={`${this.props.match.url}/epics`}
             name="史诗"
+          />
+           <SideItemLink
+            icon={faPeopleCarry}
+            to={`${this.props.match.url}/epics`}
+            name="团队"
           />
           <SideItemLink
             icon="list-ol"
