@@ -25,7 +25,7 @@ export class AppButton extends PureComponent<{
         onClick={this.props.onClick}
         style={{
           backgroundColor: this.props.backgroundColor,
-          ...this.props.style
+          ...this.props.style,
         }}
         className={this.buildClassName()}
         type={this.props.htmlType}

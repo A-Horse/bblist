@@ -3,7 +3,7 @@
   color: inherit;
   cursor: pointer;
   transition: all 200ms ease-in-out;
-  padding: 0 20px;
+  padding: 0 6px;
   background-color: transparent;
   border: 1px solid transparent;
   outline: none;
@@ -22,10 +22,12 @@
     border: 1px solid #6094ff;
     background-color: #6094ff;
     color: white;
+    padding: 0 20px;
   }
 
   &.dashed {
     border: 1px solid #999;
+    padding: 0 20px;
   }
 
   &.no-opacity {
