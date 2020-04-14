@@ -23,7 +23,7 @@ export class KanbanColumnCreator extends Component<
 > {
   state = {
     creating: false,
-    name: ''
+    name: '',
   };
 
   render() {
@@ -51,12 +51,8 @@ export class KanbanColumnCreator extends Component<
                   {({
                     field, // { name, value, onChange, onBlur }
                     form: { touched, errors }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
-                    meta
+                    meta,
                   }) => {
-                    console.log('field', field);
-                    console.log('form', touched, errors);
-                    console.log('meta', meta);
-
                     return (
                       <div>
                         <Input

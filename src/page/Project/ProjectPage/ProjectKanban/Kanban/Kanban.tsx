@@ -9,7 +9,7 @@ import {
   ActionCreatorsMapObject,
   AnyAction,
   bindActionCreators,
-  Dispatch
+  Dispatch,
 } from 'redux';
 
 import { getProjectKanbanDetailRequest } from '../../../../../actions/project/kanban.action';
@@ -24,6 +24,7 @@ import { parseQueryParams } from '../../../../../utils/url.util';
 import { KanbanColumn } from './Column/KanbanColumn';
 
 import './Kanban.scss';
+import { NoColumnGuide } from './NoColumnGuide';
 
 interface InputProps {
   kanbanId: string;
@@ -42,7 +43,7 @@ class KanbanComponent extends Component<
 > {
   componentWillMount() {
     this.props.actions.getProjectKanbanDetailRequest({
-      kanbanId: this.props.kanbanId
+      kanbanId: this.props.kanbanId,
     });
   }
 
@@ -81,24 +82,28 @@ class KanbanComponent extends Component<
             }}
           />
 
-          <div className="Kanban-ColumnContainer">
-            {columns
-              .sort(
-                (a: KanbanColumnRecord, b: KanbanColumnRecord) =>
-                  a.get('order') - b.get('order')
-              )
-              .valueSeq()
-              .toArray()
-              .map((column: KanbanColumnRecord) => (
-                <KanbanColumn
-                  key={column.get('id')}
-                  column={column}
-                  kanbanID={this.props.kanbanId}
-                  projectID={this.props.projectId}
-                  onIssueClick={this.onIssueClick}
-                />
-              ))}
-          </div>
+          {!columns.size && <NoColumnGuide kanbanID={this.props.kanbanId} />}
+
+          {!!columns.size && (
+            <div className="Kanban-ColumnContainer">
+              {columns
+                .sort(
+                  (a: KanbanColumnRecord, b: KanbanColumnRecord) =>
+                    a.get('order') - b.get('order')
+                )
+                .valueSeq()
+                .toArray()
+                .map((column: KanbanColumnRecord) => (
+                  <KanbanColumn
+                    key={column.get('id')}
+                    column={column}
+                    kanbanID={this.props.kanbanId}
+                    projectID={this.props.projectId}
+                    onIssueClick={this.onIssueClick}
+                  />
+                ))}
+            </div>
+          )}
         </DndProvider>
       </div>
     );
@@ -109,10 +114,10 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
   return {
     actions: bindActionCreators(
       {
-        getProjectKanbanDetailRequest: getProjectKanbanDetailRequest
+        getProjectKanbanDetailRequest: getProjectKanbanDetailRequest,
       },
       dispatch
-    )
+    ),
   };
 };
 
@@ -133,7 +138,7 @@ const mapStateToProps = (state: RootState, props: ComponentProps) => {
   return {
     project,
     kanban,
-    columns
+    columns,
   };
 };
 
