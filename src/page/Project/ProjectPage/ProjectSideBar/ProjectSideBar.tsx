@@ -57,7 +57,7 @@ export class ProjectSideBar extends Component<
           />
            <SideItemLink
             icon={faPeopleCarry}
-            to={`${this.props.match.url}/epics`}
+            to={`${this.props.match.url}/team`}
             name="团队"
           />
           <SideItemLink
