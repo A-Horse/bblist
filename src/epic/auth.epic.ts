@@ -28,7 +28,6 @@ export const LOGIN_REQUEST_FN = (action$: Observable<any>) =>
           return loginSuccess();
         })
         .catch(error => {
-          console.log(error);
           action.meta.onError(error.response);
           return loginFailure(error.response);
         });
@@ -50,7 +49,6 @@ export const APP_LOGOUT_FN = (action$: Observable<FSAction>) =>
   action$.pipe(
     ofType('APP_LOGOUT'),
     tap(() => {
-      console.log('hihi');
       Storage.clear();
       window.location.pathname = '/';
     }),

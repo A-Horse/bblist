@@ -67,7 +67,6 @@ export function Nav(props: { user?: AppUserInfo }) {
 
               <AppMenuItem
                 onClick={() => {
-                  console.log('222');
                   dispatch(logout());
                 }}
               >
