@@ -13,7 +13,6 @@ import {
 } from 'redux';
 
 import { getProjectKanbanDetailRequest } from '../../../../../actions/project/kanban.action';
-import Loading from '../../../../../components/Loading';
 import { IssueDetailModal } from '../../../../../components/Project/Issue/IssueDetail/IssueDetailModal';
 import { RootState } from '../../../../../reducers';
 import { selectKanbanColumns } from '../../../../../reducers/selector/kanban.selector';
@@ -25,6 +24,7 @@ import { KanbanColumn } from './Column/KanbanColumn';
 
 import './Kanban.scss';
 import { NoColumnGuide } from './NoColumnGuide';
+import { Loading } from '../../../../../components/Loading';
 
 interface InputProps {
   kanbanId: string;

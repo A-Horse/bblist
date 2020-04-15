@@ -5,12 +5,12 @@ import Modal from 'react-modal';
 import { Provider } from 'react-redux';
 import {
   DefaultToastContainer,
-  ToastProvider
+  ToastProvider,
 } from 'react-toast-notifications';
 import { JSX as LocalJSX } from '@stencil/core';
 import {
   setupAxiosInterceptor,
-  setupAxiosJwtHeader
+  setupAxiosJwtHeader,
 } from './helper/http-interceptor';
 import Root from './page/Root/Root';
 import { store } from './store/store';
@@ -31,7 +31,7 @@ if (process.env.REACT_APP_OCTOPUS_WEB_SENTRY_DSN) {
   );
   const Sentry = require('@sentry/browser');
   Sentry.init({
-    dsn: process.env.REACT_APP_OCTOPUS_WEB_SENTRY_DSN
+    dsn: process.env.REACT_APP_OCTOPUS_WEB_SENTRY_DSN,
   });
 }
 
@@ -40,7 +40,7 @@ setupAxiosInterceptor();
 setupAxiosJwtHeader(getJWT());
 
 // TODO extract
-export const MyCustomToastContainer = (props: any) => (
+const MyCustomToastContainer = (props: any) => (
   <DefaultToastContainer {...props} style={{ zIndex: 9999999 }} />
 );
 

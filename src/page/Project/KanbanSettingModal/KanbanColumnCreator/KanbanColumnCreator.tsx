@@ -7,6 +7,7 @@ import { AppButton } from '../../../../widget/Button';
 import { Input } from '../../../../widget/Input/Input';
 import { AppIcon } from '../../../../widget/Icon';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+import { Flex } from '../../../../components/Layout/Flex';
 
 interface FormValues {
   name: string;
@@ -30,8 +31,17 @@ export class KanbanColumnCreator extends Component<
     return (
       <div>
         {!this.state.creating && (
-          <AppButton onClick={() => this.setState({ creating: true })}>
-            <AppIcon icon={faPlusCircle} /> 创建价值列
+          <AppButton
+            type="primary"
+            onClick={() => this.setState({ creating: true })}
+          >
+            <AppIcon
+              style={{
+                marginRight: 3,
+              }}
+              icon={faPlusCircle}
+            />
+            创建价值列
           </AppButton>
         )}
 
@@ -44,34 +54,48 @@ export class KanbanColumnCreator extends Component<
             ) => {
               this.props.createKanbanColumn(values);
               actions.setSubmitting(false);
+              actions.resetForm();
+              this.setState({ creating: false });
             }}
-            render={(formikBag: FormikProps<FormValues>) => (
+          >
+            {(formikBag: FormikProps<FormValues>) => (
               <form onSubmit={formikBag.handleSubmit}>
-                <Field name="name">
-                  {({
-                    field, // { name, value, onChange, onBlur }
-                    form: { touched, errors }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
-                    meta,
-                  }) => {
-                    return (
-                      <div>
-                        <Input
-                          name="name"
-                          value={field.value}
-                          onChangeEvent={field.onChange}
-                        />
+                <Flex>
+                  <Field name="name">
+                    {({
+                      field, // { name, value, onChange, onBlur }
+                      form: { touched, errors }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
+                      meta,
+                    }) => {
+                      return (
+                        <div>
+                          <Input
+                            placeholder="请输入价值列名称"
+                            name="name"
+                            value={field.value}
+                            onChangeEvent={field.onChange}
+                          />
 
-                        {meta.touched && meta.error && (
-                          <div className="error">{meta.error}</div>
-                        )}
-                      </div>
-                    );
-                  }}
-                </Field>
-                <AppButton htmlType="submit">OK</AppButton>
+                          {meta.touched && meta.error && (
+                            <div className="error">{meta.error}</div>
+                          )}
+                        </div>
+                      );
+                    }}
+                  </Field>
+                  <AppButton
+                    style={{
+                      marginLeft: 8,
+                    }}
+                    type="primary"
+                    htmlType="submit"
+                  >
+                    确定
+                  </AppButton>
+                </Flex>
               </form>
             )}
-          />
+          </Formik>
         )}
       </div>
     );

@@ -1,0 +1,7 @@
+.OperableListItem {
+  border-bottom: 1px solid #ccc;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}

@@ -7,7 +7,7 @@ import { Side } from '../../../../widget/Side/Side';
 import { SideItemLink } from '../../../../widget/Side/SideItemLink';
 import { ProjectInfoSection } from './ProjectInfoSection/ProjectInfoSection';
 import { AppIcon } from '../../../../widget/Icon';
-import { faCog, faPeopleCarry } from '@fortawesome/free-solid-svg-icons';
+import { faCog, faUsers } from '@fortawesome/free-solid-svg-icons';
 import { faCaretSquareLeft } from '@fortawesome/free-regular-svg-icons';
 import { AppButton } from '../../../../widget/Button';
 
@@ -23,12 +23,12 @@ export class ProjectSideBar extends Component<
   }
 > {
   state = {
-    shrink: false
+    shrink: false,
   };
 
   componentDidMount() {
     this.setState({
-      shrink: !!window.localStorage.getItem(localStorageShrinkToggleName)
+      shrink: !!window.localStorage.getItem(localStorageShrinkToggleName),
     });
   }
 
@@ -55,8 +55,8 @@ export class ProjectSideBar extends Component<
             to={`${this.props.match.url}/epics`}
             name="史诗"
           />
-           <SideItemLink
-            icon={faPeopleCarry}
+          <SideItemLink
+            icon={faUsers}
             to={`${this.props.match.url}/team`}
             name="团队"
           />

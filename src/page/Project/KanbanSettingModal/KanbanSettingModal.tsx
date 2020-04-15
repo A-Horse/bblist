@@ -8,13 +8,12 @@ import {
   ActionCreatorsMapObject,
   AnyAction,
   bindActionCreators,
-  Dispatch
+  Dispatch,
 } from 'redux';
-
 import {
   createKanbanColumnRequest,
   createKanbanRequest,
-  getProjectKanbanDetailRequest
+  getProjectKanbanDetailRequest,
 } from '../../../actions/project/kanban.action';
 import { AppModal } from '../../../widget/Modal/AppModal';
 import { RootState } from '../../../reducers';
@@ -46,7 +45,7 @@ class KanbanSettingModalComponent extends Component<
 > {
   componentWillMount() {
     this.props.actions.getProjectKanbanDetailRequest({
-      kanbanId: this.props.kanbanId
+      kanbanId: this.props.kanbanId,
     });
   }
 
@@ -57,7 +56,7 @@ class KanbanSettingModalComponent extends Component<
   createKanbanColumn = (formData: any) => {
     this.props.actions.createKanbanColumnRequest({
       kanbanId: this.props.kanban!.get('id'),
-      ...formData
+      ...formData,
     });
   };
 
@@ -72,11 +71,22 @@ class KanbanSettingModalComponent extends Component<
           <div>loading</div>
         ) : (
           <div>
-            <ModalHeader title={this.props.kanban!.get('name')} />
+            <ModalHeader
+              title={this.props.kanban!.get('name') + ' 配置'}
+              onClose={this.props.onClose}
+            />
 
             <KanbanColumnPanel columns={this.props.columns} />
 
-            <KanbanColumnCreator createKanbanColumn={this.createKanbanColumn} />
+            <div
+              style={{
+                padding: '16px',
+              }}
+            >
+              <KanbanColumnCreator
+                createKanbanColumn={this.createKanbanColumn}
+              />
+            </div>
           </div>
         )}
       </AppModal>
@@ -100,7 +110,7 @@ const mapStateToProps = (state: RootState, props: InputRouterProps) => {
   return {
     project,
     kanban,
-    columns
+    columns,
   };
 };
 
@@ -110,10 +120,10 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
       {
         createKanbanRequest: createKanbanRequest,
         createKanbanColumnRequest: createKanbanColumnRequest,
-        getProjectKanbanDetailRequest: getProjectKanbanDetailRequest
+        getProjectKanbanDetailRequest: getProjectKanbanDetailRequest,
       },
       dispatch
-    )
+    ),
   };
 };
 
