@@ -25,6 +25,7 @@ import { KanbanColumn } from './Column/KanbanColumn';
 import './Kanban.scss';
 import { NoColumnGuide } from './NoColumnGuide';
 import { Loading } from '../../../../../components/Loading';
+import { KanbanSettingModal } from '../../../KanbanSettingModal/KanbanSettingModal';
 
 interface InputProps {
   kanbanId: string;
@@ -39,8 +40,15 @@ class KanbanComponent extends Component<
     project: ProjectRecord;
     kanban?: KanbanRecord;
     columns: List<KanbanColumnRecord> | null;
-  } & ComponentProps
+  } & ComponentProps,
+  {
+    modalVisible: boolean;
+  }
 > {
+  state = {
+    modalVisible: false,
+  };
+
   componentWillMount() {
     this.props.actions.getProjectKanbanDetailRequest({
       kanbanId: this.props.kanbanId,
@@ -82,7 +90,17 @@ class KanbanComponent extends Component<
             }}
           />
 
-          {!columns.size && <NoColumnGuide kanbanID={this.props.kanbanId} />}
+          <KanbanSettingModal
+            kanbanId={this.props.kanbanId}
+            toggle={this.state.modalVisible}
+            onClose={() => this.setState({ modalVisible: false })}
+          />
+
+          {!columns.size && (
+            <NoColumnGuide
+              openSetting={() => this.setState({ modalVisible: true })}
+            />
+          )}
 
           {!!columns.size && (
             <div className="Kanban-ColumnContainer">

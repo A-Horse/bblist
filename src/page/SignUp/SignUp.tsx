@@ -12,7 +12,7 @@ class SignUp extends Component<any, any> {
     username: '',
     password: '',
     passwordConfirm: '',
-    email: ''
+    email: '',
   };
 
   constructor(props: any) {
@@ -39,9 +39,9 @@ class SignUp extends Component<any, any> {
           <div>
             <Input
               value={this.state.email}
-              onChange={value => this.setState({ email: value })}
+              onChange={(value) => this.setState({ email: value })}
               type="text"
-              name="octopus-email"
+              name="email"
               required
               placeholder="Email"
             />
@@ -50,9 +50,9 @@ class SignUp extends Component<any, any> {
           <div>
             <Input
               value={this.state.username}
-              onChange={value => this.setState({ username: value })}
+              onChange={(value) => this.setState({ username: value })}
               type="text"
-              name="octopus-username"
+              name="username"
               required
               placeholder="Name"
             />
@@ -61,9 +61,9 @@ class SignUp extends Component<any, any> {
           <div>
             <Input
               value={this.state.password}
-              onChange={value => this.setState({ password: value })}
+              onChange={(value) => this.setState({ password: value })}
               type="password"
-              name="octopus-password"
+              name="password"
               required
               placeholder="Password"
             />
@@ -72,9 +72,9 @@ class SignUp extends Component<any, any> {
           <div>
             <Input
               value={this.state.passwordConfirm}
-              onChange={value => this.setState({ passwordConfirm: value })}
+              onChange={(value) => this.setState({ passwordConfirm: value })}
               type="password"
-              name="octopus-confirm-password"
+              name="password-confirm"
               required
               placeholder="Confirm Password"
             />
@@ -101,7 +101,7 @@ class SignUp extends Component<any, any> {
     const signUpData = {
       username: this.state.username,
       email: this.state.email,
-      password: this.state.password
+      password: this.state.password,
     };
 
     this.props.actions.SIGNUP_REQUEST(signUpData);
