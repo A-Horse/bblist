@@ -83,7 +83,7 @@ class KanbanCreatorComponent extends Component<{
               </div>
               <ModalFooter>
                 <ConfirmButtonGroup
-                  confirmButtonType="submit"
+                  confirmButtonHtmlType="submit"
                   onConfirm={() => {}}
                   onCancel={this.props.onClose}
                 />

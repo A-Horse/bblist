@@ -1,5 +1,5 @@
-import React from 'react';
-import { AppButton } from '../../Button';
+import React, { CSSProperties } from 'react';
+import { AppButton, ButtonType } from '../../Button';
 
 import './ConfirmButtonGroup.scss';
 
@@ -7,20 +7,29 @@ interface InputProps {
   onConfirm: any;
   onCancel: any;
   confirmText?: string;
-  confirmButtonType?: 'submit' | 'reset' | 'button';
+  confirmButtonHtmlType?: 'submit' | 'reset' | 'button';
+  confirmButtonType?: ButtonType;
+  center?: boolean;
+  style?: CSSProperties;
 }
 
 export function ConfirmButtonGroup({
   onConfirm,
   onCancel,
   confirmText = '确认',
-  confirmButtonType = 'button'
+  confirmButtonHtmlType = 'button',
+  confirmButtonType,
+  center,
+  style
 }: InputProps) {
   return (
-    <div className="ConfirmButtonGroup">
+    <div className="ConfirmButtonGroup" style={{
+      textAlign: center ? 'center' : 'inherit',
+      ...style
+    }}>
       <AppButton
-        htmlType={confirmButtonType}
-        type="primary"
+        htmlType={confirmButtonHtmlType}
+        type={confirmButtonType || 'primary'}
         onClick={onConfirm}
       >
         {confirmText}

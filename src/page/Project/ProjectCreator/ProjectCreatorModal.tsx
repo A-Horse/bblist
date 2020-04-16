@@ -58,7 +58,7 @@ export function ProjectCreatorModal({ isOpen, onClose }) {
             </div>
             <ModalFooter>
               <ConfirmButtonGroup
-                confirmButtonType="submit"
+                confirmButtonHtmlType="submit"
                 onConfirm={() => {}}
                 onCancel={() => {}}
               />

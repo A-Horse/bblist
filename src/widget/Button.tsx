@@ -2,9 +2,11 @@ import './Button.scss';
 
 import React, { PureComponent, CSSProperties } from 'react';
 
+export type ButtonType = 'primary' | 'dashed' | 'danger' | 'link'; 
+
 export class AppButton extends PureComponent<{
   htmlType?: 'submit' | 'reset' | 'button';
-  type?: 'primary' | 'dashed' | 'danger' | 'link';
+  type?: ButtonType;
   size?: 'sm' | 'md' | 'lg';
   style?: CSSProperties;
   backgroundColor?: string;

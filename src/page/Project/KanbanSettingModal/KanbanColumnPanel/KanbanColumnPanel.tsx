@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 
 import { KanbanColumnRecord } from '../../../../typings/kanban-column.typing';
 
@@ -8,9 +8,26 @@ import { EmptyTip } from '../../../../components/Tip/EmptyTip';
 import { OperableListItem } from '../../../../components/List/OperableListItem';
 import { List } from 'immutable';
 import { AppList } from '../../../../components/List/List';
+import { ConfirmModal } from '../../../../components/Modal/ConfirmModal';
 
 function ColumnListItem(props: { column: KanbanColumnRecord }) {
-  return <OperableListItem>{props.column.get('name')}</OperableListItem>;
+  const [editModalVisible, setEditModalVisible] = useState(false);
+  const [deleteConfirmVisible, setDeleteConfirmVisible] = useState(false);
+  return (
+    <>
+      <OperableListItem onEditClick={() => {}} onDeleteClick={() => setDeleteConfirmVisible(true)}>
+        {props.column.get('name')}
+      </OperableListItem>
+
+      <ConfirmModal
+       visible={deleteConfirmVisible}
+       confirmTextTip="删除后不能恢复，请谨慎操作"
+       confirmButtonText="删除"
+       onConfirm={() => {}}
+       onCancel={() => setDeleteConfirmVisible(false)}
+      />
+    </>
+  );
 }
 
 export class KanbanColumnPanel extends Component<{

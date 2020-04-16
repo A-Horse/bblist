@@ -30,6 +30,14 @@
     padding: 0 20px;
   }
 
+  &.danger {
+    border: 1px solid #ff4c4c;
+    background-color: #ff4c4c;
+    color: white;
+    padding: 0 20px;
+  }
+
+
   &.no-opacity {
     opacity: 1 !important;
   }

@@ -83,7 +83,7 @@ class IssueCreatorModalComponent extends Component<{
                 </div>
                 <ModalFooter>
                   <ConfirmButtonGroup
-                    confirmButtonType="submit"
+                    confirmButtonHtmlType="submit"
                     onConfirm={() => {
                       formikBag.submitForm();
                     }}
