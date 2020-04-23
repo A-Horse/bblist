@@ -26,6 +26,7 @@ class IssueDetailModalComponent extends Component<Props> {
       <AppModal
         className="IssueDetailModal"
         isOpen={true}
+        shouldCloseOnOverlayClick={false}
         onRequestClose={this.closeModal}
       >
         <ModalHeader onClose={this.closeModal}>

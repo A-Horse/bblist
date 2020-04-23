@@ -104,7 +104,7 @@ class SignUp extends Component<any, any> {
       password: this.state.password,
     };
 
-    this.props.actions.SIGNUP_REQUEST(signUpData);
+    // this.props.actions.SIGNUP_REQUEST(signUpData);
   }
 }
 

@@ -2,8 +2,17 @@
   background-color: white;
   padding: 12px 18px;
 
+  .FormField {
+    margin-bottom: -2px;
+  }
+
   .IssueDetail--title-field {
-    margin-bottom: 2px;
+    margin-bottom: 0;
+
+    input {
+      margin-top: 3px;
+      margin-left: 1px;
+    }
   }
 
   &--title {

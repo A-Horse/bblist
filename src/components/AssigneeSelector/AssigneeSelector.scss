@@ -1,8 +1,34 @@
 .AssigneeSelector {
-  min-width: 160px;
-}
+  width: 180px;
 
-.AssigneeSelectorOption {
-  display: flex;
-  align-items: center;
+  .App-select__value-container {
+    padding-left: 2px;
+  }
+
+  .App-select__menu {
+    .AssigneeSelectorOption {
+      &:hover {
+        background-color: #e2f0ff;
+      }
+    }
+  }
+
+  .AssigneeSelectorOption {
+    display: flex;
+    align-items: center;
+    padding: 4px;
+    cursor: pointer;
+    max-width: 95%;
+
+    img {
+      margin-right: 6px;
+    }
+
+    &--label {
+      display: inline-block;
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
 }

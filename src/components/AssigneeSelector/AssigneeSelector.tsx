@@ -12,7 +12,7 @@ import { AssigneeSelectorOption } from './AssigneeSelectorOption';
 import './AssigneeSelector.scss';
 
 interface InputProps {
-  selectedUserId?: number;
+  selectedUserId?: number | string;
   projectID: string;
   onChange?: Function;
 }
@@ -53,6 +53,7 @@ export function AssigneeSelector(props: InputProps) {
           Option: AssigneeSelectorOption,
           SingleValue: AssigneeSelectorOption
         }}
+        className="AssigneeSelector-select"
         isSearchable={true}
         placeholder="分配用户"
         value={selectedOption}

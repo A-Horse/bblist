@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './DetailField.scss';
+import './DetailRightField.scss';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { AppIcon } from '../../../../../../widget/Icon';
 

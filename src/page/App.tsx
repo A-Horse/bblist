@@ -57,7 +57,7 @@ export default class App extends Component<any> {
 
   componentWillMount() {
     const userData = getUserData();
-    this.props.actions.SETUP_USER_REQUEST(userData);
+    // this.props.actions.SETUP_USER_REQUEST(userData);
     this.setState({ userData });
   }
 

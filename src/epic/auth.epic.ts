@@ -3,7 +3,7 @@ import { ofType } from 'redux-observable';
 import { Observable, of } from 'rxjs';
 import { mergeMap, tap, ignoreElements } from 'rxjs/operators';
 
-import Actions, { FSAction } from '../actions/actions';
+import { FSAction } from '../actions/actions';
 import { setupAxiosJwtHeader } from '../helper/http-interceptor';
 import { Storage } from '../services/storage';
 import { makeApiUrl } from '../utils/api';
@@ -34,16 +34,16 @@ export const LOGIN_REQUEST_FN = (action$: Observable<any>) =>
     })
   );
 
-export const SIGNUP_REQUEST = (action$: Observable<any>) =>
-  action$.pipe(
-    ofType(Actions.SIGNUP.REQUEST),
-    mergeMap(action =>
-      axios
-        .post(makeApiUrl('/user/signup'), action.payload)
-        .then(Actions.SIGNUP.success)
-        .catch(Actions.SIGNUP.failure)
-    )
-  );
+// export const SIGNUP_REQUEST = (action$: Observable<any>) =>
+//   action$.pipe(
+//     ofType(Actions.SIGNUP.REQUEST),
+//     mergeMap(action =>
+//       axios
+//         .post(makeApiUrl('/user/signup'), action.payload)
+//         .then(Actions.SIGNUP.success)
+//         .catch(Actions.SIGNUP.failure)
+//     )
+//   );
 
 export const APP_LOGOUT_FN = (action$: Observable<FSAction>) =>
   action$.pipe(

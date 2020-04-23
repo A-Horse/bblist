@@ -8,13 +8,13 @@ import {
   ActionCreatorsMapObject,
   AnyAction,
   bindActionCreators,
-  Dispatch
+  Dispatch,
 } from 'redux';
 import { AnyHTMLElement } from '@stencil/core/dist/declarations';
 import {
   changeIssueDirect,
   getProjectIssueDetailRequest,
-  updateProjectIssueDetailRequest
+  updateProjectIssueDetailRequest,
 } from '../../../../actions/project/project-issue-detail.action';
 import { RootState } from '../../../../reducers';
 import { ProjectIssueRecord } from '../../../../typings/project-issue.typing';
@@ -58,14 +58,14 @@ export class IssueDetailComponent extends Component<
 
   componentDidMount() {
     this.props.actions.getProjectIssueDetailRequest({
-      issueId: this.props.issueID
+      issueId: this.props.issueID,
     });
   }
 
   componentDidUpdate(prevProps: ComponentProps) {
     if (this.props.issueID !== prevProps.issueID) {
       this.props.actions.getProjectIssueDetailRequest({
-        issueId: this.props.issueID
+        issueId: this.props.issueID,
       });
     }
   }
@@ -92,26 +92,24 @@ export class IssueDetailComponent extends Component<
 
         <div className="IssueDetail--content">
           <div className="IssueDetail--left">
-            <DetailSection>
-              {issue.get('deadline') && (
-                <FormField name="到期日">
-                  <Deadline
-                    deadline={issue.get('deadline')!}
-                    done={!!issue.get('deadlineDone')}
-                    onChange={checked =>
-                      this.detailState.updateIssue(
-                        {
-                          deadlineDone: checked
-                        },
-                        {
-                          force: true
-                        }
-                      )
-                    }
-                  />
-                </FormField>
-              )}
-            </DetailSection>
+            {issue.get('deadline') && (
+              <FormField name="到期日">
+                <Deadline
+                  deadline={issue.get('deadline')!}
+                  done={!!issue.get('deadlineDone')}
+                  onChange={(checked) =>
+                    this.detailState.updateIssue(
+                      {
+                        deadlineDone: checked,
+                      },
+                      {
+                        force: true,
+                      }
+                    )
+                  }
+                />
+              </FormField>
+            )}
 
             <DetailSection icon={faBars}>
               <FormField name="描述：" type="major">
@@ -142,16 +140,16 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
       {
         getProjectIssueDetailRequest: getProjectIssueDetailRequest,
         updateProjectIssueDetailRequest: updateProjectIssueDetailRequest,
-        changeIssueDirect: changeIssueDirect
+        changeIssueDirect: changeIssueDirect,
       },
       dispatch
-    )
+    ),
   };
 };
 
 const mapStateToProps = (state: RootState, props: InputProps) => {
   return {
-    issue: state.project.get('issueMap').get(props.issueID)
+    issue: state.project.get('issueMap').get(props.issueID),
   };
 };
 

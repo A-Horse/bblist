@@ -5,7 +5,7 @@ exports[`AssigneeSelector snapshot 1`] = `
   className="AssigneeSelector"
 >
   <div
-    className="AppSelect css-2b097c-container"
+    className="AppSelect AssigneeSelector-select css-2b097c-container"
     onKeyDown={[Function]}
   >
     <div

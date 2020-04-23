@@ -15,7 +15,7 @@ interface InputProps {
 export function Deadline(props: InputProps) {
   const isLate = moment(props.deadline).isBefore(new Date());
   const color = isLate ? '#FF5050E6' : '#888';
-  const timeStr = moment(props.deadline).format('YYYY-MM-D');
+  const timeStr = moment(props.deadline).format('YYYY年MM月DD日');
   return (
     <div className="Deadline">
       <Checkbox defaultChecked={props.done} onChange={props.onChange} />

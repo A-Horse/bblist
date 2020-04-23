@@ -8,6 +8,8 @@ export interface ProjectIssue {
   columnId: string;
   deadline?: string;
   deadlineDone?: boolean;
+  assigneeId?: string;
+  creatorId?: string;
 }
 
 export type ProjectIssueRecord = Record<ProjectIssue>;

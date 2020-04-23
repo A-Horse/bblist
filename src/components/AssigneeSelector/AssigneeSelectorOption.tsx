@@ -6,7 +6,7 @@ export function AssigneeSelectorOption({ data, innerProps }) {
   return (
     <div className="AssigneeSelectorOption" {...innerProps}>
       <UserAvatar user={data.meta.toJS()} />
-      {data.label}
+      <span className="AssigneeSelectorOption--label">{data.label}</span>
     </div>
   );
 }

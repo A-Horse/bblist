@@ -75,6 +75,8 @@ const Card = React.forwardRef<HTMLDivElement, InputProps & DndProps>(
   }
 );
 
+
+// TODO: rename KanbanIssue
 export const ProjectIssue = DropTarget(
   'CARD',
   {

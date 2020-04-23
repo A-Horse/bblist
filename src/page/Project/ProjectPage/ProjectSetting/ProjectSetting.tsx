@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useRouteMatch } from 'react-router-dom';
 import {
   uploadProjectCoverRequest,
-  updateProjectsRequest
+  updateProjectsRequest,
 } from '../../../../actions/project/project.action';
 import { ImageUploader } from '../../../../components/ImageUploader/ImageUploader';
 import { Input } from '../../../../widget/Input/Input';
@@ -28,16 +28,17 @@ export function ProjectSetting() {
 
   useEffect(() => {
     const action = getProjectKanbansRequest({
-      projectId: match.params.projectId
+      projectId: match.params.projectId,
     });
     dispatch(action);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const onCoverUpload = (coverBase64: string) => {
     const action = uploadProjectCoverRequest(
       {
         projectId: project!.get('id'),
-        coverBase64
+        coverBase64,
       },
       {
         callback: (error: AxiosError) => {
@@ -50,9 +51,9 @@ export function ProjectSetting() {
           }
           addToast(`上传失败${errorDetail}`, {
             appearance: 'error',
-            autoDismiss: true
+            autoDismiss: true,
           });
-        }
+        },
       }
     );
     dispatch(action);
@@ -69,7 +70,7 @@ export function ProjectSetting() {
             width: '256px',
             height: '144px',
             borderRadius: '6px',
-            display: 'block'
+            display: 'block',
           }}
           modalTitle="裁剪项目封面"
           source={generateProjectCoverUrl(
@@ -85,11 +86,11 @@ export function ProjectSetting() {
         <Input
           className="ProjectSetting--project-name-input"
           defaultValue={project.get('name')}
-          onBlur={name =>
+          onBlur={(name) =>
             dispatch(
               updateProjectsRequest({
                 projectID,
-                name
+                name,
               })
             )
           }

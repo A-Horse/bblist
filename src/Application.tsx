@@ -16,7 +16,7 @@ const LoginPageSuspense = () => {
 };
 
 const SignUpContainer = React.lazy(() =>
-  import('./page/SignUp/SignUp.container')
+  import('./page/SignUp/SignUp')
 );
 const SignUpPageSuspense = () => {
   return (
