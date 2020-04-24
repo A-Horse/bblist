@@ -1,48 +1,35 @@
 .app-checkbox {
-  display: inline-block;
-}
-
-.app-rounded-checkbox {
-  width: 30px;
-  height: 30px;
+  display: inline-flex;
+  user-select: none;
+  width: 17.5px;
+  height: 20px;
   position: relative;
-  border-radius: 50px;
-}
+  border-radius: 50%;
 
-.app-rounded-checkbox .label {
-  width: 24px;
-  height: 24px;
-  position: absolute;
-  top: 3px;
-  left: 3px;
-  cursor: pointer;
-  background: #e8e8e8;
-  border-radius: 3px;
-}
+  .check-square,
+  .square {
+    font-size: 20px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin: 0;
+    color: #999;
+  }
 
-.app-rounded-checkbox .label::after {
-  content: "";
-  width: 13px;
-  height: 8px;
-  position: absolute;
-  top: 6px;
-  left: 5px;
-  border: 3.5px solid #eb6668;
-  border-top: none;
-  border-right: none;
-  background: transparent;
-  opacity: 0;
-  transform: rotate(-45deg);
-}
+  .square {
+    opacity: 1;
+  }
 
-.app-rounded-checkbox .label:after:hover::after {
-  opacity: 0.3;
+  .check-square {
+    opacity: 0;
+    color: green;
+  }
 }
 
 .app-rounded-checkbox input[type="checkbox"] {
   visibility: hidden;
 }
 
-.app-rounded-checkbox input[type="checkbox"]:checked + .label::after {
+.app-rounded-checkbox input[type="checkbox"]:checked + .check-square {
   opacity: 1;
 }

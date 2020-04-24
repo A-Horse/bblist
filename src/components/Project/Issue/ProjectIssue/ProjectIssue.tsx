@@ -145,7 +145,7 @@ export const ProjectIssue = DropTarget(
           targetCard: props.issue,
           targetOrder:
             props.issue.get('order') - (isBefore ? 0.000001 : -0.0000001),
-          targetColumnId: props.issue.get('columnId'),
+          targetColumnId: props.issue.get('columnID'),
           isBefore: isBefore,
           kanbanId: props.kanbanId
         } as RankProjectCardInKanbanInput,
@@ -163,7 +163,7 @@ export const ProjectIssue = DropTarget(
         {
           selectCard: monitor.getItem().issue,
           kanbanId: props.kanbanId,
-          targetColumnId: props.issue.get('columnId')
+          targetColumnId: props.issue.get('columnID')
         } as RankProjectCardInKanbanInput,
         {
           temporary: false

@@ -45,8 +45,8 @@ export function selectKanbanColumns(
   }
   return kanban
     .get('columns')!
-    .map((columnId: string) => {
-      return state.project.get('columnMap').get(columnId);
+    .map((columnID: string) => {
+      return state.project.get('columnMap').get(columnID);
     })
     .filter(column => !!column) as List<KanbanColumnRecord>;
 }

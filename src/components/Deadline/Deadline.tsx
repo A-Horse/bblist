@@ -20,12 +20,10 @@ export function Deadline(props: InputProps) {
     <div className="Deadline">
       <Checkbox defaultChecked={props.done} onChange={props.onChange} />
 
-      <div className="Deadline--main">
-        <AppIcon color={color} icon={faClock} />
-        <span className="Deadline--text" style={{ color: color }}>
-          {timeStr}
-        </span>
-      </div>
+      <AppIcon className="clock-icon" color={color} icon={faClock} />
+      <span className="Deadline--text" style={{ color: color }}>
+        {timeStr}
+      </span>
     </div>
   );
 }

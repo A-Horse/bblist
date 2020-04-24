@@ -1,11 +1,13 @@
 import { combineEpics } from 'redux-observable';
-import * as R from 'ramda';
+import flatten from 'ramda/src/flatten';
+import map from 'ramda/src/map';
+import values from 'ramda/src/values'
 
 function requireAll(r) {
   return r.keys().map(r);
 }
 const epicGroups = requireAll(require.context('./', true, /epic.(js|ts)$/));
-const epics = R.flatten(R.map(R.values, epicGroups));
+const epics = flatten(map(values, epicGroups));
 
 const rootEpic = combineEpics(...epics);
 

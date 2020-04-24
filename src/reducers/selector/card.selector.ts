@@ -6,11 +6,11 @@ import { ProjectIssueRecord } from '../../typings/project-issue.typing';
 
 export function selectColumnCards(
   state: RootState,
-  columnId: string
+  columnID: string
 ): List<ProjectIssueRecord> | null {
   const column: KanbanColumnRecord | undefined = state.project
     .get('columnMap')
-    .get(columnId);
+    .get(columnID);
 
   if (!column) {
     return null;
@@ -19,7 +19,7 @@ export function selectColumnCards(
   return state.project
     .get('issueMap')
     .filter((value: ProjectIssueRecord) => {
-      return value.get('columnId') === column!.get('id');
+      return value.get('columnID') === column!.get('id');
     })
     .toList();
 }
@@ -34,7 +34,7 @@ export function findIssuePositionInColumn(
   const sortedIssueMap = state.project
     .get('issueMap')
     .filter((value: ProjectIssueRecord, key: string) => {
-      return value.get('columnId') === issue.get('columnId');
+      return value.get('columnID') === issue.get('columnID');
     })
     .sort((value1: ProjectIssueRecord, value2: ProjectIssueRecord) => {
       return value1.get('order') - value2.get('order');

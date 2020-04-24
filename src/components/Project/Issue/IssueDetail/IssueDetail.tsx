@@ -93,7 +93,7 @@ export class IssueDetailComponent extends Component<
         <div className="IssueDetail--content">
           <div className="IssueDetail--left">
             {issue.get('deadline') && (
-              <FormField name="到期日">
+              <FormField name="到期日" className="IssueDetail--deadline-field">
                 <Deadline
                   deadline={issue.get('deadline')!}
                   done={!!issue.get('deadlineDone')}
@@ -125,6 +125,7 @@ export class IssueDetailComponent extends Component<
 
           <IssueDetailRight
             projectID={this.props.projectID}
+            kanbanID={this.props.kanbanID}
             issue={issue}
             updateIssue={this.detailState.updateIssue}
           />

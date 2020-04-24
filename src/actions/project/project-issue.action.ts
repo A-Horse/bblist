@@ -11,7 +11,7 @@ export const GET_COLUMN_CARDS_SUCCESS = 'GET_COLUMN_CARDS_SUCCESS';
 export const GET_COLUMN_CARDS_FAILURE = 'GET_COLUMN_CARDS_FAILURE';
 
 export function getColumnCardsRequest(
-  payload: { kanbanId: string; columnId: string },
+  payload: { kanbanId: string; columnID: string },
   meta: {
     requestDoneCallback: Function;
   }
@@ -26,7 +26,7 @@ export function getColumnCardsRequest(
 export function getColumnCardsSuccess(payload: {
   cards: ProjectIssue[];
   kanbanId: string;
-  columnId: string;
+  columnID: string;
 }): FSAction {
   return {
     type: GET_COLUMN_CARDS_SUCCESS,

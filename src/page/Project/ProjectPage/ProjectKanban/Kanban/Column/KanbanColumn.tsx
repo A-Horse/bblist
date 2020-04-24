@@ -75,7 +75,7 @@ export class KanbanColumnComponent extends Component<ComponentProps, State> {
             <span className="KanbanColumn--header-name">
               {this.props.column.get('name')}
             </span>
-            <ColumnHeaderDropDown columnId={this.props.column.get('id')} />
+            <ColumnHeaderDropDown columnID={this.props.column.get('id')} />
           </div>
 
           <div className="KanbanColumn--content">

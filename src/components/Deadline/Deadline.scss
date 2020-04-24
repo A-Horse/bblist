@@ -2,19 +2,15 @@
   display: flex;
   align-items: center;
 
-  &--main {
-  }
-
   .app-checkbox {
     margin-right: 10px;
   }
 
-  svg {
-    font-size: 16px;
+  .clock-icon {
     margin-right: 6px;
   }
 
   &--text {
-    font-size: 15px;
+    font-size: 12px;
   }
 }

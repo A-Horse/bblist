@@ -8,10 +8,10 @@ import './ColumnHeaderDropDown.scss';
 import { AppMenu, AppMenuItem } from '../../../../../../../widget/Menu/Menu';
 
 interface InputProps {
-  columnId: string;
+  columnID: string;
 }
 
-export function ColumnHeaderDropDown({ columnId }: InputProps) {
+export function ColumnHeaderDropDown({ columnID }: InputProps) {
   return (
     <AppDropDown
       position="right"

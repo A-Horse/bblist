@@ -5,7 +5,7 @@ export interface ProjectIssue {
   title: string;
   order: number;
   content?: string;
-  columnId: string;
+  columnID: string;
   deadline?: string;
   deadlineDone?: boolean;
   assigneeId?: string;

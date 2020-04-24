@@ -23,14 +23,14 @@ export const GET_COLUMN_CARDS_REQUEST_FN = (action$: Observable<FSAction>) =>
       return axios
         .get(
           makeApiUrl(
-            `/kanban/${action.payload.kanbanId}/column/${action.payload.columnId}/issues`
+            `/kanban/${action.payload.kanbanId}/column/${action.payload.columnID}/issues`
           )
         )
         .then((result: AxiosResponse<ProjectIssue[]>) => {
           action.meta.requestDoneCallback();
           return getColumnCardsSuccess({
             kanbanId: action.payload.kanbanId,
-            columnId: action.payload.columnId,
+            columnID: action.payload.columnID,
             cards: result.data
           });
         })

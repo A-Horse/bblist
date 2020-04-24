@@ -2,26 +2,13 @@
   width: 180px;
 
   .App-select__value-container {
-    padding-left: 2px;
-  }
-
-  .App-select__menu {
-    .AssigneeSelectorOption {
-      &:hover {
-        background-color: #e2f0ff;
-      }
-    }
+    padding: 4px;
   }
 
   .AssigneeSelectorOption {
-    display: flex;
-    align-items: center;
-    padding: 4px;
-    cursor: pointer;
-    max-width: 95%;
-
     img {
       margin-right: 6px;
+      vertical-align: middle;
     }
 
     &--label {
@@ -29,6 +16,7 @@
       max-width: 100%;
       overflow: hidden;
       text-overflow: ellipsis;
+      vertical-align: middle;
     }
   }
 }

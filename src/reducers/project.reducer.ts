@@ -162,18 +162,18 @@ export function project(
         )
         .update('columnMap', (columnMap: ColumnMap) => {
           return normalizedKanban.columns!.reduce(
-            (columnMapResult: ColumnMap, columnId: string) => {
+            (columnMapResult: ColumnMap, columnID: string) => {
               return columnMapResult.update(
-                columnId,
+                columnID,
                 (column: KanbanColumnRecord) => {
                   if (!column) {
                     return fromJS(
-                      normalizedKanbanDetail.entities.KanbanColumn[columnId]
+                      normalizedKanbanDetail.entities.KanbanColumn[columnID]
                     );
                   }
                   return column.merge(
                     fromJS(
-                      normalizedKanbanDetail.entities.KanbanColumn[columnId]
+                      normalizedKanbanDetail.entities.KanbanColumn[columnID]
                     )
                   );
                 }
@@ -222,9 +222,9 @@ export function project(
             [
               'issueMap',
               rankProjectCardInKanbanInput.selectCard.get('id'),
-              'columnId'
+              'columnID'
             ],
-            (columnId: string) => {
+            (columnID: string) => {
               return rankProjectCardInKanbanInput.targetColumnId;
             }
           );

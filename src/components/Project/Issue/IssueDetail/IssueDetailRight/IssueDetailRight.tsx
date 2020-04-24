@@ -6,21 +6,23 @@ import { SelectOption } from '../../../../../typings/select.typing';
 import { SectionHeading } from '../../../../../widget/SectionHeading/SectionHeading';
 import { DetailRightField } from './DetailField/DetailRightField';
 import { faClock } from '@fortawesome/free-regular-svg-icons';
-
-import './IssueDetailRight.scss';
 import { useDispatch } from 'react-redux';
 import { updateProjectIssueDetailRequest } from '../../../../../actions/project/project-issue-detail.action';
-
+import { faArrowsAltH } from '@fortawesome/free-solid-svg-icons';
+import { MoveIssueModal } from '../MoveIssueModal/MoveIssueModal';
+import './IssueDetailRight.scss';
 
 interface InputProps {
   projectID: string;
   issue: ProjectIssueRecord;
+  kanbanID?: string;
   updateIssue: Function;
 }
 
 export function IssueDetailRight(props: InputProps) {
   const dispatch = useDispatch();
   const [deadlineSelectOpen, setDeadlineSelectOpen] = useState(false);
+  const [moveIssueOpen, setMoveIssueOpen] = useState(false);
 
   const onDeadlineOnclick = (value: Date) => {
     setDeadlineSelectOpen(false);
@@ -32,18 +34,21 @@ export function IssueDetailRight(props: InputProps) {
     );
   };
 
-  const onUpdateIssue = (assigneeId: number) => {
-    dispatch(updateProjectIssueDetailRequest({
-      issueId: props.issue.get('id'),
-      partialIssue: {
-        assigneeId
-      }
-    }, {
-      callback: () => {
-
-      }
-    }))
-  }
+  const onUpdateAssigneeID = (assigneeID: number) => {
+    dispatch(
+      updateProjectIssueDetailRequest(
+        {
+          issueId: props.issue.get('id'),
+          partialIssue: {
+            assigneeId: assigneeID,
+          },
+        },
+        {
+          callback: () => {},
+        }
+      )
+    );
+  };
 
   return (
     <>
@@ -53,11 +58,10 @@ export function IssueDetailRight(props: InputProps) {
           <AssigneeSelector
             projectID={props.projectID}
             selectedUserId={props.issue.get('assigneeId')}
-            onChange={
-              (option: SelectOption) => {
-                onUpdateIssue(option.value)
-              }
-            }
+            onChange={(option: SelectOption) => {
+              const id = option ? option.value : null;
+              onUpdateAssigneeID(id);
+            }}
           />
         </div>
 
@@ -66,6 +70,13 @@ export function IssueDetailRight(props: InputProps) {
           icon={faClock}
           title="到期时间"
           onClick={() => setDeadlineSelectOpen(true)}
+        />
+
+        <DetailRightField
+          active={false}
+          icon={faArrowsAltH}
+          title="移动卡片"
+          onClick={() => setMoveIssueOpen(true)}
         />
       </div>
 
@@ -76,6 +87,14 @@ export function IssueDetailRight(props: InputProps) {
         onCancel={() => {
           setDeadlineSelectOpen(false);
         }}
+      />
+
+      <MoveIssueModal
+        issue={props.issue}
+        visible={moveIssueOpen}
+        onClose={() => setMoveIssueOpen(false)}
+        kanbanID={props.kanbanID}
+        projectID={props.projectID}
       />
     </>
   );

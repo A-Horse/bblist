@@ -21,13 +21,13 @@ function mapUserToSelectOption(user: AppUserInfoRecord): SelectOption {
   return {
     value: user.get('id'),
     label: user.get('username'),
-    meta: user
+    meta: user,
   };
 }
 
 export function AssigneeSelector(props: InputProps) {
   const dispatch = useDispatch();
-  const onChange = option => {
+  const onChange = (option) => {
     props.onChange && props.onChange(option);
   };
 
@@ -42,16 +42,18 @@ export function AssigneeSelector(props: InputProps) {
   }, [dispatch, props.projectID]);
 
   const selectedOption = userOptions.find(
-    o => o.value === props.selectedUserId
+    (o) => o.value === props.selectedUserId
   );
 
   return (
     <div className="AssigneeSelector">
       <UserAvatar />
       <AppSelect
+        // menuIsOpen={true}
+        isClearable={true}
         components={{
           Option: AssigneeSelectorOption,
-          SingleValue: AssigneeSelectorOption
+          SingleValue: AssigneeSelectorOption,
         }}
         className="AssigneeSelector-select"
         isSearchable={true}

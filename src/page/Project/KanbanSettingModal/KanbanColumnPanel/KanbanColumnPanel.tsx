@@ -15,16 +15,19 @@ function ColumnListItem(props: { column: KanbanColumnRecord }) {
   const [deleteConfirmVisible, setDeleteConfirmVisible] = useState(false);
   return (
     <>
-      <OperableListItem onEditClick={() => {}} onDeleteClick={() => setDeleteConfirmVisible(true)}>
+      <OperableListItem
+        onEditClick={() => {}}
+        onDeleteClick={() => setDeleteConfirmVisible(true)}
+      >
         {props.column.get('name')}
       </OperableListItem>
 
       <ConfirmModal
-       visible={deleteConfirmVisible}
-       confirmTextTip="删除后不能恢复，请谨慎操作"
-       confirmButtonText="删除"
-       onConfirm={() => {}}
-       onCancel={() => setDeleteConfirmVisible(false)}
+        visible={deleteConfirmVisible}
+        confirmTextTip="删除后不能恢复，请谨慎操作"
+        confirmButtonText="删除"
+        onConfirm={() => {}}
+        onCancel={() => setDeleteConfirmVisible(false)}
       />
     </>
   );

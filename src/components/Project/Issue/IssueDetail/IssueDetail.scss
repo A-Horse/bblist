@@ -15,6 +15,12 @@
     }
   }
 
+  .IssueDetail--deadline-field {
+    .Deadline {
+      margin-left: 2px;
+    }
+  }
+
   &--title {
     margin-left: -6px;
   }
@@ -31,6 +37,7 @@
 
   &--left {
     width: 70%;
+    padding-left: 2px;
   }
 
   .IssueDetailRight {

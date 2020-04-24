@@ -66,9 +66,9 @@ export function IssueDetailBread(props: InputProps) {
       <AppIcon className="IssueDetailBread--right-icon" icon={faChevronRight} />
 
       <ColumnSelect
-        selectedColumnID={issue.get('columnId')}
+        selectedColumnID={issue.get('columnID')}
         onChange={option => {
-          updateIssue({ columnId: option.value });
+          updateIssue({ columnID: option.value });
         }}
         customSelect={props => <BorderLessSelector width={100} {...props} />}
         kanbanID={props.kanbanID}

@@ -4,7 +4,7 @@ import {
   ActionCreatorsMapObject,
   AnyAction,
   bindActionCreators,
-  Dispatch
+  Dispatch,
 } from 'redux';
 import { getProjectKanbanDetailRequest } from '../../../actions/project/kanban.action';
 import { RootState } from '../../../reducers';
@@ -13,6 +13,8 @@ import { SelectOption } from '../../../typings/select.typing';
 import { AppSelect } from '../../../widget/AppSelect';
 import { List } from 'immutable';
 import { KanbanColumnRecord } from '../../../typings/kanban-column.typing';
+
+import './ColumnSelect.scss';
 
 interface InputProps {
   kanbanID?: string;
@@ -32,10 +34,10 @@ function generateColumnOptions(
   columns: List<KanbanColumnRecord>
 ): SelectOption[] {
   return columns
-    .map(column => {
+    .map((column) => {
       return {
         value: column.get('id'),
-        label: column.get('name')
+        label: column.get('name'),
       };
     })
     .toArray();
@@ -51,7 +53,7 @@ class ColumnSelectComponent extends Component<InputProps & InjectProps> {
       return;
     }
     this.props.actions.getProjectKanbanDetailRequest({
-      kanbanId: this.props.kanbanID
+      kanbanId: this.props.kanbanID,
     });
   }
 
@@ -61,7 +63,7 @@ class ColumnSelectComponent extends Component<InputProps & InjectProps> {
       : AppSelect;
 
     const selectedOption = this.props.options.find(
-      o => o.value === this.props.selectedColumnID
+      (o) => o.value === this.props.selectedColumnID
     );
     return (
       <Select
@@ -79,10 +81,10 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
   return {
     actions: bindActionCreators(
       {
-        getProjectKanbanDetailRequest: getProjectKanbanDetailRequest
+        getProjectKanbanDetailRequest: getProjectKanbanDetailRequest,
       },
       dispatch
-    )
+    ),
   };
 };
 
@@ -94,7 +96,7 @@ const mapStateToProps = (state: RootState, props: InputProps) => {
   }
 
   return {
-    options: columnOptions
+    options: columnOptions,
   };
 };
 

@@ -14,4 +14,24 @@
       padding: 0 8px;
     }
   }
+
+  .App-select__menu {
+    padding-right: 0;
+
+    .App-select__option {
+      display: flex;
+      align-items: center;
+      padding: 4px;
+      cursor: pointer;
+      margin: 0;
+
+      &.App-select__option--is-selected {
+        background-color: #6094ff !important;
+      }
+
+      &:hover {
+        background-color: #e2f0ff;
+      }
+    }
+  }
 }

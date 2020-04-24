@@ -1,6 +1,8 @@
 import React, { ChangeEvent, Component } from 'react';
 
 import './Checkbox.scss';
+import { AppIcon } from '../Icon';
+import { faCheckSquare, faSquare } from '@fortawesome/free-regular-svg-icons';
 
 export class Checkbox extends Component<{
   defaultChecked: boolean;
@@ -23,7 +25,8 @@ export class Checkbox extends Component<{
           defaultChecked={this.props.defaultChecked}
           onChange={this.onChange}
         />
-        <span className="label" />
+        <AppIcon className="check-square" icon={faCheckSquare} />
+        <AppIcon className="square"  icon={faSquare} />
       </label>
     );
   }

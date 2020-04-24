@@ -10,17 +10,17 @@ test('AssigneeSelector snapshot', () => {
       userMap: {
         '10': {
           id: 10,
-          username: '巫昭'
+          username: '巫昭',
         },
         '11': {
           id: 11,
-          username: '云天河'
-        }
-      },
+          username: '云天河',
+        },
+    },
       projectUsersID: {
-        p1: [10, 11]
-      }
-    })
+        p1: [10, 11],
+      },
+    }),
   });
   const assigneeSelector = renderer
     .create(
