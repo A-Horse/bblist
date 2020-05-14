@@ -8,7 +8,7 @@ import {
   ActionCreatorsMapObject,
   AnyAction,
   bindActionCreators,
-  Dispatch
+  Dispatch,
 } from 'redux';
 import { createKanbanRequest } from '../../../actions/project/kanban.action';
 import { ProjectRecord } from '../../../typings/project.typing';
@@ -19,7 +19,7 @@ import { ConfirmButtonGroup } from '../../../widget/ButtonGroup/ConfirmGroup/Con
 import * as Yup from 'yup';
 
 const FormSchema = Yup.object().shape({
-  name: Yup.string().required('看板名称为必填项')
+  name: Yup.string().required('看板名称为必填项'),
 });
 
 class KanbanCreatorComponent extends Component<{
@@ -37,10 +37,10 @@ class KanbanCreatorComponent extends Component<{
     this.props.actions.createKanbanRequest(
       {
         ...values,
-        projectId: this.props.project.get('id')
+        projectId: this.props.project.get('id'),
       },
       {
-        noKanbanExist: this.props.noKanbanExist
+        noKanbanExist: this.props.noKanbanExist,
       }
     );
   };
@@ -63,7 +63,7 @@ class KanbanCreatorComponent extends Component<{
             this.props.onClose();
           }}
         >
-          {props => (
+          {(props) => (
             <form onSubmit={props.handleSubmit}>
               <div className="KanbanCreatorModal--main">
                 <FormField errorMessage={<ErrorMessage name="name" />}>
@@ -104,10 +104,10 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
   return {
     actions: bindActionCreators(
       {
-        createKanbanRequest: createKanbanRequest
+        createKanbanRequest: createKanbanRequest,
       },
       dispatch
-    )
+    ),
   };
 };
 

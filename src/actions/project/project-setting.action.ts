@@ -13,19 +13,22 @@ export function setProjectDefaultKanbanRequest(
 ): FSAction {
   return {
     type: SET_PROJECT_DEFAULT_KANBAN_REQUEST,
-    payload: setProjectDefaultKanbanInput
+    payload: setProjectDefaultKanbanInput,
   };
 }
 
-export function setProjectDefaultKanbanSuccess(): FSAction {
+export function setProjectDefaultKanbanSuccess(payload: {
+  projectID: string;
+}): FSAction {
   return {
-    type: SET_PROJECT_DEFAULT_KANBAN_SUCCESS
+    type: SET_PROJECT_DEFAULT_KANBAN_SUCCESS,
+    payload,
   };
 }
 
 export function setProjectDefaultKanbanFailure(): FSAction {
   return {
     type: SET_PROJECT_DEFAULT_KANBAN_FAILURE,
-    error: true
+    error: true,
   };
 }
