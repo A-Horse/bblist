@@ -3,7 +3,7 @@ import {
   FieldProps,
   FormikValues,
   ErrorMessage,
-  FormikProps
+  FormikProps,
 } from 'formik';
 import React from 'react';
 import { SelectOption } from '../../../typings/select.typing';
@@ -77,7 +77,7 @@ export function CreateProjectIssueForm(props: InputProps) {
                 size="middle"
                 value={form.values.title}
                 placeholder=""
-                onChange={value => {
+                onChange={(value) => {
                   props.formikBag.setFieldValue('title', value);
                 }}
               />
@@ -93,7 +93,7 @@ export function CreateProjectIssueForm(props: InputProps) {
                 border={true}
                 value={form.values.content}
                 placeholder=""
-                onChange={value => {
+                onChange={(value) => {
                   props.formikBag.setFieldValue('content', value);
                 }}
               />

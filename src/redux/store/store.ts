@@ -12,7 +12,7 @@ const epicMiddleware = createEpicMiddleware();
 
 export const store = configureStore(
   combineReducers({
-    ...reducers
+    ...reducers,
   }),
   applyMiddleware(epicMiddleware),
   () => {

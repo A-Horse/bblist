@@ -26,7 +26,7 @@ export class Checkbox extends Component<{
           onChange={this.onChange}
         />
         <AppIcon className="check-square" icon={faCheckSquare} />
-        <AppIcon className="square"  icon={faSquare} />
+        <AppIcon className="square" icon={faSquare} />
       </label>
     );
   }

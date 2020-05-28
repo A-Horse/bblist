@@ -25,7 +25,7 @@ export function LoginPage() {
           history.push('/projects');
           return addToast('登录成功', {
             appearance: 'success',
-            autoDismiss: true
+            autoDismiss: true,
           });
         },
         onError: (response: AxiosResponse) => {
@@ -35,10 +35,10 @@ export function LoginPage() {
               : '登录失败',
             {
               appearance: 'error',
-              autoDismiss: true
+              autoDismiss: true,
             }
           );
-        }
+        },
       })
     );
   };
@@ -53,7 +53,7 @@ export function LoginPage() {
         <div className="login-main--logo-container">
           <Logo
             style={{
-              width: 45
+              width: 45,
             }}
           />
           <TextLogo />

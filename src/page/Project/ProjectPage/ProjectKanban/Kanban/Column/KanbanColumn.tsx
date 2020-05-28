@@ -9,12 +9,12 @@ import {
   ActionCreatorsMapObject,
   AnyAction,
   bindActionCreators,
-  Dispatch
+  Dispatch,
 } from 'redux';
 
 import {
   getColumnCardsRequest,
-  rankProjectCardInKanbanRequest
+  rankProjectCardInKanbanRequest,
 } from '../../../../../../redux/actions/project/project-issue.action';
 import { ProjectIssue } from '../../../../../../components/Project/Issue/ProjectIssue/ProjectIssue';
 import { RootState } from '../../../../../../redux/reducers';
@@ -22,7 +22,7 @@ import { selectColumnCards } from '../../../../../../redux/reducers/selector/car
 import { KanbanColumnRecord } from '../../../../../../typings/kanban-column.typing';
 import {
   ProjectIssueRecord,
-  RankProjectCardInKanbanInput
+  RankProjectCardInKanbanInput,
 } from '../../../../../../typings/project-issue.typing';
 import { ColumnDataFetcher } from './column-data-fetcher';
 import { ColumnHeaderDropDown } from './ColumnHeaderDropDown/ColumnHeaderDropDown';
@@ -51,7 +51,7 @@ export class KanbanColumnComponent extends Component<ComponentProps, State> {
   private columDataFetcher: ColumnDataFetcher;
 
   state = {
-    cardFetching: false
+    cardFetching: false,
   };
 
   constructor(props: Readonly<ComponentProps & ReduxProps>) {
@@ -117,7 +117,7 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
   return {
     actions: bindActionCreators(
       {
-        getColumnCardsRequest: getColumnCardsRequest
+        getColumnCardsRequest: getColumnCardsRequest,
       },
       dispatch
     ),
@@ -147,7 +147,7 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
           rankProjectCardInKanbanRequest(rankProjectCardInKanbanInput, meta)
         );
       };
-    })()
+    })(),
   };
 };
 
@@ -155,7 +155,7 @@ const mapStateToProps = (state: RootState, props: InputProps) => {
   const issues = selectColumnCards(state, props.column.get('id'));
 
   return {
-    issues
+    issues,
   };
 };
 

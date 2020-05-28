@@ -6,13 +6,13 @@ import {
   Redirect,
   Route,
   RouteComponentProps,
-  withRouter
+  withRouter,
 } from 'react-router-dom';
 import {
   ActionCreatorsMapObject,
   AnyAction,
   bindActionCreators,
-  Dispatch
+  Dispatch,
 } from 'redux';
 import { setProjectDefaultKanbanRequest } from '../../../../redux/actions/project/project-setting.action';
 import { RootState } from '../../../../redux/reducers';
@@ -39,7 +39,7 @@ export class ProjectKanbanComponent extends Component<
   }
 > {
   state = {
-    selectKanbanId: null
+    selectKanbanId: null,
   };
 
   onKanbanSelectChanged = (kanbanId: string): void => {
@@ -50,7 +50,7 @@ export class ProjectKanbanComponent extends Component<
     if (!this.props.project!.get('setting').get('defaultKanbanId')) {
       this.props.actions.setProjectDefaultKanbanRequest({
         projectId: this.props.project!.get('id'),
-        kanbanId
+        kanbanId,
       });
     }
   };
@@ -116,10 +116,10 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>, xx) => {
   return {
     actions: bindActionCreators(
       {
-        setProjectDefaultKanbanRequest: setProjectDefaultKanbanRequest
+        setProjectDefaultKanbanRequest: setProjectDefaultKanbanRequest,
       },
       dispatch
-    )
+    ),
   };
 };
 
@@ -129,7 +129,7 @@ const mapStateToProps = (state: RootState, props: any) => {
   const project = state.project.get('projectMap').get(projectId);
 
   return {
-    project
+    project,
   };
 };
 

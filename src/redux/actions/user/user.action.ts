@@ -9,8 +9,8 @@ export function getAllUsersRequest(projectID: string): FSAction {
   return {
     type: GET_ALL_USERS_REQUEST,
     payload: {
-      projectID
-    }
+      projectID,
+    },
   };
 }
 
@@ -22,14 +22,14 @@ export function getAllUsersSuccess(
     type: GET_ALL_USERS_SUCCESS,
     payload: {
       users,
-      projectID
-    }
+      projectID,
+    },
   };
 }
 
 export function getAllUsersFailure(): FSAction {
   return {
     type: GET_ALL_USERS_FAILURE,
-    error: true
+    error: true,
   };
 }

@@ -47,7 +47,7 @@ export function findIssuePositionInColumn(
   if (nextIssue) {
     return {
       targetIssue: nextIssue,
-      isBefore: true
+      isBefore: true,
     };
   }
   const beforeIssue = sortedIssueMap
@@ -58,7 +58,7 @@ export function findIssuePositionInColumn(
   if (beforeIssue) {
     return {
       targetIssue: beforeIssue,
-      isBefore: false
+      isBefore: false,
     };
   }
   throw new Error('Rank in valid issue seq');

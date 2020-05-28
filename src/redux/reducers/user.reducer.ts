@@ -16,7 +16,7 @@ export interface UserReducerState {
 export function user(
   state: Record<UserReducerState> = fromJS({
     userMap: {},
-    projectUsersID: {}
+    projectUsersID: {},
   }),
   action: FSAction
 ): Record<UserReducerState> {

@@ -13,7 +13,7 @@ export class Logo extends Component<{
         alt=""
         style={{
           width: 30,
-          ...this.props.style
+          ...this.props.style,
         }}
       />
     );

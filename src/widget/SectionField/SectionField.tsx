@@ -15,7 +15,7 @@ export const SectionField = ({
   children,
   className,
   transform,
-  nameRight
+  nameRight,
 }: InputProps) => {
   const classNameStr = `SectionField ${className || ''}${
     transform ? ' transform' : ''

@@ -7,15 +7,15 @@ export class ColumnDataFetcher {
 
   public fetchCards() {
     this.component.setState({
-      cardFetching: true
+      cardFetching: true,
     });
     this.component.props.actions.getColumnCardsRequest(
       {
         kanbanId: this.component.props.column.get('kanbanId'),
-        columnID: this.component.props.column.get('id')
+        columnID: this.component.props.column.get('id'),
       },
       {
-        requestDoneCallback: this.onFetchDone
+        requestDoneCallback: this.onFetchDone,
       }
     );
   }
@@ -29,7 +29,7 @@ export class ColumnDataFetcher {
       return;
     }
     this.component.setState({
-      cardFetching: false
+      cardFetching: false,
     });
   };
 }

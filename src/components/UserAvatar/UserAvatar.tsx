@@ -25,7 +25,7 @@ export class UserAvatar extends Component<InputProps> {
           width: 30,
           height: 30,
           borderRadius: 3,
-          ...this.props.style
+          ...this.props.style,
         }}
       />
     );

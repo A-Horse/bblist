@@ -7,7 +7,7 @@ import {
   ActionCreatorsMapObject,
   AnyAction,
   bindActionCreators,
-  Dispatch
+  Dispatch,
 } from 'redux';
 
 import { getProjectIssuesRequest } from '../../../../redux/actions/project/project-issue.action';
@@ -41,7 +41,7 @@ export class IssuesComponent extends Component<
     this.props.actions.getProjectIssuesRequest({
       projectId: this.props.match.params.projectId,
       pageSize: 20,
-      pageNumber: this.props.pageNumber
+      pageNumber: this.props.pageNumber,
     });
   }
 
@@ -99,10 +99,10 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
   return {
     actions: bindActionCreators(
       {
-        getProjectIssuesRequest: getProjectIssuesRequest
+        getProjectIssuesRequest: getProjectIssuesRequest,
       },
       dispatch
-    )
+    ),
   };
 };
 
@@ -124,7 +124,7 @@ const mapStateToProps = (state: RootState, props: any) => {
           return state.project.get('issueMap').get(id)!;
         }
       )
-      .filter(c => !!c);
+      .filter((c) => !!c);
     pageNumber = issuePagitation.pageNumber;
     pageSize = issuePagitation.pageSize;
     total = issuePagitation.total;
@@ -136,7 +136,7 @@ const mapStateToProps = (state: RootState, props: any) => {
     pageNumber,
     pageSize,
     total,
-    issues
+    issues,
   };
 };
 

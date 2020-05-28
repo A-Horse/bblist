@@ -2,7 +2,7 @@ import { PaginationList } from '../../../typings/pagination.typing';
 import {
   CreateProjectIssueInput,
   ProjectIssue,
-  RankProjectCardInKanbanInput
+  RankProjectCardInKanbanInput,
 } from '../../../typings/project-issue.typing';
 import { FSAction } from '../actions';
 
@@ -19,7 +19,7 @@ export function getColumnCardsRequest(
   return {
     type: GET_COLUMN_CARDS_REQUEST,
     payload,
-    meta
+    meta,
   };
 }
 
@@ -30,7 +30,7 @@ export function getColumnCardsSuccess(payload: {
 }): FSAction {
   return {
     type: GET_COLUMN_CARDS_SUCCESS,
-    payload
+    payload,
   };
 }
 
@@ -38,7 +38,7 @@ export function getColumnCardsFailure(error: any): FSAction {
   return {
     type: GET_COLUMN_CARDS_FAILURE,
     error: true,
-    payload: error
+    payload: error,
   };
 }
 
@@ -57,7 +57,7 @@ export function getProjectIssuesRequest(
   return {
     type: GET_PROJECT_ISSUES_REQUEST,
     payload,
-    meta
+    meta,
   };
 }
 
@@ -67,7 +67,7 @@ export function getProjectIssuesSuccess(payload: {
 }): FSAction {
   return {
     type: GET_PROJECT_ISSUES_SUCCESS,
-    payload
+    payload,
   };
 }
 
@@ -77,7 +77,7 @@ export function getProjectIssuesSuccessInProjectIssue(payload: {
 }): FSAction {
   return {
     type: GET_PROJECT_ISSUES_SUCCESS_IN_PROJECT_ISSUE,
-    payload
+    payload,
   };
 }
 
@@ -85,7 +85,7 @@ export function getProjectIssuesFailure(error: any): FSAction {
   return {
     type: GET_PROJECT_ISSUES_FAILURE,
     error: true,
-    payload: error
+    payload: error,
   };
 }
 
@@ -100,14 +100,14 @@ export function createProjectCardRequest(
   return {
     type: CREATE_PROJECT_ISSUE_REQUEST,
     payload: createKanbanCardInput,
-    meta
+    meta,
   };
 }
 
 export function createProjectCardSuccess(id: string): FSAction {
   return {
     type: CREATE_PROJECT_ISSUE_SUCCESS,
-    payload: id
+    payload: id,
   };
 }
 
@@ -115,7 +115,7 @@ export function createProjectCardFailure(error): FSAction {
   return {
     type: CREATE_PROJECT_ISSUE_FAILURE,
     payload: error,
-    error: true
+    error: true,
   };
 }
 
@@ -131,21 +131,21 @@ export function changeProjectCardColumnRequest(
 ): FSAction {
   return {
     type: CHANGE_PROJECT_CARD_COLUMN_REQUEST,
-    payload: RankProjectCardInKanbanInput
+    payload: RankProjectCardInKanbanInput,
   };
 }
 
 export function changeProjectCardColumnSuccess(id: string): FSAction {
   return {
     type: CHANGE_PROJECT_CARD_COLUMN_SUCCESS,
-    payload: id
+    payload: id,
   };
 }
 
 export function changeProjectCardColumnFailure(): FSAction {
   return {
     type: CHANGE_PROJECT_CARD_COLUMN_FAILURE,
-    error: true
+    error: true,
   };
 }
 
@@ -165,7 +165,7 @@ export function rankProjectCardInKanbanRequest(
   return {
     type: RANK_PROJECT_CARD_IN_KANBAN_REQUEST,
     payload: rankProjectCardInKanbanInput,
-    meta: meta
+    meta: meta,
   };
 }
 
@@ -174,7 +174,7 @@ export function rankProjectCardInKanbanSuccess(
 ): FSAction {
   return {
     type: RANK_PROJECT_CARD_IN_KANBAN_SUCCESS,
-    payload: newOrders
+    payload: newOrders,
   };
 }
 
@@ -182,6 +182,6 @@ export function rankProjectCardInKanbanFailure(error: Error): FSAction {
   return {
     type: RANK_PROJECT_CARD_IN_KANBAN_FAILURE,
     error: true,
-    payload: error
+    payload: error,
   };
 }

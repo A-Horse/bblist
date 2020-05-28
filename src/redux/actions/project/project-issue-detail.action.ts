@@ -13,21 +13,21 @@ export function getProjectIssueDetailRequest(payload: {
 }): FSAction {
   return {
     type: GET_PROJECT_ISSUE_DETAIL_REQUEST,
-    payload
+    payload,
   };
 }
 
 export function getProjectIssueDetailSuccess(issue: ProjectIssue): FSAction {
   return {
     type: GET_PROJECT_ISSUE_DETAIL_SUCCESS,
-    payload: issue
+    payload: issue,
   };
 }
 
 export function getProjectIssueDetailFailure(): FSAction {
   return {
     type: GET_PROJECT_ISSUE_DETAIL_FAILURE,
-    error: true
+    error: true,
   };
 }
 
@@ -38,8 +38,8 @@ export function changeIssueDirect(issueId: string, partialIssue: any) {
     type: CHANGE_ISSUE_DIRECT,
     payload: {
       issueId,
-      partialIssue
-    }
+      partialIssue,
+    },
   };
 }
 
@@ -57,20 +57,20 @@ export function updateProjectIssueDetailRequest(
   return {
     type: UPDATE_PROJECT_ISSUE_DETAIL_REQUEST,
     payload,
-    meta
+    meta,
   };
 }
 
 export function updateProjectIssueDetailSuccess(payload): FSAction {
   return {
     type: UPDATE_PROJECT_ISSUE_DETAIL_SUCCESS,
-    payload
+    payload,
   };
 }
 
 export function updateProjectIssueDetailFailure(): FSAction {
   return {
     type: UPDATE_PROJECT_ISSUE_DETAIL_FAILURE,
-    error: true
+    error: true,
   };
 }

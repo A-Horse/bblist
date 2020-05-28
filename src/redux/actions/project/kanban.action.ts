@@ -1,7 +1,7 @@
 import {
   CreateKanbanColumnInput,
   CreateKanbanInput,
-  Kanban
+  Kanban,
 } from '../../../typings/kanban.typing';
 import { FSAction } from '../actions';
 
@@ -14,7 +14,7 @@ export function getProjectKanbansRequest(payload: {
 }): FSAction {
   return {
     type: GET_PROJECT_KANBANS_REQUEST,
-    payload
+    payload,
   };
 }
 
@@ -24,14 +24,14 @@ export function getProjectKanbansSuccess(payload: {
 }): FSAction {
   return {
     type: GET_PROJECT_KANBANS_SUCCESS,
-    payload
+    payload,
   };
 }
 
 export function getProjectKanbansFailure(): FSAction {
   return {
     type: GET_PROJECT_KANBANS_FAILURE,
-    error: true
+    error: true,
   };
 }
 
@@ -47,7 +47,7 @@ export function getProjectKanbanDetailRequest(payload: {
 }): FSAction {
   return {
     type: GET_PROJECT_KANBAN_DETAIL_REQUEST,
-    payload
+    payload,
   };
 }
 
@@ -56,14 +56,14 @@ export function getProjectKanbanDetailSuccess(payload: {
 }): FSAction {
   return {
     type: GET_PROJECT_KANBAN_DETAIL_SUCCESS,
-    payload
+    payload,
   };
 }
 
 export function getProjectKanbanDetailFailure(): FSAction {
   return {
     type: GET_PROJECT_KANBAN_DETAIL_FAILURE,
-    error: true
+    error: true,
   };
 }
 
@@ -80,7 +80,7 @@ export function createKanbanRequest(
   return {
     type: CREATE_KANBAN_REQUEST,
     payload: createKanbanInput,
-    meta
+    meta,
   };
 }
 
@@ -94,15 +94,15 @@ export function createKanbanSuccess(
     payload: id,
     meta: {
       projectID,
-      noKanbanExist
-    }
+      noKanbanExist,
+    },
   };
 }
 
 export function createKanbanFailure(): FSAction {
   return {
     type: CREATE_KANBAN_FAILURE,
-    error: true
+    error: true,
   };
 }
 
@@ -115,7 +115,7 @@ export function createKanbanColumnRequest(
 ): FSAction {
   return {
     type: CREATE_KANBAN_COLUMN_REQUEST,
-    payload: createKanbanColumnInput
+    payload: createKanbanColumnInput,
   };
 }
 
@@ -128,13 +128,13 @@ export function createKanbanColumnSuccess(
   return {
     type: CREATE_KANBAN_COLUMN_SUCCESS,
     payload: id,
-    meta
+    meta,
   };
 }
 
 export function createKanbanColumnFailure(): FSAction {
   return {
     type: CREATE_KANBAN_COLUMN_FAILURE,
-    error: true
+    error: true,
   };
 }

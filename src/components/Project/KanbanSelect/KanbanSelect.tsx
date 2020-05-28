@@ -4,7 +4,7 @@ import {
   ActionCreatorsMapObject,
   AnyAction,
   bindActionCreators,
-  Dispatch
+  Dispatch,
 } from 'redux';
 
 import { getProjectKanbansRequest } from '../../../redux/actions/project/kanban.action';
@@ -29,13 +29,13 @@ const noOptionTip = () => '暂无看板';
 class KanbanSelectComponent extends Component<InputProps & InjectProps> {
   componentWillMount() {
     this.props.actions.getProjectKanbansRequest({
-      projectId: this.props.projectId
+      projectId: this.props.projectId,
     });
   }
 
   render() {
     const selectedOption = this.props.options.find(
-      option => option.value === this.props.selectedKanbanId
+      (option) => option.value === this.props.selectedKanbanId
     );
     return (
       <AppSelect
@@ -54,10 +54,10 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
   return {
     actions: bindActionCreators(
       {
-        getProjectKanbansRequest: getProjectKanbansRequest
+        getProjectKanbansRequest: getProjectKanbansRequest,
       },
       dispatch
-    )
+    ),
   };
 };
 
@@ -71,7 +71,7 @@ const mapStateToProps = (state: RootState, props: InputProps) => {
   }
 
   return {
-    options: kanbanOptions
+    options: kanbanOptions,
   };
 };
 

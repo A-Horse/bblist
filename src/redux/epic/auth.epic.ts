@@ -12,9 +12,9 @@ import {
   ActionLoginRequest,
   LOGIN_REQUEST,
   loginFailure,
-  loginSuccess
+  loginSuccess,
 } from '../actions/login.action';
-import { AUTH_HEADER_KEY } from "../../constant/constants";
+import { AUTH_HEADER_KEY } from '../../constant/constants';
 
 export const LOGIN_REQUEST_FN = (action$: Observable<any>) =>
   action$.pipe(
@@ -22,13 +22,13 @@ export const LOGIN_REQUEST_FN = (action$: Observable<any>) =>
     mergeMap((action: ActionLoginRequest) => {
       return axios
         .post(makeApiUrl('/token'), action.payload)
-        .then(response => {
+        .then((response) => {
           saveAuthData(response);
           setupAxiosJwtHeader(response.headers[AUTH_HEADER_KEY]);
           action.meta.onSuccess();
           return loginSuccess();
         })
-        .catch(error => {
+        .catch((error) => {
           action.meta.onError(error.response);
           return loginFailure(error.response);
         });

@@ -6,19 +6,19 @@ test('findProjectAllUsers', () => {
   const state = {
     user: fromJS({
       projectUsersID: {
-        project1: ['u1', 'u2']
+        project1: ['u1', 'u2'],
       },
       userMap: {
         u1: {
           id: 'u1',
-          name: '云无月'
+          name: '云无月',
         },
         u2: {
           id: 'u1',
-          name: 'Chief'
-        }
-      }
-    })
+          name: 'Chief',
+        },
+      },
+    }),
   };
 
   const users: List<AppUserInfoRecord> = findProjectAllUsers(

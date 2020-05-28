@@ -8,7 +8,7 @@ import {
   filter,
   mergeMap,
   take,
-  map
+  map,
 } from 'rxjs/operators';
 
 import { FSAction } from '../actions/actions';
@@ -18,7 +18,7 @@ import {
   getProjectIssueDetailSuccess,
   UPDATE_PROJECT_ISSUE_DETAIL_REQUEST,
   updateProjectIssueDetailFailure,
-  updateProjectIssueDetailSuccess
+  updateProjectIssueDetailSuccess,
 } from '../actions/project/project-issue-detail.action';
 import {
   CREATE_PROJECT_ISSUE_REQUEST,
@@ -26,12 +26,12 @@ import {
   createProjectCardSuccess,
   RANK_PROJECT_CARD_IN_KANBAN_REQUEST,
   rankProjectCardInKanbanFailure,
-  rankProjectCardInKanbanSuccess
+  rankProjectCardInKanbanSuccess,
 } from '../actions/project/project-issue.action';
 import { RootState } from '../reducers';
 import {
   ProjectIssue,
-  RankProjectCardInKanbanInput
+  RankProjectCardInKanbanInput,
 } from '../../typings/project-issue.typing';
 import { makeApiUrl } from '../../utils/api';
 import { findIssuePositionInColumn } from '../reducers/selector/card.selector';
@@ -53,7 +53,7 @@ export const CREATE_PROJECT_ISSUE_REQUEST_FN = (
           action.meta.callback && action.meta.callback(null, result.data);
           return createProjectCardSuccess(result.data);
         })
-        .catch(error => {
+        .catch((error) => {
           action.meta.callback && action.meta.callback(error);
           return createProjectCardFailure(error);
         });
@@ -65,7 +65,7 @@ export const CREATE_PROJECT_ISSUE_SUCCESS_FN = (
 ) =>
   action$.pipe(
     ofType(CREATE_PROJECT_ISSUE_SUCCESS),
-    map(action => getProjectIssueDetailRequest({ issueId: action.payload }))
+    map((action) => getProjectIssueDetailRequest({ issueId: action.payload }))
   );
 
 export const UPDATE_PROJECT_ISSUE_DETAIL_REQUEST_FN = (
@@ -83,10 +83,10 @@ export const UPDATE_PROJECT_ISSUE_DETAIL_REQUEST_FN = (
           action.meta.callback(null);
           return updateProjectIssueDetailSuccess({
             ...action.payload.partialIssue,
-            id: action.payload.issueId
+            id: action.payload.issueId,
           });
         })
-        .catch(error => {
+        .catch((error) => {
           action.meta.callback(error);
           return updateProjectIssueDetailFailure();
         });
@@ -116,7 +116,7 @@ export const RANK_PROJECT_CARD_IN_KANBAN_REQUEST_FN = (
   action$.pipe(
     ofType(RANK_PROJECT_CARD_IN_KANBAN_REQUEST),
     distinctUntilChanged<FSAction>(equals),
-    filter(action => !action.meta.temporary),
+    filter((action) => !action.meta.temporary),
     mergeMap((action: FSAction) => {
       const payload: RankProjectCardInKanbanInput = action.payload;
 
@@ -135,7 +135,7 @@ export const RANK_PROJECT_CARD_IN_KANBAN_REQUEST_FN = (
             .post(makeApiUrl(`/kanban/${action.payload.kanbanId}/card-rank`), {
               cardId: payload.selectCard.get('id'),
               targetCardId: targetIssue.get('id'),
-              isBefore: isBefore
+              isBefore: isBefore,
             })
             .then(
               (result: AxiosResponse<{ cardId: string; order: number }[]>) =>

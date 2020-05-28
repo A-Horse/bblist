@@ -19,7 +19,7 @@ interface State {
 
 export class DateTimeSelectDialog extends Component<InputProps, State> {
   state = {
-    value: null
+    value: null,
   };
 
   componentDidMount() {

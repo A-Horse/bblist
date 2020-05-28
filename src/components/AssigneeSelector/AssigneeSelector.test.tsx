@@ -16,7 +16,7 @@ test('AssigneeSelector snapshot', () => {
           id: 11,
           username: '云天河',
         },
-    },
+      },
       projectUsersID: {
         p1: [10, 11],
       },

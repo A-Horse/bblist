@@ -5,7 +5,7 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 
 import { NotFound } from '../page/NotFound';
 import { Nav } from './Nav/Nav';
-import { useClaims } from "../hook/useClaims";
+import { useClaims } from '../hook/useClaims';
 
 const SettingPageContainer = React.lazy(() =>
   import('./Setting/SettingPage.container')
@@ -52,7 +52,6 @@ const ProfilePage = () => {
   );
 };
 
-
 export default function App() {
   const claims = useClaims();
   if (!claims) {
@@ -70,7 +69,7 @@ export default function App() {
             render={() => (
               <Redirect
                 to={{
-                  pathname: '/projects'
+                  pathname: '/projects',
                 }}
               />
             )}

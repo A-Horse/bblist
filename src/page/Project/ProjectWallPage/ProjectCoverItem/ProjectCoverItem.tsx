@@ -10,7 +10,7 @@ export function ProjectCoverItem({ project }) {
       style={{
         backgroundImage: `url(${generateProjectCoverUrl(
           project.get('setting').get('coverFileName')
-        )})`
+        )})`,
       }}
       key={project.get('id')}
       to={`/project/${project.get('id')}`}

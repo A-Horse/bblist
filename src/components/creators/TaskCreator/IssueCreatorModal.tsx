@@ -21,7 +21,7 @@ export interface FormValues {
 }
 
 const FormSchema = Yup.object().shape({
-  title: Yup.string().required('标题为必填项')
+  title: Yup.string().required('标题为必填项'),
 });
 
 class IssueCreatorModalComponent extends Component<{
@@ -35,12 +35,12 @@ class IssueCreatorModalComponent extends Component<{
     this.props.actions.createProjectCardRequest(
       {
         projectID: this.props.projectID,
-        ...values
+        ...values,
       },
       {
         callback: () => {
           this.props.closeModal();
-        }
+        },
       }
     );
   };
@@ -61,7 +61,7 @@ class IssueCreatorModalComponent extends Component<{
               title: '',
               content: undefined,
               kanbanID: this.props.kanbanID,
-              columnID: undefined
+              columnID: undefined,
             } as FormValues
           }
           onSubmit={(
@@ -109,10 +109,10 @@ const mapDispatchToProps = (dispatch: any) => {
   return {
     actions: bindActionCreators(
       {
-        createProjectCardRequest: createProjectCardRequest
+        createProjectCardRequest: createProjectCardRequest,
       },
       dispatch
-    )
+    ),
   };
 };
 

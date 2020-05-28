@@ -9,16 +9,11 @@ test('get_all_users_success', () => {
       {
         id: 1,
         username: 'fwchen',
-        email: 'fwchen@octopus.com'
-      }
+        email: 'fwchen@octopus.com',
+      },
     ])
   );
-  expect(
-    nextState
-      .get('projectUsersID')
-      .get('p1')!
-      .toArray()
-  ).toEqual([1]);
+  expect(nextState.get('projectUsersID').get('p1')!.toArray()).toEqual([1]);
   expect(
     nextState
       .get('userMap')
@@ -27,7 +22,7 @@ test('get_all_users_success', () => {
         fromJS({
           id: 1,
           username: 'fwchen',
-          email: 'fwchen@octopus.com'
+          email: 'fwchen@octopus.com',
         })
       )
   ).toBeTruthy();

@@ -7,7 +7,7 @@ import {
   ActionCreatorsMapObject,
   AnyAction,
   bindActionCreators,
-  Dispatch
+  Dispatch,
 } from 'redux';
 
 import { getProjectKanbansRequest } from '../../../../redux/actions/project/kanban.action';
@@ -24,7 +24,7 @@ export class ProjectEpicsComponent extends Component<
 > {
   componentWillMount() {
     this.props.actions.getProjectKanbansRequest({
-      projectId: this.props.match.params.projectId
+      projectId: this.props.match.params.projectId,
     });
   }
 
@@ -37,10 +37,10 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
   return {
     actions: bindActionCreators(
       {
-        getProjectKanbansRequest: getProjectKanbansRequest
+        getProjectKanbansRequest: getProjectKanbansRequest,
       },
       dispatch
-    )
+    ),
   };
 };
 
@@ -48,7 +48,7 @@ const mapStateToProps = (state: any, props: any) => {
   const { projectId } = props.match.params;
 
   return {
-    project: state.project.get('projectMap').get(projectId) as ProjectRecord
+    project: state.project.get('projectMap').get(projectId) as ProjectRecord,
   };
 };
 

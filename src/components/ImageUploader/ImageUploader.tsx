@@ -25,13 +25,13 @@ export class ImageUploader extends Component<{
       y: 0,
       aspect: 16 / 9,
       width: 80,
-      height: 45
-    }
+      height: 45,
+    },
   };
 
   handleCancelModal = () => {
     this.setState({
-      modalVisible: false
+      modalVisible: false,
     });
   };
 
@@ -92,14 +92,14 @@ export class ImageUploader extends Component<{
         <img
           style={{
             backgroundColor: '#f8f8f8',
-            ...this.props.style
+            ...this.props.style,
           }}
           alt=""
           src={this.props.source}
           onClick={this.openFilePicker}
         />
         <input
-          ref={ref => (this.fileInput = ref)}
+          ref={(ref) => (this.fileInput = ref)}
           type="file"
           accept="image/*"
           onChange={this.openModal}

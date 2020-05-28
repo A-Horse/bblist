@@ -20,7 +20,7 @@ interface InputProps {
 export function KanbanHeaderBar({
   projectID,
   selectedKanbanId,
-  onChange
+  onChange,
 }: InputProps) {
   const kanban: KanbanRecord | undefined = useSelector((state: RootState) =>
     state.project.get('kanbanMap').get(selectedKanbanId)

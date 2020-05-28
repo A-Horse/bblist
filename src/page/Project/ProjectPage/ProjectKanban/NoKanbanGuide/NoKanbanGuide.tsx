@@ -19,7 +19,7 @@ export class NoKanbanGuide extends Component<
   }
 > {
   state = {
-    kanbanCreatorToggle: false
+    kanbanCreatorToggle: false,
   };
 
   onAddKanbanClick = () => {

@@ -8,7 +8,7 @@ export function ModalContent(props: {
     <div
       style={{
         padding: '8px 16px',
-        fontSize: 14
+        fontSize: 14,
       }}
     >
       {props.children}

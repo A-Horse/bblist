@@ -6,10 +6,7 @@ import { ProjectWallPage } from './ProjectWall';
 
 const mapStateToProps = (state: any) => {
   return {
-    projects: state.project
-      .get('projectMap')
-      .valueSeq()
-      .toArray()
+    projects: state.project.get('projectMap').valueSeq().toArray(),
   };
 };
 
@@ -17,10 +14,10 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
   return {
     actions: bindActionCreators(
       {
-        getProjectsRequest
+        getProjectsRequest,
       },
       dispatch
-    )
+    ),
   };
 };
 

@@ -20,13 +20,16 @@ export function ConfirmButtonGroup({
   confirmButtonHtmlType = 'button',
   confirmButtonType,
   center,
-  style
+  style,
 }: InputProps) {
   return (
-    <div className="ConfirmButtonGroup" style={{
-      textAlign: center ? 'center' : 'inherit',
-      ...style
-    }}>
+    <div
+      className="ConfirmButtonGroup"
+      style={{
+        textAlign: center ? 'center' : 'inherit',
+        ...style,
+      }}
+    >
       <AppButton
         htmlType={confirmButtonHtmlType}
         type={confirmButtonType || 'primary'}

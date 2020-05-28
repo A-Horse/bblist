@@ -8,7 +8,7 @@ export function OperableListItem(props: {
   children: ReactNode;
   style?: CSSProperties;
   onEditClick?: Function;
-  onDeleteClick?:  Function;
+  onDeleteClick?: Function;
 }) {
   return (
     <li

@@ -13,7 +13,7 @@ interface InputProps {
   className?: string;
   errorMessage?: any;
   require?: boolean;
-  style?: CSSProperties
+  style?: CSSProperties;
 }
 
 export const FormField = ({
@@ -24,12 +24,15 @@ export const FormField = ({
   type,
   errorMessage,
   require = false,
-  style
+  style,
 }: InputProps) => {
   return (
-    <div className={`FormField ${type ? type : ''} ${className}`} style={{
-      ...style
-    }}>
+    <div
+      className={`FormField ${type ? type : ''} ${className}`}
+      style={{
+        ...style,
+      }}
+    >
       {name ? (
         <div className={`FormField--name`}>
           {name}

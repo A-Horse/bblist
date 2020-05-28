@@ -15,9 +15,7 @@ const LoginPageSuspense = () => {
   );
 };
 
-const SignUpContainer = React.lazy(() =>
-  import('./page/SignUp/SignUp')
-);
+const SignUpContainer = React.lazy(() => import('./page/SignUp/SignUp'));
 const SignUpPageSuspense = () => {
   return (
     <Suspense fallback={<div>Loading...</div>}>

@@ -8,7 +8,7 @@ export function EmptyTip(props: {
     <div
       style={{
         fontSize: 13,
-        color: '#999'
+        color: '#999',
       }}
     >
       {props.children}

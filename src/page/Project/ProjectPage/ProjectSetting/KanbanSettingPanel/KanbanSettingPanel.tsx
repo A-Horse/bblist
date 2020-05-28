@@ -8,7 +8,7 @@ import {
   ActionCreatorsMapObject,
   AnyAction,
   bindActionCreators,
-  Dispatch
+  Dispatch,
 } from 'redux';
 import { AppButton } from '../../../../../widget/Button';
 import { AppIcon } from '../../../../../widget/Icon';
@@ -41,32 +41,32 @@ class KanbanSettingPanelComponent extends Component<
   state = {
     settingModalToggle: false,
     kanbanCreatorModalToggle: false,
-    settingKanbanId: null
+    settingKanbanId: null,
   };
 
   openKanbanSettingModal = (kanbanId: string) => {
     this.setState({
       settingModalToggle: true,
-      settingKanbanId: kanbanId
+      settingKanbanId: kanbanId,
     });
   };
 
   closeKanbanSettingModal = () => {
     this.setState({
       settingModalToggle: false,
-      settingKanbanId: null
+      settingKanbanId: null,
     });
   };
 
   openKanbanCreatorModal = () => {
     this.setState({
-      kanbanCreatorModalToggle: true
+      kanbanCreatorModalToggle: true,
     });
   };
 
   closeKanbanCreatorModal = () => {
     this.setState({
-      kanbanCreatorModalToggle: false
+      kanbanCreatorModalToggle: false,
     });
   };
 
@@ -135,7 +135,7 @@ class KanbanSettingPanelComponent extends Component<
 
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
   return {
-    actions: bindActionCreators({}, dispatch)
+    actions: bindActionCreators({}, dispatch),
   };
 };
 
@@ -151,7 +151,7 @@ const mapStateToProps = (state: RootState, props: ComponentProps) => {
       .map((kanbanId: string) => {
         return state.project.get('kanbanMap').get(kanbanId) as KanbanRecord;
       })
-      .filter(k => !!k)
+      .filter((k) => !!k),
   };
 };
 

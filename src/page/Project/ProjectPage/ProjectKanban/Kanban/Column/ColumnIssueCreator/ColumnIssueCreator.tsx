@@ -17,7 +17,7 @@ interface InputProps {
 export function ColumnIssueCreator({
   projectID,
   kanbanID,
-  columnID
+  columnID,
 }: InputProps) {
   const dispatch = useDispatch();
   const [title, setTitle] = useState<string>('');
@@ -39,18 +39,18 @@ export function ColumnIssueCreator({
           projectID,
           kanbanID,
           columnID,
-          title: title
+          title: title,
         },
         {
-          callback: error => {
+          callback: (error) => {
             if (error) {
               return addToast('创建失败', {
                 appearance: 'error',
-                autoDismiss: true
+                autoDismiss: true,
               });
             }
             clearState();
-          }
+          },
         }
       )
     );

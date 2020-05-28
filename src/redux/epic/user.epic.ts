@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 import {
   GET_ALL_USERS_REQUEST,
   getAllUsersSuccess,
-  getAllUsersFailure
+  getAllUsersFailure,
 } from '../actions/user/user.action';
 import { AppUserInfo } from '../../typings/user/user.typing';
 

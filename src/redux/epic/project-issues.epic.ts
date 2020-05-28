@@ -10,7 +10,7 @@ import {
   getColumnCardsFailure,
   getColumnCardsSuccess,
   getProjectIssuesFailure,
-  getProjectIssuesSuccess
+  getProjectIssuesSuccess,
 } from '../actions/project/project-issue.action';
 import { PaginationList } from '../../typings/pagination.typing';
 import { ProjectIssue } from '../../typings/project-issue.typing';
@@ -31,10 +31,10 @@ export const GET_COLUMN_CARDS_REQUEST_FN = (action$: Observable<FSAction>) =>
           return getColumnCardsSuccess({
             kanbanId: action.payload.kanbanId,
             columnID: action.payload.columnID,
-            cards: result.data
+            cards: result.data,
           });
         })
-        .catch(error => {
+        .catch((error) => {
           action.meta.requestDoneCallback();
           return getColumnCardsFailure(error);
         });
@@ -54,10 +54,10 @@ export const GET_PROJECT_ISSUES_REQUEST_FN = (action$: Observable<FSAction>) =>
         .then((result: AxiosResponse<PaginationList<ProjectIssue>>) => {
           return getProjectIssuesSuccess({
             cardPagtiton: result.data,
-            projectId: action.payload.projectId
+            projectId: action.payload.projectId,
           });
         })
-        .catch(error => {
+        .catch((error) => {
           return getProjectIssuesFailure(error);
         });
     })

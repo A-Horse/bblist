@@ -29,12 +29,12 @@ export function IssueDetailBread(props: InputProps) {
 
   const { addToast } = useToasts();
 
-  const updateIssue = partialIssue => {
+  const updateIssue = (partialIssue) => {
     dispatch(
       updateProjectIssueDetailRequest(
         {
           issueId: props.issueID,
-          partialIssue: partialIssue
+          partialIssue: partialIssue,
         },
         {
           callback: (error: Error) => {
@@ -43,9 +43,9 @@ export function IssueDetailBread(props: InputProps) {
             }
             addToast('更新失败', {
               appearance: 'error',
-              autoDismiss: true
+              autoDismiss: true,
             });
-          }
+          },
         }
       )
     );
@@ -67,10 +67,10 @@ export function IssueDetailBread(props: InputProps) {
 
       <ColumnSelect
         selectedColumnID={issue.get('columnID')}
-        onChange={option => {
+        onChange={(option) => {
           updateIssue({ columnID: option.value });
         }}
-        customSelect={props => <BorderLessSelector width={100} {...props} />}
+        customSelect={(props) => <BorderLessSelector width={100} {...props} />}
         kanbanID={props.kanbanID}
       />
     </div>

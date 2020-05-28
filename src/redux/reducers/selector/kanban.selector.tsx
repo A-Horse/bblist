@@ -14,7 +14,7 @@ export function getKanbanOptions(
   return getKanbans(project, kanbanMap).map((kanban: KanbanRecord) => {
     return {
       value: kanban.get('id'),
-      label: kanban.get('name')
+      label: kanban.get('name'),
     };
   });
 }
@@ -31,7 +31,7 @@ export function getKanbans(
     .map((kanbanId: string) => {
       return kanbanMap.get(kanbanId) as KanbanRecord;
     })
-    .filter(kanban => !!kanban);
+    .filter((kanban) => !!kanban);
 }
 
 export function selectKanbanColumns(
@@ -48,5 +48,5 @@ export function selectKanbanColumns(
     .map((columnID: string) => {
       return state.project.get('columnMap').get(columnID);
     })
-    .filter(column => !!column) as List<KanbanColumnRecord>;
+    .filter((column) => !!column) as List<KanbanColumnRecord>;
 }

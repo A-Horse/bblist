@@ -79,10 +79,10 @@ const mapDispatchToProps = (dispatch: any) => {
   return {
     actions: bindActionCreators(
       {
-        getProjectDetailRequest: getProjectDetailRequest
+        getProjectDetailRequest: getProjectDetailRequest,
       },
       dispatch
-    )
+    ),
   };
 };
 
@@ -90,7 +90,7 @@ const mapStateToProps = (state: RootState, props: Props) => {
   const { projectID } = props.match.params;
 
   return {
-    project: state.project.get('projectMap').get(projectID) as ProjectRecord
+    project: state.project.get('projectMap').get(projectID) as ProjectRecord,
   };
 };
 

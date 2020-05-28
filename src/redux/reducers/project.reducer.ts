@@ -3,38 +3,38 @@ import { normalize } from 'normalizr';
 import { FSAction } from '../actions/actions';
 import {
   GET_PROJECT_KANBAN_DETAIL_SUCCESS,
-  GET_PROJECT_KANBANS_SUCCESS
+  GET_PROJECT_KANBANS_SUCCESS,
 } from '../actions/project/kanban.action';
 import {
   CHANGE_ISSUE_DIRECT,
   GET_PROJECT_ISSUE_DETAIL_SUCCESS,
-  UPDATE_PROJECT_ISSUE_DETAIL_SUCCESS
+  UPDATE_PROJECT_ISSUE_DETAIL_SUCCESS,
 } from '../actions/project/project-issue-detail.action';
 import {
   GET_COLUMN_CARDS_SUCCESS,
   GET_PROJECT_ISSUES_REQUEST,
   GET_PROJECT_ISSUES_SUCCESS,
   RANK_PROJECT_CARD_IN_KANBAN_REQUEST,
-  RANK_PROJECT_CARD_IN_KANBAN_SUCCESS
+  RANK_PROJECT_CARD_IN_KANBAN_SUCCESS,
 } from '../actions/project/project-issue.action';
 import {
   CREATE_PROJECT_SUCCESS,
   GET_PROJECT_DETAIL_SUCCESS,
-  GET_PROJECT_SUCCESS
+  GET_PROJECT_SUCCESS,
 } from '../actions/project/project.action';
 import {
   KanbanDetailEntity,
   KanbanEntityList,
   ProjectCardList,
   ProjectEntity,
-  ProjectEntityList
+  ProjectEntityList,
 } from '../../schema';
 import { Column, KanbanColumnRecord } from '../../typings/kanban-column.typing';
 import { Kanban, KanbanRecord } from '../../typings/kanban.typing';
 import { PaginationList } from '../../typings/pagination.typing';
 import {
   ProjectIssueRecord,
-  RankProjectCardInKanbanInput
+  RankProjectCardInKanbanInput,
 } from '../../typings/project-issue.typing';
 import { ProjectRecord } from '../../typings/project.typing';
 
@@ -59,7 +59,7 @@ export function project(
     projectMap: {},
     kanbanMap: {},
     columnMap: {},
-    issueMap: {}
+    issueMap: {},
   }),
   action: FSAction
 ) {
@@ -76,7 +76,7 @@ export function project(
 
     case GET_PROJECT_DETAIL_SUCCESS: {
       const normalizedAddBoard = normalize(action.payload, ProjectEntity);
-      return state.update('projectMap', projectMap =>
+      return state.update('projectMap', (projectMap) =>
         projectMap.merge<ProjectRecord>(
           fromJS(normalizedAddBoard.entities.Project)
         )
@@ -212,7 +212,7 @@ export function project(
             [
               'issueMap',
               rankProjectCardInKanbanInput.selectCard.get('id'),
-              'order'
+              'order',
             ],
             (order: number) => {
               return rankProjectCardInKanbanInput.targetOrder;
@@ -222,7 +222,7 @@ export function project(
             [
               'issueMap',
               rankProjectCardInKanbanInput.selectCard.get('id'),
-              'columnID'
+              'columnID',
             ],
             (columnID: string) => {
               return rankProjectCardInKanbanInput.targetColumnId;
@@ -259,7 +259,7 @@ export function project(
           }
           return {
             ...pagination,
-            loading: true
+            loading: true,
           };
         }
       );
@@ -278,7 +278,7 @@ export function project(
             pageSize: action.payload.cardPagtiton.pageSize,
             total: action.payload.cardPagtiton.total,
             loading: false,
-            projectId: action.payload.projectId
+            projectId: action.payload.projectId,
           };
         })
         .update('issueMap', (issueMap: CardMap) => {
@@ -306,7 +306,7 @@ export function project(
     case CHANGE_ISSUE_DIRECT: {
       return state.updateIn(
         ['issueMap', action.payload.issueId],
-        innerIssue => {
+        (innerIssue) => {
           if (!innerIssue) {
             return innerIssue;
           }
@@ -317,7 +317,7 @@ export function project(
 
     case GET_PROJECT_ISSUE_DETAIL_SUCCESS: {
       const issue: ProjectIssueRecord = fromJS(action.payload);
-      return state.updateIn(['issueMap', issue.get('id')], innerIssue => {
+      return state.updateIn(['issueMap', issue.get('id')], (innerIssue) => {
         if (!innerIssue) {
           return issue;
         }

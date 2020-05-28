@@ -29,13 +29,13 @@ export function BorderLessSelector(
         {...props}
         styles={{
           indicatorsContainer: () => ({
-            display: 'none'
-          })
+            display: 'none',
+          }),
         }}
         components={{
           SingleValue: CustomSingleValue,
           Control: CustomControl,
-          DropdownIndicator: CustomIndicator
+          DropdownIndicator: CustomIndicator,
         }}
       />
     </div>

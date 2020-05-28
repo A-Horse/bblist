@@ -18,14 +18,14 @@ export class LogoBan extends Component<{
             width: '30px',
             height: '30px',
             borderRadius: '50%',
-            marginTop: '5px'
+            marginTop: '5px',
           }}
         />
         <TextLogo
           style={{
             width: 80,
             marginLeft: 6,
-            marginTop: 4
+            marginTop: 4,
           }}
           white={this.props.white}
         />

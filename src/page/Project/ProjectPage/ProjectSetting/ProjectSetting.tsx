@@ -31,7 +31,7 @@ export function ProjectSetting() {
       projectId: match.params.projectId,
     });
     dispatch(action);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const onCoverUpload = (coverBase64: string) => {

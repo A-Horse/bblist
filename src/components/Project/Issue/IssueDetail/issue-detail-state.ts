@@ -1,7 +1,7 @@
 import { IssueDetailComponent } from './IssueDetail';
 import {
   ProjectIssueRecordFiled,
-  ProjectIssueRecord
+  ProjectIssueRecord,
 } from '../../../../typings/project-issue.typing';
 
 export class IssueDetailState {
@@ -26,7 +26,7 @@ export class IssueDetailState {
       this.detailComponent.props.actions.changeIssueDirect(
         this.detailComponent.props.issueID,
         {
-          [fieldName]: value
+          [fieldName]: value,
         }
       );
     };
@@ -35,7 +35,7 @@ export class IssueDetailState {
   onFieldBlur = (fieldName: ProjectIssueRecordFiled) => {
     return (value: any): void => {
       this.updateIssue({
-        [fieldName]: value
+        [fieldName]: value,
       });
     };
   };
@@ -67,7 +67,7 @@ export class IssueDetailState {
     this.detailComponent.props.actions.updateProjectIssueDetailRequest(
       {
         issueId: this.detailComponent.props.issueID,
-        partialIssue: changedPartialIssue
+        partialIssue: changedPartialIssue,
       },
       {
         callback: (error: Error) => {
@@ -83,9 +83,9 @@ export class IssueDetailState {
           }
           this.detailComponent.props.toastManager.add('更新失败', {
             appearance: 'error',
-            autoDismiss: true
+            autoDismiss: true,
           });
-        }
+        },
       }
     );
   };

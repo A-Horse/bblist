@@ -11,7 +11,7 @@ export function SectionHeading({ size, children }: InputProps) {
   const fontSize: number = {
     sm: 13,
     md: 16,
-    lg: 28
+    lg: 28,
   }[size];
   return (
     <div className="SessionHeading" style={{ fontSize }}>

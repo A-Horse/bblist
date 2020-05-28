@@ -14,7 +14,7 @@ export class TextLogo extends Component<{
         className="TextLogo"
         style={{
           width: 100,
-          ...this.props.style
+          ...this.props.style,
         }}
         src={this.props.white ? textLogoWhite : textLogo}
       />

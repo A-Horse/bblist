@@ -3,7 +3,7 @@ import './ProjectIssue.scss';
 import React, {
   RefForwardingComponent,
   useImperativeHandle,
-  useRef
+  useRef,
 } from 'react';
 import {
   ConnectDragSource,
@@ -11,12 +11,12 @@ import {
   DragSource,
   DropTarget,
   DropTargetMonitor,
-  XYCoord
+  XYCoord,
 } from 'react-dnd';
 
 import {
   ProjectIssueRecord,
-  RankProjectCardInKanbanInput
+  RankProjectCardInKanbanInput,
 } from '../../../../typings/project-issue.typing';
 import { IssueId } from '../IssueId/IssueId';
 
@@ -54,7 +54,7 @@ const Card = React.forwardRef<HTMLDivElement, InputProps & DndProps>(
 
     const opacity = isDragging ? 0.2 : 1;
     useImperativeHandle<{}, CardInstance>(ref, () => ({
-      getNode: () => elementRef.current
+      getNode: () => elementRef.current,
     }));
 
     const innerOnClick = () => {
@@ -74,7 +74,6 @@ const Card = React.forwardRef<HTMLDivElement, InputProps & DndProps>(
     );
   }
 );
-
 
 // TODO: rename KanbanIssue
 export const ProjectIssue = DropTarget(
@@ -147,10 +146,10 @@ export const ProjectIssue = DropTarget(
             props.issue.get('order') - (isBefore ? 0.000001 : -0.0000001),
           targetColumnId: props.issue.get('columnID'),
           isBefore: isBefore,
-          kanbanId: props.kanbanId
+          kanbanId: props.kanbanId,
         } as RankProjectCardInKanbanInput,
         {
-          temporary: true
+          temporary: true,
         }
       );
     },
@@ -163,16 +162,16 @@ export const ProjectIssue = DropTarget(
         {
           selectCard: monitor.getItem().issue,
           kanbanId: props.kanbanId,
-          targetColumnId: props.issue.get('columnID')
+          targetColumnId: props.issue.get('columnID'),
         } as RankProjectCardInKanbanInput,
         {
-          temporary: false
+          temporary: false,
         }
       );
-    }
+    },
   },
   (connect, monitor: DropTargetMonitor) => ({
-    connectDropTarget: connect.dropTarget()
+    connectDropTarget: connect.dropTarget(),
   })
 )(
   DragSource(
@@ -180,13 +179,13 @@ export const ProjectIssue = DropTarget(
     {
       beginDrag(props: any, monitor: any, component: IssueComponent) {
         return {
-          issue: props.issue
+          issue: props.issue,
         };
-      }
+      },
     },
     (connect, monitor) => ({
       connectDragSource: connect.dragSource(),
-      isDragging: monitor.isDragging()
+      isDragging: monitor.isDragging(),
     })
   )(Card)
 );

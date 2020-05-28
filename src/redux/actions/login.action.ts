@@ -24,18 +24,18 @@ export function loginRequest(
     type: LOGIN_REQUEST,
     payload: {
       username: loginRequestInput.username,
-      password: loginRequestInput.password
+      password: loginRequestInput.password,
     },
     meta: {
       onSuccess: loginRequestInput.onSuccess,
-      onError: loginRequestInput.onError
-    }
+      onError: loginRequestInput.onError,
+    },
   };
 }
 
 export function loginSuccess(): FSAction {
   return {
-    type: LOGIN_SUCCESS
+    type: LOGIN_SUCCESS,
   };
 }
 
@@ -43,6 +43,6 @@ export function loginFailure(response: AxiosResponse): FSAction {
   return {
     type: LOGIN_FAILURE,
     error: true,
-    payload: response
+    payload: response,
   };
 }

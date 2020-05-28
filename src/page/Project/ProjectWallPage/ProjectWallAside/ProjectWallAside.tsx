@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {
   faPlusCircle,
   faTachometerAlt,
-  faColumns
+  faColumns,
 } from '@fortawesome/free-solid-svg-icons';
 import { Side } from '../../../../widget/Side/Side';
 import { SideGroup } from '../../../../widget/Side/SideGroup';

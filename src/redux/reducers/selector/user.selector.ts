@@ -14,8 +14,8 @@ export function findProjectAllUsers(
   }
 
   return projectUsersID
-    .map(ID => {
+    .map((ID) => {
       return state.user.get('userMap').get(ID.toString())!;
     })
-    .filter(u => u);
+    .filter((u) => u);
 }

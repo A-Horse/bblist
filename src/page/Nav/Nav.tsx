@@ -46,7 +46,7 @@ export function Nav(props: { user?: AppUserInfo }) {
               style={
                 show
                   ? {
-                      backgroundColor: 'white'
+                      backgroundColor: 'white',
                     }
                   : {}
               }

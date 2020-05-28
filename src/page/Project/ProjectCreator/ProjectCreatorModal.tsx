@@ -35,7 +35,7 @@ export function ProjectCreatorModal({ isOpen, onClose }) {
           onClose();
         }}
       >
-        {props => (
+        {(props) => (
           <form onSubmit={props.handleSubmit}>
             <div className="ProjectCreatorModal-form">
               <FormField>

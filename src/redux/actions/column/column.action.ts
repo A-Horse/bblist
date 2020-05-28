@@ -4,17 +4,14 @@ export const DELETE_COLUMN_REQUEST = 'DELETE_COLUMN_REQUEST';
 export const DELETE_COLUMN_SUCCESS = 'DELETE_COLUMN_SUCCESS';
 export const DELETE_COLUMN_FAILURE = 'DELETE_COLUMN_FAILURE';
 
-export function deleteColumnRequest(payload: {
-  columnID: string;
-}): FSAction {
+export function deleteColumnRequest(payload: { columnID: string }): FSAction {
   return {
     type: DELETE_COLUMN_REQUEST,
-    payload
+    payload,
   };
 }
 
-export function deleteColumnSuccess(payload: {
-}): FSAction {
+export function deleteColumnSuccess(payload: {}): FSAction {
   return {
     type: DELETE_COLUMN_SUCCESS,
   };
@@ -23,6 +20,6 @@ export function deleteColumnSuccess(payload: {
 export function deleteColumnFailure(): FSAction {
   return {
     type: DELETE_COLUMN_FAILURE,
-    error: true
+    error: true,
   };
 }
