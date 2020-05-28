@@ -19,7 +19,7 @@
     "isomorphic-fetch": "^2.2.1",
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
-    "node-sass": "^4.13.1",
+    "node-sass": "^4.14.1",
     "normalizr": "^3.2.4",
     "promise-polyfill": "^7.1.2",
     "prop-types": "^15.6.1",
