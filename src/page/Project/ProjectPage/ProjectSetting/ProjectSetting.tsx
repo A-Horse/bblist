@@ -6,16 +6,16 @@ import { useRouteMatch } from 'react-router-dom';
 import {
   uploadProjectCoverRequest,
   updateProjectsRequest,
-} from '../../../../actions/project/project.action';
+} from '../../../../redux/actions/project/project.action';
 import { ImageUploader } from '../../../../components/ImageUploader/ImageUploader';
 import { Input } from '../../../../widget/Input/Input';
 import { generateProjectCoverUrl } from '../../util/project-cover.util';
 import { KanbanSettingPanel } from './KanbanSettingPanel/KanbanSettingPanel';
-import { getProjectKanbansRequest } from '../../../../actions/project/kanban.action';
+import { getProjectKanbansRequest } from '../../../../redux/actions/project/kanban.action';
 import { useToasts } from 'react-toast-notifications';
 import { AxiosError } from 'axios';
 import { SectionField } from '../../../../widget/SectionField/SectionField';
-import { RootState } from '../../../../reducers/index';
+import { RootState } from '../../../../redux/reducers/index';
 
 export function ProjectSetting() {
   const { addToast } = useToasts();

@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import Profile from './Profile';
 import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
-import Actions, { makeActionRequestCollection } from '../../../actions/actions';
+import Actions, { makeActionRequestCollection } from '../../../redux/actions/actions';
 
 const mapDispatchToProps = dispatch => {
   return {

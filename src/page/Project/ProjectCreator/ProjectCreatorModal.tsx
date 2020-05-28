@@ -3,7 +3,7 @@ import './ProjectCreatorModal.scss';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 
-import { createProjectRequest } from '../../../actions/project/project.action';
+import { createProjectRequest } from '../../../redux/actions/project/project.action';
 import { AppModal } from '../../../widget/Modal/AppModal';
 import { Field, Formik } from 'formik';
 import { FormField } from '../../../widget/FormField/FormField';

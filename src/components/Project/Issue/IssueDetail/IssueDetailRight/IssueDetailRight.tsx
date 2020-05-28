@@ -7,7 +7,7 @@ import { SectionHeading } from '../../../../../widget/SectionHeading/SectionHead
 import { DetailRightField } from './DetailField/DetailRightField';
 import { faClock } from '@fortawesome/free-regular-svg-icons';
 import { useDispatch } from 'react-redux';
-import { updateProjectIssueDetailRequest } from '../../../../../actions/project/project-issue-detail.action';
+import { updateProjectIssueDetailRequest } from '../../../../../redux/actions/project/project-issue-detail.action';
 import { faArrowsAltH } from '@fortawesome/free-solid-svg-icons';
 import { MoveIssueModal } from '../MoveIssueModal/MoveIssueModal';
 import './IssueDetailRight.scss';

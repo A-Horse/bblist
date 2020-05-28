@@ -6,9 +6,9 @@ import {
   bindActionCreators,
   Dispatch,
 } from 'redux';
-import { getProjectKanbanDetailRequest } from '../../../actions/project/kanban.action';
-import { RootState } from '../../../reducers';
-import { selectKanbanColumns } from '../../../reducers/selector/kanban.selector';
+import { getProjectKanbanDetailRequest } from '../../../redux/actions/project/kanban.action';
+import { RootState } from '../../../redux/reducers';
+import { selectKanbanColumns } from '../../../redux/reducers/selector/kanban.selector';
 import { SelectOption } from '../../../typings/select.typing';
 import { AppSelect } from '../../../widget/AppSelect';
 import { List } from 'immutable';

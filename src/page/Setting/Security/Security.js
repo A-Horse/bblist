@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Input } from '../../../widget/Input/Input';
 import { bindActionCreators } from 'redux';
-import { makeActionRequestCollection } from '../../../actions/actions';
+import { makeActionRequestCollection } from '../../../redux/actions/actions';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 

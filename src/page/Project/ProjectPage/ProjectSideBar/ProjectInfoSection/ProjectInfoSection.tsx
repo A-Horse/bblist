@@ -3,7 +3,7 @@ import './ProjectInfoSection.scss';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { ProjectRecord } from '../../../../../typings/project.typing';
-import { RootState } from '../../../../../reducers';
+import { RootState } from '../../../../../redux/reducers';
 import { generateProjectCoverUrl } from '../../../util/project-cover.util';
 
 interface InputProps {

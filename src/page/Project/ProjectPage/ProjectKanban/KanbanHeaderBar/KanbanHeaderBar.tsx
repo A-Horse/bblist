@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import { AppButton } from '../../../../../widget/Button';
-import { RootState } from '../../../../../reducers';
+import { RootState } from '../../../../../redux/reducers';
 import { KanbanRecord } from '../../../../../typings/kanban.typing';
 import { KanbanSelectorModal } from '../../modals/KanbanSelectorModal/KanbanSelectorModal';
 import { AppIcon } from '../../../../../widget/Icon';

@@ -10,11 +10,11 @@ import {
   Dispatch
 } from 'redux';
 
-import { getProjectIssuesRequest } from '../../../../actions/project/project-issue.action';
+import { getProjectIssuesRequest } from '../../../../redux/actions/project/project-issue.action';
 import { FlatIssue } from '../../../../components/Project/Issue/FlatIssue/FlatIssue';
 import { IssueDetail } from '../../../../components/Project/Issue/IssueDetail/IssueDetail';
 import { AppPagination } from '../../../../widget/Pagination';
-import { RootState } from '../../../../reducers';
+import { RootState } from '../../../../redux/reducers';
 import { ProjectIssueRecord } from '../../../../typings/project-issue.typing';
 import { ProjectRecord } from '../../../../typings/project.typing';
 

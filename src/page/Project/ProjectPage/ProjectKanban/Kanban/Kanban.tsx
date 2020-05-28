@@ -12,10 +12,10 @@ import {
   Dispatch,
 } from 'redux';
 
-import { getProjectKanbanDetailRequest } from '../../../../../actions/project/kanban.action';
+import { getProjectKanbanDetailRequest } from '../../../../../redux/actions/project/kanban.action';
 import { IssueDetailModal } from '../../../../../components/Project/Issue/IssueDetail/IssueDetailModal';
-import { RootState } from '../../../../../reducers';
-import { selectKanbanColumns } from '../../../../../reducers/selector/kanban.selector';
+import { RootState } from '../../../../../redux/reducers';
+import { selectKanbanColumns } from '../../../../../redux/reducers/selector/kanban.selector';
 import { KanbanColumnRecord } from '../../../../../typings/kanban-column.typing';
 import { KanbanRecord } from '../../../../../typings/kanban.typing';
 import { ProjectRecord } from '../../../../../typings/project.typing';

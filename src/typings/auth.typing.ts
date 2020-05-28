@@ -1,5 +1,5 @@
 export interface LoginRequestInput {
-  email: string;
+  username: string;
   password: string;
   onSuccess: Function;
   onError: Function;

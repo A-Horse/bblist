@@ -4,8 +4,8 @@ import React, { Component, Suspense } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 
 import { NotFound } from '../page/NotFound';
-import { getUserData } from '../utils/auth';
 import { Nav } from './Nav/Nav';
+import { useClaims } from "../hook/useClaims";
 
 const SettingPageContainer = React.lazy(() =>
   import('./Setting/SettingPage.container')
@@ -52,51 +52,39 @@ const ProfilePage = () => {
   );
 };
 
-export default class App extends Component<any> {
-  state = { userData: undefined };
 
-  componentWillMount() {
-    const userData = getUserData();
-    // this.props.actions.SETUP_USER_REQUEST(userData);
-    this.setState({ userData });
+export default function App() {
+  const claims = useClaims();
+  if (!claims) {
+    return <Redirect to="/login" />;
   }
+  return (
+    <>
+      {/*<Nav user={null} />*/}
 
-  componentDidMount() {}
-
-  componentWillReceiveProps() {}
-
-  render() {
-    if (!this.state.userData) {
-      return <Redirect to="/login" />;
-    }
-    return (
       <>
-        <Nav user={this.state.userData} />
+        <Switch>
+          <Route
+            path="/"
+            exact
+            render={() => (
+              <Redirect
+                to={{
+                  pathname: '/projects'
+                }}
+              />
+            )}
+          />
 
-        <>
-          <Switch>
-            <Route
-              path="/"
-              exact
-              render={() => (
-                <Redirect
-                  to={{
-                    pathname: '/projects'
-                  }}
-                />
-              )}
-            />
+          <Route exact path="/projects" component={ProjectWallPage} />
+          <Route path="/project/:projectID" component={ProjectPage} />
 
-            <Route exact path="/projects" component={ProjectWallPage} />
-            <Route path="/project/:projectID" component={ProjectPage} />
+          <Route path="/setting" component={SettingPage} />
+          <Route path="/profile" component={ProfilePage} />
 
-            <Route path="/setting" component={SettingPage} />
-            <Route path="/profile" component={ProfilePage} />
-
-            <Route path="*" component={NotFound} />
-          </Switch>
-        </>
+          <Route path="*" component={NotFound} />
+        </Switch>
       </>
-    );
-  }
+    </>
+  );
 }

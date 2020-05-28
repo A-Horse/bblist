@@ -5,7 +5,7 @@ import { TextLogo } from '../../components/TextLogo';
 import { updateTitle } from '../../services/title';
 import { LoginForm } from './LoginForm';
 import { useDispatch } from 'react-redux';
-import { loginRequest } from '../../actions/login.action';
+import { loginRequest } from '../../redux/actions/login.action';
 import { useToasts } from 'react-toast-notifications';
 import { AxiosResponse } from 'axios';
 
@@ -16,10 +16,10 @@ export function LoginPage() {
   const history = useHistory();
   const { addToast } = useToasts();
 
-  const login = ({ email, password }) => {
+  const login = ({ username, password }) => {
     dispatch(
       loginRequest({
-        email,
+        username,
         password,
         onSuccess: () => {
           history.push('/projects');
@@ -63,7 +63,7 @@ export function LoginPage() {
 
         <div style={{ textAlign: 'center', marginTop: 12 }}>
           还没有账户?
-          <Link className="signup-link" to="/signup">
+          <Link className="login-link" to="/signup">
             注册
           </Link>
         </div>

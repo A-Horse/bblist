@@ -13,7 +13,7 @@ import { AppUserInfo } from '../../typings/user/user.typing';
 
 import './Nav.scss';
 import { useDispatch } from 'react-redux';
-import { logout } from '../../actions/auth.action';
+import { logout } from '../../redux/actions/auth.action';
 
 export function Nav(props: { user?: AppUserInfo }) {
   const dispatch = useDispatch();

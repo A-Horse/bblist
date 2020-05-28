@@ -14,8 +14,8 @@ import {
   bindActionCreators,
   Dispatch
 } from 'redux';
-import { setProjectDefaultKanbanRequest } from '../../../../actions/project/project-setting.action';
-import { RootState } from '../../../../reducers';
+import { setProjectDefaultKanbanRequest } from '../../../../redux/actions/project/project-setting.action';
+import { RootState } from '../../../../redux/reducers';
 import { ProjectRecord } from '../../../../typings/project.typing';
 import { Kanban } from './Kanban/Kanban';
 import { KanbanHeaderBar } from './KanbanHeaderBar/KanbanHeaderBar';

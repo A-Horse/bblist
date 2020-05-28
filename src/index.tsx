@@ -11,9 +11,9 @@ import { JSX as LocalJSX } from '@stencil/core';
 import {
   setupAxiosInterceptor,
   setupAxiosJwtHeader,
-} from './helper/http-interceptor';
+} from './utils/http-interceptor';
 import Root from './page/Root/Root';
-import { store } from './store/store';
+import { store } from './redux/store/store';
 import { getJWT } from './utils/auth';
 import * as serviceWorker from './serviceWorker';
 

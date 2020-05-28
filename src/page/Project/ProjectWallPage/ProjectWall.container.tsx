@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { AnyAction, bindActionCreators, Dispatch } from 'redux';
-import { getProjectsRequest } from '../../../actions/project/project.action';
+import { getProjectsRequest } from '../../../redux/actions/project/project.action';
 import { ProjectWallPage } from './ProjectWall';
 
 const mapStateToProps = (state: any) => {

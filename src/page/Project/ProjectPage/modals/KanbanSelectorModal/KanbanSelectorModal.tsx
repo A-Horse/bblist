@@ -1,8 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { AppModal } from '../../../../../widget/Modal/AppModal';
-import { RootState } from '../../../../../reducers';
-import { getKanbans } from '../../../../../reducers/selector/kanban.selector';
+import { RootState } from '../../../../../redux/reducers';
+import { getKanbans } from '../../../../../redux/reducers/selector/kanban.selector';
 import { KanbanRecord } from '../../../../../typings/kanban.typing';
 
 import './KanbanSelectorModal.scss';

@@ -18,12 +18,12 @@ interface Props {
 }
 
 export interface FormValues {
-  email: string;
+  username: string;
   password: string;
 }
 
 const FormSchema = Yup.object().shape({
-  email: Yup.string().required('邮箱为必填项'),
+  username: Yup.string().required('用戶名为必填项'),
   password: Yup.string().required('密码为必填项')
 });
 
@@ -34,7 +34,7 @@ export class LoginForm extends Component<Props> {
         validationSchema={FormSchema}
         initialValues={
           {
-            email: '',
+            username: '',
             password: ''
           } as FormValues
         }
@@ -51,8 +51,8 @@ export class LoginForm extends Component<Props> {
                   {({ field, form }: FieldProps<FormikValues>) => (
                     <FormField
                       require={true}
-                      name="邮箱"
-                      errorMessage={<ErrorMessage name="email" />}
+                      name="用戶名"
+                      errorMessage={<ErrorMessage name="username" />}
                     >
                       <Input
                         type="text"
@@ -60,7 +60,7 @@ export class LoginForm extends Component<Props> {
                         value={form.values.title}
                         placeholder=""
                         onChange={value => {
-                          formikBag.setFieldValue('email', value);
+                          formikBag.setFieldValue('username', value);
                         }}
                       />
                     </FormField>

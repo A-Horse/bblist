@@ -14,10 +14,10 @@ import {
   createKanbanColumnRequest,
   createKanbanRequest,
   getProjectKanbanDetailRequest,
-} from '../../../actions/project/kanban.action';
+} from '../../../redux/actions/project/kanban.action';
 import { AppModal } from '../../../widget/Modal/AppModal';
-import { RootState } from '../../../reducers';
-import { selectKanbanColumns } from '../../../reducers/selector/kanban.selector';
+import { RootState } from '../../../redux/reducers';
+import { selectKanbanColumns } from '../../../redux/reducers/selector/kanban.selector';
 import { KanbanColumnRecord } from '../../../typings/kanban-column.typing';
 import { KanbanRecord } from '../../../typings/kanban.typing';
 import { ProjectRecord } from '../../../typings/project.typing';

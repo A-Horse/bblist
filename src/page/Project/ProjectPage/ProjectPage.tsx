@@ -7,8 +7,8 @@ import { match, Route, Switch, Redirect } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 
-import { getProjectDetailRequest } from '../../../actions/project/project.action';
-import { RootState } from '../../../reducers';
+import { getProjectDetailRequest } from '../../../redux/actions/project/project.action';
+import { RootState } from '../../../redux/reducers';
 import { ProjectRecord } from '../../../typings/project.typing';
 import { Issues } from './Issues/Issues';
 import { ProjectEpics } from './ProjectEpics/ProjectEpics';
