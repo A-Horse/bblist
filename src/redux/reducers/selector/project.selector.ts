@@ -1,7 +1,7 @@
 import { ProjectRecord } from '../../../typings/project.typing';
 import { RootState } from '../index';
 
-export function getProjectFromState(
+export function selectProject(
   rootState: RootState,
   projectID: string
 ): ProjectRecord | undefined {

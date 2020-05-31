@@ -11,6 +11,7 @@ import { Claims } from '../typings/claims';
 const SettingPageContainer = React.lazy(() =>
   import('./Setting/SettingPage.container')
 );
+
 const SettingPage = () => {
   return (
     <Suspense fallback={<div>Loading...</div>}>

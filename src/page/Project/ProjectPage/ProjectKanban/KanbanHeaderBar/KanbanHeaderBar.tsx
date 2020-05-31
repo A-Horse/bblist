@@ -6,7 +6,6 @@ import { useSelector } from 'react-redux';
 import { AppButton } from '../../../../../widget/Button';
 import { RootState } from '../../../../../redux/reducers';
 import { KanbanRecord } from '../../../../../typings/kanban.typing';
-import { KanbanSelectorModal } from '../../Modals/KanbanSelectorModal/KanbanSelectorModal';
 import { AppIcon } from '../../../../../widget/Icon';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import { IssueCreatorModal } from '../../../../../components/creators/TaskCreator/IssueCreatorModal';
@@ -14,14 +13,9 @@ import { IssueCreatorModal } from '../../../../../components/creators/TaskCreato
 interface InputProps {
   selectedKanbanId: string;
   projectID: string;
-  onChange: Function;
 }
 
-export function KanbanHeaderBar({
-  projectID,
-  selectedKanbanId,
-  onChange,
-}: InputProps) {
+export function KanbanHeaderBar({ projectID, selectedKanbanId }: InputProps) {
   const kanban: KanbanRecord | undefined = useSelector((state: RootState) =>
     state.project.get('kanbanMap').get(selectedKanbanId)
   );
@@ -47,24 +41,7 @@ export function KanbanHeaderBar({
           <AppIcon icon={faPlusCircle} />
           新建问题
         </AppButton>
-
-        <AppButton
-          className="KanbanHeaderBar--kanban-select-button"
-          backgroundColor="white"
-          onClick={() => {
-            setSelectKanbanToggle(true);
-          }}
-        >
-          选择看板
-        </AppButton>
       </div>
-
-      <KanbanSelectorModal
-        onChange={onChange}
-        toggle={selectKanbanToggle}
-        projectId={projectID}
-        onClose={() => setSelectKanbanToggle(false)}
-      />
 
       <IssueCreatorModal
         projectID={projectID}

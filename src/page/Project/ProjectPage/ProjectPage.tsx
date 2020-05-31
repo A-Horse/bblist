@@ -5,7 +5,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { match, Redirect, Route, Switch, withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
-
 import { getProjectDetailRequest } from '../../../redux/actions/project/project.action';
 import { RootState } from '../../../redux/reducers';
 import { ProjectRecord } from '../../../typings/project.typing';
@@ -53,10 +52,6 @@ class ProjectPageComponent extends Component<Props> {
               />
               <Route
                 path="/project/:projectId/kanban/:kanbanId"
-                render={() => <ProjectKanban />}
-              />
-              <Route
-                path="/project/:projectId/kanban"
                 render={() => <ProjectKanban />}
               />
               <Route

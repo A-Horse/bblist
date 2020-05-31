@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../../../redux/reducers';
-import { getProjectFromState } from '../../../../../redux/reducers/selector/project.selector';
+import { selectProject } from '../../../../../redux/reducers/selector/project.selector';
 import { ColumnSelect } from '../../../ColumnSelect/ColumnSelect';
 import { BorderLessSelector } from '../../../../../widget/BorderlessSelect/BorderlessSelect';
 import { IssueType } from '../../../IssueType/IssueType';
@@ -20,7 +20,7 @@ interface InputProps {
 export function IssueDetailBread(props: InputProps) {
   const dispatch = useDispatch();
   const project = useSelector((state: RootState) => {
-    return getProjectFromState(state, props.projectID);
+    return selectProject(state, props.projectID);
   });
 
   const issue = useSelector((state: RootState) => {
