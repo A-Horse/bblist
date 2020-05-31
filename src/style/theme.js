@@ -12,13 +12,13 @@ export const ThemeConst = {
     default: '#fff',
     primary: '#c998ff',
     waring: '#f0ad4e',
-    disable: '#999'
+    disable: '#999',
   },
 
   border: {
     color: {
-      default: '#999'
-    }
+      default: '#999',
+    },
   },
 
   // font
@@ -34,17 +34,17 @@ export const ThemeConst = {
     height: {
       small: '',
       middle: '30px',
-      large: '40px'
+      large: '40px',
     },
     width: {
       small: '',
       middle: '',
       large: '',
-      full: ''
-    }
+      full: '',
+    },
   },
 
   // text
   lightText: 'white',
-  primaryText: '#383838'
+  primaryText: '#383838',
 };

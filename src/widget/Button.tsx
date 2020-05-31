@@ -1,6 +1,6 @@
 import './Button.scss';
 
-import React, { PureComponent, CSSProperties } from 'react';
+import React, { CSSProperties, PureComponent } from 'react';
 
 export type ButtonType = 'primary' | 'dashed' | 'danger' | 'link';
 

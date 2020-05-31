@@ -4,7 +4,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { ProjectRecord } from '../../../../../typings/project.typing';
 import { RootState } from '../../../../../redux/reducers';
-import { generateProjectCoverUrl } from '../../../util/project-cover.util';
+import { ObjectImage } from '../../../../../components/ObjectImage';
 
 interface InputProps {
   projectID: string;
@@ -21,12 +21,7 @@ export function ProjectInfoSection({ projectID }: InputProps) {
 
   return (
     <div className="ProjectInfoSection">
-      <img
-        src={generateProjectCoverUrl(
-          project.get('setting').get('coverFileName')
-        )}
-        alt="cover"
-      />
+      <ObjectImage uri={project.get('coverUri')} alt="project-cover" />
 
       <div className="ProjectInfoSection--project-name">
         {project.get('name')}

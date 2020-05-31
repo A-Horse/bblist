@@ -2,19 +2,16 @@ import { connect } from 'react-redux';
 import Profile from './Profile';
 import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
-import Actions, { makeActionRequestCollection } from '../../../redux/actions/actions';
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    actions: bindActionCreators(
-     
-    )
+    actions: bindActionCreators(),
   };
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    user: state.auth.get('loginedUser')
+    user: state.auth.get('loginedUser'),
   };
 };
 

@@ -1,9 +1,9 @@
-import { fromJS, List, Record, Map } from 'immutable';
+import { fromJS, List, Map, Record } from 'immutable';
 import { AppUserInfoRecord } from '../../typings/user/user.typing';
 import { FSAction } from '../actions/actions';
 import { GET_ALL_USERS_SUCCESS } from '../actions/user/user.action';
 import { normalize } from 'normalizr';
-import { UserEntityList } from '../../schema';
+import { UserEntityList } from '../schema';
 
 type UserMap = Map<string, AppUserInfoRecord>;
 type ProjectUserIdMap = Map<string, List<string>>;

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { ofType } from 'redux-observable';
-import { Observable, of } from 'rxjs';
-import { mergeMap, tap, ignoreElements } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { ignoreElements, mergeMap, tap } from 'rxjs/operators';
 
 import { FSAction } from '../actions/actions';
 import { setupAxiosJwtHeader } from '../../utils/http-interceptor';

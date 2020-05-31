@@ -28,9 +28,9 @@ import {
   ProjectCardList,
   ProjectEntity,
   ProjectEntityList,
-} from '../../schema';
+} from '../schema';
 import { Column, KanbanColumnRecord } from '../../typings/kanban-column.typing';
-import { Kanban, KanbanRecord } from '../../typings/kanban.typing';
+import { IKanban, KanbanRecord } from '../../typings/kanban.typing';
 import { PaginationList } from '../../typings/pagination.typing';
 import {
   ProjectIssueRecord,
@@ -99,7 +99,7 @@ export function project(
       const normalizedKanbans: {
         entities: {
           Kanban: {
-            [id: string]: Kanban;
+            [id: string]: IKanban;
           };
         };
         result: string[];
@@ -112,7 +112,7 @@ export function project(
             if (!project) {
               return project;
             }
-            return project.set('kanbans', normalizedKanbans.result);
+            return project.set('kanbanIds', normalizedKanbans.result);
           }
         )
         .update('kanbanMap', (kanbanMap: KanbanMap) => {
@@ -139,7 +139,7 @@ export function project(
       const normalizedKanbanDetail: {
         entities: {
           Kanban: {
-            [id: string]: Kanban;
+            [id: string]: IKanban;
           };
           KanbanColumn: {
             [id: string]: Column;

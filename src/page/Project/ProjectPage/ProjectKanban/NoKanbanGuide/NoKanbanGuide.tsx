@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 import { AppButton } from '../../../../../widget/Button';
-import { ProjectRecord } from '../../../../../typings/project.typing';
 import { KanbanCreatorModal } from '../../../KanbanCreator/KanbanCreatorModal';
 import { AppIcon } from '../../../../../widget/Icon';
 import { faBoxOpen } from '@fortawesome/free-solid-svg-icons';
@@ -9,7 +8,7 @@ import { faBoxOpen } from '@fortawesome/free-solid-svg-icons';
 import './NoKanbanGuide.scss';
 
 interface Props {
-  project: ProjectRecord;
+  projectId: string;
 }
 
 export class NoKanbanGuide extends Component<
@@ -48,9 +47,9 @@ export class NoKanbanGuide extends Component<
 
         <KanbanCreatorModal
           noKanbanExist={true}
-          project={this.props.project}
           toggle={this.state.kanbanCreatorToggle}
           onClose={this.closeCreateKanban}
+          projectId={this.props.projectId}
         />
       </div>
     );

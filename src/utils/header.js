@@ -6,9 +6,9 @@ export function createConfig(method, body, headers) {
     method: method,
     headers: {
       'content-type': 'application/json',
-      ...headers
+      ...headers,
     },
-    body: body ? JSON.stringify(body) : undefined
+    body: body ? JSON.stringify(body) : undefined,
   };
 }
 
@@ -16,9 +16,9 @@ export function createFormDataConfig(method, body, headers) {
   return {
     method: method,
     headers: {
-      ...headers
+      ...headers,
     },
-    body: body
+    body: body,
   };
 }
 

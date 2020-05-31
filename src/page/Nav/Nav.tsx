@@ -15,7 +15,7 @@ import './Nav.scss';
 import { useDispatch } from 'react-redux';
 import { logout } from '../../redux/actions/auth.action';
 
-export function Nav(props: { user?: AppUserInfo }) {
+export function Nav(props: { user: AppUserInfo }) {
   const dispatch = useDispatch();
   const { user } = props;
 

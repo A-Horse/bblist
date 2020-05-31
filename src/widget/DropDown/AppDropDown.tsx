@@ -1,4 +1,4 @@
-import React, { useEffect, useState, ReactNode } from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
 import './AppDropDown.scss';
 
 function DropDownToggle({ onClick, children }) {

@@ -3,15 +3,17 @@ import { List } from 'immutable';
 import { RootState } from '../index';
 import { KanbanColumnRecord } from '../../../typings/kanban-column.typing';
 import { KanbanRecord } from '../../../typings/kanban.typing';
-import { ProjectRecord } from '../../../typings/project.typing';
 import { SelectOption } from '../../../typings/select.typing';
-import { KanbanMap } from '../project.reducer';
 
-export function getKanbanOptions(
-  project: ProjectRecord,
-  kanbanMap: KanbanMap
+export function selectKanbanOptions(
+  state: RootState,
+  projectId: string
 ): SelectOption[] {
-  return getKanbans(project, kanbanMap).map((kanban: KanbanRecord) => {
+  const project = state.project.get('projectMap').get(projectId);
+  if (!project) {
+    return [];
+  }
+  return selectKanbans(state, projectId).map((kanban: KanbanRecord) => {
     return {
       value: kanban.get('id'),
       label: kanban.get('name'),
@@ -19,17 +21,18 @@ export function getKanbanOptions(
   });
 }
 
-export function getKanbans(
-  project: ProjectRecord | undefined,
-  kanbanMap: KanbanMap
+export function selectKanbans(
+  state: RootState,
+  projectId: string
 ): KanbanRecord[] {
-  if (!project || !project.get('kanbans')) {
+  const project = state.project.get('projectMap').get(projectId);
+  if (!project || !project.get('kanbanIds')) {
     return [];
   }
   return project
-    .get('kanbans')!
+    .get('kanbanIds')!
     .map((kanbanId: string) => {
-      return kanbanMap.get(kanbanId) as KanbanRecord;
+      return state.project.get('kanbanMap').get(kanbanId)!;
     })
     .filter((kanban) => !!kanban);
 }

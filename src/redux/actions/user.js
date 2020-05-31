@@ -3,7 +3,7 @@ import { createConfigWithAuth } from '../../utils/header';
 import { makeApiUrl } from 'utils/api';
 import {
   handleResponse,
-  handleResponseWithoutJson
+  handleResponseWithoutJson,
 } from '../../utils/http-handle';
 import { authUser } from './login';
 
@@ -13,26 +13,26 @@ export const UPDATE_PASSWORD_FAILURE = 'UPDATE_PASSWORD_FAILURE';
 
 function requestUpdatePassword() {
   return {
-    type: UPDATE_PASSWORD_REQUEST
+    type: UPDATE_PASSWORD_REQUEST,
   };
 }
 
 function updatePasswordSuccess() {
   return {
-    type: UPDATE_PASSWORD_SUCCESS
+    type: UPDATE_PASSWORD_SUCCESS,
   };
 }
 
 function updatePasswordFail(message) {
   return {
     type: UPDATE_PASSWORD_FAILURE,
-    payload: message
+    payload: message,
   };
 }
 
 export function updatePassword(data) {
   const config = createConfigWithAuth('POST', data);
-  return dispatch =>
+  return (dispatch) =>
     fetch(makeApiUrl('/user/update-password'), config)
       .then(handleResponseWithoutJson)
       .then(() => dispatch(updatePasswordSuccess()))
@@ -45,33 +45,33 @@ export const UPDATE_USERINFO_FAILURE = 'UPDATE_USERINFO_FAILURE';
 
 function requestUserInfoPassword() {
   return {
-    type: UPDATE_PASSWORD_REQUEST
+    type: UPDATE_PASSWORD_REQUEST,
   };
 }
 
 function updateUserInfoSuccess(user) {
   return {
     type: UPDATE_PASSWORD_SUCCESS,
-    payload: user
+    payload: user,
   };
 }
 
 function updateUserInfoFail(message) {
   return {
     type: UPDATE_PASSWORD_FAILURE,
-    payload: message
+    payload: message,
   };
 }
 
 export function updateUserInfo(userId, data) {
   const config = createConfigWithAuth('PATCH', data);
-  return dispatch =>
+  return (dispatch) =>
     fetch(makeApiUrl(`/user/${userId}`), config)
       .then(handleResponse)
-      .then(user => {
+      .then((user) => {
         return Promise.all([
           dispatch(updateUserInfoSuccess(user)),
-          dispatch(authUser(userId))
+          dispatch(authUser(userId)),
         ]);
       })
       .catch(updateUserInfoFail());

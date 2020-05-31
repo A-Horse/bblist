@@ -1,7 +1,7 @@
-import history from "../services/history";
-import axios from "axios";
-import { removeJWT } from "./auth";
-import { AUTH_HEADER_KEY } from "../constant/constants";
+import history from '../services/history';
+import axios from 'axios';
+import { removeJWT } from './auth';
+import { AUTH_HEADER_KEY } from '../constant/constants';
 
 export function setupAxiosJwtHeader(jwt) {
   if (!jwt) {
@@ -24,7 +24,7 @@ export function responseSuccessInterceptor(response) {
 export function responseFailureInterceptor(error) {
   if (error.response.status === 401) {
     removeJWT();
-    history.push("/login");
+    history.push('/login');
   }
   return Promise.reject(error);
 }

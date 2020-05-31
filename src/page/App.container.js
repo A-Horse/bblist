@@ -2,15 +2,15 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import App from './App';
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    actions: {}
+    actions: {},
   };
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    user: state.auth.get('loginedUser')
+    user: state.auth.get('loginedUser'),
   };
 };
 

@@ -1,4 +1,4 @@
-import React, { ReactNode, CSSProperties } from 'react';
+import React, { CSSProperties, ReactNode } from 'react';
 import { Flex } from '../Layout/Flex';
 import { AppButton } from '../../widget/Button';
 import { AppIcon } from '../../widget/Icon';

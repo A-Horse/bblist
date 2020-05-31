@@ -1,8 +1,11 @@
 import { List, Record } from 'immutable';
 
-export interface Kanban {
+export interface IKanbanDisplay {
   id: string;
   name: string;
+}
+
+export interface IKanban extends IKanbanDisplay {
   columns?: any[];
 }
 

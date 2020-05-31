@@ -48,11 +48,10 @@ interface State {
 }
 
 export class KanbanColumnComponent extends Component<ComponentProps, State> {
-  private columDataFetcher: ColumnDataFetcher;
-
   state = {
     cardFetching: false,
   };
+  private columDataFetcher: ColumnDataFetcher;
 
   constructor(props: Readonly<ComponentProps & ReduxProps>) {
     super(props);

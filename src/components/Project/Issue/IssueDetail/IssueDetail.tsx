@@ -10,7 +10,6 @@ import {
   bindActionCreators,
   Dispatch,
 } from 'redux';
-import { AnyHTMLElement } from '@stencil/core/dist/declarations';
 import {
   changeIssueDirect,
   getProjectIssueDetailRequest,
@@ -44,7 +43,7 @@ interface ComponentProps extends RouteComponentProps, InputProps {}
 export class IssueDetailComponent extends Component<
   ComponentProps &
     ReduxProps & {
-      toastManager: AnyHTMLElement;
+      toastManager: any;
     },
   {}
 > {

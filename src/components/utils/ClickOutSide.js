@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 export default class ClickOutSide extends Component {
   static propTypes = {
-    onClickOutside: PropTypes.func.isRequired
+    onClickOutside: PropTypes.func.isRequired,
   };
 
   constructor(props) {
@@ -32,7 +32,7 @@ export default class ClickOutSide extends Component {
     document.removeEventListener('click', this.handle, true);
   }
 
-  handle = e => {
+  handle = (e) => {
     const { onClickOutside } = this.props;
     const el = this.container;
     if (!el.contains(e.target)) onClickOutside(e);

@@ -20,6 +20,7 @@ interface Props {
 export interface FormValues {
   username: string;
   password: string;
+  z;
 }
 
 const FormSchema = Yup.object().shape({
@@ -47,17 +48,18 @@ export class LoginForm extends Component<Props> {
           return (
             <form onSubmit={formikBag.handleSubmit}>
               <div>
-                <Field name="email" required>
-                  {({ field, form }: FieldProps<FormikValues>) => (
+                <Field name="username" required>
+                  {({ form }: FieldProps<FormikValues>) => (
                     <FormField
                       require={true}
                       name="用戶名"
                       errorMessage={<ErrorMessage name="username" />}
                     >
                       <Input
+                        name={'username'}
                         type="text"
                         size="middle"
-                        value={form.values.title}
+                        value={form.values.username}
                         placeholder=""
                         onChange={(value) => {
                           formikBag.setFieldValue('username', value);
@@ -75,9 +77,10 @@ export class LoginForm extends Component<Props> {
                       errorMessage={<ErrorMessage name="password" />}
                     >
                       <Input
+                        name={'password'}
                         type="password"
                         size="middle"
-                        value={form.values.title}
+                        value={form.values.password}
                         placeholder=""
                         onChange={(value) => {
                           formikBag.setFieldValue('password', value);

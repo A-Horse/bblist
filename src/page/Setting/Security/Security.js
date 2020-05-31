@@ -12,13 +12,13 @@ class SettingSecurity extends Component {
 
   componentWillMount() {}
 
-  updatePassword = event => {
+  updatePassword = (event) => {
     const oldPassword = this.refs.oldPassword.instance;
     const newPassword = this.refs.newPassword.instance;
 
     this.props.actions.CHANGE_PASSWORD_REQUEST({
       oldPassword: oldPassword.value,
-      newPassword: newPassword.value
+      newPassword: newPassword.value,
     });
   };
 
@@ -64,12 +64,12 @@ class SettingSecurity extends Component {
 
 export const SettingSecurityContainer = withRouter(
   connect(
-    state => {
+    (state) => {
       return {};
     },
-    dispatch => {
+    (dispatch) => {
       return {
-        actions: bindActionCreators(makeActionRequestCollection(), dispatch)
+        actions: bindActionCreators(makeActionRequestCollection(), dispatch),
       };
     }
   )(SettingSecurity)

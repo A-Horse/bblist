@@ -1,4 +1,4 @@
-import React, { ReactNode, MouseEvent } from 'react';
+import React, { MouseEvent, ReactNode } from 'react';
 import './Menu.scss';
 
 export function AppMenuItem(props: {
@@ -17,6 +17,7 @@ interface AppMenuProps {
   className?: string;
   style?: any;
 }
+
 export function AppMenu({ children, className = '', style }: AppMenuProps) {
   return (
     <ul className={`AppMenu ${className}`} style={{ ...style }}>

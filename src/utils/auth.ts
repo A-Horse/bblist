@@ -1,7 +1,4 @@
-import {
-  JWT_STORAGE_KEY,
-  AUTH_HEADER_KEY
-} from "../constant/constants";
+import { AUTH_HEADER_KEY, JWT_STORAGE_KEY } from '../constant/constants';
 import { Storage } from '../services/storage';
 
 export function getJWT() {
@@ -12,7 +9,7 @@ export function saveJWT(jwt) {
   return Storage.set(JWT_STORAGE_KEY, jwt);
 }
 
-export function removeJWT(jwt) {
+export function removeJWT() {
   return Storage.remove(JWT_STORAGE_KEY);
 }
 

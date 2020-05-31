@@ -1,52 +1,44 @@
 import axios, { AxiosResponse } from 'axios';
 import { ofType } from 'redux-observable';
 import { Observable } from 'rxjs';
-import { mergeMap, map } from 'rxjs/operators';
+import { map, mergeMap } from 'rxjs/operators';
 import { FSAction } from '../actions/actions';
 import {
   SET_PROJECT_DEFAULT_KANBAN_REQUEST,
+  SET_PROJECT_DEFAULT_KANBAN_SUCCESS,
   setProjectDefaultKanbanFailure,
   setProjectDefaultKanbanSuccess,
-  SET_PROJECT_DEFAULT_KANBAN_SUCCESS,
 } from '../actions/project/project-setting.action';
 import {
   CREATE_PROJECT_REQUEST,
+  CREATE_PROJECT_SUCCESS,
   createProjectFailure,
   createProjectSuccess,
   GET_PROJECT_DETAIL_REQUEST,
+  GET_PROJECT_DETAIL_SUCCESS,
   GET_PROJECT_REQUEST,
   getProjectDetailFailure,
+  getProjectDetailRequest,
   getProjectDetailSuccess,
   getProjectsFailure,
+  getProjectsRequest,
   getProjectsSuccess,
+  UPDATE_PROJECT_REQUEST,
+  updateProjectsFailure,
+  updateProjectsRequest,
+  updateProjectsSuccess,
   UPLOAD_PROJECT_COVER_REQUEST,
+  UPLOAD_PROJECT_COVER_SUCCESS,
   uploadProjectCoverFailure,
   uploadProjectCoverSuccess,
 } from '../actions/project/project.action';
 import {
-  Project,
+  IProject,
   ProjectId,
   UploadProjectCoverInput,
 } from '../../typings/project.typing';
 import { makeApiUrl } from '../../utils/api';
-import {
-  GET_PROJECT_DETAIL_SUCCESS,
-  CREATE_PROJECT_SUCCESS,
-  getProjectsRequest,
-} from '../actions/project/project.action';
 import { getProjectKanbansRequest } from '../actions/project/kanban.action';
-import {
-  updateProjectsSuccess,
-  updateProjectsFailure,
-} from '../actions/project/project.action';
-import {
-  UPDATE_PROJECT_REQUEST,
-  updateProjectsRequest,
-} from '../actions/project/project.action';
-import {
-  UPLOAD_PROJECT_COVER_SUCCESS,
-  getProjectDetailRequest,
-} from '../actions/project/project.action';
 
 export const GET_PROJECTS_REQUEST_FN = (action$: Observable<FSAction>) =>
   action$.pipe(
@@ -54,7 +46,7 @@ export const GET_PROJECTS_REQUEST_FN = (action$: Observable<FSAction>) =>
     mergeMap(() => {
       return axios
         .get(makeApiUrl(`/projects`))
-        .then((result: AxiosResponse<Project[]>) =>
+        .then((result: AxiosResponse<IProject[]>) =>
           getProjectsSuccess(result.data)
         )
         .catch(getProjectsFailure);
@@ -83,7 +75,7 @@ export const GET_PROJECT_DETAIL_REQUEST_FN = (action$: Observable<FSAction>) =>
     mergeMap((action: FSAction) => {
       return axios
         .get(makeApiUrl(`/project/${action.payload}`))
-        .then((result: AxiosResponse<Project>) =>
+        .then((result: AxiosResponse<IProject>) =>
           getProjectDetailSuccess(result.data)
         )
         .catch(getProjectDetailFailure);
@@ -153,12 +145,13 @@ export const UPLOAD_PROJECT_COVER_REQUEST_FN = (
     ofType(UPLOAD_PROJECT_COVER_REQUEST),
     mergeMap((action: FSAction) => {
       const uploadProjectCoverInput: UploadProjectCoverInput = action.payload;
-      const data = new FormData();
-      data.append('cover', uploadProjectCoverInput.coverBase64);
       return axios
         .post(
           makeApiUrl(`/project/${uploadProjectCoverInput.projectId}/cover`),
-          data
+          {
+            projectId: uploadProjectCoverInput.projectId,
+            coverCode: uploadProjectCoverInput.coverBase64,
+          }
         )
         .then(() => {
           action.meta.callback && action.meta.callback();

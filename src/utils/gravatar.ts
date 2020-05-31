@@ -1,19 +1,19 @@
 import md5 from 'blueimp-md5';
-import { Storage } from './storage';
+import { Storage } from '../services/storage';
 
-const gravatarUrlBase = 'https://www.gravatar.com/avatar/';
+const GravatarUrlBase = 'https://www.gravatar.com/avatar/';
 
 export function makeGravatarHash(email) {
   return md5(email.trim().toLowerCase());
 }
 
-export function makeGravatarUrl(email, size) {
+export function makeGravatarUrl(email, size = 80) {
   const urlQuery = size
     ? makeGravatarHash(email) + `?s=${size}`
     : makeGravatarHash(email);
-  return gravatarUrlBase.concat(urlQuery);
+  return GravatarUrlBase.concat(urlQuery);
 }
 
-export function getUserGravatorFromStorge(userId, size = 80) {
+export function getUserGravatarFromStorage(userId, size = 80) {
   return Storage.get(`GRAVATAR_USER_${userId}_SIZE_${size}`);
 }

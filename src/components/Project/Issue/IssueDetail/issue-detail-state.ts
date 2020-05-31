@@ -1,7 +1,7 @@
 import { IssueDetailComponent } from './IssueDetail';
 import {
-  ProjectIssueRecordFiled,
   ProjectIssueRecord,
+  ProjectIssueRecordFiled,
 } from '../../../../typings/project-issue.typing';
 
 export class IssueDetailState {

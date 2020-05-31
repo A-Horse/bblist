@@ -31,20 +31,6 @@ class IssueCreatorModalComponent extends Component<{
   projectID: string;
   kanbanID?: string;
 }> {
-  private createProjectCard = (values: FormValues) => {
-    this.props.actions.createProjectCardRequest(
-      {
-        projectID: this.props.projectID,
-        ...values,
-      },
-      {
-        callback: () => {
-          this.props.closeModal();
-        },
-      }
-    );
-  };
-
   render() {
     return (
       <AppModal
@@ -99,6 +85,20 @@ class IssueCreatorModalComponent extends Component<{
       </AppModal>
     );
   }
+
+  private createProjectCard = (values: FormValues) => {
+    this.props.actions.createProjectCardRequest(
+      {
+        projectID: this.props.projectID,
+        ...values,
+      },
+      {
+        callback: () => {
+          this.props.closeModal();
+        },
+      }
+    );
+  };
 }
 
 const mapStateToProps = (state: any) => {

@@ -6,15 +6,16 @@ import {
   catchError,
   distinctUntilChanged,
   filter,
+  map,
   mergeMap,
   take,
-  map,
 } from 'rxjs/operators';
 
 import { FSAction } from '../actions/actions';
 import {
   GET_PROJECT_ISSUE_DETAIL_REQUEST,
   getProjectIssueDetailFailure,
+  getProjectIssueDetailRequest,
   getProjectIssueDetailSuccess,
   UPDATE_PROJECT_ISSUE_DETAIL_REQUEST,
   updateProjectIssueDetailFailure,
@@ -22,6 +23,7 @@ import {
 } from '../actions/project/project-issue-detail.action';
 import {
   CREATE_PROJECT_ISSUE_REQUEST,
+  CREATE_PROJECT_ISSUE_SUCCESS,
   createProjectCardFailure,
   createProjectCardSuccess,
   RANK_PROJECT_CARD_IN_KANBAN_REQUEST,
@@ -35,8 +37,6 @@ import {
 } from '../../typings/project-issue.typing';
 import { makeApiUrl } from '../../utils/api';
 import { findIssuePositionInColumn } from '../reducers/selector/card.selector';
-import { CREATE_PROJECT_ISSUE_SUCCESS } from '../actions/project/project-issue.action';
-import { getProjectIssueDetailRequest } from '../actions/project/project-issue-detail.action';
 
 export const CREATE_PROJECT_ISSUE_REQUEST_FN = (
   action$: Observable<FSAction>

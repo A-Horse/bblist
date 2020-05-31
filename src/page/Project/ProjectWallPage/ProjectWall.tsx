@@ -3,7 +3,7 @@ import './ProjectWall.scss';
 import React, { Component } from 'react';
 import { ProjectRecord } from '../../../typings/project.typing';
 import { BoardWallAside } from './ProjectWallAside/ProjectWallAside';
-import { ProjectCoverItem } from './ProjectCoverItem/ProjectCoverItem';
+import { ProjectDisplayCard } from './ProjectCoverItem/ProjectDisplayCard';
 import { match } from 'react-router-dom';
 
 interface Props {
@@ -27,7 +27,7 @@ export class ProjectWallPage extends Component<Props> {
           <div className="project-cover-container">
             {this.props.projects.map((project: ProjectRecord) => {
               return (
-                <ProjectCoverItem key={project.get('id')} project={project} />
+                <ProjectDisplayCard key={project.get('id')} project={project} />
               );
             })}
           </div>

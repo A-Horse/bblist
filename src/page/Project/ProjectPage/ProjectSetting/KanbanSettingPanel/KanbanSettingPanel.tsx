@@ -2,8 +2,7 @@ import './KanbanSettingPanel.scss';
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { RouteComponentProps } from 'react-router-dom';
-import { withRouter } from 'react-router-dom';
+import { RouteComponentProps, withRouter } from 'react-router-dom';
 import {
   ActionCreatorsMapObject,
   AnyAction,
@@ -17,8 +16,8 @@ import { RootState } from '../../../../../redux/reducers';
 import { KanbanRecord } from '../../../../../typings/kanban.typing';
 import { ProjectRecord } from '../../../../../typings/project.typing';
 import { KanbanSettingModal } from '../../../KanbanSettingModal/KanbanSettingModal';
-import { KanbanCreatorModal } from '../../../KanbanCreator/KanbanCreatorModal';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+import { KanbanCreator } from '../../../KanbanCreator/KanbanCreator';
 
 interface InputProps {}
 
@@ -55,12 +54,6 @@ class KanbanSettingPanelComponent extends Component<
     this.setState({
       settingModalToggle: false,
       settingKanbanId: null,
-    });
-  };
-
-  openKanbanCreatorModal = () => {
-    this.setState({
-      kanbanCreatorModalToggle: true,
     });
   };
 
@@ -104,13 +97,17 @@ class KanbanSettingPanelComponent extends Component<
         name="看板"
         className="KanbanSettingPanel"
         nameRight={
-          <AppButton
-            size="sm"
-            backgroundColor="#fff"
-            onClick={this.openKanbanCreatorModal}
-          >
-            <AppIcon icon={faPlusCircle} /> 新建看板
-          </AppButton>
+          <KanbanCreator projectId={this.props.project!.get('id')}>
+            {(setVisible: Function) => (
+              <AppButton
+                size="sm"
+                backgroundColor="#fff"
+                onClick={() => setVisible(true)}
+              >
+                <AppIcon icon={faPlusCircle} /> 新建看板
+              </AppButton>
+            )}
+          </KanbanCreator>
         }
       >
         {!!this.state.settingKanbanId && (
@@ -120,12 +117,6 @@ class KanbanSettingPanelComponent extends Component<
             onClose={this.closeKanbanSettingModal}
           />
         )}
-
-        <KanbanCreatorModal
-          project={this.props.project as any}
-          toggle={this.state.kanbanCreatorModalToggle}
-          onClose={this.closeKanbanCreatorModal}
-        />
 
         {this.renderContent()}
       </SectionField>
@@ -147,7 +138,7 @@ const mapStateToProps = (state: RootState, props: ComponentProps) => {
 
   return {
     project,
-    kanbans: (project.get('kanbans') || [])
+    kanbans: (project.get('kanbanIds') || [])
       .map((kanbanId: string) => {
         return state.project.get('kanbanMap').get(kanbanId) as KanbanRecord;
       })

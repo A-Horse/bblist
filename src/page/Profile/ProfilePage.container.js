@@ -7,9 +7,9 @@ import ProfilePage from './ProfilePage';
  *   return {};
  * };*/
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    user: state.auth.get('loginedUser')
+    user: state.auth.get('loginedUser'),
   };
 };
 

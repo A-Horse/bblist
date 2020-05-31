@@ -1,13 +1,14 @@
 import axios, { AxiosResponse } from 'axios';
 import { ofType } from 'redux-observable';
-import { Observable, from } from 'rxjs';
-import { map, mergeMap, timeout } from 'rxjs/operators';
+import { from, Observable } from 'rxjs';
+import { map, mergeMap } from 'rxjs/operators';
 
 import { FSAction } from '../actions/actions';
 import {
   CREATE_KANBAN_COLUMN_REQUEST,
   CREATE_KANBAN_COLUMN_SUCCESS,
   CREATE_KANBAN_REQUEST,
+  CREATE_KANBAN_SUCCESS,
   createKanbanColumnFailure,
   createKanbanColumnSuccess,
   createKanbanFailure,
@@ -18,14 +19,11 @@ import {
   getProjectKanbanDetailRequest,
   getProjectKanbanDetailSuccess,
   getProjectKanbansFailure,
-  getProjectKanbansSuccess,
-  CREATE_KANBAN_SUCCESS,
   getProjectKanbansRequest,
+  getProjectKanbansSuccess,
 } from '../actions/project/kanban.action';
-import { Kanban } from '../../typings/kanban.typing';
+import { IKanban } from '../../typings/kanban.typing';
 import { makeApiUrl } from '../../utils/api';
-import { setProjectDefaultKanbanRequest } from '../actions/project/project-setting.action';
-import { getProjectDetailRequest } from '../actions/project/project.action';
 
 export const GET_PROJECT_KANBANS_REQUEST_FN = (action$: Observable<FSAction>) =>
   action$.pipe(
@@ -33,7 +31,7 @@ export const GET_PROJECT_KANBANS_REQUEST_FN = (action$: Observable<FSAction>) =>
     mergeMap((action: FSAction) => {
       return axios
         .get(makeApiUrl(`/project/${action.payload.projectId}/kanbans`))
-        .then((result: AxiosResponse<Kanban[]>) =>
+        .then((result: AxiosResponse<IKanban[]>) =>
           getProjectKanbansSuccess({
             projectId: action.payload.projectId,
             kanbans: result.data,
@@ -51,7 +49,7 @@ export const GET_PROJECT_KANBAN_DETAIL_REQUEST_FN = (
     mergeMap((action: FSAction) => {
       return axios
         .get(makeApiUrl(`/kanban/${action.payload.kanbanId}/detail`))
-        .then((result: AxiosResponse<Kanban>) =>
+        .then((result: AxiosResponse<IKanban>) =>
           getProjectKanbanDetailSuccess({
             kanban: result.data,
           })

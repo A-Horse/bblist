@@ -4,18 +4,18 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouteMatch } from 'react-router-dom';
 import {
-  uploadProjectCoverRequest,
   updateProjectsRequest,
+  uploadProjectCoverRequest,
 } from '../../../../redux/actions/project/project.action';
 import { ImageUploader } from '../../../../components/ImageUploader/ImageUploader';
 import { Input } from '../../../../widget/Input/Input';
-import { generateProjectCoverUrl } from '../../util/project-cover.util';
 import { KanbanSettingPanel } from './KanbanSettingPanel/KanbanSettingPanel';
 import { getProjectKanbansRequest } from '../../../../redux/actions/project/kanban.action';
 import { useToasts } from 'react-toast-notifications';
 import { AxiosError } from 'axios';
 import { SectionField } from '../../../../widget/SectionField/SectionField';
 import { RootState } from '../../../../redux/reducers/index';
+import { objectFileUrl } from '../../../../utils/object-storage';
 
 export function ProjectSetting() {
   const { addToast } = useToasts();
@@ -73,9 +73,7 @@ export function ProjectSetting() {
             display: 'block',
           }}
           modalTitle="裁剪项目封面"
-          source={generateProjectCoverUrl(
-            project.get('setting').get('coverFileName')
-          )}
+          source={objectFileUrl(project.get('coverUri'))}
           upload={onCoverUpload}
         >
           上传封面

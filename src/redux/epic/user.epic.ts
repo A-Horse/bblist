@@ -6,8 +6,8 @@ import { makeApiUrl } from '../../utils/api';
 import { Observable } from 'rxjs';
 import {
   GET_ALL_USERS_REQUEST,
-  getAllUsersSuccess,
   getAllUsersFailure,
+  getAllUsersSuccess,
 } from '../actions/user/user.action';
 import { AppUserInfo } from '../../typings/user/user.typing';
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { AppModal } from '../../../../../widget/Modal/AppModal';
 import { RootState } from '../../../../../redux/reducers';
-import { getKanbans } from '../../../../../redux/reducers/selector/kanban.selector';
+import { selectKanbans } from '../../../../../redux/reducers/selector/kanban.selector';
 import { KanbanRecord } from '../../../../../typings/kanban.typing';
 
 import './KanbanSelectorModal.scss';
@@ -15,17 +15,12 @@ interface InputProps {
 }
 
 export function KanbanSelectorModal(props: InputProps) {
-  const project = useSelector((state: RootState) =>
-    state.project.get('projectMap').get(props.projectId)
-  );
   const kanbans = useSelector((state: RootState) =>
-    getKanbans(project, state.project.get('kanbanMap'))
+    selectKanbans(state, props.projectId)
   );
-
   const closeModal = () => {
     props.onClose();
   };
-
   return (
     <AppModal
       className="KanbanSelectorModal"

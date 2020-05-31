@@ -1,5 +1,5 @@
 import './KanbanCreatorModal.scss';
-import { Field, Formik, ErrorMessage } from 'formik';
+import { ErrorMessage, Field, Formik } from 'formik';
 import { FormField } from '../../../widget/FormField/FormField';
 import { Input } from '../../../widget/Input/Input';
 import React, { Component } from 'react';
@@ -11,7 +11,6 @@ import {
   Dispatch,
 } from 'redux';
 import { createKanbanRequest } from '../../../redux/actions/project/kanban.action';
-import { ProjectRecord } from '../../../typings/project.typing';
 import { AppModal } from '../../../widget/Modal/AppModal';
 import { ModalFooter } from '../../../widget/Modal/ModalFooter/ModalFooter';
 import { ModalHeader } from '../../../widget/Modal/ModalHeader/ModalHeader';
@@ -25,7 +24,7 @@ const FormSchema = Yup.object().shape({
 class KanbanCreatorComponent extends Component<{
   toggle: boolean;
   onClose: () => void;
-  project: ProjectRecord;
+  projectId: string;
   actions: ActionCreatorsMapObject;
   noKanbanExist?: boolean;
 }> {
@@ -37,7 +36,7 @@ class KanbanCreatorComponent extends Component<{
     this.props.actions.createKanbanRequest(
       {
         ...values,
-        projectId: this.props.project.get('id'),
+        projectId: this.props.projectId,
       },
       {
         noKanbanExist: this.props.noKanbanExist,
@@ -53,6 +52,14 @@ class KanbanCreatorComponent extends Component<{
         isOpen={this.props.toggle}
       >
         <ModalHeader title="新建看板" onClose={this.props.onClose} />
+
+        <img
+          style={{
+            width: 100,
+          }}
+          src={require('./kanban-intro.jpg')}
+          alt="kanban"
+        />
 
         <Formik
           validationSchema={FormSchema}

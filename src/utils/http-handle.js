@@ -3,8 +3,8 @@ import {
   NotFoundError,
   RequestError,
   ServerError,
+  TimeoutError,
   UnprocessableError,
-  TimeoutError
 } from './http-error';
 
 function handleError(response) {
@@ -34,11 +34,11 @@ export function handleResponse(response, withHeader = false) {
     return Promise.resolve(null);
   }
   if (withHeader) {
-    return new Promise(resolve => {
-      response.json().then(resolvedResponse => {
+    return new Promise((resolve) => {
+      response.json().then((resolvedResponse) => {
         resolve({
           header: response.headers,
-          body: resolvedResponse
+          body: resolvedResponse,
         });
       });
     });

@@ -1,6 +1,6 @@
 import './FormField.scss';
 
-import React, { ReactNode, CSSProperties } from 'react';
+import React, { CSSProperties, ReactNode } from 'react';
 
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { ErrorMsg } from '../../components/ErrorMsg/ErrorMsg';

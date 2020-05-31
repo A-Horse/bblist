@@ -1,7 +1,7 @@
 import {
   CreateKanbanColumnInput,
   CreateKanbanInput,
-  Kanban,
+  IKanban,
 } from '../../../typings/kanban.typing';
 import { FSAction } from '../actions';
 
@@ -20,7 +20,7 @@ export function getProjectKanbansRequest(payload: {
 
 export function getProjectKanbansSuccess(payload: {
   projectId: string;
-  kanbans: Kanban[];
+  kanbans: IKanban[];
 }): FSAction {
   return {
     type: GET_PROJECT_KANBANS_SUCCESS,
@@ -52,7 +52,7 @@ export function getProjectKanbanDetailRequest(payload: {
 }
 
 export function getProjectKanbanDetailSuccess(payload: {
-  kanban: Kanban;
+  kanban: IKanban;
 }): FSAction {
   return {
     type: GET_PROJECT_KANBAN_DETAIL_SUCCESS,

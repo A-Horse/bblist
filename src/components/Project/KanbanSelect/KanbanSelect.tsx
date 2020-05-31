@@ -9,7 +9,7 @@ import {
 
 import { getProjectKanbansRequest } from '../../../redux/actions/project/kanban.action';
 import { RootState } from '../../../redux/reducers';
-import { getKanbanOptions } from '../../../redux/reducers/selector/kanban.selector';
+import { selectKanbanOptions } from '../../../redux/reducers/selector/kanban.selector';
 import { SelectOption } from '../../../typings/select.typing';
 import { AppSelect } from '../../../widget/AppSelect';
 
@@ -62,14 +62,10 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
 };
 
 const mapStateToProps = (state: RootState, props: InputProps) => {
-  let kanbanOptions: SelectOption[] = [];
-
-  const project = state.project.get('projectMap').get(props.projectId);
-
-  if (project) {
-    kanbanOptions = getKanbanOptions(project, state.project.get('kanbanMap'));
-  }
-
+  const kanbanOptions: SelectOption[] = selectKanbanOptions(
+    state,
+    props.projectId
+  );
   return {
     options: kanbanOptions,
   };

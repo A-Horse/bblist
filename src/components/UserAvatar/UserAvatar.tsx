@@ -1,5 +1,5 @@
 import React, { Component, CSSProperties } from 'react';
-import { makeGravatarUrl } from '../../services/gravatar';
+import { makeGravatarUrl } from '../../utils/gravatar';
 import { AppUserInfo } from '../../typings/user/user.typing';
 
 import './UserAvatar.scss';

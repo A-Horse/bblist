@@ -1,4 +1,4 @@
-import React, { ReactNode, CSSProperties } from 'react';
+import React, { CSSProperties, ReactNode } from 'react';
 import './List.scss';
 
 export function AppList(props: { children: ReactNode; style?: CSSProperties }) {

@@ -12,7 +12,7 @@ export const Storage = {
   },
   remove(key) {
     return window.localStorage.removeItem(key);
-  }
+  },
 };
 
 export function storageImage(name, imageElement) {

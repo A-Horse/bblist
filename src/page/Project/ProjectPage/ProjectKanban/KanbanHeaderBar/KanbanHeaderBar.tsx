@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import { AppButton } from '../../../../../widget/Button';
 import { RootState } from '../../../../../redux/reducers';
 import { KanbanRecord } from '../../../../../typings/kanban.typing';
-import { KanbanSelectorModal } from '../../modals/KanbanSelectorModal/KanbanSelectorModal';
+import { KanbanSelectorModal } from '../../Modals/KanbanSelectorModal/KanbanSelectorModal';
 import { AppIcon } from '../../../../../widget/Icon';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import { IssueCreatorModal } from '../../../../../components/creators/TaskCreator/IssueCreatorModal';

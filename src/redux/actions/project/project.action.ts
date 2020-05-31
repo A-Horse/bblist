@@ -1,9 +1,9 @@
 import {
   CreateProjectInput,
-  Project,
+  IProject,
   ProjectId,
-  UploadProjectCoverInput,
   UpdateProjectRequest,
+  UploadProjectCoverInput,
 } from '../../../typings/project.typing';
 import { FSAction } from '../actions';
 
@@ -17,7 +17,7 @@ export function getProjectsRequest(): FSAction {
   };
 }
 
-export function getProjectsSuccess(projects: Project[]): FSAction {
+export function getProjectsSuccess(projects: IProject[]): FSAction {
   return {
     type: GET_PROJECT_SUCCESS,
     payload: projects,
@@ -42,7 +42,7 @@ export function getProjectDetailRequest(projectId: string): FSAction {
   };
 }
 
-export function getProjectDetailSuccess(project: Project): FSAction {
+export function getProjectDetailSuccess(project: IProject): FSAction {
   return {
     type: GET_PROJECT_DETAIL_SUCCESS,
     payload: project,

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import {
+  faColumns,
   faPlusCircle,
   faTachometerAlt,
-  faColumns,
 } from '@fortawesome/free-solid-svg-icons';
 import { Side } from '../../../../widget/Side/Side';
 import { SideGroup } from '../../../../widget/Side/SideGroup';

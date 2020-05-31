@@ -15,7 +15,6 @@ export class ImageUploader extends Component<{
   source: any;
   modalTitle: string;
 }> {
-  private fileInput: any;
   state = {
     modalVisible: false,
     imageDataURL: '',
@@ -28,6 +27,7 @@ export class ImageUploader extends Component<{
       height: 45,
     },
   };
+  private fileInput: any;
 
   handleCancelModal = () => {
     this.setState({
@@ -39,31 +39,6 @@ export class ImageUploader extends Component<{
     this.props.upload(this.state.cropedImageDataUrl);
     this.closeModal();
   };
-
-  private cropImage = async (crop, pixelCrop) => {
-    if (!pixelCrop) {
-      return;
-    }
-    const cropedImageDataUrl = await imageCrop(
-      this.state.imageDataURL,
-      pixelCrop.width,
-      pixelCrop.height,
-      pixelCrop.x,
-      pixelCrop.y
-    );
-    this.setState({ cropedImageDataUrl });
-    this.setState({ crop });
-  };
-
-  private onCropChange = (crop, pixelCrop) => {
-    this.setState({ crop });
-  };
-
-  private onCropComplete = (crop, pixelCrop) => {
-    this.cropImage(crop, pixelCrop);
-  };
-
-  private onImageLoaded = (target: HTMLImageElement) => {};
 
   openFilePicker = () => {
     this.fileInput.click();
@@ -135,4 +110,29 @@ export class ImageUploader extends Component<{
       </div>
     );
   }
+
+  private cropImage = async (crop, pixelCrop) => {
+    if (!pixelCrop) {
+      return;
+    }
+    const cropedImageDataUrl = await imageCrop(
+      this.state.imageDataURL,
+      pixelCrop.width,
+      pixelCrop.height,
+      pixelCrop.x,
+      pixelCrop.y
+    );
+    this.setState({ cropedImageDataUrl });
+    this.setState({ crop });
+  };
+
+  private onCropChange = (crop, pixelCrop) => {
+    this.setState({ crop });
+  };
+
+  private onCropComplete = (crop, pixelCrop) => {
+    this.cropImage(crop, pixelCrop);
+  };
+
+  private onImageLoaded = (target: HTMLImageElement) => {};
 }

@@ -21,6 +21,7 @@
 
 .loading {
   text-align: center;
+
   .loader {
     display: inline-block;
     position: relative;
@@ -31,6 +32,7 @@
   .loader-quart {
     border-radius: 50px;
     border: 6px solid rgba(0, 0, 0, 0.4);
+
     &:after {
       content: "";
       @include absPosition(-6px, -6px, -6px, -6px);

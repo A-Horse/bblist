@@ -1,5 +1,5 @@
 import React, { Component, Suspense } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Route, Router, Switch } from 'react-router-dom';
 import history from './services/history';
 import App from './page/App.container';
 
@@ -27,7 +27,7 @@ const SignUpPageSuspense = () => {
 export class Application extends Component {
   render() {
     return (
-      <Router>
+      <Router history={history}>
         <Switch>
           <Route exact path="/login" component={LoginPageSuspense} />
           <Route exact path="/signup" component={SignUpPageSuspense} />

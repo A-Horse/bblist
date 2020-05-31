@@ -1,9 +1,9 @@
 import {
+  ErrorMessage,
   Field,
   FieldProps,
-  FormikValues,
-  ErrorMessage,
   FormikProps,
+  FormikValues,
 } from 'formik';
 import React from 'react';
 import { SelectOption } from '../../../typings/select.typing';

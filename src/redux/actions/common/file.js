@@ -1,9 +1,5 @@
 import fetch from 'isomorphic-fetch';
-import {
-  createConfigWithAuth,
-  createConfig,
-  createFormDataConfigWithAuth
-} from 'utils/header';
+import { createFormDataConfigWithAuth } from 'utils/header';
 import { handleResponse } from '../utils/http-handle';
 import { makeApiUrl } from 'utils/api';
 
@@ -13,13 +9,13 @@ export const UPLOAD_FILE_FAILURE = 'UPLOAD_FILE_FAILURE';
 
 function requestUploadFile() {
   return {
-    type: UPLOAD_FILE_REQUEST
+    type: UPLOAD_FILE_REQUEST,
   };
 }
 
 function uploadFileSuccess() {
   return {
-    type: UPLOAD_FILE_SUCCESS
+    type: UPLOAD_FILE_SUCCESS,
   };
 }
 
@@ -27,13 +23,13 @@ function uploadFileFail(error) {
   return {
     type: UPLOAD_FILE_FAILURE,
     error: true,
-    payload: error
+    payload: error,
   };
 }
 
 export function uploadFile(url, data) {
   const config = createFormDataConfigWithAuth('PUT', data);
-  return dispatch => {
+  return (dispatch) => {
     dispatch(requestUploadFile());
     return fetch(makeApiUrl(url), config)
       .then(handleResponse)

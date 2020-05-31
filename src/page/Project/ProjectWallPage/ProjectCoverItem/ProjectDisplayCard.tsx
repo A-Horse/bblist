@@ -1,16 +1,17 @@
 import React from 'react';
-import './ProjectCoverItem.scss';
+import './ProjectDisplayCard.scss';
 import { Link } from 'react-router-dom';
-import { generateProjectCoverUrl } from '../../util/project-cover.util';
+import { objectFileUrl } from '../../../../utils/object-storage';
+import { ProjectRecord } from '../../../../typings/project.typing';
 
-export function ProjectCoverItem({ project }) {
+export function ProjectDisplayCard({ project }: { project: ProjectRecord }) {
   return (
     <Link
       className="ProjectCoverItem"
       style={{
-        backgroundImage: `url(${generateProjectCoverUrl(
-          project.get('setting').get('coverFileName')
-        )})`,
+        backgroundImage: project.get('coverUri')
+          ? `url(${objectFileUrl(project.get('coverUri'))})`
+          : undefined,
       }}
       key={project.get('id')}
       to={`/project/${project.get('id')}`}

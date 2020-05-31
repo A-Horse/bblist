@@ -1,11 +1,12 @@
 import './App.scss';
 
-import React, { Component, Suspense } from 'react';
+import React, { Suspense } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 
-import { NotFound } from '../page/NotFound';
+import { NotFound } from './NotFound';
 import { Nav } from './Nav/Nav';
 import { useClaims } from '../hook/useClaims';
+import { Claims } from '../typings/claims';
 
 const SettingPageContainer = React.lazy(() =>
   import('./Setting/SettingPage.container')
@@ -53,13 +54,19 @@ const ProfilePage = () => {
 };
 
 export default function App() {
-  const claims = useClaims();
+  const claims: Claims | null = useClaims();
   if (!claims) {
     return <Redirect to="/login" />;
   }
   return (
     <>
-      {/*<Nav user={null} />*/}
+      <Nav
+        user={{
+          id: claims.userId,
+          username: claims.username,
+          email: claims.email,
+        }}
+      />
 
       <>
         <Switch>
@@ -76,7 +83,7 @@ export default function App() {
           />
 
           <Route exact path="/projects" component={ProjectWallPage} />
-          <Route path="/project/:projectID" component={ProjectPage} />
+          <Route path="/project/:projectId" component={ProjectPage} />
 
           <Route path="/setting" component={SettingPage} />
           <Route path="/profile" component={ProfilePage} />

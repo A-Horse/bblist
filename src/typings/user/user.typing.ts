@@ -1,7 +1,7 @@
 import { Record } from 'immutable';
 
 export interface AppUserInfo {
-  id: number;
+  id: string;
   username: string;
   email: string;
 }

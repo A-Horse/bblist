@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { SeaWaves } from 'effect/SeaWaves';
 import { Button } from '../widget/Button/Button';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { isLogin } from '../services/login';
 import { LogoBan } from '../components/LogoBan/LogoBan';
 import { isEnterKey } from 'utils/keyboard';
-import { withRouter } from 'react-router-dom';
 
 import '../style/page/index.scss';
 

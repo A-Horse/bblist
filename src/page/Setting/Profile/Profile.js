@@ -1,16 +1,11 @@
 import React, { Component } from 'react';
 import { Input } from '../../../widget/Input/Input';
-import PropTypes from 'prop-types';
 
 export default class Profile extends Component {
-  static propTypes = {
-    actions: PropTypes.object.isRequired,
-    user: PropTypes.object
+  state = {
+    username: '',
   };
 
-  state = {
-    username: ''
-  };
   componentWillMount() {}
 
   render() {
@@ -22,8 +17,8 @@ export default class Profile extends Component {
             <Input
               defaultValue={this.props.user.get('username')}
               type="text"
-              ref={ref => (this.usernameInput = ref)}
-              onChange={value => this.setState({ username: value })}
+              ref={(ref) => (this.usernameInput = ref)}
+              onChange={(value) => this.setState({ username: value })}
               name="profile-username"
               className="input"
             />
