@@ -11,6 +11,7 @@ import { selectProject } from '../../../../redux/reducers/selector/project.selec
 export function ProjectKanban() {
   const match = useRouteMatch<{ projectId: string; kanbanId: string }>();
   const { projectId, kanbanId } = match.params;
+
   const project = useSelector((state: RootState) =>
     selectProject(state, projectId)
   )!;

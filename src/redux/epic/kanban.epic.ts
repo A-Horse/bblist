@@ -48,7 +48,7 @@ export const GET_PROJECT_KANBAN_DETAIL_REQUEST_FN = (
     ofType(GET_PROJECT_KANBAN_DETAIL_REQUEST),
     mergeMap((action: FSAction) => {
       return axios
-        .get(makeApiUrl(`/kanban/${action.payload.kanbanId}/detail`))
+        .get(makeApiUrl(`/kanban/${action.payload.kanbanId}`))
         .then((result: AxiosResponse<IKanban>) =>
           getProjectKanbanDetailSuccess({
             kanban: result.data,
@@ -86,15 +86,6 @@ export const CREATE_KANBAN_SUCCESS_FN = (action$: Observable<FSAction>) =>
         getProjectKanbansRequest({
           projectId: action.meta.projectID,
         }),
-        // ...(action.meta.noKanbanExist
-        //   ? [
-        //       setProjectDefaultKanbanRequest({
-        //         projectId: action.meta.projectID,
-        //         kanbanId: action.payload,
-        //       }),
-        //       getProjectDetailRequest(action.meta.projectID),
-        //     ]
-        //   : []),
       ])
     )
   );

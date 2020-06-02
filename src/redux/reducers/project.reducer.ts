@@ -150,38 +150,37 @@ export function project(
       const normalizedKanban =
         normalizedKanbanDetail.entities.Kanban[action.payload.kanban.id];
 
-      return state
-        .updateIn(
-          ['kanbanMap', action.payload.kanban.id],
-          (kanban: KanbanRecord) => {
-            if (!kanban) {
-              return;
-            }
-            return kanban.merge(fromJS(normalizedKanban));
+      return state.updateIn(
+        ['kanbanMap', action.payload.kanban.id],
+        (kanban: KanbanRecord) => {
+          if (!kanban) {
+            return fromJS(normalizedKanban);
           }
-        )
-        .update('columnMap', (columnMap: ColumnMap) => {
-          return normalizedKanban.columns!.reduce(
-            (columnMapResult: ColumnMap, columnID: string) => {
-              return columnMapResult.update(
-                columnID,
-                (column: KanbanColumnRecord) => {
-                  if (!column) {
-                    return fromJS(
-                      normalizedKanbanDetail.entities.KanbanColumn[columnID]
-                    );
-                  }
-                  return column.merge(
-                    fromJS(
-                      normalizedKanbanDetail.entities.KanbanColumn[columnID]
-                    )
-                  );
-                }
-              );
-            },
-            columnMap
-          );
-        });
+          return kanban.merge(fromJS(normalizedKanban));
+        }
+      );
+      // .update('columnMap', (columnMap: ColumnMap) => {
+      //   return normalizedKanban.columns!.reduce(
+      //     (columnMapResult: ColumnMap, columnID: string) => {
+      //       return columnMapResult.update(
+      //         columnID,
+      //         (column: KanbanColumnRecord) => {
+      //           if (!column) {
+      //             return fromJS(
+      //               normalizedKanbanDetail.entities.KanbanColumn[columnID]
+      //             );
+      //           }
+      //           return column.merge(
+      //             fromJS(
+      //               normalizedKanbanDetail.entities.KanbanColumn[columnID]
+      //             )
+      //           );
+      //         }
+      //       );
+      //     },
+      //     columnMap
+      //   );
+      // });
     }
 
     case GET_COLUMN_CARDS_SUCCESS: {

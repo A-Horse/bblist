@@ -40,11 +40,11 @@ export function selectKanbans(
 export function selectKanbanColumns(
   state: RootState,
   kanbanID: string
-): List<KanbanColumnRecord> | null {
+): List<KanbanColumnRecord> {
   const kanban = state.project.get('kanbanMap').get(kanbanID);
 
   if (!kanban || !kanban.get('columns')) {
-    return null;
+    return List();
   }
   return kanban
     .get('columns')!

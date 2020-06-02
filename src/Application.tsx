@@ -1,10 +1,10 @@
 import React, { Component, Suspense } from 'react';
 import { Route, Router, Switch } from 'react-router-dom';
 import history from './services/history';
-import App from './page/App.container';
 
 import './style/normalize.css';
 import './style/app.scss';
+import { App } from './page/App';
 
 const LoginPage = React.lazy(() => import('./page/Login/LoginPage'));
 const LoginPageSuspense = () => {

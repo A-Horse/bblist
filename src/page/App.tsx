@@ -54,7 +54,7 @@ const ProfilePage = () => {
   );
 };
 
-export default function App() {
+export function App() {
   const claims: Claims | null = useClaims();
   if (!claims) {
     return <Redirect to="/login" />;

@@ -103,8 +103,6 @@ class SignUp extends Component<any, any> {
       email: this.state.email,
       password: this.state.password,
     };
-
-    // this.props.actions.SIGNUP_REQUEST(signUpData);
   }
 }
 
