@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../../../../redux/reducers';
-import { selectProject } from '../../../../../redux/reducers/selector/project.selector';
+import { RootState } from '../../../../../redux/reducer';
+import { selectProject } from '../../../../../redux/reducer/selector/project.selector';
 import { ColumnSelect } from '../../../ColumnSelect/ColumnSelect';
 import { BorderLessSelector } from '../../../../../widget/BorderlessSelect/BorderlessSelect';
 import { IssueType } from '../../../IssueType/IssueType';
@@ -9,7 +9,7 @@ import { AppIcon } from '../../../../../widget/Icon';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { useToasts } from 'react-toast-notifications';
 import './IssueDetailBread.scss';
-import { updateProjectIssueDetailRequest } from '../../../../../redux/actions/project/project-issue-detail.action';
+import { updateProjectIssueDetailRequest } from '../../../../../redux/actions/project-issue-detail.action';
 
 interface InputProps {
   projectID: string;

@@ -1,10 +1,10 @@
-import { PaginationList } from '../../../typings/pagination.typing';
+import { PaginationList } from '../../typings/pagination.typing';
 import {
   CreateProjectIssueInput,
   ProjectIssue,
   RankProjectCardInKanbanInput,
-} from '../../../typings/project-issue.typing';
-import { FSAction } from '../actions';
+} from '../../typings/project-issue.typing';
+import { FSAction } from './actions';
 
 export const GET_COLUMN_CARDS_REQUEST = 'GET_COLUMN_CARDS_REQUEST';
 export const GET_COLUMN_CARDS_SUCCESS = 'GET_COLUMN_CARDS_SUCCESS';

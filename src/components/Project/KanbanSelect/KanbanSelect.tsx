@@ -7,9 +7,9 @@ import {
   Dispatch,
 } from 'redux';
 
-import { getProjectKanbansRequest } from '../../../redux/actions/project/kanban.action';
-import { RootState } from '../../../redux/reducers';
-import { selectKanbanOptions } from '../../../redux/reducers/selector/kanban.selector';
+import { getProjectKanbansRequest } from '../../../redux/actions/kanban.action';
+import { RootState } from '../../../redux/reducer';
+import { selectKanbanOptions } from '../../../redux/reducer/selector/kanban.selector';
 import { SelectOption } from '../../../typings/select.typing';
 import { AppSelect } from '../../../widget/AppSelect';
 

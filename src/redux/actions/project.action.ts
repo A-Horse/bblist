@@ -4,8 +4,8 @@ import {
   ProjectId,
   UpdateProjectRequest,
   UploadProjectCoverInput,
-} from '../../../typings/project.typing';
-import { FSAction } from '../actions';
+} from '../../typings/project.typing';
+import { FSAction } from './actions';
 
 export const GET_PROJECT_REQUEST = 'GET_PROJECT_REQUEST';
 export const GET_PROJECT_SUCCESS = 'GET_PROJECT_SUCCESS';

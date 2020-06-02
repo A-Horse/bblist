@@ -5,7 +5,7 @@ import { faPlusCircle, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { AppTextArea } from '../../../../../../../widget/TextArea/TextArea';
 import { AppButton } from '../../../../../../../widget/Button';
 import { useDispatch } from 'react-redux';
-import { createProjectCardRequest } from '../../../../../../../redux/actions/project/project-issue.action';
+import { createProjectCardRequest } from '../../../../../../../redux/actions/project-issue.action';
 import { useToasts } from 'react-toast-notifications';
 
 interface InputProps {

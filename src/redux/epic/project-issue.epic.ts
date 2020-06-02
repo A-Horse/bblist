@@ -20,7 +20,7 @@ import {
   UPDATE_PROJECT_ISSUE_DETAIL_REQUEST,
   updateProjectIssueDetailFailure,
   updateProjectIssueDetailSuccess,
-} from '../actions/project/project-issue-detail.action';
+} from '../actions/project-issue-detail.action';
 import {
   CREATE_PROJECT_ISSUE_REQUEST,
   CREATE_PROJECT_ISSUE_SUCCESS,
@@ -29,14 +29,14 @@ import {
   RANK_PROJECT_CARD_IN_KANBAN_REQUEST,
   rankProjectCardInKanbanFailure,
   rankProjectCardInKanbanSuccess,
-} from '../actions/project/project-issue.action';
-import { RootState } from '../reducers';
+} from '../actions/project-issue.action';
+import { RootState } from '../reducer';
 import {
   ProjectIssue,
   RankProjectCardInKanbanInput,
 } from '../../typings/project-issue.typing';
 import { makeApiUrl } from '../../utils/api';
-import { findIssuePositionInColumn } from '../reducers/selector/card.selector';
+import { findIssuePositionInColumn } from '../reducer/selector/card.selector';
 
 export const CREATE_PROJECT_ISSUE_REQUEST_FN = (
   action$: Observable<FSAction>

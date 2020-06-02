@@ -21,5 +21,7 @@ export interface CreateKanbanInput {
 }
 
 export interface CreateKanbanColumnInput {
+  projectId: string;
+  kanbanId: string;
   name: string;
 }

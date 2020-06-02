@@ -1,10 +1,10 @@
 import { Record } from 'immutable';
 
-import { ProjectProp } from './project.reducer';
+import { ProjectStateProps } from './project.reducer';
 import { UserReducerState } from './user.reducer';
 
 export interface RootState {
-  project: Record<ProjectProp>;
+  project: Record<ProjectStateProps>;
   user: Record<UserReducerState>;
 }
 

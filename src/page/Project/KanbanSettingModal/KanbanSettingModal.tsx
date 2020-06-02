@@ -11,19 +11,19 @@ import {
   Dispatch,
 } from 'redux';
 import {
-  createKanbanColumnRequest,
   createKanbanRequest,
   getProjectKanbanDetailRequest,
-} from '../../../redux/actions/project/kanban.action';
+} from '../../../redux/actions/kanban.action';
 import { AppModal } from '../../../widget/Modal/AppModal';
-import { RootState } from '../../../redux/reducers';
-import { selectKanbanColumns } from '../../../redux/reducers/selector/kanban.selector';
+import { RootState } from '../../../redux/reducer';
+import { selectKanbanColumns } from '../../../redux/reducer/selector/kanban.selector';
 import { KanbanColumnRecord } from '../../../typings/kanban-column.typing';
 import { KanbanRecord } from '../../../typings/kanban.typing';
 import { ProjectRecord } from '../../../typings/project.typing';
 import { KanbanColumnCreator } from './KanbanColumnCreator/KanbanColumnCreator';
 import { KanbanColumnPanel } from './KanbanColumnPanel/KanbanColumnPanel';
 import { ModalHeader } from '../../../widget/Modal/ModalHeader/ModalHeader';
+import { createKanbanColumnRequest } from '../../../redux/actions/column.action';
 
 interface InputProps {
   toggle: boolean;
@@ -55,6 +55,7 @@ class KanbanSettingModalComponent extends Component<
 
   createKanbanColumn = (formData: any) => {
     this.props.actions.createKanbanColumnRequest({
+      projectId: this.props.project!.get('id'),
       kanbanId: this.props.kanban!.get('id'),
       ...formData,
     });

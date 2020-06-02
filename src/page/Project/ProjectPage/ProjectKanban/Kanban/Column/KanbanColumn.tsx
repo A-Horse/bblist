@@ -15,10 +15,10 @@ import {
 import {
   getColumnCardsRequest,
   rankProjectCardInKanbanRequest,
-} from '../../../../../../redux/actions/project/project-issue.action';
+} from '../../../../../../redux/actions/project-issue.action';
 import { ProjectIssue } from '../../../../../../components/Project/Issue/ProjectIssue/ProjectIssue';
-import { RootState } from '../../../../../../redux/reducers';
-import { selectColumnCards } from '../../../../../../redux/reducers/selector/card.selector';
+import { RootState } from '../../../../../../redux/reducer';
+import { selectColumnCards } from '../../../../../../redux/reducer/selector/card.selector';
 import { KanbanColumnRecord } from '../../../../../../typings/kanban-column.typing';
 import {
   ProjectIssueRecord,

@@ -5,25 +5,24 @@ import { map, mergeMap } from 'rxjs/operators';
 
 import { FSAction } from '../actions/actions';
 import {
-  CREATE_KANBAN_COLUMN_REQUEST,
-  CREATE_KANBAN_COLUMN_SUCCESS,
   CREATE_KANBAN_REQUEST,
   CREATE_KANBAN_SUCCESS,
-  createKanbanColumnFailure,
-  createKanbanColumnSuccess,
   createKanbanFailure,
   createKanbanSuccess,
-  GET_PROJECT_KANBAN_DETAIL_REQUEST,
   GET_PROJECT_KANBANS_REQUEST,
-  getProjectKanbanDetailFailure,
   getProjectKanbanDetailRequest,
-  getProjectKanbanDetailSuccess,
   getProjectKanbansFailure,
   getProjectKanbansRequest,
   getProjectKanbansSuccess,
-} from '../actions/project/kanban.action';
+} from '../actions/kanban.action';
 import { IKanban } from '../../typings/kanban.typing';
 import { makeApiUrl } from '../../utils/api';
+import {
+  CREATE_KANBAN_COLUMN_REQUEST,
+  CREATE_KANBAN_COLUMN_SUCCESS,
+  createKanbanColumnFailure,
+  createKanbanColumnSuccess,
+} from '../actions/column.action';
 
 export const GET_PROJECT_KANBANS_REQUEST_FN = (action$: Observable<FSAction>) =>
   action$.pipe(
@@ -38,23 +37,6 @@ export const GET_PROJECT_KANBANS_REQUEST_FN = (action$: Observable<FSAction>) =>
           })
         )
         .catch(getProjectKanbansFailure);
-    })
-  );
-
-export const GET_PROJECT_KANBAN_DETAIL_REQUEST_FN = (
-  action$: Observable<FSAction>
-) =>
-  action$.pipe(
-    ofType(GET_PROJECT_KANBAN_DETAIL_REQUEST),
-    mergeMap((action: FSAction) => {
-      return axios
-        .get(makeApiUrl(`/kanban/${action.payload.kanbanId}`))
-        .then((result: AxiosResponse<IKanban>) =>
-          getProjectKanbanDetailSuccess({
-            kanban: result.data,
-          })
-        )
-        .catch(getProjectKanbanDetailFailure);
     })
   );
 
@@ -97,10 +79,7 @@ export const CREATE_KANBAN_COLUMN_REQUEST_FN = (
     ofType(CREATE_KANBAN_COLUMN_REQUEST),
     mergeMap((action: FSAction) => {
       return axios
-        .post(
-          makeApiUrl(`/kanban/${action.payload.kanbanId}/column`),
-          action.payload
-        )
+        .post(makeApiUrl(`/column`), action.payload)
         .then((result: AxiosResponse<string>) =>
           createKanbanColumnSuccess(result.data, {
             kanbanId: action.payload.kanbanId,

@@ -10,10 +10,10 @@ import {
   Dispatch,
 } from 'redux';
 
-import { getProjectIssuesRequest } from '../../../../redux/actions/project/project-issue.action';
+import { getProjectIssuesRequest } from '../../../../redux/actions/project-issue.action';
 import { FlatIssue } from '../../../../components/Project/Issue/FlatIssue/FlatIssue';
 import { IssueDetail } from '../../../../components/Project/Issue/IssueDetail/IssueDetail';
-import { RootState } from '../../../../redux/reducers';
+import { RootState } from '../../../../redux/reducer';
 import { ProjectIssueRecord } from '../../../../typings/project-issue.typing';
 import { ProjectRecord } from '../../../../typings/project.typing';
 

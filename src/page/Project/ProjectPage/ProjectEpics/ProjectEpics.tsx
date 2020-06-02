@@ -10,7 +10,7 @@ import {
   Dispatch,
 } from 'redux';
 
-import { getProjectKanbansRequest } from '../../../../redux/actions/project/kanban.action';
+import { getProjectKanbansRequest } from '../../../../redux/actions/kanban.action';
 import { ProjectRecord } from '../../../../typings/project.typing';
 
 interface Props {

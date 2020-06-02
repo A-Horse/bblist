@@ -1,35 +1,31 @@
 import { fromJS, Map, Record } from 'immutable';
 import { normalize } from 'normalizr';
-import { FSAction } from '../actions/actions';
-import {
-  GET_PROJECT_KANBAN_DETAIL_SUCCESS,
-  GET_PROJECT_KANBANS_SUCCESS,
-} from '../actions/project/kanban.action';
+import { AxiosSuccessAction, FSAction } from '../actions/actions';
+import { GET_PROJECT_KANBANS_SUCCESS } from '../actions/kanban.action';
 import {
   CHANGE_ISSUE_DIRECT,
   GET_PROJECT_ISSUE_DETAIL_SUCCESS,
   UPDATE_PROJECT_ISSUE_DETAIL_SUCCESS,
-} from '../actions/project/project-issue-detail.action';
+} from '../actions/project-issue-detail.action';
 import {
   GET_COLUMN_CARDS_SUCCESS,
   GET_PROJECT_ISSUES_REQUEST,
   GET_PROJECT_ISSUES_SUCCESS,
   RANK_PROJECT_CARD_IN_KANBAN_REQUEST,
   RANK_PROJECT_CARD_IN_KANBAN_SUCCESS,
-} from '../actions/project/project-issue.action';
+} from '../actions/project-issue.action';
 import {
   CREATE_PROJECT_SUCCESS,
   GET_PROJECT_DETAIL_SUCCESS,
   GET_PROJECT_SUCCESS,
-} from '../actions/project/project.action';
+} from '../actions/project.action';
 import {
-  KanbanDetailEntity,
   KanbanEntityList,
   ProjectCardList,
   ProjectEntity,
   ProjectEntityList,
 } from '../schema';
-import { Column, KanbanColumnRecord } from '../../typings/kanban-column.typing';
+import { KanbanColumnRecord } from '../../typings/kanban-column.typing';
 import { IKanban, KanbanRecord } from '../../typings/kanban.typing';
 import { PaginationList } from '../../typings/pagination.typing';
 import {
@@ -37,6 +33,7 @@ import {
   RankProjectCardInKanbanInput,
 } from '../../typings/project-issue.typing';
 import { ProjectRecord } from '../../typings/project.typing';
+import { reduceKanbanDetail } from './handler/kanban-reduce-handler';
 
 export type KanbanMap = Map<string, KanbanRecord>;
 export type ColumnMap = Map<string, KanbanColumnRecord>;
@@ -46,7 +43,7 @@ type IssuePagination =
   | (PaginationList<string> & { projectId: string; loading: boolean })
   | null;
 
-export interface ProjectProp {
+export interface ProjectStateProps {
   projectMap: Map<string, ProjectRecord>;
   kanbanMap: KanbanMap;
   columnMap: ColumnMap;
@@ -54,14 +51,16 @@ export interface ProjectProp {
   currentIssuePagination: IssuePagination;
 }
 
+export type ProjectState = Record<ProjectStateProps>;
+
 export function project(
-  state: Record<ProjectProp> = fromJS({
+  state: ProjectState = fromJS({
     projectMap: {},
     kanbanMap: {},
     columnMap: {},
     issueMap: {},
   }),
-  action: FSAction
+  action: FSAction | AxiosSuccessAction
 ) {
   switch (action.type) {
     case GET_PROJECT_SUCCESS: {
@@ -135,52 +134,8 @@ export function project(
         });
     }
 
-    case GET_PROJECT_KANBAN_DETAIL_SUCCESS: {
-      const normalizedKanbanDetail: {
-        entities: {
-          Kanban: {
-            [id: string]: IKanban;
-          };
-          KanbanColumn: {
-            [id: string]: Column;
-          };
-        };
-        result: string[];
-      } = normalize(action.payload.kanban, KanbanDetailEntity);
-      const normalizedKanban =
-        normalizedKanbanDetail.entities.Kanban[action.payload.kanban.id];
-
-      return state.updateIn(
-        ['kanbanMap', action.payload.kanban.id],
-        (kanban: KanbanRecord) => {
-          if (!kanban) {
-            return fromJS(normalizedKanban);
-          }
-          return kanban.merge(fromJS(normalizedKanban));
-        }
-      );
-      // .update('columnMap', (columnMap: ColumnMap) => {
-      //   return normalizedKanban.columns!.reduce(
-      //     (columnMapResult: ColumnMap, columnID: string) => {
-      //       return columnMapResult.update(
-      //         columnID,
-      //         (column: KanbanColumnRecord) => {
-      //           if (!column) {
-      //             return fromJS(
-      //               normalizedKanbanDetail.entities.KanbanColumn[columnID]
-      //             );
-      //           }
-      //           return column.merge(
-      //             fromJS(
-      //               normalizedKanbanDetail.entities.KanbanColumn[columnID]
-      //             )
-      //           );
-      //         }
-      //       );
-      //     },
-      //     columnMap
-      //   );
-      // });
+    case 'GET_PROJECT_KANBAN_DETAIL_SUCCESS': {
+      return reduceKanbanDetail(state, action as AxiosSuccessAction);
     }
 
     case GET_COLUMN_CARDS_SUCCESS: {

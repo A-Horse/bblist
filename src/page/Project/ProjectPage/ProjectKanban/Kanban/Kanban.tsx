@@ -1,21 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import { DndProvider } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
-import { Route, RouteComponentProps } from 'react-router-dom';
+import {
+  Route,
+  RouteComponentProps,
+  useHistory,
+  useRouteMatch,
+} from 'react-router-dom';
 import { IssueDetailModal } from '../../../../../components/Project/Issue/IssueDetail/IssueDetailModal';
-import { RootState } from '../../../../../redux/reducers';
-import { selectKanbanColumns } from '../../../../../redux/reducers/selector/kanban.selector';
+import { RootState } from '../../../../../redux/reducer';
+import { selectKanbanColumns } from '../../../../../redux/reducer/selector/kanban.selector';
 import { KanbanColumnRecord } from '../../../../../typings/kanban-column.typing';
 import { parseQueryParams } from '../../../../../utils/url.util';
 import { KanbanColumn } from './Column/KanbanColumn';
-import { useHistory, useRouteMatch } from 'react-router-dom';
 import { NoColumnGuide } from './NoColumnGuide';
 import { KanbanSettingModal } from '../../../KanbanSettingModal/KanbanSettingModal';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectProject } from '../../../../../redux/reducers/selector/project.selector';
-import { getProjectKanbanDetailRequest } from '../../../../../redux/actions/project/kanban.action';
+import { selectProject } from '../../../../../redux/reducer/selector/project.selector';
+import { getProjectKanbanDetailRequest } from '../../../../../redux/actions/kanban.action';
 
 import './Kanban.scss';
+import { queryKanbanColumns } from '../../../../../redux/actions/column.action';
 
 interface InputProps {
   kanbanId: string;
@@ -45,7 +50,8 @@ export function Kanban({ kanbanId, projectId }: InputProps) {
         kanbanId: kanbanId,
       })
     );
-  }, [kanbanId]);
+    dispatch(queryKanbanColumns(kanbanId));
+  }, [dispatch, kanbanId]);
 
   return (
     <div className="Kanban">

@@ -4,12 +4,6 @@ import { Observable } from 'rxjs';
 import { map, mergeMap } from 'rxjs/operators';
 import { FSAction } from '../actions/actions';
 import {
-  SET_PROJECT_DEFAULT_KANBAN_REQUEST,
-  SET_PROJECT_DEFAULT_KANBAN_SUCCESS,
-  setProjectDefaultKanbanFailure,
-  setProjectDefaultKanbanSuccess,
-} from '../actions/project/project-setting.action';
-import {
   CREATE_PROJECT_REQUEST,
   CREATE_PROJECT_SUCCESS,
   createProjectFailure,
@@ -31,14 +25,14 @@ import {
   UPLOAD_PROJECT_COVER_SUCCESS,
   uploadProjectCoverFailure,
   uploadProjectCoverSuccess,
-} from '../actions/project/project.action';
+} from '../actions/project.action';
 import {
   IProject,
   ProjectId,
   UploadProjectCoverInput,
 } from '../../typings/project.typing';
 import { makeApiUrl } from '../../utils/api';
-import { getProjectKanbansRequest } from '../actions/project/kanban.action';
+import { getProjectKanbansRequest } from '../actions/kanban.action';
 
 export const GET_PROJECTS_REQUEST_FN = (action$: Observable<FSAction>) =>
   action$.pipe(
@@ -105,37 +99,6 @@ export const CREATE_PROJECT_SUCCESS_FN = (action$: Observable<FSAction>) =>
   action$.pipe(
     ofType(CREATE_PROJECT_SUCCESS),
     map(() => getProjectsRequest())
-  );
-
-export const SET_PROJECT_DEFAULT_KANBAN_REQUEST_FN = (
-  action$: Observable<FSAction>
-) =>
-  action$.pipe(
-    ofType(SET_PROJECT_DEFAULT_KANBAN_REQUEST),
-    mergeMap((action: FSAction) => {
-      return axios
-        .post(
-          makeApiUrl(
-            `/project/${action.payload.projectId}/setting/default-kanban/${action.payload.kanbanId}`
-          )
-        )
-        .then(() =>
-          setProjectDefaultKanbanSuccess({
-            projectID: action.payload.projectID,
-          })
-        )
-        .catch(setProjectDefaultKanbanFailure);
-    })
-  );
-
-export const SET_PROJECT_DEFAULT_KANBAN_SUCCESS_FN = (
-  action$: Observable<FSAction>
-) =>
-  action$.pipe(
-    ofType(SET_PROJECT_DEFAULT_KANBAN_SUCCESS),
-    map((action: ReturnType<typeof setProjectDefaultKanbanSuccess>) =>
-      getProjectDetailRequest(action.payload.id)
-    )
   );
 
 export const UPLOAD_PROJECT_COVER_REQUEST_FN = (

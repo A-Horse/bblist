@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import { AppButton } from '../../../../../widget/Button';
-import { RootState } from '../../../../../redux/reducers';
+import { RootState } from '../../../../../redux/reducer';
 import { KanbanRecord } from '../../../../../typings/kanban.typing';
 import { AppIcon } from '../../../../../widget/Icon';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';

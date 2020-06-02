@@ -11,8 +11,8 @@ import { faCaretSquareLeft } from '@fortawesome/free-regular-svg-icons';
 import { AppButton } from '../../../../widget/Button';
 import { KanbanRecord } from '../../../../typings/kanban.typing';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../../../redux/reducers';
-import { selectKanbans } from '../../../../redux/reducers/selector/kanban.selector';
+import { RootState } from '../../../../redux/reducer';
+import { selectKanbans } from '../../../../redux/reducer/selector/kanban.selector';
 
 const localStorageShrinkToggleName = 'project-side-shrink';
 

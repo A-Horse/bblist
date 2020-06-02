@@ -14,8 +14,8 @@ import {
   changeIssueDirect,
   getProjectIssueDetailRequest,
   updateProjectIssueDetailRequest,
-} from '../../../../redux/actions/project/project-issue-detail.action';
-import { RootState } from '../../../../redux/reducers';
+} from '../../../../redux/actions/project-issue-detail.action';
+import { RootState } from '../../../../redux/reducer';
 import { ProjectIssueRecord } from '../../../../typings/project-issue.typing';
 import { FormField } from '../../../../widget/FormField/FormField';
 import { Input } from '../../../../widget/Input/Input';

@@ -10,7 +10,7 @@ import {
   bindActionCreators,
   Dispatch,
 } from 'redux';
-import { createKanbanRequest } from '../../../redux/actions/project/kanban.action';
+import { createKanbanRequest } from '../../../redux/actions/kanban.action';
 import { AppModal } from '../../../widget/Modal/AppModal';
 import { ModalFooter } from '../../../widget/Modal/ModalFooter/ModalFooter';
 import { ModalHeader } from '../../../widget/Modal/ModalHeader/ModalHeader';

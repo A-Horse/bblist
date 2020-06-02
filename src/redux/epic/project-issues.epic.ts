@@ -11,7 +11,7 @@ import {
   getColumnCardsSuccess,
   getProjectIssuesFailure,
   getProjectIssuesSuccess,
-} from '../actions/project/project-issue.action';
+} from '../actions/project-issue.action';
 import { PaginationList } from '../../typings/pagination.typing';
 import { ProjectIssue } from '../../typings/project-issue.typing';
 import { makeApiUrl } from '../../utils/api';

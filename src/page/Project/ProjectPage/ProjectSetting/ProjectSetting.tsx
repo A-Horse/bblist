@@ -6,15 +6,15 @@ import { useRouteMatch } from 'react-router-dom';
 import {
   updateProjectsRequest,
   uploadProjectCoverRequest,
-} from '../../../../redux/actions/project/project.action';
+} from '../../../../redux/actions/project.action';
 import { ImageUploader } from '../../../../components/ImageUploader/ImageUploader';
 import { Input } from '../../../../widget/Input/Input';
 import { KanbanSettingPanel } from './KanbanSettingPanel/KanbanSettingPanel';
-import { getProjectKanbansRequest } from '../../../../redux/actions/project/kanban.action';
+import { getProjectKanbansRequest } from '../../../../redux/actions/kanban.action';
 import { useToasts } from 'react-toast-notifications';
 import { AxiosError } from 'axios';
 import { SectionField } from '../../../../widget/SectionField/SectionField';
-import { RootState } from '../../../../redux/reducers/index';
+import { RootState } from '../../../../redux/reducer/index';
 import { objectFileUrl } from '../../../../utils/object-storage';
 
 export function ProjectSetting() {
