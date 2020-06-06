@@ -12,7 +12,7 @@ interface InputProps {
 
 export function ProjectInfoSection({ projectID }: InputProps) {
   const project: ProjectRecord | undefined = useSelector((state: RootState) =>
-    state.project.get('projectMap').get(projectID)
+    state.project.projectMap.get(projectID)
   );
 
   if (!project) {

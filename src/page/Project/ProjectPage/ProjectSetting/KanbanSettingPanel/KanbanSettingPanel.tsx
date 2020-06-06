@@ -129,15 +129,13 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
 
 const mapStateToProps = (state: RootState, props: ComponentProps) => {
   const projectId = props.match.params.projectId;
-  const project = state.project
-    .get('projectMap')
-    .get(projectId) as ProjectRecord;
+  const project = state.project.projectMap.get(projectId) as ProjectRecord;
 
   return {
     project,
     kanbans: (project.get('kanbanIds') || [])
       .map((kanbanId: string) => {
-        return state.project.get('kanbanMap')[kanbanId] as IKanban;
+        return state.project.kanbanMap[kanbanId] as IKanban;
       })
       .filter((k) => !!k),
   };

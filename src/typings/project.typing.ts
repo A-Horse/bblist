@@ -1,4 +1,3 @@
-import { Record } from 'immutable';
 import { IKanbanDisplay } from './kanban.typing';
 
 export type ProjectId = string;
@@ -17,9 +16,6 @@ export interface UpdateProjectRequest {
   projectID: string;
   name?: string;
 }
-
-export type ProjectRecord = Record<IProject>;
-
 export interface CreateProjectInput {
   name: string;
 }

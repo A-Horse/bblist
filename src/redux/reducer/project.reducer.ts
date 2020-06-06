@@ -1,9 +1,8 @@
-import { fromJS, Map, Record } from 'immutable';
+import { fromJS } from 'immutable';
 import { normalize } from 'normalizr';
 import { AxiosSuccessAction, FSAction } from '../actions/actions';
 import { GET_PROJECT_KANBANS_SUCCESS } from '../actions/kanban.action';
 import { UPDATE_PROJECT_ISSUE_DETAIL_SUCCESS } from '../actions/project-issue-detail.action';
-
 import {
   CREATE_PROJECT_SUCCESS,
   GET_PROJECT_DETAIL_SUCCESS,
@@ -12,9 +11,8 @@ import {
 import { ProjectEntityList } from '../schema';
 import { IColumn } from '../../typings/kanban-column.typing';
 import { IKanban } from '../../typings/kanban.typing';
-import { PaginationList } from '../../typings/pagination.typing';
 import { IProjectIssue } from '../../typings/project-issue.typing';
-import { ProjectRecord } from '../../typings/project.typing';
+import { IProject } from '../../typings/project.typing';
 import {
   reduceKanbanDetail,
   reduceProjectKanban,
@@ -26,9 +24,10 @@ import { reduceUpdateProjectIssue } from './handler/issue-reduce-handler';
 export type KanbanMap = { [id: string]: IKanban };
 export type ColumnMap = { [id: string]: IColumn };
 export type IssueMap = { [id: string]: IProjectIssue };
+export type ProjectMap = { [id: string]: IProject };
 
 export interface ProjectState {
-  projectMap: Map<string, ProjectRecord>;
+  projectMap: ProjectMap;
   kanbanMap: KanbanMap;
   columnMap: ColumnMap;
   issueMap: IssueMap;
@@ -36,7 +35,7 @@ export interface ProjectState {
 
 export function project(
   state: ProjectState = {
-    projectMap: fromJS({}),
+    projectMap: {},
     kanbanMap: {},
     columnMap: {},
     issueMap: fromJS({}),

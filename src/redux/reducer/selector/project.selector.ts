@@ -5,5 +5,5 @@ export function selectProject(
   rootState: RootState,
   projectID: string
 ): ProjectRecord | undefined {
-  return rootState.project.get('projectMap').get(projectID);
+  return rootState.project.projectMap.get(projectID);
 }

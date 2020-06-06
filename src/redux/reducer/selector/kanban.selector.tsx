@@ -7,7 +7,7 @@ export function selectKanbanOptions(
   state: RootState,
   projectId: string
 ): SelectOption[] {
-  const project = state.project.get('projectMap').get(projectId);
+  const project = state.project.projectMap.get(projectId);
   if (!project) {
     return [];
   }
@@ -20,19 +20,19 @@ export function selectKanbanOptions(
 }
 
 export function selectKanbans(state: RootState, projectId: string): IKanban[] {
-  const project = state.project.get('projectMap').get(projectId);
+  const project = state.project.projectMap.get(projectId);
   if (!project || !project.get('kanbanIds')) {
     return [];
   }
   return project
     .get('kanbanIds')!
     .map((kanbanId: string) => {
-      const kanban = state.project.get('kanbanMap')[kanbanId];
+      const kanban = state.project.kanbanMap[kanbanId];
       if (!kanban) {
         return kanban;
       }
       kanban.columns = (kanban.columnIds || [])
-        .map((id) => state.project.get('columnMap')[id])
+        .map((id) => state.project.columnMap[id])
         .filter((v) => !!v);
       return kanban;
     })
@@ -43,12 +43,12 @@ export function selectKanbanColumns(
   state: RootState,
   kanbanID: string
 ): IColumn[] {
-  const kanban = state.project.get('kanbanMap')[kanbanID];
+  const kanban = state.project.kanbanMap[kanbanID];
 
   if (!kanban || !kanban.columnIds) {
     return [];
   }
   return kanban.columnIds
-    .map((id) => state.project.get('columnMap')[id])
+    .map((id) => state.project.columnMap[id])
     .filter((v) => !!v);
 }

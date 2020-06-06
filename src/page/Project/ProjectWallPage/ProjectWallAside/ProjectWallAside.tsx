@@ -8,16 +8,13 @@ import { Side } from '../../../../widget/Side/Side';
 import { SideGroup } from '../../../../widget/Side/SideGroup';
 import { SideItemLink } from '../../../../widget/Side/SideItemLink';
 import { SideItem } from '../../../../widget/Side/SideItem';
-import { match } from 'react-router-dom';
 import './ProjectWallAside.scss';
 import { ProjectCreatorModal } from '../../ProjectCreator/ProjectCreatorModal';
 import { Divider } from '../../../../widget/Divider';
 
-interface Props {
-  match: match<any>;
-}
+interface Props {}
 
-export class BoardWallAside extends Component<Props> {
+export class ProjectWallAside extends Component<Props> {
   state = { createProjectModalOpen: false };
 
   componentWillMount() {}

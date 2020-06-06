@@ -1,38 +1,49 @@
 import './ProjectWall.scss';
 
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import { ProjectRecord } from '../../../typings/project.typing';
-import { BoardWallAside } from './ProjectWallAside/ProjectWallAside';
+import { ProjectWallAside } from './ProjectWallAside/ProjectWallAside';
 import { ProjectDisplayCard } from './ProjectCoverItem/ProjectDisplayCard';
-import { match } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { getProjectsRequest } from '../../../redux/actions/project.action';
+import { RootState } from '../../../redux/reducer';
 
-interface Props {
-  actions: any;
-  boardMap: any;
-  match: match<any>;
-  projects: ProjectRecord[];
-}
+export function ProjectWallPage() {
+  const dispatch = useDispatch();
 
-export class ProjectWallPage extends Component<Props> {
-  componentWillMount() {
-    return this.props.actions.getProjectsRequest();
-  }
+  useEffect(() => {
+    dispatch(getProjectsRequest());
+  }, [dispatch]);
 
-  render() {
-    return (
-      <div className="ProjectWallPage">
-        <BoardWallAside match={this.props.match} />
+  const projects = useSelector((state: RootState) =>
+    state.project.projectMap.valueSeq().toArray()
+  );
 
-        <div className="ProjectWallPage--content-container">
-          <div className="project-cover-container">
-            {this.props.projects.map((project: ProjectRecord) => {
-              return (
-                <ProjectDisplayCard key={project.get('id')} project={project} />
-              );
-            })}
-          </div>
+  return (
+    <div className="ProjectWallPage">
+      <ProjectWallAside />
+
+      <div className="ProjectWallPage--content-container">
+        <div className="project-cover-container">
+          {projects.map((project: ProjectRecord) => {
+            return (
+              <ProjectDisplayCard key={project.get('id')} project={project} />
+            );
+          })}
         </div>
       </div>
-    );
-  }
+    </div>
+  );
 }
+
+// export class ProjectWallPage extends Component<Props> {
+//   componentWillMount() {
+//     return this.props.actions.getProjectsRequest();
+//   }
+//
+//   render() {
+//     return ;
+//   }
+// }
+
+export default ProjectWallPage;

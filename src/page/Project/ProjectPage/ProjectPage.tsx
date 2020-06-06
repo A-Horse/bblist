@@ -89,7 +89,7 @@ const mapDispatchToProps = (dispatch: any) => {
 
 const mapStateToProps = (state: RootState, props: Props) => {
   const { projectId } = props.match.params;
-
+  console.log('state', state);
   return {
     project: state.project.projectMap.get(projectId) as ProjectRecord,
   };

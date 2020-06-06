@@ -16,12 +16,12 @@ import { AppModal } from '../../../widget/Modal/AppModal';
 import { RootState } from '../../../redux/reducer';
 import { selectKanbanColumns } from '../../../redux/reducer/selector/kanban.selector';
 import { IKanban } from '../../../typings/kanban.typing';
-import { ProjectRecord } from '../../../typings/project.typing';
 import { KanbanColumnCreator } from './KanbanColumnCreator/KanbanColumnCreator';
 import { KanbanColumnPanel } from './KanbanColumnPanel/KanbanColumnPanel';
 import { ModalHeader } from '../../../widget/Modal/ModalHeader/ModalHeader';
 import { createKanbanColumnRequest } from '../../../redux/actions/column.action';
 import { IColumn } from '../../../typings/kanban-column.typing';
+import { IProject } from '../../../typings/project.typing';
 
 interface InputProps {
   toggle: boolean;
@@ -37,7 +37,7 @@ class KanbanSettingModalComponent extends Component<
   InputRouterProps & {
     kanban?: IKanban;
     columns: IColumn[];
-    project?: ProjectRecord;
+    project?: IProject;
     actions: ActionCreatorsMapObject;
   }
 > {
@@ -53,7 +53,7 @@ class KanbanSettingModalComponent extends Component<
 
   createKanbanColumn = (formData: any) => {
     this.props.actions.createKanbanColumnRequest({
-      projectId: this.props.project!.get('id'),
+      projectId: this.props.project!.id,
       kanbanId: this.props.kanban!.id,
       ...formData,
     });
@@ -96,7 +96,7 @@ class KanbanSettingModalComponent extends Component<
 const mapStateToProps = (state: RootState, props: InputRouterProps) => {
   const projectId = props.match.params.projectId;
 
-  const project = state.project.projectMap.get(projectId) as ProjectRecord;
+  const project = state.project.projectMap[projectId];
   const kanban = state.project.kanbanMap[props.kanbanId];
 
   let columns: IColumn[] = [];

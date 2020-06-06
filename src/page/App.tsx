@@ -21,7 +21,7 @@ const SettingPage = () => {
 };
 
 const ProjectWallPageContainer = React.lazy(() =>
-  import('./Project/ProjectWallPage/ProjectWall.container')
+  import('./Project/ProjectWallPage/ProjectWall')
 );
 
 const ProjectWallPage = () => {

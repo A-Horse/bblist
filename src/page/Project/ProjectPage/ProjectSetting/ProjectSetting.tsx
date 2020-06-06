@@ -23,7 +23,7 @@ export function ProjectSetting() {
   const match = useRouteMatch<{ projectId: string }>();
   const projectID = match.params.projectId;
   const project = useSelector((state: RootState) =>
-    state.project.get('projectMap').get(projectID)
+    state.project.projectMap.get(projectID)
   );
 
   useEffect(() => {
