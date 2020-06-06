@@ -13,7 +13,7 @@ import {
   getProjectIssuesSuccess,
 } from '../actions/project-issue.action';
 import { PaginationList } from '../../typings/pagination.typing';
-import { ProjectIssue } from '../../typings/project-issue.typing';
+import { IProjectIssue } from '../../typings/project-issue.typing';
 import { makeApiUrl } from '../../utils/api';
 
 export const GET_COLUMN_CARDS_REQUEST_FN = (action$: Observable<FSAction>) =>
@@ -26,7 +26,7 @@ export const GET_COLUMN_CARDS_REQUEST_FN = (action$: Observable<FSAction>) =>
             `/kanban/${action.payload.kanbanId}/column/${action.payload.columnID}/issues`
           )
         )
-        .then((result: AxiosResponse<ProjectIssue[]>) => {
+        .then((result: AxiosResponse<IProjectIssue[]>) => {
           action.meta.requestDoneCallback();
           return getColumnCardsSuccess({
             kanbanId: action.payload.kanbanId,
@@ -51,7 +51,7 @@ export const GET_PROJECT_ISSUES_REQUEST_FN = (action$: Observable<FSAction>) =>
             `/project/${action.payload.projectId}/issues?pageNumber=${action.payload.pageNumber}&pageSize=${action.payload.pageSize}`
           )
         )
-        .then((result: AxiosResponse<PaginationList<ProjectIssue>>) => {
+        .then((result: AxiosResponse<PaginationList<IProjectIssue>>) => {
           return getProjectIssuesSuccess({
             cardPagtiton: result.data,
             projectId: action.payload.projectId,

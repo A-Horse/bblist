@@ -1,8 +1,6 @@
-import { List } from 'immutable';
-
 import { RootState } from '../index';
-import { KanbanColumnRecord } from '../../../typings/kanban-column.typing';
-import { KanbanRecord } from '../../../typings/kanban.typing';
+import { IColumn } from '../../../typings/kanban-column.typing';
+import { IKanban } from '../../../typings/kanban.typing';
 import { SelectOption } from '../../../typings/select.typing';
 
 export function selectKanbanOptions(
@@ -13,18 +11,15 @@ export function selectKanbanOptions(
   if (!project) {
     return [];
   }
-  return selectKanbans(state, projectId).map((kanban: KanbanRecord) => {
+  return selectKanbans(state, projectId).map((kanban: IKanban) => {
     return {
-      value: kanban.get('id'),
-      label: kanban.get('name'),
+      value: kanban.id,
+      label: kanban.name,
     };
   });
 }
 
-export function selectKanbans(
-  state: RootState,
-  projectId: string
-): KanbanRecord[] {
+export function selectKanbans(state: RootState, projectId: string): IKanban[] {
   const project = state.project.get('projectMap').get(projectId);
   if (!project || !project.get('kanbanIds')) {
     return [];
@@ -32,7 +27,14 @@ export function selectKanbans(
   return project
     .get('kanbanIds')!
     .map((kanbanId: string) => {
-      return state.project.get('kanbanMap').get(kanbanId)!;
+      const kanban = state.project.get('kanbanMap')[kanbanId];
+      if (!kanban) {
+        return kanban;
+      }
+      kanban.columns = (kanban.columnIds || [])
+        .map((id) => state.project.get('columnMap')[id])
+        .filter((v) => !!v);
+      return kanban;
     })
     .filter((kanban) => !!kanban);
 }
@@ -40,16 +42,13 @@ export function selectKanbans(
 export function selectKanbanColumns(
   state: RootState,
   kanbanID: string
-): List<KanbanColumnRecord> {
-  const kanban = state.project.get('kanbanMap').get(kanbanID);
+): IColumn[] {
+  const kanban = state.project.get('kanbanMap')[kanbanID];
 
-  if (!kanban || !kanban.get('columns')) {
-    return List();
+  if (!kanban || !kanban.columnIds) {
+    return [];
   }
-  return kanban
-    .get('columns')!
-    .map((columnID: string) => {
-      return state.project.get('columnMap').get(columnID);
-    })
-    .filter((column) => !!column) as List<KanbanColumnRecord>;
+  return kanban.columnIds
+    .map((id) => state.project.get('columnMap')[id])
+    .filter((v) => !!v);
 }

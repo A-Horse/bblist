@@ -1,11 +1,10 @@
 import './FlatIssue.scss';
 
 import React from 'react';
-
-import { ProjectIssueRecord } from '../../../../typings/project-issue.typing';
+import { IProjectIssue } from '../../../../typings/project-issue.typing';
 
 interface InputProps {
-  issue: ProjectIssueRecord;
+  issue: IProjectIssue;
   onClick: Function;
 }
 
@@ -14,8 +13,8 @@ export const FlatIssue = ({ issue, onClick }: InputProps) => {
 
   return (
     <div className="FlatIssue" onClick={clickHandle}>
-      <span className="FlatIssue--id">{issue.get('id')}</span>
-      {issue.get('title')}
+      <span className="FlatIssue--id">{issue.id}</span>
+      {issue.title}
     </div>
   );
 };

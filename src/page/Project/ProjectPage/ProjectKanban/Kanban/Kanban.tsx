@@ -10,7 +10,6 @@ import {
 import { IssueDetailModal } from '../../../../../components/Project/Issue/IssueDetail/IssueDetailModal';
 import { RootState } from '../../../../../redux/reducer';
 import { selectKanbanColumns } from '../../../../../redux/reducer/selector/kanban.selector';
-import { KanbanColumnRecord } from '../../../../../typings/kanban-column.typing';
 import { parseQueryParams } from '../../../../../utils/url.util';
 import { KanbanColumn } from './Column/KanbanColumn';
 import { NoColumnGuide } from './NoColumnGuide';
@@ -21,6 +20,7 @@ import { getProjectKanbanDetailRequest } from '../../../../../redux/actions/kanb
 
 import './Kanban.scss';
 import { queryKanbanColumns } from '../../../../../redux/actions/column.action';
+import { IColumn } from '../../../../../typings/kanban-column.typing';
 
 interface InputProps {
   kanbanId: string;
@@ -79,22 +79,17 @@ export function Kanban({ kanbanId, projectId }: InputProps) {
           onClose={() => setSettingModalVisible(false)}
         />
 
-        {!columns.size && (
+        {!columns.length && (
           <NoColumnGuide openSetting={() => setSettingModalVisible(true)} />
         )}
 
-        {!!columns.size && (
+        {!!columns.length && (
           <div className="Kanban-ColumnContainer">
             {columns
-              .sort(
-                (a: KanbanColumnRecord, b: KanbanColumnRecord) =>
-                  a.get('order') - b.get('order')
-              )
-              .valueSeq()
-              .toArray()
-              .map((column: KanbanColumnRecord) => (
+              .sort((a: IColumn, b: IColumn) => a.order - b.order)
+              .map((column: IColumn) => (
                 <KanbanColumn
-                  key={column.get('id')}
+                  key={column.id}
                   column={column}
                   kanbanID={kanbanId}
                   projectID={projectId}

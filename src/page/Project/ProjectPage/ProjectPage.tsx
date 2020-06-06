@@ -91,7 +91,7 @@ const mapStateToProps = (state: RootState, props: Props) => {
   const { projectId } = props.match.params;
 
   return {
-    project: state.project.get('projectMap').get(projectId) as ProjectRecord,
+    project: state.project.projectMap.get(projectId) as ProjectRecord,
   };
 };
 

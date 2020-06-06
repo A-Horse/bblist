@@ -10,6 +10,7 @@ import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { useToasts } from 'react-toast-notifications';
 import './IssueDetailBread.scss';
 import { updateProjectIssueDetailRequest } from '../../../../../redux/actions/project-issue-detail.action';
+import { IProjectIssue } from '../../../../../typings/project-issue.typing';
 
 interface InputProps {
   projectID: string;
@@ -23,8 +24,8 @@ export function IssueDetailBread(props: InputProps) {
     return selectProject(state, props.projectID);
   });
 
-  const issue = useSelector((state: RootState) => {
-    return state.project.get('issueMap').get(props.issueID);
+  const issue: IProjectIssue = useSelector((state: RootState) => {
+    return state.project.issueMap[props.issueID];
   });
 
   const { addToast } = useToasts();
@@ -66,7 +67,7 @@ export function IssueDetailBread(props: InputProps) {
       <AppIcon className="IssueDetailBread--right-icon" icon={faChevronRight} />
 
       <ColumnSelect
-        selectedColumnID={issue.get('columnID')}
+        selectedColumnID={issue.columnId}
         onChange={(option) => {
           updateIssue({ columnID: option.value });
         }}

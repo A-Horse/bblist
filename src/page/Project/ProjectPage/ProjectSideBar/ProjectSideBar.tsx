@@ -9,17 +9,17 @@ import { AppIcon } from '../../../../widget/Icon';
 import { faChartLine, faCog, faUsers } from '@fortawesome/free-solid-svg-icons';
 import { faCaretSquareLeft } from '@fortawesome/free-regular-svg-icons';
 import { AppButton } from '../../../../widget/Button';
-import { KanbanRecord } from '../../../../typings/kanban.typing';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../../redux/reducer';
 import { selectKanbans } from '../../../../redux/reducer/selector/kanban.selector';
+import { IKanban } from '../../../../typings/kanban.typing';
 
 const localStorageShrinkToggleName = 'project-side-shrink';
 
 export function ProjectSideBar(props: { projectId: string }) {
   const [shrink, setShrink] = useState(false);
   const match = useRouteMatch<{ projectId: string }>();
-  const kanbans: KanbanRecord[] = useSelector((state: RootState) => {
+  const kanbans: IKanban[] = useSelector((state: RootState) => {
     return selectKanbans(state, props.projectId);
   });
   useEffect(() => {
@@ -44,12 +44,12 @@ export function ProjectSideBar(props: { projectId: string }) {
           name="总览"
         />
         <>
-          {kanbans.map((kanban: KanbanRecord, index: number) => (
+          {kanbans.map((kanban: IKanban, index: number) => (
             <SideItemLink
               key={index}
               icon="list-alt"
-              to={`${match.url}/kanban/${kanban.get('id')}`}
-              name={kanban.get('name')}
+              to={`${match.url}/kanban/${kanban.id}`}
+              name={kanban.name}
             />
           ))}
         </>

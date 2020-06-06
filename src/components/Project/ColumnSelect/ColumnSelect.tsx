@@ -11,10 +11,9 @@ import { RootState } from '../../../redux/reducer';
 import { selectKanbanColumns } from '../../../redux/reducer/selector/kanban.selector';
 import { SelectOption } from '../../../typings/select.typing';
 import { AppSelect } from '../../../widget/AppSelect';
-import { List } from 'immutable';
-import { KanbanColumnRecord } from '../../../typings/kanban-column.typing';
 
 import './ColumnSelect.scss';
+import { IColumn } from '../../../typings/kanban-column.typing';
 
 interface InputProps {
   kanbanID?: string;
@@ -30,17 +29,13 @@ interface InjectProps {
 
 const noOptionTip = () => '暂无列表';
 
-function generateColumnOptions(
-  columns: List<KanbanColumnRecord>
-): SelectOption[] {
-  return columns
-    .map((column) => {
-      return {
-        value: column.get('id'),
-        label: column.get('name'),
-      };
-    })
-    .toArray();
+function generateColumnOptions(columns: IColumn[]): SelectOption[] {
+  return columns.map((column) => {
+    return {
+      value: column.id,
+      label: column.name,
+    };
+  });
 }
 
 class ColumnSelectComponent extends Component<InputProps & InjectProps> {

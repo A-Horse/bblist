@@ -14,15 +14,15 @@ import { getProjectIssuesRequest } from '../../../../redux/actions/project-issue
 import { FlatIssue } from '../../../../components/Project/Issue/FlatIssue/FlatIssue';
 import { IssueDetail } from '../../../../components/Project/Issue/IssueDetail/IssueDetail';
 import { RootState } from '../../../../redux/reducer';
-import { ProjectIssueRecord } from '../../../../typings/project-issue.typing';
 import { ProjectRecord } from '../../../../typings/project.typing';
+import { IProjectIssue } from '../../../../typings/project-issue.typing';
 
 interface InputProps {}
 
 interface ReduxProps {
   actions: ActionCreatorsMapObject;
   project: ProjectRecord;
-  issues: ProjectIssueRecord[];
+  issues: IProjectIssue[];
   pageNumber: number;
   pageSize: number;
   total?: number;
@@ -48,9 +48,9 @@ export class IssuesComponent extends Component<
     this.setState({ currentPageNumber: pageNumber });
   };
 
-  onFlatIssueClick = (issue: ProjectIssueRecord) => {
+  onFlatIssueClick = (issue: IProjectIssue) => {
     this.props.history.push(
-      `/project/${this.props.project.get('id')}/issues/${issue.get('id')}`
+      `/project/${this.props.project.get('id')}/issues/${issue.id}`
     );
   };
 
@@ -59,9 +59,9 @@ export class IssuesComponent extends Component<
       <div className="Issues">
         <div className="Issues--list">
           <ul>
-            {this.props.issues.map((issue: ProjectIssueRecord) => {
+            {this.props.issues.map((issue: IProjectIssue) => {
               return (
-                <li key={issue.get('id')}>
+                <li key={issue.id}>
                   <FlatIssue issue={issue} onClick={this.onFlatIssueClick} />
                 </li>
               );
@@ -105,30 +105,14 @@ const mapStateToProps = (state: RootState, props: any) => {
   let pageSize = 20;
   let total;
   let loading = true;
-  let issues: ProjectIssueRecord[] = [];
-  const issuePagitation = state.project.get('currentIssuePagination');
-
-  if (issuePagitation && issuePagitation!.projectId === projectId) {
-    loading = issuePagitation.loading;
-    issues = issuePagitation.data
-      .map(
-        (id: string): ProjectIssueRecord => {
-          return state.project.get('issueMap').get(id)!;
-        }
-      )
-      .filter((c) => !!c);
-    pageNumber = issuePagitation.pageNumber;
-    pageSize = issuePagitation.pageSize;
-    total = issuePagitation.total;
-  }
 
   return {
-    project: state.project.get('projectMap').get(projectId) as ProjectRecord,
+    project: state.project.projectMap.get(projectId) as ProjectRecord,
     loading,
     pageNumber,
     pageSize,
     total,
-    issues,
+    issues: [],
   };
 };
 

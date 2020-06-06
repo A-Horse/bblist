@@ -13,7 +13,7 @@ import { AppButton } from '../../../../../widget/Button';
 import { AppIcon } from '../../../../../widget/Icon';
 import { SectionField } from '../../../../../widget/SectionField/SectionField';
 import { RootState } from '../../../../../redux/reducer';
-import { KanbanRecord } from '../../../../../typings/kanban.typing';
+import { IKanban } from '../../../../../typings/kanban.typing';
 import { ProjectRecord } from '../../../../../typings/project.typing';
 import { KanbanSettingModal } from '../../../KanbanSettingModal/KanbanSettingModal';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
@@ -29,7 +29,7 @@ class KanbanSettingPanelComponent extends Component<
   {
     actions: ActionCreatorsMapObject;
     project?: ProjectRecord;
-    kanbans: KanbanRecord[];
+    kanbans: IKanban[];
   } & ComponentProps,
   {
     settingModalToggle: boolean;
@@ -69,18 +69,15 @@ class KanbanSettingPanelComponent extends Component<
     }
     return (
       <div>
-        {this.props.kanbans.map((kanban: KanbanRecord) => {
+        {this.props.kanbans.map((kanban: IKanban) => {
           return (
-            <div
-              key={kanban.get('id')}
-              className="KanbanSettingPanel--kanban-item"
-            >
-              {kanban.get('name')}
+            <div key={kanban.id} className="KanbanSettingPanel--kanban-item">
+              {kanban.name}
 
               <AppButton
                 className="KanbanSettingPanel--item-edit-button"
                 type="dashed"
-                onClick={() => this.openKanbanSettingModal(kanban.get('id'))}
+                onClick={() => this.openKanbanSettingModal(kanban.id)}
               >
                 <AppIcon icon="pen" /> 编辑
               </AppButton>
@@ -140,7 +137,7 @@ const mapStateToProps = (state: RootState, props: ComponentProps) => {
     project,
     kanbans: (project.get('kanbanIds') || [])
       .map((kanbanId: string) => {
-        return state.project.get('kanbanMap').get(kanbanId) as KanbanRecord;
+        return state.project.get('kanbanMap')[kanbanId] as IKanban;
       })
       .filter((k) => !!k),
   };

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { DateTimeSelectDialog } from '../../../../DateTimeSelectDialog/DateTimeSeletDialog';
-import { ProjectIssueRecord } from '../../../../../typings/project-issue.typing';
 import { AssigneeSelector } from '../../../../AssigneeSelector/AssigneeSelector';
 import { SelectOption } from '../../../../../typings/select.typing';
 import { SectionHeading } from '../../../../../widget/SectionHeading/SectionHeading';
@@ -11,10 +10,11 @@ import { updateProjectIssueDetailRequest } from '../../../../../redux/actions/pr
 import { faArrowsAltH } from '@fortawesome/free-solid-svg-icons';
 import { MoveIssueModal } from '../MoveIssueModal/MoveIssueModal';
 import './IssueDetailRight.scss';
+import { IProjectIssue } from '../../../../../typings/project-issue.typing';
 
 interface InputProps {
   projectID: string;
-  issue: ProjectIssueRecord;
+  issue: IProjectIssue;
   kanbanID?: string;
   updateIssue: Function;
 }
@@ -38,7 +38,7 @@ export function IssueDetailRight(props: InputProps) {
     dispatch(
       updateProjectIssueDetailRequest(
         {
-          issueId: props.issue.get('id'),
+          issueId: props.issue.id,
           partialIssue: {
             assigneeId: assigneeID,
           },
@@ -57,7 +57,7 @@ export function IssueDetailRight(props: InputProps) {
           <SectionHeading size="sm">经办人</SectionHeading>
           <AssigneeSelector
             projectID={props.projectID}
-            selectedUserId={props.issue.get('assigneeId')}
+            selectedUserId={props.issue.assigneeId}
             onChange={(option: SelectOption) => {
               const id = option ? option.value : null;
               onUpdateAssigneeID(id);
@@ -66,7 +66,7 @@ export function IssueDetailRight(props: InputProps) {
         </div>
 
         <DetailRightField
-          active={!!props.issue.get('deadline')}
+          active={!!props.issue.deadline}
           icon={faClock}
           title="到期时间"
           onClick={() => setDeadlineSelectOpen(true)}
@@ -81,7 +81,7 @@ export function IssueDetailRight(props: InputProps) {
       </div>
 
       <DateTimeSelectDialog
-        deadline={props.issue.get('deadline')}
+        deadline={props.issue.deadline}
         isOpen={deadlineSelectOpen}
         onConfirm={onDeadlineOnclick}
         onCancel={() => {

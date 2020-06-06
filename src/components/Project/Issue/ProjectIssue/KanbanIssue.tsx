@@ -15,13 +15,13 @@ import {
 } from 'react-dnd';
 
 import {
-  ProjectIssueRecord,
+  IProjectIssue,
   RankProjectCardInKanbanInput,
 } from '../../../../typings/project-issue.typing';
 import { IssueId } from '../IssueId/IssueId';
 
 interface InputProps {
-  issue: ProjectIssueRecord;
+  issue: IProjectIssue;
   rankProjectCardColumn: Function;
   kanbanId: string;
   onClick?: Function;
@@ -58,7 +58,7 @@ const Card = React.forwardRef<HTMLDivElement, InputProps & DndProps>(
     }));
 
     const innerOnClick = () => {
-      onClick && onClick(issue.get('id'));
+      onClick && onClick(issue.id);
     };
 
     return (
@@ -68,15 +68,14 @@ const Card = React.forwardRef<HTMLDivElement, InputProps & DndProps>(
         ref={elementRef}
         style={{ opacity }}
       >
-        <IssueId id={issue.get('id')} />
-        <div className="ProjectIssue--title">{issue.get('title')}</div>
+        <IssueId id={issue.id} />
+        <div className="ProjectIssue--title">{issue.title}</div>
       </div>
     );
   }
 );
 
-// TODO: rename KanbanIssue
-export const ProjectIssue = DropTarget(
+export const KanbanIssue = DropTarget(
   'CARD',
   {
     hover(
@@ -93,11 +92,11 @@ export const ProjectIssue = DropTarget(
         return null;
       }
 
-      const dragCardId = monitor.getItem().issue.get('id');
-      const hoverCardId = props.issue.get('id');
+      const dragCardId = monitor.getItem().issue.id;
+      const hoverCardId = props.issue.id;
 
-      const dragOrder = monitor.getItem().issue.get('order');
-      const hoverOrder = props.issue.get('order');
+      const dragOrder = monitor.getItem().issue.order;
+      const hoverOrder = props.issue.order;
 
       let isBefore;
       if (dragOrder > hoverOrder) {
@@ -142,9 +141,8 @@ export const ProjectIssue = DropTarget(
         {
           selectCard: monitor.getItem().issue,
           targetCard: props.issue,
-          targetOrder:
-            props.issue.get('order') - (isBefore ? 0.000001 : -0.0000001),
-          targetColumnId: props.issue.get('columnID'),
+          targetOrder: props.issue.order - (isBefore ? 0.000001 : -0.0000001),
+          targetColumnId: props.issue.columnId,
           isBefore: isBefore,
           kanbanId: props.kanbanId,
         } as RankProjectCardInKanbanInput,
@@ -162,7 +160,7 @@ export const ProjectIssue = DropTarget(
         {
           selectCard: monitor.getItem().issue,
           kanbanId: props.kanbanId,
-          targetColumnId: props.issue.get('columnID'),
+          targetColumnId: props.issue.columnId,
         } as RankProjectCardInKanbanInput,
         {
           temporary: false,

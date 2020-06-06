@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 
 import { AppButton } from '../../../../../widget/Button';
 import { RootState } from '../../../../../redux/reducer';
-import { KanbanRecord } from '../../../../../typings/kanban.typing';
+import { IKanban } from '../../../../../typings/kanban.typing';
 import { AppIcon } from '../../../../../widget/Icon';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import { IssueCreatorModal } from '../../../../../components/creators/TaskCreator/IssueCreatorModal';
@@ -16,8 +16,8 @@ interface InputProps {
 }
 
 export function KanbanHeaderBar({ projectID, selectedKanbanId }: InputProps) {
-  const kanban: KanbanRecord | undefined = useSelector((state: RootState) =>
-    state.project.get('kanbanMap').get(selectedKanbanId)
+  const kanban: IKanban | undefined = useSelector(
+    (state: RootState) => state.project.kanbanMap[selectedKanbanId]
   );
 
   const [selectKanbanToggle, setSelectKanbanToggle] = useState(false);
@@ -26,9 +26,7 @@ export function KanbanHeaderBar({ projectID, selectedKanbanId }: InputProps) {
   return (
     <div className="KanbanHeaderBar">
       {kanban && (
-        <span className="KanbanHeaderBar--kanban-name">
-          {kanban.get('name')}
-        </span>
+        <span className="KanbanHeaderBar--kanban-name">{kanban.name}</span>
       )}
 
       <div className="KanbanHeaderBar--operation">

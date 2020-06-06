@@ -1,13 +1,8 @@
 import { Record } from 'immutable';
 
-export interface Column {
+export interface IColumn {
   id: string;
   name: string;
-}
-
-export type KanbanColumnRecord = Record<{
-  id: string;
-  name: string;
-  order: number;
   kanbanId: string;
-}>;
+  order: number;
+}

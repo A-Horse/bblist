@@ -1,5 +1,3 @@
-import { List, Record } from 'immutable';
-
 export interface IKanbanDisplay {
   id: string;
   name: string;
@@ -7,13 +5,8 @@ export interface IKanbanDisplay {
 
 export interface IKanban extends IKanbanDisplay {
   columns?: any[];
+  columnIds?: string[];
 }
-
-export type KanbanRecord = Record<{
-  id: string;
-  name: string;
-  columns?: List<string>;
-}>;
 
 export interface CreateKanbanInput {
   name: string;

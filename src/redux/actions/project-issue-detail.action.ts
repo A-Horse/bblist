@@ -1,4 +1,4 @@
-import { ProjectIssue } from '../../typings/project-issue.typing';
+import { IProjectIssue } from '../../typings/project-issue.typing';
 import { FSAction } from './actions';
 
 export const GET_PROJECT_ISSUE_DETAIL_REQUEST =
@@ -17,7 +17,7 @@ export function getProjectIssueDetailRequest(payload: {
   };
 }
 
-export function getProjectIssueDetailSuccess(issue: ProjectIssue): FSAction {
+export function getProjectIssueDetailSuccess(issue: IProjectIssue): FSAction {
   return {
     type: GET_PROJECT_ISSUE_DETAIL_SUCCESS,
     payload: issue,

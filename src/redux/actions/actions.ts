@@ -7,9 +7,9 @@ export interface FSAction {
   meta?: any;
 }
 
-export interface AxiosSuccessAction extends FSAction {
+export interface AxiosSuccessAction<T = FSAction> extends FSAction {
   payload: AxiosResponse;
   meta: {
-    previousAction: FSAction;
+    previousAction: T;
   };
 }

@@ -1,6 +1,4 @@
 import './KanbanSettingModal.scss';
-
-import { List } from 'immutable';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
@@ -17,13 +15,13 @@ import {
 import { AppModal } from '../../../widget/Modal/AppModal';
 import { RootState } from '../../../redux/reducer';
 import { selectKanbanColumns } from '../../../redux/reducer/selector/kanban.selector';
-import { KanbanColumnRecord } from '../../../typings/kanban-column.typing';
-import { KanbanRecord } from '../../../typings/kanban.typing';
+import { IKanban } from '../../../typings/kanban.typing';
 import { ProjectRecord } from '../../../typings/project.typing';
 import { KanbanColumnCreator } from './KanbanColumnCreator/KanbanColumnCreator';
 import { KanbanColumnPanel } from './KanbanColumnPanel/KanbanColumnPanel';
 import { ModalHeader } from '../../../widget/Modal/ModalHeader/ModalHeader';
 import { createKanbanColumnRequest } from '../../../redux/actions/column.action';
+import { IColumn } from '../../../typings/kanban-column.typing';
 
 interface InputProps {
   toggle: boolean;
@@ -37,8 +35,8 @@ interface InputRouterProps
 
 class KanbanSettingModalComponent extends Component<
   InputRouterProps & {
-    kanban?: KanbanRecord;
-    columns: List<KanbanColumnRecord> | null;
+    kanban?: IKanban;
+    columns: IColumn[];
     project?: ProjectRecord;
     actions: ActionCreatorsMapObject;
   }
@@ -56,7 +54,7 @@ class KanbanSettingModalComponent extends Component<
   createKanbanColumn = (formData: any) => {
     this.props.actions.createKanbanColumnRequest({
       projectId: this.props.project!.get('id'),
-      kanbanId: this.props.kanban!.get('id'),
+      kanbanId: this.props.kanban!.id,
       ...formData,
     });
   };
@@ -73,7 +71,7 @@ class KanbanSettingModalComponent extends Component<
         ) : (
           <div>
             <ModalHeader
-              title={this.props.kanban!.get('name') + ' 配置'}
+              title={this.props.kanban!.name + ' 配置'}
               onClose={this.props.onClose}
             />
 
@@ -98,14 +96,12 @@ class KanbanSettingModalComponent extends Component<
 const mapStateToProps = (state: RootState, props: InputRouterProps) => {
   const projectId = props.match.params.projectId;
 
-  const project = state.project
-    .get('projectMap')
-    .get(projectId) as ProjectRecord;
-  const kanban = state.project.get('kanbanMap').get(props.kanbanId);
+  const project = state.project.projectMap.get(projectId) as ProjectRecord;
+  const kanban = state.project.kanbanMap[props.kanbanId];
 
-  let columns: List<KanbanColumnRecord> | null = null;
-  if (!!kanban && !!kanban.get('columns')) {
-    columns = selectKanbanColumns(state, kanban.get('id'));
+  let columns: IColumn[] = [];
+  if (!!kanban && !!kanban.columnIds) {
+    columns = selectKanbanColumns(state, kanban.id);
   }
 
   return {

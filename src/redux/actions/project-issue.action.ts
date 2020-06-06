@@ -1,7 +1,7 @@
 import { PaginationList } from '../../typings/pagination.typing';
 import {
   CreateProjectIssueInput,
-  ProjectIssue,
+  IProjectIssue,
   RankProjectCardInKanbanInput,
 } from '../../typings/project-issue.typing';
 import { FSAction } from './actions';
@@ -24,7 +24,7 @@ export function getColumnCardsRequest(
 }
 
 export function getColumnCardsSuccess(payload: {
-  cards: ProjectIssue[];
+  cards: IProjectIssue[];
   kanbanId: string;
   columnID: string;
 }): FSAction {
@@ -62,7 +62,7 @@ export function getProjectIssuesRequest(
 }
 
 export function getProjectIssuesSuccess(payload: {
-  cardPagtiton: PaginationList<ProjectIssue>;
+  cardPagtiton: PaginationList<IProjectIssue>;
   projectId: string;
 }): FSAction {
   return {
@@ -72,7 +72,7 @@ export function getProjectIssuesSuccess(payload: {
 }
 
 export function getProjectIssuesSuccessInProjectIssue(payload: {
-  cardPagtiton: PaginationList<ProjectIssue>;
+  cardPagtiton: PaginationList<IProjectIssue>;
   projectId: string;
 }): FSAction {
   return {

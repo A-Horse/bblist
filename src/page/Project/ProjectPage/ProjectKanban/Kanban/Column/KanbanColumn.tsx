@@ -16,20 +16,20 @@ import {
   getColumnCardsRequest,
   rankProjectCardInKanbanRequest,
 } from '../../../../../../redux/actions/project-issue.action';
-import { ProjectIssue } from '../../../../../../components/Project/Issue/ProjectIssue/ProjectIssue';
+import { KanbanIssue } from '../../../../../../components/Project/Issue/ProjectIssue/KanbanIssue';
 import { RootState } from '../../../../../../redux/reducer';
-import { selectColumnCards } from '../../../../../../redux/reducer/selector/card.selector';
-import { KanbanColumnRecord } from '../../../../../../typings/kanban-column.typing';
+import { selectColumnIssues } from '../../../../../../redux/reducer/selector/issue.selector';
 import {
-  ProjectIssueRecord,
+  IProjectIssue,
   RankProjectCardInKanbanInput,
 } from '../../../../../../typings/project-issue.typing';
 import { ColumnDataFetcher } from './column-data-fetcher';
 import { ColumnHeaderDropDown } from './ColumnHeaderDropDown/ColumnHeaderDropDown';
 import { ColumnIssueCreator } from './ColumnIssueCreator/ColumnIssueCreator';
+import { IColumn } from '../../../../../../typings/kanban-column.typing';
 
 interface InputProps {
-  column: KanbanColumnRecord;
+  column: IColumn;
   projectID: string;
   kanbanID: string;
   onIssueClick: Function;
@@ -37,7 +37,7 @@ interface InputProps {
 
 interface ReduxProps {
   actions: ActionCreatorsMapObject;
-  issues: List<ProjectIssueRecord> | null;
+  issues: IProjectIssue[] | null;
   rankProjectCardInKanbanRequest: Function;
 }
 
@@ -72,23 +72,21 @@ export class KanbanColumnComponent extends Component<ComponentProps, State> {
         <div className="KanbanColumn--main">
           <div className="KanbanColumn--header">
             <span className="KanbanColumn--header-name">
-              {this.props.column.get('name')}
+              {this.props.column.name}
             </span>
-            <ColumnHeaderDropDown columnID={this.props.column.get('id')} />
+            <ColumnHeaderDropDown columnID={this.props.column.id} />
           </div>
 
           <div className="KanbanColumn--content">
             <div>
               {this.props.issues &&
                 this.props
-                  .issues!.sortBy((issue: ProjectIssueRecord) =>
-                    issue.get('order')
-                  )
-                  .map((issue: ProjectIssueRecord, index: number) => {
+                  .issues!.sort((issue: IProjectIssue) => issue.order)
+                  .map((issue: IProjectIssue, index: number) => {
                     return (
-                      <ProjectIssue
-                        key={issue.get('id')}
-                        kanbanId={this.props.column.get('kanbanId')}
+                      <KanbanIssue
+                        key={issue.id}
+                        kanbanId={this.props.column.kanbanId}
                         onClick={this.props.onIssueClick}
                         rankProjectCardColumn={
                           this.props.rankProjectCardInKanbanRequest
@@ -104,7 +102,7 @@ export class KanbanColumnComponent extends Component<ComponentProps, State> {
           <ColumnIssueCreator
             projectID={this.props.projectID}
             kanbanID={this.props.kanbanID}
-            columnID={this.props.column.get('id')}
+            columnID={this.props.column.id}
           />
         </div>
       </div>
@@ -151,7 +149,7 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
 };
 
 const mapStateToProps = (state: RootState, props: InputProps) => {
-  const issues = selectColumnCards(state, props.column.get('id'));
+  const issues = selectColumnIssues(state, props.column.id);
 
   return {
     issues,

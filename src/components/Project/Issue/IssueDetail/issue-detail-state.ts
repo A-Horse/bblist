@@ -1,7 +1,7 @@
 import { IssueDetailComponent } from './IssueDetail';
 import {
-  ProjectIssueRecord,
-  ProjectIssueRecordFiled,
+  IProjectIssue,
+  ProjectIssueFiled,
 } from '../../../../typings/project-issue.typing';
 
 export class IssueDetailState {
@@ -9,18 +9,18 @@ export class IssueDetailState {
 
   constructor(
     private detailComponent: IssueDetailComponent & {
-      issue: ProjectIssueRecord;
+      issue: IProjectIssue;
       actions: any;
       issueID: string;
       toastManager: any;
     }
   ) {}
 
-  onFieldChange = (fieldName: ProjectIssueRecordFiled) => {
+  onFieldChange = (fieldName: ProjectIssueFiled) => {
     const issue = this.detailComponent.props.issue;
     const changedFields = this.changedFields;
     return (value: any): void => {
-      if (value !== issue!.get(fieldName)) {
+      if (value !== issue![fieldName]) {
         changedFields[fieldName] = true;
       }
       this.detailComponent.props.actions.changeIssueDirect(
@@ -32,7 +32,7 @@ export class IssueDetailState {
     };
   };
 
-  onFieldBlur = (fieldName: ProjectIssueRecordFiled) => {
+  onFieldBlur = (fieldName: ProjectIssueFiled) => {
     return (value: any): void => {
       this.updateIssue({
         [fieldName]: value,

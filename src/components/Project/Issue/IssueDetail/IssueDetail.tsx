@@ -16,7 +16,6 @@ import {
   updateProjectIssueDetailRequest,
 } from '../../../../redux/actions/project-issue-detail.action';
 import { RootState } from '../../../../redux/reducer';
-import { ProjectIssueRecord } from '../../../../typings/project-issue.typing';
 import { FormField } from '../../../../widget/FormField/FormField';
 import { Input } from '../../../../widget/Input/Input';
 import { AppTextArea } from '../../../../widget/TextArea/TextArea';
@@ -26,6 +25,7 @@ import { IssueDetailState } from './issue-detail-state';
 import { DetailSection } from './DetailSection/DetailSection';
 import { faCreditCard } from '@fortawesome/free-regular-svg-icons';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { IProjectIssue } from '../../../../typings/project-issue.typing';
 
 export interface InputProps {
   issueID: string;
@@ -34,7 +34,7 @@ export interface InputProps {
 }
 
 export interface ReduxProps {
-  issue?: ProjectIssueRecord;
+  issue?: IProjectIssue;
   actions: ActionCreatorsMapObject;
 }
 
@@ -82,7 +82,7 @@ export class IssueDetailComponent extends Component<
               className="IssueDetail--title"
               size="large"
               borderLess={true}
-              value={issue.get('title')}
+              value={issue.title}
               onChange={this.detailState.onFieldChange('title')}
               onBlur={this.detailState.onFieldBlur('title')}
             />
@@ -91,11 +91,11 @@ export class IssueDetailComponent extends Component<
 
         <div className="IssueDetail--content">
           <div className="IssueDetail--left">
-            {issue.get('deadline') && (
+            {issue.deadline && (
               <FormField name="到期日" className="IssueDetail--deadline-field">
                 <Deadline
-                  deadline={issue.get('deadline')!}
-                  done={!!issue.get('deadlineDone')}
+                  deadline={issue.deadline!}
+                  done={!!issue.deadlineDone}
                   onChange={(checked) =>
                     this.detailState.updateIssue(
                       {
@@ -114,7 +114,7 @@ export class IssueDetailComponent extends Component<
               <FormField name="描述：" type="major">
                 <AppTextArea
                   className="IssueDetail--content-textarea"
-                  value={issue.get('content') || ''}
+                  value={issue.content || ''}
                   onChange={this.detailState.onFieldChange('content')}
                   onBlur={this.detailState.onFieldBlur('content')}
                 />
@@ -149,7 +149,7 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
 
 const mapStateToProps = (state: RootState, props: InputProps) => {
   return {
-    issue: state.project.get('issueMap').get(props.issueID),
+    issue: state.project.issueMap[props.issueID],
   };
 };
 

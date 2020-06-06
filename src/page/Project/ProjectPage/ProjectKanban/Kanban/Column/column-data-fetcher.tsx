@@ -11,8 +11,8 @@ export class ColumnDataFetcher {
     });
     this.component.props.actions.getColumnCardsRequest(
       {
-        kanbanId: this.component.props.column.get('kanbanId'),
-        columnID: this.component.props.column.get('id'),
+        kanbanId: this.component.props.column.kanbanId,
+        columnID: this.component.props.column.id,
       },
       {
         requestDoneCallback: this.onFetchDone,

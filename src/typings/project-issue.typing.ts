@@ -1,20 +1,16 @@
-import { Record } from 'immutable';
-
-export interface ProjectIssue {
+export interface IProjectIssue {
   id: string;
   title: string;
   order: number;
   content?: string;
-  columnID: string;
+  columnId: string;
   deadline?: string;
   deadlineDone?: boolean;
   assigneeId?: string;
   creatorId?: string;
 }
 
-export type ProjectIssueRecord = Record<ProjectIssue>;
-
-export type ProjectIssueRecordFiled = keyof ProjectIssue;
+export type ProjectIssueFiled = keyof IProjectIssue;
 
 export interface CreateProjectIssueInput {
   projectID: string;
@@ -25,8 +21,8 @@ export interface CreateProjectIssueInput {
 }
 
 export interface RankProjectCardInKanbanInput {
-  selectCard: ProjectIssueRecord;
-  targetCard?: ProjectIssueRecord;
+  selectCard: IProjectIssue;
+  targetCard?: IProjectIssue;
   isBefore?: boolean;
   targetOrder?: number;
   targetColumnId: string;
