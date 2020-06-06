@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
 import { ofType } from 'redux-observable';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { map, mergeMap } from 'rxjs/operators';
 
 import { FSAction } from '../actions/actions';
@@ -18,15 +18,8 @@ import {
   CREATE_PROJECT_ISSUE_SUCCESS,
   createProjectCardFailure,
   createProjectCardSuccess,
-  RANK_PROJECT_CARD_IN_KANBAN_REQUEST,
-  rankProjectCardInKanbanFailure,
-  rankProjectCardInKanbanSuccess,
 } from '../actions/project-issue.action';
-import { RootState } from '../reducer';
-import {
-  IProjectIssue,
-  RankProjectCardInKanbanInput,
-} from '../../typings/project-issue.typing';
+import { IProjectIssue } from '../../typings/project-issue.typing';
 import { makeApiUrl } from '../../utils/api';
 
 export const CREATE_PROJECT_ISSUE_REQUEST_FN = (

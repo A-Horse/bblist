@@ -1,7 +1,4 @@
-import { List } from 'immutable';
-
 import { RootState } from '../index';
-import { IColumn } from '../../../typings/kanban-column.typing';
 import { IProjectIssue } from '../../../typings/project-issue.typing';
 
 export function selectColumnIssues(

@@ -14,14 +14,14 @@ import { getProjectIssuesRequest } from '../../../../redux/actions/project-issue
 import { FlatIssue } from '../../../../components/Project/Issue/FlatIssue/FlatIssue';
 import { IssueDetail } from '../../../../components/Project/Issue/IssueDetail/IssueDetail';
 import { RootState } from '../../../../redux/reducer';
-import { ProjectRecord } from '../../../../typings/project.typing';
 import { IProjectIssue } from '../../../../typings/project-issue.typing';
+import { IProject } from '../../../../typings/project.typing';
 
 interface InputProps {}
 
 interface ReduxProps {
   actions: ActionCreatorsMapObject;
-  project: ProjectRecord;
+  project: IProject;
   issues: IProjectIssue[];
   pageNumber: number;
   pageSize: number;
@@ -50,7 +50,7 @@ export class IssuesComponent extends Component<
 
   onFlatIssueClick = (issue: IProjectIssue) => {
     this.props.history.push(
-      `/project/${this.props.project.get('id')}/issues/${issue.id}`
+      `/project/${this.props.project.id}/issues/${issue.id}`
     );
   };
 
@@ -107,7 +107,7 @@ const mapStateToProps = (state: RootState, props: any) => {
   let loading = true;
 
   return {
-    project: state.project.projectMap.get(projectId) as ProjectRecord,
+    project: state.project.projectMap[projectId],
     loading,
     pageNumber,
     pageSize,

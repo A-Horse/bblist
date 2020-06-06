@@ -7,7 +7,7 @@ export function selectKanbanOptions(
   state: RootState,
   projectId: string
 ): SelectOption[] {
-  const project = state.project.projectMap.get(projectId);
+  const project = state.project.projectMap[projectId];
   if (!project) {
     return [];
   }
@@ -20,13 +20,12 @@ export function selectKanbanOptions(
 }
 
 export function selectKanbans(state: RootState, projectId: string): IKanban[] {
-  const project = state.project.projectMap.get(projectId);
-  if (!project || !project.get('kanbanIds')) {
+  const project = state.project.projectMap[projectId];
+  if (!project || !project.kanbanIds) {
     return [];
   }
   return project
-    .get('kanbanIds')!
-    .map((kanbanId: string) => {
+    .kanbanIds!.map((kanbanId: string) => {
       const kanban = state.project.kanbanMap[kanbanId];
       if (!kanban) {
         return kanban;

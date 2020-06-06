@@ -22,10 +22,7 @@ export function ProjectKanban() {
 
   return (
     <div className="ProjectKanban">
-      <KanbanHeaderBar
-        projectID={project!.get('id')}
-        selectedKanbanId={kanbanId}
-      />
+      <KanbanHeaderBar projectID={project!.id} selectedKanbanId={kanbanId} />
 
       <div className="ProjectKanban--kanban-container">
         <Kanban kanbanId={kanbanId} projectId={projectId} />

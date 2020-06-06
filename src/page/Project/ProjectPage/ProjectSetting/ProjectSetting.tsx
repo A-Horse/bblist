@@ -22,8 +22,8 @@ export function ProjectSetting() {
   const dispatch = useDispatch();
   const match = useRouteMatch<{ projectId: string }>();
   const projectID = match.params.projectId;
-  const project = useSelector((state: RootState) =>
-    state.project.projectMap.get(projectID)
+  const project = useSelector(
+    (state: RootState) => state.project.projectMap[projectID]
   );
 
   useEffect(() => {
@@ -31,13 +31,12 @@ export function ProjectSetting() {
       projectId: match.params.projectId,
     });
     dispatch(action);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [dispatch, match.params.projectId]);
 
   const onCoverUpload = (coverBase64: string) => {
     const action = uploadProjectCoverRequest(
       {
-        projectId: project!.get('id'),
+        projectId: project!.id,
         coverBase64,
       },
       {
@@ -73,7 +72,7 @@ export function ProjectSetting() {
             display: 'block',
           }}
           modalTitle="裁剪项目封面"
-          source={objectFileUrl(project.get('coverUri'))}
+          source={objectFileUrl(project.coverUri)}
           upload={onCoverUpload}
         >
           上传封面
@@ -83,7 +82,7 @@ export function ProjectSetting() {
       <SectionField name="项目名称" transform={true}>
         <Input
           className="ProjectSetting--project-name-input"
-          defaultValue={project.get('name')}
+          defaultValue={project.name}
           onBlur={(name) =>
             dispatch(
               updateProjectsRequest({

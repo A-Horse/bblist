@@ -60,9 +60,7 @@ export function IssueDetailBread(props: InputProps) {
     <div className="IssueDetailBread">
       <IssueType />
 
-      <div className="IssueDetailBread--project-name">
-        {project.get('name')}
-      </div>
+      <div className="IssueDetailBread--project-name">{project.name}</div>
 
       <AppIcon className="IssueDetailBread--right-icon" icon={faChevronRight} />
 

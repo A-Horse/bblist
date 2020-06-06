@@ -14,21 +14,17 @@ import { AppIcon } from '../../../../../widget/Icon';
 import { SectionField } from '../../../../../widget/SectionField/SectionField';
 import { RootState } from '../../../../../redux/reducer';
 import { IKanban } from '../../../../../typings/kanban.typing';
-import { ProjectRecord } from '../../../../../typings/project.typing';
 import { KanbanSettingModal } from '../../../KanbanSettingModal/KanbanSettingModal';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import { KanbanCreator } from '../../../KanbanCreator/KanbanCreator';
+import { IProject } from '../../../../../typings/project.typing';
 
-interface InputProps {}
-
-interface ComponentProps
-  extends RouteComponentProps<{ projectId: string }>,
-    InputProps {}
+interface ComponentProps extends RouteComponentProps<{ projectId: string }> {}
 
 class KanbanSettingPanelComponent extends Component<
   {
     actions: ActionCreatorsMapObject;
-    project?: ProjectRecord;
+    project?: IProject;
     kanbans: IKanban[];
   } & ComponentProps,
   {
@@ -94,7 +90,7 @@ class KanbanSettingPanelComponent extends Component<
         name="看板"
         className="KanbanSettingPanel"
         nameRight={
-          <KanbanCreator projectId={this.props.project!.get('id')}>
+          <KanbanCreator projectId={this.props.project!.id}>
             {(setVisible: Function) => (
               <AppButton
                 size="sm"
@@ -129,11 +125,11 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
 
 const mapStateToProps = (state: RootState, props: ComponentProps) => {
   const projectId = props.match.params.projectId;
-  const project = state.project.projectMap.get(projectId) as ProjectRecord;
+  const project = state.project.projectMap[projectId];
 
   return {
     project,
-    kanbans: (project.get('kanbanIds') || [])
+    kanbans: (project.kanbanIds || [])
       .map((kanbanId: string) => {
         return state.project.kanbanMap[kanbanId] as IKanban;
       })

@@ -2,17 +2,17 @@ import './ProjectInfoSection.scss';
 
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { ProjectRecord } from '../../../../../typings/project.typing';
 import { RootState } from '../../../../../redux/reducer';
 import { ObjectImage } from '../../../../../components/ObjectImage';
+import { IProject } from '../../../../../typings/project.typing';
 
 interface InputProps {
   projectID: string;
 }
 
 export function ProjectInfoSection({ projectID }: InputProps) {
-  const project: ProjectRecord | undefined = useSelector((state: RootState) =>
-    state.project.projectMap.get(projectID)
+  const project: IProject | undefined = useSelector(
+    (state: RootState) => state.project.projectMap[projectID]
   );
 
   if (!project) {
@@ -21,11 +21,9 @@ export function ProjectInfoSection({ projectID }: InputProps) {
 
   return (
     <div className="ProjectInfoSection">
-      <ObjectImage uri={project.get('coverUri')} alt="project-cover" />
+      <ObjectImage uri={project.coverUri} alt="project-cover" />
 
-      <div className="ProjectInfoSection--project-name">
-        {project.get('name')}
-      </div>
+      <div className="ProjectInfoSection--project-name">{project.name}</div>
     </div>
   );
 }

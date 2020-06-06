@@ -7,19 +7,19 @@ import { match, Redirect, Route, Switch, withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { getProjectDetailRequest } from '../../../redux/actions/project.action';
 import { RootState } from '../../../redux/reducer';
-import { ProjectRecord } from '../../../typings/project.typing';
 import { Issues } from './ProjectIssues/Issues';
 import { ProjectEpics } from './ProjectEpics/ProjectEpics';
 import { ProjectKanban } from './ProjectKanban/ProjectKanban';
 import { ProjectSetting } from './ProjectSetting/ProjectSetting';
 import { ProjectSideBar } from './ProjectSideBar/ProjectSideBar';
 import { ProjectDashboard } from './ProjectDashboard/ProjectDashboard';
+import { IProject } from '../../../typings/project.typing';
 
 interface Props {
   actions: {
     getProjectDetailRequest: (projectId: string) => void;
   };
-  project: ProjectRecord;
+  project: IProject;
   history: History;
   location: Location;
   match: match<{
@@ -89,9 +89,8 @@ const mapDispatchToProps = (dispatch: any) => {
 
 const mapStateToProps = (state: RootState, props: Props) => {
   const { projectId } = props.match.params;
-  console.log('state', state);
   return {
-    project: state.project.projectMap.get(projectId) as ProjectRecord,
+    project: state.project.projectMap[projectId],
   };
 };
 

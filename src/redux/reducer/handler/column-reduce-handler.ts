@@ -1,7 +1,6 @@
-import { KanbanMap, ProjectState } from '../project.reducer';
+import { ProjectState } from '../project.reducer';
 import { AxiosSuccessAction } from '../../actions/actions';
 import { queryKanbanColumns } from '../../actions/column.action';
-import { IKanban } from '../../../typings/kanban.typing';
 import { normalize } from 'normalizr';
 import { KanbanColumnEntityList } from '../../schema';
 import { IColumn } from '../../../typings/kanban-column.typing';

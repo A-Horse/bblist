@@ -1,6 +1,4 @@
 import './KanbanColumn.scss';
-
-import { List } from 'immutable';
 import isEqual from 'lodash/fp/isEqual';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
