@@ -89,7 +89,7 @@ class IssueCreatorModalComponent extends Component<{
   private createProjectCard = (values: FormValues) => {
     this.props.actions.createProjectCardRequest(
       {
-        projectID: this.props.projectID,
+        projectId: this.props.projectID,
         ...values,
       },
       {

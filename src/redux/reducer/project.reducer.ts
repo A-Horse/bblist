@@ -47,7 +47,7 @@ export function project(
       const normalizedAllProject = normalize(action.payload, ProjectEntityList);
       return {
         ...state,
-        projectMap: fromJS(normalizedAllProject.entities.Project || {}),
+        projectMap: normalizedAllProject.entities.Project || {},
       };
     }
 

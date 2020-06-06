@@ -9,15 +9,15 @@ import { createProjectCardRequest } from '../../../../../../../redux/actions/pro
 import { useToasts } from 'react-toast-notifications';
 
 interface InputProps {
-  columnID: string;
-  kanbanID: string;
-  projectID: string;
+  columnId: string;
+  kanbanId: string;
+  projectId: string;
 }
 
 export function ColumnIssueCreator({
-  projectID,
-  kanbanID,
-  columnID,
+  projectId,
+  kanbanId,
+  columnId,
 }: InputProps) {
   const dispatch = useDispatch();
   const [title, setTitle] = useState<string>('');
@@ -34,25 +34,12 @@ export function ColumnIssueCreator({
       return;
     }
     dispatch(
-      createProjectCardRequest(
-        {
-          projectID,
-          kanbanID,
-          columnID,
-          title: title,
-        },
-        {
-          callback: (error) => {
-            if (error) {
-              return addToast('创建失败', {
-                appearance: 'error',
-                autoDismiss: true,
-              });
-            }
-            clearState();
-          },
-        }
-      )
+      createProjectCardRequest({
+        projectId: projectId,
+        kanbanId: kanbanId,
+        columnId: columnId,
+        title: title,
+      })
     );
   };
 

@@ -89,33 +89,18 @@ export function getProjectIssuesFailure(error: any): FSAction {
   };
 }
 
-export const CREATE_PROJECT_ISSUE_REQUEST = 'CREATE_PROJECT_ISSUE_REQUEST';
-export const CREATE_PROJECT_ISSUE_SUCCESS = 'CREATE_PROJECT_ISSUE_SUCCESS';
-export const CREATE_PROJECT_ISSUE_FAILURE = 'CREATE_PROJECT_ISSUE_FAILURE';
-
 export function createProjectCardRequest(
-  createKanbanCardInput: CreateProjectIssueInput,
-  meta: { callback? } = {}
+  createKanbanCardInput: CreateProjectIssueInput
 ) {
   return {
-    type: CREATE_PROJECT_ISSUE_REQUEST,
-    payload: createKanbanCardInput,
-    meta,
-  };
-}
-
-export function createProjectCardSuccess(id: string): FSAction {
-  return {
-    type: CREATE_PROJECT_ISSUE_SUCCESS,
-    payload: id,
-  };
-}
-
-export function createProjectCardFailure(error): FSAction {
-  return {
-    type: CREATE_PROJECT_ISSUE_FAILURE,
-    payload: error,
-    error: true,
+    type: 'CREATE_PROJECT_ISSUE',
+    payload: {
+      request: {
+        url: '/issue',
+        data: createKanbanCardInput,
+        method: 'POST',
+      },
+    },
   };
 }
 

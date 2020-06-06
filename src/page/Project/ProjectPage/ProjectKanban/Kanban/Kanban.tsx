@@ -28,77 +28,32 @@ interface InputProps {
 }
 
 export function Kanban({ kanbanId, projectId }: InputProps) {
-  const [settingModalVisible, setSettingModalVisible] = useState(false);
   const history = useHistory();
   const match = useRouteMatch();
-  const dispatch = useDispatch();
 
   const onIssueClick = (issueId: string) => {
     history.push(match.url + `?issueId=${issueId}`);
   };
 
-  const project = useSelector((state: RootState) =>
-    selectProject(state, projectId)
-  );
   const columns = useSelector((state: RootState) =>
     selectKanbanColumns(state, kanbanId)
   );
 
-  useEffect(() => {
-    dispatch(
-      getProjectKanbanDetailRequest({
-        kanbanId: kanbanId,
-      })
-    );
-    dispatch(queryKanbanColumns(kanbanId));
-  }, [dispatch, kanbanId]);
-
   return (
     <div className="Kanban">
-      <DndProvider backend={HTML5Backend}>
-        <Route
-          path="/project/:projectID/kanban/:kanbanID"
-          render={(props: RouteComponentProps<any>) => {
-            const query = parseQueryParams(props.location.search);
-            if (!query.issueId) {
-              return null;
-            }
-            return (
-              <IssueDetailModal
-                kanbanID={props.match.params.kanbanID}
-                projectID={props.match.params.projectID}
-                issueID={query.issueId}
-              />
-            );
-          }}
-        />
-
-        <KanbanSettingModal
-          kanbanId={kanbanId}
-          toggle={settingModalVisible}
-          onClose={() => setSettingModalVisible(false)}
-        />
-
-        {!columns.length && (
-          <NoColumnGuide openSetting={() => setSettingModalVisible(true)} />
-        )}
-
-        {!!columns.length && (
-          <div className="Kanban-ColumnContainer">
-            {columns
-              .sort((a: IColumn, b: IColumn) => a.order - b.order)
-              .map((column: IColumn) => (
-                <KanbanColumn
-                  key={column.id}
-                  column={column}
-                  kanbanID={kanbanId}
-                  projectID={projectId}
-                  onIssueClick={onIssueClick}
-                />
-              ))}
-          </div>
-        )}
-      </DndProvider>
+      <div className="Kanban-ColumnContainer">
+        {columns
+          .sort((a: IColumn, b: IColumn) => a.order - b.order)
+          .map((column: IColumn) => (
+            <KanbanColumn
+              key={column.id}
+              column={column}
+              kanbanId={kanbanId}
+              projectId={projectId}
+              onIssueClick={onIssueClick}
+            />
+          ))}
+      </div>
     </div>
   );
 }

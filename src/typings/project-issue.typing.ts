@@ -13,9 +13,9 @@ export interface IProjectIssue {
 export type ProjectIssueFiled = keyof IProjectIssue;
 
 export interface CreateProjectIssueInput {
-  projectID: string;
-  kanbanID?: string;
-  columnID?: string;
+  projectId: string;
+  kanbanId?: string;
+  columnId?: string;
   title: string;
   content?: string;
 }

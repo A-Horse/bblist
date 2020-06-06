@@ -1,56 +1,49 @@
 import axios, { AxiosResponse } from 'axios';
 import { ofType } from 'redux-observable';
 import { Observable } from 'rxjs';
-import { map, mergeMap } from 'rxjs/operators';
+import { mergeMap } from 'rxjs/operators';
 
 import { FSAction } from '../actions/actions';
 import {
   GET_PROJECT_ISSUE_DETAIL_REQUEST,
   getProjectIssueDetailFailure,
-  getProjectIssueDetailRequest,
   getProjectIssueDetailSuccess,
   UPDATE_PROJECT_ISSUE_DETAIL_REQUEST,
   updateProjectIssueDetailFailure,
   updateProjectIssueDetailSuccess,
 } from '../actions/project-issue-detail.action';
-import {
-  CREATE_PROJECT_ISSUE_REQUEST,
-  CREATE_PROJECT_ISSUE_SUCCESS,
-  createProjectCardFailure,
-  createProjectCardSuccess,
-} from '../actions/project-issue.action';
 import { IProjectIssue } from '../../typings/project-issue.typing';
 import { makeApiUrl } from '../../utils/api';
-
-export const CREATE_PROJECT_ISSUE_REQUEST_FN = (
-  action$: Observable<FSAction>
-) =>
-  action$.pipe(
-    ofType(CREATE_PROJECT_ISSUE_REQUEST),
-    mergeMap((action: FSAction) => {
-      return axios
-        .post(
-          makeApiUrl(`/project/${action.payload.projectId}/issue`),
-          action.payload
-        )
-        .then((result: AxiosResponse<string>) => {
-          action.meta.callback && action.meta.callback(null, result.data);
-          return createProjectCardSuccess(result.data);
-        })
-        .catch((error) => {
-          action.meta.callback && action.meta.callback(error);
-          return createProjectCardFailure(error);
-        });
-    })
-  );
-
-export const CREATE_PROJECT_ISSUE_SUCCESS_FN = (
-  action$: Observable<FSAction>
-) =>
-  action$.pipe(
-    ofType(CREATE_PROJECT_ISSUE_SUCCESS),
-    map((action) => getProjectIssueDetailRequest({ issueId: action.payload }))
-  );
+//
+// export const CREATE_PROJECT_ISSUE_REQUEST_FN = (
+//   action$: Observable<FSAction>
+// ) =>
+//   action$.pipe(
+//     ofType(CREATE_PROJECT_ISSUE_REQUEST),
+//     mergeMap((action: FSAction) => {
+//       return axios
+//         .post(
+//           makeApiUrl(`/project/${action.payload.projectId}/issue`),
+//           action.payload
+//         )
+//         .then((result: AxiosResponse<string>) => {
+//           action.meta.callback && action.meta.callback(null, result.data);
+//           return createProjectCardSuccess(result.data);
+//         })
+//         .catch((error) => {
+//           action.meta.callback && action.meta.callback(error);
+//           return createProjectCardFailure(error);
+//         });
+//     })
+//   );
+//
+// export const CREATE_PROJECT_ISSUE_SUCCESS_FN = (
+//   action$: Observable<FSAction>
+// ) =>
+//   action$.pipe(
+//     ofType(CREATE_PROJECT_ISSUE_SUCCESS),
+//     map((action) => getProjectIssueDetailRequest({ issueId: action.payload }))
+//   );
 
 export const UPDATE_PROJECT_ISSUE_DETAIL_REQUEST_FN = (
   action$: Observable<FSAction>

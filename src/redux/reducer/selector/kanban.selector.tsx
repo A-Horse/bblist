@@ -1,5 +1,8 @@
 import { RootState } from '../index';
-import { IColumn } from '../../../typings/kanban-column.typing';
+import {
+  IColumn,
+  IColumnNormalized,
+} from '../../../typings/kanban-column.typing';
 import { IKanban } from '../../../typings/kanban.typing';
 import { SelectOption } from '../../../typings/select.typing';
 
@@ -40,14 +43,16 @@ export function selectKanbans(state: RootState, projectId: string): IKanban[] {
 
 export function selectKanbanColumns(
   state: RootState,
-  kanbanID: string
+  kanbanId: string
 ): IColumn[] {
-  const kanban = state.project.kanbanMap[kanbanID];
-
-  if (!kanban || !kanban.columnIds) {
-    return [];
-  }
-  return kanban.columnIds
-    .map((id) => state.project.columnMap[id])
-    .filter((v) => !!v);
+  return Object.values(state.project.columnMap)
+    .filter((column) => column.kanbanId === kanbanId)
+    .map((column) => {
+      return {
+        ...column,
+        issues: ((column as IColumnNormalized).issues || []).map(
+          (id) => state.project.issueMap[id]
+        ),
+      };
+    });
 }
