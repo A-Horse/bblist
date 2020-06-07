@@ -8,12 +8,16 @@ export const GET_PROJECT_ISSUE_DETAIL_SUCCESS =
 export const GET_PROJECT_ISSUE_DETAIL_FAILURE =
   'GET_PROJECT_ISSUE_DETAIL_FAILURE';
 
-export function getProjectIssueDetailRequest(payload: {
+export function getProjectIssueDetailRequest(input: {
   issueId: string;
 }): FSAction {
   return {
-    type: GET_PROJECT_ISSUE_DETAIL_REQUEST,
-    payload,
+    type: 'GET_PROJECT_ISSUE_DETAIL',
+    payload: {
+      request: {
+        url: `/issue/${input.issueId}`,
+      },
+    },
   };
 }
 

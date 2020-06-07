@@ -7,7 +7,7 @@ import { IColumn } from '../../../typings/kanban-column.typing';
 import { reduceNormalizeMap } from '../util/util';
 import { IProjectIssue } from '../../../typings/project-issue.typing';
 
-export function reduceKanbanColumns(
+export function reduceKanbanColumnsSuccess(
   state: ProjectState,
   action: AxiosSuccessAction<ReturnType<typeof queryKanbanColumns>>
 ): ProjectState {

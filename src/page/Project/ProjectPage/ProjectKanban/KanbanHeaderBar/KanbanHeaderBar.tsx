@@ -7,27 +7,39 @@ import { AppButton } from '../../../../../widget/Button';
 import { RootState } from '../../../../../redux/reducer';
 import { IKanban } from '../../../../../typings/kanban.typing';
 import { AppIcon } from '../../../../../widget/Icon';
-import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+import { faCog, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import { IssueCreatorModal } from '../../../../../components/creators/TaskCreator/IssueCreatorModal';
 
 interface InputProps {
   selectedKanbanId: string;
   projectID: string;
+  onOpenSetting: () => void;
 }
 
-export function KanbanHeaderBar({ projectID, selectedKanbanId }: InputProps) {
+export function KanbanHeaderBar({
+  projectID,
+  selectedKanbanId,
+  onOpenSetting,
+}: InputProps) {
   const kanban: IKanban | undefined = useSelector(
     (state: RootState) => state.project.kanbanMap[selectedKanbanId]
   );
 
-  const [selectKanbanToggle, setSelectKanbanToggle] = useState(false);
   const [issueCreatorToggle, setIssueCreatorToggle] = useState(false);
+
+  if (!kanban) {
+    return null;
+  }
 
   return (
     <div className="KanbanHeaderBar">
-      {kanban && (
-        <span className="KanbanHeaderBar--kanban-name">{kanban.name}</span>
-      )}
+      <div className="KanbanHeaderBar--kanban-name">
+        <span>{kanban.name}</span>
+
+        <AppButton onClick={onOpenSetting}>
+          <AppIcon icon={faCog} />
+        </AppButton>
+      </div>
 
       <div className="KanbanHeaderBar--operation">
         <AppButton

@@ -3,7 +3,7 @@ import { FSAction } from '../../actions/actions';
 import { normalize } from 'normalizr';
 import { ProjectEntity } from '../../schema';
 
-export function reduceProjectDetail(
+export function reduceProjectDetailSuccess(
   state: ProjectState,
   action: FSAction
 ): ProjectState {

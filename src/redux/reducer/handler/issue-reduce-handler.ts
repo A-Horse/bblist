@@ -1,5 +1,6 @@
 import { ProjectState } from '../project.reducer';
-import { FSAction } from '../../actions/actions';
+import { AxiosSuccessAction, FSAction } from '../../actions/actions';
+import { getProjectIssueDetailRequest } from '../../actions/project-issue-detail.action';
 
 export function reduceUpdateProjectIssue(
   state: ProjectState,
@@ -13,6 +14,22 @@ export function reduceUpdateProjectIssue(
       [issueId]: {
         ...state.projectMap[issueId],
         ...action.payload,
+      },
+    },
+  };
+}
+
+export function reduceIssueDetailSuccess(
+  state: ProjectState,
+  action: AxiosSuccessAction<ReturnType<typeof getProjectIssueDetailRequest>>
+): ProjectState {
+  return {
+    ...state,
+    issueMap: {
+      ...state.issueMap,
+      [action.payload.data.id]: {
+        ...state.issueMap[action.payload.data.id],
+        ...action.payload.data,
       },
     },
   };

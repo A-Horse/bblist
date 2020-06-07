@@ -24,7 +24,7 @@ export class IssueDetailState {
         changedFields[fieldName] = true;
       }
       this.detailComponent.props.actions.changeIssueDirect(
-        this.detailComponent.props.issueID,
+        this.detailComponent.props.issueId,
         {
           [fieldName]: value,
         }
@@ -66,7 +66,7 @@ export class IssueDetailState {
     }
     this.detailComponent.props.actions.updateProjectIssueDetailRequest(
       {
-        issueId: this.detailComponent.props.issueID,
+        issueId: this.detailComponent.props.issueId,
         partialIssue: changedPartialIssue,
       },
       {

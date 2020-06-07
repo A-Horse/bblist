@@ -76,8 +76,8 @@ export class IssuesComponent extends Component<
           ) => (
             <div className={`Issues--detail-container`}>
               <IssueDetail
-                issueID={props.match.params.issueId}
-                projectID={props.match.params.projectID}
+                issueId={props.match.params.issueId}
+                projectId={props.match.params.projectID}
               />
             </div>
           )}

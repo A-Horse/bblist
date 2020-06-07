@@ -8,7 +8,6 @@ import { KanbanHeaderBar } from './KanbanHeaderBar/KanbanHeaderBar';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectProject } from '../../../../redux/reducer/selector/project.selector';
 import { NoColumnGuide } from './Kanban/NoColumnGuide';
-import { DndProvider } from 'react-dnd';
 import { selectKanbanColumns } from '../../../../redux/reducer/selector/kanban.selector';
 import { KanbanSettingModal } from '../../KanbanSettingModal/KanbanSettingModal';
 import { getProjectKanbanDetailRequest } from '../../../../redux/actions/kanban.action';
@@ -46,7 +45,11 @@ export function ProjectKanban() {
 
   return (
     <div className="ProjectKanban">
-      <KanbanHeaderBar projectID={project!.id} selectedKanbanId={kanbanId} />
+      <KanbanHeaderBar
+        projectID={project!.id}
+        selectedKanbanId={kanbanId}
+        onOpenSetting={() => setSettingModalVisible(true)}
+      />
 
       <Route
         path="/project/:projectId/kanban/:kanbanId"
@@ -57,9 +60,9 @@ export function ProjectKanban() {
           }
           return (
             <IssueDetailModal
-              kanbanID={props.match.params.kanbanId}
-              projectID={props.match.params.projectId}
-              issueID={query.selectIssue}
+              kanbanId={props.match.params.kanbanId}
+              projectId={props.match.params.projectId}
+              issueId={query.selectIssue}
             />
           );
         }}

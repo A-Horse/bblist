@@ -5,7 +5,7 @@ import { ProjectState } from '../project.reducer';
 import { AxiosSuccessAction, FSAction } from '../../actions/actions';
 import { reduceNormalizeMap } from '../util/util';
 
-export function reduceKanbanDetail(
+export function reduceKanbanDetailSuccess(
   state: ProjectState,
   action: AxiosSuccessAction
 ): ProjectState {

@@ -3,7 +3,6 @@ import React from 'react';
 
 import { KanbanIssue } from '../../../../../../components/Project/Issue/ProjectIssue/KanbanIssue';
 import { IProjectIssue } from '../../../../../../typings/project-issue.typing';
-import { ColumnHeaderDropDown } from './ColumnHeaderDropDown/ColumnHeaderDropDown';
 import { ColumnIssueCreator } from './ColumnIssueCreator/ColumnIssueCreator';
 import { IColumn } from '../../../../../../typings/kanban-column.typing';
 import { useHistory } from 'react-router-dom';
@@ -28,7 +27,6 @@ export function KanbanColumn({ column, projectId, kanbanId }: InputProps) {
       <div className="KanbanColumn--main">
         <div className="KanbanColumn--header">
           <span className="KanbanColumn--header-name">{column.name}</span>
-          <ColumnHeaderDropDown columnID={column.id} />
         </div>
 
         <div className="KanbanColumn--content">

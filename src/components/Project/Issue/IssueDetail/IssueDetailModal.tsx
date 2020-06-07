@@ -1,52 +1,53 @@
 import './IssueDetailModal.scss';
 
-import React, { Component } from 'react';
-import { RouteComponentProps, withRouter } from 'react-router-dom';
-
+import React, { useEffect } from 'react';
 import { AppModal } from '../../../../widget/Modal/AppModal';
 import { ModalHeader } from '../../../../widget/Modal/ModalHeader/ModalHeader';
 import { IssueDetail } from './IssueDetail';
 import { IssueDetailBread } from './IssueDetailBread/IssueDetailBread';
+import { useHistory, useRouteMatch } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { getProjectIssueDetailRequest } from '../../../../redux/actions/project-issue-detail.action';
 
 interface InputProps {
-  issueID: string;
-  projectID: string;
-  kanbanID: string;
+  issueId: string;
+  projectId: string;
+  kanbanId: string;
 }
 
-type Props = InputProps & RouteComponentProps;
+export function IssueDetailModal({ issueId, projectId, kanbanId }: InputProps) {
+  const history = useHistory();
+  const match = useRouteMatch();
 
-class IssueDetailModalComponent extends Component<Props> {
-  closeModal = () => {
-    this.props.history.push(this.props.match.url);
+  const closeModal = () => {
+    history.push(match.url);
   };
+  const dispatch = useDispatch();
 
-  render() {
-    return (
-      <AppModal
-        className="IssueDetailModal"
-        isOpen={true}
-        shouldCloseOnOverlayClick={false}
-        onRequestClose={this.closeModal}
-      >
-        <ModalHeader onClose={this.closeModal}>
-          <IssueDetailBread
-            kanbanID={this.props.kanbanID}
-            projectID={this.props.projectID}
-            issueID={this.props.issueID}
-          />
-        </ModalHeader>
+  useEffect(() => {
+    dispatch(getProjectIssueDetailRequest({ issueId: issueId }));
+  }, [dispatch, issueId]);
 
-        <IssueDetail
-          issueID={this.props.issueID}
-          kanbanID={this.props.kanbanID}
-          projectID={this.props.projectID}
+  return (
+    <AppModal
+      className="IssueDetailModal"
+      isOpen={true}
+      shouldCloseOnOverlayClick={false}
+      onRequestClose={closeModal}
+    >
+      <ModalHeader onClose={closeModal}>
+        <IssueDetailBread
+          kanbanID={kanbanId}
+          projectID={projectId}
+          issueID={issueId}
         />
-      </AppModal>
-    );
-  }
-}
+      </ModalHeader>
 
-export const IssueDetailModal = withRouter<Props, any>(
-  IssueDetailModalComponent
-);
+      <IssueDetail
+        issueId={issueId}
+        kanbanId={kanbanId}
+        projectId={projectId}
+      />
+    </AppModal>
+  );
+}

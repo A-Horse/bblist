@@ -71,7 +71,7 @@ class KanbanSettingModalComponent extends Component<
         ) : (
           <div>
             <ModalHeader
-              title={this.props.kanban!.name + ' 配置'}
+              title={'看板　' + this.props.kanban!.name + ' 配置'}
               onClose={this.props.onClose}
             />
 
@@ -95,19 +95,13 @@ class KanbanSettingModalComponent extends Component<
 
 const mapStateToProps = (state: RootState, props: InputRouterProps) => {
   const projectId = props.match.params.projectId;
-
   const project = state.project.projectMap[projectId];
   const kanban = state.project.kanbanMap[props.kanbanId];
-
-  let columns: IColumn[] = [];
-  if (!!kanban && !!kanban.columnIds) {
-    columns = selectKanbanColumns(state, kanban.id);
-  }
 
   return {
     project,
     kanban,
-    columns,
+    columns: selectKanbanColumns(state, props.kanbanId),
   };
 };
 

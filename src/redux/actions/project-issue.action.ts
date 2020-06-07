@@ -89,7 +89,7 @@ export function getProjectIssuesFailure(error: any): FSAction {
   };
 }
 
-export function createProjectCardRequest(
+export function createIssueRequest(
   createKanbanCardInput: CreateProjectIssueInput
 ) {
   return {

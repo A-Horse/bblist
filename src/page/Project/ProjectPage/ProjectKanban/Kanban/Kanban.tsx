@@ -1,25 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { DndProvider } from 'react-dnd';
-import HTML5Backend from 'react-dnd-html5-backend';
-import {
-  Route,
-  RouteComponentProps,
-  useHistory,
-  useRouteMatch,
-} from 'react-router-dom';
-import { IssueDetailModal } from '../../../../../components/Project/Issue/IssueDetail/IssueDetailModal';
+import React from 'react';
+import { useHistory, useRouteMatch } from 'react-router-dom';
 import { RootState } from '../../../../../redux/reducer';
 import { selectKanbanColumns } from '../../../../../redux/reducer/selector/kanban.selector';
-import { parseQueryParams } from '../../../../../utils/url.util';
 import { KanbanColumn } from './Column/KanbanColumn';
-import { NoColumnGuide } from './NoColumnGuide';
-import { KanbanSettingModal } from '../../../KanbanSettingModal/KanbanSettingModal';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectProject } from '../../../../../redux/reducer/selector/project.selector';
-import { getProjectKanbanDetailRequest } from '../../../../../redux/actions/kanban.action';
+import { useSelector } from 'react-redux';
 
 import './Kanban.scss';
-import { queryKanbanColumns } from '../../../../../redux/actions/column.action';
 import { IColumn } from '../../../../../typings/kanban-column.typing';
 
 interface InputProps {

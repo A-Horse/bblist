@@ -28,9 +28,9 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { IProjectIssue } from '../../../../typings/project-issue.typing';
 
 export interface InputProps {
-  issueID: string;
-  kanbanID?: string;
-  projectID: string;
+  issueId: string;
+  kanbanId?: string;
+  projectId: string;
 }
 
 export interface ReduxProps {
@@ -54,20 +54,20 @@ export class IssueDetailComponent extends Component<
     super(props);
     this.detailState = new IssueDetailState(this as any);
   }
+  //
+  // componentDidMount() {
+  //   this.props.actions.getProjectIssueDetailRequest({
+  //     issueId: this.props.issueId,
+  //   });
+  // }
 
-  componentDidMount() {
-    this.props.actions.getProjectIssueDetailRequest({
-      issueId: this.props.issueID,
-    });
-  }
-
-  componentDidUpdate(prevProps: ComponentProps) {
-    if (this.props.issueID !== prevProps.issueID) {
-      this.props.actions.getProjectIssueDetailRequest({
-        issueId: this.props.issueID,
-      });
-    }
-  }
+  // componentDidUpdate(prevProps: ComponentProps) {
+  //   if (this.props.issueID !== prevProps.issueID) {
+  //     this.props.actions.getProjectIssueDetailRequest({
+  //       issueId: this.props.issueID,
+  //     });
+  //   }
+  // }
 
   render() {
     const { issue } = this.props;
@@ -123,8 +123,8 @@ export class IssueDetailComponent extends Component<
           </div>
 
           <IssueDetailRight
-            projectID={this.props.projectID}
-            kanbanID={this.props.kanbanID}
+            projectID={this.props.projectId}
+            kanbanID={this.props.kanbanId}
             issue={issue}
             updateIssue={this.detailState.updateIssue}
           />
@@ -149,7 +149,7 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
 
 const mapStateToProps = (state: RootState, props: InputProps) => {
   return {
-    issue: state.project.issueMap[props.issueID],
+    issue: state.project.issueMap[props.issueId],
   };
 };
 

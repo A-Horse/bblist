@@ -2,7 +2,10 @@ import { fromJS } from 'immutable';
 import { normalize } from 'normalizr';
 import { AxiosSuccessAction, FSAction } from '../actions/actions';
 import { GET_PROJECT_KANBANS_SUCCESS } from '../actions/kanban.action';
-import { UPDATE_PROJECT_ISSUE_DETAIL_SUCCESS } from '../actions/project-issue-detail.action';
+import {
+  getProjectIssueDetailRequest,
+  UPDATE_PROJECT_ISSUE_DETAIL_SUCCESS,
+} from '../actions/project-issue-detail.action';
 import {
   CREATE_PROJECT_SUCCESS,
   GET_PROJECT_DETAIL_SUCCESS,
@@ -14,12 +17,15 @@ import { IKanban } from '../../typings/kanban.typing';
 import { IProjectIssue } from '../../typings/project-issue.typing';
 import { IProject } from '../../typings/project.typing';
 import {
-  reduceKanbanDetail,
+  reduceKanbanDetailSuccess,
   reduceProjectKanban,
 } from './handler/kanban-reduce-handler';
-import { reduceKanbanColumns } from './handler/column-reduce-handler';
-import { reduceProjectDetail } from './handler/project-reduce-handler';
-import { reduceUpdateProjectIssue } from './handler/issue-reduce-handler';
+import { reduceKanbanColumnsSuccess } from './handler/column-reduce-handler';
+import { reduceProjectDetailSuccess } from './handler/project-reduce-handler';
+import {
+  reduceIssueDetailSuccess,
+  reduceUpdateProjectIssue,
+} from './handler/issue-reduce-handler';
 
 export type KanbanMap = { [id: string]: IKanban };
 export type ColumnMap = { [id: string]: IColumn };
@@ -55,7 +61,7 @@ export function project(
       return state;
 
     case GET_PROJECT_DETAIL_SUCCESS: {
-      return reduceProjectDetail(state, action);
+      return reduceProjectDetailSuccess(state, action);
     }
 
     case UPDATE_PROJECT_ISSUE_DETAIL_SUCCESS: {
@@ -67,11 +73,20 @@ export function project(
     }
 
     case 'GET_PROJECT_KANBAN_DETAIL_SUCCESS': {
-      return reduceKanbanDetail(state, action as AxiosSuccessAction);
+      return reduceKanbanDetailSuccess(state, action as AxiosSuccessAction);
     }
 
     case 'QUERY_KANBAN_COLUMNS_SUCCESS': {
-      return reduceKanbanColumns(state, action as AxiosSuccessAction);
+      return reduceKanbanColumnsSuccess(state, action as AxiosSuccessAction);
+    }
+
+    case 'GET_PROJECT_ISSUE_DETAIL_SUCCESS': {
+      return reduceIssueDetailSuccess(
+        state,
+        action as AxiosSuccessAction<
+          ReturnType<typeof getProjectIssueDetailRequest>
+        >
+      );
     }
 
     // case GET_COLUMN_CARDS_SUCCESS: {
@@ -203,16 +218,6 @@ export function project(
     //       return innerIssue.merge(fromJS(action.payload.partialIssue));
     //     }
     //   );
-    // }
-
-    // case GET_PROJECT_ISSUE_DETAIL_SUCCESS: {
-    //   const issue: ProjectIssueRecord = fromJS(action.payload);
-    //   return state.updateIn(['issueMap', issue.get('id')], (innerIssue) => {
-    //     if (!innerIssue) {
-    //       return issue;
-    //     }
-    //     return innerIssue.merge(issue);
-    //   });
     // }
 
     default:

@@ -14,36 +14,6 @@ import {
 } from '../actions/project-issue-detail.action';
 import { IProjectIssue } from '../../typings/project-issue.typing';
 import { makeApiUrl } from '../../utils/api';
-//
-// export const CREATE_PROJECT_ISSUE_REQUEST_FN = (
-//   action$: Observable<FSAction>
-// ) =>
-//   action$.pipe(
-//     ofType(CREATE_PROJECT_ISSUE_REQUEST),
-//     mergeMap((action: FSAction) => {
-//       return axios
-//         .post(
-//           makeApiUrl(`/project/${action.payload.projectId}/issue`),
-//           action.payload
-//         )
-//         .then((result: AxiosResponse<string>) => {
-//           action.meta.callback && action.meta.callback(null, result.data);
-//           return createProjectCardSuccess(result.data);
-//         })
-//         .catch((error) => {
-//           action.meta.callback && action.meta.callback(error);
-//           return createProjectCardFailure(error);
-//         });
-//     })
-//   );
-//
-// export const CREATE_PROJECT_ISSUE_SUCCESS_FN = (
-//   action$: Observable<FSAction>
-// ) =>
-//   action$.pipe(
-//     ofType(CREATE_PROJECT_ISSUE_SUCCESS),
-//     map((action) => getProjectIssueDetailRequest({ issueId: action.payload }))
-//   );
 
 export const UPDATE_PROJECT_ISSUE_DETAIL_REQUEST_FN = (
   action$: Observable<FSAction>
@@ -70,22 +40,6 @@ export const UPDATE_PROJECT_ISSUE_DETAIL_REQUEST_FN = (
     })
   );
 
-export const GET_PROJECT_ISSUE_DETAIL_REQUEST_FN = (
-  action$: Observable<FSAction>
-) => {
-  return action$.pipe(
-    ofType(GET_PROJECT_ISSUE_DETAIL_REQUEST),
-    mergeMap((action: FSAction) => {
-      return axios
-        .get(makeApiUrl(`/issue/${action.payload.issueId}`))
-        .then((result: AxiosResponse<IProjectIssue>) =>
-          getProjectIssueDetailSuccess(result.data)
-        )
-        .catch(getProjectIssueDetailFailure);
-    })
-  );
-};
-//
 // export const RANK_PROJECT_CARD_IN_KANBAN_REQUEST_FN = (
 //   action$: Observable<FSAction>,
 //   state$: Observable<RootState>
