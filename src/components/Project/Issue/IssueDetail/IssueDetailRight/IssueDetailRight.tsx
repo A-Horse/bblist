@@ -6,7 +6,6 @@ import { SectionHeading } from '../../../../../widget/SectionHeading/SectionHead
 import { DetailRightField } from './DetailField/DetailRightField';
 import { faClock } from '@fortawesome/free-regular-svg-icons';
 import { useDispatch } from 'react-redux';
-import { updateProjectIssueDetailRequest } from '../../../../../redux/actions/project-issue-detail.action';
 import { faArrowsAltH } from '@fortawesome/free-solid-svg-icons';
 import { MoveIssueModal } from '../MoveIssueModal/MoveIssueModal';
 import './IssueDetailRight.scss';
@@ -16,7 +15,7 @@ interface InputProps {
   projectID: string;
   issue: IProjectIssue;
   kanbanID?: string;
-  updateIssue: Function;
+  onFieldChange: Function;
 }
 
 export function IssueDetailRight(props: InputProps) {
@@ -26,29 +25,10 @@ export function IssueDetailRight(props: InputProps) {
 
   const onDeadlineOnclick = (value: Date) => {
     setDeadlineSelectOpen(false);
-    props.updateIssue(
-      { deadline: value },
-      {
-        force: true,
-      }
-    );
+    props.onFieldChange('deadline', value);
   };
 
-  const onUpdateAssigneeID = (assigneeID: number) => {
-    dispatch(
-      updateProjectIssueDetailRequest(
-        {
-          issueId: props.issue.id,
-          partialIssue: {
-            assigneeId: assigneeID,
-          },
-        },
-        {
-          callback: () => {},
-        }
-      )
-    );
-  };
+  const onUpdateAssigneeID = (assigneeID: number) => {};
 
   return (
     <>

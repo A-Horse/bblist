@@ -1,3 +1,3 @@
-import { FSAction } from '../redux/actions/actions';
+import { AxiosSuccessAction, FSAction } from '../redux/actions/actions';
 
-export type AxiosDispatch = (action: FSAction) => Promise<void>;
+export type AxiosDispatch = (action: FSAction) => Promise<AxiosSuccessAction>;

@@ -1,17 +1,10 @@
 import { RootState } from '../index';
 import { IProjectIssue } from '../../../typings/project-issue.typing';
 
-export function selectColumnIssues(
-  state: RootState,
-  columnId: string
-): IProjectIssue[] {
-  return Object.values(state.project.issueMap).filter(
-    (issue: IProjectIssue) => {
-      return issue.columnId === columnId;
-    }
-  );
+export function selectIssue(state: RootState, issueId: string): IProjectIssue {
+  return state.project.issueMap[issueId];
 }
-//
+
 // export function findIssuePositionInColumn(
 //   state: RootState,
 //   issue: ProjectIssueRecord

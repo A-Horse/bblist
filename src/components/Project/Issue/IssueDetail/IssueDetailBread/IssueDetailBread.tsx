@@ -9,7 +9,6 @@ import { AppIcon } from '../../../../../widget/Icon';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { useToasts } from 'react-toast-notifications';
 import './IssueDetailBread.scss';
-import { updateProjectIssueDetailRequest } from '../../../../../redux/actions/project-issue-detail.action';
 import { IProjectIssue } from '../../../../../typings/project-issue.typing';
 
 interface InputProps {
@@ -30,27 +29,7 @@ export function IssueDetailBread(props: InputProps) {
 
   const { addToast } = useToasts();
 
-  const updateIssue = (partialIssue) => {
-    dispatch(
-      updateProjectIssueDetailRequest(
-        {
-          issueId: props.issueID,
-          partialIssue: partialIssue,
-        },
-        {
-          callback: (error: Error) => {
-            if (!error) {
-              return;
-            }
-            addToast('更新失败', {
-              appearance: 'error',
-              autoDismiss: true,
-            });
-          },
-        }
-      )
-    );
-  };
+  const updateIssue = (partialIssue) => {};
 
   if (!project || !issue) {
     return null;

@@ -99,6 +99,7 @@ export function createIssueRequest(
         url: '/issue',
         data: createKanbanCardInput,
         method: 'POST',
+        responseType: 'text',
       },
     },
   };

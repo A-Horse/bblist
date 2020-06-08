@@ -2,8 +2,20 @@ export interface IProjectIssue {
   id: string;
   title: string;
   order: number;
-  content?: string;
+  desc?: string;
   columnId: string;
+  deadline?: string;
+  deadlineDone?: boolean;
+  assigneeId?: string;
+  creatorId?: string;
+}
+
+export interface UpdateIssueInput {
+  id: string;
+  title?: string;
+  order?: number;
+  desc?: string;
+  columnId?: string;
   deadline?: string;
   deadlineDone?: boolean;
   assigneeId?: string;

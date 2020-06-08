@@ -2,10 +2,7 @@ import { fromJS } from 'immutable';
 import { normalize } from 'normalizr';
 import { AxiosSuccessAction, FSAction } from '../actions/actions';
 import { GET_PROJECT_KANBANS_SUCCESS } from '../actions/kanban.action';
-import {
-  getProjectIssueDetailRequest,
-  UPDATE_PROJECT_ISSUE_DETAIL_SUCCESS,
-} from '../actions/project-issue-detail.action';
+import { getProjectIssueDetailRequest } from '../actions/project-issue-detail.action';
 import {
   CREATE_PROJECT_SUCCESS,
   GET_PROJECT_DETAIL_SUCCESS,
@@ -64,7 +61,7 @@ export function project(
       return reduceProjectDetailSuccess(state, action);
     }
 
-    case UPDATE_PROJECT_ISSUE_DETAIL_SUCCESS: {
+    case 'UPDATE_ISSUE_DETAIL': {
       return reduceUpdateProjectIssue(state, action);
     }
 

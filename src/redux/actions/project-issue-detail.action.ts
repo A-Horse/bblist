@@ -1,4 +1,7 @@
-import { IProjectIssue } from '../../typings/project-issue.typing';
+import {
+  IProjectIssue,
+  UpdateIssueInput,
+} from '../../typings/project-issue.typing';
 import { FSAction } from './actions';
 
 export const GET_PROJECT_ISSUE_DETAIL_REQUEST =
@@ -21,60 +24,9 @@ export function getProjectIssueDetailRequest(input: {
   };
 }
 
-export function getProjectIssueDetailSuccess(issue: IProjectIssue): FSAction {
+export function updateIssueDetailRequest(input: UpdateIssueInput) {
   return {
-    type: GET_PROJECT_ISSUE_DETAIL_SUCCESS,
-    payload: issue,
-  };
-}
-
-export function getProjectIssueDetailFailure(): FSAction {
-  return {
-    type: GET_PROJECT_ISSUE_DETAIL_FAILURE,
-    error: true,
-  };
-}
-
-export const CHANGE_ISSUE_DIRECT = 'CHANGE_ISSUE_DIRECT';
-
-export function changeIssueDirect(issueId: string, partialIssue: any) {
-  return {
-    type: CHANGE_ISSUE_DIRECT,
-    payload: {
-      issueId,
-      partialIssue,
-    },
-  };
-}
-
-export const UPDATE_PROJECT_ISSUE_DETAIL_REQUEST =
-  'UPDATE_PROJECT_ISSUE_DETAIL_REQUEST';
-export const UPDATE_PROJECT_ISSUE_DETAIL_SUCCESS =
-  'UPDATE_PROJECT_ISSUE_DETAIL_SUCCESS';
-export const UPDATE_PROJECT_ISSUE_DETAIL_FAILURE =
-  'UPDATE_PROJECT_ISSUE_DETAIL_FAILURE';
-
-export function updateProjectIssueDetailRequest(
-  payload: { issueId: string; partialIssue: any },
-  meta: { callback: Function }
-): FSAction {
-  return {
-    type: UPDATE_PROJECT_ISSUE_DETAIL_REQUEST,
-    payload,
-    meta,
-  };
-}
-
-export function updateProjectIssueDetailSuccess(payload): FSAction {
-  return {
-    type: UPDATE_PROJECT_ISSUE_DETAIL_SUCCESS,
-    payload,
-  };
-}
-
-export function updateProjectIssueDetailFailure(): FSAction {
-  return {
-    type: UPDATE_PROJECT_ISSUE_DETAIL_FAILURE,
-    error: true,
+    type: 'UPDATE_ISSUE_DETAIL',
+    payload: input,
   };
 }

@@ -7,8 +7,9 @@ import { AppButton } from '../../../../../../../widget/Button';
 import { useDispatch } from 'react-redux';
 import { createIssueRequest } from '../../../../../../../redux/actions/project-issue.action';
 import { useToasts } from 'react-toast-notifications';
-import { FSAction } from '../../../../../../../redux/actions/actions';
+import { AxiosSuccessAction } from '../../../../../../../redux/actions/actions';
 import { AxiosDispatch } from '../../../../../../../typings/util.typing';
+import { getProjectIssueDetailRequest } from '../../../../../../../redux/actions/project-issue-detail.action';
 
 interface InputProps {
   columnId: string;
@@ -42,7 +43,13 @@ export function ColumnIssueCreator({
         columnId: columnId,
         title: title,
       })
-    ).then(() => {
+    ).then((action: AxiosSuccessAction) => {
+      console.log('response', action);
+      dispatch(
+        getProjectIssueDetailRequest({
+          issueId: action.payload.data,
+        })
+      ).then();
       clearState();
     });
   };
