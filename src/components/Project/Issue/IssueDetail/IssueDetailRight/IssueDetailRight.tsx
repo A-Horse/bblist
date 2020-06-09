@@ -12,9 +12,9 @@ import './IssueDetailRight.scss';
 import { IProjectIssue } from '../../../../../typings/project-issue.typing';
 
 interface InputProps {
-  projectID: string;
+  projectId: string;
   issue: IProjectIssue;
-  kanbanID?: string;
+  kanbanId?: string;
   onFieldChange: Function;
 }
 
@@ -36,7 +36,7 @@ export function IssueDetailRight(props: InputProps) {
         <div>
           <SectionHeading size="sm">经办人</SectionHeading>
           <AssigneeSelector
-            projectID={props.projectID}
+            projectId={props.projectId}
             selectedUserId={props.issue.assigneeId}
             onChange={(option: SelectOption) => {
               const id = option ? option.value : null;
@@ -73,8 +73,8 @@ export function IssueDetailRight(props: InputProps) {
         issue={props.issue}
         visible={moveIssueOpen}
         onClose={() => setMoveIssueOpen(false)}
-        kanbanID={props.kanbanID}
-        projectID={props.projectID}
+        kanbanID={props.kanbanId}
+        projectID={props.projectId}
       />
     </>
   );

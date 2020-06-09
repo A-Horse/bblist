@@ -25,7 +25,7 @@ test('AssigneeSelector snapshot', () => {
   const assigneeSelector = renderer
     .create(
       <Provider>
-        <AssigneeSelector projectID={'p1'} />
+        <AssigneeSelector projectId={'p1'} />
       </Provider>
     )
     .toJSON();

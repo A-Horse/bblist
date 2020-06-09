@@ -9,13 +9,13 @@ import { AppButton } from '../../widget/Button';
 import { AppLink } from '../../widget/Link/AppLink';
 import * as _ from 'lodash';
 
-import { AppUserInfo } from '../../typings/user/user.typing';
+import { DisplayAccount } from '../../typings/user.typing';
 
 import './Nav.scss';
 import { useDispatch } from 'react-redux';
 import { logout } from '../../redux/actions/auth.action';
 
-export function Nav(props: { user: AppUserInfo }) {
+export function Nav(props: { user: DisplayAccount }) {
   const dispatch = useDispatch();
   const { user } = props;
 

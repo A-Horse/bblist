@@ -1,6 +1,6 @@
 import { fromJS, List } from 'immutable';
 import { findProjectAllUsers } from './user.selector';
-import { AppUserInfoRecord } from '../../../typings/user/user.typing';
+import { AppUserInfoRecord } from '../../../typings/user.typing';
 
 test('findProjectAllUsers', () => {
   const state = {

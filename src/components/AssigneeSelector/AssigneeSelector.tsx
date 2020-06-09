@@ -2,25 +2,25 @@ import React, { useEffect } from 'react';
 import { AppSelect } from '../../widget/AppSelect';
 import { UserAvatar } from '../UserAvatar/UserAvatar';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllUsersRequest } from '../../redux/actions/user/user.action';
 import { RootState } from '../../redux/reducer';
 import { findProjectAllUsers } from '../../redux/reducer/selector/user.selector';
-import { AppUserInfoRecord } from '../../typings/user/user.typing';
 import { SelectOption } from '../../typings/select.typing';
 import { AssigneeSelectorOption } from './AssigneeSelectorOption';
 
 import './AssigneeSelector.scss';
+import { getProjectUserRequest } from '../../redux/actions/project.action';
+import { DisplayAccount } from '../../typings/user.typing';
 
 interface InputProps {
   selectedUserId?: number | string;
-  projectID: string;
+  projectId: string;
   onChange?: Function;
 }
 
-function mapUserToSelectOption(user: AppUserInfoRecord): SelectOption {
+function mapUserToSelectOption(user: DisplayAccount): SelectOption {
   return {
-    value: user.get('id'),
-    label: user.get('username'),
+    value: user.id,
+    label: user.username,
     meta: user,
   };
 }
@@ -32,14 +32,14 @@ export function AssigneeSelector(props: InputProps) {
   };
 
   const users = useSelector((state: RootState) =>
-    findProjectAllUsers(state, props.projectID)
+    findProjectAllUsers(state, props.projectId)
   );
 
-  const userOptions = users.map(mapUserToSelectOption).toArray();
+  const userOptions = users.map(mapUserToSelectOption);
 
   useEffect(() => {
-    dispatch(getAllUsersRequest(props.projectID));
-  }, [dispatch, props.projectID]);
+    dispatch(getProjectUserRequest(props.projectId));
+  }, [dispatch, props.projectId]);
 
   const selectedOption = userOptions.find(
     (o) => o.value === props.selectedUserId

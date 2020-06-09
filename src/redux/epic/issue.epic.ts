@@ -1,13 +1,7 @@
 import { empty, Observable } from 'rxjs';
 import { ofType } from 'redux-observable';
 
-import {
-  catchError,
-  debounceTime,
-  distinctUntilChanged,
-  ignoreElements,
-  mergeMap,
-} from 'rxjs/operators';
+import { debounceTime, mergeMap } from 'rxjs/operators';
 import axios from 'axios';
 import { makeApiUrl } from '../../utils/api';
 import { updateIssueDetailRequest } from '../actions/project-issue-detail.action';

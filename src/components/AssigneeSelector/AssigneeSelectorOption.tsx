@@ -13,7 +13,7 @@ export function AssigneeSelectorOption(props: any) {
       }`}
       {...props.innerProps}
     >
-      <UserAvatar user={data.meta.toJS()} />
+      <UserAvatar user={data.meta} />
       <span className="AssigneeSelectorOption--label">{data.label}</span>
     </div>
   );

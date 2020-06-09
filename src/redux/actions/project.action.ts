@@ -142,3 +142,14 @@ export function updateProjectsFailure(): FSAction {
     error: true,
   };
 }
+
+export function getProjectUserRequest(projectId: string): FSAction {
+  return {
+    type: 'GET_PROJECT_USER',
+    payload: {
+      request: {
+        url: `/project/${projectId}/participants`,
+      },
+    },
+  };
+}

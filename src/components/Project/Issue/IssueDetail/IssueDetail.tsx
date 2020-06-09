@@ -73,8 +73,8 @@ export function IssueDetail({ issueId, kanbanId, projectId }: InputProps) {
         </div>
 
         <IssueDetailRight
-          projectID={projectId}
-          kanbanID={kanbanId}
+          projectId={projectId}
+          kanbanId={kanbanId}
           issue={issue}
           onFieldChange={onFieldChange}
         />

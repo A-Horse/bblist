@@ -1,11 +1,11 @@
 import React, { Component, CSSProperties } from 'react';
 import { makeGravatarUrl } from '../../utils/gravatar';
-import { AppUserInfo } from '../../typings/user/user.typing';
+import { DisplayAccount } from '../../typings/user.typing';
 
 import './UserAvatar.scss';
 
 interface InputProps {
-  user?: AppUserInfo;
+  user?: DisplayAccount;
   style?: CSSProperties;
 }
 
