@@ -54,8 +54,8 @@ export function KanbanHeaderBar({
       </div>
 
       <IssueCreatorModal
-        projectID={projectID}
-        kanbanID={selectedKanbanId}
+        projectId={projectID}
+        kanbanId={selectedKanbanId}
         modalVisible={issueCreatorToggle}
         closeModal={() => setIssueCreatorToggle(false)}
       />

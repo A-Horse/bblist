@@ -44,12 +44,12 @@ export function IssueDetailBread(props: InputProps) {
       <AppIcon className="IssueDetailBread--right-icon" icon={faChevronRight} />
 
       <ColumnSelect
-        selectedColumnID={issue.columnId}
+        selectedColumnId={issue.columnId}
         onChange={(option) => {
           updateIssue({ columnID: option.value });
         }}
         customSelect={(props) => <BorderLessSelector width={100} {...props} />}
-        kanbanID={props.kanbanID}
+        kanbanId={props.kanbanID}
       />
     </div>
   );

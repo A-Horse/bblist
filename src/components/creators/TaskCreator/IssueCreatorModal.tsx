@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import React from 'react';
+import { useDispatch } from 'react-redux';
 import { CreateProjectIssueForm } from './CreateProjectIssueForm';
 import { AppModal } from '../../../widget/Modal/AppModal';
 import { Formik, FormikHelpers, FormikProps } from 'formik';
@@ -12,111 +11,89 @@ import { createIssueRequest } from '../../../redux/actions/project-issue.action'
 import './IssueCreatorModal.scss';
 
 import * as Yup from 'yup';
+import { AxiosDispatch } from '../../../typings/util.typing';
+import { getProjectIssueDetailRequest } from '../../../redux/actions/project-issue-detail.action';
 
 export interface FormValues {
   title: string;
   content?: string;
-  kanbanID?: string;
-  columnID?: string;
+  kanbanId?: string;
+  columnId?: string;
 }
 
 const FormSchema = Yup.object().shape({
   title: Yup.string().required('标题为必填项'),
 });
 
-class IssueCreatorModalComponent extends Component<{
+export function IssueCreatorModal(props: {
   modalVisible: boolean;
-  actions: any;
-  closeModal: any;
-  projectID: string;
-  kanbanID?: string;
-}> {
-  render() {
-    return (
-      <AppModal
-        className="IssueCreatorModal"
-        onRequestClose={this.props.closeModal}
-        isOpen={this.props.modalVisible}
-      >
-        <ModalHeader title="新建问题" onClose={this.props.closeModal} />
+  closeModal: () => void;
+  projectId: string;
+  kanbanId?: string;
+}) {
+  const dispatch = useDispatch<AxiosDispatch>();
 
-        <Formik
-          validationSchema={FormSchema}
-          initialValues={
-            {
-              title: '',
-              content: undefined,
-              kanbanID: this.props.kanbanID,
-              columnID: undefined,
-            } as FormValues
-          }
-          onSubmit={(
-            values: FormValues,
-            actions: FormikHelpers<FormValues>
-          ) => {
-            this.createProjectCard(values);
-            actions.setSubmitting(false);
-          }}
-          render={(formikBag: FormikProps<FormValues>) => {
-            return (
-              <>
-                <div className="IssueCreatorModal--main">
-                  <CreateProjectIssueForm
-                    kanbanID={this.props.kanbanID}
-                    projectID={this.props.projectID}
-                    formikBag={formikBag}
-                  />
-                </div>
-                <ModalFooter>
-                  <ConfirmButtonGroup
-                    confirmButtonHtmlType="submit"
-                    onConfirm={() => {
-                      formikBag.submitForm();
-                    }}
-                    onCancel={() => {
-                      this.props.closeModal();
-                    }}
-                  />
-                </ModalFooter>
-              </>
-            );
-          }}
-        />
-      </AppModal>
-    );
-  }
-
-  private createProjectCard = (values: FormValues) => {
-    this.props.actions.createProjectCardRequest(
-      {
-        projectId: this.props.projectID,
+  const createProjectIssue = (values: FormValues) => {
+    dispatch(
+      createIssueRequest({
+        projectId: props.projectId,
         ...values,
-      },
-      {
-        callback: () => {
-          this.props.closeModal();
-        },
-      }
-    );
+      })
+    ).then((result) => {
+      dispatch(
+        getProjectIssueDetailRequest({ issueId: result.payload.data })
+      ).then();
+      props.closeModal();
+    });
   };
+
+  return (
+    <AppModal
+      className="IssueCreatorModal"
+      onRequestClose={props.closeModal}
+      isOpen={props.modalVisible}
+    >
+      <ModalHeader title="新建问题" onClose={props.closeModal} />
+
+      <Formik
+        validationSchema={FormSchema}
+        initialValues={
+          {
+            title: '',
+            content: undefined,
+            kanbanId: props.kanbanId,
+            columnId: undefined,
+          } as FormValues
+        }
+        onSubmit={(values: FormValues, actions: FormikHelpers<FormValues>) => {
+          createProjectIssue(values);
+          actions.setSubmitting(false);
+        }}
+        render={(formikBag: FormikProps<FormValues>) => {
+          return (
+            <>
+              <div className="IssueCreatorModal--main">
+                <CreateProjectIssueForm
+                  kanbanId={props.kanbanId}
+                  projectId={props.projectId}
+                  formikBag={formikBag}
+                />
+              </div>
+              <ModalFooter>
+                <ConfirmButtonGroup
+                  confirmButtonHtmlType="submit"
+                  onConfirm={() => {
+                    formikBag.submitForm();
+                  }}
+                  onCancel={() => {
+                    props.closeModal();
+                  }}
+                />
+              </ModalFooter>
+            </>
+          );
+        }}
+      />
+    </AppModal>
+  );
 }
-
-const mapStateToProps = (state: any) => {
-  return {};
-};
-
-const mapDispatchToProps = (dispatch: any) => {
-  return {
-    actions: bindActionCreators(
-      {
-        createProjectCardRequest: createIssueRequest,
-      },
-      dispatch
-    ),
-  };
-};
-
-export const IssueCreatorModal = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(IssueCreatorModalComponent);

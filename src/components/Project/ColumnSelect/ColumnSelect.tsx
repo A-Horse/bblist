@@ -16,10 +16,10 @@ import './ColumnSelect.scss';
 import { IColumn } from '../../../typings/kanban-column.typing';
 
 interface InputProps {
-  kanbanID?: string;
+  kanbanId?: string;
   onChange: any;
   customSelect?: any;
-  selectedColumnID?: string;
+  selectedColumnId?: string;
 }
 
 interface InjectProps {
@@ -44,11 +44,11 @@ class ColumnSelectComponent extends Component<InputProps & InjectProps> {
   }
 
   fetchColumns() {
-    if (!this.props.kanbanID) {
+    if (!this.props.kanbanId) {
       return;
     }
     this.props.actions.getProjectKanbanDetailRequest({
-      kanbanId: this.props.kanbanID,
+      kanbanId: this.props.kanbanId,
     });
   }
 
@@ -58,7 +58,7 @@ class ColumnSelectComponent extends Component<InputProps & InjectProps> {
       : AppSelect;
 
     const selectedOption = this.props.options.find(
-      (o) => o.value === this.props.selectedColumnID
+      (o) => o.value === this.props.selectedColumnId
     );
     return (
       <Select
@@ -85,8 +85,8 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
 
 const mapStateToProps = (state: RootState, props: InputProps) => {
   let columnOptions: SelectOption[] = [];
-  if (props.kanbanID) {
-    const columns = selectKanbanColumns(state, props.kanbanID);
+  if (props.kanbanId) {
+    const columns = selectKanbanColumns(state, props.kanbanId);
     columnOptions = columns ? generateColumnOptions(columns) : [];
   }
 

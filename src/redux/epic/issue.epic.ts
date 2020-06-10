@@ -1,4 +1,4 @@
-import { empty, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { ofType } from 'redux-observable';
 
 import { debounceTime, mergeMap } from 'rxjs/operators';
@@ -14,7 +14,7 @@ export const UPDATE_ISSUE_DETAIL_EPIC = (
     debounceTime(1000),
     mergeMap((action: ReturnType<typeof updateIssueDetailRequest>) => {
       return axios
-        .post(makeApiUrl(`/issue/${action.payload.id}`), action.payload)
+        .patch(makeApiUrl(`/issue/${action.payload.id}`), action.payload)
         .then(() => ({ type: 'IGNORE' }))
         .catch(() => ({ type: 'IGNORE' }));
     })

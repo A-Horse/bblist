@@ -11,14 +11,19 @@ import { IProjectIssue } from '../../../../../typings/project-issue.typing';
 export function MoveIssueModal(props: {
   visible: boolean;
   onClose: Function;
-  kanbanID?: string;
-  projectID: string;
+  onFieldChange: Function;
+  kanbanId?: string;
+  projectId: string;
   issue: IProjectIssue;
 }) {
-  const [selectedColumnID, setSelectedColumnID] = useState(
+  const [selectedColumnId, setSelectedColumnID] = useState(
     props.issue.columnId
   );
-  const onConfirm = () => {};
+  const onConfirm = () => {
+    props.onFieldChange('columnId', selectedColumnId);
+    props.onClose();
+  };
+
   return (
     <AppModal
       className="MoveIssueModal"
@@ -27,13 +32,13 @@ export function MoveIssueModal(props: {
     >
       <ModalHeader title="移动卡片" onClose={props.onClose} />
 
-      {props.kanbanID && (
+      {props.kanbanId && (
         <ModalContent>
           <div>
             列表
             <ColumnSelect
-              selectedColumnID={selectedColumnID}
-              kanbanID={props.kanbanID}
+              selectedColumnId={selectedColumnId}
+              kanbanId={props.kanbanId}
               onChange={(option) => {
                 setSelectedColumnID(option.value);
               }}

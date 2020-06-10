@@ -5,7 +5,6 @@ import { SelectOption } from '../../../../../typings/select.typing';
 import { SectionHeading } from '../../../../../widget/SectionHeading/SectionHeading';
 import { DetailRightField } from './DetailField/DetailRightField';
 import { faClock } from '@fortawesome/free-regular-svg-icons';
-import { useDispatch } from 'react-redux';
 import { faArrowsAltH } from '@fortawesome/free-solid-svg-icons';
 import { MoveIssueModal } from '../MoveIssueModal/MoveIssueModal';
 import './IssueDetailRight.scss';
@@ -19,7 +18,6 @@ interface InputProps {
 }
 
 export function IssueDetailRight(props: InputProps) {
-  const dispatch = useDispatch();
   const [deadlineSelectOpen, setDeadlineSelectOpen] = useState(false);
   const [moveIssueOpen, setMoveIssueOpen] = useState(false);
 
@@ -28,7 +26,9 @@ export function IssueDetailRight(props: InputProps) {
     props.onFieldChange('deadline', value);
   };
 
-  const onUpdateAssigneeID = (assigneeID: number) => {};
+  const onUpdateAssigneeId = (assigneeId: number) => {
+    props.onFieldChange('assigneeId', assigneeId);
+  };
 
   return (
     <>
@@ -40,7 +40,7 @@ export function IssueDetailRight(props: InputProps) {
             selectedUserId={props.issue.assigneeId}
             onChange={(option: SelectOption) => {
               const id = option ? option.value : null;
-              onUpdateAssigneeID(id);
+              onUpdateAssigneeId(id);
             }}
           />
         </div>
@@ -73,8 +73,9 @@ export function IssueDetailRight(props: InputProps) {
         issue={props.issue}
         visible={moveIssueOpen}
         onClose={() => setMoveIssueOpen(false)}
-        kanbanID={props.kanbanId}
-        projectID={props.projectId}
+        kanbanId={props.kanbanId}
+        projectId={props.projectId}
+        onFieldChange={props.onFieldChange}
       />
     </>
   );

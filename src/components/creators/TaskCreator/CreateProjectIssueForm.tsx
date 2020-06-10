@@ -17,8 +17,8 @@ import { FormValues } from './IssueCreatorModal';
 import './CreateProjectIssueForm.scss';
 
 interface InputProps {
-  kanbanID?: string;
-  projectID: string;
+  kanbanId?: string;
+  projectId: string;
   formikBag: FormikProps<FormValues>;
   onCancel?: () => void;
 }
@@ -32,26 +32,26 @@ export function CreateProjectIssueForm(props: InputProps) {
           render={({ field, form }: FieldProps<FormikValues>) => (
             <FormField name="所在看板">
               <KanbanSelect
-                projectId={props.projectID}
-                selectedKanbanId={props.kanbanID}
+                projectId={props.projectId}
+                selectedKanbanId={props.kanbanId}
                 onChange={(selected: SelectOption) => {
-                  props.formikBag.setFieldValue('kanbanID', selected.value);
+                  props.formikBag.setFieldValue('kanbanId', selected.value);
                 }}
               />
-              {form.touched.kanbanID &&
-                form.errors.kanbanID &&
-                form.errors.kanbanID}
+              {form.touched.kanbanId &&
+                form.errors.kanbanId &&
+                form.errors.kanbanId}
             </FormField>
           )}
         />
         <Field
-          name="columnID"
+          name="columnId"
           render={({ field, form }: FieldProps<FormikValues>) => (
             <FormField name="所在价值列">
               <ColumnSelect
-                kanbanID={form.values.kanbanID}
+                kanbanId={form.values.kanbanId}
                 onChange={(selected: SelectOption) =>
-                  props.formikBag.setFieldValue('columnID', selected.value)
+                  props.formikBag.setFieldValue('columnId', selected.value)
                 }
               />
               {form.touched.name && form.errors.name && form.errors.name}
