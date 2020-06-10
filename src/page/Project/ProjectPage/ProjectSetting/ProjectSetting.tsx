@@ -1,10 +1,10 @@
 import './ProjectSetting.scss';
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouteMatch } from 'react-router-dom';
 import {
-  updateProjectsRequest,
+  updateProjectRequest,
   uploadProjectCoverRequest,
 } from '../../../../redux/actions/project.action';
 import { ImageUploader } from '../../../../components/ImageUploader/ImageUploader';
@@ -20,11 +20,16 @@ import { objectFileUrl } from '../../../../utils/object-storage';
 export function ProjectSetting() {
   const { addToast } = useToasts();
   const dispatch = useDispatch();
+  const [projectName, setProjectName] = useState('');
   const match = useRouteMatch<{ projectId: string }>();
-  const projectID = match.params.projectId;
+  const projectId = match.params.projectId;
   const project = useSelector(
-    (state: RootState) => state.project.projectMap[projectID]
+    (state: RootState) => state.project.projectMap[projectId]
   );
+
+  useEffect(() => {
+    setProjectName(project ? project.name : '');
+  }, [project]);
 
   useEffect(() => {
     const action = getProjectKanbansRequest({
@@ -61,6 +66,7 @@ export function ProjectSetting() {
   if (!project) {
     return <div>loading</div>;
   }
+
   return (
     <div className="ProjectSetting">
       <SectionField name="项目封面" transform={true}>
@@ -82,12 +88,13 @@ export function ProjectSetting() {
       <SectionField name="项目名称" transform={true}>
         <Input
           className="ProjectSetting--project-name-input"
-          defaultValue={project.name}
+          value={projectName}
+          onChange={setProjectName}
           onBlur={(name) =>
             dispatch(
-              updateProjectsRequest({
-                projectID,
-                name,
+              updateProjectRequest({
+                id: projectId,
+                name: projectName,
               })
             )
           }

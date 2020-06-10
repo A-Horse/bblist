@@ -117,29 +117,19 @@ export function uploadProjectCoverFailure(error): FSAction {
   };
 }
 
-export const UPDATE_PROJECT_REQUEST = 'UPDATE_PROJECT_REQUEST';
-export const UPDATE_PROJECT_SUCCESS = 'UPDATE_PROJECT_SUCCESS';
-export const UPDATE_PROJECT_FAILURE = 'UPDATE_PROJECT_FAILURE';
-
-export function updateProjectsRequest(
-  request: UpdateProjectRequest
-): FSAction & { payload: UpdateProjectRequest } {
+export function updateProjectRequest(
+  updateProjectRequest: UpdateProjectRequest
+) {
   return {
-    type: UPDATE_PROJECT_REQUEST,
-    payload: request,
-  };
-}
-
-export function updateProjectsSuccess(): FSAction {
-  return {
-    type: UPDATE_PROJECT_SUCCESS,
-  };
-}
-
-export function updateProjectsFailure(): FSAction {
-  return {
-    type: UPDATE_PROJECT_FAILURE,
-    error: true,
+    type: 'UPDATE_PROJECT',
+    payload: {
+      request: {
+        url: `/project/${updateProjectRequest.id}`,
+        method: 'PATCH',
+        data: updateProjectRequest,
+      },
+    },
+    meta: updateProjectRequest,
   };
 }
 

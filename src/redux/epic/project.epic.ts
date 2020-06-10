@@ -17,10 +17,6 @@ import {
   getProjectsFailure,
   getProjectsRequest,
   getProjectsSuccess,
-  UPDATE_PROJECT_REQUEST,
-  updateProjectsFailure,
-  updateProjectsRequest,
-  updateProjectsSuccess,
   UPLOAD_PROJECT_COVER_REQUEST,
   UPLOAD_PROJECT_COVER_SUCCESS,
   uploadProjectCoverFailure,
@@ -44,22 +40,6 @@ export const GET_PROJECTS_REQUEST_FN = (action$: Observable<FSAction>) =>
           getProjectsSuccess(result.data)
         )
         .catch(getProjectsFailure);
-    })
-  );
-
-export const UPDATE_PROJECT_REQUEST_FN = (
-  action$: Observable<ReturnType<typeof updateProjectsRequest>>
-) =>
-  action$.pipe(
-    ofType(UPDATE_PROJECT_REQUEST),
-    mergeMap((action) => {
-      return axios
-        .patch(
-          makeApiUrl(`/project/${action.payload.projectID}`),
-          action.payload
-        )
-        .then(() => updateProjectsSuccess())
-        .catch(() => updateProjectsFailure());
     })
   );
 

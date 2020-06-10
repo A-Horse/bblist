@@ -13,7 +13,7 @@ export interface IProject {
 }
 
 export interface UpdateProjectRequest {
-  projectID: string;
+  id: string;
   name?: string;
 }
 export interface CreateProjectInput {

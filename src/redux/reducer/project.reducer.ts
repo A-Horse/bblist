@@ -7,6 +7,7 @@ import {
   CREATE_PROJECT_SUCCESS,
   GET_PROJECT_DETAIL_SUCCESS,
   GET_PROJECT_SUCCESS,
+  updateProjectRequest,
 } from '../actions/project.action';
 import { ProjectEntityList } from '../schema';
 import { IColumn } from '../../typings/kanban-column.typing';
@@ -18,7 +19,10 @@ import {
   reduceProjectKanban,
 } from './handler/kanban-reduce-handler';
 import { reduceKanbanColumnsSuccess } from './handler/column-reduce-handler';
-import { reduceProjectDetailSuccess } from './handler/project-reduce-handler';
+import {
+  reduceProjectDetailSuccess,
+  reduceUpdateProject,
+} from './handler/project-reduce-handler';
 import {
   reduceIssueDetailSuccess,
   reduceUpdateProjectIssue,
@@ -59,6 +63,13 @@ export function project(
 
     case GET_PROJECT_DETAIL_SUCCESS: {
       return reduceProjectDetailSuccess(state, action);
+    }
+
+    case `UPDATE_PROJECT`: {
+      return reduceUpdateProject(
+        state,
+        action as ReturnType<typeof updateProjectRequest>
+      );
     }
 
     case 'UPDATE_ISSUE_DETAIL': {
