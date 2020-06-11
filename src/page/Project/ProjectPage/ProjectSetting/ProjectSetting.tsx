@@ -18,18 +18,14 @@ import { RootState } from '../../../../redux/reducer/index';
 import { objectFileUrl } from '../../../../utils/object-storage';
 
 export function ProjectSetting() {
-  const { addToast } = useToasts();
   const dispatch = useDispatch();
-  const [projectName, setProjectName] = useState('');
+  const { addToast } = useToasts();
   const match = useRouteMatch<{ projectId: string }>();
   const projectId = match.params.projectId;
   const project = useSelector(
     (state: RootState) => state.project.projectMap[projectId]
   );
-
-  useEffect(() => {
-    setProjectName(project ? project.name : '');
-  }, [project]);
+  const [projectName, setProjectName] = useState<string>(project.name);
 
   useEffect(() => {
     const action = getProjectKanbansRequest({
@@ -63,12 +59,9 @@ export function ProjectSetting() {
     dispatch(action);
   };
 
-  if (!project) {
-    return <div>loading</div>;
-  }
-
   return (
     <div className="ProjectSetting">
+      <h1>项目设置</h1>
       <SectionField name="项目封面" transform={true}>
         <ImageUploader
           style={{

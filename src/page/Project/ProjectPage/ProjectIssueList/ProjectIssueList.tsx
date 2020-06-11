@@ -10,12 +10,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getProjectIssuesRequest } from '../../../../redux/actions/project-issue.action';
 import { RootState } from '../../../../redux/reducer';
 import { selectProjectIssues } from '../../../../redux/reducer/selector/issue.selector';
+import { useHistory } from 'react-router-dom';
 
 interface InputProps {}
 
 export function ProjectIssueList(props: InputProps) {
   const dispatch = useDispatch();
   const match = useRouteMatch<{ projectId: string }>();
+  const history = useHistory();
   const projectId = match.params.projectId;
   useEffect(() => {
     dispatch(getProjectIssuesRequest({ projectId }));
@@ -25,7 +27,9 @@ export function ProjectIssueList(props: InputProps) {
     selectProjectIssues(state, projectId)
   );
 
-  const onIssueClick = () => {};
+  const onIssueClick = (issue: IProjectIssue) => {
+    history.push(`/project/${projectId}/issues/${issue.id}`);
+  };
 
   return (
     <div className="Issues">
@@ -34,7 +38,7 @@ export function ProjectIssueList(props: InputProps) {
           {issues.map((issue: IProjectIssue) => {
             return (
               <li key={issue.id}>
-                <FlatIssue issue={issue} onClick={onIssueClick} />
+                <FlatIssue issue={issue} onClick={() => onIssueClick(issue)} />
               </li>
             );
           })}

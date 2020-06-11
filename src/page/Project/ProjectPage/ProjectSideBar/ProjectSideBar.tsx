@@ -56,7 +56,7 @@ export function ProjectSideBar(props: { projectId: string }) {
         <SideItemLink
           icon="vector-square"
           to={`${match.url}/epics`}
-          name="史诗"
+          name="主题"
         />
         <SideItemLink icon={faUsers} to={`${match.url}/team`} name="团队" />
         <SideItemLink icon="list-ol" to={`${match.url}/issues`} name="问题" />

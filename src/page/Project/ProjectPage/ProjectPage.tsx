@@ -48,7 +48,12 @@ class ProjectPageComponent extends Component<Props> {
               />
               <Route
                 path="/project/:projectId/setting"
-                render={() => <ProjectSetting />}
+                render={() => {
+                  if (!this.props.project) {
+                    return null;
+                  }
+                  return <ProjectSetting />;
+                }}
               />
               <Route
                 path="/project/:projectId/kanban/:kanbanId"

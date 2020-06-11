@@ -46,7 +46,7 @@ export function ProjectKanban() {
   return (
     <div className="ProjectKanban">
       <KanbanHeaderBar
-        projectID={project!.id}
+        projectId={project!.id}
         selectedKanbanId={kanbanId}
         onOpenSetting={() => setSettingModalVisible(true)}
       />

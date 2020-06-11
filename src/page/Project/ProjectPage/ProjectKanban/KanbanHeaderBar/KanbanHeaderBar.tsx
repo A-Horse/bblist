@@ -12,12 +12,12 @@ import { IssueCreatorModal } from '../../../../../components/creators/TaskCreato
 
 interface InputProps {
   selectedKanbanId: string;
-  projectID: string;
+  projectId: string;
   onOpenSetting: () => void;
 }
 
 export function KanbanHeaderBar({
-  projectID,
+  projectId,
   selectedKanbanId,
   onOpenSetting,
 }: InputProps) {
@@ -27,17 +27,13 @@ export function KanbanHeaderBar({
 
   const [issueCreatorToggle, setIssueCreatorToggle] = useState(false);
 
-  if (!kanban) {
-    return null;
-  }
-
   return (
     <div className="KanbanHeaderBar">
       <div className="KanbanHeaderBar--kanban-name">
-        <span>{kanban.name}</span>
+        <span>{kanban ? kanban.name : ''}</span>
 
-        <AppButton onClick={onOpenSetting}>
-          <AppIcon icon={faCog} />
+        <AppButton title="设置" type="ghost" onClick={onOpenSetting}>
+          <AppIcon size="sm" icon={faCog} />
         </AppButton>
       </div>
 
@@ -54,7 +50,7 @@ export function KanbanHeaderBar({
       </div>
 
       <IssueCreatorModal
-        projectId={projectID}
+        projectId={projectId}
         kanbanId={selectedKanbanId}
         modalVisible={issueCreatorToggle}
         closeModal={() => setIssueCreatorToggle(false)}

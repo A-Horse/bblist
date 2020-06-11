@@ -39,7 +39,7 @@
     "redux-devtools-log-monitor": "^1.4.0",
     "redux-observable": "^1.0.0",
     "rxjs": "^6.2.1",
-    "typescript": "^3.6.3",
+    "typescript": "^3.9.5",
     "yup": "^0.28.1"
   },
   "scripts": {
