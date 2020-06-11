@@ -3,6 +3,11 @@ import { AxiosSuccessAction, FSAction } from '../../actions/actions';
 import { getProjectIssueDetailRequest } from '../../actions/project-issue-detail.action';
 import { IProjectIssue } from '../../../typings/project-issue.typing';
 import uniq from 'lodash/uniq';
+import { getProjectIssuesRequest } from '../../actions/project-issue.action';
+import { IColumn } from '../../../typings/kanban-column.typing';
+import { normalize } from 'normalizr';
+import { KanbanColumnEntityList, ProjectIssueList } from '../../schema';
+import { reduceNormalizeMap } from '../util/util';
 
 export function reduceUpdateProjectIssue(
   state: ProjectState,
@@ -47,5 +52,27 @@ export function reduceIssueDetailSuccess(
       },
     },
     columnMap: columnMap,
+  };
+}
+
+export function reduceProjectIssuesSuccess(
+  state: ProjectState,
+  action: AxiosSuccessAction<ReturnType<typeof getProjectIssuesRequest>>
+): ProjectState {
+  const normalizedData: {
+    entities: {
+      ProjectIssue: {
+        [id: string]: IProjectIssue;
+      };
+    };
+    result: string[];
+  } = normalize(action.payload.data, ProjectIssueList);
+  return {
+    ...state,
+    issueMap: reduceNormalizeMap(
+      state.issueMap,
+      normalizedData.entities.ProjectIssue
+    ),
+    allIssueId: normalizedData.result,
   };
 }

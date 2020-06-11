@@ -7,13 +7,13 @@ import { match, Redirect, Route, Switch, withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { getProjectDetailRequest } from '../../../redux/actions/project.action';
 import { RootState } from '../../../redux/reducer';
-import { Issues } from './ProjectIssues/Issues';
 import { ProjectEpics } from './ProjectEpics/ProjectEpics';
 import { ProjectKanban } from './ProjectKanban/ProjectKanban';
 import { ProjectSetting } from './ProjectSetting/ProjectSetting';
 import { ProjectSideBar } from './ProjectSideBar/ProjectSideBar';
 import { ProjectDashboard } from './ProjectDashboard/ProjectDashboard';
 import { IProject } from '../../../typings/project.typing';
+import { ProjectIssueList } from './ProjectIssueList/ProjectIssueList';
 
 interface Props {
   actions: {
@@ -60,7 +60,7 @@ class ProjectPageComponent extends Component<Props> {
               />
               <Route
                 path="/project/:projectId/issues"
-                render={() => <Issues />}
+                render={() => <ProjectIssueList />}
               />
               <Route
                 path="*"

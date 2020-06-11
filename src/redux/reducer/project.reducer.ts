@@ -25,6 +25,7 @@ import {
 } from './handler/project-reduce-handler';
 import {
   reduceIssueDetailSuccess,
+  reduceProjectIssuesSuccess,
   reduceUpdateProjectIssue,
 } from './handler/issue-reduce-handler';
 
@@ -38,6 +39,7 @@ export interface ProjectState {
   kanbanMap: KanbanMap;
   columnMap: ColumnMap;
   issueMap: IssueMap;
+  allIssueId: string[];
 }
 
 export function project(
@@ -46,6 +48,7 @@ export function project(
     kanbanMap: {},
     columnMap: {},
     issueMap: fromJS({}),
+    allIssueId: [],
   },
   action: FSAction | AxiosSuccessAction
 ) {
@@ -89,12 +92,11 @@ export function project(
     }
 
     case 'GET_PROJECT_ISSUE_DETAIL_SUCCESS': {
-      return reduceIssueDetailSuccess(
-        state,
-        action as AxiosSuccessAction<
-          ReturnType<typeof getProjectIssueDetailRequest>
-        >
-      );
+      return reduceIssueDetailSuccess(state, action as AxiosSuccessAction);
+    }
+
+    case 'GET_PROJECT_ISSUES_SUCCESS': {
+      return reduceProjectIssuesSuccess(state, action as AxiosSuccessAction);
     }
 
     default:
