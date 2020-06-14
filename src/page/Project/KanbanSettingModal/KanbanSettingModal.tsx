@@ -19,7 +19,7 @@ import { IKanban } from '../../../typings/kanban.typing';
 import { KanbanColumnCreator } from './KanbanColumnCreator/KanbanColumnCreator';
 import { KanbanColumnPanel } from './KanbanColumnPanel/KanbanColumnPanel';
 import { ModalHeader } from '../../../widget/Modal/ModalHeader/ModalHeader';
-import { createKanbanColumnRequest } from '../../../redux/actions/column.action';
+import { createKanbanColumnRequest, queryKanbanColumns } from "../../../redux/actions/column.action";
 import { IColumn } from '../../../typings/kanban-column.typing';
 import { IProject } from '../../../typings/project.typing';
 
@@ -45,6 +45,7 @@ class KanbanSettingModalComponent extends Component<
     this.props.actions.getProjectKanbanDetailRequest({
       kanbanId: this.props.kanbanId,
     });
+    this.props.actions.queryKanbanColumns(this.props.kanbanId);
   }
 
   closeModal = () => {
@@ -56,6 +57,8 @@ class KanbanSettingModalComponent extends Component<
       projectId: this.props.project!.id,
       kanbanId: this.props.kanban!.id,
       ...formData,
+    }).then(() => {
+      this.props.actions.queryKanbanColumns(this.props.kanbanId);
     });
   };
 
@@ -109,7 +112,7 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
   return {
     actions: bindActionCreators(
       {
-        createKanbanRequest: createKanbanRequest,
+        queryKanbanColumns: queryKanbanColumns,
         createKanbanColumnRequest: createKanbanColumnRequest,
         getProjectKanbanDetailRequest: getProjectKanbanDetailRequest,
       },

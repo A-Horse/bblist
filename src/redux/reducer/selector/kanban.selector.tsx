@@ -5,6 +5,7 @@ import {
 } from '../../../typings/kanban-column.typing';
 import { IKanban } from '../../../typings/kanban.typing';
 import { SelectOption } from '../../../typings/select.typing';
+import get from 'lodash/get';
 
 export function selectKanbanOptions(
   state: RootState,
@@ -45,14 +46,17 @@ export function selectKanbanColumns(
   state: RootState,
   kanbanId: string
 ): IColumn[] {
-  return Object.values(state.project.columnMap)
-    .filter((column) => column.kanbanId === kanbanId)
-    .map((column) => {
-      return {
-        ...column,
-        issues: ((column as IColumnNormalized).issues || []).map(
-          (id) => state.project.issueMap[id]
-        ),
-      };
-    });
+   if (!get(state.project.kanbanMap[kanbanId], [ 'columnIds'])) {
+     return [];
+   }
+   return get(state.project.kanbanMap[kanbanId], ['columnIds'])!.map(id => state.project.columnMap[id])
+     .filter(x => !!x)
+     .map((column) => {
+       return {
+         ...column,
+         issues: ((column as IColumnNormalized).issues || []).map(
+           (id) => state.project.issueMap[id]
+         ),
+       };
+     });
 }

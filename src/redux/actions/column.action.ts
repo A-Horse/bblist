@@ -9,38 +9,36 @@ export function queryKanbanColumns(kanbanId): FSAction {
         url: `/kanban/${kanbanId}/columns`,
       },
     },
+    meta: {
+      kanbanId: kanbanId
+    }
   };
 }
 
-export const CREATE_KANBAN_COLUMN_REQUEST = 'CREATE_KANBAN_COLUMN_REQUEST';
-export const CREATE_KANBAN_COLUMN_SUCCESS = 'CREATE_KANBAN_COLUMN_SUCCESS';
-export const CREATE_KANBAN_COLUMN_FAILURE = 'CREATE_KANBAN_COLUMN_FAILURE';
 
 export function createKanbanColumnRequest(
   createKanbanColumnInput: CreateKanbanColumnInput
-): FSAction {
+) {
   return {
-    type: CREATE_KANBAN_COLUMN_REQUEST,
-    payload: createKanbanColumnInput,
+    type: `CREATE_KANBAN_COLUMN`,
+    payload: {
+      request: {
+        url: '/column',
+        method: 'POST',
+        data: createKanbanColumnInput
+      }
+    }
   };
 }
 
-export function createKanbanColumnSuccess(
-  id: string,
-  meta: {
-    kanbanId: string;
+export function deleteKanbanColumn(id: string) {
+  return {
+    type: 'DELETE_COLUMN',
+    payload: {
+      request: {
+        url: `/column/${id}`,
+        method: 'DELETE'
+      }
+    }
   }
-): FSAction {
-  return {
-    type: CREATE_KANBAN_COLUMN_SUCCESS,
-    payload: id,
-    meta,
-  };
-}
-
-export function createKanbanColumnFailure(): FSAction {
-  return {
-    type: CREATE_KANBAN_COLUMN_FAILURE,
-    error: true,
-  };
 }

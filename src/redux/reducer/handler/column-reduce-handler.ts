@@ -11,7 +11,7 @@ export function reduceKanbanColumnsSuccess(
   state: ProjectState,
   action: AxiosSuccessAction<ReturnType<typeof queryKanbanColumns>>
 ): ProjectState {
-  const kanbanId = action.meta.previousAction.payload.kanbanId;
+  const kanbanId = action.meta.previousAction.meta.kanbanId;
   const normalizedData: {
     entities: {
       KanbanColumn: {
