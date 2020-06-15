@@ -44,7 +44,6 @@ export function ColumnIssueCreator({
         title: title,
       })
     ).then((action: AxiosSuccessAction) => {
-      console.log('response', action);
       dispatch(
         getProjectIssueDetailRequest({
           issueId: action.payload.data,

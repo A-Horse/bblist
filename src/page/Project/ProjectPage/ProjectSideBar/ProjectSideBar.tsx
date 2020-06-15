@@ -38,28 +38,34 @@ export function ProjectSideBar(props: { projectId: string }) {
     <Side className={`ProjectSideBar${shrink ? ' shrink' : ''}`}>
       <div className="ProjectSideBar--main">
         <ProjectInfoSection projectID={props.projectId} />
-        <SideItemLink
-          icon={faChartLine}
-          to={`${match.url}/dashboard`}
-          name="总览"
-        />
-        <>
-          {kanbans.map((kanban: IKanban, index: number) => (
-            <SideItemLink
-              key={index}
-              icon="list-alt"
-              to={`${match.url}/kanban/${kanban.id}`}
-              name={kanban.name}
-            />
-          ))}
-        </>
-        <SideItemLink
-          icon="vector-square"
-          to={`${match.url}/epics`}
-          name="主题"
-        />
-        <SideItemLink icon={faUsers} to={`${match.url}/team`} name="团队" />
-        <SideItemLink icon="list-ol" to={`${match.url}/issues`} name="问题" />
+
+        <div style={{
+          marginLeft: -6
+        }}>
+          <SideItemLink
+            icon={faChartLine}
+            to={`${match.url}/dashboard`}
+            name="总览"
+          />
+          <>
+            {kanbans.map((kanban: IKanban, index: number) => (
+              <SideItemLink
+                key={index}
+                icon="list-alt"
+                to={`${match.url}/kanban/${kanban.id}`}
+                name={kanban.name}
+              />
+            ))}
+          </>
+          <SideItemLink
+            icon="vector-square"
+            to={`${match.url}/epics`}
+            name="主题"
+          />
+          <SideItemLink icon={faUsers} to={`${match.url}/team`} name="团队" />
+          <SideItemLink icon="list-ol" to={`${match.url}/issues`} name="问题" />
+        </div>
+
       </div>
 
       <footer>
