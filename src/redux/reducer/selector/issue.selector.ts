@@ -11,5 +11,6 @@ export function selectProjectIssues(
 ): IProjectIssue[] {
   return state.project.allIssueId
     .map((id) => state.project.issueMap[id])
-    .filter((v) => !!v);
+    .filter((v) => !!v)
+    .sort((a, b) => a.order - b.order);
 }

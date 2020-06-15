@@ -1,16 +1,15 @@
 import './ProjectIssueList.scss';
 
 import React, { useEffect } from 'react';
-import { Route, RouteComponentProps, useRouteMatch } from 'react-router-dom';
-
-import { FlatIssue } from '../../../../components/Project/Issue/FlatIssue/FlatIssue';
-import { IssueDetail } from '../../../../components/Project/Issue/IssueDetail/IssueDetail';
+import { useRouteMatch } from 'react-router-dom';
+import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import { IProjectIssue } from '../../../../typings/project-issue.typing';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProjectIssuesRequest } from '../../../../redux/actions/project-issue.action';
 import { RootState } from '../../../../redux/reducer';
 import { selectProjectIssues } from '../../../../redux/reducer/selector/issue.selector';
 import { useHistory } from 'react-router-dom';
+import { SortableFlatIssue } from "./SortableFlatIssue";
 
 interface InputProps {}
 
@@ -31,33 +30,41 @@ export function ProjectIssueList(props: InputProps) {
     history.push(`/project/${projectId}/issues/${issue.id}`);
   };
 
+  const onDragEnd= (result) => {
+    if (!result.destination) {
+      return;
+    }
+
+    // const items = reorder(
+    //   this.state.items,
+    //   result.source.index,
+    //   result.destination.index
+    // );
+  }
+
   return (
     <div className="Issues">
       <div className="Issues--list">
-        <ul>
-          {issues.map((issue: IProjectIssue) => {
-            return (
-              <li key={issue.id}>
-                <FlatIssue issue={issue} onClick={() => onIssueClick(issue)} />
-              </li>
-            );
-          })}
-        </ul>
-      </div>
+        <DragDropContext onDragEnd={onDragEnd}>
+          <Droppable droppableId="droppable">
+            {(provided, snapshot) => (
+              <div
+                {...provided.droppableProps}
+                ref={provided.innerRef}
+              >
+                <ul>
+                  {issues.map((issue: IProjectIssue, index: number) => {
+                    return (
+                     <SortableFlatIssue key={issue.id} issue={issue} index={index} />
+                    );
+                  })}
+                </ul>
+              </div>
+            )}
+          </Droppable>
+        </DragDropContext>
 
-      <Route
-        path="/project/:projectId/issues/:issueId"
-        render={(
-          props: RouteComponentProps<{ issueId: string; projectID: string }>
-        ) => (
-          <div className={`Issues--detail-container`}>
-            <IssueDetail
-              issueId={props.match.params.issueId}
-              projectId={props.match.params.projectID}
-            />
-          </div>
-        )}
-      />
+      </div>
     </div>
   );
 }
