@@ -6,7 +6,7 @@ import { Formik, FormikHelpers, FormikProps } from 'formik';
 import { ModalHeader } from '../../../widget/Modal/ModalHeader/ModalHeader';
 import { ModalFooter } from '../../../widget/Modal/ModalFooter/ModalFooter';
 import { ConfirmButtonGroup } from '../../../widget/ButtonGroup/ConfirmGroup/ConfirmGroup';
-import { createIssueRequest } from '../../../redux/actions/project-issue.action';
+import { createIssueRequest } from '../../../redux/actions/issue.action';
 
 import './IssueCreatorModal.scss';
 

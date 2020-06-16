@@ -5,7 +5,7 @@ import { faPlusCircle, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { AppTextArea } from '../../../../../../../widget/TextArea/TextArea';
 import { AppButton } from '../../../../../../../widget/Button';
 import { useDispatch } from 'react-redux';
-import { createIssueRequest } from '../../../../../../../redux/actions/project-issue.action';
+import { createIssueRequest } from '../../../../../../../redux/actions/issue.action';
 import { useToasts } from 'react-toast-notifications';
 import { AxiosSuccessAction } from '../../../../../../../redux/actions/actions';
 import { AxiosDispatch } from '../../../../../../../typings/util.typing';

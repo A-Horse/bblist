@@ -5,7 +5,7 @@ import { useRouteMatch } from 'react-router-dom';
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import { IProjectIssue } from '../../../../typings/project-issue.typing';
 import { useDispatch, useSelector } from 'react-redux';
-import { getProjectIssuesRequest } from '../../../../redux/actions/project-issue.action';
+import { getProjectIssuesRequest } from '../../../../redux/actions/issue.action';
 import { RootState } from '../../../../redux/reducer';
 import { selectProjectIssues } from '../../../../redux/reducer/selector/issue.selector';
 import { useHistory } from 'react-router-dom';

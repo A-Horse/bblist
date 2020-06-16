@@ -3,7 +3,7 @@ import { AxiosSuccessAction, FSAction } from '../../actions/actions';
 import { getProjectIssueDetailRequest } from '../../actions/project-issue-detail.action';
 import { IProjectIssue } from '../../../typings/project-issue.typing';
 import uniq from 'lodash/uniq';
-import { getProjectIssuesRequest } from '../../actions/project-issue.action';
+import { getProjectIssuesRequest } from '../../actions/issue.action';
 import { IColumn } from '../../../typings/kanban-column.typing';
 import { normalize } from 'normalizr';
 import { KanbanColumnEntityList, ProjectIssueList } from '../../schema';
