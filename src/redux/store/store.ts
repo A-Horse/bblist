@@ -17,7 +17,9 @@ export const store = configureStore(
   combineReducers({
     ...reducers,
   }),
-  applyMiddleware(axiosMiddleware(client), epicMiddleware),
+  applyMiddleware(axiosMiddleware(client, {
+    returnRejectedPromiseOnError: true
+  }), epicMiddleware),
   () => {
     epicMiddleware.run(rootEpic);
   }

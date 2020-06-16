@@ -5,7 +5,7 @@ import { useRouteMatch } from 'react-router-dom';
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import { IProjectIssue } from '../../../../typings/project-issue.typing';
 import { useDispatch, useSelector } from 'react-redux';
-import { getProjectIssuesRequest } from '../../../../redux/actions/issue.action';
+import { getProjectIssuesRequest, rankIssue } from "../../../../redux/actions/issue.action";
 import { RootState } from '../../../../redux/reducer';
 import { selectProjectIssues } from '../../../../redux/reducer/selector/issue.selector';
 import { useHistory } from 'react-router-dom';
@@ -34,6 +34,9 @@ export function ProjectIssueList(props: InputProps) {
     if (!result.destination) {
       return;
     }
+    console.log(result);
+
+    dispatch(rankIssue(issues[result.source.index], issues[result.destination.index], result.source.index > result.destination.index));
 
     // const items = reorder(
     //   this.state.items,
@@ -58,6 +61,7 @@ export function ProjectIssueList(props: InputProps) {
                      <SortableFlatIssue key={issue.id} issue={issue} index={index} />
                     );
                   })}
+                  {provided.placeholder}
                 </ul>
               </div>
             )}

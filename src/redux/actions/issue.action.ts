@@ -1,7 +1,9 @@
 import {
   CreateProjectIssueInput,
+  IProjectIssue,
 } from '../../typings/project-issue.typing';
 import { FSAction } from './actions';
+import { IProject } from '../../typings/project.typing';
 
 export function getProjectIssuesRequest(payload: {
   projectId: string;
@@ -28,6 +30,17 @@ export function createIssueRequest(
         method: 'POST',
         responseType: 'text',
       },
+    },
+  };
+}
+
+export function rankIssue(issue: IProjectIssue, targetIssue: IProjectIssue, isBefore: boolean) {
+  return {
+    type: 'RANK_ISSUE',
+    payload: {
+      issue,
+      targetIssue,
+      isBefore
     },
   };
 }

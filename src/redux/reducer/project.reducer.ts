@@ -28,6 +28,7 @@ import {
   reduceProjectIssuesSuccess,
   reduceUpdateProjectIssue,
 } from './handler/issue-reduce-handler';
+import { rankIssue } from "../actions/issue.action";
 
 export type KanbanMap = { [id: string]: IKanban };
 export type ColumnMap = { [id: string]: IColumn };
@@ -97,6 +98,20 @@ export function project(
 
     case 'GET_PROJECT_ISSUES_SUCCESS': {
       return reduceProjectIssuesSuccess(state, action as AxiosSuccessAction);
+    }
+
+    case 'RANK_ISSUE': {
+      const payload = (<ReturnType<typeof rankIssue>>action).payload
+      return {
+        ...state,
+        issueMap: {
+          ...state.issueMap,
+          [payload.issue.id]: {
+            ...state.issueMap[payload.issue.id],
+            order: payload.targetIssue.order + (payload.isBefore ? -1 : 1)
+          }
+        }
+      }
     }
 
     default:

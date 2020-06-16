@@ -15,6 +15,8 @@ export const FlatIssue = ({ issue, onClick }: InputProps) => {
     <div className="FlatIssue" onClick={clickHandle}>
       <span className="FlatIssue--id">{issue.id}</span>
       {issue.title}
+      -
+      {issue.order}
     </div>
   );
 };
