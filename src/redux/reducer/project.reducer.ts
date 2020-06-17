@@ -25,9 +25,9 @@ import {
 } from './handler/project-reduce-handler';
 import {
   reduceIssueDetailSuccess,
-  reduceProjectIssuesSuccess,
-  reduceUpdateProjectIssue,
-} from './handler/issue-reduce-handler';
+  reduceProjectIssuesSuccess, reduceRankIssue, reduceRankIssueSuccess,
+  reduceUpdateProjectIssue
+} from "./handler/issue-reduce-handler";
 import { rankIssue } from "../actions/issue.action";
 
 export type KanbanMap = { [id: string]: IKanban };
@@ -51,7 +51,7 @@ export function project(
     issueMap: fromJS({}),
     allIssueId: [],
   },
-  action: FSAction | AxiosSuccessAction
+  action
 ) {
   switch (action.type) {
     case GET_PROJECT_SUCCESS: {
@@ -101,17 +101,11 @@ export function project(
     }
 
     case 'RANK_ISSUE': {
-      const payload = (<ReturnType<typeof rankIssue>>action).payload
-      return {
-        ...state,
-        issueMap: {
-          ...state.issueMap,
-          [payload.issue.id]: {
-            ...state.issueMap[payload.issue.id],
-            order: payload.targetIssue.order + (payload.isBefore ? -1 : 1)
-          }
-        }
-      }
+      return reduceRankIssue(state, action)
+    }
+
+    case 'RANK_ISSUE_SUCCESS': {
+      return reduceRankIssueSuccess(state, action)
     }
 
     default:

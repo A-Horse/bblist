@@ -3,7 +3,7 @@ import { AxiosSuccessAction, FSAction } from '../../actions/actions';
 import { getProjectIssueDetailRequest } from '../../actions/project-issue-detail.action';
 import { IProjectIssue } from '../../../typings/project-issue.typing';
 import uniq from 'lodash/uniq';
-import { getProjectIssuesRequest } from '../../actions/issue.action';
+import { getProjectIssuesRequest, rankIssue } from "../../actions/issue.action";
 import { IColumn } from '../../../typings/kanban-column.typing';
 import { normalize } from 'normalizr';
 import { KanbanColumnEntityList, ProjectIssueList } from '../../schema';
@@ -75,4 +75,43 @@ export function reduceProjectIssuesSuccess(
     ),
     allIssueId: normalizedData.result,
   };
+}
+
+export function reduceRankIssue(
+  state: ProjectState,
+  action: ReturnType<typeof rankIssue>
+): ProjectState {
+  const payload = action.payload
+  return {
+    ...state,
+    issueMap: {
+      ...state.issueMap,
+      [payload.issue.id]: {
+        ...state.issueMap[payload.issue.id],
+        order: payload.targetIssue.order + (payload.isBefore ? -1 : 1)
+      }
+    }
+  }
+}
+
+export function reduceRankIssueSuccess(
+  state: ProjectState,
+  action: AxiosSuccessAction
+): ProjectState {
+  const changedIssueMap = (action.payload.data as Array<{id: string; order: number}>).reduce((result, cur) => {
+    return {
+      ...result,
+      [cur.id]: {
+        ...state.issueMap[cur.id],
+        order: cur.order
+      }
+    }
+  }, {})
+  return {
+    ...state,
+    issueMap: {
+      ...state.issueMap,
+      ...changedIssueMap
+    }
+  }
 }
