@@ -34,15 +34,11 @@ export function ProjectIssueList(props: InputProps) {
     if (!result.destination) {
       return;
     }
-    console.log(result);
+    console.log(issues.map(i => ({id: i.id, order: i.order})));
 
     dispatch(rankIssue(issues[result.source.index], issues[result.destination.index], result.source.index > result.destination.index));
 
-    // const items = reorder(
-    //   this.state.items,
-    //   result.source.index,
-    //   result.destination.index
-    // );
+
   }
 
   return (
