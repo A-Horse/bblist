@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from 'axios';
 import { ofType } from 'redux-observable';
 import { from, Observable } from 'rxjs';
-import {  mergeMap } from 'rxjs/operators';
+import { mergeMap } from 'rxjs/operators';
 
 import { FSAction } from '../actions/actions';
 import {
@@ -16,7 +16,6 @@ import {
 } from '../actions/kanban.action';
 import { IKanban } from '../../typings/kanban.typing';
 import { makeApiUrl } from '../../utils/api';
-
 
 export const GET_PROJECT_KANBANS_REQUEST_FN = (action$: Observable<FSAction>) =>
   action$.pipe(

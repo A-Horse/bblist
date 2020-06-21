@@ -10,11 +10,10 @@ export function queryKanbanColumns(kanbanId): FSAction {
       },
     },
     meta: {
-      kanbanId: kanbanId
-    }
+      kanbanId: kanbanId,
+    },
   };
 }
-
 
 export function createKanbanColumnRequest(
   createKanbanColumnInput: CreateKanbanColumnInput
@@ -25,9 +24,9 @@ export function createKanbanColumnRequest(
       request: {
         url: '/column',
         method: 'POST',
-        data: createKanbanColumnInput
-      }
-    }
+        data: createKanbanColumnInput,
+      },
+    },
   };
 }
 
@@ -37,8 +36,8 @@ export function deleteKanbanColumn(id: string) {
     payload: {
       request: {
         url: `/column/${id}`,
-        method: 'DELETE'
-      }
-    }
-  }
+        method: 'DELETE',
+      },
+    },
+  };
 }

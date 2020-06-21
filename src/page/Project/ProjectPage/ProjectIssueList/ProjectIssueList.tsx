@@ -2,14 +2,17 @@ import './ProjectIssueList.scss';
 
 import React, { useEffect } from 'react';
 import { useRouteMatch } from 'react-router-dom';
-import { DragDropContext, Droppable } from "react-beautiful-dnd";
+import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import { IProjectIssue } from '../../../../typings/project-issue.typing';
 import { useDispatch, useSelector } from 'react-redux';
-import { getProjectIssuesRequest, rankIssue } from "../../../../redux/actions/issue.action";
+import {
+  getProjectIssuesRequest,
+  rankIssue,
+} from '../../../../redux/actions/issue.action';
 import { RootState } from '../../../../redux/reducer';
 import { selectProjectIssues } from '../../../../redux/reducer/selector/issue.selector';
 import { useHistory } from 'react-router-dom';
-import { SortableFlatIssue } from "./SortableFlatIssue";
+import { SortableFlatIssue } from './SortableFlatIssue';
 
 interface InputProps {}
 
@@ -30,16 +33,20 @@ export function ProjectIssueList(props: InputProps) {
     history.push(`/project/${projectId}/issues/${issue.id}`);
   };
 
-  const onDragEnd= (result) => {
+  const onDragEnd = (result) => {
     if (!result.destination) {
       return;
     }
-    console.log(issues.map(i => ({id: i.id, order: i.order})));
+    console.log(issues.map((i) => ({ id: i.id, order: i.order })));
 
-    dispatch(rankIssue(issues[result.source.index], issues[result.destination.index], result.source.index > result.destination.index));
-
-
-  }
+    dispatch(
+      rankIssue(
+        issues[result.source.index],
+        issues[result.destination.index],
+        result.source.index > result.destination.index
+      )
+    );
+  };
 
   return (
     <div className="Issues">
@@ -47,14 +54,15 @@ export function ProjectIssueList(props: InputProps) {
         <DragDropContext onDragEnd={onDragEnd}>
           <Droppable droppableId="droppable">
             {(provided, snapshot) => (
-              <div
-                {...provided.droppableProps}
-                ref={provided.innerRef}
-              >
+              <div {...provided.droppableProps} ref={provided.innerRef}>
                 <ul>
                   {issues.map((issue: IProjectIssue, index: number) => {
                     return (
-                     <SortableFlatIssue key={issue.id} issue={issue} index={index} />
+                      <SortableFlatIssue
+                        key={issue.id}
+                        issue={issue}
+                        index={index}
+                      />
                     );
                   })}
                   {provided.placeholder}
@@ -63,7 +71,6 @@ export function ProjectIssueList(props: InputProps) {
             )}
           </Droppable>
         </DragDropContext>
-
       </div>
     </div>
   );

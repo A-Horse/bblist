@@ -90,10 +90,10 @@ export function queryKanbanRecentlyIssues(kanbanId: string) {
     payload: {
       request: {
         url: `/kanban/${kanbanId}/recently-issues`,
-      }
+      },
     },
     meta: {
-      kanbanId
-    }
-  }
+      kanbanId,
+    },
+  };
 }

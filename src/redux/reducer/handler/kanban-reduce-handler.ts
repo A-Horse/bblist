@@ -1,10 +1,15 @@
 import { IKanban } from '../../../typings/kanban.typing';
 import { normalize } from 'normalizr';
-import { KanbanDetailEntity, KanbanEntityList, ProjectEntity, ProjectIssueList } from "../../schema";
+import {
+  KanbanDetailEntity,
+  KanbanEntityList,
+  ProjectEntity,
+  ProjectIssueList,
+} from '../../schema';
 import { ProjectState } from '../project.reducer';
 import { AxiosSuccessAction, FSAction } from '../../actions/actions';
 import { reduceNormalizeMap } from '../util/util';
-import { queryKanbanRecentlyIssues } from "../../actions/kanban.action";
+import { queryKanbanRecentlyIssues } from '../../actions/kanban.action';
 
 export function reduceKanbanDetailSuccess(
   state: ProjectState,
@@ -33,12 +38,14 @@ export function reduceKanbanDetailSuccess(
   };
 }
 
-
-export function reduceProjectKanban(state: ProjectState, action: FSAction): ProjectState {
+export function reduceProjectKanban(
+  state: ProjectState,
+  action: FSAction
+): ProjectState {
   return {
     ...state,
-    loadingKanbans: true
-  }
+    loadingKanbans: true,
+  };
 }
 
 export function reduceProjectKanbanSuccess(
@@ -90,7 +97,6 @@ export function reduceKanbanRecentlyIssuesSuccess(
       state.issueMap,
       normalizedIssuesData.entities.ProjectIssue
     ),
-
   };
   return state;
 }

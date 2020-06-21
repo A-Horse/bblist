@@ -19,7 +19,10 @@ import { IKanban } from '../../../typings/kanban.typing';
 import { KanbanColumnCreator } from './KanbanColumnCreator/KanbanColumnCreator';
 import { KanbanColumnPanel } from './KanbanColumnPanel/KanbanColumnPanel';
 import { ModalHeader } from '../../../widget/Modal/ModalHeader/ModalHeader';
-import { createKanbanColumnRequest, queryKanbanColumns } from "../../../redux/actions/column.action";
+import {
+  createKanbanColumnRequest,
+  queryKanbanColumns,
+} from '../../../redux/actions/column.action';
 import { IColumn } from '../../../typings/kanban-column.typing';
 import { IProject } from '../../../typings/project.typing';
 
@@ -53,13 +56,15 @@ class KanbanSettingModalComponent extends Component<
   };
 
   createKanbanColumn = (formData: any) => {
-    this.props.actions.createKanbanColumnRequest({
-      projectId: this.props.project!.id,
-      kanbanId: this.props.kanban!.id,
-      ...formData,
-    }).then(() => {
-      this.props.actions.queryKanbanColumns(this.props.kanbanId);
-    });
+    this.props.actions
+      .createKanbanColumnRequest({
+        projectId: this.props.project!.id,
+        kanbanId: this.props.kanban!.id,
+        ...formData,
+      })
+      .then(() => {
+        this.props.actions.queryKanbanColumns(this.props.kanbanId);
+      });
   };
 
   render() {

@@ -1,4 +1,4 @@
-import { IProjectIssue } from "./project-issue.typing";
+import { IProjectIssue } from './project-issue.typing';
 
 export interface IKanbanDisplay {
   id: string;

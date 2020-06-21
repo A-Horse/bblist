@@ -39,9 +39,11 @@ export function ProjectSideBar(props: { projectId: string }) {
       <div className="ProjectSideBar--main">
         <ProjectInfoSection projectID={props.projectId} />
 
-        <div style={{
-          marginLeft: -6
-        }}>
+        <div
+          style={{
+            marginLeft: -6,
+          }}
+        >
           <SideItemLink
             icon={faChartLine}
             to={`${match.url}/dashboard`}
@@ -65,7 +67,6 @@ export function ProjectSideBar(props: { projectId: string }) {
           <SideItemLink icon={faUsers} to={`${match.url}/team`} name="团队" />
           <SideItemLink icon="list-ol" to={`${match.url}/issues`} name="问题" />
         </div>
-
       </div>
 
       <footer>

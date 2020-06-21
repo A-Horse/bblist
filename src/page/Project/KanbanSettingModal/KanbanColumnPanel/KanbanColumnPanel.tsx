@@ -7,9 +7,12 @@ import { OperableListItem } from '../../../../components/List/OperableListItem';
 import { AppList } from '../../../../components/List/List';
 import { ConfirmModal } from '../../../../components/Modal/ConfirmModal';
 import { IColumn } from '../../../../typings/kanban-column.typing';
-import { useDispatch } from "react-redux";
-import { deleteKanbanColumn, queryKanbanColumns } from "../../../../redux/actions/column.action";
-import { AxiosDispatch } from "../../../../typings/util.typing";
+import { useDispatch } from 'react-redux';
+import {
+  deleteKanbanColumn,
+  queryKanbanColumns,
+} from '../../../../redux/actions/column.action';
+import { AxiosDispatch } from '../../../../typings/util.typing';
 
 function ColumnListItem(props: { column: IColumn }) {
   const [editModalVisible, setEditModalVisible] = useState(false);
@@ -18,10 +21,10 @@ function ColumnListItem(props: { column: IColumn }) {
 
   const deleteColumn = () => {
     dispatch(deleteKanbanColumn(props.column.id)).then(() => {
-      dispatch(queryKanbanColumns(props.column.kanbanId)).then()
-      setDeleteConfirmVisible(false)
-    })
-  }
+      dispatch(queryKanbanColumns(props.column.kanbanId)).then();
+      setDeleteConfirmVisible(false);
+    });
+  };
 
   return (
     <>
