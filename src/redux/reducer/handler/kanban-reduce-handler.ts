@@ -1,9 +1,10 @@
 import { IKanban } from '../../../typings/kanban.typing';
 import { normalize } from 'normalizr';
-import { KanbanDetailEntity, KanbanEntityList } from '../../schema';
+import { KanbanDetailEntity, KanbanEntityList, ProjectEntity, ProjectIssueList } from "../../schema";
 import { ProjectState } from '../project.reducer';
 import { AxiosSuccessAction, FSAction } from '../../actions/actions';
 import { reduceNormalizeMap } from '../util/util';
+import { queryKanbanRecentlyIssues } from "../../actions/kanban.action";
 
 export function reduceKanbanDetailSuccess(
   state: ProjectState,
@@ -32,7 +33,15 @@ export function reduceKanbanDetailSuccess(
   };
 }
 
-export function reduceProjectKanban(
+
+export function reduceProjectKanban(state: ProjectState, action: FSAction): ProjectState {
+  return {
+    ...state,
+    loadingKanbans: true
+  }
+}
+
+export function reduceProjectKanbanSuccess(
   state: ProjectState,
   action: FSAction
 ): ProjectState {
@@ -47,6 +56,7 @@ export function reduceProjectKanban(
   const projectId = action.payload.projectId;
   return {
     ...state,
+    loadingKanbans: false,
     projectMap: {
       ...state.projectMap,
       [projectId]: {
@@ -59,4 +69,28 @@ export function reduceProjectKanban(
       normalizedKanbans.entities.Kanban
     ),
   };
+}
+
+export function reduceKanbanRecentlyIssuesSuccess(
+  state: ProjectState,
+  action: AxiosSuccessAction<ReturnType<typeof queryKanbanRecentlyIssues>>
+): ProjectState {
+  const kanbanId = action.meta.previousAction.meta.kanbanId;
+  const normalizedIssuesData = normalize(action.payload.data, ProjectIssueList);
+  return {
+    ...state,
+    kanbanMap: {
+      ...state.kanbanMap,
+      [kanbanId]: {
+        ...state.kanbanMap[kanbanId],
+        recentlyIssueIds: normalizedIssuesData.result,
+      },
+    },
+    issueMap: reduceNormalizeMap(
+      state.issueMap,
+      normalizedIssuesData.entities.ProjectIssue
+    ),
+
+  };
+  return state;
 }

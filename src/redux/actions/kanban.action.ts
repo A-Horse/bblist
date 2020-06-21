@@ -83,3 +83,17 @@ export function createKanbanFailure(): FSAction {
     error: true,
   };
 }
+
+export function queryKanbanRecentlyIssues(kanbanId: string) {
+  return {
+    type: 'QUERY_KANBAN_RECENTLY_ISSUES',
+    payload: {
+      request: {
+        url: `/kanban/${kanbanId}/recently-issues`,
+      }
+    },
+    meta: {
+      kanbanId
+    }
+  }
+}

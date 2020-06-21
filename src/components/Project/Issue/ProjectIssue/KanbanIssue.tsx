@@ -7,7 +7,6 @@ import { IssueId } from '../IssueId/IssueId';
 
 interface InputProps {
   issue: IProjectIssue;
-  rankProjectCardColumn: Function;
   kanbanId: string;
   onClick: (issueId: string) => void;
 }

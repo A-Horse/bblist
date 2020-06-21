@@ -37,10 +37,6 @@ export function KanbanColumn({ column, projectId, kanbanId }: InputProps) {
                   key={issue.id}
                   kanbanId={column.kanbanId}
                   onClick={onIssueClick}
-                  rankProjectCardColumn={
-                    // this.props.rankProjectCardInKanbanRequest
-                    () => {}
-                  }
                   issue={issue}
                 />
               );

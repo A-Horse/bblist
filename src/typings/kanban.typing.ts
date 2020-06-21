@@ -1,3 +1,5 @@
+import { IProjectIssue } from "./project-issue.typing";
+
 export interface IKanbanDisplay {
   id: string;
   name: string;
@@ -6,6 +8,8 @@ export interface IKanbanDisplay {
 export interface IKanban extends IKanbanDisplay {
   columns?: any[];
   columnIds?: string[];
+  recentlyIssues?: IProjectIssue[];
+  recentlyIssueIds?: string[];
 }
 
 export interface CreateKanbanInput {

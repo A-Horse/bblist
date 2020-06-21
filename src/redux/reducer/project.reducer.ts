@@ -15,9 +15,9 @@ import { IKanban } from '../../typings/kanban.typing';
 import { IProjectIssue } from '../../typings/project-issue.typing';
 import { IProject } from '../../typings/project.typing';
 import {
-  reduceKanbanDetailSuccess,
-  reduceProjectKanban,
-} from './handler/kanban-reduce-handler';
+  reduceKanbanDetailSuccess, reduceKanbanRecentlyIssuesSuccess, reduceProjectKanban,
+  reduceProjectKanbanSuccess
+} from "./handler/kanban-reduce-handler";
 import { reduceKanbanColumnsSuccess } from './handler/column-reduce-handler';
 import {
   reduceProjectDetailSuccess,
@@ -41,6 +41,7 @@ export interface ProjectState {
   columnMap: ColumnMap;
   issueMap: IssueMap;
   allIssueId: string[];
+  loadingKanbans: boolean;
 }
 
 export function project(
@@ -50,6 +51,7 @@ export function project(
     columnMap: {},
     issueMap: fromJS({}),
     allIssueId: [],
+    loadingKanbans: false
   },
   action
 ) {
@@ -80,8 +82,12 @@ export function project(
       return reduceUpdateProjectIssue(state, action);
     }
 
-    case GET_PROJECT_KANBANS_SUCCESS: {
+    case 'GET_PROJECT_KANBANS_REQUEST': {
       return reduceProjectKanban(state, action);
+    }
+
+    case GET_PROJECT_KANBANS_SUCCESS: {
+      return reduceProjectKanbanSuccess(state, action);
     }
 
     case 'GET_PROJECT_KANBAN_DETAIL_SUCCESS': {
@@ -107,6 +113,11 @@ export function project(
     case 'RANK_ISSUE_SUCCESS': {
       return reduceRankIssueSuccess(state, action)
     }
+
+    case 'QUERY_KANBAN_RECENTLY_ISSUES_SUCCESS': {
+      return reduceKanbanRecentlyIssuesSuccess(state, action);
+    }
+
 
     default:
       return state;
