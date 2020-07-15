@@ -5,6 +5,7 @@ import { queryKanbanRecentlyIssues } from '../../redux/actions/kanban.action';
 import { RootState } from '../../redux/reducer';
 import { selectKanbanRecentlyIssues } from '../../redux/reducer/selector/kanban.selector';
 import { KanbanIssue } from '../Project/Issue/ProjectIssue/KanbanIssue';
+import { Panel } from '../../widget/Panel/Panel';
 
 interface Props {
   kanban: IKanban;
@@ -21,18 +22,28 @@ export function KanbanOverviewPanel({ kanban }: Props) {
   }, []);
 
   return (
-    <div>
+    <Panel>
       <div>{kanban.name}</div>
-      <div>
+      <div>最近卡片</div>
+      <div
+        style={{
+          display: 'flex',
+          flexWrap: 'wrap',
+        }}
+      >
         {recentlyIssues.map((issue) => (
           <KanbanIssue
             key={issue.id}
             issue={issue}
             kanbanId={kanban.id}
+            showBorder
             onClick={() => {}}
+            style={{
+              marginLeft: 0,
+            }}
           />
         ))}
       </div>
-    </div>
+    </Panel>
   );
 }

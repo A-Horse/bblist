@@ -32,7 +32,6 @@ import {
   reduceRankIssueSuccess,
   reduceUpdateProjectIssue,
 } from './handler/issue-reduce-handler';
-import { rankIssue } from '../actions/issue.action';
 
 export type KanbanMap = { [id: string]: IKanban };
 export type ColumnMap = { [id: string]: IColumn };

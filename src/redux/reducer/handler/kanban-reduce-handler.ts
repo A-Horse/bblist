@@ -3,7 +3,6 @@ import { normalize } from 'normalizr';
 import {
   KanbanDetailEntity,
   KanbanEntityList,
-  ProjectEntity,
   ProjectIssueList,
 } from '../../schema';
 import { ProjectState } from '../project.reducer';

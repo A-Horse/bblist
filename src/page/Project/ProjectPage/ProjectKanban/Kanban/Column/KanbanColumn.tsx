@@ -24,7 +24,12 @@ export function KanbanColumn({ column, projectId, kanbanId }: InputProps) {
 
   return (
     <div className="KanbanColumn">
-      <div className="KanbanColumn--main">
+      <div
+        className="KanbanColumn--main"
+        style={{
+          backgroundColor: 'rgb(230, 246, 255)',
+        }}
+      >
         <div className="KanbanColumn--header">
           <span className="KanbanColumn--header-name">{column.name}</span>
         </div>

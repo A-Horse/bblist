@@ -3,11 +3,11 @@ import React, { ReactNode } from 'react';
 import './SectionHeading.scss';
 
 interface InputProps {
-  size: 'sm' | 'md' | 'lg';
+  size?: 'sm' | 'md' | 'lg';
   children: ReactNode;
 }
 
-export function SectionHeading({ size, children }: InputProps) {
+export function SectionHeading({ size = 'md', children }: InputProps) {
   const fontSize: number = {
     sm: 13,
     md: 16,

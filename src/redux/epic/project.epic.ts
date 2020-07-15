@@ -9,7 +9,6 @@ import {
   createProjectFailure,
   createProjectSuccess,
   GET_PROJECT_DETAIL_REQUEST,
-  GET_PROJECT_DETAIL_SUCCESS,
   GET_PROJECT_REQUEST,
   getProjectDetailFailure,
   getProjectDetailRequest,
@@ -28,7 +27,6 @@ import {
   UploadProjectCoverInput,
 } from '../../typings/project.typing';
 import { makeApiUrl } from '../../utils/api';
-import { getProjectKanbansRequest } from '../actions/kanban.action';
 
 export const GET_PROJECTS_REQUEST_FN = (action$: Observable<FSAction>) =>
   action$.pipe(
@@ -56,11 +54,6 @@ export const GET_PROJECT_DETAIL_REQUEST_FN = (action$: Observable<FSAction>) =>
     })
   );
 
-export const GET_PROJECT_DETAIL_SUCCESS_FN = (action$: Observable<FSAction>) =>
-  action$.pipe(
-    ofType(GET_PROJECT_DETAIL_SUCCESS),
-    map((action) => getProjectKanbansRequest({ projectId: action.payload.id }))
-  );
 
 export const CREATE_PROJECT_REQUEST_FN = (action$: Observable<FSAction>) =>
   action$.pipe(

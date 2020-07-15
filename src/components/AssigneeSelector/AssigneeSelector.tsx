@@ -8,7 +8,7 @@ import { SelectOption } from '../../typings/select.typing';
 import { AssigneeSelectorOption } from './AssigneeSelectorOption';
 
 import './AssigneeSelector.scss';
-import { getProjectUserRequest } from '../../redux/actions/project.action';
+import { queryProjectUserRequest } from '../../redux/actions/project.action';
 import { DisplayAccount } from '../../typings/user.typing';
 
 interface InputProps {
@@ -38,7 +38,7 @@ export function AssigneeSelector(props: InputProps) {
   const userOptions = users.map(mapUserToSelectOption);
 
   useEffect(() => {
-    dispatch(getProjectUserRequest(props.projectId));
+    dispatch(queryProjectUserRequest(props.projectId));
   }, [dispatch, props.projectId]);
 
   const selectedOption = userOptions.find(

@@ -14,7 +14,7 @@ import { getProjectKanbansRequest } from '../../../../redux/actions/kanban.actio
 import { useToasts } from 'react-toast-notifications';
 import { AxiosError } from 'axios';
 import { SectionField } from '../../../../widget/SectionField/SectionField';
-import { RootState } from '../../../../redux/reducer/index';
+import { RootState } from '../../../../redux/reducer';
 import { objectFileUrl } from '../../../../utils/object-storage';
 
 export function ProjectSetting() {

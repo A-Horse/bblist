@@ -133,7 +133,7 @@ export function updateProjectRequest(
   };
 }
 
-export function getProjectUserRequest(projectId: string): FSAction {
+export function queryProjectUserRequest(projectId: string): FSAction {
   return {
     type: 'GET_PROJECT_USER',
     payload: {

@@ -14,6 +14,7 @@ import { ProjectSideBar } from './ProjectSideBar/ProjectSideBar';
 import { Overview } from './ProjectOverview/Overview';
 import { IProject } from '../../../typings/project.typing';
 import { ProjectIssueList } from './ProjectIssueList/ProjectIssueList';
+import { ProjectTeam } from './ProjectTeam/ProjectTeam';
 
 interface Props {
   actions: {
@@ -77,6 +78,10 @@ class ProjectPageComponent extends Component<
                 <Route
                   path="/project/:projectId/issues"
                   render={() => <ProjectIssueList />}
+                />
+                <Route
+                  path="/project/:projectId/team"
+                  render={() => <ProjectTeam />}
                 />
                 <Route
                   path="*"
