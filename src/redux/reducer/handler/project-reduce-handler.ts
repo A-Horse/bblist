@@ -8,12 +8,17 @@ export function reduceProjectDetailSuccess(
   state: ProjectState,
   action: FSAction
 ): ProjectState {
-  const normalizedAddBoard = normalize(action.payload, ProjectEntity);
+  const normalizedData = normalize(action.payload, ProjectEntity);
+  const projectId = normalizedData.result;
+
   return {
     ...state,
     projectMap: {
       ...state.projectMap,
-      ...normalizedAddBoard.entities.Project,
+      [projectId]: {
+        ...state.projectMap[projectId],
+        ...normalizedData.entities.Project[projectId]
+      }
     },
   };
 }

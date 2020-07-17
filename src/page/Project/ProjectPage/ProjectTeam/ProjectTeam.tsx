@@ -20,7 +20,7 @@ export function ProjectTeam() {
   return (
     <div>
       {participants.map((p) => (
-        <div>
+        <div key={p.id}>
           <UserAvatar user={p} />
           {p.username}
         </div>

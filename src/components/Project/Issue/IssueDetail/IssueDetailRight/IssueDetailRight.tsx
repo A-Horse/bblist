@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { DateTimeSelectDialog } from '../../../../DateTimeSelectDialog/DateTimeSeletDialog';
 import { AssigneeSelector } from '../../../../AssigneeSelector/AssigneeSelector';
 import { SelectOption } from '../../../../../typings/select.typing';
-import { SectionHeading } from '../../../../../widget/SectionHeading/SectionHeading';
+import { SectionHeading } from '../../../../../widget/Heading/SectionHeading/SectionHeading';
 import { DetailRightField } from './DetailField/DetailRightField';
 import { faClock } from '@fortawesome/free-regular-svg-icons';
 import { faArrowsAltH } from '@fortawesome/free-solid-svg-icons';

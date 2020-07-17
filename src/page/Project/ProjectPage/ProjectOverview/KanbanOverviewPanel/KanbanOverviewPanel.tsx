@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
-import { IKanban } from '../../typings/kanban.typing';
+import { IKanban } from '../../../../../typings/kanban.typing';
 import { useDispatch, useSelector } from 'react-redux';
-import { queryKanbanRecentlyIssues } from '../../redux/actions/kanban.action';
-import { RootState } from '../../redux/reducer';
-import { selectKanbanRecentlyIssues } from '../../redux/reducer/selector/kanban.selector';
-import { KanbanIssue } from '../Project/Issue/ProjectIssue/KanbanIssue';
-import { Panel } from '../../widget/Panel/Panel';
+import { queryKanbanRecentlyIssues } from '../../../../../redux/actions/kanban.action';
+import { RootState } from '../../../../../redux/reducer';
+import { selectKanbanRecentlyIssues } from '../../../../../redux/reducer/selector/kanban.selector';
+import { KanbanIssue } from '../../../../../components/Project/Issue/ProjectIssue/KanbanIssue';
+import { Panel } from '../../../../../widget/Panel/Panel';
+import {SectionHeading} from "../../../../../widget/Heading/SectionHeading/SectionHeading";
 
 interface Props {
   kanban: IKanban;
@@ -22,13 +23,15 @@ export function KanbanOverviewPanel({ kanban }: Props) {
   }, []);
 
   return (
-    <Panel>
-      <div>{kanban.name}</div>
+    <Panel style={{marginBottom: 12}}>
+      <SectionHeading>{kanban.name}</SectionHeading>
       <div>最近卡片</div>
       <div
         style={{
           display: 'flex',
-          flexWrap: 'wrap',
+          flexWrap: 'nowrap',
+            width: '100%',
+            overflowX: 'auto'
         }}
       >
         {recentlyIssues.map((issue) => (
@@ -40,6 +43,7 @@ export function KanbanOverviewPanel({ kanban }: Props) {
             onClick={() => {}}
             style={{
               marginLeft: 0,
+                flexShrink: 0
             }}
           />
         ))}

@@ -1,8 +1,7 @@
 import { fromJS } from 'immutable';
 import { normalize } from 'normalizr';
-import { AxiosSuccessAction, FSAction } from '../actions/actions';
+import { AxiosSuccessAction } from '../actions/actions';
 import { GET_PROJECT_KANBANS_SUCCESS } from '../actions/kanban.action';
-import { getProjectIssueDetailRequest } from '../actions/project-issue-detail.action';
 import {
   CREATE_PROJECT_SUCCESS,
   GET_PROJECT_DETAIL_SUCCESS,

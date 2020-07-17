@@ -1,6 +1,6 @@
 import React from 'react';
 
-export function Panel({ children }) {
+export function Panel({ children, style }) {
   return (
     <div
       style={{
@@ -8,7 +8,8 @@ export function Panel({ children }) {
         borderRadius: 6,
         padding: 12,
         boxSizing: 'border-box',
-        backgroundColor: 'rgb(230, 246, 255)',
+        backgroundColor: 'rgba(230, 246, 255, 0.6)',
+          ...style
       }}
     >
       {children}

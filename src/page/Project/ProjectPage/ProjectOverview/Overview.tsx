@@ -1,21 +1,15 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import { NoKanbanGuide } from '../ProjectKanban/NoKanbanGuide/NoKanbanGuide';
 import { useRouteMatch } from 'react-router-dom';
-import {useDispatch, useSelector} from 'react-redux';
+import { useSelector} from 'react-redux';
 import { RootState } from '../../../../redux/reducer';
 import { selectKanbans } from '../../../../redux/reducer/selector/kanban.selector';
-import { KanbanOverviewPanel } from '../../../../components/KanbanOverviewPanel/KanbanOverviewPanel';
-import { SectionHeading } from '../../../../widget/SectionHeading/SectionHeading';
-import {getProjectKanbansRequest} from "../../../../redux/actions/kanban.action";
+import { KanbanOverviewPanel } from './KanbanOverviewPanel/KanbanOverviewPanel';
+import {TabHeading} from "../../../../widget/Heading/TabHeading";
 
 export function Overview() {
   const match = useRouteMatch<{ projectId: string }>();
   const projectId = match.params.projectId;
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getProjectKanbansRequest({projectId}))
-  }, [dispatch]);
 
   const kanbans = useSelector((state: RootState) =>
     selectKanbans(state, projectId)
@@ -38,7 +32,7 @@ export function Overview() {
                   padding: 20,
                 }}
             >
-              <SectionHeading>看板</SectionHeading>
+              <TabHeading>看板</TabHeading>
               <div>
                 {kanbans.map((kanban) => (
                     <KanbanOverviewPanel key={kanban.id} kanban={kanban} />
