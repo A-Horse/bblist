@@ -51,22 +51,6 @@ export function ProjectKanban() {
         onOpenSetting={() => setSettingModalVisible(true)}
       />
 
-      <Route
-        path="/project/:projectId/kanban/:kanbanId"
-        render={(props: RouteComponentProps<any>) => {
-          const query = parseQueryParams(props.location.search);
-          if (!query.selectIssue) {
-            return null;
-          }
-          return (
-            <IssueDetailModal
-              kanbanId={props.match.params.kanbanId}
-              projectId={props.match.params.projectId}
-              issueId={query.selectIssue}
-            />
-          );
-        }}
-      />
 
       <div className="ProjectKanban--kanban-container">
         {!!columns.length && (

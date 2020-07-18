@@ -33,7 +33,7 @@ export function KanbanHeaderBar({
         <span>{kanban ? kanban.name : ''}</span>
 
         <AppButton title="设置" type="ghost" onClick={onOpenSetting}>
-          <AppIcon size="sm" icon={faCog} />
+          <AppIcon size="xs" icon={faCog} />
         </AppButton>
       </div>
 

@@ -10,7 +10,7 @@ import { IssueDetailRight } from './IssueDetailRight/IssueDetailRight';
 import { Deadline } from '../../../Deadline/Deadline';
 import { DetailSection } from './DetailSection/DetailSection';
 import { faCreditCard } from '@fortawesome/free-regular-svg-icons';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
+import {faBars, faPencilAlt} from '@fortawesome/free-solid-svg-icons';
 import { ProjectIssueFiled } from '../../../../typings/project-issue.typing';
 import { RootState } from '../../../../redux/reducer';
 import { selectIssue } from '../../../../redux/reducer/selector/issue.selector';
@@ -67,6 +67,17 @@ export function IssueDetail({ issueId, kanbanId, projectId }: InputProps) {
                 value={issue.desc || ''}
                 onChange={(value) => onFieldChange('desc', value)}
                 onBlur={(value) => onFieldChange('desc', value)}
+              />
+            </FormField>
+          </DetailSection>
+
+          <DetailSection icon={faPencilAlt}>
+            <FormField name="评论：" type="major">
+              <AppTextArea
+                  className="IssueDetail--content-textarea"
+                  value={issue.desc || ''}
+                  onChange={(value) => onFieldChange('desc', value)}
+                  onBlur={(value) => onFieldChange('desc', value)}
               />
             </FormField>
           </DetailSection>

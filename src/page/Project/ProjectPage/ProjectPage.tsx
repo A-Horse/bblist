@@ -3,7 +3,7 @@ import './ProjectPage.scss';
 import { History, Location } from 'history';
 import React, {Component, useEffect} from 'react';
 import {connect, useDispatch} from 'react-redux';
-import {match, Redirect, Route, Switch, useRouteMatch, withRouter} from 'react-router-dom';
+import {match, Redirect, Route, RouteComponentProps, Switch, useRouteMatch, withRouter} from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { getProjectDetailRequest } from '../../../redux/actions/project.action';
 import { RootState } from '../../../redux/reducer';
@@ -16,6 +16,8 @@ import { IProject } from '../../../typings/project.typing';
 import { ProjectIssueList } from './ProjectIssueList/ProjectIssueList';
 import { ProjectTeam } from './ProjectTeam/ProjectTeam';
 import {getProjectKanbansRequest} from "../../../redux/actions/kanban.action";
+import {parseQueryParams} from "../../../utils/url.util";
+import {IssueDetailModal} from "../../../components/Project/Issue/IssueDetail/IssueDetailModal";
 
 interface Props {
   actions: {
@@ -82,6 +84,23 @@ export default function ProjectPage() {
                       )}
                   />
                 </Switch>
+
+                <Route
+                    path="/project/:projectId/kanban/:kanbanId"
+                    render={(props: RouteComponentProps<any>) => {
+                      const query = parseQueryParams(props.location.search);
+                      if (!query.selectIssue) {
+                        return null;
+                      }
+                      return (
+                          <IssueDetailModal
+                              kanbanId={props.match.params.kanbanId}
+                              projectId={props.match.params.projectId}
+                              issueId={query.selectIssue}
+                          />
+                      );
+                    }}
+                />
               </div>
           )}
         </div>

@@ -17,8 +17,8 @@ export function KanbanIssue({ issue, onClick, style, showBorder }: InputProps) {
       style={{
         backgroundColor: 'white',
         padding: '6px 8px 10px',
-        margin: '6px 4px',
-        width: 212,
+        margin: '6px 6px',
+        width: 208,
         borderRadius: 6,
         cursor: 'pointer',
         color: '#555',
@@ -37,7 +37,7 @@ export function KanbanIssue({ issue, onClick, style, showBorder }: InputProps) {
       <IssueId id={issue.id} />
       <div
         style={{
-          marginTop: 5,
+          marginTop: 5, wordBreak: 'break-all'
         }}
       >
         {issue.title}

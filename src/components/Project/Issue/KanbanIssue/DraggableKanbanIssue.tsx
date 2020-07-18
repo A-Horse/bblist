@@ -1,25 +1,20 @@
 import React from 'react';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import { IProjectIssue } from '../../../../typings/project-issue.typing';
-import { FlatIssue } from '../../../../components/Project/Issue/FlatIssue/FlatIssue';
-
-interface Props {
-  issue: IProjectIssue;
-  index: number;
-}
+import { Draggable } from 'react-beautiful-dnd';
+import { KanbanIssue } from './KanbanIssue';
 
 const getItemStyle = (isDragging, draggableStyle) => ({
   // some basic styles to make the items look a bit nicer
   userSelect: 'none',
-  padding: 8 * 2,
+  padding: 0,
+  margin: `0 0 0 0`,
+
   // change background colour if dragging
   background: isDragging ? 'lightgreen' : 'grey',
 
   // styles we need to apply on draggables
   ...draggableStyle,
 });
-
-export function SortableFlatIssue({ issue, index }: Props) {
+export function DraggableKanbanIssue({ issue, index, kanbanId, onClick }) {
   return (
     <Draggable key={issue.id} draggableId={issue.id} index={index}>
       {(provided, snapshot) => (
@@ -32,7 +27,7 @@ export function SortableFlatIssue({ issue, index }: Props) {
             provided.draggableProps.style
           )}
         >
-          <FlatIssue issue={issue} onClick={() => {}} />
+          <KanbanIssue issue={issue} kanbanId={kanbanId} onClick={onClick} />
         </div>
       )}
     </Draggable>

@@ -32,7 +32,7 @@ export function Overview() {
                   padding: 20,
                 }}
             >
-              <TabHeading>看板</TabHeading>
+              <TabHeading>看板概况</TabHeading>
               <div>
                 {kanbans.map((kanban) => (
                     <KanbanOverviewPanel key={kanban.id} kanban={kanban} />

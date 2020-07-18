@@ -1,6 +1,10 @@
 .ColumnIssueCreator {
   margin: 8px 4px 0;
 
+  .AppTextArea {
+    background-color: white;
+  }
+
   &--toggle {
     color: #777;
 
@@ -17,6 +21,8 @@
 
   &--operation {
     margin-top: 4px;
+    display: flex;
+    align-items: center;
 
     .cancel-button {
       margin-left: 6px;

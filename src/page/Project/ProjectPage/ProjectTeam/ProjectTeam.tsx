@@ -15,7 +15,7 @@ export function ProjectTeam() {
   );
   useEffect(() => {
     dispatch(queryProjectUserRequest(projectId));
-  }, [dispatch]);
+  }, [dispatch, projectId]);
 
   return (
     <div>

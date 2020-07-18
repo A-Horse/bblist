@@ -32,11 +32,3 @@ export interface CreateProjectIssueInput {
   title: string;
   content?: string;
 }
-
-export interface RankProjectCardInKanbanInput {
-  selectCard: IProjectIssue;
-  targetCard?: IProjectIssue;
-  isBefore?: boolean;
-  targetOrder?: number;
-  targetColumnId: string;
-}

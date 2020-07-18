@@ -9,7 +9,8 @@
   outline: none;
   box-sizing: border-box;
   height: 28px;
-  line-height: 26px;
+  display: inline-flex;
+  align-items: center;
 
   &.disabled {
     background: #bbb !important;
@@ -28,6 +29,12 @@
   &.dashed {
     border: 1px solid #999;
     padding: 0 20px;
+  }
+
+  &.ghost {
+    &:hover {
+      background-color: #6bb6fd33;
+    }
   }
 
   &.danger {

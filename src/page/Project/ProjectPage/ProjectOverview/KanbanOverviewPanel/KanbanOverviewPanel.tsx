@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { queryKanbanRecentlyIssues } from '../../../../../redux/actions/kanban.action';
 import { RootState } from '../../../../../redux/reducer';
 import { selectKanbanRecentlyIssues } from '../../../../../redux/reducer/selector/kanban.selector';
-import { KanbanIssue } from '../../../../../components/Project/Issue/ProjectIssue/KanbanIssue';
+import { KanbanIssue } from '../../../../../components/Project/Issue/KanbanIssue/KanbanIssue';
 import { Panel } from '../../../../../widget/Panel/Panel';
 import {SectionHeading} from "../../../../../widget/Heading/SectionHeading/SectionHeading";
 
@@ -20,7 +20,7 @@ export function KanbanOverviewPanel({ kanban }: Props) {
 
   useEffect(() => {
     dispatch(queryKanbanRecentlyIssues(kanban.id));
-  }, []);
+  }, [kanban, dispatch]);
 
   return (
     <Panel style={{marginBottom: 12}}>
