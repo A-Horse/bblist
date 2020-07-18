@@ -77,6 +77,6 @@
     "http-proxy-middleware": "^0.19.1",
     "prettier": "^2.0.5",
     "react-test-renderer": "^16.8.3",
-    "ts-jest": "^24.2.0"
+    "ts-jest": "^26.1.3"
   }
 }

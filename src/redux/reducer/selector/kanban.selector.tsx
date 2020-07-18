@@ -58,7 +58,7 @@ export function selectKanbanColumns(
         ...column,
         issues: ((column as IColumnNormalized).issues || []).map(
           (id) => state.project.issueMap[id]
-        ),
+        ).filter(v => !!v).sort((a, b) =>  a.order - b.order),
       };
     });
 }

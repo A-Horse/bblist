@@ -6,6 +6,7 @@ import uniq from 'lodash/uniq';
 import { getProjectIssuesRequest, rankIssue } from '../../actions/issue.action';
 import { IColumn } from '../../../typings/kanban-column.typing';
 import { normalize } from 'normalizr';
+import remove from 'lodash/remove';
 import { KanbanColumnEntityList, ProjectIssueList } from '../../schema';
 import { reduceNormalizeMap } from '../util/util';
 
@@ -14,6 +15,30 @@ export function reduceUpdateProjectIssue(
   action: FSAction
 ): ProjectState {
   const issueId = action.payload.id;
+
+  let newColumnMap = state.columnMap;
+  const columnId = action.payload.columnId;
+  const oldColumnId = (state.issueMap[issueId] || {}).columnId;
+  // change column issues ex.[1,2,3,4]
+  if (columnId && newColumnMap[columnId]) {
+    try {
+      newColumnMap = {
+        ...newColumnMap,
+        [columnId]: {
+          ...newColumnMap[columnId],
+          issues: [...(newColumnMap[columnId].issues || []), action.payload.id],
+        },
+        [oldColumnId]: {
+          ...newColumnMap[oldColumnId],
+          issues: (() => {
+            const issueIds = Array.from(newColumnMap[oldColumnId].issues || []);
+            remove(issueIds, id => id === issueId)
+            return issueIds;
+          })(),
+        },
+      };
+    } catch (e) {}
+  }
   return {
     ...state,
     issueMap: {
@@ -23,6 +48,7 @@ export function reduceUpdateProjectIssue(
         ...action.payload,
       },
     },
+    columnMap: newColumnMap,
   };
 }
 

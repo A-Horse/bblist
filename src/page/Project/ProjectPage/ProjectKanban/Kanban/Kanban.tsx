@@ -3,12 +3,14 @@ import { useHistory, useRouteMatch } from 'react-router-dom';
 import { RootState } from '../../../../../redux/reducer';
 import { selectKanbanColumns } from '../../../../../redux/reducer/selector/kanban.selector';
 import { KanbanColumn } from './Column/KanbanColumn';
-import {useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import './Kanban.scss';
 import { IColumn } from '../../../../../typings/kanban-column.typing';
-import {DragDropContext} from "react-beautiful-dnd";
-import {rankIssue} from "../../../../../redux/actions/issue.action";
+import { DragDropContext } from 'react-beautiful-dnd';
+import { rankIssue } from '../../../../../redux/actions/issue.action';
+import { IProjectIssue } from '../../../../../typings/project-issue.typing';
+import { updateIssueDetailRequest } from '../../../../../redux/actions/project-issue-detail.action';
 
 interface InputProps {
   kanbanId: string;
@@ -28,38 +30,49 @@ export function Kanban({ kanbanId, projectId }: InputProps) {
     selectKanbanColumns(state, kanbanId)
   );
 
-
   function onDragEnd(result) {
-    console.log('drop result', result)
-    const { source, destination } = result;
+    console.log('drop result', result);
+    const { source, destination, draggableId } = result;
     if (!result.destination) {
       return;
     }
-
-    // dispatch(
-    //     rankIssue(
-    //         issues[result.source.index],
-    //         issues[result.destination.index],
-    //         result.source.index > result.destination.index
-    //     )
-    // );
+    const sourceIssue = columns.find((c) => c.id === source.droppableId)!
+      .issues![source.index];
+    const targetIssue = columns.find((c) => c.id === destination.droppableId)!
+      .issues![destination.index];
+    const inSameColumn = source.droppableId === destination.droppableId;
+    dispatch(
+      rankIssue(
+        sourceIssue,
+        targetIssue,
+          inSameColumn ? result.source.index > result.destination.index : true
+      )
+    );
+    if (!inSameColumn) {
+      dispatch(
+        updateIssueDetailRequest({
+          id: draggableId,
+          columnId: destination.droppableId,
+        })
+      );
+    }
   }
 
   return (
     <div className="Kanban">
       <div className="Kanban-ColumnContainer">
         <DragDropContext onDragEnd={onDragEnd}>
-        {columns
-          .sort((a: IColumn, b: IColumn) => a.order - b.order)
-          .map((column: IColumn) => (
-            <KanbanColumn
-              key={column.id}
-              column={column}
-              kanbanId={kanbanId}
-              projectId={projectId}
-              onIssueClick={onIssueClick}
-            />
-          ))}
+          {columns
+            .sort((a: IColumn, b: IColumn) => a.order - b.order)
+            .map((column: IColumn) => (
+              <KanbanColumn
+                key={column.id}
+                column={column}
+                kanbanId={kanbanId}
+                projectId={projectId}
+                onIssueClick={onIssueClick}
+              />
+            ))}
         </DragDropContext>
       </div>
     </div>
