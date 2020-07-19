@@ -17,7 +17,6 @@ export function KanbanIssue({ issue, onClick, style, showBorder }: InputProps) {
       style={{
         backgroundColor: 'white',
         padding: '6px 8px 10px',
-        margin: '6px 6px',
         width: 208,
         borderRadius: 6,
         cursor: 'pointer',

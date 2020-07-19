@@ -3,16 +3,9 @@ import { Draggable } from 'react-beautiful-dnd';
 import { KanbanIssue } from './KanbanIssue';
 
 const getItemStyle = (isDragging, draggableStyle) => ({
-  // some basic styles to make the items look a bit nicer
-  userSelect: 'none',
-  padding: 0,
-  margin: `0 0 0 0`,
-
-  // change background colour if dragging
-  background: isDragging ? 'lightgreen' : 'grey',
-
-  // styles we need to apply on draggables
   ...draggableStyle,
+  userSelect: isDragging ? 'none': 'default',
+  padding: '4px 6px'
 });
 export function DraggableKanbanIssue({ issue, index, kanbanId, onClick }) {
   return (

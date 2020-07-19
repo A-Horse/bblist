@@ -16,8 +16,8 @@ interface InputProps {
 }
 
 const getListStyle = (isDraggingOver) => ({
-  background: isDraggingOver ? 'lightblue' : 'lightgrey',
-  padding: 0,
+  background: isDraggingOver ? 'lightblue' : undefined,
+  minHeight: 30
 });
 
 export function KanbanColumn({ column, projectId, kanbanId }: InputProps) {
