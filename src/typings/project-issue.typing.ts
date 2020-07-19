@@ -4,6 +4,7 @@ export interface IProjectIssue {
   order: number;
   desc?: string;
   columnId: string;
+  kanbanId?: string;
   projectId: string;
   deadline?: string;
   deadlineDone?: boolean;

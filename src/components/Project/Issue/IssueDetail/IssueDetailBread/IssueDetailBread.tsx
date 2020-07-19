@@ -10,31 +10,30 @@ import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { useToasts } from 'react-toast-notifications';
 import './IssueDetailBread.scss';
 import { IProjectIssue } from '../../../../../typings/project-issue.typing';
+import {updateIssueDetailRequest} from "../../../../../redux/actions/project-issue-detail.action";
 
 interface InputProps {
-  projectID: string;
-  kanbanID?: string;
-  issueID: string;
+  projectId: string;
+  kanbanId?: string;
+  issueId: string;
 }
 
 export function IssueDetailBread(props: InputProps) {
   const dispatch = useDispatch();
   const project = useSelector((state: RootState) => {
-    return selectProject(state, props.projectID);
+    return selectProject(state, props.projectId);
   });
 
   const issue: IProjectIssue = useSelector((state: RootState) => {
-    return state.project.issueMap[props.issueID];
+    return state.project.issueMap[props.issueId];
   });
 
-  const { addToast } = useToasts();
-
-  const updateIssue = (partialIssue) => {};
-
+  const updateIssue = (partialIssue) => {
+      dispatch(updateIssueDetailRequest({ id: issue.id,...partialIssue }));
+  };
   if (!project || !issue) {
     return null;
   }
-
   return (
     <div className="IssueDetailBread">
       <IssueType />
@@ -46,10 +45,10 @@ export function IssueDetailBread(props: InputProps) {
       <ColumnSelect
         selectedColumnId={issue.columnId}
         onChange={(option) => {
-          updateIssue({ columnID: option.value });
+          updateIssue({ columnId: option.value });
         }}
         customSelect={(props) => <BorderLessSelector width={100} {...props} />}
-        kanbanId={props.kanbanID}
+        kanbanId={props.kanbanId}
       />
     </div>
   );

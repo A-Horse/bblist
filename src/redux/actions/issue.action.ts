@@ -56,3 +56,16 @@ export function rankIssue(
     },
   };
 }
+
+export function deleteIssue(issue: IProjectIssue) {
+  return {
+    type: 'DELETE_ISSUE',
+    payload: {
+      issue: issue,
+      request: {
+        url: `/issue/${issue.id}`,
+        method: 'DELETE',
+      }
+    }
+  }
+}

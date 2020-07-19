@@ -92,7 +92,7 @@ export default function ProjectPage() {
             </Switch>
 
             <Route
-              path="/project/:projectId/*"
+              path={["/project/:projectId/kanban/:kanbanId", "/project/:projectId/*"]}
               render={(props: RouteComponentProps<any>) => {
                 const query = parseQueryParams(props.location.search);
                 if (!query.selectIssue) {
@@ -100,7 +100,6 @@ export default function ProjectPage() {
                 }
                 return (
                   <IssueDetailModal
-                    kanbanId={props.match.params.kanbanId}
                     projectId={props.match.params.projectId}
                     issueId={query.selectIssue}
                   />

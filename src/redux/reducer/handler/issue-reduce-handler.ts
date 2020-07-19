@@ -144,3 +144,34 @@ export function reduceRankIssueSuccess(
     },
   };
 }
+
+export function reduceDeleteIssue(
+    state: ProjectState,
+    action: AxiosSuccessAction) {
+
+  const issue = action.meta.previousAction.payload.issue;
+  let updateColumnMap = {};
+  if (issue.columnId && state.columnMap[issue.columnId]) {
+    updateColumnMap[issue.columnId] = {
+      ...state.columnMap[issue.columnId],
+      issues: (() => {
+        const newAllId = Array.from(state.columnMap[issue.columnId].issues!);
+        remove(newAllId, id => id === issue.id);
+        return newAllId;
+      })()
+    }
+  }
+
+  return {
+    ...state,
+    columnMap: {
+      ...state.columnMap,
+      ...updateColumnMap
+    },
+    allIssueId: (() => {
+      const newAllId = Array.from(state.allIssueId);
+      remove(newAllId, id => id === issue.id);
+      return newAllId;
+    })()
+  }
+}

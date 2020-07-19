@@ -6,16 +6,17 @@ import { ModalHeader } from '../../../../widget/Modal/ModalHeader/ModalHeader';
 import { IssueDetail } from './IssueDetail';
 import { IssueDetailBread } from './IssueDetailBread/IssueDetailBread';
 import { useHistory, useRouteMatch } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import { getProjectIssueDetailRequest } from '../../../../redux/actions/project-issue-detail.action';
+import {RootState} from "../../../../redux/reducer";
+import {selectIssue} from "../../../../redux/reducer/selector/issue.selector";
 
 interface InputProps {
   issueId: string;
   projectId: string;
-  kanbanId: string;
 }
 
-export function IssueDetailModal({ issueId, projectId, kanbanId }: InputProps) {
+export function IssueDetailModal({ issueId, projectId }: InputProps) {
   const history = useHistory();
   const match = useRouteMatch();
   const closeModal = () => {
@@ -23,10 +24,15 @@ export function IssueDetailModal({ issueId, projectId, kanbanId }: InputProps) {
   };
   const dispatch = useDispatch();
 
+  const issue = useSelector((state: RootState) => selectIssue(state, issueId));
+
   useEffect(() => {
     dispatch(getProjectIssueDetailRequest({ issueId: issueId }));
   }, [dispatch, issueId]);
 
+  if (!issue) {
+    return null;
+  }
   return (
     <AppModal
       className="IssueDetailModal"
@@ -36,16 +42,17 @@ export function IssueDetailModal({ issueId, projectId, kanbanId }: InputProps) {
     >
       <ModalHeader onClose={closeModal}>
         <IssueDetailBread
-          kanbanID={kanbanId}
-          projectID={projectId}
-          issueID={issueId}
+          kanbanId={issue.kanbanId}
+          projectId={projectId}
+          issueId={issueId}
         />
       </ModalHeader>
 
       <IssueDetail
         issueId={issueId}
-        kanbanId={kanbanId}
+        kanbanId={issue.kanbanId}
         projectId={projectId}
+        closeModal={closeModal}
       />
     </AppModal>
   );

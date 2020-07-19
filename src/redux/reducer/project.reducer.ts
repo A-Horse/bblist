@@ -25,6 +25,7 @@ import {
   reduceUpdateProject,
 } from './handler/project-reduce-handler';
 import {
+  reduceDeleteIssue,
   reduceIssueDetailSuccess,
   reduceProjectIssuesSuccess,
   reduceRankIssue,
@@ -110,6 +111,10 @@ export function project(
 
     case 'RANK_ISSUE': {
       return reduceRankIssue(state, action);
+    }
+
+    case 'DELETE_ISSUE_SUCCESS': {
+      return reduceDeleteIssue(state, action);
     }
 
     case 'RANK_ISSUE_SUCCESS': {

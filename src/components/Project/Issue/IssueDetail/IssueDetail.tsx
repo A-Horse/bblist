@@ -20,9 +20,10 @@ export interface InputProps {
   issueId: string;
   kanbanId?: string;
   projectId: string;
+  closeModal: Function;
 }
 
-export function IssueDetail({ issueId, kanbanId, projectId }: InputProps) {
+export function IssueDetail({ issueId, kanbanId, projectId, closeModal }: InputProps) {
   const issue = useSelector((state: RootState) => selectIssue(state, issueId));
   const dispatch = useDispatch();
   const onFieldChange = (key: ProjectIssueFiled, value: string) => {
@@ -88,6 +89,7 @@ export function IssueDetail({ issueId, kanbanId, projectId }: InputProps) {
           kanbanId={kanbanId}
           issue={issue}
           onFieldChange={onFieldChange}
+          closeModal={closeModal}
         />
       </div>
     </div>

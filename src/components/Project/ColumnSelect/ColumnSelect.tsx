@@ -14,6 +14,7 @@ import { AppSelect } from '../../../widget/AppSelect';
 
 import './ColumnSelect.scss';
 import { IColumn } from '../../../typings/kanban-column.typing';
+import {queryKanbanColumns} from "../../../redux/actions/column.action";
 
 interface InputProps {
   kanbanId?: string;
@@ -47,13 +48,11 @@ class ColumnSelectComponent extends Component<InputProps & InjectProps> {
     if (!this.props.kanbanId) {
       return;
     }
-    this.props.actions.getProjectKanbanDetailRequest({
-      kanbanId: this.props.kanbanId,
-    });
+    this.props.actions.queryKanbanColumns(this.props.kanbanId);
   }
 
   render() {
-    const Select = this.props.customSelect
+    const InnerSelect = this.props.customSelect
       ? this.props.customSelect
       : AppSelect;
 
@@ -61,7 +60,7 @@ class ColumnSelectComponent extends Component<InputProps & InjectProps> {
       (o) => o.value === this.props.selectedColumnId
     );
     return (
-      <Select
+      <InnerSelect
         value={selectedOption}
         placeholder="选择价值列"
         noOptionsMessage={noOptionTip}
@@ -76,7 +75,7 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
   return {
     actions: bindActionCreators(
       {
-        getProjectKanbanDetailRequest: getProjectKanbanDetailRequest,
+        queryKanbanColumns: queryKanbanColumns
       },
       dispatch
     ),
@@ -89,7 +88,6 @@ const mapStateToProps = (state: RootState, props: InputProps) => {
     const columns = selectKanbanColumns(state, props.kanbanId);
     columnOptions = columns ? generateColumnOptions(columns) : [];
   }
-
   return {
     options: columnOptions,
   };
