@@ -18,7 +18,6 @@ interface InputProps {
 export function IssueDetailModal({ issueId, projectId, kanbanId }: InputProps) {
   const history = useHistory();
   const match = useRouteMatch();
-
   const closeModal = () => {
     history.push(match.url);
   };

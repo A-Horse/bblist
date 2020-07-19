@@ -4,10 +4,10 @@ import { getProjectIssueDetailRequest } from '../../actions/project-issue-detail
 import { IProjectIssue } from '../../../typings/project-issue.typing';
 import uniq from 'lodash/uniq';
 import { getProjectIssuesRequest, rankIssue } from '../../actions/issue.action';
-import { IColumn } from '../../../typings/kanban-column.typing';
 import { normalize } from 'normalizr';
 import remove from 'lodash/remove';
-import { KanbanColumnEntityList, ProjectIssueList } from '../../schema';
+import {  ProjectIssueList } from '../../schema';
+import get from 'lodash/get';
 import { reduceNormalizeMap } from '../util/util';
 
 export function reduceUpdateProjectIssue(
@@ -63,7 +63,7 @@ export function reduceIssueDetailSuccess(
       ...columnMap,
       [issue.columnId]: {
         ...columnMap[issue.columnId],
-        issues: uniq([...(columnMap[issue.columnId].issues as any), issue.id]),
+        issues: uniq([...(get(columnMap[issue.columnId], 'issues') || [] as any[]), issue.id]),
       },
     };
   }

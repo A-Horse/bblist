@@ -6,7 +6,8 @@ import { RootState } from '../../../../../redux/reducer';
 import { selectKanbanRecentlyIssues } from '../../../../../redux/reducer/selector/kanban.selector';
 import { KanbanIssue } from '../../../../../components/Project/Issue/KanbanIssue/KanbanIssue';
 import { Panel } from '../../../../../widget/Panel/Panel';
-import {SectionHeading} from "../../../../../widget/Heading/SectionHeading/SectionHeading";
+import { SectionHeading } from '../../../../../widget/Heading/SectionHeading/SectionHeading';
+import { useHistory, useRouteMatch } from 'react-router-dom';
 
 interface Props {
   kanban: IKanban;
@@ -17,21 +18,27 @@ export function KanbanOverviewPanel({ kanban }: Props) {
   const recentlyIssues = useSelector((state: RootState) =>
     selectKanbanRecentlyIssues(state, kanban.id)
   );
+  const history = useHistory();
+  const match = useRouteMatch<{ projectId: string }>();
 
   useEffect(() => {
     dispatch(queryKanbanRecentlyIssues(kanban.id));
-  }, [kanban, dispatch]);
+  }, [kanban.id, dispatch]);
+
+  const onIssueClick = (issueId: string) => {
+    history.push(`${match.url}?selectIssue=${issueId}`);
+  };
 
   return (
-    <Panel style={{marginBottom: 12}}>
+    <Panel style={{ marginBottom: 12 }}>
       <SectionHeading>{kanban.name}</SectionHeading>
       <div>最近卡片</div>
       <div
         style={{
           display: 'flex',
           flexWrap: 'nowrap',
-            width: '100%',
-            overflowX: 'auto'
+          width: '100%',
+          overflowX: 'auto',
         }}
       >
         {recentlyIssues.map((issue) => (
@@ -40,10 +47,10 @@ export function KanbanOverviewPanel({ kanban }: Props) {
             issue={issue}
             kanbanId={kanban.id}
             showBorder
-            onClick={() => {}}
+            onClick={onIssueClick}
             style={{
               marginLeft: 0,
-                flexShrink: 0
+              flexShrink: 0,
             }}
           />
         ))}

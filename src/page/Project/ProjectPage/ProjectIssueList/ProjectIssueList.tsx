@@ -30,14 +30,13 @@ export function ProjectIssueList(props: InputProps) {
   );
 
   const onIssueClick = (issue: IProjectIssue) => {
-    history.push(`/project/${projectId}/issues/${issue.id}`);
+    history.push(`${match.url}?selectIssue=${issue.id}`);
   };
 
   const onDragEnd = (result) => {
     if (!result.destination) {
       return;
     }
-    console.log(issues.map((i) => ({ id: i.id, order: i.order })));
 
     dispatch(
       rankIssue(
@@ -62,6 +61,7 @@ export function ProjectIssueList(props: InputProps) {
                         key={issue.id}
                         issue={issue}
                         index={index}
+                        onClick={onIssueClick}
                       />
                     );
                   })}
