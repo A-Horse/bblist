@@ -31,7 +31,6 @@ export function Kanban({ kanbanId, projectId }: InputProps) {
   );
 
   function onDragEnd(result) {
-    console.log('drop result', result);
     const { source, destination, draggableId } = result;
     if (!result.destination) {
       return;
