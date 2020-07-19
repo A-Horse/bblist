@@ -74,7 +74,7 @@ export function IssueDetailRight(props: InputProps) {
 
         <DetailRightField
           active={false}
-          backgroundColor="rgba(255, 133, 116, 0.77)"
+          backgroundColor="#cf513d"
           style={{ color: 'white' }}
           icon={faArrowsAltH}
           title="删除卡片"
