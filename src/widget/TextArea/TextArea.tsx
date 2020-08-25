@@ -1,6 +1,7 @@
 import './TextArea.scss';
 
-import React, { ChangeEvent, Component, KeyboardEventHandler } from 'react';
+import React, {ChangeEvent, Component, CSSProperties, KeyboardEventHandler} from 'react';
+import TextareaAutosize from 'react-textarea-autosize';
 
 export class AppTextArea extends Component<{
   value?: string;
@@ -15,6 +16,7 @@ export class AppTextArea extends Component<{
   rows?: number;
   type?: string;
   onKeyDown?: KeyboardEventHandler;
+  style?: CSSProperties;
 }> {
   onChange = (event: ChangeEvent<HTMLTextAreaElement>): void => {
     this.props.onChange && this.props.onChange(event.target.value);
@@ -32,7 +34,7 @@ export class AppTextArea extends Component<{
 
   render() {
     return (
-      <textarea
+      <TextareaAutosize
         rows={this.props.rows || 3}
         onKeyDown={this.props.onKeyDown}
         onBlur={this.onBlur}
@@ -43,6 +45,7 @@ export class AppTextArea extends Component<{
         name={this.props.name}
         className={this.buildClassName()}
         onChange={this.onChange}
+        style={this.props.style}
       />
     );
   }

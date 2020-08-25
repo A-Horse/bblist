@@ -10,11 +10,12 @@ import { IssueDetailRight } from './IssueDetailRight/IssueDetailRight';
 import { Deadline } from '../../../Deadline/Deadline';
 import { DetailSection } from './DetailSection/DetailSection';
 import { faCreditCard } from '@fortawesome/free-regular-svg-icons';
-import {faBars, faPencilAlt} from '@fortawesome/free-solid-svg-icons';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { ProjectIssueFiled } from '../../../../typings/project-issue.typing';
 import { RootState } from '../../../../redux/reducer';
 import { selectIssue } from '../../../../redux/reducer/selector/issue.selector';
 import { updateIssueDetailRequest } from '../../../../redux/actions/project-issue-detail.action';
+import { IssueComment } from './IssueComment/IssueComment';
 
 export interface InputProps {
   issueId: string;
@@ -23,7 +24,12 @@ export interface InputProps {
   closeModal: Function;
 }
 
-export function IssueDetail({ issueId, kanbanId, projectId, closeModal }: InputProps) {
+export function IssueDetail({
+  issueId,
+  kanbanId,
+  projectId,
+  closeModal,
+}: InputProps) {
   const issue = useSelector((state: RootState) => selectIssue(state, issueId));
   const dispatch = useDispatch();
   const onFieldChange = (key: ProjectIssueFiled, value: string) => {
@@ -72,16 +78,7 @@ export function IssueDetail({ issueId, kanbanId, projectId, closeModal }: InputP
             </FormField>
           </DetailSection>
 
-          <DetailSection icon={faPencilAlt}>
-            <FormField name="评论：" type="major">
-              <AppTextArea
-                  className="IssueDetail--content-textarea"
-                  value={issue.desc || ''}
-                  onChange={(value) => onFieldChange('desc', value)}
-                  onBlur={(value) => onFieldChange('desc', value)}
-              />
-            </FormField>
-          </DetailSection>
+          <IssueComment issue={issue} onFieldChange={onFieldChange} />
         </div>
 
         <IssueDetailRight

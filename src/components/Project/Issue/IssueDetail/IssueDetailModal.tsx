@@ -40,7 +40,7 @@ export function IssueDetailModal({ issueId, projectId }: InputProps) {
       shouldCloseOnOverlayClick={false}
       onRequestClose={closeModal}
     >
-      <ModalHeader onClose={closeModal}>
+      <ModalHeader onClose={closeModal} hiddenBorder>
         <IssueDetailBread
           kanbanId={issue.kanbanId}
           projectId={projectId}

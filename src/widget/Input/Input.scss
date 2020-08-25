@@ -8,10 +8,11 @@
   overflow: hidden;
   border: 1px solid #e8e8e8;
   height: 30px;
+  background-color: transparent;
 
   &:focus,
   &:hover {
-    background-color: #f8f8f8;
+    background-color: #fff;
   }
 
   &:focus {
@@ -24,10 +25,5 @@
 
   &.border-less {
     border: 1px solid transparent;
-  }
-
-  &.white-hover:hover,
-  &.white-hover:focus {
-    background-color: #fff;
   }
 }

@@ -8,11 +8,16 @@ interface InputProps {
   title?: string;
   onClose?: any;
   children?: ReactNode;
+  hiddenBorder?: boolean
 }
 
-export const ModalHeader = ({ title, onClose, children }: InputProps) => {
+export const ModalHeader = ({ title, onClose, children, hiddenBorder }: InputProps) => {
   return (
-    <div className={`ModalHeader`}>
+    <div className={`ModalHeader`} style={{
+        ...(hiddenBorder? {
+          border: 'none'
+        } : {})
+    }}>
       {children ? children : <div className="ModalHeader--title">{title}</div>}
       <div className="ModalHeader--buttons">
         <AppButton onClick={onClose}>
