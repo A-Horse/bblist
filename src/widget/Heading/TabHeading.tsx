@@ -2,6 +2,8 @@ import React from 'react';
 
 export function TabHeading({children}) {
     return (
-        <h1>{children}</h1>
+        <h2 style={{
+            color: '#666'
+        }}>{children}</h2>
     )
 }

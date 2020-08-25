@@ -1,8 +1,8 @@
 import './ProjectPage.scss';
 
 import { History, Location } from 'history';
-import React, { Component, useEffect } from 'react';
-import { connect, useDispatch } from 'react-redux';
+import React, {  useEffect } from 'react';
+import {  useDispatch } from 'react-redux';
 import {
   match,
   Redirect,
@@ -10,11 +10,8 @@ import {
   RouteComponentProps,
   Switch,
   useRouteMatch,
-  withRouter,
 } from 'react-router-dom';
-import { bindActionCreators } from 'redux';
 import { getProjectDetailRequest } from '../../../redux/actions/project.action';
-import { RootState } from '../../../redux/reducer';
 import { ProjectEpics } from './ProjectEpics/ProjectEpics';
 import { ProjectKanban } from './ProjectKanban/ProjectKanban';
 import { ProjectSetting } from './ProjectSetting/ProjectSetting';
@@ -47,7 +44,7 @@ export default function ProjectPage() {
   useEffect(() => {
     dispatch(getProjectDetailRequest(projectId));
     dispatch(getProjectKanbansRequest({ projectId }));
-  }, [dispatch]);
+  }, [dispatch, projectId]);
 
   return (
     <div className="ProjectPage">

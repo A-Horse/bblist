@@ -97,5 +97,4 @@ export function reduceKanbanRecentlyIssuesSuccess(
       normalizedIssuesData.entities.ProjectIssue
     ),
   };
-  return state;
 }

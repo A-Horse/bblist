@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getProjectsRequest } from '../../../redux/actions/project.action';
 import { RootState } from '../../../redux/reducer';
 import { IProject } from '../../../typings/project.typing';
+import { Route, Switch, Redirect } from 'react-router-dom';
 
 export function ProjectWallPage() {
   const dispatch = useDispatch();
@@ -24,11 +25,36 @@ export function ProjectWallPage() {
       <ProjectWallAside />
 
       <div className="ProjectWallPage--content-container">
-        <div className="project-cover-container">
-          {projects.map((project: IProject) => {
-            return <ProjectDisplayCard key={project.id} project={project} />;
-          })}
-        </div>
+        <Switch>
+
+
+          <Route
+            path="/projects/overview"
+            render={() => (
+              <div className="project-cover-container">
+                {projects.map((project: IProject) => {
+                  return (
+                    <ProjectDisplayCard key={project.id} project={project} />
+                  );
+                })}
+              </div>
+            )}
+          />
+
+            <Route
+                path="/projects/all"
+                render={() => (
+                    <div className="project-cover-container">project1,2</div>
+                )}
+            />
+
+            <Route
+                path="*"
+                render={() => <Redirect
+                    to="/projects/overview"
+                /> }
+            />
+        </Switch>
       </div>
     </div>
   );

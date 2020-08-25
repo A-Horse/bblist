@@ -5,7 +5,7 @@ import { SelectOption } from '../../../../../typings/select.typing';
 import { SectionHeading } from '../../../../../widget/Heading/SectionHeading/SectionHeading';
 import { DetailRightField } from './DetailField/DetailRightField';
 import { faClock } from '@fortawesome/free-regular-svg-icons';
-import { faArrowsAltH } from '@fortawesome/free-solid-svg-icons';
+import {faArrowsAltH, faTrashAlt} from '@fortawesome/free-solid-svg-icons';
 import { MoveIssueModal } from '../MoveIssueModal/MoveIssueModal';
 import './IssueDetailRight.scss';
 import { IProjectIssue } from '../../../../../typings/project-issue.typing';
@@ -74,9 +74,9 @@ export function IssueDetailRight(props: InputProps) {
 
         <DetailRightField
           active={false}
-          backgroundColor="#cf513d"
+          backgroundColor="#f57b7b"
           style={{ color: 'white' }}
-          icon={faArrowsAltH}
+          icon={faTrashAlt}
           title="删除卡片"
           onClick={() => setDeleteIssueOpen(true)}
         />

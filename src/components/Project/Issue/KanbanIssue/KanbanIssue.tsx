@@ -7,11 +7,10 @@ interface InputProps {
   issue: IProjectIssue;
   kanbanId: string;
   onClick: (issueId: string) => void;
-  showBorder?: boolean;
   style?: CSSProperties;
 }
 
-export function KanbanIssue({ issue, onClick, style, showBorder }: InputProps) {
+export function KanbanIssue({ issue, onClick, style }: InputProps) {
   return (
     <div
       style={{
@@ -23,11 +22,6 @@ export function KanbanIssue({ issue, onClick, style, showBorder }: InputProps) {
         color: '#555',
         fontSize: 14,
         userSelect: 'none',
-        ...(showBorder
-          ? {
-              border: '1px solid #e9e9e9',
-            }
-          : {}),
         ...style,
       }}
       onClick={() => onClick(issue.id)}
@@ -36,7 +30,8 @@ export function KanbanIssue({ issue, onClick, style, showBorder }: InputProps) {
       <IssueId id={issue.id} />
       <div
         style={{
-          marginTop: 5, wordBreak: 'break-all'
+          marginTop: 5,
+          wordBreak: 'break-all',
         }}
       >
         {issue.title}

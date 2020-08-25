@@ -46,10 +46,9 @@ export function KanbanOverviewPanel({ kanban }: Props) {
             key={issue.id}
             issue={issue}
             kanbanId={kanban.id}
-            showBorder
             onClick={onIssueClick}
             style={{
-              marginLeft: 0,
+              marginRight: 12,
               flexShrink: 0,
             }}
           />

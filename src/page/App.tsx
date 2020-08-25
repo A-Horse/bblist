@@ -83,7 +83,7 @@ export function App() {
             )}
           />
 
-          <Route exact path="/projects" component={ProjectWallPage} />
+          <Route path="/projects" component={ProjectWallPage} />
           <Route path="/project/:projectId" component={ProjectPage} />
 
           <Route path="/setting" component={SettingPage} />

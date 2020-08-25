@@ -47,8 +47,13 @@ export function Nav(props: { user: DisplayAccount }) {
                 show
                   ? {
                       backgroundColor: 'white',
+                    position: 'relative',
+                      top: 1,
                     }
-                  : {}
+                  : {
+                        position: 'relative',
+                        top: 1,
+                    }
               }
             >
               <UserAvatar user={user} />
@@ -58,11 +63,11 @@ export function Nav(props: { user: DisplayAccount }) {
             <AppMenu>
               <AppMenuItem>
                 <AppLink to="/profile">
-                  Signed in as <strong>{_.get(user, 'username')}</strong>
+                  <strong>{_.get(user, 'username')}</strong>已登录
                 </AppLink>
               </AppMenuItem>
               <AppMenuItem>
-                <AppLink to="/setting">Setting</AppLink>
+                <AppLink to="/setting">设置</AppLink>
               </AppMenuItem>
 
               <AppMenuItem
@@ -70,7 +75,7 @@ export function Nav(props: { user: DisplayAccount }) {
                   dispatch(logout());
                 }}
               >
-                <span>Logout</span>
+                <span>登出</span>
               </AppMenuItem>
             </AppMenu>
           }
