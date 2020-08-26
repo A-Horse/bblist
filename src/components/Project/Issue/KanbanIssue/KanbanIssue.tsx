@@ -1,10 +1,10 @@
 import React, { CSSProperties } from 'react';
 
-import { IProjectIssue } from '../../../../typings/project-issue.typing';
+import { IIssue } from '../../../../typings/project-issue.typing';
 import { IssueId } from '../IssueId/IssueId';
 
 interface InputProps {
-  issue: IProjectIssue;
+  issue: IIssue;
   kanbanId: string;
   onClick: (issueId: string) => void;
   style?: CSSProperties;

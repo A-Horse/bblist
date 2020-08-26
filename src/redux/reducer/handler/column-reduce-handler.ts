@@ -5,7 +5,7 @@ import { normalize } from 'normalizr';
 import { KanbanColumnEntityList } from '../../schema';
 import { IColumn } from '../../../typings/kanban-column.typing';
 import { reduceNormalizeMap } from '../util/util';
-import { IProjectIssue } from '../../../typings/project-issue.typing';
+import { IIssue } from '../../../typings/project-issue.typing';
 
 export function reduceKanbanColumnsSuccess(
   state: ProjectState,
@@ -17,8 +17,8 @@ export function reduceKanbanColumnsSuccess(
       KanbanColumn: {
         [id: string]: IColumn;
       };
-      ProjectIssue: {
-        [id: string]: IProjectIssue;
+      Issue: {
+        [id: string]: IIssue;
       };
     };
     result: string[];
@@ -34,7 +34,7 @@ export function reduceKanbanColumnsSuccess(
     },
     issueMap: reduceNormalizeMap(
       state.issueMap,
-      normalizedData.entities.ProjectIssue
+      normalizedData.entities.Issue
     ),
     columnMap: reduceNormalizeMap(
       state.columnMap,

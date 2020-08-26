@@ -6,7 +6,7 @@ import {
 import { IKanban } from '../../../typings/kanban.typing';
 import { SelectOption } from '../../../typings/select.typing';
 import get from 'lodash/get';
-import { IProjectIssue } from '../../../typings/project-issue.typing';
+import { IIssue } from '../../../typings/project-issue.typing';
 
 export function selectKanbanOptions(
   state: RootState,
@@ -66,7 +66,7 @@ export function selectKanbanColumns(
 export function selectKanbanRecentlyIssues(
   state: RootState,
   kanbanId: string
-): IProjectIssue[] {
+): IIssue[] {
   return (get(state.project.kanbanMap, [kanbanId, 'recentlyIssueIds']) || [])
     .map((id) => state.project.issueMap[id])
     .filter((x) => !!x);

@@ -1,11 +1,11 @@
-import { IProjectIssue } from './project-issue.typing';
+import { IIssue } from './project-issue.typing';
 
 export interface IColumn {
   id: string;
   name: string;
   kanbanId: string;
   order: number;
-  issues?: IProjectIssue[];
+  issues?: IIssue[];
 }
 
 export interface IColumnNormalized extends Omit<IColumn, 'issues'> {

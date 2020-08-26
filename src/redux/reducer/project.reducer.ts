@@ -11,7 +11,7 @@ import {
 import { ProjectEntityList } from '../schema';
 import { IColumn } from '../../typings/kanban-column.typing';
 import { IKanban } from '../../typings/kanban.typing';
-import { IProjectIssue } from '../../typings/project-issue.typing';
+import { IIssue } from '../../typings/project-issue.typing';
 import { IProject } from '../../typings/project.typing';
 import {
   reduceKanbanDetailSuccess,
@@ -35,7 +35,7 @@ import {
 
 export type KanbanMap = { [id: string]: IKanban };
 export type ColumnMap = { [id: string]: IColumn };
-export type IssueMap = { [id: string]: IProjectIssue };
+export type IssueMap = { [id: string]: IIssue };
 export type ProjectMap = { [id: string]: IProject };
 
 export interface ProjectState {

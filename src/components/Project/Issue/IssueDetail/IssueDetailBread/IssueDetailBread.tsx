@@ -9,7 +9,7 @@ import { AppIcon } from '../../../../../widget/Icon';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { useToasts } from 'react-toast-notifications';
 import './IssueDetailBread.scss';
-import { IProjectIssue } from '../../../../../typings/project-issue.typing';
+import { IIssue } from '../../../../../typings/project-issue.typing';
 import {updateIssueDetailRequest} from "../../../../../redux/actions/project-issue-detail.action";
 
 interface InputProps {
@@ -24,7 +24,7 @@ export function IssueDetailBread(props: InputProps) {
     return selectProject(state, props.projectId);
   });
 
-  const issue: IProjectIssue = useSelector((state: RootState) => {
+  const issue: IIssue = useSelector((state: RootState) => {
     return state.project.issueMap[props.issueId];
   });
 

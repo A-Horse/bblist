@@ -8,7 +8,7 @@ import { faClock } from '@fortawesome/free-regular-svg-icons';
 import {faArrowsAltH, faTrashAlt} from '@fortawesome/free-solid-svg-icons';
 import { MoveIssueModal } from '../MoveIssueModal/MoveIssueModal';
 import './IssueDetailRight.scss';
-import { IProjectIssue } from '../../../../../typings/project-issue.typing';
+import { IIssue } from '../../../../../typings/project-issue.typing';
 import { ConfirmModal } from '../../../../Modal/ConfirmModal';
 import { useDispatch } from 'react-redux';
 import { deleteIssue } from '../../../../../redux/actions/issue.action';
@@ -16,7 +16,7 @@ import {AxiosDispatch} from "../../../../../typings/util.typing";
 
 interface InputProps {
   projectId: string;
-  issue: IProjectIssue;
+  issue: IIssue;
   kanbanId?: string;
   onFieldChange: Function;
     closeModal: Function;

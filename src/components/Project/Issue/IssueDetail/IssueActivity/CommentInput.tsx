@@ -1,9 +1,15 @@
-import React, { useState } from 'react';
+import React, { KeyboardEvent, useState } from 'react';
 import { AppButton } from '../../../../../widget/Button';
 import { Flex } from '../../../../Layout/Flex';
 
-export function CommentInput() {
+export function CommentInput({ createComment }) {
   const [value, setValue] = useState('');
+  const onKeyDown = (event: KeyboardEvent<Element>) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      createComment(value);
+    }
+  };
   return (
     <div
       style={{
@@ -11,12 +17,13 @@ export function CommentInput() {
         borderRadius: 6,
         backgroundColor: 'white',
         overflow: 'hidden',
-          boxShadow: '0 0 3px #e8e8e8'
+        boxShadow: '0 0 3px #e8e8e8',
       }}
     >
       <textarea
         value={value}
         onChange={(event) => setValue(event.target.value)}
+        onKeyDown={onKeyDown}
         rows={1}
         placeholder="添加评论"
         style={{
@@ -35,10 +42,12 @@ export function CommentInput() {
         style={{
           position: 'relative',
           padding: '0 8px 8px',
-            display: !!value ? 'flex': 'none'
+          display: !!value ? 'flex' : 'none',
         }}
       >
-        <AppButton type="primary">提交</AppButton>
+        <AppButton type="primary" onClick={() => createComment(value)}>
+          提交
+        </AppButton>
       </Flex>
     </div>
   );

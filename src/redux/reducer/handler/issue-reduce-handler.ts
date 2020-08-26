@@ -1,12 +1,12 @@
 import { ProjectState } from '../project.reducer';
 import { AxiosSuccessAction, FSAction } from '../../actions/actions';
 import { getProjectIssueDetailRequest } from '../../actions/project-issue-detail.action';
-import { IProjectIssue } from '../../../typings/project-issue.typing';
+import { IIssue } from '../../../typings/project-issue.typing';
 import uniq from 'lodash/uniq';
 import { getProjectIssuesRequest, rankIssue } from '../../actions/issue.action';
 import { normalize } from 'normalizr';
 import remove from 'lodash/remove';
-import {  ProjectIssueList } from '../../schema';
+import {  IssueList } from '../../schema';
 import get from 'lodash/get';
 import { reduceNormalizeMap } from '../util/util';
 
@@ -56,7 +56,7 @@ export function reduceIssueDetailSuccess(
   state: ProjectState,
   action: AxiosSuccessAction<ReturnType<typeof getProjectIssueDetailRequest>>
 ): ProjectState {
-  const issue: IProjectIssue = action.payload.data;
+  const issue: IIssue = action.payload.data;
   let columnMap = state.columnMap;
   if (issue.columnId) {
     columnMap = {
@@ -87,17 +87,17 @@ export function reduceProjectIssuesSuccess(
 ): ProjectState {
   const normalizedData: {
     entities: {
-      ProjectIssue: {
-        [id: string]: IProjectIssue;
+      Issue: {
+        [id: string]: IIssue;
       };
     };
     result: string[];
-  } = normalize(action.payload.data, ProjectIssueList);
+  } = normalize(action.payload.data, IssueList);
   return {
     ...state,
     issueMap: reduceNormalizeMap(
       state.issueMap,
-      normalizedData.entities.ProjectIssue
+      normalizedData.entities.Issue
     ),
     allIssueId: normalizedData.result,
   };

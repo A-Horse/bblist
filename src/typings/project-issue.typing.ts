@@ -1,4 +1,4 @@
-export interface IProjectIssue {
+export interface IIssue {
   id: string;
   title: string;
   order: number;
@@ -24,7 +24,7 @@ export interface UpdateIssueInput {
   creatorId?: string;
 }
 
-export type ProjectIssueFiled = keyof IProjectIssue;
+export type ProjectIssueFiled = keyof IIssue;
 
 export interface CreateProjectIssueInput {
   projectId: string;

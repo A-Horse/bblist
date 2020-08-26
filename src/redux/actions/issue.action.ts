@@ -1,6 +1,6 @@
 import {
   CreateProjectIssueInput,
-  IProjectIssue,
+  IIssue,
 } from '../../typings/project-issue.typing';
 import { FSAction } from './actions';
 
@@ -34,8 +34,8 @@ export function createIssueRequest(
 }
 
 export function rankIssue(
-  issue: IProjectIssue,
-  targetIssue: IProjectIssue,
+  issue: IIssue,
+  targetIssue: IIssue,
   isBefore: boolean
 ) {
   return {
@@ -57,7 +57,7 @@ export function rankIssue(
   };
 }
 
-export function deleteIssue(issue: IProjectIssue) {
+export function deleteIssue(issue: IIssue) {
   return {
     type: 'DELETE_ISSUE',
     payload: {

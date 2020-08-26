@@ -15,7 +15,7 @@ import { ProjectIssueFiled } from '../../../../typings/project-issue.typing';
 import { RootState } from '../../../../redux/reducer';
 import { selectIssue } from '../../../../redux/reducer/selector/issue.selector';
 import { updateIssueDetailRequest } from '../../../../redux/actions/project-issue-detail.action';
-import { IssueComment } from './IssueComment/IssueComment';
+import { IssueActivity } from './IssueActivity/IssueActivity';
 
 export interface InputProps {
   issueId: string;
@@ -78,7 +78,7 @@ export function IssueDetail({
             </FormField>
           </DetailSection>
 
-          <IssueComment issue={issue} onFieldChange={onFieldChange} />
+          <IssueActivity issue={issue} onFieldChange={onFieldChange} />
         </div>
 
         <IssueDetailRight

@@ -11,7 +11,7 @@ export function createCommentRequest(
     type: 'CREATE_COMMENT',
     payload: {
       request: {
-        url: `/issue/${createCommentRequest.issueId}`,
+        url: `/issue/${createCommentRequest.issueId}/comment`,
         data: createCommentRequest,
         method: 'POST',
       },

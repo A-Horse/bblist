@@ -1,7 +1,7 @@
 import './KanbanColumn.scss';
 import React from 'react';
 
-import { IProjectIssue } from '../../../../../../typings/project-issue.typing';
+import { IIssue } from '../../../../../../typings/project-issue.typing';
 import { ColumnIssueCreator } from './ColumnIssueCreator/ColumnIssueCreator';
 import { IColumn } from '../../../../../../typings/kanban-column.typing';
 import { useHistory } from 'react-router-dom';
@@ -49,7 +49,7 @@ export function KanbanColumn({ column, projectId, kanbanId }: InputProps) {
                 style={getListStyle(snapshot.isDraggingOver)}
                 {...provided.droppableProps}
               >
-                {column.issues!.map((issue: IProjectIssue, index: number) => {
+                {column.issues!.map((issue: IIssue, index: number) => {
                   return (
                     <DraggableKanbanIssue
                       index={index}

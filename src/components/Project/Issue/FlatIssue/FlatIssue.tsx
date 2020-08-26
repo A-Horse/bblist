@@ -1,10 +1,10 @@
 import './FlatIssue.scss';
 
 import React from 'react';
-import { IProjectIssue } from '../../../../typings/project-issue.typing';
+import { IIssue } from '../../../../typings/project-issue.typing';
 
 interface InputProps {
-  issue: IProjectIssue;
+  issue: IIssue;
   onClick: Function;
 }
 

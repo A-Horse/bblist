@@ -6,7 +6,7 @@ import { CommentInput } from './CommentInput';
 import { useDispatch } from 'react-redux';
 import { createCommentRequest } from '../../../../../redux/actions/comment.action';
 
-export function IssueComment({ issue, onFieldChange }) {
+export function IssueActivity({ issue, onFieldChange }) {
   const dispatch = useDispatch();
 
   const createComment = (content) => {

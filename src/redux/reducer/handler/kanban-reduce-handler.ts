@@ -3,7 +3,7 @@ import { normalize } from 'normalizr';
 import {
   KanbanDetailEntity,
   KanbanEntityList,
-  ProjectIssueList,
+  IssueList,
 } from '../../schema';
 import { ProjectState } from '../project.reducer';
 import { AxiosSuccessAction, FSAction } from '../../actions/actions';
@@ -82,7 +82,7 @@ export function reduceKanbanRecentlyIssuesSuccess(
   action: AxiosSuccessAction<ReturnType<typeof queryKanbanRecentlyIssues>>
 ): ProjectState {
   const kanbanId = action.meta.previousAction.meta.kanbanId;
-  const normalizedIssuesData = normalize(action.payload.data, ProjectIssueList);
+  const normalizedIssuesData = normalize(action.payload.data, IssueList);
   return {
     ...state,
     kanbanMap: {
@@ -94,7 +94,7 @@ export function reduceKanbanRecentlyIssuesSuccess(
     },
     issueMap: reduceNormalizeMap(
       state.issueMap,
-      normalizedIssuesData.entities.ProjectIssue
+      normalizedIssuesData.entities.Issue
     ),
   };
 }

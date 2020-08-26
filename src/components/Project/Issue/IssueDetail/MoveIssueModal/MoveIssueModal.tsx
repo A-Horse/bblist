@@ -6,7 +6,7 @@ import { ConfirmButtonGroup } from '../../../../../widget/ButtonGroup/ConfirmGro
 import { ColumnSelect } from '../../../ColumnSelect/ColumnSelect';
 import { ModalContent } from '../../../../../widget/Modal/ModalContent';
 import './MoveIssueModal.scss';
-import { IProjectIssue } from '../../../../../typings/project-issue.typing';
+import { IIssue } from '../../../../../typings/project-issue.typing';
 
 export function MoveIssueModal(props: {
   visible: boolean;
@@ -14,7 +14,7 @@ export function MoveIssueModal(props: {
   onFieldChange: Function;
   kanbanId?: string;
   projectId: string;
-  issue: IProjectIssue;
+  issue: IIssue;
 }) {
   const [selectedColumnId, setSelectedColumnID] = useState(
     props.issue.columnId

@@ -1,5 +1,5 @@
 import {
-  IProjectIssue,
+  IIssue,
   UpdateIssueInput,
 } from '../../typings/project-issue.typing';
 import { FSAction } from './actions';

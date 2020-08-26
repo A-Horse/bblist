@@ -1,14 +1,14 @@
 import { RootState } from '../index';
-import { IProjectIssue } from '../../../typings/project-issue.typing';
+import { IIssue } from '../../../typings/project-issue.typing';
 
-export function selectIssue(state: RootState, issueId: string): IProjectIssue {
+export function selectIssue(state: RootState, issueId: string): IIssue {
   return state.project.issueMap[issueId];
 }
 
 export function selectProjectIssues(
   state: RootState,
   projectId: string
-): IProjectIssue[] {
+): IIssue[] {
   return state.project.allIssueId
     .map((id) => state.project.issueMap[id])
     .filter((v) => !!v)

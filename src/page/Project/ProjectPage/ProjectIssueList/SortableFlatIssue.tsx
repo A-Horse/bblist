@@ -1,10 +1,10 @@
 import React from 'react';
 import {  Draggable } from 'react-beautiful-dnd';
-import { IProjectIssue } from '../../../../typings/project-issue.typing';
+import { IIssue } from '../../../../typings/project-issue.typing';
 import { FlatIssue } from '../../../../components/Project/Issue/FlatIssue/FlatIssue';
 
 interface Props {
-  issue: IProjectIssue;
+  issue: IIssue;
   index: number;
   onClick: Function;
 }

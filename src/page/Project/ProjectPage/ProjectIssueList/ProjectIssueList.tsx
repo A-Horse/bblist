@@ -3,7 +3,7 @@ import './ProjectIssueList.scss';
 import React, { useEffect } from 'react';
 import { useRouteMatch } from 'react-router-dom';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
-import { IProjectIssue } from '../../../../typings/project-issue.typing';
+import { IIssue } from '../../../../typings/project-issue.typing';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   getProjectIssuesRequest,
@@ -29,7 +29,7 @@ export function ProjectIssueList(props: InputProps) {
     selectProjectIssues(state, projectId)
   );
 
-  const onIssueClick = (issue: IProjectIssue) => {
+  const onIssueClick = (issue: IIssue) => {
     history.push(`${match.url}?selectIssue=${issue.id}`);
   };
 
@@ -55,7 +55,7 @@ export function ProjectIssueList(props: InputProps) {
             {(provided, snapshot) => (
               <div {...provided.droppableProps} ref={provided.innerRef}>
                 <ul>
-                  {issues.map((issue: IProjectIssue, index: number) => {
+                  {issues.map((issue: IIssue, index: number) => {
                     return (
                       <SortableFlatIssue
                         key={issue.id}
