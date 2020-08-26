@@ -11,6 +11,7 @@ export function CommentInput() {
         borderRadius: 6,
         backgroundColor: 'white',
         overflow: 'hidden',
+          boxShadow: '0 0 3px #e8e8e8'
       }}
     >
       <textarea
