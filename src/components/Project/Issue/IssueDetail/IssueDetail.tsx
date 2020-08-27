@@ -78,7 +78,7 @@ export function IssueDetail({
             </FormField>
           </DetailSection>
 
-          <IssueActivity issue={issue} onFieldChange={onFieldChange} />
+          <IssueActivity issue={issue} />
         </div>
 
         <IssueDetailRight

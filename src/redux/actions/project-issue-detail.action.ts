@@ -11,7 +11,7 @@ export const GET_PROJECT_ISSUE_DETAIL_SUCCESS =
 export const GET_PROJECT_ISSUE_DETAIL_FAILURE =
   'GET_PROJECT_ISSUE_DETAIL_FAILURE';
 
-export function getProjectIssueDetailRequest(input: {
+export function queryProjectIssueDetailRequest(input: {
   issueId: string;
 }): FSAction {
   return {

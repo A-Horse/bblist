@@ -1,6 +1,6 @@
 import { ProjectState } from '../project.reducer';
 import { AxiosSuccessAction, FSAction } from '../../actions/actions';
-import { getProjectIssueDetailRequest } from '../../actions/project-issue-detail.action';
+import { queryProjectIssueDetailRequest } from '../../actions/project-issue-detail.action';
 import { IIssue } from '../../../typings/project-issue.typing';
 import uniq from 'lodash/uniq';
 import { getProjectIssuesRequest, rankIssue } from '../../actions/issue.action';
@@ -54,7 +54,7 @@ export function reduceUpdateProjectIssue(
 
 export function reduceIssueDetailSuccess(
   state: ProjectState,
-  action: AxiosSuccessAction<ReturnType<typeof getProjectIssueDetailRequest>>
+  action: AxiosSuccessAction<ReturnType<typeof queryProjectIssueDetailRequest>>
 ): ProjectState {
   const issue: IIssue = action.payload.data;
   let columnMap = state.columnMap;

@@ -3,7 +3,7 @@ import { AppSelect } from '../../widget/AppSelect';
 import { UserAvatar } from '../UserAvatar/UserAvatar';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/reducer';
-import { findProjectAllUsers } from '../../redux/reducer/selector/user.selector';
+import { selectProjectAllUsers } from '../../redux/reducer/selector/user.selector';
 import { SelectOption } from '../../typings/select.typing';
 import { AssigneeSelectorOption } from './AssigneeSelectorOption';
 
@@ -32,7 +32,7 @@ export function AssigneeSelector(props: InputProps) {
   };
 
   const users = useSelector((state: RootState) =>
-    findProjectAllUsers(state, props.projectId)
+    selectProjectAllUsers(state, props.projectId)
   );
 
   const userOptions = users.map(mapUserToSelectOption);
@@ -47,7 +47,6 @@ export function AssigneeSelector(props: InputProps) {
 
   return (
     <div className="AssigneeSelector">
-      <UserAvatar />
       <AppSelect
         // menuIsOpen={true}
         isClearable={true}

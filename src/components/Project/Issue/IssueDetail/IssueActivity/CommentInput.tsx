@@ -1,14 +1,18 @@
-import React, { KeyboardEvent, useState } from 'react';
+import React, { createRef, KeyboardEvent, useState } from 'react';
 import { AppButton } from '../../../../../widget/Button';
 import { Flex } from '../../../../Layout/Flex';
 
 export function CommentInput({ createComment }) {
   const [value, setValue] = useState('');
+  const textAreaRef = createRef<HTMLTextAreaElement>();
+
   const onKeyDown = (event: KeyboardEvent<Element>) => {
-    if (event.key === 'Enter') {
-      event.preventDefault();
-      createComment(value);
+    if (event.key !== 'Enter') {
+      return;
     }
+    event.preventDefault();
+    textAreaRef.current!.blur();
+    createComment(value).then(() => setValue(''));
   };
   return (
     <div
@@ -25,6 +29,7 @@ export function CommentInput({ createComment }) {
         onChange={(event) => setValue(event.target.value)}
         onKeyDown={onKeyDown}
         rows={1}
+        ref={textAreaRef}
         placeholder="添加评论"
         style={{
           paddingBottom: 30,

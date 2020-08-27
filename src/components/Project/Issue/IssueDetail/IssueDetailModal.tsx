@@ -7,7 +7,7 @@ import { IssueDetail } from './IssueDetail';
 import { IssueDetailBread } from './IssueDetailBread/IssueDetailBread';
 import { useHistory, useRouteMatch } from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
-import { getProjectIssueDetailRequest } from '../../../../redux/actions/project-issue-detail.action';
+import { queryProjectIssueDetailRequest } from '../../../../redux/actions/project-issue-detail.action';
 import {RootState} from "../../../../redux/reducer";
 import {selectIssue} from "../../../../redux/reducer/selector/issue.selector";
 
@@ -27,7 +27,7 @@ export function IssueDetailModal({ issueId, projectId }: InputProps) {
   const issue = useSelector((state: RootState) => selectIssue(state, issueId));
 
   useEffect(() => {
-    dispatch(getProjectIssueDetailRequest({ issueId: issueId }));
+    dispatch(queryProjectIssueDetailRequest({ issueId: issueId }));
   }, [dispatch, issueId]);
 
   if (!issue) {

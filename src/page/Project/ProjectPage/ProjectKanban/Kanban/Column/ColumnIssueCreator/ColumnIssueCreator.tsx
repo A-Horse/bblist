@@ -9,7 +9,7 @@ import { createIssueRequest } from '../../../../../../../redux/actions/issue.act
 import { useToasts } from 'react-toast-notifications';
 import { AxiosSuccessAction } from '../../../../../../../redux/actions/actions';
 import { AxiosDispatch } from '../../../../../../../typings/util.typing';
-import { getProjectIssueDetailRequest } from '../../../../../../../redux/actions/project-issue-detail.action';
+import { queryProjectIssueDetailRequest } from '../../../../../../../redux/actions/project-issue-detail.action';
 
 interface InputProps {
   columnId: string;
@@ -45,7 +45,7 @@ export function ColumnIssueCreator({
       })
     ).then((action: AxiosSuccessAction) => {
       dispatch(
-        getProjectIssueDetailRequest({
+        queryProjectIssueDetailRequest({
           issueId: action.payload.data,
         })
       ).then();

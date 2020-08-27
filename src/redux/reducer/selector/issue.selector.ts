@@ -1,9 +1,6 @@
 import { RootState } from '../index';
 import { IIssue } from '../../../typings/project-issue.typing';
 
-export function selectIssue(state: RootState, issueId: string): IIssue {
-  return state.project.issueMap[issueId];
-}
 
 export function selectProjectIssues(
   state: RootState,
@@ -13,4 +10,8 @@ export function selectProjectIssues(
     .map((id) => state.project.issueMap[id])
     .filter((v) => !!v)
     .sort((a, b) => a.order - b.order);
+}
+
+export function selectIssue(state: RootState, issueId: string): IIssue {
+  return state.project.issueMap[issueId];
 }

@@ -12,7 +12,7 @@ import './IssueCreatorModal.scss';
 
 import * as Yup from 'yup';
 import { AxiosDispatch } from '../../../typings/util.typing';
-import { getProjectIssueDetailRequest } from '../../../redux/actions/project-issue-detail.action';
+import { queryProjectIssueDetailRequest } from '../../../redux/actions/project-issue-detail.action';
 
 export interface FormValues {
   title: string;
@@ -41,7 +41,7 @@ export function IssueCreatorModal(props: {
       })
     ).then((result) => {
       dispatch(
-        getProjectIssueDetailRequest({ issueId: result.payload.data })
+        queryProjectIssueDetailRequest({ issueId: result.payload.data })
       ).then();
       props.closeModal();
     });

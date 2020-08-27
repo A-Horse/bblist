@@ -10,6 +10,7 @@ export interface IIssue {
   deadlineDone?: boolean;
   assigneeId?: string;
   creatorId?: string;
+  comments?: IComment[];
 }
 
 export interface UpdateIssueInput {
@@ -32,4 +33,10 @@ export interface CreateProjectIssueInput {
   columnId?: string;
   title: string;
   content?: string;
+}
+
+export interface IComment {
+  id: string;
+  creatorId: string;
+  content: string;
 }

@@ -1,9 +1,6 @@
 import { schema } from 'normalizr';
 
-export const Comment = new schema.Entity('Comment');
-export const Issue = new schema.Entity('Issue', {
-  comments: new schema.Array(Comment)
-});
+export const Issue = new schema.Entity('Issue');
 export const IssueList = new schema.Array(Issue);
 
 export const ProjectEntity = new schema.Entity('Project');
