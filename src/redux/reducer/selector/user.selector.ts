@@ -9,5 +9,5 @@ export function selectProjectAllUsers(
 }
 
 export function selectUser(state: RootState, userId: string) {
-
+  return state.user.projectParticipants.find(user => user.id === userId);
 }

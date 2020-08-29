@@ -1,5 +1,5 @@
 import React from 'react';
-import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
+import {faPencilAlt, faRunning} from '@fortawesome/free-solid-svg-icons';
 import { FormField } from '../../../../../widget/FormField/FormField';
 import { DetailSection } from '../DetailSection/DetailSection';
 import { CommentInput } from './CommentInput';
@@ -21,7 +21,7 @@ export function IssueActivity({ issue }) {
   };
 
   return (
-    <DetailSection icon={faPencilAlt}>
+    <DetailSection icon={faRunning}>
       <FormField name="活动：" type="major">
         <CommentList comments={issue.comments} />
 

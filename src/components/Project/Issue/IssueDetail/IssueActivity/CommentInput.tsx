@@ -11,8 +11,8 @@ export function CommentInput({ createComment }) {
       return;
     }
     event.preventDefault();
-    textAreaRef.current!.blur();
     createComment(value).then(() => setValue(''));
+    textAreaRef.current!.blur();
   };
   return (
     <div
