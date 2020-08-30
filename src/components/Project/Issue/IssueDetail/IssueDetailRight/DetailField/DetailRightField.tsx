@@ -1,4 +1,4 @@
-import React, {CSSProperties} from 'react';
+import React, { CSSProperties, forwardRef } from 'react';
 
 import './DetailRightField.scss';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
@@ -13,18 +13,24 @@ interface InputProps {
   onClick: any;
 }
 
-export function DetailRightField({ active, title, icon, onClick, style, backgroundColor }: InputProps) {
-  return (
-    <div
-      className={`DetailRightField${active ? ' active' : ''}`}
-      onClick={onClick}
-      style={{
+export const DetailRightField = React.forwardRef<HTMLDivElement, InputProps>(
+  (
+    { active, title, icon, onClick, style, backgroundColor }: InputProps,
+    ref
+  ) => {
+    return (
+      <div
+          ref={ref}
+        className={`DetailRightField${active ? ' active' : ''}`}
+        onClick={onClick}
+        style={{
           ...style,
-        backgroundColor: backgroundColor
-      }}
-    >
-      <AppIcon icon={icon} />
-      {title}
-    </div>
-  );
-}
+          backgroundColor: backgroundColor,
+        }}
+      >
+        <AppIcon icon={icon} />
+        {title}
+      </div>
+    );
+  }
+);

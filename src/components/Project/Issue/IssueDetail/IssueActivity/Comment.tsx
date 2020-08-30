@@ -24,7 +24,8 @@ export function Comment({ comment }: Props) {
       <UserAvatar user={user} />
       <div
         style={{
-          paddingLeft: 3,
+          paddingLeft: 7
+            ,
         }}
       >
         <div>

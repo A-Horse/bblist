@@ -34,7 +34,6 @@ export function KanbanColumn({ column, projectId, kanbanId }: InputProps) {
       <div
         className="KanbanColumn--main"
         style={{
-          backgroundColor: 'rgb(230, 246, 255)',
         }}
       >
         <div className="KanbanColumn--header">

@@ -1,25 +1,31 @@
-import React, { useState } from 'react';
+import React, { createRef, useState } from 'react';
 import { DateTimeSelectDialog } from '../../../../DateTimeSelectDialog/DateTimeSeletDialog';
 import { AssigneeSelector } from '../../../../AssigneeSelector/AssigneeSelector';
 import { SelectOption } from '../../../../../typings/select.typing';
 import { SectionHeading } from '../../../../../widget/Heading/SectionHeading/SectionHeading';
 import { DetailRightField } from './DetailField/DetailRightField';
 import { faClock } from '@fortawesome/free-regular-svg-icons';
-import {faArrowsAltH, faTrashAlt} from '@fortawesome/free-solid-svg-icons';
+import {
+  faArrowsAltH,
+  faPaperclip,
+  faTags,
+  faTrashAlt,
+} from '@fortawesome/free-solid-svg-icons';
 import { MoveIssueModal } from '../MoveIssueModal/MoveIssueModal';
 import './IssueDetailRight.scss';
 import { IIssue } from '../../../../../typings/project-issue.typing';
 import { ConfirmModal } from '../../../../Modal/ConfirmModal';
 import { useDispatch } from 'react-redux';
 import { deleteIssue } from '../../../../../redux/actions/issue.action';
-import {AxiosDispatch} from "../../../../../typings/util.typing";
+import { AxiosDispatch } from '../../../../../typings/util.typing';
+import { AttachmentPopup } from '../AttachmentPopup/AttachmentPopup';
 
 interface InputProps {
   projectId: string;
   issue: IIssue;
   kanbanId?: string;
   onFieldChange: Function;
-    closeModal: Function;
+  closeModal: Function;
 }
 
 export function IssueDetailRight(props: InputProps) {
@@ -27,6 +33,15 @@ export function IssueDetailRight(props: InputProps) {
   const [deadlineSelectOpen, setDeadlineSelectOpen] = useState(false);
   const [moveIssueOpen, setMoveIssueOpen] = useState(false);
   const [deleteIssueOpen, setDeleteIssueOpen] = useState(false);
+  const [attachmentOpen, setAttachmentOpen] = useState(false);
+  const [attachmentPosition, setAttachmentPosition] = useState({x: 0, y: 0});
+  const attachmentRef = createRef<HTMLDivElement>();
+
+  const onAttachmentTriggerClick = () => {
+      setAttachmentOpen(true);
+      const rect = attachmentRef.current!.getBoundingClientRect();
+      setAttachmentPosition({x: rect.left, y: rect.top})
+  }
 
   const onDeadlineOnclick = (value: Date) => {
     setDeadlineSelectOpen(false);
@@ -37,9 +52,9 @@ export function IssueDetailRight(props: InputProps) {
     props.onFieldChange('assigneeId', assigneeId);
   };
 
-  const onDeleteIssueConfirm =  () => {
+  const onDeleteIssueConfirm = () => {
     dispatch(deleteIssue(props.issue)).then(() => {
-        props.closeModal();
+      props.closeModal();
     });
   };
 
@@ -70,6 +85,21 @@ export function IssueDetailRight(props: InputProps) {
           icon={faArrowsAltH}
           title="移动卡片"
           onClick={() => setMoveIssueOpen(true)}
+        />
+
+        <DetailRightField
+          active={false}
+          icon={faTags}
+          title="标签"
+          onClick={() => {}}
+        />
+
+        <DetailRightField
+          ref={attachmentRef}
+          active={false}
+          icon={faPaperclip}
+          title="附件"
+          onClick={onAttachmentTriggerClick}
         />
 
         <DetailRightField
@@ -107,6 +137,8 @@ export function IssueDetailRight(props: InputProps) {
         confirmTextTip="确定要删除卡片吗？"
         confirmButtonText="删除"
       />
+
+      <AttachmentPopup isOpen={attachmentOpen} position={attachmentPosition} onClose={() => setAttachmentOpen(false)} />
     </>
   );
 }

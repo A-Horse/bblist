@@ -7,7 +7,7 @@ export function Panel({ children, style }) {
         borderRadius: 6,
         padding: 12,
         boxSizing: 'border-box',
-        backgroundColor: 'rgba(230, 246, 255, 0.6)',
+        backgroundColor: '#ebecf0',
           ...style
       }}
     >
