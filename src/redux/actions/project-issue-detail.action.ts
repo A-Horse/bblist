@@ -1,15 +1,7 @@
 import {
-  IIssue,
   UpdateIssueInput,
 } from '../../typings/project-issue.typing';
 import { FSAction } from './actions';
-
-export const GET_PROJECT_ISSUE_DETAIL_REQUEST =
-  'GET_PROJECT_ISSUE_DETAIL_REQUEST';
-export const GET_PROJECT_ISSUE_DETAIL_SUCCESS =
-  'GET_PROJECT_ISSUE_DETAIL_SUCCESS';
-export const GET_PROJECT_ISSUE_DETAIL_FAILURE =
-  'GET_PROJECT_ISSUE_DETAIL_FAILURE';
 
 export function queryProjectIssueDetailRequest(input: {
   issueId: string;

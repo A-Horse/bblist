@@ -138,7 +138,7 @@ export function IssueDetailRight(props: InputProps) {
         confirmButtonText="删除"
       />
 
-      <AttachmentPopup isOpen={attachmentOpen} position={attachmentPosition} onClose={() => setAttachmentOpen(false)} />
+      <AttachmentPopup issueId={props.issue.id} isOpen={attachmentOpen} position={attachmentPosition} onClose={() => setAttachmentOpen(false)} />
     </>
   );
 }
