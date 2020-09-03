@@ -16,6 +16,7 @@ import { RootState } from '../../../../redux/reducer';
 import { selectIssue } from '../../../../redux/reducer/selector/issue.selector';
 import { updateIssueDetailRequest } from '../../../../redux/actions/project-issue-detail.action';
 import { IssueActivity } from './IssueActivity/IssueActivity';
+import {AttachmentList} from "./Attachment/AttachmentList";
 
 export interface InputProps {
   issueId: string;
@@ -77,6 +78,9 @@ export function IssueDetail({
               />
             </FormField>
           </DetailSection>
+
+          <AttachmentList issue={issue} />
+
 
           <IssueActivity issue={issue} />
         </div>

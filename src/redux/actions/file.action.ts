@@ -1,12 +1,7 @@
-
-
-export function uploadIssueAttachmentRequest(payload: {
-  issueId,
-  files
-}) {
+export function uploadIssueAttachmentRequest(payload: { issueId; file }) {
   const formData = new FormData();
   formData.append('issueId', payload.issueId);
-  formData.append('files', payload.files);
+  formData.append('file', payload.file);
   return {
     type: 'UPLOAD_ISSUE_ATTACHMENT',
     payload: {
@@ -14,6 +9,7 @@ export function uploadIssueAttachmentRequest(payload: {
         url: `/issue/${payload.issueId}/attachment`,
         method: 'post',
         data: formData,
+        headers: { 'Content-Type': 'multipart/form-data' },
       },
     },
   };

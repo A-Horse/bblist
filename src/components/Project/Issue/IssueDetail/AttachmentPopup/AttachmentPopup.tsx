@@ -4,19 +4,20 @@ import { AppList } from '../../../../List/List';
 import { AppButton } from '../../../../../widget/Button';
 import { ListItem } from '../../../../List/ListItem';
 import { FileUploader } from '../../../../Upload/FileUploader';
-import {useDispatch} from "react-redux";
-import {uploadIssueAttachmentRequest} from "../../../../../redux/actions/file.action";
+import { useDispatch } from 'react-redux';
+import { uploadIssueAttachmentRequest } from '../../../../../redux/actions/file.action';
 
 export function AttachmentPopup({ issueId, isOpen, position, onClose }) {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-    const upload = (files) => {
-        dispatch(uploadIssueAttachmentRequest({
-            issueId,
-                files
-            })
-        )
-    };
+  const upload = (files: FileList) => {
+      dispatch(
+          uploadIssueAttachmentRequest({
+              issueId,
+              file: files[0]
+          })
+      )
+  };
 
   return (
     <Popup isOpen={isOpen} position={position} onClose={onClose}>

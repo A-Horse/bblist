@@ -1,3 +1,8 @@
+export interface IIssueAttachment{
+  id: string;
+  fileName: string;
+}
+
 export interface IIssue {
   id: string;
   title: string;
@@ -11,6 +16,7 @@ export interface IIssue {
   assigneeId?: string;
   creatorId?: string;
   comments?: IComment[];
+  attachments: IIssueAttachment[]
 }
 
 export interface UpdateIssueInput {
