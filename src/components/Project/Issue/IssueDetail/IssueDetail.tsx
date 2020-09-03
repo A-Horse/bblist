@@ -1,6 +1,6 @@
 import './IssueDetail.scss';
 
-import React, { Component } from 'react';
+import React  from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { FormField } from '../../../../widget/FormField/FormField';
@@ -10,7 +10,7 @@ import { IssueDetailRight } from './IssueDetailRight/IssueDetailRight';
 import { Deadline } from '../../../Deadline/Deadline';
 import { DetailSection } from './DetailSection/DetailSection';
 import { faCreditCard } from '@fortawesome/free-regular-svg-icons';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
+import {faBars, faPaperclip} from '@fortawesome/free-solid-svg-icons';
 import { ProjectIssueFiled } from '../../../../typings/project-issue.typing';
 import { RootState } from '../../../../redux/reducer';
 import { selectIssue } from '../../../../redux/reducer/selector/issue.selector';
@@ -79,7 +79,10 @@ export function IssueDetail({
             </FormField>
           </DetailSection>
 
-          <AttachmentList issue={issue} />
+
+          <DetailSection icon={faPaperclip}>
+            <AttachmentList issue={issue} />
+          </DetailSection>
 
 
           <IssueActivity issue={issue} />
