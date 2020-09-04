@@ -1,6 +1,6 @@
 import './IssueDetail.scss';
 
-import React  from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { FormField } from '../../../../widget/FormField/FormField';
@@ -10,13 +10,13 @@ import { IssueDetailRight } from './IssueDetailRight/IssueDetailRight';
 import { Deadline } from '../../../Deadline/Deadline';
 import { DetailSection } from './DetailSection/DetailSection';
 import { faCreditCard } from '@fortawesome/free-regular-svg-icons';
-import {faBars, faPaperclip} from '@fortawesome/free-solid-svg-icons';
+import { faBars, faPaperclip } from '@fortawesome/free-solid-svg-icons';
 import { ProjectIssueFiled } from '../../../../typings/project-issue.typing';
 import { RootState } from '../../../../redux/reducer';
 import { selectIssue } from '../../../../redux/reducer/selector/issue.selector';
 import { updateIssueDetailRequest } from '../../../../redux/actions/project-issue-detail.action';
 import { IssueActivity } from './IssueActivity/IssueActivity';
-import {AttachmentList} from "./Attachment/AttachmentList";
+import { AttachmentList } from './Attachment/AttachmentList';
 
 export interface InputProps {
   issueId: string;
@@ -79,11 +79,13 @@ export function IssueDetail({
             </FormField>
           </DetailSection>
 
-
-          <DetailSection icon={faPaperclip}>
-            <AttachmentList issue={issue} />
-          </DetailSection>
-
+          {!!issue.attachments && !!issue.attachments.length && (
+            <DetailSection icon={faPaperclip}>
+              <FormField name="附件：" type="major">
+                <AttachmentList issue={issue} />
+              </FormField>
+            </DetailSection>
+          )}
 
           <IssueActivity issue={issue} />
         </div>

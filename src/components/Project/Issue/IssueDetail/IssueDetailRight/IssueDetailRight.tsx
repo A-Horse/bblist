@@ -34,14 +34,14 @@ export function IssueDetailRight(props: InputProps) {
   const [moveIssueOpen, setMoveIssueOpen] = useState(false);
   const [deleteIssueOpen, setDeleteIssueOpen] = useState(false);
   const [attachmentOpen, setAttachmentOpen] = useState(false);
-  const [attachmentPosition, setAttachmentPosition] = useState({x: 0, y: 0});
+  const [attachmentPosition, setAttachmentPosition] = useState({ x: 0, y: 0 });
   const attachmentRef = createRef<HTMLDivElement>();
 
   const onAttachmentTriggerClick = () => {
-      setAttachmentOpen(true);
-      const rect = attachmentRef.current!.getBoundingClientRect();
-      setAttachmentPosition({x: rect.left, y: rect.top})
-  }
+    setAttachmentOpen(true);
+    const rect = attachmentRef.current!.getBoundingClientRect();
+    setAttachmentPosition({ x: rect.left, y: rect.top });
+  };
 
   const onDeadlineOnclick = (value: Date) => {
     setDeadlineSelectOpen(false);
@@ -104,8 +104,10 @@ export function IssueDetailRight(props: InputProps) {
 
         <DetailRightField
           active={false}
-          backgroundColor="#f57b7b"
-          style={{ color: 'white' }}
+          hoverStyle={{
+            backgroundColor: '#f57b7b',
+            color: 'white',
+          }}
           icon={faTrashAlt}
           title="删除卡片"
           onClick={() => setDeleteIssueOpen(true)}
@@ -138,7 +140,12 @@ export function IssueDetailRight(props: InputProps) {
         confirmButtonText="删除"
       />
 
-      <AttachmentPopup issueId={props.issue.id} isOpen={attachmentOpen} position={attachmentPosition} onClose={() => setAttachmentOpen(false)} />
+      <AttachmentPopup
+        issueId={props.issue.id}
+        isOpen={attachmentOpen}
+        position={attachmentPosition}
+        onClose={() => setAttachmentOpen(false)}
+      />
     </>
   );
 }

@@ -1,5 +1,7 @@
 import React from 'react';
 import axios from 'axios';
+import {AppIcon} from "../../../../../widget/Icon";
+import {faDownload} from "@fortawesome/free-solid-svg-icons";
 
 export function AttachmentList({ issue }) {
   const attachments = issue.attachments;
@@ -26,13 +28,19 @@ export function AttachmentList({ issue }) {
       <div>
         {attachments.map((attachment) => (
           <div
-            style={{
-              cursor: 'pointer',
-            }}
+
             key={attachment.id}
-            onClick={() => onDownload(attachment)}
           >
             {attachment.fileName}
+
+            <span style={{
+                marginLeft: 8,
+                display: 'inline-block',
+                cursor: 'pointer',
+            }} onClick={() => onDownload(attachment)}>
+              <AppIcon size="sm" icon={faDownload}/>
+            </span>
+
           </div>
         ))}
       </div>
