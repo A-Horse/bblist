@@ -12,7 +12,9 @@ export function Popup({ isOpen, children, position, onClose }) {
       content: {
           position: 'absolute',
           top: position.y,
-          left: position.x
+          left: position.x,
+          right: 'initial',
+          bottom: 'initial'
       }
   }} >
       {children}

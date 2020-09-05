@@ -11,12 +11,14 @@ export function AttachmentPopup({ issueId, isOpen, position, onClose }) {
   const dispatch = useDispatch();
 
   const upload = (files: FileList) => {
+    for (let i = 0; i < files.length; i++) {
       dispatch(
-          uploadIssueAttachmentRequest({
-              issueId,
-              file: files[0]
-          })
-      )
+        uploadIssueAttachmentRequest({
+          issueId,
+          file: files[i],
+        })
+      );
+    }
   };
 
   return (
