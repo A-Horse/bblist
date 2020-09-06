@@ -45,4 +45,5 @@ export interface IComment {
   id: string;
   creatorId: string;
   content: string;
+  createdAt: Date;
 }

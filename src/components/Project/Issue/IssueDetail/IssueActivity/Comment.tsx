@@ -4,6 +4,7 @@ import { UserAvatar } from '../../../../UserAvatar/UserAvatar';
 import { selectUser } from '../../../../../redux/reducer/selector/user.selector';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../../../redux/reducer';
+import { AppDate } from '../../../../../widget/AppDate/AppDate';
 
 interface Props {
   comment: IComment;
@@ -24,8 +25,7 @@ export function Comment({ comment }: Props) {
       <UserAvatar user={user} />
       <div
         style={{
-          paddingLeft: 7
-            ,
+          paddingLeft: 7,
         }}
       >
         <div>
@@ -41,6 +41,7 @@ export function Comment({ comment }: Props) {
           >
             {user ? user.username : ''}
           </span>
+          <AppDate value={comment.createdAt}/>
         </div>
         <span
           style={{

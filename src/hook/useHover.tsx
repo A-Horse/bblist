@@ -1,6 +1,6 @@
 import {  useEffect, useRef, useState } from "react";
 
-export function useHover(elementRef) {
+export function useHover(elementRef?) {
     const [value, setValue] = useState(false);
 
     const ref = useRef<HTMLElement>(null);

@@ -13,7 +13,6 @@ export function AllKanban() {
   }, []);
 
   const kanbans = useSelector((state: RootState) => selectAllKanbans(state));
-
   return (
     <div>
       {kanbans.map((kanban) => (
