@@ -9,7 +9,6 @@ import './Kanban.scss';
 import { IColumn } from '../../../../../typings/kanban-column.typing';
 import { DragDropContext } from 'react-beautiful-dnd';
 import { rankIssue } from '../../../../../redux/actions/issue.action';
-import { IIssue } from '../../../../../typings/project-issue.typing';
 import { updateIssueDetailRequest } from '../../../../../redux/actions/project-issue-detail.action';
 
 interface InputProps {

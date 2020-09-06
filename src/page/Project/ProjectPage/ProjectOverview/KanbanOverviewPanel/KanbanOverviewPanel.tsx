@@ -8,6 +8,8 @@ import { KanbanIssue } from '../../../../../components/Project/Issue/KanbanIssue
 import { Panel } from '../../../../../widget/Panel/Panel';
 import { SectionHeading } from '../../../../../widget/Heading/SectionHeading/SectionHeading';
 import { useHistory, useRouteMatch } from 'react-router-dom';
+import {AppIcon} from "../../../../../widget/Icon";
+import {faArrowCircleRight} from "@fortawesome/free-solid-svg-icons";
 
 interface Props {
   kanban: IKanban;
@@ -31,7 +33,11 @@ export function KanbanOverviewPanel({ kanban }: Props) {
 
   return (
     <Panel style={{ marginBottom: 12 }}>
-      <SectionHeading>{kanban.name}</SectionHeading>
+      <SectionHeading>{kanban.name}
+        <AppIcon style={{
+            marginLeft: 12
+        }} icon={faArrowCircleRight}  />
+      </SectionHeading>
       <div>最近卡片</div>
       <div
         style={{

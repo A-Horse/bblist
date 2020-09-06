@@ -33,6 +33,7 @@ export function reduceKanbanDetailSuccess(
         ...normalizedKanban,
       },
     },
+    loadingKanban: false
   };
 }
 

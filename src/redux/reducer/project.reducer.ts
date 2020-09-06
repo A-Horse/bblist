@@ -33,7 +33,6 @@ import {
   reduceRankIssueSuccess,
   reduceUpdateProjectIssue,
 } from './handler/issue-reduce-handler';
-import {act} from "react-dom/test-utils";
 
 export type KanbanMap = { [id: string]: IKanban };
 export type ColumnMap = { [id: string]: IColumn };
@@ -47,6 +46,7 @@ export interface ProjectState {
   issueMap: IssueMap;
   allIssueId: string[];
   loadingKanbans: boolean;
+  loadingKanban: boolean;
 }
 
 export function project(
@@ -57,6 +57,7 @@ export function project(
     issueMap: fromJS({}),
     allIssueId: [],
     loadingKanbans: false,
+    loadingKanban: false
   },
   action
 ) {
@@ -95,8 +96,16 @@ export function project(
       return reduceProjectKanbanSuccess(state, action);
     }
 
+    case 'GET_PROJECT_KANBAN_DETAIL': {
+      return {...state, loadingKanban: true};
+    }
+
     case 'GET_PROJECT_KANBAN_DETAIL_SUCCESS': {
       return reduceKanbanDetailSuccess(state, action as AxiosSuccessAction);
+    }
+
+    case 'GET_PROJECT_KANBAN_DETAIL_FAILURE': {
+      return {...state, loadingKanban: false};
     }
 
     case 'QUERY_KANBAN_COLUMNS_SUCCESS': {

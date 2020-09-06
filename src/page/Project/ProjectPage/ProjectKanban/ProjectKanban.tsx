@@ -29,6 +29,7 @@ export function ProjectKanban() {
   const columns = useSelector((state: RootState) =>
     selectKanbanColumns(state, kanbanId)
   );
+  const kanbanLoading = useSelector((state: RootState) => state.project.loadingKanban);
 
   useEffect(() => {
     dispatch(
@@ -57,7 +58,7 @@ export function ProjectKanban() {
           <Kanban kanbanId={kanbanId} projectId={projectId} />
         )}
 
-        {!columns.length && (
+        {!columns.length && !kanbanLoading && (
           <NoColumnGuide openSetting={() => setSettingModalVisible(true)} />
         )}
       </div>
