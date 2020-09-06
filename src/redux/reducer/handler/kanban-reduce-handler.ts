@@ -1,14 +1,13 @@
 import { IKanban } from '../../../typings/kanban.typing';
 import { normalize } from 'normalizr';
-import {
-  KanbanDetailEntity,
-  KanbanEntityList,
-  IssueList,
-} from '../../schema';
+import { KanbanDetailEntity, KanbanEntityList, IssueList } from '../../schema';
 import { ProjectState } from '../project.reducer';
 import { AxiosSuccessAction, FSAction } from '../../actions/actions';
 import { reduceNormalizeMap } from '../util/util';
-import { queryKanbanRecentlyIssues } from '../../actions/kanban.action';
+import {
+  getUserKanbansRequest,
+  queryKanbanRecentlyIssues,
+} from '../../actions/kanban.action';
 
 export function reduceKanbanDetailSuccess(
   state: ProjectState,
@@ -96,5 +95,25 @@ export function reduceKanbanRecentlyIssuesSuccess(
       state.issueMap,
       normalizedIssuesData.entities.Issue
     ),
+  };
+}
+
+export function reduceGetKanbansSuccess(
+  state: ProjectState,
+  action: AxiosSuccessAction<ReturnType<typeof getUserKanbansRequest>>
+) {
+  const newKanbanMap = action.payload.data.reduce((result, cur) => {
+    result[cur.id] = {
+      ...state.kanbanMap[cur.id],
+      ...cur,
+    };
+    return result;
+  }, {});
+  return {
+    ...state,
+    kanbanMap: {
+      ...state.kanbanMap,
+      ...newKanbanMap,
+    },
   };
 }

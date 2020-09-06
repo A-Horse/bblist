@@ -45,6 +45,18 @@ export function getProjectKanbanDetailRequest(payload: {
   };
 }
 
+export function getUserKanbansRequest() {
+  return {
+    type: 'GET_USER_KANBANS',
+    payload: {
+      request: {
+        url: `/kanbans`
+      }
+    }
+  }
+
+}
+
 export const CREATE_KANBAN_REQUEST = 'CREATE_KANBAN_REQUEST';
 export const CREATE_KANBAN_SUCCESS = 'CREATE_KANBAN_SUCCESS';
 export const CREATE_KANBAN_FAILURE = 'CREATE_KANBAN_FAILURE';

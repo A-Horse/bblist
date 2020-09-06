@@ -14,6 +14,7 @@ import { IKanban } from '../../typings/kanban.typing';
 import { IIssue } from '../../typings/project-issue.typing';
 import { IProject } from '../../typings/project.typing';
 import {
+  reduceGetKanbansSuccess,
   reduceKanbanDetailSuccess,
   reduceKanbanRecentlyIssuesSuccess,
   reduceProjectKanban,
@@ -32,6 +33,7 @@ import {
   reduceRankIssueSuccess,
   reduceUpdateProjectIssue,
 } from './handler/issue-reduce-handler';
+import {act} from "react-dom/test-utils";
 
 export type KanbanMap = { [id: string]: IKanban };
 export type ColumnMap = { [id: string]: IColumn };
@@ -123,6 +125,10 @@ export function project(
 
     case 'QUERY_KANBAN_RECENTLY_ISSUES_SUCCESS': {
       return reduceKanbanRecentlyIssuesSuccess(state, action);
+    }
+
+    case 'GET_USER_KANBANS_SUCCESS': {
+      return reduceGetKanbansSuccess(state, action);
     }
 
     default:

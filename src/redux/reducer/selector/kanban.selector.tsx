@@ -43,6 +43,10 @@ export function selectKanbans(state: RootState, projectId: string): IKanban[] {
     .filter((kanban) => !!kanban);
 }
 
+export function selectAllKanbans(state: RootState): IKanban[] {
+    return Object.values(state.project.kanbanMap);
+}
+
 export function selectKanbanColumns(
   state: RootState,
   kanbanId: string
