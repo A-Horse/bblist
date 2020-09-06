@@ -23,7 +23,7 @@ export function IssueActivity({ issue }) {
   return (
     <DetailSection icon={faRunning}>
       <FormField name="活动：" type="major">
-        <CommentList comments={issue.comments} />
+        <CommentList comments={issue.comments} issue={issue} />
 
         <CommentInput createComment={createComment} />
       </FormField>

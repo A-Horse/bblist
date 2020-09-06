@@ -1,19 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { IComment } from '../../../../../typings/project-issue.typing';
 import { UserAvatar } from '../../../../UserAvatar/UserAvatar';
 import { selectUser } from '../../../../../redux/reducer/selector/user.selector';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../../../redux/reducer';
 import { AppDate } from '../../../../../widget/AppDate/AppDate';
+import { AppButton } from '../../../../../widget/Button';
+import { ConfirmModal } from '../../../../Modal/ConfirmModal';
+import { deleteCommentRequest } from '../../../../../redux/actions/comment.action';
+import { AxiosDispatch } from '../../../../../typings/util.typing';
+import { queryProjectIssueDetailRequest } from '../../../../../redux/actions/project-issue-detail.action';
 
 interface Props {
   comment: IComment;
+  issueId: string;
 }
 
-export function Comment({ comment }: Props) {
+export function Comment({ comment, issueId }: Props) {
   const user = useSelector((state: RootState) =>
     selectUser(state, comment.creatorId)
   );
+
+  const dispatch = useDispatch<AxiosDispatch>();
+  const [deleteModal, setDeleteModal] = useState(false);
+
+  const deleteComment = () =>
+    dispatch(deleteCommentRequest({ issueId, commentId: comment.id })).then(
+      () => {
+        dispatch(queryProjectIssueDetailRequest({ issueId }));
+        setDeleteModal(false);
+      }
+    );
 
   return (
     <div
@@ -41,9 +58,16 @@ export function Comment({ comment }: Props) {
           >
             {user ? user.username : ''}
           </span>
-          <AppDate value={comment.createdAt}/>
+          <span style={{ marginLeft: 6, fontSize: 12, color: '#5e6c84' }}>
+            创建于
+            <AppDate
+              style={{}}
+              format="YYYY年M月DD日 HH:mm"
+              value={comment.createdAt}
+            />
+          </span>
         </div>
-        <span
+        <div
           style={{
             backgroundColor: 'white',
             padding: 8,
@@ -52,8 +76,25 @@ export function Comment({ comment }: Props) {
           }}
         >
           {comment.content}
-        </span>
+        </div>
+
+        <div>
+          <AppButton type="link" size="sm" disabled style={{ marginRight: 8 }}>
+            编辑
+          </AppButton>
+          <AppButton type="link" size="sm" onClick={() => setDeleteModal(true)}>
+            删除
+          </AppButton>
+        </div>
       </div>
+
+      <ConfirmModal
+        visible={deleteModal}
+        onConfirm={deleteComment}
+        onCancel={() => setDeleteModal(false)}
+        confirmTextTip={'确定要删除评论吗？(' + comment.content + ')'}
+        confirmButtonText="删除"
+      />
     </div>
   );
 }

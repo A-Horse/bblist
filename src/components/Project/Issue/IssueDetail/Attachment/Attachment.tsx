@@ -1,13 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { AttachmentPrevious } from './AttachmentPrevious';
-import { AppIcon } from '../../../../../widget/Icon';
-import { faDownload } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import { useHover } from '../../../../../hook/useHover';
 import { AppButton } from '../../../../../widget/Button';
+import { useDispatch } from 'react-redux';
+import { removeIssueAttachmentRequest } from '../../../../../redux/actions/attachment.action';
+import { AxiosDispatch } from '../../../../../typings/util.typing';
+import { queryProjectIssueDetailRequest } from '../../../../../redux/actions/project-issue-detail.action';
+import { ConfirmModal } from '../../../../Modal/ConfirmModal';
 
 export function Attachment({ attachment, issue }) {
+  const dispatch = useDispatch<AxiosDispatch>();
   const [hoverRef, isHover] = useHover();
+  const [showRemoveConfirmModal, setShowRemoveConfirmModal] = useState(false);
 
   const onDownload = (attachment) => {
     axios
@@ -22,6 +27,19 @@ export function Attachment({ attachment, issue }) {
         link.click();
       });
   };
+
+  const removeAttachment = () => {
+    dispatch(
+      removeIssueAttachmentRequest({
+        issueId: issue.id,
+        attachmentId: attachment.id,
+      })
+    ).then(() => {
+      dispatch(queryProjectIssueDetailRequest({ issueId: issue.id }));
+      setShowRemoveConfirmModal(false);
+    });
+  };
+
   return (
     <div
       ref={hoverRef}
@@ -29,6 +47,7 @@ export function Attachment({ attachment, issue }) {
         display: 'flex',
         alignItems: 'center',
         cursor: 'pointer',
+        marginBottom: 6,
         ...(isHover ? { backgroundColor: 'rgba(9,30,66,.04)' } : {}),
       }}
     >
@@ -36,33 +55,44 @@ export function Attachment({ attachment, issue }) {
 
       <div
         style={{
-            marginLeft: 12,
-
+          marginLeft: 12,
         }}
       >
         <div
           style={{
             color: '#172b4d',
             fontWeight: 700,
-
           }}
         >
           {attachment.fileName}
-          <div
-            style={{
-              display: 'inline-block',
-              cursor: 'pointer',
-            }}
-            onClick={() => onDownload(attachment)}
-          >
-            <AppIcon size="sm" icon={faDownload} />
-          </div>
         </div>
 
         <div>
-          <AppButton type="link" size="sm" >删除</AppButton>
+          <AppButton
+            type="link"
+            size="sm"
+            style={{ marginRight: 8 }}
+            onClick={() => setShowRemoveConfirmModal(true)}
+          >
+            删除
+          </AppButton>
+          <AppButton
+            type="link"
+            size="sm"
+            onClick={() => onDownload(attachment)}
+          >
+            下载
+          </AppButton>
         </div>
       </div>
+
+      <ConfirmModal
+        visible={showRemoveConfirmModal}
+        onConfirm={removeAttachment}
+        onCancel={() => setShowRemoveConfirmModal(false)}
+        confirmTextTip={'确定要删除附件吗？(' + attachment.fileName + ')'}
+        confirmButtonText="删除"
+      />
     </div>
   );
 }

@@ -12,17 +12,17 @@ export function CommentInput({ createComment }) {
     }
     event.preventDefault();
     createComment(value).then();
-      setValue('')
+    setValue('');
     textAreaRef.current!.blur();
   };
   return (
     <div
       style={{
-        border: '1px solid #eee',
-        borderRadius: 6,
+        borderRadius: 3,
         backgroundColor: 'white',
         overflow: 'hidden',
-        boxShadow: '0 0 3px #e8e8e8',
+        boxShadow:
+          '0 1px 2px -1px rgba(9,30,66,.25), 0 0 0 1px rgba(9,30,66,.08)',
       }}
     >
       <textarea
@@ -37,10 +37,11 @@ export function CommentInput({ createComment }) {
           borderBottomRightRadius: 0,
           borderBottomLeftRadius: 0,
           outline: 'none',
+          fontSize: 14,
           width: '100%',
           border: 0,
           resize: 'none',
-          padding: 8,
+          padding: '8px 12px',
         }}
       />
       <Flex

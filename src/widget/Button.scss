@@ -29,6 +29,13 @@
   &.link {
     text-decoration: underline;
     padding: 0 !important;
+    color: #5e6c84;
+
+    &.disabled {
+      background: initial !important;
+      color: #bbb !important;
+      border: none !important;
+    }
   }
 
   &.dashed {

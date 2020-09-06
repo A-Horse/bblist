@@ -18,3 +18,15 @@ export function createCommentRequest(
     },
   };
 }
+
+export function deleteCommentRequest({issueId, commentId}) {
+  return {
+    type: 'DELETE_COMMENT',
+    payload: {
+      request: {
+        url: `/issue/${issueId}/comment/${commentId}`,
+        method: 'DELETE'
+      }
+    }
+  }
+}

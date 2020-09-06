@@ -20,3 +20,8 @@ html {
 * {
   box-sizing: border-box;
 }
+
+
+textarea::placeholder {
+  color: #6b778c;
+}

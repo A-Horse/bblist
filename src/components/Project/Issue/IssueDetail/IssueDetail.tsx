@@ -73,6 +73,10 @@ export function IssueDetail({
               <AppTextArea
                 className="IssueDetail--content-textarea"
                 value={issue.desc || ''}
+                placeholder="添加详细描述"
+                style={{
+                  fontSize: 14
+                }}
                 onChange={(value) => onFieldChange('desc', value)}
                 onBlur={(value) => onFieldChange('desc', value)}
               />
