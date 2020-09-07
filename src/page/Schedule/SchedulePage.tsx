@@ -1,9 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { ScheduleCalendar } from './ScheduleCalendar/ScheduleCalendar';
 
-interface Props {}
+import 'react-big-calendar/lib/css/react-big-calendar.css';
+import 'react-big-calendar/lib/addons/dragAndDrop/styles.scss';
 
-class SchedulePage extends Component<Props> {
-  render() {
-    return null;
-  }
+export function SchedulePage() {
+  return (
+    <div>
+      <ScheduleCalendar />
+    </div>
+  );
 }

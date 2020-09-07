@@ -7,6 +7,7 @@ import { NotFound } from './NotFound';
 import { Nav } from './Nav/Nav';
 import { useClaims } from '../hook/useClaims';
 import { Claims } from '../typings/claims';
+import {SchedulePage} from "./Schedule/SchedulePage";
 
 const SettingPageContainer = React.lazy(() =>
   import('./Setting/SettingPage.container')
@@ -88,6 +89,7 @@ export function App() {
 
           <Route path="/setting" component={SettingPage} />
           <Route path="/profile" component={ProfilePage} />
+          <Route path="/schedule" component={SchedulePage} />
 
           <Route path="*" component={NotFound} />
         </Switch>
