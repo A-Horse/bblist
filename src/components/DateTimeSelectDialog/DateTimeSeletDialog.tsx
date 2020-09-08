@@ -1,70 +1,71 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { ModalHeader } from '../../widget/Modal/ModalHeader/ModalHeader';
 import { AppModal } from '../../widget/Modal/AppModal';
 import { AppDateTimePicker } from '../../widget/Datepicker/Datepicker';
 
 import './DateTimeSeletDialog.scss';
 import { ConfirmButtonGroup } from '../../widget/ButtonGroup/ConfirmGroup/ConfirmGroup';
+import moment from 'moment';
 
 interface InputProps {
   onConfirm: Function;
   onCancel: Function;
   isOpen: boolean;
-  deadline?: string;
+  initialStartTime?: string;
+  initialDeadline?: string;
 }
 
-interface State {
-  value: Date | null;
-}
+export function DateTimeSelectDialog({
+  initialStartTime,
+  initialDeadline,
+  isOpen,
+  onCancel,
+  onConfirm,
+}: InputProps) {
+  console.log(moment(initialStartTime).toDate());
+  console.log(moment(initialDeadline).toDate());
+  const [startTime, setStartTime] = useState(initialStartTime ? moment(initialStartTime).toDate() : null);
+  const [deadline, setDeadline] = useState(initialDeadline ? moment(initialDeadline).toDate() : null);
 
-export class DateTimeSelectDialog extends Component<InputProps, State> {
-  state = {
-    value: null,
+  const closeModal = () => {
+    onCancel();
   };
 
-  componentDidMount() {
-    if (this.props.deadline) {
-      this.setState({ value: new Date(this.props.deadline) });
-    }
-  }
-
-  closeModal = () => {
-    this.props.onCancel && this.props.onCancel();
+  const onConfirmClick = () => {
+    onConfirm({
+      startTime,
+      deadline,
+    });
   };
 
-  onChange = (date: Date) => {
-    this.setState({ value: date });
-  };
+  return (
+    <AppModal
+      overlayClassName="DateTimeSelectDialog--overlay"
+      className="DateTimeSelectDialog"
+      isOpen={isOpen}
+      onRequestClose={closeModal}
+    >
+      <ModalHeader title="开始/到期时间" onClose={closeModal} />
 
-  onConfirm = () => {
-    this.props.onConfirm(this.state.value);
-  };
-
-  render() {
-    return (
-      <AppModal
-        overlayClassName="DateTimeSelectDialog--overlay"
-        className="DateTimeSelectDialog"
-        isOpen={this.props.isOpen}
-        onRequestClose={this.closeModal}
-      >
-        <ModalHeader title="到期日" onClose={this.closeModal} />
-
-        <div className="DateTimeSelectDialog--main">
-          <div>
-            <AppDateTimePicker
-              placeholder="选择到期日"
-              value={this.state.value}
-              onChange={this.onChange}
-            />
-          </div>
-
-          <ConfirmButtonGroup
-            onConfirm={this.onConfirm}
-            onCancel={this.closeModal}
+      <div className="DateTimeSelectDialog--main">
+        <div>
+          <AppDateTimePicker
+            placeholder="选择开始时间"
+            value={startTime}
+            onChange={(value) => setStartTime(value)}
           />
         </div>
-      </AppModal>
-    );
-  }
+
+        <div>
+          <AppDateTimePicker
+            placeholder="选择到期时间"
+            value={deadline}
+            onChange={(value) => setDeadline(value)}
+          />
+        </div>
+
+        <ConfirmButtonGroup onConfirm={onConfirmClick} onCancel={closeModal} />
+      </div>
+    </AppModal>
+  );
 }

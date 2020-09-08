@@ -13,7 +13,7 @@ import {
 } from 'react-router-dom';
 import { getProjectDetailRequest } from '../../../redux/actions/project.action';
 import { ProjectEpics } from './ProjectEpics/ProjectEpics';
-import { ProjectKanban } from './ProjectKanban/ProjectKanban';
+import { KanbanTab } from './KanbanTab/KanbanTab';
 import { ProjectSetting } from './ProjectSetting/ProjectSetting';
 import { ProjectSideBar } from './ProjectSideBar/ProjectSideBar';
 import { Overview } from './ProjectOverview/Overview';
@@ -66,7 +66,7 @@ export default function ProjectPage() {
               />
               <Route
                 path="/project/:projectId/kanban/:kanbanId"
-                render={() => <ProjectKanban />}
+                render={() => <KanbanTab />}
               />
               <Route
                 path="/project/:projectId/epics"

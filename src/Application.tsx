@@ -4,7 +4,7 @@ import history from './services/history';
 
 import './style/normalize.css';
 import './style/app.scss';
-import { App } from './page/App';
+import { AppRouter } from './page/AppRouter';
 
 const LoginPage = React.lazy(() => import('./page/Login/LoginPage'));
 const LoginPageSuspense = () => {
@@ -31,7 +31,7 @@ export class Application extends Component {
         <Switch>
           <Route exact path="/login" component={LoginPageSuspense} />
           <Route exact path="/signup" component={SignUpPageSuspense} />
-          <Route path="/" component={App} />
+          <Route path="/" component={AppRouter} />
         </Switch>
       </Router>
     );

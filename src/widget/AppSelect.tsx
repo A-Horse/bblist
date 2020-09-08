@@ -7,7 +7,7 @@ export function AppSelect(props) {
     <Select
       {...props}
       className={`AppSelect ${props.className || ''}`}
-      classNamePrefix="App-select"
+      classNamePrefix="AppRouter-select"
     />
   );
 }

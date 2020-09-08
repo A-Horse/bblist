@@ -1,5 +1,5 @@
 import React from 'react';
-import { NoKanbanGuide } from '../ProjectKanban/NoKanbanGuide/NoKanbanGuide';
+import { NoKanbanGuide } from '../KanbanTab/NoKanbanGuide/NoKanbanGuide';
 import { useRouteMatch } from 'react-router-dom';
 import { useSelector} from 'react-redux';
 import { RootState } from '../../../../redux/reducer';

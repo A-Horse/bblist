@@ -194,7 +194,7 @@ export function ScheduleCalendar() {
 
   const resizeEvent = ({ event, start, end }) => {
     const nextEvents = events.map((existingEvent) => {
-      return existingEvent.id == event.id
+      return existingEvent.id === event.id
         ? { ...existingEvent, start, end }
         : existingEvent;
     });

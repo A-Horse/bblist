@@ -1,4 +1,3 @@
-import './App.scss';
 
 import React, { Suspense } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
@@ -45,7 +44,7 @@ const ProjectPage = () => {
 };
 
 const ProfilePageContainer = React.lazy(() =>
-  import('../page/Profile/ProfilePage.container')
+  import('../page/Profile/ProfilePage')
 );
 const ProfilePage = () => {
   return (
@@ -55,7 +54,7 @@ const ProfilePage = () => {
   );
 };
 
-export function App() {
+export function AppRouter() {
   const claims: Claims | null = useClaims();
   if (!claims) {
     return <Redirect to="/login" />;

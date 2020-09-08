@@ -48,6 +48,7 @@ export function Attachment({ attachment, issue }) {
         alignItems: 'center',
         cursor: 'pointer',
         marginBottom: 6,
+          borderRadius: 3,
         ...(isHover ? { backgroundColor: 'rgba(9,30,66,.04)' } : {}),
       }}
     >

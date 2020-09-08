@@ -43,9 +43,10 @@ export function IssueDetailRight(props: InputProps) {
     setAttachmentPosition({ x: rect.left, y: rect.top });
   };
 
-  const onDeadlineOnclick = (value: Date) => {
+  const onDeadlineOnclick = ({ startTime, deadline }) => {
     setDeadlineSelectOpen(false);
-    props.onFieldChange('deadline', value);
+    props.onFieldChange('startTime', startTime);
+    props.onFieldChange('deadline', deadline);
   };
 
   const onUpdateAssigneeId = (assigneeId: number) => {
@@ -76,7 +77,7 @@ export function IssueDetailRight(props: InputProps) {
         <DetailRightField
           active={!!props.issue.deadline}
           icon={faClock}
-          title="到期时间"
+          title="开始/到期时间"
           onClick={() => setDeadlineSelectOpen(true)}
         />
 
@@ -115,7 +116,8 @@ export function IssueDetailRight(props: InputProps) {
       </div>
 
       <DateTimeSelectDialog
-        deadline={props.issue.deadline}
+        initialStartTime={props.issue.startTime}
+        initialDeadline={props.issue.deadline}
         isOpen={deadlineSelectOpen}
         onConfirm={onDeadlineOnclick}
         onCancel={() => {

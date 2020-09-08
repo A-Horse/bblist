@@ -9,7 +9,7 @@ export function AssigneeSelectorOption(props: any) {
   return (
     <div
       className={`AssigneeSelectorOption App-select__option ${
-        isSelected && 'App-select__option--is-selected'
+        isSelected && 'AppRouter-select__option--is-selected'
       }`}
       {...props.innerProps}
     >

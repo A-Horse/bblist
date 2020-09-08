@@ -14,7 +14,7 @@ export const UPDATE_ISSUE_DETAIL_EPIC = (
     debounceTime(1000),
     mergeMap((action: ReturnType<typeof updateIssueDetailRequest>) => {
       return axios
-        .patch(makeApiUrl(`/issue/${action.payload.id}`), action.payload)
+        .put(makeApiUrl(`/issue/${action.payload.id}`), action.payload)
         .then(() => ({ type: 'IGNORE' }))
         .catch(() => ({ type: 'IGNORE' }));
     })

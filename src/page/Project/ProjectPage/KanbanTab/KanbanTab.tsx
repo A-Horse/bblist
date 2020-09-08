@@ -15,7 +15,7 @@ import { queryKanbanColumns } from '../../../../redux/actions/column.action';
 import { parseQueryParams } from '../../../../utils/url.util';
 import { IssueDetailModal } from '../../../../components/Project/Issue/IssueDetail/IssueDetailModal';
 
-export function ProjectKanban() {
+export function KanbanTab() {
   const dispatch = useDispatch();
   const [settingModalVisible, setSettingModalVisible] = useState(false);
 

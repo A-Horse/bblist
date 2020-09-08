@@ -11,6 +11,7 @@ export interface IIssue {
   columnId: string;
   kanbanId?: string;
   projectId: string;
+  startTime?: string;
   deadline?: string;
   deadlineDone?: boolean;
   assigneeId?: string;

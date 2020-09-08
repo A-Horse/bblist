@@ -33,8 +33,9 @@ export function IssueDetail({
 }: InputProps) {
   const issue = useSelector((state: RootState) => selectIssue(state, issueId));
   const dispatch = useDispatch();
+
   const onFieldChange = (key: ProjectIssueFiled, value: string) => {
-    dispatch(updateIssueDetailRequest({ id: issueId, [key]: value }));
+    dispatch(updateIssueDetailRequest({ ...issue, [key]: value }));
   };
 
   if (!issue) {
@@ -75,7 +76,7 @@ export function IssueDetail({
                 value={issue.desc || ''}
                 placeholder="添加详细描述"
                 style={{
-                  fontSize: 14
+                  fontSize: 14,
                 }}
                 onChange={(value) => onFieldChange('desc', value)}
                 onBlur={(value) => onFieldChange('desc', value)}
