@@ -17,6 +17,7 @@ import { selectIssue } from '../../../../redux/reducer/selector/issue.selector';
 import { updateIssueDetailRequest } from '../../../../redux/actions/project-issue-detail.action';
 import { IssueActivity } from './IssueActivity/IssueActivity';
 import { AttachmentList } from './Attachment/AttachmentList';
+import {partition} from "rxjs/operators";
 
 export interface InputProps {
   issueId: string;
@@ -36,6 +37,10 @@ export function IssueDetail({
 
   const onFieldChange = (key: ProjectIssueFiled, value: string) => {
     dispatch(updateIssueDetailRequest({ ...issue, [key]: value }));
+  };
+
+  const onDetailChange = (partition) => {
+    dispatch(updateIssueDetailRequest({ ...issue, ...partition}));
   };
 
   if (!issue) {
@@ -100,6 +105,7 @@ export function IssueDetail({
           kanbanId={kanbanId}
           issue={issue}
           onFieldChange={onFieldChange}
+          onDetailChange={onDetailChange}
           closeModal={closeModal}
         />
       </div>

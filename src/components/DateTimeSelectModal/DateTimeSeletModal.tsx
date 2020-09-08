@@ -3,7 +3,7 @@ import { ModalHeader } from '../../widget/Modal/ModalHeader/ModalHeader';
 import { AppModal } from '../../widget/Modal/AppModal';
 import { AppDateTimePicker } from '../../widget/Datepicker/Datepicker';
 
-import './DateTimeSeletDialog.scss';
+import './DateTimeSeletModal.scss';
 import { ConfirmButtonGroup } from '../../widget/ButtonGroup/ConfirmGroup/ConfirmGroup';
 import moment from 'moment';
 
@@ -15,15 +15,13 @@ interface InputProps {
   initialDeadline?: string;
 }
 
-export function DateTimeSelectDialog({
+export function DateTimeSelectModal({
   initialStartTime,
   initialDeadline,
   isOpen,
   onCancel,
   onConfirm,
 }: InputProps) {
-  console.log(moment(initialStartTime).toDate());
-  console.log(moment(initialDeadline).toDate());
   const [startTime, setStartTime] = useState(initialStartTime ? moment(initialStartTime).toDate() : null);
   const [deadline, setDeadline] = useState(initialDeadline ? moment(initialDeadline).toDate() : null);
 

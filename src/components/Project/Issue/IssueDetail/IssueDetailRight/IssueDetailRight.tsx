@@ -1,5 +1,5 @@
 import React, { createRef, useState } from 'react';
-import { DateTimeSelectDialog } from '../../../../DateTimeSelectDialog/DateTimeSeletDialog';
+import { DateTimeSelectModal } from '../../../../DateTimeSelectModal/DateTimeSeletModal';
 import { AssigneeSelector } from '../../../../AssigneeSelector/AssigneeSelector';
 import { SelectOption } from '../../../../../typings/select.typing';
 import { SectionHeading } from '../../../../../widget/Heading/SectionHeading/SectionHeading';
@@ -25,6 +25,7 @@ interface InputProps {
   issue: IIssue;
   kanbanId?: string;
   onFieldChange: Function;
+  onDetailChange: Function;
   closeModal: Function;
 }
 
@@ -45,8 +46,10 @@ export function IssueDetailRight(props: InputProps) {
 
   const onDeadlineOnclick = ({ startTime, deadline }) => {
     setDeadlineSelectOpen(false);
-    props.onFieldChange('startTime', startTime);
-    props.onFieldChange('deadline', deadline);
+    props.onDetailChange({
+      startTime: startTime,
+      deadline: deadline,
+    });
   };
 
   const onUpdateAssigneeId = (assigneeId: number) => {
@@ -115,7 +118,7 @@ export function IssueDetailRight(props: InputProps) {
         />
       </div>
 
-      <DateTimeSelectDialog
+      <DateTimeSelectModal
         initialStartTime={props.issue.startTime}
         initialDeadline={props.issue.deadline}
         isOpen={deadlineSelectOpen}
