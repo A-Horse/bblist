@@ -17,7 +17,6 @@ import { selectIssue } from '../../../../redux/reducer/selector/issue.selector';
 import { updateIssueDetailRequest } from '../../../../redux/actions/project-issue-detail.action';
 import { IssueActivity } from './IssueActivity/IssueActivity';
 import { AttachmentList } from './Attachment/AttachmentList';
-import {partition} from "rxjs/operators";
 
 export interface InputProps {
   issueId: string;
