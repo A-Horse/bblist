@@ -17,7 +17,7 @@ interface InputProps {
 
 const getListStyle = (isDraggingOver) => ({
   background: isDraggingOver ? 'lightblue' : undefined,
-  minHeight: 30,
+  minHeight: isDraggingOver ? 30 : 8,
   borderRadius: 6
 });
 
