@@ -1,5 +1,5 @@
 import React, { CSSProperties, ReactNode } from 'react';
-import { Flex } from '../Layout/Flex';
+import { Flex } from '../../widget/Layout/Flex';
 import { AppButton } from '../../widget/Button';
 import { AppIcon } from '../../widget/Icon';
 import { faPencilAlt, faTrashAlt } from '@fortawesome/free-solid-svg-icons';

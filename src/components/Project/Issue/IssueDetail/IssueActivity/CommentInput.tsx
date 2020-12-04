@@ -1,6 +1,6 @@
 import React, { createRef, KeyboardEvent, useState } from 'react';
 import { AppButton } from '../../../../../widget/Button';
-import { Flex } from '../../../../Layout/Flex';
+import { Flex } from '../../../../../widget/Layout/Flex';
 
 export function CommentInput({ createComment }) {
   const [value, setValue] = useState('');

@@ -7,7 +7,7 @@ import { AppButton } from '../../../../widget/Button';
 import { Input } from '../../../../widget/Input/Input';
 import { AppIcon } from '../../../../widget/Icon';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
-import { Flex } from '../../../../components/Layout/Flex';
+import { Flex } from '../../../../widget/Layout/Flex';
 
 interface FormValues {
   name: string;

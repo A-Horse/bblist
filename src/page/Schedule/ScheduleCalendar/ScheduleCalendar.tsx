@@ -108,8 +108,6 @@ export function ScheduleCalendar() {
         onDropFromOutside={onDropFromOutside}
         handleDragStart={handleDragStart}
       />
-
-
     </div>
   );
 }
