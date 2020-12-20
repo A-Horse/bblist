@@ -1,10 +1,14 @@
 
-export function queryScheduleEvents() {
+export function queryScheduleEvents({ startTime, endTime }) {
   return {
     type: 'QUERY_SCHEDULE_EVENTS',
     payload: {
       request: {
-        url: ''
+        url: '/schedule/events',
+        params: {
+          startTime,
+          endTime
+        }
       }
     }
   }

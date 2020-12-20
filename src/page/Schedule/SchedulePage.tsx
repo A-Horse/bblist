@@ -6,22 +6,25 @@ import { queryScheduleEvents } from '../../redux/actions/schedule.action';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import 'react-big-calendar/lib/addons/dragAndDrop/styles.scss';
 
-export function SchedulePage() {
+import { Flex } from '../../widget/Layout/Flex';
+import { generateThisMonthRange } from "./schedule-range-selector";
 
+export function SchedulePage() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(queryScheduleEvents());
-  });
-  
+    const [startMoment, endMoment] = generateThisMonthRange();
+    dispatch(queryScheduleEvents({
+      startTime: startMoment.toISOString(),
+      endTime: endMoment.toISOString(),
+    }));
+  }, []);
 
   return (
-    <div>
-      <div>
-        aside
-      </div>
-      
+    <Flex>
+      <div>aside</div>
+
       <ScheduleCalendar />
-    </div>
+    </Flex>
   );
 }

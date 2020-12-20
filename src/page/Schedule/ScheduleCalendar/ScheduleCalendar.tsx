@@ -17,18 +17,17 @@ export function ScheduleCalendar() {
   const [displayDragItemInCell, setDisplayDragItemInCell] = useState(true);
   const [draggedEvent, setDraggedEvent] = useState(null);
   const newEvent = (event) => {
-    // let idList = state.events.map(a => a.id)
-    // let newId = Math.max(...idList) + 1
-    // let hour = {
-    //   id: newId,
-    //   title: 'New Event',
-    //   allDay: event.slots.length == 1,
-    //   start: event.start,
-    //   end: event.end,
-    // }
-    // setState({
-    //   events: state.events.concat([hour]),
-    // })
+    let idList = events.map(a => a.id)
+    let newId = Math.max(...idList) + 1
+    let hour = {
+      id: newId,
+      title: 'New Event',
+      allDay: event.slots.length == 1,
+      start: event.start,
+      end: event.end,
+    }
+
+    setEvents(events.concat([hour]));
   };
 
   const resizeEvent = ({ event, start, end }) => {

@@ -60,7 +60,7 @@ export function selectKanbanColumns(
     .map((column) => {
       return {
         ...column,
-        issues: ((column as IColumnNormalized).issues || []).map(
+        issues: ((column as any).issues || []).map(
           (id) => state.project.issueMap[id]
         ).filter(v => !!v).sort((a, b) =>  a.order - b.order),
       };
