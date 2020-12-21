@@ -29,7 +29,9 @@ export function KanbanTab() {
   const columns = useSelector((state: RootState) =>
     selectKanbanColumns(state, kanbanId)
   );
-  const kanbanLoading = useSelector((state: RootState) => state.project.loadingKanban);
+  const kanbanLoading = useSelector(
+    (state: RootState) => state.project.loadingKanban
+  );
 
   useEffect(() => {
     dispatch(
@@ -51,7 +53,6 @@ export function KanbanTab() {
         selectedKanbanId={kanbanId}
         onOpenSetting={() => setSettingModalVisible(true)}
       />
-
 
       <div className="ProjectKanban--kanban-container">
         {!!columns.length && (

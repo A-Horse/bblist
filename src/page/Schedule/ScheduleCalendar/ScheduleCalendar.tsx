@@ -11,21 +11,20 @@ const DragAndDropCalendar = withDragAndDrop(Calendar);
 
 const localizer = momentLocalizer(moment); // or globalizeLocalizer
 
-
 export function ScheduleCalendar() {
   const [events, setEvents] = useState(es);
   const [displayDragItemInCell, setDisplayDragItemInCell] = useState(true);
   const [draggedEvent, setDraggedEvent] = useState(null);
   const newEvent = (event) => {
-    let idList = events.map(a => a.id)
-    let newId = Math.max(...idList) + 1
+    let idList = events.map((a) => a.id);
+    let newId = Math.max(...idList) + 1;
     let hour = {
       id: newId,
       title: 'New Event',
       allDay: event.slots.length == 1,
       start: event.start,
       end: event.end,
-    }
+    };
 
     setEvents(events.concat([hour]));
   };

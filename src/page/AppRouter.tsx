@@ -1,4 +1,3 @@
-
 import React, { Suspense } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 
@@ -6,10 +5,10 @@ import { NotFound } from './NotFound';
 import { Nav } from './Nav/Nav';
 import { useClaims } from '../hook/useClaims';
 import { Claims } from '../typings/claims';
-import {SchedulePage} from "./Schedule/SchedulePage";
+import { SchedulePage } from './Schedule/SchedulePage';
 
-const SettingPageContainer = React.lazy(() =>
-  import('./Setting/SettingPage.container')
+const SettingPageContainer = React.lazy(
+  () => import('./Setting/SettingPage.container')
 );
 
 const SettingPage = () => {
@@ -20,8 +19,8 @@ const SettingPage = () => {
   );
 };
 
-const ProjectWallPageContainer = React.lazy(() =>
-  import('./Project/ProjectWallPage/ProjectWall')
+const ProjectWallPageContainer = React.lazy(
+  () => import('./Project/ProjectWallPage/ProjectWall')
 );
 
 const ProjectWallPage = () => {
@@ -32,8 +31,8 @@ const ProjectWallPage = () => {
   );
 };
 
-const ProjectPageContainer = React.lazy(() =>
-  import('./Project/ProjectPage/ProjectPage')
+const ProjectPageContainer = React.lazy(
+  () => import('./Project/ProjectPage/ProjectPage')
 );
 const ProjectPage = () => {
   return (
@@ -43,8 +42,8 @@ const ProjectPage = () => {
   );
 };
 
-const ProfilePageContainer = React.lazy(() =>
-  import('../page/Profile/ProfilePage')
+const ProfilePageContainer = React.lazy(
+  () => import('../page/Profile/ProfilePage')
 );
 const ProfilePage = () => {
   return (

@@ -1,11 +1,10 @@
-
 export interface CreateCommentRequest {
-    issueId: string;
-    content: string;
+  issueId: string;
+  content: string;
 }
 
 export function createCommentRequest(
-    createCommentRequest: CreateCommentRequest
+  createCommentRequest: CreateCommentRequest
 ) {
   return {
     type: 'CREATE_COMMENT',
@@ -19,14 +18,14 @@ export function createCommentRequest(
   };
 }
 
-export function deleteCommentRequest({issueId, commentId}) {
+export function deleteCommentRequest({ issueId, commentId }) {
   return {
     type: 'DELETE_COMMENT',
     payload: {
       request: {
         url: `/issue/${issueId}/comment/${commentId}`,
-        method: 'DELETE'
-      }
-    }
-  }
+        method: 'DELETE',
+      },
+    },
+  };
 }

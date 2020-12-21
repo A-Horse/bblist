@@ -47,12 +47,12 @@ export function Nav(props: { user: DisplayAccount }) {
                 show
                   ? {
                       backgroundColor: 'white',
-                    position: 'relative',
+                      position: 'relative',
                       top: 1,
                     }
                   : {
-                        position: 'relative',
-                        top: 1,
+                      position: 'relative',
+                      top: 1,
                     }
               }
             >

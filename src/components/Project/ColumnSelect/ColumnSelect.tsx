@@ -14,7 +14,7 @@ import { AppSelect } from '../../../widget/AppSelect';
 
 import './ColumnSelect.scss';
 import { IColumn } from '../../../typings/kanban-column.typing';
-import {queryKanbanColumns} from "../../../redux/actions/column.action";
+import { queryKanbanColumns } from '../../../redux/actions/column.action';
 
 interface InputProps {
   kanbanId?: string;
@@ -75,7 +75,7 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
   return {
     actions: bindActionCreators(
       {
-        queryKanbanColumns: queryKanbanColumns
+        queryKanbanColumns: queryKanbanColumns,
       },
       dispatch
     ),

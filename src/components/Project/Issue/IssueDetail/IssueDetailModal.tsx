@@ -6,10 +6,10 @@ import { ModalHeader } from '../../../../widget/Modal/ModalHeader/ModalHeader';
 import { IssueDetail } from './IssueDetail';
 import { IssueDetailBread } from './IssueDetailBread/IssueDetailBread';
 import { useHistory, useRouteMatch } from 'react-router-dom';
-import {useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { queryProjectIssueDetailRequest } from '../../../../redux/actions/project-issue-detail.action';
-import {RootState} from "../../../../redux/reducer";
-import {selectIssue} from "../../../../redux/reducer/selector/issue.selector";
+import { RootState } from '../../../../redux/reducer';
+import { selectIssue } from '../../../../redux/reducer/selector/issue.selector';
 
 interface InputProps {
   issueId: string;

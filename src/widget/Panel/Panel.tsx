@@ -8,7 +8,7 @@ export function Panel({ children, style }) {
         padding: 12,
         boxSizing: 'border-box',
         backgroundColor: '#ebecf0',
-          ...style
+        ...style,
       }}
     >
       {children}

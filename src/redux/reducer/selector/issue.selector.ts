@@ -1,7 +1,6 @@
 import { RootState } from '../index';
 import { IIssue } from '../../../typings/project-issue.typing';
 
-
 export function selectProjectIssues(
   state: RootState,
   projectId: string

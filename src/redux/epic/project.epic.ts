@@ -54,7 +54,6 @@ export const GET_PROJECT_DETAIL_REQUEST_FN = (action$: Observable<FSAction>) =>
     })
   );
 
-
 export const CREATE_PROJECT_REQUEST_FN = (action$: Observable<FSAction>) =>
   action$.pipe(
     ofType(CREATE_PROJECT_REQUEST),

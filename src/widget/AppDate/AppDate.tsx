@@ -12,5 +12,5 @@ export function AppDate({ value, style, format = 'YYYY-MM-DD' }: Props) {
     return null;
   }
   const ret = moment(value).format(format);
-  return <span style={{...style}}>{ret}</span>;
+  return <span style={{ ...style }}>{ret}</span>;
 }

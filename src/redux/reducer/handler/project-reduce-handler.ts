@@ -17,8 +17,8 @@ export function reduceProjectDetailSuccess(
       ...state.projectMap,
       [projectId]: {
         ...state.projectMap[projectId],
-        ...normalizedData.entities.Project[projectId]
-      }
+        ...normalizedData.entities.Project[projectId],
+      },
     },
   };
 }

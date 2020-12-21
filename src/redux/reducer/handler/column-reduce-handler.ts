@@ -32,10 +32,7 @@ export function reduceKanbanColumnsSuccess(
         columnIds: normalizedData.result,
       },
     },
-    issueMap: reduceNormalizeMap(
-      state.issueMap,
-      normalizedData.entities.Issue
-    ),
+    issueMap: reduceNormalizeMap(state.issueMap, normalizedData.entities.Issue),
     columnMap: reduceNormalizeMap(
       state.columnMap,
       normalizedData.entities.KanbanColumn

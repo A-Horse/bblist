@@ -50,11 +50,10 @@ export function getUserKanbansRequest() {
     type: 'GET_USER_KANBANS',
     payload: {
       request: {
-        url: `/kanbans`
-      }
-    }
-  }
-
+        url: `/kanbans`,
+      },
+    },
+  };
 }
 
 export const CREATE_KANBAN_REQUEST = 'CREATE_KANBAN_REQUEST';

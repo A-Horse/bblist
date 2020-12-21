@@ -27,24 +27,24 @@ export function Table({ dataSource, children }) {
   return (
     <table style={commonStyle}>
       <thead>
-      <tr>
-        {columns.map((col) => (
-          <th style={commonStyle} key={col.prop}>
-            {col.label}
-          </th>
-        ))}
-      </tr>
-      </thead>
-      <tbody>
-      {dataSource.map((rowData, index) => (
-        <tr key={index}>
+        <tr>
           {columns.map((col) => (
-            <td style={commonStyle} key={col.prop}>
-              {rowData[col.prop]}
-            </td>
+            <th style={commonStyle} key={col.prop}>
+              {col.label}
+            </th>
           ))}
         </tr>
-      ))}
+      </thead>
+      <tbody>
+        {dataSource.map((rowData, index) => (
+          <tr key={index}>
+            {columns.map((col) => (
+              <td style={commonStyle} key={col.prop}>
+                {rowData[col.prop]}
+              </td>
+            ))}
+          </tr>
+        ))}
       </tbody>
     </table>
   );

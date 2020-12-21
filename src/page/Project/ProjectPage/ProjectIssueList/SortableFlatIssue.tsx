@@ -1,5 +1,5 @@
 import React from 'react';
-import {  Draggable } from 'react-beautiful-dnd';
+import { Draggable } from 'react-beautiful-dnd';
 import { IIssue } from '../../../../typings/project-issue.typing';
 import { FlatIssue } from '../../../../components/Project/Issue/FlatIssue/FlatIssue';
 

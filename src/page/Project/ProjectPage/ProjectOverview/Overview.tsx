@@ -1,11 +1,11 @@
 import React from 'react';
 import { NoKanbanGuide } from '../KanbanTab/NoKanbanGuide/NoKanbanGuide';
 import { useRouteMatch } from 'react-router-dom';
-import { useSelector} from 'react-redux';
+import { useSelector } from 'react-redux';
 import { RootState } from '../../../../redux/reducer';
 import { selectKanbans } from '../../../../redux/reducer/selector/kanban.selector';
 import { KanbanOverviewPanel } from './KanbanOverviewPanel/KanbanOverviewPanel';
-import {TabHeading} from "../../../../widget/Heading/TabHeading";
+import { TabHeading } from '../../../../widget/Heading/TabHeading';
 
 export function Overview() {
   const match = useRouteMatch<{ projectId: string }>();
@@ -23,26 +23,26 @@ export function Overview() {
     <div>
       {isLoadingKanbans && <div>loading</div>}
 
-      {!isLoadingKanbans && <div>
-        {isShowNoKanbanGuide && <NoKanbanGuide projectId={projectId} />}
+      {!isLoadingKanbans && (
+        <div>
+          {isShowNoKanbanGuide && <NoKanbanGuide projectId={projectId} />}
 
-        {!isShowNoKanbanGuide && (
+          {!isShowNoKanbanGuide && (
             <div
-                style={{
-                  padding: 20,
-                }}
+              style={{
+                padding: 20,
+              }}
             >
               <TabHeading>看板概况</TabHeading>
               <div>
                 {kanbans.map((kanban) => (
-                    <KanbanOverviewPanel key={kanban.id} kanban={kanban} />
+                  <KanbanOverviewPanel key={kanban.id} kanban={kanban} />
                 ))}
               </div>
             </div>
-        )}
-      </div>}
-
-
+          )}
+        </div>
+      )}
     </div>
   );
 }

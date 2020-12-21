@@ -1,5 +1,5 @@
 import React from 'react';
-import {faPencilAlt, faRunning} from '@fortawesome/free-solid-svg-icons';
+import { faPencilAlt, faRunning } from '@fortawesome/free-solid-svg-icons';
 import { FormField } from '../../../../../widget/FormField/FormField';
 import { DetailSection } from '../DetailSection/DetailSection';
 import { CommentInput } from './CommentInput';

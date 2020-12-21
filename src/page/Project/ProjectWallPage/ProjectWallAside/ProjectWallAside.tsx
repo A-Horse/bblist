@@ -28,7 +28,11 @@ export class ProjectWallAside extends Component<Props> {
       <>
         <Side className="ProjectWallAside">
           <SideGroup>
-            <SideItemLink icon={faTachometerAlt} to={`/projects/overview`} name="主页" />
+            <SideItemLink
+              icon={faTachometerAlt}
+              to={`/projects/overview`}
+              name="主页"
+            />
             <SideItemLink icon="list-alt" to={`/projects/all`} name="项目" />
             <SideItemLink
               icon={faColumns}

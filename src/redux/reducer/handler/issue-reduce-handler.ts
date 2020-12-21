@@ -6,7 +6,7 @@ import uniq from 'lodash/uniq';
 import { getProjectIssuesRequest, rankIssue } from '../../actions/issue.action';
 import { normalize } from 'normalizr';
 import remove from 'lodash/remove';
-import {  IssueList } from '../../schema';
+import { IssueList } from '../../schema';
 import get from 'lodash/get';
 import { reduceNormalizeMap } from '../util/util';
 
@@ -32,7 +32,7 @@ export function reduceUpdateProjectIssue(
           ...newColumnMap[oldColumnId],
           issues: (() => {
             const issueIds = Array.from(newColumnMap[oldColumnId].issues || []);
-            remove(issueIds, id => id === issueId)
+            remove(issueIds, (id) => id === issueId);
             return issueIds;
           })(),
         },
@@ -63,7 +63,10 @@ export function reduceIssueDetailSuccess(
       ...columnMap,
       [issue.columnId]: {
         ...columnMap[issue.columnId],
-        issues: uniq([...(get(columnMap[issue.columnId], 'issues') || [] as any[]), issue.id]),
+        issues: uniq([
+          ...(get(columnMap[issue.columnId], 'issues') || ([] as any[])),
+          issue.id,
+        ]),
       },
     };
   }
@@ -95,10 +98,7 @@ export function reduceProjectIssuesSuccess(
   } = normalize(action.payload.data, IssueList);
   return {
     ...state,
-    issueMap: reduceNormalizeMap(
-      state.issueMap,
-      normalizedData.entities.Issue
-    ),
+    issueMap: reduceNormalizeMap(state.issueMap, normalizedData.entities.Issue),
     allIssueId: normalizedData.result,
   };
 }
@@ -146,9 +146,9 @@ export function reduceRankIssueSuccess(
 }
 
 export function reduceDeleteIssue(
-    state: ProjectState,
-    action: AxiosSuccessAction) {
-
+  state: ProjectState,
+  action: AxiosSuccessAction
+) {
   const issue = action.meta.previousAction.payload.issue;
   let updateColumnMap = {};
   if (issue.columnId && state.columnMap[issue.columnId]) {
@@ -156,22 +156,22 @@ export function reduceDeleteIssue(
       ...state.columnMap[issue.columnId],
       issues: (() => {
         const newAllId = Array.from(state.columnMap[issue.columnId].issues!);
-        remove(newAllId, id => id === issue.id);
+        remove(newAllId, (id) => id === issue.id);
         return newAllId;
-      })()
-    }
+      })(),
+    };
   }
 
   return {
     ...state,
     columnMap: {
       ...state.columnMap,
-      ...updateColumnMap
+      ...updateColumnMap,
     },
     allIssueId: (() => {
       const newAllId = Array.from(state.allIssueId);
-      remove(newAllId, id => id === issue.id);
+      remove(newAllId, (id) => id === issue.id);
       return newAllId;
-    })()
-  }
+    })(),
+  };
 }

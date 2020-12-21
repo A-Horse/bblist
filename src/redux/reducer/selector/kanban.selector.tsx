@@ -44,7 +44,7 @@ export function selectKanbans(state: RootState, projectId: string): IKanban[] {
 }
 
 export function selectAllKanbans(state: RootState): IKanban[] {
-    return Object.values(state.project.kanbanMap);
+  return Object.values(state.project.kanbanMap);
 }
 
 export function selectKanbanColumns(
@@ -60,9 +60,10 @@ export function selectKanbanColumns(
     .map((column) => {
       return {
         ...column,
-        issues: ((column as any).issues || []).map(
-          (id) => state.project.issueMap[id]
-        ).filter(v => !!v).sort((a, b) =>  a.order - b.order),
+        issues: ((column as any).issues || [])
+          .map((id) => state.project.issueMap[id])
+          .filter((v) => !!v)
+          .sort((a, b) => a.order - b.order),
       };
     });
 }

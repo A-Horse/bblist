@@ -1,6 +1,4 @@
-import {
-  UpdateIssueInput,
-} from '../../typings/project-issue.typing';
+import { UpdateIssueInput } from '../../typings/project-issue.typing';
 import { FSAction } from './actions';
 
 export function queryProjectIssueDetailRequest(input: {

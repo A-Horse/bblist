@@ -1,4 +1,3 @@
-
 export function queryScheduleEvents({ startTime, endTime }) {
   return {
     type: 'QUERY_SCHEDULE_EVENTS',
@@ -7,9 +6,9 @@ export function queryScheduleEvents({ startTime, endTime }) {
         url: '/schedule/events',
         params: {
           startTime,
-          endTime
-        }
-      }
-    }
-  }
+          endTime,
+        },
+      },
+    },
+  };
 }

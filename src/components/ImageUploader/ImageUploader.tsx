@@ -88,7 +88,7 @@ export class ImageUploader extends Component<{
           <ModalHeader
             title={this.props.modalTitle}
             onClose={this.handleCancelModal}
-            />
+          />
           <div className="crop-image-container">
             <ReactCrop
               style={{ maxHeight: '60vh' }}

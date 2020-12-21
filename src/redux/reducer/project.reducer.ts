@@ -57,7 +57,7 @@ export function project(
     issueMap: fromJS({}),
     allIssueId: [],
     loadingKanbans: false,
-    loadingKanban: false
+    loadingKanban: false,
   },
   action
 ) {
@@ -97,7 +97,7 @@ export function project(
     }
 
     case 'GET_PROJECT_KANBAN_DETAIL': {
-      return {...state, loadingKanban: true};
+      return { ...state, loadingKanban: true };
     }
 
     case 'GET_PROJECT_KANBAN_DETAIL_SUCCESS': {
@@ -105,7 +105,7 @@ export function project(
     }
 
     case 'GET_PROJECT_KANBAN_DETAIL_FAILURE': {
-      return {...state, loadingKanban: false};
+      return { ...state, loadingKanban: false };
     }
 
     case 'QUERY_KANBAN_COLUMNS_SUCCESS': {

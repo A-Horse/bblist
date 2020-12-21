@@ -39,7 +39,7 @@ export function IssueDetail({
   };
 
   const onDetailChange = (partition) => {
-    dispatch(updateIssueDetailRequest({ ...issue, ...partition}));
+    dispatch(updateIssueDetailRequest({ ...issue, ...partition }));
   };
 
   if (!issue) {

@@ -17,5 +17,5 @@ export const KanbanDetailEntity = new schema.Entity('Kanban', {
   columns: [KanbanColumnEntity],
 });
 
-export const ScheduleEventEntity = new schema.Entity('Schedule_Event');
+export const ScheduleEventEntity = new schema.Entity('ScheduleEvent');
 export const ScheduleEventEntityList = new schema.Array(ScheduleEventEntity);

@@ -37,9 +37,7 @@ export const DetailRightField = React.forwardRef<HTMLDivElement, InputProps>(
         style={{
           ...style,
           backgroundColor: backgroundColor,
-          ...(isHover
-            ? hoverStyle
-            : {}),
+          ...(isHover ? hoverStyle : {}),
         }}
       >
         <AppIcon icon={icon} />

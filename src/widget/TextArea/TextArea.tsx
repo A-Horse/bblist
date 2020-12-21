@@ -1,6 +1,11 @@
 import './TextArea.scss';
 
-import React, {ChangeEvent, Component, CSSProperties, KeyboardEventHandler} from 'react';
+import React, {
+  ChangeEvent,
+  Component,
+  CSSProperties,
+  KeyboardEventHandler,
+} from 'react';
 import TextareaAutosize from 'react-textarea-autosize';
 
 export class AppTextArea extends Component<{

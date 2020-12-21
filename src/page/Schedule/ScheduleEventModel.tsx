@@ -1,4 +1,3 @@
-
 export class ScheduleEventModel {
   public id: string;
   public title: string;
@@ -12,5 +11,4 @@ export class ScheduleEventModel {
     scheduleEventModel.start = new Date(event.startTime);
     scheduleEventModel.end = new Date(event.endTime);
   }
-
 }

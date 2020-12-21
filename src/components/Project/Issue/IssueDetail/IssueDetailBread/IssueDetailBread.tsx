@@ -10,7 +10,7 @@ import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { useToasts } from 'react-toast-notifications';
 import './IssueDetailBread.scss';
 import { IIssue } from '../../../../../typings/project-issue.typing';
-import {updateIssueDetailRequest} from "../../../../../redux/actions/project-issue-detail.action";
+import { updateIssueDetailRequest } from '../../../../../redux/actions/project-issue-detail.action';
 
 interface InputProps {
   projectId: string;
@@ -29,7 +29,7 @@ export function IssueDetailBread(props: InputProps) {
   });
 
   const updateIssue = (partialIssue) => {
-      dispatch(updateIssueDetailRequest({ id: issue.id,...partialIssue }));
+    dispatch(updateIssueDetailRequest({ id: issue.id, ...partialIssue }));
   };
   if (!project || !issue) {
     return null;

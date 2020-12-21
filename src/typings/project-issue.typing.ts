@@ -1,4 +1,4 @@
-export interface IIssueAttachment{
+export interface IIssueAttachment {
   id: string;
   fileName: string;
 }
@@ -17,7 +17,7 @@ export interface IIssue {
   assigneeId?: string;
   creatorId?: string;
   comments?: IComment[];
-  attachments: IIssueAttachment[]
+  attachments: IIssueAttachment[];
 }
 
 export interface UpdateIssueInput {

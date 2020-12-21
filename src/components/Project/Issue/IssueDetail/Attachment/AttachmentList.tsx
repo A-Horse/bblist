@@ -10,9 +10,9 @@ export function AttachmentList({ issue }) {
 
   return (
     <div>
-        {attachments.map((attachment) => (
-          <Attachment key={attachment.id} issue={issue} attachment={attachment} />
-        ))}
+      {attachments.map((attachment) => (
+        <Attachment key={attachment.id} issue={issue} attachment={attachment} />
+      ))}
     </div>
   );
 }

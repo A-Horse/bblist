@@ -4,8 +4,8 @@ import { KanbanIssue } from './KanbanIssue';
 
 const getItemStyle = (isDragging, draggableStyle) => ({
   ...draggableStyle,
-  userSelect: isDragging ? 'none': 'default',
-  padding: '4px 6px'
+  userSelect: isDragging ? 'none' : 'default',
+  padding: '4px 6px',
 });
 export function DraggableKanbanIssue({ issue, index, kanbanId, onClick }) {
   return (

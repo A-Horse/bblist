@@ -7,17 +7,19 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 import 'react-big-calendar/lib/addons/dragAndDrop/styles.scss';
 
 import { Flex } from '../../widget/Layout/Flex';
-import { generateThisMonthRange } from "./schedule-range-selector";
+import { generateThisMonthRange } from './schedule-range-selector';
 
 export function SchedulePage() {
   const dispatch = useDispatch();
 
   useEffect(() => {
     const [startMoment, endMoment] = generateThisMonthRange();
-    dispatch(queryScheduleEvents({
-      startTime: startMoment.toISOString(),
-      endTime: endMoment.toISOString(),
-    }));
+    dispatch(
+      queryScheduleEvents({
+        startTime: startMoment.toISOString(),
+        endTime: endMoment.toISOString(),
+      })
+    );
   }, []);
 
   return (

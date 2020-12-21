@@ -22,8 +22,12 @@ export function DateTimeSelectModal({
   onCancel,
   onConfirm,
 }: InputProps) {
-  const [startTime, setStartTime] = useState(initialStartTime ? moment(initialStartTime).toDate() : null);
-  const [deadline, setDeadline] = useState(initialDeadline ? moment(initialDeadline).toDate() : null);
+  const [startTime, setStartTime] = useState(
+    initialStartTime ? moment(initialStartTime).toDate() : null
+  );
+  const [deadline, setDeadline] = useState(
+    initialDeadline ? moment(initialDeadline).toDate() : null
+  );
 
   const closeModal = () => {
     onCancel();

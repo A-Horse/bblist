@@ -65,7 +65,7 @@ export function deleteIssue(issue: IIssue) {
       request: {
         url: `/issue/${issue.id}`,
         method: 'DELETE',
-      }
-    }
-  }
+      },
+    },
+  };
 }

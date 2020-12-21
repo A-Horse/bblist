@@ -5,7 +5,7 @@ export function Flex(props: {
   className?: string;
   style?: CSSProperties;
   alignCenter?: boolean;
-    contentEnd?: boolean;
+  contentEnd?: boolean;
 }) {
   return (
     <div
@@ -17,11 +17,11 @@ export function Flex(props: {
               alignItems: 'center',
             }
           : {}),
-          ...(props.contentEnd
-              ? {
-                  justifyContent: 'flex-end',
-              }
-              : {}),
+        ...(props.contentEnd
+          ? {
+              justifyContent: 'flex-end',
+            }
+          : {}),
         ...props.style,
       }}
     >

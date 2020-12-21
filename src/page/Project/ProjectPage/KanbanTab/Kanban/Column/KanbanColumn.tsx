@@ -18,7 +18,7 @@ interface InputProps {
 const getListStyle = (isDraggingOver) => ({
   background: isDraggingOver ? 'lightblue' : undefined,
   minHeight: isDraggingOver ? 30 : 8,
-  borderRadius: 6
+  borderRadius: 6,
 });
 
 export function KanbanColumn({ column, projectId, kanbanId }: InputProps) {
@@ -31,11 +31,7 @@ export function KanbanColumn({ column, projectId, kanbanId }: InputProps) {
 
   return (
     <div className="KanbanColumn">
-      <div
-        className="KanbanColumn--main"
-        style={{
-        }}
-      >
+      <div className="KanbanColumn--main" style={{}}>
         <div className="KanbanColumn--header">
           <span className="KanbanColumn--header-name">{column.name}</span>
         </div>

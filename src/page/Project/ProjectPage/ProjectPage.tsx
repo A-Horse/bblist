@@ -1,8 +1,8 @@
 import './ProjectPage.scss';
 
 import { History, Location } from 'history';
-import React, {  useEffect } from 'react';
-import {  useDispatch } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import {
   match,
   Redirect,
@@ -89,7 +89,10 @@ export default function ProjectPage() {
             </Switch>
 
             <Route
-              path={["/project/:projectId/kanban/:kanbanId", "/project/:projectId/*"]}
+              path={[
+                '/project/:projectId/kanban/:kanbanId',
+                '/project/:projectId/*',
+              ]}
               render={(props: RouteComponentProps<any>) => {
                 const query = parseQueryParams(props.location.search);
                 if (!query.selectIssue) {

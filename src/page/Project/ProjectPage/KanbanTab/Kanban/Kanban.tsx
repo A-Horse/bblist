@@ -41,11 +41,11 @@ export function Kanban({ kanbanId, projectId }: InputProps) {
     const inSameColumn = source.droppableId === destination.droppableId;
     if (targetIssue) {
       dispatch(
-          rankIssue(
-              sourceIssue,
-              targetIssue,
-              inSameColumn ? result.source.index > result.destination.index : true
-          )
+        rankIssue(
+          sourceIssue,
+          targetIssue,
+          inSameColumn ? result.source.index > result.destination.index : true
+        )
       );
     }
 

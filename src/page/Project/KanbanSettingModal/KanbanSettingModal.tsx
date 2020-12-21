@@ -79,7 +79,7 @@ class KanbanSettingModalComponent extends Component<
         ) : (
           <div>
             <ModalHeader
-              title={ this.props.kanban!.name + ' 配置'}
+              title={this.props.kanban!.name + ' 配置'}
               onClose={this.props.onClose}
             />
 

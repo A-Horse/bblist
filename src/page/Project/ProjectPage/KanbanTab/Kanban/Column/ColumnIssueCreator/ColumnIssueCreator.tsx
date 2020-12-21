@@ -64,7 +64,7 @@ export function ColumnIssueCreator({
     <div className="ColumnIssueCreator">
       {!showInput && (
         <div className="ColumnIssueCreator--toggle">
-          <AppButton  onClick={() => setShowInput(true)}>
+          <AppButton onClick={() => setShowInput(true)}>
             <AppIcon icon={faPlusCircle} />
             添加一张新卡片
           </AppButton>
