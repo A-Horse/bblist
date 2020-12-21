@@ -1,4 +1,3 @@
-import { ProjectMap } from './project.reducer';
 import { reduceScheduleEventSuccess } from './handler/schedule-event-handler';
 import { IScheduleEvent } from '../../typings/schedule-event.typing';
 

@@ -28,7 +28,7 @@ export function SchedulePage() {
   return (
     <Flex>
       <div>aside</div>
-
+      
       <ScheduleCalendar events={events} />
     </Flex>
   );

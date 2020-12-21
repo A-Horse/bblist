@@ -2,7 +2,7 @@ import moment from 'moment';
 import { RootState } from '..';
 import { IScheduleEvent } from '../../../typings/schedule-event.typing';
 
-export function selectScheduleEvents(rootState: RootState, filterOption?: {
+export function selectScheduleEvents(rootState: RootState, filterOption: {
     startTime?: Date;
     endTime?: Date;
 } = {}): IScheduleEvent[] {

@@ -32,15 +32,24 @@ describe('ScheduleEventSelector', () => {
   });
 
   test('should select range schedule events correctly', () => {
-    const events1 = selectScheduleEvents(mockState, new Date('2020-12-01T03:41:08.345Z'), new Date('2020-12-31T03:41:08.345Z'));
+    const events1 = selectScheduleEvents(mockState, {
+        startTime: new Date('2020-12-01T03:41:08.345Z'), 
+        endTime: new Date('2020-12-31T03:41:08.345Z')
+    });
     expect(events1.length).toEqual(1);
     expect(events1[0].title).toEqual('walk');
 
-    const events2 = selectScheduleEvents(mockState, null, new Date('2020-12-31T03:41:08.345Z'));
+    const events2 = selectScheduleEvents(mockState, {
+        startTime: null, 
+        endTime: new Date('2020-12-31T03:41:08.345Z')
+    });
     expect(events2.length).toEqual(2);
     expect(events2[1].title).toEqual('work');
 
-    const events3 = selectScheduleEvents(mockState, new Date('2020-12-01T03:41:08.345Z'), null);
+    const events3 = selectScheduleEvents(mockState, {
+        startTime: new Date('2020-12-01T03:41:08.345Z'), 
+        endTime: null
+    });
     expect(events3.length).toEqual(2);
     expect(events3[1].title).toEqual('exercise');
   });
