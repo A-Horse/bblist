@@ -9,15 +9,13 @@ export interface ScheduleEventState {
   eventMap: ScheduleEventMap;
 }
 
-export function scheduleEvent(
-  state: ScheduleEventState = {
-    eventMap: {},
-  },
-  action
-) {
+
+export function scheduleEvent(state: ScheduleEventState = {
+  eventMap: {},
+}, action): ScheduleEventState {
   switch (action.type) {
     case 'QUERY_SCHEDULE_EVENTS_SUCCESS':
-      return reduceScheduleEventSuccess(state);
+      return reduceScheduleEventSuccess(state, action);
     default:
       return state;
   }
