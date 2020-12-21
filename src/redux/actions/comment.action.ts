@@ -3,9 +3,7 @@ export interface CreateCommentRequest {
   content: string;
 }
 
-export function createCommentRequest(
-  createCommentRequest: CreateCommentRequest
-) {
+export function createCommentRequest(createCommentRequest: CreateCommentRequest) {
   return {
     type: 'CREATE_COMMENT',
     payload: {

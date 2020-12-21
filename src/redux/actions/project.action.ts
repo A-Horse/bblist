@@ -60,9 +60,7 @@ export const CREATE_PROJECT_REQUEST = 'CREATE_PROJECTS_REQUEST';
 export const CREATE_PROJECT_SUCCESS = 'CREATE_PROJECTS_SUCCESS';
 export const CREATE_PROJECT_FAILURE = 'CREATE_PROJECTS_FAILURE';
 
-export function createProjectRequest(
-  createProjectInput: CreateProjectInput
-): FSAction {
+export function createProjectRequest(createProjectInput: CreateProjectInput): FSAction {
   return {
     type: CREATE_PROJECT_REQUEST,
     payload: createProjectInput,
@@ -117,9 +115,7 @@ export function uploadProjectCoverFailure(error): FSAction {
   };
 }
 
-export function updateProjectRequest(
-  updateProjectRequest: UpdateProjectRequest
-) {
+export function updateProjectRequest(updateProjectRequest: UpdateProjectRequest) {
   return {
     type: 'UPDATE_PROJECT',
     payload: {

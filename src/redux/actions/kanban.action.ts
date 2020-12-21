@@ -5,19 +5,14 @@ export const GET_PROJECT_KANBANS_REQUEST = 'GET_PROJECT_KANBANS_REQUEST';
 export const GET_PROJECT_KANBANS_SUCCESS = 'GET_PROJECT_KANBANS_SUCCESS';
 export const GET_PROJECT_KANBANS_FAILURE = 'GET_PROJECT_KANBANS_FAILURE';
 
-export function getProjectKanbansRequest(payload: {
-  projectId: string;
-}): FSAction {
+export function getProjectKanbansRequest(payload: { projectId: string }): FSAction {
   return {
     type: GET_PROJECT_KANBANS_REQUEST,
     payload,
   };
 }
 
-export function getProjectKanbansSuccess(payload: {
-  projectId: string;
-  kanbans: IKanban[];
-}): FSAction {
+export function getProjectKanbansSuccess(payload: { projectId: string; kanbans: IKanban[] }): FSAction {
   return {
     type: GET_PROJECT_KANBANS_SUCCESS,
     payload,
@@ -31,9 +26,7 @@ export function getProjectKanbansFailure(): FSAction {
   };
 }
 
-export function getProjectKanbanDetailRequest(payload: {
-  kanbanId: string;
-}): FSAction {
+export function getProjectKanbanDetailRequest(payload: { kanbanId: string }): FSAction {
   return {
     type: 'GET_PROJECT_KANBAN_DETAIL',
     payload: {
@@ -73,11 +66,7 @@ export function createKanbanRequest(
   };
 }
 
-export function createKanbanSuccess(
-  id: string,
-  projectID: string,
-  noKanbanExist: boolean
-): FSAction {
+export function createKanbanSuccess(id: string, projectID: string, noKanbanExist: boolean): FSAction {
   return {
     type: CREATE_KANBAN_SUCCESS,
     payload: id,

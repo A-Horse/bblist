@@ -33,9 +33,6 @@ export function reduceKanbanColumnsSuccess(
       },
     },
     issueMap: reduceNormalizeMap(state.issueMap, normalizedData.entities.Issue),
-    columnMap: reduceNormalizeMap(
-      state.columnMap,
-      normalizedData.entities.KanbanColumn
-    ),
+    columnMap: reduceNormalizeMap(state.columnMap, normalizedData.entities.KanbanColumn),
   };
 }

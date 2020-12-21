@@ -11,10 +11,7 @@ export function setupAxiosJwtHeader(jwt) {
 }
 
 export function setupAxiosInterceptor() {
-  axios.interceptors.response.use(
-    responseSuccessInterceptor,
-    responseFailureInterceptor
-  );
+  axios.interceptors.response.use(responseSuccessInterceptor, responseFailureInterceptor);
 }
 
 export function responseSuccessInterceptor(response) {

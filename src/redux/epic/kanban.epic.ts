@@ -38,16 +38,9 @@ export const CREATE_KANBAN_REQUEST_FN = (action$: Observable<FSAction>) =>
     ofType(CREATE_KANBAN_REQUEST),
     mergeMap((action: FSAction) => {
       return axios
-        .post(
-          makeApiUrl(`/project/${action.payload.projectId}/kanban`),
-          action.payload
-        )
+        .post(makeApiUrl(`/project/${action.payload.projectId}/kanban`), action.payload)
         .then((result: AxiosResponse<string>) =>
-          createKanbanSuccess(
-            result.data,
-            action.payload.projectId,
-            action.meta.noKanbanExist
-          )
+          createKanbanSuccess(result.data, action.payload.projectId, action.meta.noKanbanExist)
         )
         .catch(createKanbanFailure);
     })

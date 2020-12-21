@@ -21,11 +21,7 @@ import {
   uploadProjectCoverFailure,
   uploadProjectCoverSuccess,
 } from '../actions/project.action';
-import {
-  IProject,
-  ProjectId,
-  UploadProjectCoverInput,
-} from '../../typings/project.typing';
+import { IProject, ProjectId, UploadProjectCoverInput } from '../../typings/project.typing';
 import { makeApiUrl } from '../../utils/api';
 
 export const GET_PROJECTS_REQUEST_FN = (action$: Observable<FSAction>) =>
@@ -34,9 +30,7 @@ export const GET_PROJECTS_REQUEST_FN = (action$: Observable<FSAction>) =>
     mergeMap(() => {
       return axios
         .get(makeApiUrl(`/projects`))
-        .then((result: AxiosResponse<IProject[]>) =>
-          getProjectsSuccess(result.data)
-        )
+        .then((result: AxiosResponse<IProject[]>) => getProjectsSuccess(result.data))
         .catch(getProjectsFailure);
     })
   );
@@ -47,9 +41,7 @@ export const GET_PROJECT_DETAIL_REQUEST_FN = (action$: Observable<FSAction>) =>
     mergeMap((action: FSAction) => {
       return axios
         .get(makeApiUrl(`/project/${action.payload}`))
-        .then((result: AxiosResponse<IProject>) =>
-          getProjectDetailSuccess(result.data)
-        )
+        .then((result: AxiosResponse<IProject>) => getProjectDetailSuccess(result.data))
         .catch(getProjectDetailFailure);
     })
   );
@@ -60,9 +52,7 @@ export const CREATE_PROJECT_REQUEST_FN = (action$: Observable<FSAction>) =>
     mergeMap((action: FSAction) => {
       return axios
         .post(makeApiUrl(`/project`), action.payload)
-        .then((result: AxiosResponse<ProjectId>) =>
-          createProjectSuccess(result.data)
-        )
+        .then((result: AxiosResponse<ProjectId>) => createProjectSuccess(result.data))
         .catch(createProjectFailure);
     })
   );
@@ -73,21 +63,16 @@ export const CREATE_PROJECT_SUCCESS_FN = (action$: Observable<FSAction>) =>
     map(() => getProjectsRequest())
   );
 
-export const UPLOAD_PROJECT_COVER_REQUEST_FN = (
-  action$: Observable<FSAction>
-) =>
+export const UPLOAD_PROJECT_COVER_REQUEST_FN = (action$: Observable<FSAction>) =>
   action$.pipe(
     ofType(UPLOAD_PROJECT_COVER_REQUEST),
     mergeMap((action: FSAction) => {
       const uploadProjectCoverInput: UploadProjectCoverInput = action.payload;
       return axios
-        .post(
-          makeApiUrl(`/project/${uploadProjectCoverInput.projectId}/cover`),
-          {
-            projectId: uploadProjectCoverInput.projectId,
-            coverCode: uploadProjectCoverInput.coverBase64,
-          }
-        )
+        .post(makeApiUrl(`/project/${uploadProjectCoverInput.projectId}/cover`), {
+          projectId: uploadProjectCoverInput.projectId,
+          coverCode: uploadProjectCoverInput.coverBase64,
+        })
         .then(() => {
           action.meta.callback && action.meta.callback();
           return uploadProjectCoverSuccess(uploadProjectCoverInput.projectId);
@@ -99,9 +84,7 @@ export const UPLOAD_PROJECT_COVER_REQUEST_FN = (
     })
   );
 
-export const UPLOAD_PROJECT_COVER_SUCCESS_FN = (
-  action$: Observable<FSAction>
-) =>
+export const UPLOAD_PROJECT_COVER_SUCCESS_FN = (action$: Observable<FSAction>) =>
   action$.pipe(
     ofType(UPLOAD_PROJECT_COVER_SUCCESS),
     map((action) => getProjectDetailRequest(action.payload.projectID))

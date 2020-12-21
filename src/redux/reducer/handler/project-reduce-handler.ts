@@ -4,10 +4,7 @@ import { normalize } from 'normalizr';
 import { ProjectEntity } from '../../schema';
 import { updateProjectRequest } from '../../actions/project.action';
 
-export function reduceProjectDetailSuccess(
-  state: ProjectState,
-  action: FSAction
-): ProjectState {
+export function reduceProjectDetailSuccess(state: ProjectState, action: FSAction): ProjectState {
   const normalizedData = normalize(action.payload, ProjectEntity);
   const projectId = normalizedData.result;
 

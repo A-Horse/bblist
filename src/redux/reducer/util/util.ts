@@ -5,16 +5,13 @@ export function reduceNormalizeMap<T = any>(
   if (!newMap) {
     return resultMap;
   }
-  const subMap = Object.keys(newMap).reduce(
-    (result: { [id: string]: T }, id: string) => {
-      result[id] = {
-        ...resultMap[id],
-        ...newMap[id],
-      };
-      return result;
-    },
-    {}
-  );
+  const subMap = Object.keys(newMap).reduce((result: { [id: string]: T }, id: string) => {
+    result[id] = {
+      ...resultMap[id],
+      ...newMap[id],
+    };
+    return result;
+  }, {});
   return {
     ...resultMap,
     ...subMap,

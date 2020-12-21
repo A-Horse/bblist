@@ -6,9 +6,7 @@ import axios from 'axios';
 import { makeApiUrl } from '../../utils/api';
 import { updateIssueDetailRequest } from '../actions/project-issue-detail.action';
 
-export const UPDATE_ISSUE_DETAIL_EPIC = (
-  action$: Observable<ReturnType<typeof updateIssueDetailRequest>>
-) =>
+export const UPDATE_ISSUE_DETAIL_EPIC = (action$: Observable<ReturnType<typeof updateIssueDetailRequest>>) =>
   action$.pipe(
     ofType('UPDATE_ISSUE_DETAIL'),
     debounceTime(1000),

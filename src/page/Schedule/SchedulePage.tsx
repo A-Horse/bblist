@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { ScheduleCalendar } from './ScheduleCalendar/ScheduleCalendar';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { queryScheduleEvents } from '../../redux/actions/schedule.action';
 
 import 'react-big-calendar/lib/css/react-big-calendar.css';
@@ -8,9 +8,12 @@ import 'react-big-calendar/lib/addons/dragAndDrop/styles.scss';
 
 import { Flex } from '../../widget/Layout/Flex';
 import { generateThisMonthRange } from './schedule-range-selector';
+import { RootState } from '../../redux/reducer';
+import { selectScheduleEvents } from '../../redux/reducer/selector/schedule-event.selector';
 
 export function SchedulePage() {
   const dispatch = useDispatch();
+  const events = useSelector((rootState: RootState) => selectScheduleEvents(rootState));
 
   useEffect(() => {
     const [startMoment, endMoment] = generateThisMonthRange();
@@ -26,7 +29,7 @@ export function SchedulePage() {
     <Flex>
       <div>aside</div>
 
-      <ScheduleCalendar />
+      <ScheduleCalendar events={events} />
     </Flex>
   );
 }

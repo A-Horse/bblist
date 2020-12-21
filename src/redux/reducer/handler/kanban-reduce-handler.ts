@@ -4,15 +4,9 @@ import { KanbanDetailEntity, KanbanEntityList, IssueList } from '../../schema';
 import { ProjectState } from '../project.reducer';
 import { AxiosSuccessAction, FSAction } from '../../actions/actions';
 import { reduceNormalizeMap } from '../util/util';
-import {
-  getUserKanbansRequest,
-  queryKanbanRecentlyIssues,
-} from '../../actions/kanban.action';
+import { getUserKanbansRequest, queryKanbanRecentlyIssues } from '../../actions/kanban.action';
 
-export function reduceKanbanDetailSuccess(
-  state: ProjectState,
-  action: AxiosSuccessAction
-): ProjectState {
+export function reduceKanbanDetailSuccess(state: ProjectState, action: AxiosSuccessAction): ProjectState {
   const normalizedData: {
     entities: {
       Kanban: {
@@ -37,20 +31,14 @@ export function reduceKanbanDetailSuccess(
   };
 }
 
-export function reduceProjectKanban(
-  state: ProjectState,
-  action: FSAction
-): ProjectState {
+export function reduceProjectKanban(state: ProjectState, action: FSAction): ProjectState {
   return {
     ...state,
     loadingKanbans: true,
   };
 }
 
-export function reduceProjectKanbanSuccess(
-  state: ProjectState,
-  action: FSAction
-): ProjectState {
+export function reduceProjectKanbanSuccess(state: ProjectState, action: FSAction): ProjectState {
   const normalizedKanbans: {
     entities: {
       Kanban: {
@@ -70,10 +58,7 @@ export function reduceProjectKanbanSuccess(
         kanbanIds: normalizedKanbans.result,
       },
     },
-    kanbanMap: reduceNormalizeMap(
-      state.kanbanMap,
-      normalizedKanbans.entities.Kanban
-    ),
+    kanbanMap: reduceNormalizeMap(state.kanbanMap, normalizedKanbans.entities.Kanban),
   };
 }
 
@@ -92,10 +77,7 @@ export function reduceKanbanRecentlyIssuesSuccess(
         recentlyIssueIds: normalizedIssuesData.result,
       },
     },
-    issueMap: reduceNormalizeMap(
-      state.issueMap,
-      normalizedIssuesData.entities.Issue
-    ),
+    issueMap: reduceNormalizeMap(state.issueMap, normalizedIssuesData.entities.Issue),
   };
 }
 

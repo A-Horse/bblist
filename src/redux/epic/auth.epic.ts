@@ -8,12 +8,7 @@ import { setupAxiosJwtHeader } from '../../utils/http-interceptor';
 import { Storage } from '../../services/storage';
 import { makeApiUrl } from '../../utils/api';
 import { saveAuthData } from '../../utils/auth';
-import {
-  ActionLoginRequest,
-  LOGIN_REQUEST,
-  loginFailure,
-  loginSuccess,
-} from '../actions/login.action';
+import { ActionLoginRequest, LOGIN_REQUEST, loginFailure, loginSuccess } from '../actions/login.action';
 import { AUTH_HEADER_KEY } from '../../constant/constants';
 
 export const LOGIN_REQUEST_FN = (action$: Observable<any>) =>

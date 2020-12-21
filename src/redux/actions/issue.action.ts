@@ -1,12 +1,7 @@
-import {
-  CreateProjectIssueInput,
-  IIssue,
-} from '../../typings/project-issue.typing';
+import { CreateProjectIssueInput, IIssue } from '../../typings/project-issue.typing';
 import { FSAction } from './actions';
 
-export function getProjectIssuesRequest(payload: {
-  projectId: string;
-}): FSAction {
+export function getProjectIssuesRequest(payload: { projectId: string }): FSAction {
   return {
     type: `GET_PROJECT_ISSUES`,
     payload: {
@@ -17,9 +12,7 @@ export function getProjectIssuesRequest(payload: {
   };
 }
 
-export function createIssueRequest(
-  createKanbanCardInput: CreateProjectIssueInput
-) {
+export function createIssueRequest(createKanbanCardInput: CreateProjectIssueInput) {
   return {
     type: 'CREATE_PROJECT_ISSUE',
     payload: {
@@ -33,11 +26,7 @@ export function createIssueRequest(
   };
 }
 
-export function rankIssue(
-  issue: IIssue,
-  targetIssue: IIssue,
-  isBefore: boolean
-) {
+export function rankIssue(issue: IIssue, targetIssue: IIssue, isBefore: boolean) {
   return {
     type: 'RANK_ISSUE',
     payload: {

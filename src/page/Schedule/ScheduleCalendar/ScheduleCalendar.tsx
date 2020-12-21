@@ -4,15 +4,14 @@ import { Calendar, Views, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
 
 import withDragAndDrop from 'react-big-calendar/lib/addons/dragAndDrop';
-import { Column, Table } from '../../../components/Table/Table';
 import { es } from './events';
 
 const DragAndDropCalendar = withDragAndDrop(Calendar);
 
 const localizer = momentLocalizer(moment); // or globalizeLocalizer
 
-export function ScheduleCalendar() {
-  const [events, setEvents] = useState(es);
+export function ScheduleCalendar({ events }) {
+  // const [events, setEvents] = useState(es);
   const [displayDragItemInCell, setDisplayDragItemInCell] = useState(true);
   const [draggedEvent, setDraggedEvent] = useState(null);
   const newEvent = (event) => {
@@ -26,7 +25,7 @@ export function ScheduleCalendar() {
       end: event.end,
     };
 
-    setEvents(events.concat([hour]));
+    // setEvents(events.concat([hour]));
   };
 
   const resizeEvent = ({ event, start, end }) => {
@@ -36,9 +35,8 @@ export function ScheduleCalendar() {
         : existingEvent;
     });
 
-    setEvents(nextEvents);
-
-    //alert(`${event.title} was resized to ${start}-${end}`)
+    // setEvents(nextEvents);
+    // alert(`${event.title} was resized to ${start}-${end}`)
   };
 
   const moveEvent = ({ event, start, end, isAllDay: droppedOnAllDaySlot }) => {
@@ -56,8 +54,7 @@ export function ScheduleCalendar() {
         : existingEvent;
     });
 
-    setEvents(nextEvents);
-
+    // setEvents(nextEvents);
     // alert(`${event.title} was dropped onto ${updatedEvent.start}`)
   };
 
@@ -100,7 +97,7 @@ export function ScheduleCalendar() {
         onSelectSlot={newEvent}
         onDragStart={console.log}
         defaultView={Views.MONTH}
-        defaultDate={new Date(2015, 3, 12)}
+        defaultDate={new Date()}
         popup={true}
         dragFromOutsideItem={displayDragItemInCell ? dragFromOutsideItem : null}
         onDropFromOutside={onDropFromOutside}

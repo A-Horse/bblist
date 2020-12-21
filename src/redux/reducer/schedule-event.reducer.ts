@@ -1,8 +1,13 @@
 import { ProjectMap } from './project.reducer';
 import { reduceScheduleEventSuccess } from './handler/schedule-event-handler';
+import { IScheduleEvent } from '../../typings/schedule-event.typing';
+
+export interface ScheduleEventMap {
+  [id: string]: IScheduleEvent;
+}
 
 export interface ScheduleEventState {
-  eventMap: ProjectMap;
+  eventMap: ScheduleEventMap;
 }
 
 export function scheduleEvent(

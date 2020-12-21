@@ -21,10 +21,7 @@ import {
   reduceProjectKanbanSuccess,
 } from './handler/kanban-reduce-handler';
 import { reduceKanbanColumnsSuccess } from './handler/column-reduce-handler';
-import {
-  reduceProjectDetailSuccess,
-  reduceUpdateProject,
-} from './handler/project-reduce-handler';
+import { reduceProjectDetailSuccess, reduceUpdateProject } from './handler/project-reduce-handler';
 import {
   reduceDeleteIssue,
   reduceIssueDetailSuccess,
@@ -78,10 +75,7 @@ export function project(
     }
 
     case `UPDATE_PROJECT`: {
-      return reduceUpdateProject(
-        state,
-        action as ReturnType<typeof updateProjectRequest>
-      );
+      return reduceUpdateProject(state, action as ReturnType<typeof updateProjectRequest>);
     }
 
     case 'UPDATE_ISSUE_DETAIL': {

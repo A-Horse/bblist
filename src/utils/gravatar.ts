@@ -8,9 +8,7 @@ export function makeGravatarHash(email) {
 }
 
 export function makeGravatarUrl(email, size = 80) {
-  const urlQuery = size
-    ? makeGravatarHash(email) + `?s=${size}`
-    : makeGravatarHash(email);
+  const urlQuery = size ? makeGravatarHash(email) + `?s=${size}` : makeGravatarHash(email);
   return GravatarUrlBase.concat(urlQuery);
 }
 

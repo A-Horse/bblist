@@ -8,10 +8,7 @@ export function reduceScheduleEventSuccess(
   state: ScheduleEventState,
   action: AxiosSuccessAction<ReturnType<typeof queryScheduleEvents>>
 ): ScheduleEventState {
-  const dataNormalize = new DataNormalize(
-    action.payload.data,
-    ScheduleEventEntityList
-  );
+  const dataNormalize = new DataNormalize(action.payload.data, ScheduleEventEntityList);
   const eventEntities = dataNormalize.geEntities('ScheduleEvent');
   return {
     ...state,

@@ -17,9 +17,7 @@ export interface ActionLoginRequest extends FSAction {
   };
 }
 
-export function loginRequest(
-  loginRequestInput: LoginRequestInput
-): ActionLoginRequest {
+export function loginRequest(loginRequestInput: LoginRequestInput): ActionLoginRequest {
   return {
     type: LOGIN_REQUEST,
     payload: {

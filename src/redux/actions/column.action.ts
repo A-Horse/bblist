@@ -15,9 +15,7 @@ export function queryKanbanColumns(kanbanId): FSAction {
   };
 }
 
-export function createKanbanColumnRequest(
-  createKanbanColumnInput: CreateKanbanColumnInput
-) {
+export function createKanbanColumnRequest(createKanbanColumnInput: CreateKanbanColumnInput) {
   return {
     type: `CREATE_KANBAN_COLUMN`,
     payload: {

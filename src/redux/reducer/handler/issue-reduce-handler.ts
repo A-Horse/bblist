@@ -10,10 +10,7 @@ import { IssueList } from '../../schema';
 import get from 'lodash/get';
 import { reduceNormalizeMap } from '../util/util';
 
-export function reduceUpdateProjectIssue(
-  state: ProjectState,
-  action: FSAction
-): ProjectState {
+export function reduceUpdateProjectIssue(state: ProjectState, action: FSAction): ProjectState {
   const issueId = action.payload.id;
 
   let newColumnMap = state.columnMap;
@@ -63,10 +60,7 @@ export function reduceIssueDetailSuccess(
       ...columnMap,
       [issue.columnId]: {
         ...columnMap[issue.columnId],
-        issues: uniq([
-          ...(get(columnMap[issue.columnId], 'issues') || ([] as any[])),
-          issue.id,
-        ]),
+        issues: uniq([...(get(columnMap[issue.columnId], 'issues') || ([] as any[])), issue.id]),
       },
     };
   }
@@ -103,10 +97,7 @@ export function reduceProjectIssuesSuccess(
   };
 }
 
-export function reduceRankIssue(
-  state: ProjectState,
-  action: ReturnType<typeof rankIssue>
-): ProjectState {
+export function reduceRankIssue(state: ProjectState, action: ReturnType<typeof rankIssue>): ProjectState {
   const payload = action.payload;
   return {
     ...state,
@@ -120,10 +111,7 @@ export function reduceRankIssue(
   };
 }
 
-export function reduceRankIssueSuccess(
-  state: ProjectState,
-  action: AxiosSuccessAction
-): ProjectState {
+export function reduceRankIssueSuccess(state: ProjectState, action: AxiosSuccessAction): ProjectState {
   const changedIssueMap = (action.payload.data as Array<{
     id: string;
     order: number;
@@ -145,10 +133,7 @@ export function reduceRankIssueSuccess(
   };
 }
 
-export function reduceDeleteIssue(
-  state: ProjectState,
-  action: AxiosSuccessAction
-) {
+export function reduceDeleteIssue(state: ProjectState, action: AxiosSuccessAction) {
   const issue = action.meta.previousAction.payload.issue;
   let updateColumnMap = {};
   if (issue.columnId && state.columnMap[issue.columnId]) {
