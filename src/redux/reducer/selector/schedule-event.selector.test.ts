@@ -44,13 +44,13 @@ describe('ScheduleEventSelector', () => {
         endTime: new Date('2020-12-31T03:41:08.345Z')
     });
     expect(events2.length).toEqual(2);
-    expect(events2[1].title).toEqual('work');
+    expect(events2[1].title).toEqual('exercise');
 
     const events3 = selectScheduleEvents(mockState, {
         startTime: new Date('2020-12-01T03:41:08.345Z'), 
         endTime: null
     });
     expect(events3.length).toEqual(2);
-    expect(events3[1].title).toEqual('exercise');
+    expect(events3[1].title).toEqual('work');
   });
 });
