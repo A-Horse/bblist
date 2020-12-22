@@ -11,6 +11,7 @@ import { Route, Switch, Redirect, RouteComponentProps } from 'react-router-dom';
 import { AllKanban } from './AllKanban/AllKanban';
 import { parseQueryParams } from '../../../utils/url.util';
 import { IssueDetailModal } from '../../../components/Project/Issue/IssueDetail/IssueDetailModal';
+import { selectAllProject } from '../../../redux/reducer/selector/project.selector';
 
 export function ProjectWallPage() {
   const dispatch = useDispatch();
@@ -19,9 +20,7 @@ export function ProjectWallPage() {
     dispatch(getProjectsRequest());
   }, [dispatch]);
 
-  const projects = useSelector((state: RootState) =>
-    Object.values(state.project.projectMap)
-  );
+  const projects = useSelector((state: RootState) => selectAllProject(state));
 
   return (
     <div className="ProjectWallPage">
